@@ -1,6 +1,6 @@
 // shortcut : SpanningTree
 // description : 全域木構築 return : { {parent}, {depth, index} }
-tuple<vector<int>, vector<pair<int, int>>> SpanningTree(const UnWeightedGraph& g, int root) {
+tuple<vector<int>, vector<pair<int, int>>> SpanningTree(const vector<vector<int>>& g, int root) {
 	const int V = g.size(), nil = -2;
 	vector<int> parent(V, nil);
 	parent[root] = -1;

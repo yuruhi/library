@@ -1,6 +1,6 @@
 // shortcut : ConnectedComponet
 // description : 連結成分 return : { 連結成分数, {番号} }
-pair<int, vector<int>> ConnectedComponet(const UnWeightedGraph& g) {
+pair<int, vector<int>> ConnectedComponet(const vector<vector<int>>& g) {
 	int V = g.size(), N = 0;
 	VI id(V, -1);
 	function<void(int, int)> dfs = [&](int ID, int v) {
