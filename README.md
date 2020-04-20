@@ -135,5 +135,5 @@
 
 ## [dump](https://github.com/yuruhi/library/blob/master/dump.hpp)
 
-[デバッグ用出力関数(C++17)](https://github.com/yuruhi/library/blob/master/dump.hpp)
+デバッグ用出力関数(C++17)
 
