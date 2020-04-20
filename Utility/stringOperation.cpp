@@ -1,5 +1,5 @@
-// shortcut : ReplaceAll
-// description : s に含まれる t を u に置き換え
+// shortcut : stringOperation
+// description : std::string の操作
 void replace_all(string& s, const string& t, const string& u) {
 	size_t pos = s.find(t);
 	while (pos != string::npos) {
