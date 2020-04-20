@@ -121,7 +121,7 @@
 - [std::stringの操作](https://github.com/yuruhi/library/blob/master/Utility/ReaplaceAll.cpp)
 - [std::vectorの操作](https://github.com/yuruhi/library/blob/master/Utility/VectorOperation.cpp)
 -  [{ true, true, false ,true, true, true } -> { 1, 2, 0, 1, 2, 3}](https://github.com/yuruhi/library/blob/master/Utility/CountStraight.cpp) 
-- [単調増加、単調減少ごとに分ける](https://github.com/yuruhi/library/blob/master/Utility/splitRange.cpp)
+- [ { 1,2,3,2,1,2,1 } -> { [0-2], [2-4], [4-5], [5-6] } ](https://github.com/yuruhi/library/blob/master/Utility/splitRange.cpp)
 - [文字列の対応する括弧の場所を探す](https://github.com/yuruhi/library/blob/master/Utility/BracketsPos.cpp)
 - [うるう年判定](https://github.com/yuruhi/library/blob/master/Utility/isLeap.cpp)
 
