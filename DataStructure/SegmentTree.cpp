@@ -5,9 +5,9 @@ template<class T>class SegmentTree {
 	int N; T init;
 	vector<T> A;
 	Func F;
-	int ceil2(int n) { int m = 1; while (m < n)m *= 2; return m; }
+	static int ceil2(int n) { int m = 1; while (m < n)m *= 2; return m; }
 
-	template<class C>int ff(int a, int b, const C& c, int k, int l, int r) {
+	template<class C>int ff(int a, int b, const C& c, int k, int l, int r)const {
 		if (!c(A[k]) || r <= a || b <= l) {
 			return -1;
 		} else if (k >= N) {
@@ -18,7 +18,7 @@ template<class T>class SegmentTree {
 			return ff(a, b, c, 2 * k + 1, (l + r) / 2, r);
 		}
 	}
-	template<class C>int fl(int a, int b, const C& c, int k, int l, int r) {
+	template<class C>int fl(int a, int b, const C& c, int k, int l, int r)const {
 		if (!c(A[k]) || r <= a || b <= l) {
 			return -1;
 		} else if (k >= N) {
@@ -54,11 +54,11 @@ public:
 			A[i] = F(A[i * 2], A[i * 2 + 1]);
 		}
 	}
-	T operator[](int i) {
+	T operator[](int i)const {
 		assert(0 <= i && i < N);
 		return A[i + N];
 	}
-	T operator()(int l, int r) { // [l, r)
+	T operator()(int l, int r)const { // [l, r)
 		assert(0 <= l && l < r && r <= N);
 		T L = init, R = init;
 		for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
@@ -67,10 +67,10 @@ public:
 		}
 		return F(L, R);
 	}
-	template<class C>int find_first(int l, int r, const C& c) {
+	template<class C>int find_first(int l, int r, const C& c)const {
 		return ff(l, r, c, 1, 0, N);
 	}
-	template<class C>int find_last(int l, int r, const C& c) {
+	template<class C>int find_last(int l, int r, const C& c)const {
 		return fl(l, r, c, 1, 0, N);
 	}
 	vector<T> as_vector()const {
