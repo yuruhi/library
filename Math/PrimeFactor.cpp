@@ -8,7 +8,7 @@ template<class T>map<T, int> PrimeFactor(T n) {
 	if (n != 1)ret[n] = 1;
 	return ret;
 }
-template<class T>vector<T> PrimeFactor(T n) {
+template<class T>vector<T> PrimeFactorV(T n) {
     assert(2 <= n);
 	vector<T> ret;
 	for (T i = 2; i * i <= n; ++i)

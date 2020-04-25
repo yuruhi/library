@@ -3,7 +3,7 @@
 struct Sieve {
 	int n;
 	vector<int> f, primes;
-	Sieve(int n) :n(n), f(n + 1) {
+	Sieve(int _n) :n(_n), f(_n + 1) {
 		assert(1 <= n);
 		f[0] = f[1] = -1;
 		for (long long i = 2; i <= n; ++i)if (!f[i]) {
@@ -12,7 +12,7 @@ struct Sieve {
 				if (!f[j])f[j] = i;
 		}
 	}
-	bool isPrime(int x)const { return f[x] == x; }
+	bool is_prime(int x)const { return f[x] == x; }
 	vector<pair<int, int>> factor(int x)const {
 		assert(1 <= x);
 		vector<pair<int, int>> res;
