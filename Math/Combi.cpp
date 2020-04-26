@@ -15,13 +15,16 @@ public:
 			finv[i] = finv[i - 1] * inv[i];
 		}
 	}
-	T P(int n, int r) {
+	T P(int n, int r)const {
 		return (n < r || n < 0 || r < 0) ? 0 : fac[n] * finv[n - r];
 	}
-	T C(int n, int r) {
+	T C(int n, int r)const {
 		return (n < r || n < 0 || r < 0) ? 0 : fac[n] * finv[r] * finv[n - r];
 	}
-	T H(int n, int r) {
+	T H(int n, int r)const {
 		return (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n + r - 1, r);
+	}
+	T fact(int n)const {
+		return fac[n];
 	}
 };
