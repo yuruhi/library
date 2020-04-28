@@ -69,8 +69,8 @@ template<class...T>inline void InputF(tuple<T...>& v) { InputTuple(v); }
 template<class T>inline T InputF() { T v; InputF(v); return v; }
 struct InputV {
 	int n, m;
-	InputV(int N) :n(N), m(0) {}
-	InputV(pair<int, int> N) :n(N.first), m(N.second) {}
+	InputV(int _n) :n(_n), m(0) {}
+	InputV(const pair<int, int> nm) :n(nm.first), m(nm.second) {}
 	template<class T>operator vector<T>() { vector<T> v(n); InputF(v); return v; }
 	template<class T>operator vector<vector<T>>() { vector<vector<T>> v(n, vector<T>(m)); InputF(v); return v; }
 };
@@ -78,10 +78,9 @@ struct Input {
 	template<class T>operator T() { return InputF<T>(); }
 	int operator--(int) { int v; InputF(v); v--; return v; }
 	InputV operator[](int n) { return InputV(n); }
-	InputV operator[](pair<int, int> n) { return InputV(n); }
+	InputV operator[](const pair<int, int>& n) { return InputV(n); }
 	void operator()() {}
 	template<class H, class...T>void operator()(H&& h, T&& ...t) { InputF(h); operator()(forward<T>(t)...); }
-	template<class T>Input& operator,(T&& v) { InputF(v); return *this; }
 private:
 	template<template<class...>class, class...>struct Multiple;
 	template<template<class...>class V, class Head, class... Tail>struct Multiple<V, Head, Tail...> {

@@ -74,8 +74,8 @@ inline string GetLine() {
 }
 struct InputV {
 	int n, m;
-	InputV(int N) :n(N), m(0) {}
-	InputV(pair<int, int> N) :n(N.first), m(N.second) {}
+	InputV(int _n) :n(_n), m(0) {}
+	InputV(const pair<int, int>& nm) :n(nm.first), m(nm.second) {}
 	template<class T>operator vector<T>() {
 		vector<T> v(n); InputF(v); return v;
 	}
@@ -87,7 +87,7 @@ struct Input {
 	template<class T>operator T() { return InputF<T>(); }
 	int operator--(int) { int v; InputF(v); v--; return v; }
 	InputV operator[](int n) { return InputV(n); }
-	InputV operator[](pair<int, int> n) { return InputV(n); }
+	InputV operator[](const pair<int, int>& n) { return InputV(n); }
 	void operator()() {}
 	template<class H, class...T>void operator()(H&& h, T&& ...t) {
 		InputF(h); operator()(forward<T>(t)...);
