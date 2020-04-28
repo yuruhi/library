@@ -1,5 +1,5 @@
 // shortcut : KyoproTemplate14
-// description : C++14ç”¨ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+// description : C++14—pƒeƒ“ƒvƒŒ[ƒg
 #define _USE_MATH_DEFINES
 #define _CRT_SECURE_NO_WARNINGS
 #include "bits/stdc++.h"
@@ -91,9 +91,6 @@ struct Input {
 	void operator()() {}
 	template<class H, class...T>void operator()(H&& h, T&& ...t) {
 		InputF(h); operator()(forward<T>(t)...);
-	}
-	template<class T>Input& operator,(T&& v) {
-		InputF(v); return *this;
 	}
 }in;
 #define input(T) InputF<T>()
@@ -189,6 +186,8 @@ template<class T>struct Step {
 	template<class F>T find_if(const F& f)const { for (T i : *this)if (f(i))return i; return 0; }
 	template<class F>auto max_by(const F& f)const { auto v = map(f); return *max_element(v.begin(), v.end()); }
 	template<class F>auto min_by(const F& f)const { auto v = map(f); return *min_element(v.begin(), v.end()); }
+	template<class F>bool all_of(const F& f)const { for (T i : *this)if (!f(i))return false; return true; }
+	template<class F>bool any_of(const F& f)const { for (T i : *this)if (f(i))return true; return false; }
 	template<class F, class U = decay_t<result_of_t<F(T)>>>auto sum(const F& f)const {
 		U res = 0; each([&](T i) {res += static_cast<U>(f(i)); }); return res;
 	}
@@ -215,9 +214,11 @@ inline namespace {
 	}
 	template<class T>inline void Reverse(T& a) { reverse(all(a)); }
 	template<class T>inline void Unique(T& a) { a.erase(unique(all(a)), a.end()); }
+	template<class T>inline void Uniq(T& a) { Sort(a); Unique(a); }
 	template<class T>inline void Rotate(T& a, int left) { rotate(a.begin(), a.begin() + left, a.end()); }
 	template<class T>inline T Reversed(T a) { Reverse(a); return a; }
 	template<class T>inline T Uniqued(T a) { Unique(a); return a; }
+	template<class T>inline T Uniqed(T a) { Uniq(a); return a; }
 	template<class T>inline T Rotated(T a, int left) { Rotate(a, left); return a; }
 	template<class T>inline auto Max(const T& a) { return *max_element(all(a)); }
 	template<class T>inline auto Min(const T& a) { return *min_element(all(a)); }
@@ -262,7 +263,13 @@ inline namespace {
 	template<class T, class F>inline auto TrueIndex(const T& v, const F& f) {
 		vector<size_t> res; for (size_t i = 0; i < v.size(); ++i)if (f(v[i]))res.push_back(i); return res;
 	}
+	template<class T, class U = typename T::value_type>inline auto Indexed(const T& v) {
+		vector<pair<U, int>> res(v.size());
+		for (int i = 0; i < (int)v.size(); ++i)res[i] = make_pair(static_cast<U>(v[i]), i);
+		return res;
+	}
 	inline string operator*(string s, size_t n) { string ret; for (size_t i = 0; i < n; ++i)ret += s; return ret; }
+	template<class T>inline auto& operator<<(vector<T>& v, const vector<T>& v2) { v.insert(v.end(), all(v2)); return v; }
 	template<class T>inline T Ceil(T n, T m) { return (n + m - 1) / m; }
 	template<class T>inline T Ceil2(T n, T m) { return Ceil(n, m) * m; }
 	template<class T>inline T Tri(T n) { return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1); }

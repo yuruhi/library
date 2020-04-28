@@ -129,11 +129,11 @@
 
 ## [template14](https://github.com/yuruhi/library/blob/master/template14.cpp)
 
-テンプレート(C++14)
+C++14用テンプレート
 
 ## [template17](https://github.com/yuruhi/library/blob/master/template17.cpp)
 
-テンプレート(C++17)
+C++17用テンプレート
 
 ## [dump](https://github.com/yuruhi/library/blob/master/dump.hpp)
 

@@ -196,6 +196,8 @@ template<class T>struct Step {
 	template<class F>optional<T> find_if(const F& f)const { for (T i : *this)if (f(i))return i; return nullopt; }
 	template<class F>auto max_by(const F& f)const { auto v = map(f); return *max_element(v.begin(), v.end()); }
 	template<class F>auto min_by(const F& f)const { auto v = map(f); return *min_element(v.begin(), v.end()); }
+	template<class F>bool all_of(const F& f)const { for (T i : *this)if (!f(i))return false; return true; }
+	template<class F>bool any_of(const F& f)const { for (T i : *this)if (f(i))return true; return false; }
 	template<class F, class U = invoke_result_t<F, T>>auto sum(const F& f)const {
 		U res = 0; each([&](T i) {res += static_cast<U>(f(i)); }); return res;
 	}
@@ -266,6 +268,11 @@ inline namespace {
 	template<class T, class F>inline auto TrueIndex(const T& v, const F& f) {
 		vector<size_t> res; for (size_t i = 0; i < v.size(); ++i)if (f(v[i]))res.push_back(i); return res;
 	}
+	template<class T, class U = typename T::value_type>inline auto Indexed(const T& v) {
+		vector<pair<U, int>> res(v.size());
+		for (int i = 0; i < (int)v.size(); ++i)res[i] = make_pair(static_cast<U>(v[i]), i);
+		return res;
+	}
 	inline auto operator*(string s, size_t n) { string ret; for (size_t i = 0; i < n; ++i)ret += s; return ret; }
 	template<class T>inline auto& operator<<(vector<T>& v, const vector<T>& v2) { v.insert(v.end(), all(v2)); return v; }
 	template<class T>inline T Ceil(T n, T m) { return (n + m - 1) / m; }
@@ -273,7 +280,8 @@ inline namespace {
 	template<class T>inline T Tri(T n) { return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1); }
 	template<class T>inline T nC2(T n) { return (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1); }
 	template<class T>inline T Mid(const T& l, const T& r) { return l + (r - l) / 2; }
-	template<class T>inline int pop_count(T n) { return bitset<64>(n).count(); }
+	inline int pop_count(int n) { return bitset<32>(n).count(); }
+	inline int pop_count(ll n) { return bitset<64>(n).count(); }
 	template<class T>inline bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
 	template<class T>inline bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
 	template<class T>inline bool inRange(const T& v, const T& min, const T& max) { return min <= v && v < max; }
