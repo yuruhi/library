@@ -222,16 +222,20 @@ inline namespace {
 	}
 	template<class T>inline void Reverse(T& a) { reverse(all(a)); }
 	template<class T>inline void Unique(T& a) { a.erase(unique(all(a)), a.end()); }
+	template<class T>inline void Uniq(T& a) { Sort(a); Unique(a); }
+	template<class T>inline void Rotate(T& a, int left) { rotate(a.begin(), a.begin() + left, a.end()); }
 	template<class T>inline T Reversed(T a) { Reverse(a); return a; }
 	template<class T>inline T Uniqued(T a) { Unique(a); return a; }
+	template<class T>inline T Uniqed(T a) { Uniq(a); return a; }
+	template<class T>inline T Rotated(T a, int left) { Rotate(a, left); return a; }
 	template<class T>inline auto Max(const T& a) { return *max_element(all(a)); }
 	template<class T>inline auto Min(const T& a) { return *min_element(all(a)); }
 	template<class T>inline int MaxPos(const T& a) { return max_element(all(a)) - a.begin(); }
 	template<class T>inline int MinPos(const T& a) { return min_element(all(a)) - a.begin(); }
-	template<class T, class F>inline auto Max(const T& a, const F& f) {
+	template<class T, class F>inline auto MaxOf(const T& a, const F& f) {
 		return max_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
-	template<class T, class F>inline auto Min(const T& a, const F& f) {
+	template<class T, class F>inline auto MinOf(const T& a, const F& f) {
 		return min_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
 	template<class T, class U>inline int Count(const T& a, const U& v) { return count(all(a), v); }

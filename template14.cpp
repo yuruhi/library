@@ -224,10 +224,10 @@ inline namespace {
 	template<class T>inline auto Min(const T& a) { return *min_element(all(a)); }
 	template<class T>inline int MaxPos(const T& a) { return max_element(all(a)) - a.begin(); }
 	template<class T>inline int MinPos(const T& a) { return min_element(all(a)) - a.begin(); }
-	template<class T, class F>inline auto Max(const T& a, const F& f) {
+	template<class T, class F>inline auto MaxOf(const T& a, const F& f) {
 		return *max_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
-	template<class T, class F>inline auto Min(const T& a, const F& f) {
+	template<class T, class F>inline auto MinOf(const T& a, const F& f) {
 		return *min_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
 	template<class T, class U>inline int Count(const T& a, const U& v) { return count(all(a), v); }
