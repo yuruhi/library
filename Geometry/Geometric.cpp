@@ -1,6 +1,13 @@
-// shortcut : Geometric 
-// description : 幾何ライブラリ
 constexpr bool Equal(ld a, ld b) { return a < b ? b - a < EPS : a - b < EPS; }
+
+struct Vec2;
+struct Circle;
+struct Rect;
+struct Line;
+inline ld TriangleArea(ld a, ld b, ld c);
+inline ld TriangleArea(const Vec2& v1, const Vec2& v2, const Vec2& v3);
+inline ld PolygonArea(vector<Vec2> v);
+inline bool IntersectsSegment(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d);
 
 struct Vec2 {
 	ld x, y;
@@ -38,25 +45,9 @@ struct Vec2 {
 	constexpr Vec2 rotate90()const { return { y,-x }; }
 	constexpr Vec2 rotate180()const { return { -x,-y }; }
 	constexpr Vec2 rotate270()const { return { -y,x }; }
+	friend ostream& operator<<(ostream& os, const Vec2& v) { return os << '(' << v.x << ',' << v.y << ')'; }
+	friend istream& operator>>(istream& is, Vec2& v) { return is >> v.x >> v.y; }
 };
-inline ostream& operator<<(ostream& os, const Vec2& v) { return os << '(' << v.x << ',' << v.y << ')'; }
-inline istream& operator>>(istream& is, Vec2& v) { return is >> v.x >> v.y; }
-
-inline ld TriangleArea(ld a, ld b, ld c) {
-	ld s = (a + b + c) / 2;
-	return sqrt(s * (s - a) * (s - b) * (s - c));
-}
-inline ld TriangleArea(const Vec2& v1, const Vec2& v2, const Vec2& v3) {
-	return TriangleArea(v1.dist(v2), v1.dist(v3), v2.dist(v3));
-}
-inline ld PolygonArea(vector<Vec2> v) {
-	v.push_back(v.front());
-	ld ans = 0;
-	for (size_t i = 0; i < v.size() - 1; ++i) {
-		ans += abs(v[i].x * v[i + 1].y - v[i + 1].x * v[i].y);
-	}
-	return ans / 2;
-}
 
 struct Circle {
 	Vec2 center; ld r;
@@ -110,11 +101,11 @@ struct Circle {
 			return {};
 		}
 	}
+	friend ostream& operator<<(ostream& os, const Circle& c) {
+		return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
+	}
+	friend istream& operator>>(istream& is, Circle& c) { return is >> c.center >> c.r; }
 };
-inline ostream& operator<<(ostream& os, const Circle& c) {
-	return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
-}
-inline istream& operator>>(istream& is, Circle& c) { return is >> c.center >> c.r; }
 
 struct Rect {
 	Vec2 pos, size;
@@ -124,7 +115,7 @@ struct Rect {
 	constexpr Rect(ld _x, ld _y, ld _w, ld _h) : pos(_x, _y), size(_w, _h) {}
 	constexpr Rect(const Vec2& _pos, const Vec2& _size) : pos(_pos), size(_size) {}
 	constexpr bool operator==(const Rect& r)const { return pos == r.pos && size == r.size; }
-	constexpr bool operator!=(const Rect& r)const { return pos != r.pos || size != r.size; }
+	constexpr bool operator!=(const Rect& r)const { return !(*this == r); }
 	constexpr Rect operator+(const Vec2& v)const { return Rect(*this) += v; }
 	constexpr Rect operator-(const Vec2& v)const { return Rect(*this) -= v; }
 	constexpr Rect& operator+=(const Vec2& v) { pos += v; return *this; }
@@ -158,8 +149,55 @@ struct Rect {
 	constexpr bool contains(const Circle& c)const {
 		return top_left() <= Vec2(c.left_x(), c.top_y()) && Vec2(c.right_x(), c.bottom_y()) <= bottom_right();
 	}
+	friend ostream& operator<<(ostream& os, const Rect& r) {
+		return os << '(' << r.pos << ',' << r.size << ')';
+	}
+	friend istream& operator>>(istream& is, Rect& r) { return is >> r.pos >> r.size; }
 };
-inline ostream& operator<<(ostream& os, const Rect& r) {
-	return os << '(' << r.pos << ',' << r.size << ')';
+
+struct Line {
+private:
+	ld a, b, c; // ax + by + c = 0
+public:
+	constexpr Line(ld _a, ld _b, ld _c) :a(_a), b(_b), c(_c) {}
+	constexpr Line(ld x1, ld y1, ld x2, ld y2) : a(y2 - y1), b(x1 - x2), c(y2* (x2 - x1) - x2 * (y2 - y1)) {}
+	constexpr Line(const Vec2& v1, const Vec2& v2) : Line(v1.x, v1.y, v2.x, v2.y) {}
+	constexpr bool operator==(const Line& l) { return Equal(a, l.a) && Equal(b, l.b) && Equal(c, l.c); }
+	constexpr bool operator!=(const Line& l) { return !(*this == l); }
+	constexpr ld get_x(ld y) { return (-b * y - c) / a; }
+	constexpr ld get_y(ld x) { return (-a * x - c) / b; }
+	ld dist(const Vec2& v) { return abs(a * v.x + b * v.y + c) / hypot(a, b); }
+	friend ostream& operator<<(ostream& os, const Line& l) {
+		return os << l.a << "x + " << l.b << "y + " << l.c << " = 0";
+	}
+	friend istream& operator>>(istream& is, Line& l) {
+		ld x1, y1, x2, y2; is >> x1 >> y1 >> x2 >> y2;
+		l = Line(x1, y1, x2, y2); return is;
+	}
+};
+
+inline ld TriangleArea(ld a, ld b, ld c) {
+	ld s = (a + b + c) / 2;
+	return sqrt(s * (s - a) * (s - b) * (s - c));
 }
-inline istream& operator>>(istream& is, Rect& r) { return is >> r.pos >> r.size; }
+inline ld TriangleArea(const Vec2& v1, const Vec2& v2, const Vec2& v3) {
+	return TriangleArea(v1.dist(v2), v1.dist(v3), v2.dist(v3));
+}
+inline ld PolygonArea(vector<Vec2> v) {
+	v.push_back(v.front());
+	ld ans = 0;
+	for (size_t i = 0; i < v.size() - 1; ++i) {
+		ans += abs(v[i].x * v[i + 1].y - v[i + 1].x * v[i].y);
+	}
+	return ans / 2;
+}
+inline bool IntersectsSegment(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d) {
+	ld s, t;
+	s = (a.x - b.x) * (c.y - a.y) - (a.y - b.y) * (c.x - a.x);
+	t = (a.x - b.x) * (d.y - a.y) - (a.y - b.y) * (d.x - a.x);
+	if (s * t > 0)return false;
+	s = (c.x - d.x) * (a.y - c.y) - (c.y - d.y) * (a.x - c.x);
+	t = (c.x - d.x) * (b.y - c.y) - (c.y - d.y) * (b.x - c.x);
+	if (s * t > 0)return false;
+	return true;
+}
