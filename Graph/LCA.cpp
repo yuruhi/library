@@ -1,10 +1,18 @@
 // shortcut : LCA
 // description : 最小共通祖先（ダブリング）
-struct LCA {
+class LCA {
 	const int V, LOG;
 	vector<int> dist;
 	vector<vector<int>> table;
+	void dfs(const Graph& g, int v, int p, int d) {
+		table[0][v] = p;
+		dist[v] = d;
+		for (auto e : g[v])if (e.to != p) {
+			dfs(g, e.to, v, d + 1);
+		}
+	}
 
+public:
 	LCA(const Graph& g, const int root)
 		: V(g.size()), LOG(log2(V) + 1)
 		, dist(V), table(LOG, vector<int>(V)) {
@@ -17,13 +25,6 @@ struct LCA {
 					table[k + 1][v] = table[k][table[k][v]];
 				}
 			}
-		}
-	}
-	void dfs(const Graph& g, int v, int p, int d) {
-		table[0][v] = p;
-		dist[v] = d;
-		for (auto e : g[v])if (e.to != p) {
-			dfs(g, e.to, v, d + 1);
 		}
 	}
 	int operator()(int u, int v) {
