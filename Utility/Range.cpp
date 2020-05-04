@@ -30,11 +30,11 @@ struct Range {
 	constexpr bool adjacent(const Range& r)const { return y + 1 == r.x || r.y + 1 == x; }
 	constexpr T size()const { return *this ? max<T>(0, y - x + 1) : 0; }
 	constexpr T sum()const { return (x + y) * size() / 2; }
+	friend ostream& operator<<(ostream& os, const Range& r) {
+		return (r == Range::nil()) ? (os << "[nil]") : (os << '[' << r.x << ", " << r.y << ']');
+	}
+	friend istream& operator>>(istream& is, Range& r) { return is >> r.x >> r.y; }
 };
-inline ostream& operator<<(ostream& os, const Range& r) {
-	return (r == Range::nil()) ? (os << "[nil]") : (os << '[' << r.x << ", " << r.y << ']');
-}
-inline istream& operator>>(istream& is, Range& r) { return is >> r.x >> r.y; }
 template<class T>constexpr Range equal_range(const T& a, const Range& r) {
 	auto L = lower_bound(a.begin(), a.end(), r.x) - a.begin(), R = upper_bound(a.begin(), a.end(), r.y) - a.begin();
 	return L == R ? Range::nil() : Range(L, R, true);

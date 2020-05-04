@@ -79,8 +79,8 @@ struct Point {
 	constexpr Point rotate90() { return { y,-x }; }
 	constexpr Point rotate180() { return { -x,-y }; }
 	constexpr Point rotate270() { return { -y,x }; }
+	friend ostream& operator<<(ostream& os, const Point& p) { return  os << '(' << p.x << ", " << p.y << ')'; }
+	friend istream& operator>>(istream& is, Point& p) { return is >> p.x >> p.y; }
 };
 int Point::H, Point::W;
 const vector<Point> Point::d{ {0,1},{1,0},{0,-1},{-1,0},{1,1},{-1,-1},{1,-1},{-1,1} };
-inline ostream& operator<<(ostream& os, const Point& p) { return  os << '(' << p.x << ", " << p.y << ')'; }
-inline istream& operator>>(istream& is, Point& p) { return is >> p.x >> p.y; }
