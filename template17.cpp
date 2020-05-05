@@ -36,8 +36,10 @@ constexpr ld PI = M_PI, EPS = 1e-12;
 inline int gc() { return getchar_unlocked(); }
 template<class T>inline void InputF(T& v) { cin >> v; }
 inline void InputF(char& v) { while (isspace(v = gc())); }
-inline void InputF(bool& v) { char c; InputF(c); v = c == '1'; }
-inline void InputF(string& v) { char c; for (InputF(c); !isspace(c); c = gc())v += c; }
+inline void InputF(bool& v) { char c; InputF(c); v = c != '0'; }
+inline void InputF(string& v) {
+	v.clear(); char c; for (InputF(c); !isspace(c); c = gc())v += c;
+}
 inline void InputF(int& v) {
 	bool neg = false; v = 0; char c; InputF(c);
 	if (c == '-') { neg = true; c = gc(); }
@@ -60,6 +62,16 @@ inline void InputF(double& v) {
 	}
 	if (neg)v = -v;
 }
+inline void InputF(long double& v) {
+	long double dp = 1; bool neg = false, adp = false; v = 0; char c; InputF(c);
+	if (c == '-') { neg = true; c = gc(); }
+	for (; isdigit(c) || c == '.'; c = gc()) {
+		if (c == '.')adp = true;
+		else if (adp)v += (c - '0') * (dp *= 0.1);
+		else v = v * 10 + (c - '0');
+	}
+	if (neg)v = -v;
+}
 template<class T, class U>inline void InputF(pair<T, U>& v) { InputF(v.first); InputF(v.second); }
 template<class T>inline void InputF(vector<T>& v) { for (auto& e : v)InputF(e); }
 template<size_t N = 0, class T>inline void InputTuple(T& v) {
@@ -67,10 +79,13 @@ template<size_t N = 0, class T>inline void InputTuple(T& v) {
 }
 template<class...T>inline void InputF(tuple<T...>& v) { InputTuple(v); }
 template<class T>inline T InputF() { T v; InputF(v); return v; }
+inline string GetLine() {
+	string v; char c; for (InputF(c); c != '\n' && c != '\0'; c = gc())v += c; return v;
+}
 struct InputV {
 	int n, m;
 	InputV(int _n) :n(_n), m(0) {}
-	InputV(const pair<int, int> nm) :n(nm.first), m(nm.second) {}
+	InputV(const pair<int, int>& nm) :n(nm.first), m(nm.second) {}
 	template<class T>operator vector<T>() { vector<T> v(n); InputF(v); return v; }
 	template<class T>operator vector<vector<T>>() { vector<vector<T>> v(n, vector<T>(m)); InputF(v); return v; }
 };
@@ -106,10 +121,10 @@ public:
 #define INT input(int)
 #define LL input(ll)
 #define STR input(string)
-#define input2(T, ...) T __VA_ARGS__; in(__VA_ARGS__)
-#define ini(...) input2(int, __VA_ARGS__)
-#define inl(...) input2(ll, __VA_ARGS__)
-#define ins(...) input2(string, __VA_ARGS__)
+#define inputs(T, ...) T __VA_ARGS__; in(__VA_ARGS__)
+#define ini(...) inputs(int, __VA_ARGS__)
+#define inl(...) inputs(ll, __VA_ARGS__)
+#define ins(...) inputs(string, __VA_ARGS__)
 
 // --- output --- //
 struct BoolStr {
@@ -122,23 +137,23 @@ class Output {
 	BoolStr B{ Yes }; DivStr D{ spc };
 	void p(int v) {
 		if (v < 0)putchar_unlocked('-'), v = -v;
-		char b[10]; int n = 0;
-		while (v)b[n++] = '0' + v % 10, v /= 10;
-		if (!n)b[n++] = '0';
-		while (n--)putchar_unlocked(b[n]);
+		char b[10]; int i = 0;
+		while (v)b[i++] = '0' + v % 10, v /= 10;
+		if (!i)b[i++] = '0';
+		while (i--)putchar_unlocked(b[i]);
 	}
 	void p(ll v) {
 		if (v < 0)putchar_unlocked('-'), v = -v;
-		char b[20]; int n = 0;
-		while (v)b[n++] = '0' + v % 10, v /= 10;
-		if (!n)b[n++] = '0';
-		while (n--)putchar_unlocked(b[n]);
+		char b[20]; int i = 0;
+		while (v)b[i++] = '0' + v % 10, v /= 10;
+		if (!i)b[i++] = '0';
+		while (i--)putchar_unlocked(b[i]);
 	}
 	void p(bool v) { p(v ? B.t : B.f); }
 	void p(char v) { putchar_unlocked(v); }
 	void p(const char* v) { fwrite_unlocked(v, 1, strlen(v), stdout); }
 	void p(double v) { printf("%.20f", v); }
-	void p(long double v) { printf("%.20Lf", v); }
+	void p(ld v) { printf("%.20Lf", v); }
 	template<class T> void p(const T& v) { cout << v; }
 	template<class T, class U>void p(const pair<T, U>& v) { p(v.first); p(D.d); p(v.second); }
 	template<class T>void p(const vector<T>& v) { rep(i, sz(v)) { if (i)p(D.d); p(v[i]); } }
@@ -148,6 +163,12 @@ public:
 	template<class H>Output& operator()(H&& h) { p(h); p(D.l); return *this; }
 	template<class H, class...T>Output& operator()(H&& h, T&& ...t) {
 		p(h); p(D.d); return operator()(forward<T>(t)...);
+	}
+	template<class It>Output& range(const It& l, const It& r) {
+		for (It i = l; i != r; i++) { if (i != l)p(D.d); p(*i); } p(D.l); return *this;
+	}
+	template<class T>Output& range(const T& a) {
+		range(a.begin(), a.end()); return *this;
 	}
 	template<class...T>void exit(T&& ...t) { operator()(forward<T>(t)...); std::exit(EXIT_SUCCESS); }
 	Output& flush() { fflush_unlocked(stdout); return *this; }
@@ -209,6 +230,7 @@ template<class T>inline constexpr auto step(T a) { return Step<T>(0, a, 1); }
 template<class T>inline constexpr auto step(T a, T b) { return Step<T>(a, b - a, 1); }
 template<class T>inline constexpr auto step(T a, T b, T c) { return Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c); }
 
+// --- functions --- //
 inline namespace {
 	template<class T>inline void Sort(T& a) { sort(all(a)); }
 	template<class T>inline void RSort(T& a) { sort(rall(a)); }
@@ -232,17 +254,18 @@ inline namespace {
 	template<class T>inline auto Min(const T& a) { return *min_element(all(a)); }
 	template<class T>inline int MaxPos(const T& a) { return max_element(all(a)) - a.begin(); }
 	template<class T>inline int MinPos(const T& a) { return min_element(all(a)) - a.begin(); }
-	template<class T, class F>inline auto MaxOf(const T& a, const F& f) {
-		return max_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
+	template<class T, class F>inline auto MaxBy(const T& a, const F& f) {
+		return *max_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
-	template<class T, class F>inline auto MinOf(const T& a, const F& f) {
-		return min_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
+	template<class T, class F>inline auto MinBy(const T& a, const F& f) {
+		return *min_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
 	template<class T, class U>inline int Count(const T& a, const U& v) { return count(all(a), v); }
 	template<class T, class F>inline int CountIf(const T& a, const F& f) { return count_if(all(a), f); }
 	template<class T, class U>inline int Find(const T& a, const U& v) { return find(all(a), v) - a.begin(); }
 	template<class T, class F>inline int FindIf(const T& a, const F& f) { return find_if(all(a), f) - a.begin(); }
 	template<class T, class U = typename T::value_type>inline U Sum(const T& a) { return accumulate(all(a), U()); }
+	template<class T, class U>inline bool Includes(const T& a, const U& v) { return find(all(a), v) != a.end(); }
 	template<class T, class F>inline auto Sum(const T& v, const F& f) {
 		return accumulate(next(v.begin()), v.end(), f(v.front()), [&](auto a, auto b) {return a + f(b); });
 	}
@@ -288,7 +311,8 @@ inline namespace {
 	template<class T>inline bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
 	template<class T>inline bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
 	template<class T>inline bool inRange(const T& v, const T& min, const T& max) { return min <= v && v < max; }
-	template<class T = ll>inline T BIT(int b) { return T{ 1 } << b; }
+	template<class T>inline bool isSquere(T n) { T s = sqrt(n); return s * s == n; }
+	template<class T = ll>inline T BIT(int b) { return T(1) << b; }
 	template<class T, class U = typename T::value_type>inline U Gcdv(const T& v) {
 		return accumulate(next(v.begin()), v.end(), U(*v.begin()), gcd<U, U>);
 	}
