@@ -114,7 +114,7 @@
 - [いもす法](https://github.com/yuruhi/library/blob/master/Utility/Imos.cpp)
 - [2次元いもす法](https://github.com/yuruhi/library/blob/master/Utility/Imos2D.cpp)
 - [一次関数を足すいもす法](https://github.com/yuruhi/library/blob/master/Utility/ImosLinear.cpp)
-- [座標圧縮](https://github.com/yuruhi/library/blob/master/Utility/Compression.cpp)
+- [座標圧縮](https://github.com/yuruhi/library/blob/master/Utility/Compress.cpp)
 - [Point](https://github.com/yuruhi/library/blob/master/Utility/Point.cpp)
 - [Range](https://github.com/yuruhi/library/blob/master/Utility/Range.cpp)
 - [乱数](https://github.com/yuruhi/library/blob/master/Utility/Random.cpp)
