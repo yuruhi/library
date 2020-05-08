@@ -69,10 +69,10 @@ struct Point {
 	constexpr Point moved(char c)const { return Point(*this).move(c); }
 	constexpr Point& move(char c) {
 		switch (c) {
-		case 'L':case 'l':case'>':x--; break;
-		case 'R':case 'r':case'<':x++; break;
-		case 'U':case 'u':case'^':y--; break;
-		case 'D':case 'd':case'v':y++; break;
+		case 'L':case 'l':case 'W':case '>':x--; break;
+		case 'R':case 'r':case 'E':case '<':x++; break;
+		case 'U':case 'u':case 'N':case '^':y--; break;
+		case 'D':case 'd':case 'S':case 'v':y++; break;
 		}
 		return *this;
 	}
