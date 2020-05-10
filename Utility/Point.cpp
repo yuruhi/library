@@ -53,9 +53,6 @@ struct Point {
 	vector<Point> adjacent8()const {
 		vector<Point> v(8); for (int i = 0; i < 8; ++i)v[i] = *this + d[i]; return v;
 	}
-	vector<Point> adjacent6()const {
-		vector<Point> v(6); for (int i = 0; i < 6; ++i)v[i] = *this + d[i]; return v;
-	}
 	vector<Point> adj4_in_range()const {
 		vector<Point> v; for (const auto& P : adjacent4())if (P.in_range())v.push_back(P); return v;
 	}

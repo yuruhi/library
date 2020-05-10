@@ -37,9 +37,9 @@ template<int MOD>struct modint {
 		modint t = n, res = 1; while (m.n > 0) { if (m.n & 1)res *= t; t *= t; m.n >>= 1; } return res;
 	}
 	constexpr modint operator^(modint m)const { return pow(m); }
+	friend ostream& operator<<(ostream& os, const modint<MOD>& m) { return os << m.n; }
+	friend istream& operator>>(istream& is, modint<MOD>& m) { return is >> m.n; }
 };
 using mint = modint<1000000007>;
 using VM = vector<mint>;
-template<int MOD>inline ostream& operator<<(ostream& os, const modint<MOD>& m) { return os << m.n; }
-template<int MOD>inline istream& operator>>(istream& is, modint<MOD>& m) { return is >> m.n; }
 inline mint operator""_m(unsigned long long n) { return n; }
