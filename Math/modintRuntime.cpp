@@ -2,10 +2,10 @@
 // description : 実行時に法が決まる modint
 struct mint {
 	using T = long long;
-	static int MOD;
+	static T MOD;
 	T n;
 public:
-	static void set_mod(int _MOD) { MOD = _MOD; }
+	static void set_mod(T _MOD) { MOD = _MOD; }
 	mint(T x = 0) :n(x% MOD) { if (n < 0)n += MOD; }
 	mint operator+()const { return *this; }
 	mint operator-()const { return n ? MOD - n : 0; }
@@ -35,12 +35,12 @@ public:
 	}
 	bool operator==(const mint& m)const { return n == m.n; }
 	bool operator!=(const mint& m)const { return n != m.n; }
-	mint pow(mint m)const {
-		mint t = n, res = 1; while (m.n > 0) { if (m.n & 1)res *= t; t *= t; m.n >>= 1; } return res;
+	mint pow(T m)const {
+		mint t = n, res = 1; while (m > 0) { if (m & 1)res *= t; t *= t; m >>= 1; } return res;
 	}
-	mint operator^(mint m)const { return pow(m); }
+	mint operator^(T m)const { return pow(m); }
 };
-int mint::MOD = 1000000007;
+long long mint::MOD = 1000000007;
 using VM = vector<mint>;
 inline ostream& operator<<(ostream& os, const mint& m) { return os << m.n; }
 inline istream& operator>>(istream& is, mint& m) { return is >> m.n; }

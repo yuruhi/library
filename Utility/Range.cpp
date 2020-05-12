@@ -8,8 +8,13 @@ struct Range {
 	constexpr Range(T _x, T _y, bool exclude_end = false) : x(_x), y(_y - exclude_end) { assert(x <= y); }
 	constexpr Range(const Range& _r, bool exclude_end = false) : x(_r.x), y(_r.y - exclude_end) { assert(x <= y); }
 	constexpr operator bool()const { return *this != nil(); }
+	constexpr pair<T, T> to_pair()const { return make_pair(x, y); }
 	constexpr bool operator==(const Range& r)const { return x == r.x && y == r.y; }
 	constexpr bool operator!=(const Range& r)const { return x != r.x || y != r.y; }
+	constexpr bool operator<(const Range& r)const { return to_pair() < r.to_pair(); }
+	constexpr bool operator<=(const Range& r)const { return to_pair() <= r.to_pair(); }
+	constexpr bool operator>(const Range& r)const { return to_pair() > r.to_pair(); }
+	constexpr bool operator>=(const Range& r)const { return to_pair() >= r.to_pair(); }
 	constexpr Range& operator<<=(T n) { x -= n; y -= n; return *this; }
 	constexpr Range& operator>>=(T n) { x += n; y += n; return *this; }
 	constexpr Range& operator*=(T n) { x *= n; y *= n; return *this; }
