@@ -35,6 +35,14 @@ public:
 		assert(flag);
 		return rs[i];
 	}
+	pair<int, int> operator()(int i) {
+		assert(flag);
+		return make_pair(ls[i], rs[i]);
+	}
+	int operator[](int i) {
+		assert(flag);
+		return ls[i];
+	}
 	template<class T>auto call(int v, function<T(int, int)>&& f) {
 		assert(flag);
 		return f(ls[v], rs[v]);
