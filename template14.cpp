@@ -1,5 +1,5 @@
 // shortcut : KyoproTemplate14
-// description : C++14�p�e���v���[�g
+// description : C++14用テンプレート
 #define _USE_MATH_DEFINES
 #define _CRT_SECURE_NO_WARNINGS
 #include "bits/stdc++.h"
@@ -34,67 +34,98 @@ constexpr ld PI = M_PI, EPS = 1e-12;
 #define fwrite_unlocked fwrite
 #define fflush_unlocked fflush
 #endif
-inline int gc() { return getchar_unlocked(); }
-template<class T>inline void InputF(T& v) { cin >> v; }
-inline void InputF(char& v) { while (isspace(v = gc())); }
-inline void InputF(bool& v) { char c; InputF(c); v = c != '0'; }
-inline void InputF(string& v) {
-	v.clear(); char c; for (InputF(c); !isspace(c); c = gc())v += c;
-}
-inline void InputF(int& v) {
-	bool neg = false; v = 0; char c; InputF(c);
-	if (c == '-') { neg = true; c = gc(); }
-	for (; isdigit(c); c = gc())v = v * 10 + (c - '0');
-	if (neg)v = -v;
-}
-inline void InputF(long long& v) {
-	bool neg = false; v = 0; char c; InputF(c);
-	if (c == '-') { neg = true; c = gc(); }
-	for (; isdigit(c); c = gc())v = v * 10 + (c - '0');
-	if (neg)v = -v;
-}
-inline void InputF(double& v) {
-	double dp = 1; bool neg = false, adp = false; v = 0; char c; InputF(c);
-	if (c == '-') { neg = true; c = gc(); }
-	for (; isdigit(c) || c == '.'; c = gc()) {
-		if (c == '.')adp = true;
-		else if (adp)v += (c - '0') * (dp *= 0.1);
-		else v = v * 10 + (c - '0');
+class Input {
+	static int gc() {
+		return getchar_unlocked();
 	}
-	if (neg)v = -v;
-}
-inline void InputF(long double& v) {
-	long double dp = 1; bool neg = false, adp = false; v = 0; char c; InputF(c);
-	if (c == '-') { neg = true; c = gc(); }
-	for (; isdigit(c) || c == '.'; c = gc()) {
-		if (c == '.')adp = true;
-		else if (adp)v += (c - '0') * (dp *= 0.1);
-		else v = v * 10 + (c - '0');
+	template<class T>static void i(T& v) {
+		cin >> v;
 	}
-	if (neg)v = -v;
-}
-template<class T, class U>inline void InputF(pair<T, U>& v) { InputF(v.first); InputF(v.second); }
-template<class T>inline void InputF(vector<T>& v) { for (auto& e : v)InputF(e); }
-template<class T>inline T InputF() { T v; InputF(v); return v; }
-inline string GetLine() {
-	string v; char c; for (InputF(c); c != '\n' && c != '\0'; c = gc())v += c; return v;
-}
-struct InputV {
-	int n, m;
-	InputV(int _n) :n(_n), m(0) {}
-	InputV(const pair<int, int>& nm) :n(nm.first), m(nm.second) {}
-	template<class T>operator vector<T>() { vector<T> v(n); InputF(v); return v; }
-	template<class T>operator vector<vector<T>>() { vector<vector<T>> v(n, vector<T>(m)); InputF(v); return v; }
-};
-struct Input {
-	template<class T>operator T() { return InputF<T>(); }
-	int operator--(int) { int v; InputF(v); v--; return v; }
-	InputV operator[](int n) { return InputV(n); }
-	InputV operator[](const pair<int, int>& n) { return InputV(n); }
-	void operator()() {}
-	template<class H, class...T>void operator()(H&& h, T&& ...t) { InputF(h); operator()(forward<T>(t)...); }
+	static void i(char& v) {
+		while (isspace(v = gc()));
+	}
+	static void i(bool& v) {
+		v = in<char>() != '0';
+	}
+	static void i(string& v) {
+		v.clear(); char c; for (i(c); !isspace(c); c = gc())v += c;
+	}
+	static void i(int& v) {
+		bool neg = false; v = 0; char c; i(c);
+		if (c == '-') { neg = true; c = gc(); }
+		for (; isdigit(c); c = gc())v = v * 10 + (c - '0');
+		if (neg)v = -v;
+	}
+	static void i(long long& v) {
+		bool neg = false; v = 0; char c; i(c);
+		if (c == '-') { neg = true; c = gc(); }
+		for (; isdigit(c); c = gc())v = v * 10 + (c - '0');
+		if (neg)v = -v;
+	}
+	static void i(double& v) {
+		double dp = 1; bool neg = false, adp = false; v = 0; char c; i(c);
+		if (c == '-') { neg = true; c = gc(); }
+		for (; isdigit(c) || c == '.'; c = gc()) {
+			if (c == '.')adp = true;
+			else if (adp)v += (c - '0') * (dp *= 0.1);
+			else v = v * 10 + (c - '0');
+		}
+		if (neg)v = -v;
+	}
+	static void i(long double& v) {
+		long double dp = 1; bool neg = false, adp = false; v = 0; char c; i(c);
+		if (c == '-') { neg = true; c = gc(); }
+		for (; isdigit(c) || c == '.'; c = gc()) {
+			if (c == '.')adp = true;
+			else if (adp)v += (c - '0') * (dp *= 0.1);
+			else v = v * 10 + (c - '0');
+		}
+		if (neg)v = -v;
+	}
+	template<class T, class U>static void i(pair<T, U>& v) {
+		i(v.first); i(v.second);
+	}
+	template<class T>static void i(vector<T>& v) {
+		for (auto& e : v)i(e);
+	}
+	struct InputV {
+		int n, m;
+		InputV(int _n) :n(_n), m(0) {}
+		InputV(const pair<int, int>& nm) :n(nm.first), m(nm.second) {}
+		template<class T>operator vector<T>() {
+			vector<T> v(n); i(v); return v;
+		}
+		template<class T>operator vector<vector<T>>() {
+			vector<vector<T>> v(n, vector<T>(m)); i(v); return v;
+		}
+	};
+public:
+	static string get_line() {
+		string v; char c;
+		for (i(c); c != '\n' && c != '\0'; c = gc())v += c;
+		return v;
+	}
+	template<class T>static T in() {
+		T v; i(v); return v;
+	}
+	template<class T>operator T()const {
+		return in<T>();
+	}
+	int operator--(int)const {
+		return in<int>() - 1;
+	}
+	InputV operator[](int n)const {
+		return InputV(n);
+	}
+	InputV operator[](const pair<int, int>& n)const {
+		return InputV(n);
+	}
+	void operator()()const {}
+	template<class H, class...T>void operator()(H&& h, T&& ...t)const {
+		i(h); operator()(forward<T>(t)...);
+	}
 }in;
-#define input(T) InputF<T>()
+#define input(T) Input::in<T>()
 #define INT input(int)
 #define LL input(ll)
 #define STR input(string)
@@ -126,18 +157,40 @@ class Output {
 		if (!i)b[i++] = '0';
 		while (i--)putchar_unlocked(b[i]);
 	}
-	void p(bool v)const { p(v ? B.t : B.f); }
-	void p(char v)const { putchar_unlocked(v); }
-	void p(const char* v)const { fwrite_unlocked(v, 1, strlen(v), stdout); }
-	void p(double v)const { printf("%.20f", v); }
-	void p(ld v)const { printf("%.20Lf", v); }
-	template<class T> void p(const T& v)const { cout << v; }
-	template<class T, class U>void p(const pair<T, U>& v)const { p(v.first); p(D.d); p(v.second); }
-	template<class T>void p(const vector<T>& v)const { rep(i, sz(v)) { if (i)p(D.d); p(v[i]); } }
-	template<class T>void p(const vector<vector<T>>& v)const { rep(i, sz(v)) { if (i)p(D.l); p(v[i]); } }
+	void p(bool v)const {
+		p(v ? B.t : B.f);
+	}
+	void p(char v)const {
+		putchar_unlocked(v);
+	}
+	void p(const char* v)const {
+		fwrite_unlocked(v, 1, strlen(v), stdout);
+	}
+	void p(double v)const {
+		printf("%.20f", v);
+	}
+	void p(ld v)const {
+		printf("%.20Lf", v);
+	}
+	template<class T> void p(const T& v)const {
+		cout << v;
+	}
+	template<class T, class U>void p(const pair<T, U>& v)const {
+		p(v.first); p(D.d); p(v.second);
+	}
+	template<class T>void p(const vector<T>& v)const {
+		rep(i, sz(v)) { if (i)p(D.d); p(v[i]); }
+	}
+	template<class T>void p(const vector<vector<T>>& v)const {
+		rep(i, sz(v)) { if (i)p(D.l); p(v[i]); }
+	}
 public:
-	Output& operator()() { p(D.l); return *this; }
-	template<class H>Output& operator()(H&& h) { p(h); p(D.l); return *this; }
+	Output& operator()() {
+		p(D.l); return *this;
+	}
+	template<class H>Output& operator()(H&& h) {
+		p(h); p(D.l); return *this;
+	}
 	template<class H, class...T>Output& operator()(H&& h, T&& ...t) {
 		p(h); p(D.d); return operator()(forward<T>(t)...);
 	}
@@ -147,11 +200,21 @@ public:
 	template<class T>Output& range(const T& a) {
 		range(a.begin(), a.end()); return *this;
 	}
-	template<class...T>void exit(T&& ...t) { operator()(forward<T>(t)...); std::exit(EXIT_SUCCESS); }
-	Output& flush() { fflush_unlocked(stdout); return *this; }
-	Output& set(const BoolStr& b) { B = b; return *this; }
-	Output& set(const DivStr& d) { D = d; return *this; }
-	Output& set(const char* t, const char* f) { B = BoolStr(t, f); return *this; }
+	template<class...T>void exit(T&& ...t) {
+		operator()(forward<T>(t)...); std::exit(EXIT_SUCCESS);
+	}
+	Output& flush() {
+		fflush_unlocked(stdout); return *this;
+	}
+	Output& set(const BoolStr& b) {
+		B = b; return *this;
+	}
+	Output& set(const DivStr& d) {
+		D = d; return *this;
+	}
+	Output& set(const char* t, const char* f) {
+		B = BoolStr(t, f); return *this;
+	}
 }out;
 
 // --- step --- //
@@ -161,25 +224,59 @@ template<class T>struct Step {
 	public:
 		constexpr It() : a(T()), b(T()), c(T()) {}
 		constexpr It(T _b, T _c, T _s) : a(_b), b(_c), c(_s) {}
-		constexpr It& operator++() { --b; a += c; return *this; }
-		constexpr It operator++(int) { It tmp = *this; --b; a += c; return tmp; }
-		constexpr const T& operator*()const { return a; }
-		constexpr const T* operator->()const { return &a; }
-		constexpr bool operator==(const It& i)const { return b == i.b; }
-		constexpr bool operator!=(const It& i)const { return !(b == i.b); }
-		constexpr T start()const { return a; }
-		constexpr T count()const { return b; }
-		constexpr T step()const { return c; }
+		constexpr It& operator++() {
+			--b; a += c; return *this;
+		}
+		constexpr It operator++(int) {
+			It tmp = *this; --b; a += c; return tmp;
+		}
+		constexpr const T& operator*()const {
+			return a;
+		}
+		constexpr const T* operator->()const {
+			return &a;
+		}
+		constexpr bool operator==(const It& i)const {
+			return b == i.b;
+		}
+		constexpr bool operator!=(const It& i)const {
+			return !(b == i.b);
+		}
+		constexpr T start()const {
+			return a;
+		}
+		constexpr T count()const {
+			return b;
+		}
+		constexpr T step()const {
+			return c;
+		}
 	};
 	constexpr Step(T b, T c, T s) : be(b, c, s) {}
-	constexpr It begin()const { return be; }
-	constexpr It end()const { return en; }
-	constexpr T start()const { return be.start(); }
-	constexpr T count()const { return be.count(); }
-	constexpr T step()const { return be.step(); }
-	constexpr T sum()const { return start() * count() + step() * (count() * (count() - 1) / 2); }
-	operator vector<T>()const { return as_vector(); }
-	template<class F>void each(const F& f)const { for (T i : *this)f(i); }
+	constexpr It begin()const {
+		return be;
+	}
+	constexpr It end()const {
+		return en;
+	}
+	constexpr T start()const {
+		return be.start();
+	}
+	constexpr T count()const {
+		return be.count();
+	}
+	constexpr T step()const {
+		return be.step();
+	}
+	constexpr T sum()const {
+		return start() * count() + step() * (count() * (count() - 1) / 2);
+	}
+	operator vector<T>()const {
+		return as_vector();
+	}
+	template<class F>void each(const F& f)const {
+		for (T i : *this)f(i);
+	}
 	auto as_vector()const {
 		vector<T> res; res.reserve(count()); each([&](T i) {res.push_back(i); }); return res;
 	}
@@ -189,12 +286,24 @@ template<class T>struct Step {
 	template<class F>auto select(const F& f)const {
 		vector<T> res; each([&](T i) {if (f(i))res.push_back(i); }); return res;
 	}
-	template<class F>int count_if(const F& f)const { int res = 0; each([&](T i) {if (f(i))++res; }); return res; }
-	template<class F>T find_if(const F& f)const { for (T i : *this)if (f(i))return i; return 0; }
-	template<class F>auto max_by(const F& f)const { auto v = map(f); return *max_element(v.begin(), v.end()); }
-	template<class F>auto min_by(const F& f)const { auto v = map(f); return *min_element(v.begin(), v.end()); }
-	template<class F>bool all_of(const F& f)const { for (T i : *this)if (!f(i))return false; return true; }
-	template<class F>bool any_of(const F& f)const { for (T i : *this)if (f(i))return true; return false; }
+	template<class F>int count_if(const F& f)const {
+		int res = 0; each([&](T i) {if (f(i))++res; }); return res;
+	}
+	template<class F>T find_if(const F& f)const {
+		for (T i : *this)if (f(i))return i; return 0;
+	}
+	template<class F>auto max_by(const F& f)const {
+		auto v = map(f); return *max_element(v.begin(), v.end());
+	}
+	template<class F>auto min_by(const F& f)const {
+		auto v = map(f); return *min_element(v.begin(), v.end());
+	}
+	template<class F>bool all_of(const F& f)const {
+		for (T i : *this)if (!f(i))return false; return true;
+	}
+	template<class F>bool any_of(const F& f)const {
+		for (T i : *this)if (f(i))return true; return false;
+	}
 	template<class F, class U = decay_t<result_of_t<F(T)>>>auto sum(const F& f)const {
 		U res = 0; each([&](T i) {res += static_cast<U>(f(i)); }); return res;
 	}
@@ -203,106 +312,218 @@ template<class T>struct Step {
 private:
 	It be, en;
 };
-template<class T>inline constexpr auto step(T a) { return Step<T>(0, a, 1); }
-template<class T>inline constexpr auto step(T a, T b) { return Step<T>(a, b - a, 1); }
-template<class T>inline constexpr auto step(T a, T b, T c) { return Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c); }
+template<class T>inline constexpr auto step(T a) {
+	return Step<T>(0, a, 1);
+}
+template<class T>inline constexpr auto step(T a, T b) {
+	return Step<T>(a, b - a, 1);
+}
+template<class T>inline constexpr auto step(T a, T b, T c) {
+	return Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);
+}
 
 // --- functions --- //
 inline namespace {
-	template<class T>inline void Sort(T& a) { sort(all(a)); }
-	template<class T>inline void RSort(T& a) { sort(rall(a)); }
-	template<class T, class F>inline void Sort(T& a, const F& f) { sort(all(a), f); }
-	template<class T, class F>inline void RSort(T& a, const F& f) { sort(rall(a), f); }
-	template<class T>inline T Sorted(T a) { Sort(a); return a; }
-	template<class T>inline T RSorted(T a) { RSort(a); return a; }
-	template<class T, class F>inline T Sorted(T& a, const F& f) { Sort(a, f); return a; }
-	template<class T, class F>inline T RSorted(T& a, const F& f) { RSort(a, f); return a; }
+	template<class T>inline void Sort(T& a) {
+		sort(all(a));
+	}
+	template<class T>inline void RSort(T& a) {
+		sort(rall(a));
+	}
+	template<class T, class F>inline void Sort(T& a, const F& f) {
+		sort(all(a), f);
+	}
+	template<class T, class F>inline void RSort(T& a, const F& f) {
+		sort(rall(a), f);
+	}
+	template<class T>inline T Sorted(T a) {
+		Sort(a); return a;
+	}
+	template<class T>inline T RSorted(T a) {
+		RSort(a); return a;
+	}
+	template<class T, class F>inline T Sorted(T& a, const F& f) {
+		Sort(a, f); return a;
+	}
+	template<class T, class F>inline T RSorted(T& a, const F& f) {
+		RSort(a, f); return a;
+	}
 	template<class T, class F>inline void SortBy(T& a, const F& f) {
 		sort(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
 	template<class T, class F>inline void RSortBy(T& a, const F& f) {
 		sort(rall(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
-	template<class T>inline void Reverse(T& a) { reverse(all(a)); }
-	template<class T>inline void Unique(T& a) { a.erase(unique(all(a)), a.end()); }
-	template<class T>inline void Uniq(T& a) { Sort(a); Unique(a); }
-	template<class T>inline void Rotate(T& a, int left) { rotate(a.begin(), a.begin() + left, a.end()); }
-	template<class T>inline T Reversed(T a) { Reverse(a); return a; }
-	template<class T>inline T Uniqued(T a) { Unique(a); return a; }
-	template<class T>inline T Uniqed(T a) { Uniq(a); return a; }
-	template<class T>inline T Rotated(T a, int left) { Rotate(a, left); return a; }
-	template<class T>inline auto Max(const T& a) { return *max_element(all(a)); }
-	template<class T>inline auto Min(const T& a) { return *min_element(all(a)); }
-	template<class T>inline int MaxPos(const T& a) { return max_element(all(a)) - a.begin(); }
-	template<class T>inline int MinPos(const T& a) { return min_element(all(a)) - a.begin(); }
+	template<class T>inline void Reverse(T& a) {
+		reverse(all(a));
+	}
+	template<class T>inline void Unique(T& a) {
+		a.erase(unique(all(a)), a.end());
+	}
+	template<class T>inline void Uniq(T& a) {
+		Sort(a); Unique(a);
+	}
+	template<class T>inline void Rotate(T& a, int left) {
+		rotate(a.begin(), a.begin() + left, a.end());
+	}
+	template<class T>inline T Reversed(T a) {
+		Reverse(a); return a;
+	}
+	template<class T>inline T Uniqued(T a) {
+		Unique(a); return a;
+	}
+	template<class T>inline T Uniqed(T a) {
+		Uniq(a); return a;
+	}
+	template<class T>inline T Rotated(T a, int left) {
+		Rotate(a, left); return a;
+	}
+	template<class T>inline auto Max(const T& a) {
+		return *max_element(all(a));
+	}
+	template<class T>inline auto Min(const T& a) {
+		return *min_element(all(a));
+	}
+	template<class T>inline int MaxPos(const T& a) {
+		return max_element(all(a)) - a.begin();
+	}
+	template<class T>inline int MinPos(const T& a) {
+		return min_element(all(a)) - a.begin();
+	}
 	template<class T, class F>inline auto MaxBy(const T& a, const F& f) {
 		return *max_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
 	template<class T, class F>inline auto MinBy(const T& a, const F& f) {
 		return *min_element(all(a), [&](const auto& x, const auto& y) {return f(x) < f(y); });
 	}
-	template<class T, class U>inline int Count(const T& a, const U& v) { return count(all(a), v); }
-	template<class T, class F>inline int CountIf(const T& a, const F& f) { return count_if(all(a), f); }
-	template<class T, class U>inline int Find(const T& a, const U& v) { return find(all(a), v) - a.begin(); }
-	template<class T, class F>inline int FindIf(const T& a, const F& f) { return find_if(all(a), f) - a.begin(); }
-	template<class T, class U = typename T::value_type>inline U Sum(const T& a) { return accumulate(all(a), U()); }
-	template<class T, class U>inline bool Includes(const T& a, const U& v) { return find(all(a), v) != a.end(); }
+	template<class T, class U>inline int Count(const T& a, const U& v) {
+		return count(all(a), v);
+	}
+	template<class T, class F>inline int CountIf(const T& a, const F& f) {
+		return count_if(all(a), f);
+	}
+	template<class T, class U>inline int Find(const T& a, const U& v) {
+		return find(all(a), v) - a.begin();
+	}
+	template<class T, class F>inline int FindIf(const T& a, const F& f) {
+		return find_if(all(a), f) - a.begin();
+	}
+	template<class T, class U = typename T::value_type>inline U Sum(const T& a) {
+		return accumulate(all(a), U());
+	}
+	template<class T, class U>inline bool Includes(const T& a, const U& v) {
+		return find(all(a), v) != a.end();
+	}
 	template<class T, class F>inline auto Sum(const T& v, const F& f) {
 		return accumulate(next(v.begin()), v.end(), f(*v.begin()), [&](auto a, auto b) {return a + f(b); });
 	}
-	template<class T, class U>inline int Lower(const T& a, const U& v) { return lower_bound(all(a), v) - a.begin(); }
-	template<class T, class U>inline int Upper(const T& a, const U& v) { return upper_bound(all(a), v) - a.begin(); }
-	template<class T, class F>inline void RemoveIf(T& a, const F& f) { a.erase(remove_if(all(a), f), a.end()); }
-	template<class F>inline auto Vector(size_t size, const F& f) {
-		vector<decay_t<result_of_t<F(size_t)>>> res(size); for (size_t i = 0; i < size; ++i)res[i] = f(i); return res;
+	template<class T, class U>inline int Lower(const T& a, const U& v) {
+		return lower_bound(all(a), v) - a.begin();
 	}
-	template<class T>inline auto Grid(size_t h, size_t w, const T& v = T()) { return vector<vector<T>>(h, vector<T>(w, v)); }
+	template<class T, class U>inline int Upper(const T& a, const U& v) {
+		return upper_bound(all(a), v) - a.begin();
+	}
+	template<class T, class F>inline void RemoveIf(T& a, const F& f) {
+		a.erase(remove_if(all(a), f), a.end());
+	}
+	template<class F>inline auto Vector(size_t size, const F& f) {
+		vector<decay_t<result_of_t<F(size_t)>>> res(size);
+		for (size_t i = 0; i < size; ++i)res[i] = f(i);
+		return res;
+	}
+	template<class T>inline auto Grid(size_t h, size_t w, const T& v = T()) {
+		return vector<vector<T>>(h, vector<T>(w, v));
+	}
 	template<class T>inline auto Slice(const T& v, size_t i, size_t len) {
 		return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
 	}
-	template<class T, class F>inline auto Each(const T& v, F&& f) { for (auto& i : v)f(i); }
+	template<class T, class F>inline auto Each(const T& v, F&& f) {
+		for (auto& i : v)f(i);
+	}
 	template<class T, class F>inline auto Select(const T& v, const F& f) {
-		T res; for (const auto& e : v)if (f(e))res.push_back(e); return res;
+		T res;
+		for (const auto& e : v)if (f(e))res.push_back(e);
+		return res;
 	}
 	template<class T, class F>inline auto Map(const T& v, F&& f) {
 		vector<decay_t<result_of_t<F(typename T::value_type)>>> res(v.size());
-		size_t i = 0; for (const auto& e : v)res[i++] = f(e); return res;
+		size_t i = 0; for (const auto& e : v)res[i++] = f(e);
+		return res;
 	}
 	template<class T, class F>inline auto MapIndex(const T& v, const F& f) {
 		vector<decay_t<result_of_t<F(size_t, typename T::value_type)>>> res(v.size());
-		size_t i = 0; for (auto it = v.begin(); it != v.end(); ++it, ++i)res[i] = f(i, *it); return res;
+		size_t i = 0; for (auto it = v.begin(); it != v.end(); ++it, ++i)res[i] = f(i, *it);
+		return res;
 	}
 	template<class T, class F>inline auto TrueIndex(const T& v, const F& f) {
-		vector<size_t> res; for (size_t i = 0; i < v.size(); ++i)if (f(v[i]))res.push_back(i); return res;
+		vector<size_t> res;
+		for (size_t i = 0; i < v.size(); ++i)if (f(v[i]))res.push_back(i);
+		return res;
 	}
 	template<class T, class U = typename T::value_type>inline auto Indexed(const T& v) {
 		vector<pair<U, int>> res(v.size());
 		for (int i = 0; i < (int)v.size(); ++i)res[i] = make_pair(static_cast<U>(v[i]), i);
 		return res;
 	}
-	inline auto operator*(string s, size_t n) { string ret; for (size_t i = 0; i < n; ++i)ret += s; return ret; }
-	template<class T>inline auto& operator<<(vector<T>& v, const vector<T>& v2) { v.insert(v.end(), all(v2)); return v; }
-	template<class T>inline T Ceil(T n, T m) { return (n + m - 1) / m; }
-	template<class T>inline T Ceil2(T n, T m) { return Ceil(n, m) * m; }
-	template<class T>inline T Tri(T n) { return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1); }
-	template<class T>inline T nC2(T n) { return (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1); }
-	template<class T>inline T Mid(const T& l, const T& r) { return l + (r - l) / 2; }
-	inline int pop_count(int n) { return bitset<32>(n).count(); }
-	inline int pop_count(ll n) { return bitset<64>(n).count(); }
-	template<class T>inline bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
-	template<class T>inline bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
-	template<class T>inline bool inRange(const T& v, const T& min, const T& max) { return min <= v && v < max; }
-	template<class T>inline bool isSquere(T n) { T s = sqrt(n); return s * s == n || (s + 1) * (s + 1) == n; }
-	template<class T = ll>inline T BIT(int b) { return T(1) << b; }
-	template<class T>inline T Gcd(T n, T m) { return m ? Gcd(m, n % m) : n; }
-	template<class T>inline T Lcm(T n, T m) { return n / Gcd(n, m) * m; }
+	inline auto operator*(string s, size_t n) {
+		string res;
+		for (size_t i = 0; i < n; ++i)res += s;
+		return res;
+	}
+	template<class T>inline auto& operator<<(vector<T>& v, const vector<T>& v2) {
+		v.insert(v.end(), all(v2)); return v;
+	}
+	template<class T>inline T Ceil(T n, T m) {
+		return (n + m - 1) / m;
+	}
+	template<class T>inline T Ceil2(T n, T m) {
+		return Ceil(n, m) * m;
+	}
+	template<class T>inline T Tri(T n) {
+		return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);
+	}
+	template<class T>inline T nC2(T n) {
+		return (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);
+	}
+	template<class T>inline T Mid(const T& l, const T& r) {
+		return l + (r - l) / 2;
+	}
+	inline int pop_count(int n) {
+		return bitset<32>(n).count();
+	}
+	inline int pop_count(ll n) {
+		return bitset<64>(n).count();
+	}
+	template<class T>inline bool chmax(T& a, const T& b) {
+		if (a < b) { a = b; return true; } return false;
+	}
+	template<class T>inline bool chmin(T& a, const T& b) {
+		if (a > b) { a = b; return true; } return false;
+	}
+	template<class T>inline bool inRange(const T& v, const T& min, const T& max) {
+		return min <= v && v < max;
+	}
+	template<class T>inline bool isSquere(T n) {
+		T s = sqrt(n); return s * s == n || (s + 1) * (s + 1) == n;
+	}
+	template<class T = ll>inline T BIT(int b) {
+		return T(1) << b;
+	}
+	template<class T>inline T Gcd(T n, T m) {
+		return m ? Gcd(m, n % m) : n;
+	}
+	template<class T>inline T Lcm(T n, T m) {
+		return n / Gcd(n, m) * m;
+	}
 	template<class T, class U = typename T::value_type>inline U Gcdv(const T& v) {
 		return accumulate(next(v.begin()), v.end(), U(*v.begin()), Gcd<U>);
 	}
 	template<class T, class U = typename T::value_type>inline U Lcmv(const T& v) {
 		return accumulate(next(v.begin()), v.end(), U(*v.begin()), Lcm<U>);
 	}
-	template<class T>inline T Pow(T a, T n) { T r = 1; while (n > 0) { if (n & 1)r *= a; a *= a; n /= 2; } return r; }
+	template<class T>inline T Pow(T a, T n) {
+		T r = 1; while (n > 0) { if (n & 1)r *= a; a *= a; n /= 2; } return r;
+	}
 	template<class T>inline T Powmod(T a, T n, T m = MOD) {
 		T r = 1; while (n > 0) { if (n & 1)r = r * a % m, n--; else a = a * a % m, n /= 2; }return r;
 	}
