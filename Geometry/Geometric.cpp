@@ -1,4 +1,14 @@
-constexpr bool Equal(ld a, ld b) { return a < b ? b - a < EPS : a - b < EPS; }
+// shortcut : Geometric
+// description : 幾何
+constexpr bool Equal(ld a, ld b) {
+	return a < b ? b - a < EPS : a - b < EPS;
+}
+constexpr ld deg_to_rad(ld deg) {
+	return deg * PI / 180;
+}
+constexpr ld rad_to_deg(ld rad) {
+	return rad * 180 / PI;
+}
 
 struct Vec2;
 struct Circle;
@@ -13,6 +23,7 @@ struct Vec2 {
 	ld x, y;
 	constexpr Vec2() :x(0), y(0) {}
 	constexpr Vec2(ld _x, ld _y) : x(_x), y(_y) {}
+	Vec2(ld rad) :x(cos(rad)), y(sin(rad)) {}
 	constexpr bool operator==(const Vec2& v)const { return Equal(x, v.x) && Equal(y, v.y); }
 	constexpr bool operator!=(const Vec2& v)const { return !(*this == v); }
 	constexpr bool operator<(const Vec2& v)const { return x < v.x - EPS && y < v.y - EPS; }
