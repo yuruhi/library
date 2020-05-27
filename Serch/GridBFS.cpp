@@ -4,6 +4,9 @@ vector<vector<int>> GridBFS(const vector<string>& grid, Point s, char wall = '#'
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);
 	vector<vector<int>> res(h, vector<int>(w, INT_MAX));
+	if (grid[s.y][s.x] == wall) {
+		return res;
+	}
 	res[s.y][s.x] = 0;
 	queue<Point> q;
 	q.push(s);
