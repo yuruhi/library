@@ -7,3 +7,4 @@ struct EdgeF {
 	EdgeF() :to(-1), rev(-1), cap(-1) {}
 	EdgeF(int t, int r, FLOW c) :to(t), rev(r), cap(c) {}
 };
+using GraphF = vector<vector<EdgeF>>;
