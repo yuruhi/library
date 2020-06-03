@@ -15,9 +15,6 @@ template<class T>struct Range {
 	constexpr operator bool()const {
 		return *this != nil();
 	}
-	constexpr pair<T, T> to_pair()const {
-		return make_pair(x, y);
-	}
 	constexpr bool operator==(const Range& r)const {
 		return x == r.x && y == r.y;
 	}
@@ -76,12 +73,18 @@ template<class T>struct Range {
 	constexpr Range operator|(const Range& r)const {
 		return Range(*this) |= r;
 	}
-	constexpr T operator[](const T& n)const {
-		assert(x + n - 1 <= y);
-		return x + n - 1;
+	constexpr T operator[](const T& n)const { // 0-indexed
+		assert(x + n <= y);
+		return x + n;
 	}
 	constexpr Range operator[](const Range& n)const {
 		return Range(operator[](n.x), operator[](n.y));
+	}
+	constexpr pair<T, T> to_pair()const {
+		return make_pair(x, y);
+	}
+	constexpr Range open()const {
+		return Range(x, y + 1);
 	}
 	constexpr bool include(const T& n)const {
 		return x <= n && n <= y;
