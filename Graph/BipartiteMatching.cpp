@@ -21,9 +21,14 @@ public:
 		: N(n), M(m), used(N), G(g), p(N, -1), q(M, -1) {}
 	BipartiteMatching(int n, int m)
 		: N(n), M(m), used(N), G(n), p(N, -1), q(M, -1) {}
-	void add_edge(int s, int t) { G[s].push_back(t); }
+	void add_edge(int s, int t) {
+		G[s].push_back(t);
+	}
 	int operator()() {
 		int res = 0; bool flag = true;
+		fill(p.begin(), p.end(), -1);
+		fill(q.begin(), q.end(), -1);
+		fill(used.begin(), used.end(), false);
 		while (flag) {
 			flag = false;
 			for (int i = 0; i < N; ++i) {
