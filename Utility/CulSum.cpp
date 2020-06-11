@@ -21,5 +21,7 @@ public:
 		assert(r <= n);
 		return s[r];
 	}
-	const vector<T>& get_s()const { return s; }
+	const vector<T>& get_s()const {
+		return s;
+	}
 };
