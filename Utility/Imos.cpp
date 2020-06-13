@@ -35,7 +35,7 @@ public:
 		assert(flag);
 		return table;
 	}
-	vector<T> get_array()const {
+	vector<T> to_a()const {
 		return vector<T>(table.begin(), table.begin() + N);
 	}
 };
