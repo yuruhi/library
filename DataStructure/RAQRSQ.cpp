@@ -1,11 +1,9 @@
-// shortcut : RangeAddQueyLazy
-// description : 区間加算、区間クエリ
-template <class T> class RangeAddQuery {
-	using Func = function<T(T, T)>;
+// shortcut : RAQRSQ
+// description : 区間加算、区間和
+template <class T> class RAQRSQ {
 	int n;
 	T init;
 	vector<T> node, lazy;
-	Func func;
 	static int ceil2(int n) {
 		int m = 1;
 		while (m < n) m *= 2;
@@ -31,12 +29,12 @@ template <class T> class RangeAddQuery {
 		} else {
 			add_impl(a, b, x, 2 * k + 0, l, (l + r) / 2);
 			add_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);
-			node[k] = node[2 * k] + node[2 * k + 1];
+			node[k] = node[2 * k + 0] + node[2 * k + 1];
 		}
 	}
 	T query_impl(int a, int b, int k, int l, int r) {
 		if (b <= l || r <= a) {
-			return 0;
+			return init;
 		}
 		eval(k, l, r);
 		if (a <= l && r <= b) {
@@ -44,14 +42,12 @@ template <class T> class RangeAddQuery {
 		} else {
 			auto vl = query_impl(a, b, 2 * k + 0, l, (l + r) / 2);
 			auto vr = query_impl(a, b, 2 * k + 1, (l + r) / 2, r);
-			return func(vl, vr);
+			return vl + vr;
 		}
 	}
 
 public:
-	RangeAddQuery(int _n, const T& _init, const Func& f)
-	    : n(ceil2(_n)), init(_init), node(n * 2, init), lazy(n * 2, 0), func(f) {}
-	RangeAddQuery(const vector<T>& vec, const T& _init, const Func& f) : init(_init), func(f) {
+	RAQRSQ(const vector<T>& vec, const T& _init) : init(_init) {
 		build(vec);
 	}
 	void build(const vector<T>& v) {
@@ -62,18 +58,25 @@ public:
 			node[i + n] = v[i];
 		}
 		for (int i = n - 1; i > 0; --i) {
-			node[i] = func(node[i * 2], node[i * 2 + 1]);
+			node[i] = node[i * 2 + 0] + node[i * 2 + 1];
 		}
 	}
 	void add(int l, int r, const T& x) {
 		add_impl(l, r, x, 1, 0, n);
 	}
-	T operator[](int i) const {
+	T operator[](int i) {
 		assert(0 <= i && i < n);
 		return operator()(i, i + 1);
 	}
 	T operator()(int l, int r) {
 		assert(0 <= l && l < r && r <= n);
 		return query_impl(l, r, 1, 0, n);
+	}
+	vector<T> to_a() {
+		vector<T> res(n);
+		for (int i = 0; i < n; ++i) {
+			res[i] = operator[](i);
+		}
+		return res;
 	}
 };
