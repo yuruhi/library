@@ -1,5 +1,5 @@
 // shortcut : RangeAddQuery
-// description : 区間加算、一点更新
+// description : 区間加算、一点取得
 template<class T>class RangaAddQuery {
 	int n;
 	vector<T> a;
