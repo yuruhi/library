@@ -47,7 +47,7 @@ template <class T> class RAQRmQ {
 	}
 
 public:
-	RAQ_and_RmQ(const vector<T>& vec, const T& _init) : init(_init) {
+	RAQRmQ(const vector<T>& vec, const T& _init) : init(_init) {
 		build(vec);
 	}
 	void build(const vector<T>& v) {
