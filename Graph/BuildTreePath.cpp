@@ -1,16 +1,17 @@
 // shortcut : BuildPathTree
 // description : s-t 間のパスを求める
-vector<int> BuildPathTree(const Graph& g, int s, int t) {
+vector<int> BuildPathTree(const Graph &g, int s, int t) {
 	int n = g.size();
 	vector<int> par(n);
 	function<void(int, int)> dfs = [&](int v, int p) {
-		for (const auto& u : g[v])if (u.to != p) {
-			par[u.to] = v;
-			dfs(u.to, v);
-		}
+		for (const auto &u : g[v])
+			if (u.to != p) {
+				par[u.to] = v;
+				dfs(u.to, v);
+			}
 	};
 	dfs(s, -1);
-	vector<int> path{ t };
+	vector<int> path{t};
 	while (path.back() != s) {
 		path.push_back(par[path.back()]);
 	}

@@ -3,17 +3,20 @@
 class EulerTour {
 	vector<vector<int>> g;
 	vector<int> ls, rs;
-	int pos = 0; bool flag = false;
+	int pos = 0;
+	bool flag = false;
 	void dfs(int v, int p = -1) {
 		ls[v] = pos++;
-		for (int u : g[v])if (u != p) {
-			dfs(u, v);
-		}
+		for (int u : g[v])
+			if (u != p) {
+				dfs(u, v);
+			}
 		rs[v] = pos++;
 	}
+
 public:
-	EulerTour(int n) :g(n), ls(n), rs(n) {}
-	EulerTour(const vector<vector<int>>& _g) :g(_g), ls(g.size()), rs(g.size()) {}
+	EulerTour(int n) : g(n), ls(n), rs(n) {}
+	EulerTour(const vector<vector<int>> &_g) : g(_g), ls(g.size()), rs(g.size()) {}
 	void add_edge(int u, int v) {
 		g[u].push_back(v);
 		g[v].push_back(u);
@@ -23,15 +26,15 @@ public:
 		pos = 0;
 		dfs(root);
 	}
-	int size()const {
+	int size() const {
 		assert(flag);
 		return pos;
 	}
-	int l(int i)const {
+	int l(int i) const {
 		assert(flag);
 		return ls[i];
 	}
-	int r(int i)const {
+	int r(int i) const {
 		assert(flag);
 		return rs[i];
 	}
@@ -43,7 +46,7 @@ public:
 		assert(flag);
 		return ls[i];
 	}
-	template<class T>auto call(int v, function<T(int, int)>&& f) {
+	template <class T> auto call(int v, function<T(int, int)> &&f) {
 		assert(flag);
 		return f(ls[v], rs[v]);
 	}

@@ -15,175 +15,361 @@ struct Circle;
 struct Rect;
 struct Line;
 inline ld TriangleArea(ld a, ld b, ld c);
-inline ld TriangleArea(const Vec2& v1, const Vec2& v2, const Vec2& v3);
+inline ld TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3);
 inline ld PolygonArea(vector<Vec2> v);
-inline bool IntersectsSegment(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d);
+inline bool IntersectsSegment(const Vec2 &a, const Vec2 &b, const Vec2 &c, const Vec2 &d);
 
 struct Vec2 {
 	ld x, y;
-	constexpr Vec2() :x(0), y(0) {}
+	constexpr Vec2() : x(0), y(0) {}
 	constexpr Vec2(ld _x, ld _y) : x(_x), y(_y) {}
-	Vec2(ld rad) :x(cos(rad)), y(sin(rad)) {}
-	constexpr bool operator==(const Vec2& v)const { return Equal(x, v.x) && Equal(y, v.y); }
-	constexpr bool operator!=(const Vec2& v)const { return !(*this == v); }
-	constexpr bool operator<(const Vec2& v)const { return x < v.x - EPS && y < v.y - EPS; }
-	constexpr bool operator<=(const Vec2& v)const { return x < v.x + EPS && y < v.y + EPS; }
-	constexpr Vec2 operator+()const { return *this; }
-	constexpr Vec2 operator-()const { return { -x,-y }; }
-	constexpr Vec2 operator+(const Vec2& v)const { return Vec2(*this) += v; }
-	constexpr Vec2 operator-(const Vec2& v)const { return Vec2(*this) -= v; }
-	constexpr Vec2 operator*(const Vec2& v)const { return Vec2(*this) *= v; }
-	constexpr Vec2 operator/(const Vec2& v)const { return Vec2(*this) /= v; }
-	constexpr Vec2 operator+(ld n)const { return Vec2(*this) += Vec2(n, n); }
-	constexpr Vec2 operator-(ld n)const { return Vec2(*this) -= Vec2(n, n); }
-	constexpr Vec2 operator*(ld n)const { return Vec2(*this) *= Vec2(n, n); }
-	constexpr Vec2 operator/(ld n)const { return Vec2(*this) /= Vec2(n, n); }
-	constexpr Vec2& operator+=(const Vec2& v) { x += v.x; y += v.y; return *this; }
-	constexpr Vec2& operator-=(const Vec2& v) { x -= v.x; y -= v.y; return *this; }
-	constexpr Vec2& operator*=(const Vec2& v) { x *= v.x; y *= v.y; return *this; }
-	constexpr Vec2& operator/=(const Vec2& v) { x /= v.x; y /= v.y; return *this; }
-	constexpr Vec2& operator+=(ld n) { x += n; x += n; return *this; }
-	constexpr Vec2& operator-=(ld n) { x -= n; x -= n; return *this; }
-	constexpr Vec2& operator*=(ld n) { x *= n; x *= n; return *this; }
-	constexpr Vec2& operator/=(ld n) { x /= n; x /= n; return *this; }
-	constexpr ld operator[](size_t i)const { return i == 0 ? x : i == 1 ? y : 0; }
-	ld manhattan(const Vec2& v)const { return std::abs(x - v.x) + std::abs(y - v.y); }
-	ld dist(const Vec2& v)const { return hypot(x - v.x, y - v.y); }
-	Vec2 abs(const Vec2& v)const { return { std::abs(x - v.x),std::abs(y - v.y) }; }
-	Vec2& swap() { std::swap(x, y); return *this; }
-	constexpr ld sqr_norm()const { return x * x + y * y; }
-	ld norm()const { return sqrt(sqr_norm()); }
-	constexpr Vec2 rotate90()const { return { y,-x }; }
-	constexpr Vec2 rotate180()const { return { -x,-y }; }
-	constexpr Vec2 rotate270()const { return { -y,x }; }
-	friend ostream& operator<<(ostream& os, const Vec2& v) { return os << '(' << v.x << ',' << v.y << ')'; }
-	friend istream& operator>>(istream& is, Vec2& v) { return is >> v.x >> v.y; }
+	Vec2(ld rad) : x(cos(rad)), y(sin(rad)) {}
+	constexpr bool operator==(const Vec2 &v) const {
+		return Equal(x, v.x) && Equal(y, v.y);
+	}
+	constexpr bool operator!=(const Vec2 &v) const {
+		return !(*this == v);
+	}
+	constexpr bool operator<(const Vec2 &v) const {
+		return x < v.x - EPS && y < v.y - EPS;
+	}
+	constexpr bool operator<=(const Vec2 &v) const {
+		return x < v.x + EPS && y < v.y + EPS;
+	}
+	constexpr Vec2 operator+() const {
+		return *this;
+	}
+	constexpr Vec2 operator-() const {
+		return {-x, -y};
+	}
+	constexpr Vec2 operator+(const Vec2 &v) const {
+		return Vec2(*this) += v;
+	}
+	constexpr Vec2 operator-(const Vec2 &v) const {
+		return Vec2(*this) -= v;
+	}
+	constexpr Vec2 operator*(const Vec2 &v) const {
+		return Vec2(*this) *= v;
+	}
+	constexpr Vec2 operator/(const Vec2 &v) const {
+		return Vec2(*this) /= v;
+	}
+	constexpr Vec2 operator+(ld n) const {
+		return Vec2(*this) += Vec2(n, n);
+	}
+	constexpr Vec2 operator-(ld n) const {
+		return Vec2(*this) -= Vec2(n, n);
+	}
+	constexpr Vec2 operator*(ld n) const {
+		return Vec2(*this) *= Vec2(n, n);
+	}
+	constexpr Vec2 operator/(ld n) const {
+		return Vec2(*this) /= Vec2(n, n);
+	}
+	constexpr Vec2 &operator+=(const Vec2 &v) {
+		x += v.x;
+		y += v.y;
+		return *this;
+	}
+	constexpr Vec2 &operator-=(const Vec2 &v) {
+		x -= v.x;
+		y -= v.y;
+		return *this;
+	}
+	constexpr Vec2 &operator*=(const Vec2 &v) {
+		x *= v.x;
+		y *= v.y;
+		return *this;
+	}
+	constexpr Vec2 &operator/=(const Vec2 &v) {
+		x /= v.x;
+		y /= v.y;
+		return *this;
+	}
+	constexpr Vec2 &operator+=(ld n) {
+		x += n;
+		x += n;
+		return *this;
+	}
+	constexpr Vec2 &operator-=(ld n) {
+		x -= n;
+		x -= n;
+		return *this;
+	}
+	constexpr Vec2 &operator*=(ld n) {
+		x *= n;
+		x *= n;
+		return *this;
+	}
+	constexpr Vec2 &operator/=(ld n) {
+		x /= n;
+		x /= n;
+		return *this;
+	}
+	constexpr ld operator[](size_t i) const {
+		return i == 0 ? x : i == 1 ? y : 0;
+	}
+	ld manhattan(const Vec2 &v) const {
+		return std::abs(x - v.x) + std::abs(y - v.y);
+	}
+	ld dist(const Vec2 &v) const {
+		return hypot(x - v.x, y - v.y);
+	}
+	Vec2 abs(const Vec2 &v) const {
+		return {std::abs(x - v.x), std::abs(y - v.y)};
+	}
+	Vec2 &swap() {
+		std::swap(x, y);
+		return *this;
+	}
+	constexpr ld sqr_norm() const {
+		return x * x + y * y;
+	}
+	ld norm() const {
+		return sqrt(sqr_norm());
+	}
+	constexpr Vec2 rotate90() const {
+		return {y, -x};
+	}
+	constexpr Vec2 rotate180() const {
+		return {-x, -y};
+	}
+	constexpr Vec2 rotate270() const {
+		return {-y, x};
+	}
+	friend ostream &operator<<(ostream &os, const Vec2 &v) {
+		return os << '(' << v.x << ',' << v.y << ')';
+	}
+	friend istream &operator>>(istream &is, Vec2 &v) {
+		return is >> v.x >> v.y;
+	}
 };
 
 struct Circle {
-	Vec2 center; ld r;
-	constexpr Circle() :center(), r(0) {}
+	Vec2 center;
+	ld r;
+	constexpr Circle() : center(), r(0) {}
 	constexpr Circle(ld _r) : center(), r(_r) {}
 	constexpr Circle(ld _x, ld _y, ld _r) : center(_x, _y), r(_r) {}
-	constexpr Circle(const Vec2& _c, ld _r) : center(_c), r(_r) {}
-	constexpr bool operator==(const Circle& c)const { return center == c.center && Equal(r, c.r); }
-	constexpr bool operator!=(const Circle& c)const { return !(*this == c); }
-	constexpr Circle& operator+(const Vec2& v)const { return Circle(*this) += v; }
-	constexpr Circle& operator-(const Vec2& v)const { return Circle(*this) -= v; }
-	constexpr Circle& operator+=(const Vec2& v) { center += v; return *this; }
-	constexpr Circle& operator-=(const Vec2& v) { center -= v; return *this; }
-	constexpr ld top_y()const { return center.y - r; }
-	constexpr ld bottom_y()const { return center.y + r; }
-	constexpr ld left_x()const { return center.x - r; }
-	constexpr ld right_x()const { return center.x + r; }
-	constexpr Vec2 top()const { return center - Vec2(0, r); }
-	constexpr Vec2 bottom()const { return center + Vec2(0, r); }
-	constexpr Vec2 left()const { return center - Vec2(r, 0); }
-	constexpr Vec2 right()const { return center + Vec2(r, 0); }
-	ld dist(const Vec2& p)const { return max<ld>(0, center.dist(p) - r); }
-	ld dist(const Circle& c)const { return max<ld>(0, center.dist(c.center) - r - c.r); }
-	constexpr ld area()const { return r * r * PI; }
-	constexpr ld perimeter()const { return 2 * r * PI; }
-	bool intersects(const Vec2& v)const { return center.dist(v) < r + EPS; }
-	bool intersects(const Circle& c)const { return center.dist(c.center) < r + c.r + EPS; }
-	bool contains(const Circle& c)const { return center.dist(c.center) + c.r < r - EPS; }
-	bool tangent(const Circle& c)const {
-		ld l1 = center.dist(c.center), l2 = r, l3 = c.r;
-		return Equal(l1 + l2 + l3, max({ l1,l2,l3 }) * 2);
+	constexpr Circle(const Vec2 &_c, ld _r) : center(_c), r(_r) {}
+	constexpr bool operator==(const Circle &c) const {
+		return center == c.center && Equal(r, c.r);
 	}
-	vector<Vec2> intersection(const Circle& c) {
+	constexpr bool operator!=(const Circle &c) const {
+		return !(*this == c);
+	}
+	constexpr Circle &operator+(const Vec2 &v) const {
+		return Circle(*this) += v;
+	}
+	constexpr Circle &operator-(const Vec2 &v) const {
+		return Circle(*this) -= v;
+	}
+	constexpr Circle &operator+=(const Vec2 &v) {
+		center += v;
+		return *this;
+	}
+	constexpr Circle &operator-=(const Vec2 &v) {
+		center -= v;
+		return *this;
+	}
+	constexpr ld top_y() const {
+		return center.y - r;
+	}
+	constexpr ld bottom_y() const {
+		return center.y + r;
+	}
+	constexpr ld left_x() const {
+		return center.x - r;
+	}
+	constexpr ld right_x() const {
+		return center.x + r;
+	}
+	constexpr Vec2 top() const {
+		return center - Vec2(0, r);
+	}
+	constexpr Vec2 bottom() const {
+		return center + Vec2(0, r);
+	}
+	constexpr Vec2 left() const {
+		return center - Vec2(r, 0);
+	}
+	constexpr Vec2 right() const {
+		return center + Vec2(r, 0);
+	}
+	ld dist(const Vec2 &p) const {
+		return max<ld>(0, center.dist(p) - r);
+	}
+	ld dist(const Circle &c) const {
+		return max<ld>(0, center.dist(c.center) - r - c.r);
+	}
+	constexpr ld area() const {
+		return r * r * PI;
+	}
+	constexpr ld perimeter() const {
+		return 2 * r * PI;
+	}
+	bool intersects(const Vec2 &v) const {
+		return center.dist(v) < r + EPS;
+	}
+	bool intersects(const Circle &c) const {
+		return center.dist(c.center) < r + c.r + EPS;
+	}
+	bool contains(const Circle &c) const {
+		return center.dist(c.center) + c.r < r - EPS;
+	}
+	bool tangent(const Circle &c) const {
+		ld l1 = center.dist(c.center), l2 = r, l3 = c.r;
+		return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
+	}
+	vector<Vec2> intersection(const Circle &c) {
 		Vec2 v = center - c.center;
 		ld l = v.norm();
 		if (contains(c) || c.contains(*this)) {
 			return {};
 		} else if (Equal(l, r + c.r)) {
-			return { c.center + v * (l / c.r) };
+			return {c.center + v * (l / c.r)};
 		} else if (Equal(r + l, c.r)) {
-			return { c.center + v * (c.r / l) };
+			return {c.center + v * (c.r / l)};
 		} else if (Equal(c.r + l, r)) {
-			return { center + v.rotate180() * (r / l) };
+			return {center + v.rotate180() * (r / l)};
 		} else if (intersects(c)) {
 			ld area = TriangleArea(l, r, c.r);
 			ld y = 2 * area / l, x = sqrt(r * r - y * y);
 			Vec2 h = center + v.rotate180() * (x / l);
 			Vec2 v2 = v.rotate90() * (y / l);
-			return { h + v2,h - v2 };
+			return {h + v2, h - v2};
 		} else {
 			return {};
 		}
 	}
-	friend ostream& operator<<(ostream& os, const Circle& c) {
+	friend ostream &operator<<(ostream &os, const Circle &c) {
 		return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
 	}
-	friend istream& operator>>(istream& is, Circle& c) { return is >> c.center >> c.r; }
+	friend istream &operator>>(istream &is, Circle &c) {
+		return is >> c.center >> c.r;
+	}
 };
 
 struct Rect {
 	Vec2 pos, size;
 	constexpr Rect() {}
-	constexpr Rect(ld _w, ld _h) :size(_w, _h) {}
-	constexpr Rect(const Vec2& _size) : size(_size) {}
+	constexpr Rect(ld _w, ld _h) : size(_w, _h) {}
+	constexpr Rect(const Vec2 &_size) : size(_size) {}
 	constexpr Rect(ld _x, ld _y, ld _w, ld _h) : pos(_x, _y), size(_w, _h) {}
-	constexpr Rect(const Vec2& _pos, const Vec2& _size) : pos(_pos), size(_size) {}
-	constexpr bool operator==(const Rect& r)const { return pos == r.pos && size == r.size; }
-	constexpr bool operator!=(const Rect& r)const { return !(*this == r); }
-	constexpr Rect operator+(const Vec2& v)const { return Rect(*this) += v; }
-	constexpr Rect operator-(const Vec2& v)const { return Rect(*this) -= v; }
-	constexpr Rect& operator+=(const Vec2& v) { pos += v; return *this; }
-	constexpr Rect& operator-=(const Vec2& v) { pos -= v; return *this; }
-	constexpr Rect& set_center(const Vec2& _pos) { pos = _pos - size / 2; return *this; }
-	constexpr ld left()const { return pos.x; }
-	constexpr ld right()const { return pos.x + size.x; }
-	constexpr ld top()const { return pos.y; }
-	constexpr ld bottom()const { return pos.y + size.y; }
-	constexpr Vec2 top_left()const { return pos; }
-	constexpr Vec2 top_right()const { return pos + Vec2(size.x, 0); }
-	constexpr Vec2 bottom_left()const { return pos + Vec2(0, size.y); }
-	constexpr Vec2 bottom_right()const { return pos + size; }
-	constexpr Vec2 center()const { return pos + size / 2; }
-	constexpr ld area()const { return size.x * size.y; }
-	constexpr ld perimeter()const { return (size.x + size.y) * 2; }
-	constexpr bool intersects(const Vec2& v)const { return pos <= v && v <= bottom_right(); }
-	constexpr bool intersects(const Rect& r)const {
-		return max(left(), r.left()) < min(right(), r.right()) + EPS
-			&& max(top(), r.top()) < min(bottom(), r.bottom()) + EPS;
+	constexpr Rect(const Vec2 &_pos, const Vec2 &_size) : pos(_pos), size(_size) {}
+	constexpr bool operator==(const Rect &r) const {
+		return pos == r.pos && size == r.size;
 	}
-	constexpr bool intersects(const Circle& c)const {
-		return Rect(pos - Vec2(0, c.r), size + Vec2(0, c.r * 2)).intersects(c.center)
-			|| Rect(pos - Vec2(c.r, 0), size + Vec2(c.r * 2, 0)).intersects(c.center)
-			|| c.intersects(top_left()) || c.intersects(top_right())
-			|| c.intersects(bottom_left()) || c.intersects(bottom_right());
+	constexpr bool operator!=(const Rect &r) const {
+		return !(*this == r);
 	}
-	constexpr bool contains(const Rect& r)const {
+	constexpr Rect operator+(const Vec2 &v) const {
+		return Rect(*this) += v;
+	}
+	constexpr Rect operator-(const Vec2 &v) const {
+		return Rect(*this) -= v;
+	}
+	constexpr Rect &operator+=(const Vec2 &v) {
+		pos += v;
+		return *this;
+	}
+	constexpr Rect &operator-=(const Vec2 &v) {
+		pos -= v;
+		return *this;
+	}
+	constexpr Rect &set_center(const Vec2 &_pos) {
+		pos = _pos - size / 2;
+		return *this;
+	}
+	constexpr ld left() const {
+		return pos.x;
+	}
+	constexpr ld right() const {
+		return pos.x + size.x;
+	}
+	constexpr ld top() const {
+		return pos.y;
+	}
+	constexpr ld bottom() const {
+		return pos.y + size.y;
+	}
+	constexpr Vec2 top_left() const {
+		return pos;
+	}
+	constexpr Vec2 top_right() const {
+		return pos + Vec2(size.x, 0);
+	}
+	constexpr Vec2 bottom_left() const {
+		return pos + Vec2(0, size.y);
+	}
+	constexpr Vec2 bottom_right() const {
+		return pos + size;
+	}
+	constexpr Vec2 center() const {
+		return pos + size / 2;
+	}
+	constexpr ld area() const {
+		return size.x * size.y;
+	}
+	constexpr ld perimeter() const {
+		return (size.x + size.y) * 2;
+	}
+	constexpr bool intersects(const Vec2 &v) const {
+		return pos <= v && v <= bottom_right();
+	}
+	constexpr bool intersects(const Rect &r) const {
+		return max(left(), r.left()) < min(right(), r.right()) + EPS &&
+		    max(top(), r.top()) < min(bottom(), r.bottom()) + EPS;
+	}
+	constexpr bool intersects(const Circle &c) const {
+		return Rect(pos - Vec2(0, c.r), size + Vec2(0, c.r * 2)).intersects(c.center) ||
+		    Rect(pos - Vec2(c.r, 0), size + Vec2(c.r * 2, 0)).intersects(c.center) || c.intersects(top_left()) ||
+		    c.intersects(top_right()) || c.intersects(bottom_left()) || c.intersects(bottom_right());
+	}
+	constexpr bool contains(const Rect &r) const {
 		return top_left() <= r.top_left() && r.bottom_right() <= bottom_right();
 	}
-	constexpr bool contains(const Circle& c)const {
+	constexpr bool contains(const Circle &c) const {
 		return top_left() <= Vec2(c.left_x(), c.top_y()) && Vec2(c.right_x(), c.bottom_y()) <= bottom_right();
 	}
-	friend ostream& operator<<(ostream& os, const Rect& r) {
+	friend ostream &operator<<(ostream &os, const Rect &r) {
 		return os << '(' << r.pos << ',' << r.size << ')';
 	}
-	friend istream& operator>>(istream& is, Rect& r) { return is >> r.pos >> r.size; }
+	friend istream &operator>>(istream &is, Rect &r) {
+		return is >> r.pos >> r.size;
+	}
 };
 
 struct Line {
 private:
-	ld a, b, c; // ax + by + c = 0
+	ld a, b, c;  // ax + by + c = 0
 public:
-	constexpr Line(ld _a, ld _b, ld _c) :a(_a), b(_b), c(_c) {}
-	constexpr Line(ld x1, ld y1, ld x2, ld y2) : a(y2 - y1), b(x1 - x2), c(y2* (x2 - x1) - x2 * (y2 - y1)) {}
-	constexpr Line(const Vec2& v1, const Vec2& v2) : Line(v1.x, v1.y, v2.x, v2.y) {}
-	constexpr bool operator==(const Line& l) { return Equal(a, l.a) && Equal(b, l.b) && Equal(c, l.c); }
-	constexpr bool operator!=(const Line& l) { return !(*this == l); }
-	constexpr ld get_x(ld y) { return (-b * y - c) / a; }
-	constexpr ld get_y(ld x) { return (-a * x - c) / b; }
-	ld dist(const Vec2& v) { return abs(a * v.x + b * v.y + c) / hypot(a, b); }
-	friend ostream& operator<<(ostream& os, const Line& l) {
+	constexpr Line(ld _a, ld _b, ld _c) : a(_a), b(_b), c(_c) {}
+	constexpr Line(ld x1, ld y1, ld x2, ld y2) : a(y2 - y1), b(x1 - x2), c(y2 * (x2 - x1) - x2 * (y2 - y1)) {}
+	constexpr Line(const Vec2 &v1, const Vec2 &v2) : Line(v1.x, v1.y, v2.x, v2.y) {}
+	constexpr bool operator==(const Line &l) {
+		return Equal(a, l.a) && Equal(b, l.b) && Equal(c, l.c);
+	}
+	constexpr bool operator!=(const Line &l) {
+		return !(*this == l);
+	}
+	constexpr ld get_x(ld y) {
+		return (-b * y - c) / a;
+	}
+	constexpr ld get_y(ld x) {
+		return (-a * x - c) / b;
+	}
+	ld dist(const Vec2 &v) {
+		return abs(a * v.x + b * v.y + c) / hypot(a, b);
+	}
+	friend ostream &operator<<(ostream &os, const Line &l) {
 		return os << l.a << "x + " << l.b << "y + " << l.c << " = 0";
 	}
-	friend istream& operator>>(istream& is, Line& l) {
-		ld x1, y1, x2, y2; is >> x1 >> y1 >> x2 >> y2;
-		l = Line(x1, y1, x2, y2); return is;
+	friend istream &operator>>(istream &is, Line &l) {
+		ld x1, y1, x2, y2;
+		is >> x1 >> y1 >> x2 >> y2;
+		l = Line(x1, y1, x2, y2);
+		return is;
 	}
 };
 
@@ -191,7 +377,7 @@ inline ld TriangleArea(ld a, ld b, ld c) {
 	ld s = (a + b + c) / 2;
 	return sqrt(s * (s - a) * (s - b) * (s - c));
 }
-inline ld TriangleArea(const Vec2& v1, const Vec2& v2, const Vec2& v3) {
+inline ld TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
 	return TriangleArea(v1.dist(v2), v1.dist(v3), v2.dist(v3));
 }
 inline ld PolygonArea(vector<Vec2> v) {
@@ -202,13 +388,13 @@ inline ld PolygonArea(vector<Vec2> v) {
 	}
 	return ans / 2;
 }
-inline bool IntersectsSegment(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d) {
+inline bool IntersectsSegment(const Vec2 &a, const Vec2 &b, const Vec2 &c, const Vec2 &d) {
 	ld s, t;
 	s = (a.x - b.x) * (c.y - a.y) - (a.y - b.y) * (c.x - a.x);
 	t = (a.x - b.x) * (d.y - a.y) - (a.y - b.y) * (d.x - a.x);
-	if (s * t > 0)return false;
+	if (s * t > 0) return false;
 	s = (c.x - d.x) * (a.y - c.y) - (c.y - d.y) * (a.x - c.x);
 	t = (c.x - d.x) * (b.y - c.y) - (c.y - d.y) * (b.x - c.x);
-	if (s * t > 0)return false;
+	if (s * t > 0) return false;
 	return true;
 }

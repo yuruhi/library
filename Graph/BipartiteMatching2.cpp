@@ -18,6 +18,7 @@ class BipartiteMatching {
 		}
 		return false;
 	}
+
 public:
 	BipartiteMatching(int l, int r) : V(l + r), L(l), G(V), match(V), used(V) {}
 	void add_edge(int u, int v) {

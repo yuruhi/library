@@ -12,18 +12,20 @@ public:
 			Map[Str[i]] = i;
 		}
 	}
-	//Num(R) -> ret(10)
-	static Type to10(const string& Num, int R) {
+	// Num(R) -> ret(10)
+	static Type to10(const string &Num, int R) {
 		Type ret = 0, p = 1;
 		for (int i = (int)Num.size() - 1; i >= 0; --i) {
 			assert(Map.count(Num[i]));
-			ret += Map[Num[i]] * p; p *= R;
+			ret += Map[Num[i]] * p;
+			p *= R;
 		}
 		return ret;
 	}
-	//Num(10) -> ret(N)
+	// Num(10) -> ret(N)
 	static string toN(Type Num, int N) {
-		string ret; Type m = Num;
+		string ret;
+		Type m = Num;
 		do {
 			ret += Str[m % N];
 			m /= N;
@@ -31,8 +33,8 @@ public:
 		reverse(ret.begin(), ret.end());
 		return ret;
 	}
-	//Num(R) -> ret(N)
-	static string toN(const string& Num, int R, int N) {
+	// Num(R) -> ret(N)
+	static string toN(const string &Num, int R, int N) {
 		return toN(to10(Num, R), N);
 	}
 };

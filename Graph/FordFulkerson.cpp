@@ -5,9 +5,9 @@ class FordFulkerson {
 	GraphF G;
 	vector<bool> used;
 	FLOW dfs(int v, int t, FLOW f) {
-		if (v == t)return f;
+		if (v == t) return f;
 		used[v] = true;
-		for (auto& e : G[v]) {
+		for (auto &e : G[v]) {
 			if (!used[e.to] && e.cap > 0) {
 				FLOW d = dfs(e.to, t, min(f, e.cap));
 				if (d > 0) {
@@ -21,8 +21,10 @@ class FordFulkerson {
 	}
 
 public:
-	FordFulkerson(int v) :V(v), G(v), used(v) {}
-	const GraphF& get_G() { return G; }
+	FordFulkerson(int v) : V(v), G(v), used(v) {}
+	const GraphF &get_G() {
+		return G;
+	}
 	void add(int from, int to, FLOW cap) {
 		G[from].emplace_back(to, G[to].size(), cap);
 		G[to].emplace_back(from, G[from].size() - 1, 0);
@@ -32,7 +34,7 @@ public:
 		while (true) {
 			fill(used.begin(), used.end(), false);
 			FLOW f = dfs(s, t, INF_FLOW);
-			if (!f)return res;
+			if (!f) return res;
 			res += f;
 		}
 	}

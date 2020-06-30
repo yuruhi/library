@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"array": "cpp",
+		"deque": "cpp",
+		"list": "cpp",
+		"system_error": "cpp",
+		"vector": "cpp",
+		"xstring": "cpp"
+	}
+}
