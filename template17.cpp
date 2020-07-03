@@ -1,5 +1,3 @@
-// shortcut : KyoproTemplate17
-// description : C++17用テンプレート
 #define _USE_MATH_DEFINES
 #define _CRT_SECURE_NO_WARNINGS
 #include "bits/stdc++.h"
@@ -15,7 +13,7 @@
 
 using namespace std;
 using ll = long long;
-using ld = long double;
+using LD = long double;
 using VB = vector<bool>;
 using VVB = vector<VB>;
 using VI = vector<int>;
@@ -23,7 +21,7 @@ using VVI = vector<VI>;
 using VL = vector<ll>;
 using VVL = vector<VL>;
 using VS = vector<string>;
-using VD = vector<ld>;
+using VD = vector<LD>;
 using PII = pair<int, int>;
 using VP = vector<PII>;
 using PLL = pair<ll, ll>;
@@ -32,7 +30,7 @@ template <class T> using PQ = priority_queue<T>;
 template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
 constexpr int inf = (int)1e9;
 constexpr ll inf_ll = (ll)1e18, MOD = 1000000007;
-constexpr ld PI = M_PI, EPS = 1e-12;
+constexpr LD PI = M_PI, EPS = 1e-12;
 
 // --- input --- //
 #ifdef _WIN32
@@ -138,7 +136,7 @@ class Input {
 		}
 	}
 	template <class... T> static void i(tuple<T...>& v) {
-		InputTuple(v);
+		input_tuple(v);
 	}
 	struct InputV {
 		int n, m;
@@ -198,7 +196,7 @@ private:
 		if constexpr (N < tuple_size_v<T>) {
 			auto& vec = get<N>(t);
 			using V = typename remove_reference_t<decltype(vec)>::value_type;
-			vec.push_back(in<V>());
+			vec.push_back(i<V>());
 			in_multiple<N + 1>(t);
 		}
 	}
@@ -261,7 +259,7 @@ class Output {
 	void p(double v) const {
 		printf("%.20f", v);
 	}
-	void p(ld v) const {
+	void p(LD v) const {
 		printf("%.20Lf", v);
 	}
 	template <class T> void p(const T& v) const {
