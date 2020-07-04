@@ -1,4 +1,4 @@
-// shortcut : RAQRMQ
+// shortcut : RAQRMaxQ
 // description : 区間加算、区間max
 template <class T> class RAQRMQ {
 	int n;
