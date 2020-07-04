@@ -19,7 +19,7 @@ template <class T> class RAQRSQ {
 			lazy[k] = 0;
 		}
 	}
-	void add_impl(int a, int b, const T &x, int k, int l, int r) {
+	void add_impl(int a, int b, const T& x, int k, int l, int r) {
 		eval(k, l, r);
 		if (b <= l || r <= a) {
 			return;
@@ -47,21 +47,21 @@ template <class T> class RAQRSQ {
 	}
 
 public:
-	RAQRSQ(const vector<T> &vec, const T &_init) : init(_init) {
+	RAQRSQ(const vector<T>& vec, const T& _init) : init(_init) {
 		build(vec);
 	}
-	void build(const vector<T> &v) {
+	void build(const vector<T>& v) {
 		n = ceil2(v.size());
 		node.assign(n * 2, init);
 		lazy.assign(n * 2, 0);
-		for (int i = 0; i < v.size(); ++i) {
+		for (size_t i = 0; i < v.size(); ++i) {
 			node[i + n] = v[i];
 		}
-		for (int i = n - 1; i > 0; --i) {
+		for (size_t i = n - 1; i > 0; --i) {
 			node[i] = node[i * 2 + 0] + node[i * 2 + 1];
 		}
 	}
-	void add(int l, int r, const T &x) {
+	void add(int l, int r, const T& x) {
 		add_impl(l, r, x, 1, 0, n);
 	}
 	T operator[](int i) {
