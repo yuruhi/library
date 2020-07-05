@@ -1,4 +1,3 @@
-// shortcut : BitRangeBasedFor
 // description : 部分集合, サイズkの部分集合を列挙
 class bit_subset {
 	struct it {

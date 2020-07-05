@@ -1,4 +1,3 @@
-// shortcut : LCA
 // description : 最小共通祖先（ダブリング）
 class LCA {
 	const int V, LOG;

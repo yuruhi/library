@@ -1,4 +1,3 @@
-// shortcut : Divisor
 // description : 約数列挙、約数の個数、約数の総和
 template <class T> vector<T> Divisor(T n) {
 	assert(0 < n);

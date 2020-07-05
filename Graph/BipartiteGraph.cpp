@@ -1,4 +1,3 @@
-// shortcut : BipartiteGraph
 // description : 二部グラフ判定 O(V + E)
 int BipartiteGraph(const Graph &graph) {
 	int V = graph.size(), White = 0;

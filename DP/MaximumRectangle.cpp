@@ -1,4 +1,3 @@
-// shortcut : MaximumRectangle
 // description : ヒストグラム中の最大長方形
 template <class T> T MaximumRectangle(vector<T> h) {
 	int n = h.size();

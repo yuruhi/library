@@ -1,4 +1,3 @@
-// shortcut : DiameterPath
 // description : 木の直径とそのパスを求める
 tuple<Weight, vector<int>> DiameterPath(const Graph &g) {
 	int n = g.size();

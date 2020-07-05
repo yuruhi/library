@@ -1,4 +1,3 @@
-// shortcut : BinaryIndexedTree
 // description : BinaryIndexedTree
 template <class T> class BinaryIndexedTree {
 	int n, n2;

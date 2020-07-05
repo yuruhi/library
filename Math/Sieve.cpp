@@ -1,4 +1,3 @@
-// shortcut : Sieve
 // description : エラトステネスの篩 O(N log log N)、素因数分解 O(素因数の個数)
 struct Sieve {
 	int n;

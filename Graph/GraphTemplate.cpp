@@ -1,4 +1,3 @@
-// shortcut : GraphTemplate
 // description : グラフ理論テンプレート
 using Weight = long long;
 constexpr Weight INF = numeric_limits<Weight>::max();

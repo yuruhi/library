@@ -1,4 +1,3 @@
-// shortcut : Diameter
 // description : 木の直径
 tuple<Weight, int, int> Diameter(const Graph &g) {
 	function<pair<int, int>(int, int, Weight)> dfs = [&](int v, int p, Weight depth) {

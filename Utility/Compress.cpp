@@ -1,4 +1,3 @@
-// shortcut : Compress
 // description : 座標圧縮
 template <class T> class Compress {
 	vector<T> v;

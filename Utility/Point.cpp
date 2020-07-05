@@ -1,4 +1,3 @@
-// shortcut : Point
 // description : Point
 struct Point {
 	static int H, W;

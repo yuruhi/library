@@ -1,4 +1,3 @@
-// shortcut : TopologicalSort
 // description : トポロジカルソート O(V + E)
 vector<int> TopologicalSort(const vector<vector<int>> &graph) {
 	int V = graph.size();

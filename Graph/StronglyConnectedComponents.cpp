@@ -1,4 +1,3 @@
-// shortcut : StronglyConnectedComponents
 // description : 強連結成分分解
 class StronglyConnectedComponents {
 	int V, k = 0;

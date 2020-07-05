@@ -1,4 +1,3 @@
-// shortcut : isConnected
 // description : 連結判定
 bool isConnected(const Graph &graph, int s, int t) {
 	int V = graph.size();

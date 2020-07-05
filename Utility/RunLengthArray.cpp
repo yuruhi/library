@@ -1,4 +1,3 @@
-// shortcut : RunLengthArray
 // description : RunLength圧縮みたいに保持する配列
 template <class value_type, class size_type = size_t> class RunLengthArray {
 	using T = value_type;

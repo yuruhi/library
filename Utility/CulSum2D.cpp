@@ -1,4 +1,3 @@
-// shortcut : CulSum2D
 // description : 累積和2次元
 template <class T> class CulSum2D {
 	int h, w;

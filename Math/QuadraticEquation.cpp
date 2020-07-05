@@ -1,4 +1,3 @@
-// shortcut : QuadraticEquation
 // description : y = ax^2 + bx + c
 optional<vector<long double>> QuadraticEquation(long long a, long long b, long long c) {
 	long double A = a, B = b, C = c;

@@ -1,4 +1,3 @@
-// shortcut : Geometric
 // description : 幾何
 constexpr bool Equal(ld a, ld b) {
 	return a < b ? b - a < EPS : a - b < EPS;

@@ -1,4 +1,3 @@
-// shortcut : WarashallFloyd
 // description : ワーシャルフロイド法 O(V^3)
 bool WarashallFloyd(Matrix &dist, Weight INF_ = INF) {
 	int V = dist.size();

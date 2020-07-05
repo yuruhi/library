@@ -1,4 +1,3 @@
-// shortcut : Partition
 // description : 分割数 dp[i][j] := j の i 分割の総数
 template <class T> vector<vector<T>> Partition(int n, int m) {
 	vector<vector<T>> dp(m + 1, vector<T>(n + 1));

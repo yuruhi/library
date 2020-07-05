@@ -1,4 +1,3 @@
-// shortcut : RLE
 // description : Run-Length-Encoding
 template <class T, class U = typename T::value_type> auto RLE(const T &a) {
 	int n = a.size();

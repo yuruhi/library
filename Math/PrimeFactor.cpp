@@ -1,4 +1,3 @@
-// shortcut : PrimeFactor
 // description : 素因数分解 O(√N)
 template <class T> map<T, int> PrimeFactor(T n) {
 	assert(2 <= n);

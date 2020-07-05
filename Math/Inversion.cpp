@@ -1,4 +1,3 @@
-// shortcut : Inversion
 // description : 転倒数 a : { 1..N } の順列
 long long Inversion(const vector<int> a) {
 	int n = a.size();

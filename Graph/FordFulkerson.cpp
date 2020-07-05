@@ -1,4 +1,3 @@
-// shortcut : FordFulkerson
 // description : Ford-Fulkerson法 O(EF)
 class FordFulkerson {
 	int V;

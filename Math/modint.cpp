@@ -1,4 +1,3 @@
-// shortcut : modint
 // description : modint
 template <int MOD> struct modint {
 	using T = long long;

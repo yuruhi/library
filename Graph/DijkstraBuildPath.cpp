@@ -1,4 +1,3 @@
-// shortcut : DijkstraBuildPath
 // description : ダイクストラ法　最短パスを構築
 pair<vector<Weight>, vector<int>> Dijkstra(const Graph &graph, int s) {
 	int V = graph.size();

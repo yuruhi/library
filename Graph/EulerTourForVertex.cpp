@@ -1,4 +1,3 @@
-// shortcut : EulerTourForVertex
 // description : オイラーツアー
 class EulerTourForVertex {
 	vector<int> ls, rs;

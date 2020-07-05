@@ -1,4 +1,3 @@
-// shortcut : Random
 // description : Random
 class Random {
 	using T = unsigned int;

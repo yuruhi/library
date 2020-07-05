@@ -1,4 +1,3 @@
-// shortcut : Combi
 // description : 前処理 O(N) クエリ処理 O(1)
 template <int MOD> class Combi {
 	using T = modint<MOD>;

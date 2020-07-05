@@ -1,4 +1,3 @@
-// shortcut : Pair
 // description : pair
 template <class T> struct Pair {
 	T x, y;

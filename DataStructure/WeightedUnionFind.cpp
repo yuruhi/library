@@ -1,4 +1,3 @@
-// shortcut : WeightedUnionFind
 // description : 重み付きUnionFind木
 template <class T> class UnionFind {
 	vector<int> par, rank;

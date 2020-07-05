@@ -1,4 +1,3 @@
-// shortcut : DijkstraST
 // description : 始点と終点を指定するダイクストラ法
 Weight Dijkstra(const Graph &graph, int s, int t) {
 	int V = graph.size();

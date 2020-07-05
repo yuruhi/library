@@ -1,4 +1,3 @@
-// shortcut : FlowTemplate
 // description : フローテンプレート
 using FLOW = long long;
 constexpr FLOW INF_FLOW = numeric_limits<FLOW>::max();

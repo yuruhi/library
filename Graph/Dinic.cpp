@@ -1,4 +1,3 @@
-// shortcut : Dinic
 // description : Dinic法 O(EV^2)
 class Dinic {
 	int V;

@@ -1,4 +1,3 @@
-// shortcut : extGcd
 // description : ax + by = c の整数解
 template <class T> T extGcd(T a, T b, T &x, T &y) {
 	T d = a;

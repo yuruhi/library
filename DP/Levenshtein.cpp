@@ -1,4 +1,3 @@
-// shortcut : Levenshtein
 // description : 編集距離
 int Levenshtein(const string &s, const string &t) {
 	int S = s.size(), T = t.size();

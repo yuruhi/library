@@ -1,4 +1,3 @@
-// shortcut : EulerTour
 // description : [l[i], r[i]] : i の部分木
 class EulerTour {
 	vector<vector<int>> g;

@@ -1,4 +1,3 @@
-// shortcut : Primes
 // description : n 以下の素数列挙
 vector<int> Primes(int n) {
 	vector<int> ret;

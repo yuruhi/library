@@ -1,4 +1,3 @@
-// shortcut : Fibonacci
 // description : フィボナッチ数列
 vector<long long> getFib(int n) {
 	vector<long long> res(n + 1);

@@ -1,4 +1,3 @@
-// shortcut : CulSum
 // description : 累積和
 template <class T> class CulSum {
 	size_t n;

@@ -1,4 +1,3 @@
-// shortcut : SegmentTree
 // description : update, range query
 template <class T> class SegmentTree {
 	using Func = function<T(T, T)>;

@@ -1,4 +1,3 @@
-// shortcut : UnionFind
 // description : UnionFind木
 class UnionFind {
 	vector<int> d;

@@ -1,4 +1,3 @@
-// shortcut : Imos
 // description : いもす法
 template <class T> class Imos {
 	const int N;

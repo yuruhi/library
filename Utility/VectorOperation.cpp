@@ -1,4 +1,3 @@
-// shortcut : VectorOperation
 // description : rotate, scale
 template <class T> vector<vector<T>> Rotated90(const vector<vector<T>> &a) {
 	size_t h = a.size(), w = a.front().size();

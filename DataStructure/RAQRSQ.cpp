@@ -1,4 +1,3 @@
-// shortcut : RAQRSQ
 // description : 区間加算、区間和
 template <class T> class RAQRSQ {
 	int n;

@@ -1,4 +1,3 @@
-// shortcut : Radix
 // description : N進数変換
 class Radix {
 	using Type = long long;

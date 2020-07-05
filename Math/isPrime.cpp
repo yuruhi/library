@@ -1,4 +1,3 @@
-// shortcut : isPrime
 // description : 素数判定（試し割法）
 template <class T> bool isPrime(T n) {
 	if (n == 2) return true;

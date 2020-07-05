@@ -1,4 +1,3 @@
-// shortcut : ShortestPath
 // description : 重さなしグラフの最短経路 O(V + E)
 vector<int> ShortestPath(const vector<vector<int>> &G, const int s) {
 	int V = G.size();

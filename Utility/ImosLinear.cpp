@@ -1,4 +1,3 @@
-// shortcut : ImosLinear
 // description : 区間に一次関数を足す
 template <class T> class ImosLinear {
 	const int N;

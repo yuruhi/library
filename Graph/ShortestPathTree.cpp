@@ -1,4 +1,3 @@
-// shortcut : ShortestPathTree
 // description : 木の最短経路
 vector<Weight> ShortestPathTree(const Graph &g, int s) {
 	int V = g.size();

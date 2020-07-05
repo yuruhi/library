@@ -1,4 +1,3 @@
-// shortcut : RAQRminQ
 // description : 区間加算、区間min
 template <class T> class RAQRmQ {
 	int n;

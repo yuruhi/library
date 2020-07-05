@@ -1,4 +1,3 @@
-// shortcut : ShortestPathUnWeightedTree
 // description : 重さなし木の最短経路
 vector<int> ShortestPathTree(const vector<vector<int>> &g, int s) {
 	int V = g.size();

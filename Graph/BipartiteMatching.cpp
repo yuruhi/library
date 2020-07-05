@@ -1,4 +1,3 @@
-// shortcut : BipartiteMatching
 // description : N -> M の辺しか張らない O(VE)
 class BipartiteMatching {
 	int N, M;

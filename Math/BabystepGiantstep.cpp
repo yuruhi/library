@@ -1,4 +1,3 @@
-// shortcut : BabystepGiantstep
 // description : g ^ res % mod = h
 int64_t BabystepGiantstep(uint64_t g, uint64_t h,
                           uint64_t mod) {  // g ^ res = h (mod mod)

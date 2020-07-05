@@ -1,4 +1,3 @@
-// shortcut : BipartiteMatching2
 // description : return : { cnt, edges }
 class BipartiteMatching {
 	int V, L;

@@ -1,4 +1,3 @@
-// shortcut : BracketsPos
 // description : 対応する括弧の場所
 size_t BracketsPos(const string &s, size_t pos, char c1 = '(', char c2 = ')') {
 	assert(s[pos] == c1);

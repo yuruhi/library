@@ -1,4 +1,3 @@
-// shortcut : RollingHash
 // description : ローリングハッシュ
 using ull = unsigned long long;
 template <ull MOD> class RollingHash {

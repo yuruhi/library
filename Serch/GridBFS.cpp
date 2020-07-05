@@ -1,4 +1,3 @@
-// shortcut : GridBFS
 // description : グリッド上のBFS
 vector<vector<int>> GridBFS(const vector<string> &grid, Point s, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();

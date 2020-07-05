@@ -1,4 +1,3 @@
-// shortcut : KyoproTemplate14
 // description : C++14用テンプレート
 #define _USE_MATH_DEFINES
 #define _CRT_SECURE_NO_WARNINGS

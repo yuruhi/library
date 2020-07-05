@@ -1,4 +1,3 @@
-// shortcut : BuildPathTree
 // description : s-t 間のパスを求める
 vector<int> BuildPathTree(const Graph &g, int s, int t) {
 	int n = g.size();

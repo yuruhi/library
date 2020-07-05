@@ -1,4 +1,3 @@
-// shortcut : RangesS
 // description : 区間を保持するデータ構造
 template <class T> class Ranges {
 	set<pair<T, bool>> s;

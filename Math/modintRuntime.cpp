@@ -1,4 +1,3 @@
-// shortcut : modintRuntime
 // description : 実行時に法が決まる modint
 struct mint {
 	using T = long long;

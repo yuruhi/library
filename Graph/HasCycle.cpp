@@ -1,4 +1,3 @@
-// shortcut : HasCycle
 // description : 閉路検出
 bool HasCycle(const Graph &graph) {
 	int V = graph.size();

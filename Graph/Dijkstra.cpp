@@ -1,4 +1,3 @@
-// shortcut : Dijkstra
 // description : ダイクストラ法 O(E log V)
 vector<Weight> Dijkstra(const Graph &graph, int s) {
 	int V = graph.size();

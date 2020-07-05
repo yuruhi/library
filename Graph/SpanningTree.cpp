@@ -1,4 +1,3 @@
-// shortcut : SpanningTree
 // description : 全域木構築 有向木を返す
 Graph SpanningTree(const Graph &g, int root) {
 	int n = g.size();

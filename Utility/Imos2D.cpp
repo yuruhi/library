@@ -1,4 +1,3 @@
-// shortcut : Imos2D
 // description : いもす法2次元
 template <class T> class Imos2D {
 	vector<vector<T>> table;

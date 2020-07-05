@@ -1,4 +1,3 @@
-// shortcut : Eratosthenes
 // description : エラトステネスの篩
 vector<bool> Eratosthenes(int n) {
 	vector<bool> p(n + 1, true);

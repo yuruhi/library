@@ -1,4 +1,3 @@
-// shortcut : Range
 // description : Range
 template <class T> struct Range {
 	static constexpr Range nil() {
