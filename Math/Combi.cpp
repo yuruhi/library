@@ -11,7 +11,7 @@ public:
 		inv[1] = 1;
 		for (int i = 2; i < Max; ++i) {
 			fac[i] = fac[i - 1] * i;
-			inv[i] = T(MOD) - inv[MOD % i] * (MOD / i);
+			inv[i] = -inv[MOD % i] * (MOD / i);
 			finv[i] = finv[i - 1] * inv[i];
 		}
 	}
