@@ -41,6 +41,10 @@ namespace Debug {
 #ifdef __cpp_lib_optional
 	template <class T> void DebugPrint(const optional<T>& v);
 #endif
+#ifdef __cpp_if_constexpr
+	template <size_t N = 0, class T> void print_tuple_impl(const T& v);
+	template <class... T> void DebugPrint(const tuple<T...>& v);
+#endif
 	template <class T> void DebugPrint(const vector<T>& v);
 	template <class T, size_t N> void DebugPrint(const array<T, N>& v);
 	template <class T> void DebugPrint(const vector<vector<T>>& v);
@@ -100,6 +104,22 @@ namespace Debug {
 		} else {
 			cerr << '-';
 		}
+	}
+#endif
+#ifdef __cpp_if_constexpr
+	template <size_t N = 0, class T> void print_tuple_impl(const T& v) {
+		if constexpr (N < tuple_size_v<T>) {
+			cerr << get<N>(v);
+			if constexpr (N < tuple_size_v<T> - 1) {
+				cerr << Separate;
+			}
+			print_tuple_impl<N + 1>(v);
+		}
+	}
+	template <class... T> void DebugPrint(const tuple<T...>& v) {
+		cerr << Begin;
+		print_tuple_impl(v);
+		cerr << End;
 	}
 #endif
 	template <class T> void DebugPrint(const vector<T>& v) {
