@@ -53,8 +53,6 @@ public:
 	}
 };
 
-VI a;
-
 struct DP {
 	int dp;
 	DP(int _dp = 1) : dp(_dp) {}
