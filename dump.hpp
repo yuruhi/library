@@ -109,7 +109,7 @@ namespace Debug {
 #ifdef __cpp_if_constexpr
 	template <size_t N = 0, class T> void print_tuple_impl(const T& v) {
 		if constexpr (N < tuple_size_v<T>) {
-			cerr << get<N>(v);
+			DebugPrint(get<N>(v));
 			if constexpr (N < tuple_size_v<T> - 1) {
 				cerr << Separate;
 			}
