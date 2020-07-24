@@ -60,7 +60,7 @@
 - [二部グラフ判定](https://github.com/yuruhi/library/blob/master/Graph/BipartiteGraph.cpp)
 - [トポロジカルソート](https://github.com/yuruhi/library/blob/master/Graph/TopologicalSort.cpp)
 - [強連結成分分解](https://github.com/yuruhi/library/blob/master/Graph/StronglyConnectedComponents.cpp)
-- [全方位]
+- [全方位木DP](https://github.com/yuruhi/library/blob/master/Graph/ReRooting.cpp)
 
 ### フロー
 
