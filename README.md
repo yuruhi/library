@@ -12,10 +12,16 @@
 
 ## [DataStructure](https://github.com/yuruhi/library/tree/master/DataStructure)
 
-- [Binary Indexed Tree](https://github.com/yuruhi/library/blob/master/DataStructure/BinaryIndexedTree.cpp)
-- [セグメント木](https://github.com/yuruhi/library/blob/master/DataStructure/SegmentTree.cpp)
 - [UnionFind](https://github.com/yuruhi/library/blob/master/DataStructure/UnionFind.cpp)
 - [重み付きUnionFind](https://github.com/yuruhi/library/blob/master/DataStructure/WeightedUnionFind.cpp)
+- [Binary Indexed Tree](https://github.com/yuruhi/library/blob/master/DataStructure/BinaryIndexedTree.cpp)
+- [一点更新・区間クエリ](https://github.com/yuruhi/library/blob/master/DataStructure/SegmentTree.cpp)
+- [区間加算・一点更新](https://github.com/yuruhi/library/blob/master/DataStructure/RangeAddQuery.cpp)
+- [区間加算・区間最大](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRMaxQ.cpp)
+- [区間加算・区間最小](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRminQ.cpp)
+- [区間加算・区間和](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRSQ.cpp)
+- [区間更新・区間最小](https://github.com/yuruhi/library/blob/master/DataStructure/RUQRminQ.cpp)
+- [区間加算更新・区間和](https://github.com/yuruhi/library/blob/master/DataStructure/RAUQRSQ.cpp)
 
 ## [Geometry](https://github.com/yuruhi/library/tree/master/Geometry)
 
@@ -31,6 +37,8 @@
 - [木の最短経路](https://github.com/yuruhi/library/blob/master/Graph/ShortestPathTree.cpp)
 - [重さなし木の最短経路](https://github.com/yuruhi/library/blob/master/Graph/ShortestPathUnweightedTree.cpp)
 - [ダイクストラ法](https://github.com/yuruhi/library/blob/master/Graph/Dijkstra.cpp)
+- [終点を決めてダイクストラ](https://github.com/yuruhi/library/blob/master/Graph/DijkstraST.cpp)
+- [ダイクストラ法で最短パス](https://github.com/yuruhi/library/blob/master/Graph/DijkstraBuildPath.cpp)
 - [ベルマンフォード法](https://github.com/yuruhi/library/blob/master/Graph/BellmanFord.cpp)
 - [ワーシャルフロイド法](https://github.com/yuruhi/library/blob/master/Graph/WarashallFloyd.cpp)
 - [辺を追加する](https://github.com/yuruhi/library/blob/master/Graph/WarashallFloydAddEdge.cpp)
@@ -38,7 +46,10 @@
 ### 木
 
 - [木の直径](https://github.com/yuruhi/library/blob/master/Graph/Diametar.cpp)
+- [木の直径のパス](https://github.com/yuruhi/library/blob/master/Graph/DiameterPath.cpp)
 - [最小共通祖先(LCA)](https://github.com/yuruhi/library/blob/master/Graph/LCA.cpp)
+- [木s-t間のパス](https://github.com/yuruhi/library/blob/master/Graph/BuildTreePath.cpp)
+- [全方位木DP](https://github.com/yuruhi/library/blob/master/Graph/ReRooting.cpp)
 
 ### 最小全域木
 
@@ -49,6 +60,7 @@
 - [二部グラフ判定](https://github.com/yuruhi/library/blob/master/Graph/BipartiteGraph.cpp)
 - [トポロジカルソート](https://github.com/yuruhi/library/blob/master/Graph/TopologicalSort.cpp)
 - [強連結成分分解](https://github.com/yuruhi/library/blob/master/Graph/StronglyConnectedComponents.cpp)
+- [全方位]
 
 ### フロー
 
@@ -89,6 +101,7 @@
 
 - [modint](https://github.com/yuruhi/library/blob/master/Math/modint.cpp)
 - [実行時に法が決まるmodint](https://github.com/yuruhi/library/blob/master/Math/modintRuntime.cpp)
+- [g ^ x % mod = h なる x を求める](https://github.com/yuruhi/library/blob/master/Math/BabystepGiantstep.cpp)
 
 ### 他
 
@@ -137,7 +150,7 @@ C++17用テンプレート
 
 ## [dump](https://github.com/yuruhi/library/blob/master/dump.hpp)
 
-デバッグ用出力関数(C++17)
+デバッグ用出力関数
 
 ## Author
 
