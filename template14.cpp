@@ -14,7 +14,7 @@
 
 using namespace std;
 using ll = long long;
-using ld = long double;
+using LD = long double;
 using VB = vector<bool>;
 using VVB = vector<VB>;
 using VI = vector<int>;
@@ -22,7 +22,7 @@ using VVI = vector<VI>;
 using VL = vector<ll>;
 using VVL = vector<VL>;
 using VS = vector<string>;
-using VD = vector<ld>;
+using VD = vector<LD>;
 using PII = pair<int, int>;
 using VP = vector<PII>;
 using PLL = pair<ll, ll>;
@@ -31,7 +31,7 @@ template <class T> using PQ = priority_queue<T>;
 template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
 constexpr int inf = (int)1e9;
 constexpr ll inf_ll = (ll)1e18, MOD = 1000000007;
-constexpr ld PI = M_PI, EPS = 1e-12;
+constexpr LD PI = M_PI, EPS = 1e-12;
 
 // --- input --- //
 #ifdef _WIN32
@@ -227,7 +227,7 @@ class Output {
 	void p(double v) const {
 		printf("%.20f", v);
 	}
-	void p(ld v) const {
+	void p(LD v) const {
 		printf("%.20Lf", v);
 	}
 	template <class T> void p(const T& v) const {
@@ -682,8 +682,8 @@ inline namespace {
 // --- dump --- //
 #if __has_include("dump.hpp")
 #include "dump.hpp"
-#elif __has_include("/home/yuruhiya/contest/dump.hpp")
-#include "/home/yuruhiya/contest/dump.hpp"
+#elif __has_include("/home/yuruhiya/contest/library/dump.hpp")
+#include "/home/yuruhiya/contest/library/dump.hpp"
 #else
 #define dump(...) ((void)0)
 #endif

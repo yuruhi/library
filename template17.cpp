@@ -709,8 +709,8 @@ inline namespace {
 // --- dump --- //
 #if __has_include("dump.hpp")
 #include "dump.hpp"
-#elif __has_include("/home/yuruhiya/contest/dump.hpp")
-#include "/home/yuruhiya/contest/dump.hpp"
+#elif __has_include("/home/yuruhiya/contest/library/dump.hpp")
+#include "/home/yuruhiya/contest/library/dump.hpp"
 #else
 #define dump(...) ((void)0)
 #endif
