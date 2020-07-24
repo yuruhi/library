@@ -29,9 +29,9 @@ using PLL = pair<ll, ll>;
 using VPL = vector<PLL>;
 template <class T> using PQ = priority_queue<T>;
 template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
-constexpr int inf = (int)1e9;
-constexpr ll inf_ll = (ll)1e18, MOD = 1000000007;
-constexpr LD PI = M_PI, EPS = 1e-12;
+constexpr int inf = 1e9;
+constexpr long long inf_ll = 1e18, MOD = 1000000007;
+constexpr long double PI = M_PI, EPS = 1e-12;
 
 // --- input --- //
 #ifdef _WIN32
@@ -178,13 +178,13 @@ public:
 } in;
 #define input(T) Input::in<T>()
 #define INT input(int)
-#define LL input(ll)
+#define LL input(long long)
 #define STR input(string)
 #define inputs(T, ...) \
 	T __VA_ARGS__;     \
 	in(__VA_ARGS__)
 #define ini(...) inputs(int, __VA_ARGS__)
-#define inl(...) inputs(ll, __VA_ARGS__)
+#define inl(...) inputs(long long, __VA_ARGS__)
 #define ins(...) inputs(string, __VA_ARGS__)
 
 // --- output --- //
@@ -207,7 +207,7 @@ class Output {
 		if (!i) b[i++] = '0';
 		while (i--) putchar_unlocked(b[i]);
 	}
-	void p(ll v) const {
+	void p(long long v) const {
 		if (v < 0) putchar_unlocked('-'), v = -v;
 		char b[20];
 		int i = 0;
@@ -227,7 +227,7 @@ class Output {
 	void p(double v) const {
 		printf("%.20f", v);
 	}
-	void p(LD v) const {
+	void p(long double v) const {
 		printf("%.20Lf", v);
 	}
 	template <class T> void p(const T& v) const {
@@ -616,12 +616,6 @@ inline namespace {
 	template <class T> inline T Mid(const T& l, const T& r) {
 		return l + (r - l) / 2;
 	}
-	inline int pop_count(int n) {
-		return bitset<32>(n).count();
-	}
-	inline int pop_count(ll n) {
-		return bitset<64>(n).count();
-	}
 	template <class T> inline bool chmax(T& a, const T& b) {
 		if (a < b) {
 			a = b;
@@ -643,7 +637,7 @@ inline namespace {
 		T s = sqrt(n);
 		return s * s == n || (s + 1) * (s + 1) == n;
 	}
-	template <class T = ll> inline T BIT(int b) {
+	template <class T = long long> inline T BIT(int b) {
 		return T(1) << b;
 	}
 	template <class T> inline T Gcd(T n, T m) {
