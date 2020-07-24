@@ -48,7 +48,8 @@
 - [木の直径](https://github.com/yuruhi/library/blob/master/Graph/Diametar.cpp)
 - [木の直径のパス](https://github.com/yuruhi/library/blob/master/Graph/DiameterPath.cpp)
 - [最小共通祖先(LCA)](https://github.com/yuruhi/library/blob/master/Graph/LCA.cpp)
-- [木s-t間のパス](https://github.com/yuruhi/library/blob/master/Graph/BuildTreePath.cpp)
+- [木のs-t間のパス（頂点）](https://github.com/yuruhi/library/blob/master/Graph/BuildTreePath.cpp)
+- [木のs-t間のパス（辺）](https://github.com/yuruhi/library/blob/master/Graph/BuildTreePathEdge.cpp)
 - [全方位木DP](https://github.com/yuruhi/library/blob/master/Graph/ReRooting.cpp)
 
 ### 最小全域木
