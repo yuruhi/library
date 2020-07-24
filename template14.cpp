@@ -4,7 +4,7 @@
 #include "bits/stdc++.h"
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
-#define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
+#define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 #define unless(c) if (!(c))
 #define sz(x) ((int)(x).size())
