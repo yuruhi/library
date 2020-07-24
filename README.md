@@ -101,7 +101,7 @@
 
 - [modint](https://github.com/yuruhi/library/blob/master/Math/modint.cpp)
 - [実行時に法が決まるmodint](https://github.com/yuruhi/library/blob/master/Math/modintRuntime.cpp)
-- [g ^ x % mod = h なる x を求める](https://github.com/yuruhi/library/blob/master/Math/BabystepGiantstep.cpp)
+- [$g ^ x \equiv h \pmod{mod}$ なる $x$ を求める](https://github.com/yuruhi/library/blob/master/Math/BabystepGiantstep.cpp)
 
 ### 他
 
