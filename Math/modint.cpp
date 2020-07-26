@@ -100,7 +100,10 @@ template <int MOD> struct modint {
 		return os << m.n;
 	}
 	friend istream &operator>>(istream &is, modint<MOD> &m) {
-		return is >> m.n;
+		long long x;
+		cin >> x;
+		m = modint(x);
+		return is;
 	}
 };
 using mint = modint<1000000007>;

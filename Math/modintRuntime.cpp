@@ -17,11 +17,11 @@ public:
 	mint operator-() const {
 		return n ? MOD - n : 0;
 	}
-	mint &operator++() {
+	mint& operator++() {
 		if (MOD <= ++n) n = 0;
 		return *this;
 	}
-	mint &operator--() {
+	mint& operator--() {
 		if (n <= 0) n = MOD;
 		n--;
 		return *this;
@@ -42,33 +42,33 @@ public:
 	mint pred() const {
 		return --mint(*this);
 	}
-	mint operator+(const mint &m) const {
+	mint operator+(const mint& m) const {
 		return mint(*this) += m;
 	}
-	mint operator-(const mint &m) const {
+	mint operator-(const mint& m) const {
 		return mint(*this) -= m;
 	}
-	mint operator*(const mint &m) const {
+	mint operator*(const mint& m) const {
 		return mint(*this) *= m;
 	}
-	mint operator/(const mint &m) const {
+	mint operator/(const mint& m) const {
 		return mint(*this) /= m;
 	}
-	mint &operator+=(const mint &m) {
+	mint& operator+=(const mint& m) {
 		n += m.n;
 		if (n >= MOD) n -= MOD;
 		return *this;
 	}
-	mint &operator-=(const mint &m) {
+	mint& operator-=(const mint& m) {
 		n -= m.n;
 		if (n < 0) n += MOD;
 		return *this;
 	}
-	mint &operator*=(const mint &m) {
+	mint& operator*=(const mint& m) {
 		n = n * m.n % MOD;
 		return *this;
 	}
-	mint &operator/=(const mint &m) {
+	mint& operator/=(const mint& m) {
 		T a = m.n, b = MOD, u = 1, v = 0;
 		while (b) {
 			T t = a / b;
@@ -81,10 +81,10 @@ public:
 		if (n < 0) n += MOD;
 		return *this;
 	}
-	bool operator==(const mint &m) const {
+	bool operator==(const mint& m) const {
 		return n == m.n;
 	}
-	bool operator!=(const mint &m) const {
+	bool operator!=(const mint& m) const {
 		return n != m.n;
 	}
 	mint pow(T m) const {
@@ -99,15 +99,18 @@ public:
 	mint operator^(T m) const {
 		return pow(m);
 	}
+	friend ostream& operator<<(ostream& os, const mint& m) {
+		return os << m.n;
+	}
+	friend istream& operator>>(istream& is, mint& m) {
+		long long x;
+		cin >> x;
+		m = mint(x);
+		return is;
+	}
+	friend mint operator""_m(unsigned long long n) {
+		return n;
+	}
 };
 long long mint::MOD = 1000000007;
 using VM = vector<mint>;
-inline ostream &operator<<(ostream &os, const mint &m) {
-	return os << m.n;
-}
-inline istream &operator>>(istream &is, mint &m) {
-	return is >> m.n;
-}
-inline mint operator""_m(unsigned long long n) {
-	return n;
-}
