@@ -75,7 +75,7 @@ public:
 	template <class C> int find_last(int l, int r, const C &c) const {
 		return fl(l, r, c, 1, 0, N);
 	}
-	vector<T> as_vector() const {
+	vector<T> to_a() const {
 		vector<T> res(N);
 		for (int i = 0; i < N; ++i) res[i] = operator[](i);
 		return res;

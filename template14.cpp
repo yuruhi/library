@@ -361,12 +361,12 @@ template <class T> struct Step {
 		return start() * count() + step() * (count() * (count() - 1) / 2);
 	}
 	operator vector<T>() const {
-		return as_vector();
+		return to_a();
 	}
 	template <class F> void each(const F& f) const {
 		for (T i : *this) f(i);
 	}
-	auto as_vector() const {
+	auto to_a() const {
 		vector<T> res;
 		res.reserve(count());
 		each([&](T i) { res.push_back(i); });
