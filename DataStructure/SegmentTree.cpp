@@ -11,7 +11,7 @@ template <class T> class SegmentTree {
 		return m;
 	}
 
-	template <class C> int ff(int a, int b, const C &c, int k, int l, int r) const {
+	template <class C> int ff(int a, int b, const C& c, int k, int l, int r) const {
 		if (!c(A[k]) || r <= a || b <= l) {
 			return -1;
 		} else if (k >= N) {
@@ -22,7 +22,7 @@ template <class T> class SegmentTree {
 			return ff(a, b, c, 2 * k + 1, (l + r) / 2, r);
 		}
 	}
-	template <class C> int fl(int a, int b, const C &c, int k, int l, int r) const {
+	template <class C> int fl(int a, int b, const C& c, int k, int l, int r) const {
 		if (!c(A[k]) || r <= a || b <= l) {
 			return -1;
 		} else if (k >= N) {
@@ -35,21 +35,21 @@ template <class T> class SegmentTree {
 	}
 
 public:
-	SegmentTree(int n, const T &init_, const Func &f) : N(ceil2(n)), init(init_), A(N * 2, init), F(f) {}
-	SegmentTree(const vector<T> &vec, const T &init_, const Func &f) : init(init_), F(f) {
+	SegmentTree(int n, const T& init_, const Func& f) : N(ceil2(n)), init(init_), A(N * 2, init), F(f) {}
+	SegmentTree(const vector<T>& vec, const T& init_, const Func& f) : init(init_), F(f) {
 		build(vec);
 	}
-	void build(const vector<T> &v) {
+	void build(const vector<T>& v) {
 		N = ceil2(v.size());
 		A.assign(N * 2, init);
-		for (int i = 0; i < v.size(); ++i) {
+		for (size_t i = 0; i < v.size(); ++i) {
 			A[i + N] = v[i];
 		}
 		for (int i = N - 1; i > 0; --i) {
 			A[i] = F(A[i * 2], A[i * 2 + 1]);
 		}
 	}
-	void update(int i, const T &x) {
+	void update(int i, const T& x) {
 		assert(0 <= i && i < N);
 		A[i += N] = x;
 		while (i >>= 1) {
@@ -69,10 +69,10 @@ public:
 		}
 		return F(L, R);
 	}
-	template <class C> int find_first(int l, int r, const C &c) const {
+	template <class C> int find_first(int l, int r, const C& c) const {
 		return ff(l, r, c, 1, 0, N);
 	}
-	template <class C> int find_last(int l, int r, const C &c) const {
+	template <class C> int find_last(int l, int r, const C& c) const {
 		return fl(l, r, c, 1, 0, N);
 	}
 	vector<T> to_a() const {
