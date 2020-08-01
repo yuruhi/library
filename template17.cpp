@@ -156,7 +156,7 @@ class Input {
 	};
 
 public:
-	static string get_line() {
+	static string read_line() {
 		string v;
 		char c;
 		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
