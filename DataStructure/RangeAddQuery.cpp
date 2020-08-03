@@ -10,7 +10,7 @@ template <class T> class RangaAddQuery {
 
 public:
 	RangaAddQuery(int _n) : n(ceil2(_n)), a(n * 2) {}
-	void add(int l, int r, const T &x) {
+	void add(int l, int r, const T& x) {
 		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
 			if (l & 1) a[l++] += x;
 			if (r & 1) a[--r] += x;
@@ -20,6 +20,13 @@ public:
 		T res = a[i += n];
 		while (i >>= 1) {
 			res += a[i];
+		}
+		return res;
+	}
+	vector<T> to_a() {
+		vector<T> res(n);
+		for (int i = 0; i < n; ++i) {
+			res[i] = operator[](i);
 		}
 		return res;
 	}
