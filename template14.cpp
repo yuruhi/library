@@ -1,5 +1,4 @@
 // description : C++14用テンプレート
-#define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
