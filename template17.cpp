@@ -1,4 +1,5 @@
 // description : C++17用テンプレート
+#define _USE_MATH_DEFINES
 #include <bits/stdc++.h>
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
