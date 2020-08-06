@@ -18,8 +18,8 @@ class BipartiteMatching {
 	}
 
 public:
-	BipartiteMatching(int n, int m, const vector<vector<int>> &g) : N(n), M(m), used(N), G(g), p(N, -1), q(M, -1) {}
-	BipartiteMatching(int n, int m) : N(n), M(m), used(N), G(n), p(N, -1), q(M, -1) {}
+	BipartiteMatching(int n, int m, const vector<vector<int>>& g) : N(n), M(m), G(g), used(N), p(N, -1), q(M, -1) {}
+	BipartiteMatching(int n, int m) : N(n), M(m), G(n), used(N), p(N, -1), q(M, -1) {}
 	void add_edge(int s, int t) {
 		G[s].push_back(t);
 	}
