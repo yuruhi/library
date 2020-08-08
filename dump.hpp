@@ -11,7 +11,9 @@
 #include <queue>
 #include <cassert>
 #include <climits>
+#ifdef __cpp_lib_optional
 #include <optional>
+#endif
 using namespace std;
 
 namespace Debug {
