@@ -12,11 +12,11 @@ bool HasCycle(const Graph &graph) {
 			st.push(i);
 			cnt++;
 		}
-	vector<int> ret;
+	vector<int> res;
 	while (!st.empty()) {
 		int i = st.top();
 		st.pop();
-		ret.push_back(i);
+		res.push_back(i);
 		for (auto &e : graph[i]) {
 			h[e.to]--;
 			if (!h[e.to]) {

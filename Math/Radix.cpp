@@ -11,28 +11,28 @@ public:
 			Map[Str[i]] = i;
 		}
 	}
-	// Num(R) -> ret(10)
+	// Num(R) -> res(10)
 	static Type to10(const string &Num, int R) {
-		Type ret = 0, p = 1;
+		Type res = 0, p = 1;
 		for (int i = (int)Num.size() - 1; i >= 0; --i) {
 			assert(Map.count(Num[i]));
-			ret += Map[Num[i]] * p;
+			res += Map[Num[i]] * p;
 			p *= R;
 		}
-		return ret;
+		return res;
 	}
-	// Num(10) -> ret(N)
+	// Num(10) -> res(N)
 	static string toN(Type Num, int N) {
-		string ret;
+		string res;
 		Type m = Num;
 		do {
-			ret += Str[m % N];
+			res += Str[m % N];
 			m /= N;
 		} while (m);
-		reverse(ret.begin(), ret.end());
-		return ret;
+		reverse(res.begin(), res.end());
+		return res;
 	}
-	// Num(R) -> ret(N)
+	// Num(R) -> res(N)
 	static string toN(const string &Num, int R, int N) {
 		return toN(to10(Num, R), N);
 	}
