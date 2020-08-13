@@ -1,0 +1,442 @@
+// description : C++11用テンプレート
+#define _USE_MATH_DEFINES
+#include <bits/stdc++.h>
+#define rep(i, n) for (int i = 0; i < (n); ++i)
+#define FOR(i, m, n) for (int i = (m); i < (n); ++i)
+#define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
+#define rfor(i, m, n) for (int i = (m); i >= (n); --i)
+#define unless(c) if (!(c))
+#define sz(x) ((int)(x).size())
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
+
+using namespace std;
+using ll = long long;
+using LD = long double;
+using VB = vector<bool>;
+using VVB = vector<VB>;
+using VI = vector<int>;
+using VVI = vector<VI>;
+using VL = vector<ll>;
+using VVL = vector<VL>;
+using VS = vector<string>;
+using VD = vector<LD>;
+using PII = pair<int, int>;
+using VP = vector<PII>;
+using PLL = pair<ll, ll>;
+using VPL = vector<PLL>;
+template <class T> using PQ = priority_queue<T>;
+template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
+constexpr int inf = 1e9;
+constexpr long long inf_ll = 1e18, MOD = 1000000007;
+constexpr long double PI = M_PI, EPS = 1e-12;
+
+// --- input --- //
+#ifdef _WIN32
+#define getchar_unlocked _getchar_nolock
+#define putchar_unlocked _putchar_nolock
+#define fwrite_unlocked fwrite
+#define fflush_unlocked fflush
+#endif
+class Input {
+	static int gc() {
+		return getchar_unlocked();
+	}
+	template <class T> static void i(T& v) {
+		cin >> v;
+	}
+	static void i(char& v) {
+		while (isspace(v = gc()))
+			;
+	}
+	static void i(bool& v) {
+		v = in<char>() != '0';
+	}
+	static void i(string& v) {
+		v.clear();
+		char c;
+		for (i(c); !isspace(c); c = gc()) v += c;
+	}
+	static void i(int& v) {
+		bool neg = false;
+		v = 0;
+		char c;
+		i(c);
+		if (c == '-') {
+			neg = true;
+			c = gc();
+		}
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		if (neg) v = -v;
+	}
+	static void i(long long& v) {
+		bool neg = false;
+		v = 0;
+		char c;
+		i(c);
+		if (c == '-') {
+			neg = true;
+			c = gc();
+		}
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		if (neg) v = -v;
+	}
+	static void i(double& v) {
+		double dp = 1;
+		bool neg = false, adp = false;
+		v = 0;
+		char c;
+		i(c);
+		if (c == '-') {
+			neg = true;
+			c = gc();
+		}
+		for (; isdigit(c) || c == '.'; c = gc()) {
+			if (c == '.')
+				adp = true;
+			else if (adp)
+				v += (c - '0') * (dp *= 0.1);
+			else
+				v = v * 10 + (c - '0');
+		}
+		if (neg) v = -v;
+	}
+	static void i(long double& v) {
+		long double dp = 1;
+		bool neg = false, adp = false;
+		v = 0;
+		char c;
+		i(c);
+		if (c == '-') {
+			neg = true;
+			c = gc();
+		}
+		for (; isdigit(c) || c == '.'; c = gc()) {
+			if (c == '.')
+				adp = true;
+			else if (adp)
+				v += (c - '0') * (dp *= 0.1);
+			else
+				v = v * 10 + (c - '0');
+		}
+		if (neg) v = -v;
+	}
+	template <class T, class U> static void i(pair<T, U>& v) {
+		i(v.first);
+		i(v.second);
+	}
+	template <class T> static void i(vector<T>& v) {
+		for (auto& e : v) i(e);
+	}
+	struct InputV {
+		int n, m;
+		InputV(int _n) : n(_n), m(0) {}
+		InputV(const pair<int, int>& nm) : n(nm.first), m(nm.second) {}
+		template <class T> operator vector<T>() {
+			vector<T> v(n);
+			i(v);
+			return v;
+		}
+		template <class T> operator vector<vector<T>>() {
+			vector<vector<T>> v(n, vector<T>(m));
+			i(v);
+			return v;
+		}
+	};
+
+public:
+	static string read_line() {
+		string v;
+		char c;
+		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
+		return v;
+	}
+	template <class T> static T in() {
+		T v;
+		i(v);
+		return v;
+	}
+	template <class T> operator T() const {
+		return in<T>();
+	}
+	int operator--(int) const {
+		return in<int>() - 1;
+	}
+	InputV operator[](int n) const {
+		return InputV(n);
+	}
+	InputV operator[](const pair<int, int>& n) const {
+		return InputV(n);
+	}
+	void operator()() const {}
+	template <class H, class... T> void operator()(H&& h, T&&... t) const {
+		i(h);
+		operator()(forward<T>(t)...);
+	}
+} in;
+#define input(T) Input::in<T>()
+#define INT input(int)
+#define LL input(long long)
+#define STR input(string)
+#define inputs(T, ...) \
+	T __VA_ARGS__;     \
+	in(__VA_ARGS__)
+#define ini(...) inputs(int, __VA_ARGS__)
+#define inl(...) inputs(long long, __VA_ARGS__)
+#define ins(...) inputs(string, __VA_ARGS__)
+
+// --- output --- //
+struct BoolStr {
+	const char *t, *f;
+	BoolStr(const char* _t, const char* _f) : t(_t), f(_f) {}
+} Yes("Yes", "No"), yes("yes", "no"), YES("YES", "NO"), Int("1", "0");
+struct DivStr {
+	const char *d, *l;
+	DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}
+} spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"), no_endl(" ", "");
+class Output {
+	BoolStr B{Yes};
+	DivStr D{spc};
+	void p(int v) const {
+		if (v < 0) putchar_unlocked('-'), v = -v;
+		char b[10];
+		int i = 0;
+		while (v) b[i++] = '0' + v % 10, v /= 10;
+		if (!i) b[i++] = '0';
+		while (i--) putchar_unlocked(b[i]);
+	}
+	void p(long long v) const {
+		if (v < 0) putchar_unlocked('-'), v = -v;
+		char b[20];
+		int i = 0;
+		while (v) b[i++] = '0' + v % 10, v /= 10;
+		if (!i) b[i++] = '0';
+		while (i--) putchar_unlocked(b[i]);
+	}
+	void p(bool v) const {
+		p(v ? B.t : B.f);
+	}
+	void p(char v) const {
+		putchar_unlocked(v);
+	}
+	void p(const char* v) const {
+		fwrite_unlocked(v, 1, strlen(v), stdout);
+	}
+	void p(double v) const {
+		printf("%.20f", v);
+	}
+	void p(long double v) const {
+		printf("%.20Lf", v);
+	}
+	template <class T> void p(const T& v) const {
+		cout << v;
+	}
+	template <class T, class U> void p(const pair<T, U>& v) const {
+		p(v.first);
+		p(D.d);
+		p(v.second);
+	}
+	template <class T> void p(const vector<T>& v) const {
+		rep(i, sz(v)) {
+			if (i) p(D.d);
+			p(v[i]);
+		}
+	}
+	template <class T> void p(const vector<vector<T>>& v) const {
+		rep(i, sz(v)) {
+			if (i) p(D.l);
+			p(v[i]);
+		}
+	}
+
+public:
+	Output& operator()() {
+		p(D.l);
+		return *this;
+	}
+	template <class H> Output& operator()(H&& h) {
+		p(h);
+		p(D.l);
+		return *this;
+	}
+	template <class H, class... T> Output& operator()(H&& h, T&&... t) {
+		p(h);
+		p(D.d);
+		return operator()(forward<T>(t)...);
+	}
+	template <class It> Output& range(const It& l, const It& r) {
+		for (It i = l; i != r; i++) {
+			if (i != l) p(D.d);
+			p(*i);
+		}
+		p(D.l);
+		return *this;
+	}
+	template <class T> Output& range(const T& a) {
+		range(a.begin(), a.end());
+		return *this;
+	}
+	template <class... T> void exit(T&&... t) {
+		operator()(forward<T>(t)...);
+		std::exit(EXIT_SUCCESS);
+	}
+	Output& flush() {
+		fflush_unlocked(stdout);
+		return *this;
+	}
+	Output& set(const BoolStr& b) {
+		B = b;
+		return *this;
+	}
+	Output& set(const DivStr& d) {
+		D = d;
+		return *this;
+	}
+	Output& set(const char* t, const char* f) {
+		B = BoolStr(t, f);
+		return *this;
+	}
+} out;
+
+// --- functions --- //
+inline namespace {
+	template <class T> inline void Sort(T& a) {
+		sort(all(a));
+	}
+	template <class T> inline void RSort(T& a) {
+		sort(rall(a));
+	}
+	template <class T, class F> inline void Sort(T& a, const F& f) {
+		sort(all(a), f);
+	}
+	template <class T, class F> inline void RSort(T& a, const F& f) {
+		sort(rall(a), f);
+	}
+	template <class T> inline T Sorted(T a) {
+		Sort(a);
+		return a;
+	}
+	template <class T> inline T RSorted(T a) {
+		RSort(a);
+		return a;
+	}
+	template <class T, class F> inline T Sorted(T& a, const F& f) {
+		Sort(a, f);
+		return a;
+	}
+	template <class T, class F> inline T RSorted(T& a, const F& f) {
+		RSort(a, f);
+		return a;
+	}
+	template <class T> inline void Reverse(T& a) {
+		reverse(all(a));
+	}
+	template <class T> inline void Unique(T& a) {
+		a.erase(unique(all(a)), a.end());
+	}
+	template <class T> inline void Uniq(T& a) {
+		Sort(a);
+		Unique(a);
+	}
+	template <class T> inline void Rotate(T& a, int left) {
+		rotate(a.begin(), a.begin() + left, a.end());
+	}
+	template <class T> inline T Reversed(T a) {
+		Reverse(a);
+		return a;
+	}
+	template <class T> inline T Uniqued(T a) {
+		Unique(a);
+		return a;
+	}
+	template <class T> inline T Uniqed(T a) {
+		Uniq(a);
+		return a;
+	}
+	template <class T> inline T Rotated(T a, int left) {
+		Rotate(a, left);
+		return a;
+	}
+	template <class T> inline T Ceil(T n, T m) {
+		return (n + m - 1) / m;
+	}
+	template <class T> inline T Ceil2(T n, T m) {
+		return Ceil(n, m) * m;
+	}
+	template <class T> inline T Tri(T n) {
+		return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);
+	}
+	template <class T> inline T nC2(T n) {
+		return (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);
+	}
+	template <class T> inline T Mid(const T& l, const T& r) {
+		return l + (r - l) / 2;
+	}
+	template <class T> inline bool chmax(T& a, const T& b) {
+		if (a < b) {
+			a = b;
+			return true;
+		}
+		return false;
+	}
+	template <class T> inline bool chmin(T& a, const T& b) {
+		if (a > b) {
+			a = b;
+			return true;
+		}
+		return false;
+	}
+	template <class T> inline bool inRange(const T& v, const T& min, const T& max) {
+		return min <= v && v < max;
+	}
+	template <class T> inline bool isSquere(T n) {
+		T s = sqrt(n);
+		return s * s == n || (s + 1) * (s + 1) == n;
+	}
+	template <class T = long long> inline T BIT(int b) {
+		return T(1) << b;
+	}
+	template <class T> inline T Gcd(T n, T m) {
+		return m ? Gcd(m, n % m) : n;
+	}
+	template <class T> inline T Lcm(T n, T m) {
+		return n / Gcd(n, m) * m;
+	}
+	template <class T, class U = typename T::value_type> inline U Gcdv(const T& v) {
+		return accumulate(next(v.begin()), v.end(), U(*v.begin()), Gcd<U>);
+	}
+	template <class T, class U = typename T::value_type> inline U Lcmv(const T& v) {
+		return accumulate(next(v.begin()), v.end(), U(*v.begin()), Lcm<U>);
+	}
+	template <class T> inline T Pow(T a, T n) {
+		T r = 1;
+		while (n > 0) {
+			if (n & 1) r *= a;
+			a *= a;
+			n /= 2;
+		}
+		return r;
+	}
+	template <class T> inline T Powmod(T a, T n, T m = MOD) {
+		T r = 1;
+		while (n > 0) {
+			if (n & 1)
+				r = r * a % m, n--;
+			else
+				a = a * a % m, n /= 2;
+		}
+		return r;
+	}
+}  // namespace
+
+// --- dump --- //
+#if __has_include("/home/yuruhiya/contest/library/dump.hpp")
+#include "/home/yuruhiya/contest/library/dump.hpp"
+#else
+#define dump(...) ((void)0)
+#endif
+
+// ---------------------------------------------------------------- //
+
+int main() {}
