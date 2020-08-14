@@ -15,7 +15,7 @@ template <class DP> class ReRooting {
 				sum += dp_e;
 			}
 		}
-		return sum.add_root();
+		return sum.add_root(v);
 	}
 	void bfs(int v, int p, const DP& dp_par) {
 		for (size_t i = 0; i < g[v].size(); ++i) {
@@ -32,12 +32,12 @@ template <class DP> class ReRooting {
 		for (int i = g[v].size() - 1; i >= 0; --i) {
 			dp_right[i] = dp_right[i + 1] + dp[v][i];
 		}
-		ans[v] = dp_left.back().add_root();
+		ans[v] = dp_left.back().add_root(v);
 
 		for (size_t i = 0; i < g[v].size(); ++i) {
 			int e = g[v][i];
 			if (e != p) {
-				bfs(e, v, (dp_left[i] + dp_right[i + 1]).add_root());
+				bfs(e, v, (dp_left[i] + dp_right[i + 1]).add_root(v));
 			}
 		}
 	}
@@ -62,9 +62,9 @@ struct DP {
 	DP& operator+=(const DP& d) {
 		return *this;
 	}
-	DP add_root() const {
+	DP add_root([[maybe_unused]] int v) const {
 		DP res = *this;
-
+		
 		return res;
 	}
 };
