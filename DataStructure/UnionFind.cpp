@@ -1,6 +1,7 @@
 // description : UnionFind木
 class UnionFind {
 	vector<int> d;
+	int cnt;
 
 public:
 	UnionFind(int n = 0) {
@@ -8,6 +9,7 @@ public:
 	}
 	void init(int n) {
 		d.assign(n, -1);
+		cnt = n;
 	}
 	int root(int x) {
 		return d[x] < 0 ? x : d[x] = root(d[x]);
@@ -19,6 +21,7 @@ public:
 		if (d[x] > d[y]) swap(x, y);
 		d[x] += d[y];
 		d[y] = x;
+		cnt--;
 		return true;
 	}
 	bool same(int x, int y) {
@@ -26,5 +29,8 @@ public:
 	}
 	int size(int x) {
 		return -d[root(x)];
+	}
+	int count_components() const {
+		return cnt;
 	}
 };
