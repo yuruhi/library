@@ -1,11 +1,11 @@
 // description : 幾何
-constexpr bool Equal(ld a, ld b) {
+constexpr bool Equal(LD a, LD b) {
 	return a < b ? b - a < EPS : a - b < EPS;
 }
-constexpr ld deg_to_rad(ld deg) {
+constexpr LD deg_to_rad(LD deg) {
 	return deg * PI / 180;
 }
-constexpr ld rad_to_deg(ld rad) {
+constexpr LD rad_to_deg(LD rad) {
 	return rad * 180 / PI;
 }
 
@@ -13,16 +13,16 @@ struct Vec2;
 struct Circle;
 struct Rect;
 struct Line;
-inline ld TriangleArea(ld a, ld b, ld c);
-inline ld TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3);
-inline ld PolygonArea(vector<Vec2> v);
+inline LD TriangleArea(LD a, LD b, LD c);
+inline LD TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3);
+inline LD PolygonArea(vector<Vec2> v);
 inline bool IntersectsSegment(const Vec2 &a, const Vec2 &b, const Vec2 &c, const Vec2 &d);
 
 struct Vec2 {
-	ld x, y;
+	LD x, y;
 	constexpr Vec2() : x(0), y(0) {}
-	constexpr Vec2(ld _x, ld _y) : x(_x), y(_y) {}
-	Vec2(ld rad) : x(cos(rad)), y(sin(rad)) {}
+	constexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}
+	Vec2(LD rad) : x(cos(rad)), y(sin(rad)) {}
 	constexpr bool operator==(const Vec2 &v) const {
 		return Equal(x, v.x) && Equal(y, v.y);
 	}
@@ -53,16 +53,16 @@ struct Vec2 {
 	constexpr Vec2 operator/(const Vec2 &v) const {
 		return Vec2(*this) /= v;
 	}
-	constexpr Vec2 operator+(ld n) const {
+	constexpr Vec2 operator+(LD n) const {
 		return Vec2(*this) += Vec2(n, n);
 	}
-	constexpr Vec2 operator-(ld n) const {
+	constexpr Vec2 operator-(LD n) const {
 		return Vec2(*this) -= Vec2(n, n);
 	}
-	constexpr Vec2 operator*(ld n) const {
+	constexpr Vec2 operator*(LD n) const {
 		return Vec2(*this) *= Vec2(n, n);
 	}
-	constexpr Vec2 operator/(ld n) const {
+	constexpr Vec2 operator/(LD n) const {
 		return Vec2(*this) /= Vec2(n, n);
 	}
 	constexpr Vec2 &operator+=(const Vec2 &v) {
@@ -85,33 +85,33 @@ struct Vec2 {
 		y /= v.y;
 		return *this;
 	}
-	constexpr Vec2 &operator+=(ld n) {
+	constexpr Vec2 &operator+=(LD n) {
 		x += n;
 		x += n;
 		return *this;
 	}
-	constexpr Vec2 &operator-=(ld n) {
+	constexpr Vec2 &operator-=(LD n) {
 		x -= n;
 		x -= n;
 		return *this;
 	}
-	constexpr Vec2 &operator*=(ld n) {
+	constexpr Vec2 &operator*=(LD n) {
 		x *= n;
 		x *= n;
 		return *this;
 	}
-	constexpr Vec2 &operator/=(ld n) {
+	constexpr Vec2 &operator/=(LD n) {
 		x /= n;
 		x /= n;
 		return *this;
 	}
-	constexpr ld operator[](size_t i) const {
+	constexpr LD operator[](size_t i) const {
 		return i == 0 ? x : i == 1 ? y : 0;
 	}
-	ld manhattan(const Vec2 &v) const {
+	LD manhattan(const Vec2 &v) const {
 		return std::abs(x - v.x) + std::abs(y - v.y);
 	}
-	ld dist(const Vec2 &v) const {
+	LD dist(const Vec2 &v) const {
 		return hypot(x - v.x, y - v.y);
 	}
 	Vec2 abs(const Vec2 &v) const {
@@ -121,10 +121,10 @@ struct Vec2 {
 		std::swap(x, y);
 		return *this;
 	}
-	constexpr ld sqr_norm() const {
+	constexpr LD sqr_norm() const {
 		return x * x + y * y;
 	}
-	ld norm() const {
+	LD norm() const {
 		return sqrt(sqr_norm());
 	}
 	constexpr Vec2 rotate90() const {
@@ -146,11 +146,11 @@ struct Vec2 {
 
 struct Circle {
 	Vec2 center;
-	ld r;
+	LD r;
 	constexpr Circle() : center(), r(0) {}
-	constexpr Circle(ld _r) : center(), r(_r) {}
-	constexpr Circle(ld _x, ld _y, ld _r) : center(_x, _y), r(_r) {}
-	constexpr Circle(const Vec2 &_c, ld _r) : center(_c), r(_r) {}
+	constexpr Circle(LD _r) : center(), r(_r) {}
+	constexpr Circle(LD _x, LD _y, LD _r) : center(_x, _y), r(_r) {}
+	constexpr Circle(const Vec2 &_c, LD _r) : center(_c), r(_r) {}
 	constexpr bool operator==(const Circle &c) const {
 		return center == c.center && Equal(r, c.r);
 	}
@@ -171,16 +171,16 @@ struct Circle {
 		center -= v;
 		return *this;
 	}
-	constexpr ld top_y() const {
+	constexpr LD top_y() const {
 		return center.y - r;
 	}
-	constexpr ld bottom_y() const {
+	constexpr LD bottom_y() const {
 		return center.y + r;
 	}
-	constexpr ld left_x() const {
+	constexpr LD left_x() const {
 		return center.x - r;
 	}
-	constexpr ld right_x() const {
+	constexpr LD right_x() const {
 		return center.x + r;
 	}
 	constexpr Vec2 top() const {
@@ -195,16 +195,16 @@ struct Circle {
 	constexpr Vec2 right() const {
 		return center + Vec2(r, 0);
 	}
-	ld dist(const Vec2 &p) const {
-		return max<ld>(0, center.dist(p) - r);
+	LD dist(const Vec2 &p) const {
+		return max<LD>(0, center.dist(p) - r);
 	}
-	ld dist(const Circle &c) const {
-		return max<ld>(0, center.dist(c.center) - r - c.r);
+	LD dist(const Circle &c) const {
+		return max<LD>(0, center.dist(c.center) - r - c.r);
 	}
-	constexpr ld area() const {
+	constexpr LD area() const {
 		return r * r * PI;
 	}
-	constexpr ld perimeter() const {
+	constexpr LD perimeter() const {
 		return 2 * r * PI;
 	}
 	bool intersects(const Vec2 &v) const {
@@ -217,12 +217,12 @@ struct Circle {
 		return center.dist(c.center) + c.r < r - EPS;
 	}
 	bool tangent(const Circle &c) const {
-		ld l1 = center.dist(c.center), l2 = r, l3 = c.r;
+		LD l1 = center.dist(c.center), l2 = r, l3 = c.r;
 		return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
 	}
 	vector<Vec2> intersection(const Circle &c) {
 		Vec2 v = center - c.center;
-		ld l = v.norm();
+		LD l = v.norm();
 		if (contains(c) || c.contains(*this)) {
 			return {};
 		} else if (Equal(l, r + c.r)) {
@@ -232,8 +232,8 @@ struct Circle {
 		} else if (Equal(c.r + l, r)) {
 			return {center + v.rotate180() * (r / l)};
 		} else if (intersects(c)) {
-			ld area = TriangleArea(l, r, c.r);
-			ld y = 2 * area / l, x = sqrt(r * r - y * y);
+			LD area = TriangleArea(l, r, c.r);
+			LD y = 2 * area / l, x = sqrt(r * r - y * y);
 			Vec2 h = center + v.rotate180() * (x / l);
 			Vec2 v2 = v.rotate90() * (y / l);
 			return {h + v2, h - v2};
@@ -252,9 +252,9 @@ struct Circle {
 struct Rect {
 	Vec2 pos, size;
 	constexpr Rect() {}
-	constexpr Rect(ld _w, ld _h) : size(_w, _h) {}
+	constexpr Rect(LD _w, LD _h) : size(_w, _h) {}
 	constexpr Rect(const Vec2 &_size) : size(_size) {}
-	constexpr Rect(ld _x, ld _y, ld _w, ld _h) : pos(_x, _y), size(_w, _h) {}
+	constexpr Rect(LD _x, LD _y, LD _w, LD _h) : pos(_x, _y), size(_w, _h) {}
 	constexpr Rect(const Vec2 &_pos, const Vec2 &_size) : pos(_pos), size(_size) {}
 	constexpr bool operator==(const Rect &r) const {
 		return pos == r.pos && size == r.size;
@@ -280,16 +280,16 @@ struct Rect {
 		pos = _pos - size / 2;
 		return *this;
 	}
-	constexpr ld left() const {
+	constexpr LD left() const {
 		return pos.x;
 	}
-	constexpr ld right() const {
+	constexpr LD right() const {
 		return pos.x + size.x;
 	}
-	constexpr ld top() const {
+	constexpr LD top() const {
 		return pos.y;
 	}
-	constexpr ld bottom() const {
+	constexpr LD bottom() const {
 		return pos.y + size.y;
 	}
 	constexpr Vec2 top_left() const {
@@ -307,10 +307,10 @@ struct Rect {
 	constexpr Vec2 center() const {
 		return pos + size / 2;
 	}
-	constexpr ld area() const {
+	constexpr LD area() const {
 		return size.x * size.y;
 	}
-	constexpr ld perimeter() const {
+	constexpr LD perimeter() const {
 		return (size.x + size.y) * 2;
 	}
 	constexpr bool intersects(const Vec2 &v) const {
@@ -341,10 +341,10 @@ struct Rect {
 
 struct Line {
 private:
-	ld a, b, c;  // ax + by + c = 0
+	LD a, b, c;  // ax + by + c = 0
 public:
-	constexpr Line(ld _a, ld _b, ld _c) : a(_a), b(_b), c(_c) {}
-	constexpr Line(ld x1, ld y1, ld x2, ld y2) : a(y2 - y1), b(x1 - x2), c(y2 * (x2 - x1) - x2 * (y2 - y1)) {}
+	constexpr Line(LD _a, LD _b, LD _c) : a(_a), b(_b), c(_c) {}
+	constexpr Line(LD x1, LD y1, LD x2, LD y2) : a(y2 - y1), b(x1 - x2), c(y2 * (x2 - x1) - x2 * (y2 - y1)) {}
 	constexpr Line(const Vec2 &v1, const Vec2 &v2) : Line(v1.x, v1.y, v2.x, v2.y) {}
 	constexpr bool operator==(const Line &l) {
 		return Equal(a, l.a) && Equal(b, l.b) && Equal(c, l.c);
@@ -352,43 +352,43 @@ public:
 	constexpr bool operator!=(const Line &l) {
 		return !(*this == l);
 	}
-	constexpr ld get_x(ld y) {
+	constexpr LD get_x(LD y) {
 		return (-b * y - c) / a;
 	}
-	constexpr ld get_y(ld x) {
+	constexpr LD get_y(LD x) {
 		return (-a * x - c) / b;
 	}
-	ld dist(const Vec2 &v) {
+	LD dist(const Vec2 &v) {
 		return abs(a * v.x + b * v.y + c) / hypot(a, b);
 	}
 	friend ostream &operator<<(ostream &os, const Line &l) {
 		return os << l.a << "x + " << l.b << "y + " << l.c << " = 0";
 	}
 	friend istream &operator>>(istream &is, Line &l) {
-		ld x1, y1, x2, y2;
+		LD x1, y1, x2, y2;
 		is >> x1 >> y1 >> x2 >> y2;
 		l = Line(x1, y1, x2, y2);
 		return is;
 	}
 };
 
-inline ld TriangleArea(ld a, ld b, ld c) {
-	ld s = (a + b + c) / 2;
+inline LD TriangleArea(LD a, LD b, LD c) {
+	LD s = (a + b + c) / 2;
 	return sqrt(s * (s - a) * (s - b) * (s - c));
 }
-inline ld TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
+inline LD TriangleArea(const Vec2 &v1, const Vec2 &v2, const Vec2 &v3) {
 	return TriangleArea(v1.dist(v2), v1.dist(v3), v2.dist(v3));
 }
-inline ld PolygonArea(vector<Vec2> v) {
+inline LD PolygonArea(vector<Vec2> v) {
 	v.push_back(v.front());
-	ld ans = 0;
+	LD ans = 0;
 	for (size_t i = 0; i < v.size() - 1; ++i) {
 		ans += abs(v[i].x * v[i + 1].y - v[i + 1].x * v[i].y);
 	}
 	return ans / 2;
 }
 inline bool IntersectsSegment(const Vec2 &a, const Vec2 &b, const Vec2 &c, const Vec2 &d) {
-	ld s, t;
+	LD s, t;
 	s = (a.x - b.x) * (c.y - a.y) - (a.y - b.y) * (c.x - a.x);
 	t = (a.x - b.x) * (d.y - a.y) - (a.y - b.y) * (d.x - a.x);
 	if (s * t > 0) return false;
