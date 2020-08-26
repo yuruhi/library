@@ -518,6 +518,12 @@ inline namespace {
 	template <class T, class F> inline auto MinBy(const T& a, const F& f) {
 		return *min_element(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
 	}
+	template <class T, class F> inline auto MaxOf(const T& a, const F& f) {
+		return Max(Map(a, f));
+	}
+	template <class T, class F> inline auto MinOf(const T& a, const F& f) {
+		return Min(Map(a, f));
+	}
 	template <class T, class U> inline int Count(const T& a, const U& v) {
 		return count(all(a), v);
 	}
