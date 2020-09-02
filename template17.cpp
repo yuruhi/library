@@ -232,20 +232,20 @@ class Output {
 	BoolStr B{Yes};
 	DivStr D{spc};
 	void p(int v) const {
-		if (v < 0) putchar_unlocked('-'), v = -v;
-		char b[10];
-		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
-		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
+		char buf[12]{};
+		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
+			fwrite(buf, sizeof(char), ptr - buf, stdout);
+		} else {
+			assert(false);
+		}
 	}
 	void p(long long v) const {
-		if (v < 0) putchar_unlocked('-'), v = -v;
-		char b[20];
-		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
-		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
+		char buf[21]{};
+		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
+			fwrite(buf, sizeof(char), ptr - buf, stdout);
+		} else {
+			assert(false);
+		}
 	}
 	void p(bool v) const {
 		p(v ? B.t : B.f);
