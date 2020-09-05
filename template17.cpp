@@ -366,7 +366,7 @@ template <class T> struct Step {
 		constexpr T start() const {
 			return a;
 		}
-		constexpr T count() const {
+		constexpr T size() const {
 			return b;
 		}
 		constexpr T step() const {
@@ -383,73 +383,22 @@ template <class T> struct Step {
 	constexpr T start() const {
 		return be.start();
 	}
-	constexpr T count() const {
-		return be.count();
+	constexpr T size() const {
+		return be.size();
 	}
 	constexpr T step() const {
 		return be.step();
 	}
 	constexpr T sum() const {
-		return start() * count() + step() * (count() * (count() - 1) / 2);
+		return start() * size() + step() * (size() * (size() - 1) / 2);
 	}
 	operator vector<T>() const {
 		return to_a();
 	}
-	template <class F> void each(const F& f) const {
-		for (T i : *this) f(i);
-	}
 	auto to_a() const {
 		vector<T> res;
-		res.reserve(count());
+		res.reserve(size());
 		each([&](T i) { res.push_back(i); });
-		return res;
-	}
-	template <class F, class U = invoke_result_t<F, T>> auto map(const F& f) const {
-		vector<U> res;
-		res.reserve(count());
-		each([&](T i) { res.push_back(f(i)); });
-		return res;
-	}
-	template <class F> auto select(const F& f) const {
-		vector<T> res;
-		each([&](T i) {
-			if (f(i)) res.push_back(i);
-		});
-		return res;
-	}
-	template <class F> int count_if(const F& f) const {
-		int res = 0;
-		each([&](T i) {
-			if (f(i)) ++res;
-		});
-		return res;
-	}
-	template <class F> optional<T> find_if(const F& f) const {
-		for (T i : *this)
-			if (f(i)) return i;
-		return nullopt;
-	}
-	template <class F> auto max_by(const F& f) const {
-		auto v = map(f);
-		return *max_element(v.begin(), v.end());
-	}
-	template <class F> auto min_by(const F& f) const {
-		auto v = map(f);
-		return *min_element(v.begin(), v.end());
-	}
-	template <class F> bool all_of(const F& f) const {
-		for (T i : *this)
-			if (!f(i)) return false;
-		return true;
-	}
-	template <class F> bool any_of(const F& f) const {
-		for (T i : *this)
-			if (f(i)) return true;
-		return false;
-	}
-	template <class F, class U = invoke_result_t<F, T>> auto sum(const F& f) const {
-		U res = 0;
-		each([&](T i) { res += static_cast<U>(f(i)); });
 		return res;
 	}
 	using value_type = T;
@@ -468,167 +417,300 @@ template <class T> inline constexpr auto step(T a, T b, T c) {
 	return Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);
 }
 
+namespace Ruby {
+	template <class F> struct Callable {
+		F func;
+		Callable(const F& f) : func(f) {}
+	};
+	template <class T, class F> auto operator|(const T& v, const Callable<F>& c) {
+		return c.func(v);
+	}
+
+	struct Sort_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				sort(begin(v), end(v), f);
+				return v;
+			});
+		}
+		template <class T> friend auto operator|(T v, const Sort_impl& c) {
+			sort(begin(v), end(v));
+			return v;
+		}
+	} Sort;
+	struct RSort_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				sort(rbegin(v), rend(v), f);
+				return v;
+			});
+		}
+		template <class T> friend auto operator|(T v, const RSort_impl& c) {
+			sort(rbegin(v), rend(v));
+			return v;
+		}
+	} RSort;
+	struct Reverse_impl {
+		template <class T> friend auto operator|(T v, const Reverse_impl& c) {
+			reverse(begin(v), end(v));
+			return v;
+		}
+	} Reverse;
+	struct Unique_impl {
+		template <class T> friend auto operator|(T v, const Unique_impl& c) {
+			v.erase(unique(begin(v), end(v), end(v)));
+			return v;
+		}
+	} Unique;
+	struct Uniq_impl {
+		template <class T> friend auto operator|(T v, const Uniq_impl& c) {
+			sort(begin(v), end(v));
+			v.erase(unique(begin(v), end(v), end(v)));
+			return v;
+		}
+	} Uniq;
+	struct Rotate_impl {
+		template <class F> auto operator()(int left) {
+			return Callable([&](auto v) {
+				rotate(begin(v), begin(v) + left, end(v));
+				return v;
+			});
+		}
+	} Rotate;
+	struct Max_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) { return *max_element(begin(v), end(v), f); });
+		}
+		template <class T> friend auto operator|(T v, const Max_impl& c) {
+			return *max_element(begin(v), end(v));
+		}
+	} Max;
+	struct Min_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) { return *min_element(begin(v), end(v), f); });
+		}
+		template <class T> friend auto operator|(T v, const Min_impl& c) {
+			return *min_element(begin(v), end(v));
+		}
+	} Min;
+	struct MaxPos_impl {
+		template <class T> friend auto operator|(T v, const MaxPos_impl& c) {
+			return max_element(begin(v), end(v)) - begin(v);
+		}
+	} MaxPos;
+	struct MinPos_impl {
+		template <class T> friend auto operator|(T v, const MinPos_impl& c) {
+			return min_element(begin(v), end(v)) - begin(v);
+		}
+	} MinPos;
+	struct MaxBy_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				auto max_it = begin(v);
+				auto max_val = f(*max_it);
+				for (auto it = next(begin(v)); it != end(v); ++it) {
+					if (auto val = f(*it); max_val < val) {
+						max_it = it;
+						max_val = val;
+					}
+				}
+				return *max_it;
+			});
+		}
+	} MaxBy;
+	struct MinBy_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				auto min_it = begin(v);
+				auto min_val = f(*min_it);
+				for (auto it = next(begin(v)); it != end(v); ++it) {
+					if (auto val = f(*it); min_val > val) {
+						min_it = it;
+						min_val = val;
+					}
+				}
+				return *min_it;
+			});
+		}
+	} MinBy;
+	struct MaxOf_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				auto max_val = f(*begin(v));
+				for (auto it = next(begin(v)); it != end(v); ++it) {
+					if (auto val = f(*it); max_val < val) {
+						max_val = val;
+					}
+				}
+				return max_val;
+			});
+		}
+	} MaxOf;
+	struct MinOf_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				auto min_val = f(*begin(v));
+				for (auto it = next(begin(v)); it != end(v); ++it) {
+					if (auto val = f(*it); min_val > val) {
+						min_val = val;
+					}
+				}
+				return min_val;
+			});
+		}
+	} MinOf;
+	struct Count_impl {
+		template <class V> auto operator()(const V& val) {
+			return Callable([&](auto v) { return count(begin(v), end(v), val); });
+		}
+	} Count;
+	struct CountIf_impl {
+		template <class F> auto operator()(const F& f) {
+			return Callable([&](auto v) { return count_if(begin(v), end(v), f); });
+		}
+	} CountIf;
+	struct Index_impl {
+		template <class V> auto operator()(const V& val) {
+			return Callable([&](auto v) -> optional<int> {
+				auto res = find(begin(v), end(v), val);
+				return res != end(v) ? optional(res - begin(v)) : nullopt;
+			});
+		}
+	} Index;
+	struct IndexIf_impl {
+		template <class F> auto operator()(const F& f) {
+			return Callable([&](auto v) -> optional<int> {
+				auto res = find_if(begin(v), end(v), f);
+				return res != end(v) ? optional(res - begin(v)) : nullopt;
+			});
+		}
+	} IndexIf;
+	struct FindIf_impl {
+		template <class F> auto operator()(const F& f) {
+			return Callable([&](auto v) -> optional<typename decltype(v)::value_type> {
+				auto res = find_if(begin(v), end(v), f);
+				return res != end(v) ? optional(*res) : nullopt;
+			});
+		}
+	} FindIf;
+	struct Sum_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				return accumulate(next(begin(v)), end(v), f(*begin(v)),
+				                  [&](const auto& a, const auto& b) { return a + f(b); });
+			});
+		}
+		template <class T> friend auto operator|(T v, const Sum_impl& c) {
+			return accumulate(begin(v), end(v), typename T::value_type());
+		}
+	} Sum;
+	struct Includes {
+		template <class V> auto operator()(const V& val) {
+			return Callable([&](auto v) { return find(begin(v), end(v), val) != end(v); });
+		}
+	} Includes;
+	struct IncludesIf_impl {
+		template <class F> auto operator()(const F& f) {
+			return Callable([&](auto v) { return find_if(begin(v), end(v), f) != end(v); });
+		}
+	} IncludesIf;
+	struct RemoveIf_impl {
+		template <class F> auto operator()(const F& f) {
+			return Callable([&](auto v) {
+				v.erase(remove_if(begin(v), end(v), f), end(v));
+				return v;
+			});
+		}
+	} RemoveIf;
+	struct Each_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				for (const auto& i : v) {
+					f(i);
+				}
+			});
+		}
+	} Each;
+	struct Select_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				using value_type = typename decltype(v)::value_type;
+				vector<value_type> res;
+				for (const auto& i : v) {
+					if (f(i)) res.push_back(i);
+				}
+				return res;
+			});
+		}
+	} Select;
+	struct Map_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				using result_type = invoke_result_t<F, typename decltype(v)::value_type>;
+				vector<result_type> res;
+				res.reserve(size(v));
+				for (const auto& i : v) {
+					res.push_back(f(i));
+				}
+				return res;
+			});
+		}
+	} Map;
+	struct Indexed_impl {
+		template <class T> friend auto operator|(const T& v, Indexed_impl& c) {
+			using value_type = typename T::value_type;
+			vector<pair<value_type, int>> res;
+			res.reserve(size(v));
+			int index = 0;
+			for (const auto& i : v) {
+				res.emplace_back(i, index++);
+			}
+			return res;
+		}
+	} Indexed;
+	struct AllOf_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				for (const auto& i : v) {
+					if (!f(i)) return false;
+				}
+				return true;
+			});
+		}
+	} AllOf;
+	struct AnyOf_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				for (const auto& i : v) {
+					if (f(i)) return true;
+				}
+				return false;
+			});
+		}
+	} AnyOf;
+	struct NoneOf_impl {
+		template <class F> auto operator()(F&& f) {
+			return Callable([&](auto v) {
+				for (const auto& i : v) {
+					if (f(i)) return false;
+				}
+				return true;
+			});
+		}
+	} NoneOf;
+};  // namespace Ruby
+using namespace Ruby;
+
 // --- functions --- //
-inline namespace {
-	template <class T> inline void Sort(T& a) {
-		sort(all(a));
-	}
-	template <class T> inline void RSort(T& a) {
-		sort(rall(a));
-	}
-	template <class T, class F> inline void Sort(T& a, const F& f) {
-		sort(all(a), f);
-	}
-	template <class T, class F> inline void RSort(T& a, const F& f) {
-		sort(rall(a), f);
-	}
-	template <class T> inline T Sorted(T a) {
-		Sort(a);
-		return a;
-	}
-	template <class T> inline T RSorted(T a) {
-		RSort(a);
-		return a;
-	}
-	template <class T, class F> inline T Sorted(T& a, const F& f) {
-		Sort(a, f);
-		return a;
-	}
-	template <class T, class F> inline T RSorted(T& a, const F& f) {
-		RSort(a, f);
-		return a;
-	}
-	template <class T, class F> inline void SortBy(T& a, const F& f) {
-		sort(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
-	}
-	template <class T, class F> inline void RSortBy(T& a, const F& f) {
-		sort(rall(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
-	}
-	template <class T> inline void Reverse(T& a) {
-		reverse(all(a));
-	}
-	template <class T> inline void Unique(T& a) {
-		a.erase(unique(all(a)), a.end());
-	}
-	template <class T> inline void Uniq(T& a) {
-		Sort(a);
-		Unique(a);
-	}
-	template <class T> inline void Rotate(T& a, int left) {
-		rotate(a.begin(), a.begin() + left, a.end());
-	}
-	template <class T> inline T Reversed(T a) {
-		Reverse(a);
-		return a;
-	}
-	template <class T> inline T Uniqued(T a) {
-		Unique(a);
-		return a;
-	}
-	template <class T> inline T Uniqed(T a) {
-		Uniq(a);
-		return a;
-	}
-	template <class T> inline T Rotated(T a, int left) {
-		Rotate(a, left);
-		return a;
-	}
-	template <class T> inline auto Max(const T& a) {
-		return *max_element(all(a));
-	}
-	template <class T> inline auto Min(const T& a) {
-		return *min_element(all(a));
-	}
-	template <class T> inline int MaxPos(const T& a) {
-		return max_element(all(a)) - a.begin();
-	}
-	template <class T> inline int MinPos(const T& a) {
-		return min_element(all(a)) - a.begin();
-	}
-	template <class T, class F> inline auto MaxBy(const T& a, const F& f) {
-		return *max_element(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
-	}
-	template <class T, class F> inline auto MinBy(const T& a, const F& f) {
-		return *min_element(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
-	}
-	template <class T, class F> inline auto MaxOf(const T& a, const F& f) {
-		return Max(Map(a, f));
-	}
-	template <class T, class F> inline auto MinOf(const T& a, const F& f) {
-		return Min(Map(a, f));
-	}
-	template <class T, class U> inline int Count(const T& a, const U& v) {
-		return count(all(a), v);
-	}
-	template <class T, class F> inline int CountIf(const T& a, const F& f) {
-		return count_if(all(a), f);
-	}
-	template <class T, class U> inline int Find(const T& a, const U& v) {
-		return find(all(a), v) - a.begin();
-	}
-	template <class T, class F> inline int FindIf(const T& a, const F& f) {
-		return find_if(all(a), f) - a.begin();
-	}
-	template <class T, class U = typename T::value_type> inline U Sum(const T& a) {
-		return accumulate(all(a), U());
-	}
-	template <class T, class U> inline bool Includes(const T& a, const U& v) {
-		return find(all(a), v) != a.end();
-	}
-	template <class T, class F> inline auto Sum(const T& v, const F& f) {
-		return accumulate(next(v.begin()), v.end(), f(*v.begin()), [&](auto a, auto b) { return a + f(b); });
-	}
+namespace Functions {
 	template <class T, class U> inline int Lower(const T& a, const U& v) {
 		return lower_bound(all(a), v) - a.begin();
 	}
 	template <class T, class U> inline int Upper(const T& a, const U& v) {
 		return upper_bound(all(a), v) - a.begin();
 	}
-	template <class T, class F> inline void RemoveIf(T& a, const F& f) {
-		a.erase(remove_if(all(a), f), a.end());
-	}
-	template <class F> inline auto Vector(size_t size, const F& f) {
-		vector<invoke_result_t<F, size_t>> res(size);
-		for (size_t i = 0; i < size; ++i) res[i] = f(i);
-		return res;
-	}
-	template <class T> inline auto Grid(size_t h, size_t w, const T& v = T()) {
-		return vector<vector<T>>(h, vector<T>(w, v));
-	}
 	template <class T> inline auto Slice(const T& v, size_t i, size_t len) {
 		return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
-	}
-	template <class T, class F> inline auto Each(const T& v, F&& f) {
-		for (auto& i : v) f(i);
-	}
-	template <class T, class F> inline auto Select(const T& v, const F& f) {
-		T res;
-		for (const auto& e : v)
-			if (f(e)) res.push_back(e);
-		return res;
-	}
-	template <class T, class F> inline auto Map(const T& v, F&& f) {
-		vector<invoke_result_t<F, typename T::value_type>> res(v.size());
-		size_t i = 0;
-		for (const auto& e : v) res[i++] = f(e);
-		return res;
-	}
-	template <class T, class F> inline auto MapIndex(const T& v, const F& f) {
-		vector<invoke_result_t<F, size_t, typename T::value_type>> res(v.size());
-		size_t i = 0;
-		for (auto it = v.begin(); it != v.end(); ++it, ++i) res[i] = f(i, *it);
-		return res;
-	}
-	template <class T, class F> inline auto TrueIndex(const T& v, const F& f) {
-		vector<size_t> res;
-		for (size_t i = 0; i < v.size(); ++i)
-			if (f(v[i])) res.push_back(i);
-		return res;
-	}
-	template <class T, class U = typename T::value_type> inline auto Indexed(const T& v) {
-		vector<pair<U, int>> res(v.size());
-		for (int i = 0; i < (int)v.size(); ++i) res[i] = make_pair(static_cast<U>(v[i]), i);
-		return res;
 	}
 	inline auto operator*(string s, size_t n) {
 		string res;
@@ -703,7 +785,8 @@ inline namespace {
 		}
 		return r;
 	}
-}  // namespace
+}  // namespace Functions
+using namespace Functions;
 
 // --- dump --- //
 #if __has_include("/home/yuruhiya/contest/library/dump.hpp")
