@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
-#define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
+#define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 #define unless(c) if (!(c))
 #define sz(x) ((int)(x).size())
@@ -398,7 +398,9 @@ template <class T> struct Step {
 	auto to_a() const {
 		vector<T> res;
 		res.reserve(size());
-		each([&](T i) { res.push_back(i); });
+		for (auto i : *this) {
+			res.push_back(i);
+		}
 		return res;
 	}
 	using value_type = T;
@@ -479,7 +481,9 @@ namespace Ruby {
 	} Rotate;
 	struct Max_impl {
 		template <class F> auto operator()(F&& f) {
-			return Callable([&](auto v) { return *max_element(begin(v), end(v), f); });
+			return Callable([&](auto v) {
+				return *max_element(begin(v), end(v), f);
+			});
 		}
 		template <class T> friend auto operator|(T v, const Max_impl& c) {
 			return *max_element(begin(v), end(v));
@@ -487,7 +491,9 @@ namespace Ruby {
 	} Max;
 	struct Min_impl {
 		template <class F> auto operator()(F&& f) {
-			return Callable([&](auto v) { return *min_element(begin(v), end(v), f); });
+			return Callable([&](auto v) {
+				return *min_element(begin(v), end(v), f);
+			});
 		}
 		template <class T> friend auto operator|(T v, const Min_impl& c) {
 			return *min_element(begin(v), end(v));
@@ -561,12 +567,16 @@ namespace Ruby {
 	} MinOf;
 	struct Count_impl {
 		template <class V> auto operator()(const V& val) {
-			return Callable([&](auto v) { return count(begin(v), end(v), val); });
+			return Callable([&](auto v) {
+				return count(begin(v), end(v), val);
+			});
 		}
 	} Count;
 	struct CountIf_impl {
 		template <class F> auto operator()(const F& f) {
-			return Callable([&](auto v) { return count_if(begin(v), end(v), f); });
+			return Callable([&](auto v) {
+				return count_if(begin(v), end(v), f);
+			});
 		}
 	} CountIf;
 	struct Index_impl {
@@ -596,8 +606,9 @@ namespace Ruby {
 	struct Sum_impl {
 		template <class F> auto operator()(F&& f) {
 			return Callable([&](auto v) {
-				return accumulate(next(begin(v)), end(v), f(*begin(v)),
-				                  [&](const auto& a, const auto& b) { return a + f(b); });
+				return accumulate(next(begin(v)), end(v), f(*begin(v)), [&](const auto& a, const auto& b) {
+					return a + f(b);
+				});
 			});
 		}
 		template <class T> friend auto operator|(T v, const Sum_impl& c) {
@@ -606,12 +617,16 @@ namespace Ruby {
 	} Sum;
 	struct Includes {
 		template <class V> auto operator()(const V& val) {
-			return Callable([&](auto v) { return find(begin(v), end(v), val) != end(v); });
+			return Callable([&](auto v) {
+				return find(begin(v), end(v), val) != end(v);
+			});
 		}
 	} Includes;
 	struct IncludesIf_impl {
 		template <class F> auto operator()(const F& f) {
-			return Callable([&](auto v) { return find_if(begin(v), end(v), f) != end(v); });
+			return Callable([&](auto v) {
+				return find_if(begin(v), end(v), f) != end(v);
+			});
 		}
 	} IncludesIf;
 	struct RemoveIf_impl {

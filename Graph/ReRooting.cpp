@@ -64,7 +64,7 @@ struct DP {
 	}
 	DP add_root([[maybe_unused]] int v) const {
 		DP res = *this;
-		
+
 		return res;
 	}
 };
