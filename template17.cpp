@@ -30,7 +30,7 @@ template <class T> using PQ = priority_queue<T>;
 template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
 constexpr int inf = 1e9;
 constexpr long long inf_ll = 1e18, MOD = 1000000007;
-constexpr long double PI = M_PI, EPS = 1e-12;
+constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
 
 // --- input --- //
 #ifdef _WIN32
@@ -833,8 +833,8 @@ template <class T> inline T Powmod(T a, T n, T m = MOD) {
 }
 
 // --- dump --- //
-#if __has_include("/home/yuruhiya/contest/library/dump.hpp")
-#include "/home/yuruhiya/contest/library/dump.hpp"
+#if __has_include("dump.hpp")
+#include "dump.hpp"
 #else
 #define dump(...) ((void)0)
 #endif
