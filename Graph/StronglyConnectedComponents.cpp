@@ -1,9 +1,11 @@
 // description : 強連結成分分解
 class StronglyConnectedComponents {
-	int V, k = 0;
+	int V;
 	vector<vector<int>> G, rG;
-	vector<int> vs, cmp;
 	vector<bool> used;
+	vector<int> cmp;
+	int k = 0;
+	vector<int> vs;
 	void dfs(int v) {
 		used[v] = true;
 		for (auto e : G[v]) {
@@ -46,7 +48,7 @@ public:
 			for (auto e : G[i]) {
 				if (cmp[i] != cmp[e]) res[cmp[i]].push_back(cmp[e]);
 			}
-		for (auto &v : res) {
+		for (auto& v : res) {
 			sort(v.begin(), v.end());
 			v.erase(unique(v.begin(), v.end()), v.end());
 		}
