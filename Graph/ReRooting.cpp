@@ -44,7 +44,8 @@ template <class DP> class ReRooting {
 
 public:
 	ReRooting(const vector<vector<int>>& _g) : n(_g.size()), g(_g), dp(n), ans(n) {
-		for (int i = 0; i < n; ++i) dp[i].resize(g[i].size());
+		for (int i = 0; i < n; ++i)
+			dp[i].resize(g[i].size());
 	}
 	vector<DP> solve() {
 		dfs(0, -1);

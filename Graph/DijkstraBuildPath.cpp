@@ -1,5 +1,5 @@
 // description : ダイクストラ法　最短パスを構築
-pair<vector<Weight>, vector<int>> Dijkstra(const Graph &graph, int s) {
+pair<vector<Weight>, vector<int>> Dijkstra(const Graph& graph, int s) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);
 	dist[s] = 0;
@@ -21,7 +21,7 @@ pair<vector<Weight>, vector<int>> Dijkstra(const Graph &graph, int s) {
 	}
 	return {dist, prev};
 }
-vector<int> BuildPath(const vector<int> &prev, int t) {
+vector<int> BuildPath(const vector<int>& prev, int t) {
 	vector<int> res;
 	while (prev[t] != -1) {
 		res.push_back(t);

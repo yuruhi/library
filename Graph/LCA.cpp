@@ -3,7 +3,7 @@ class LCA {
 	const int V, LOG;
 	vector<int> dist;
 	vector<vector<int>> table;
-	void dfs(const Graph &g, int v, int p, int d) {
+	void dfs(const Graph& g, int v, int p, int d) {
 		table[0][v] = p;
 		dist[v] = d;
 		for (auto e : g[v])
@@ -13,7 +13,7 @@ class LCA {
 	}
 
 public:
-	LCA(const Graph &g, const int root) : V(g.size()), LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {
+	LCA(const Graph& g, const int root) : V(g.size()), LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {
 		dfs(g, root, -1, 0);
 		for (int k = 0; k + 1 < LOG; ++k) {
 			for (int v = 0; v < V; ++v) {

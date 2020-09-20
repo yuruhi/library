@@ -1,5 +1,5 @@
 // description : ワーシャルフロイド法 辺の追加 O(V^2)
-void AddEdge(Matrix &dist, const Edge2 &e) {
+void AddEdge(Matrix& dist, const Edge2& e) {
 	int V = dist.size();
 	for (int i = 0; i < V; ++i)
 		for (int j = 0; j < V; ++j)

@@ -1,5 +1,5 @@
 // description : グリッド上のBFS
-vector<vector<int>> GridBFS(const vector<string> &grid, Point s, char wall = '#') {
+vector<vector<int>> GridBFS(const vector<string>& grid, Point s, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);
 	vector<vector<int>> res(h, vector<int>(w, INT_MAX));
@@ -21,7 +21,7 @@ vector<vector<int>> GridBFS(const vector<string> &grid, Point s, char wall = '#'
 	}
 	return res;
 }
-vector<vector<int>> GridBFS(const vector<string> &grid, char start, char wall = '#') {
+vector<vector<int>> GridBFS(const vector<string>& grid, char start, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();
 	Point s;
 	for (int i = 0; i < h; ++i)

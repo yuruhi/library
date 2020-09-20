@@ -6,7 +6,7 @@ template <ull MOD> class RollingHash {
 	vector<ull> pow, hash;
 
 public:
-	RollingHash(const string &s, ull b = 10007) : n(s.size()), base(b), pow(n + 1), hash(n + 1) {
+	RollingHash(const string& s, ull b = 10007) : n(s.size()), base(b), pow(n + 1), hash(n + 1) {
 		pow[0] = 1;
 		hash[0] = 0;
 		for (int i = 0; i < n; ++i) {

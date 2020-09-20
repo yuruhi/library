@@ -35,7 +35,7 @@ public:
 		bernoulli_distribution u(p);
 		return u(mt);
 	}
-	template <class T> void shuffle(T &v) {
+	template <class T> void shuffle(T& v) {
 		std::shuffle(v.begin(), v.end(), mt);
 	}
 } rnd;

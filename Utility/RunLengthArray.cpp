@@ -17,12 +17,12 @@ template <class value_type, class size_type = size_t> class RunLengthArray {
 
 public:
 	RunLengthArray() {}
-	RunLengthArray(const T &val, S size) : value({val}), index({{0, size}}) {}
-	RunLengthArray(const initializer_list<pair<S, T>> &v) {
+	RunLengthArray(const T& val, S size) : value({val}), index({{0, size}}) {}
+	RunLengthArray(const initializer_list<pair<S, T>>& v) {
 		index.reserve(v.size());
 		value.reserve(v.size());
 		S now = 0;
-		for (const auto &p : v) {
+		for (const auto& p : v) {
 			index.emplace_back(now, now + p.first);
 			value.push_back(p.second);
 			now += p.first;
@@ -38,15 +38,15 @@ public:
 		return !empty();
 	}
 
-	const T &operator[](const S i) const {
+	const T& operator[](const S i) const {
 		assert(i < size());
 		return value[find(i)];
 	}
-	const T &front() const {
+	const T& front() const {
 		assert(!empty());
 		return value.front();
 	}
-	const T &back() const {
+	const T& back() const {
 		assert(!empty());
 		return value.back();
 	}
@@ -62,7 +62,7 @@ public:
 		value.clear();
 		index.clear();
 	}
-	RunLengthArray &push_back(const T &val, const S new_size = 1) {
+	RunLengthArray& push_back(const T& val, const S new_size = 1) {
 		if (empty() || value.back() != val) {
 			value.push_back(val);
 			index.emplace_back(size(), size() + new_size);
@@ -71,7 +71,7 @@ public:
 		}
 		return *this;
 	}
-	RunLengthArray &pop_back(const S pop_size = 1) {
+	RunLengthArray& pop_back(const S pop_size = 1) {
 		assert(pop_size <= size());
 		S until = size() - pop_size;
 		while (!empty()) {

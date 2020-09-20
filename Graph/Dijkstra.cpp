@@ -1,5 +1,5 @@
 // description : ダイクストラ法 O(E log V)
-vector<Weight> Dijkstra(const Graph &graph, int s) {
+vector<Weight> Dijkstra(const Graph& graph, int s) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);
 	dist[s] = 0;

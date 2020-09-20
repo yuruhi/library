@@ -1,5 +1,5 @@
 // description : rotate, scale
-template <class T> vector<vector<T>> Rotated90(const vector<vector<T>> &a) {
+template <class T> vector<vector<T>> Rotated90(const vector<vector<T>>& a) {
 	size_t h = a.size(), w = a.front().size();
 	vector<vector<T>> res(w, vector<T>(h));
 	for (size_t i = 0; i < h; ++i) {
@@ -10,7 +10,7 @@ template <class T> vector<vector<T>> Rotated90(const vector<vector<T>> &a) {
 	}
 	return res;
 }
-template <class T> vector<vector<T>> Rotated180(const vector<vector<T>> &a) {
+template <class T> vector<vector<T>> Rotated180(const vector<vector<T>>& a) {
 	int h = a.size(), w = a.front().size();
 	vector<vector<T>> res(h, vector<T>(w));
 	for (size_t i = 0; i < h; ++i) {
@@ -21,7 +21,7 @@ template <class T> vector<vector<T>> Rotated180(const vector<vector<T>> &a) {
 	}
 	return res;
 }
-template <class T> vector<vector<T>> Rotated270(const vector<vector<T>> &a) {
+template <class T> vector<vector<T>> Rotated270(const vector<vector<T>>& a) {
 	size_t h = a.size(), w = a.front().size();
 	vector<vector<T>> res(w, vector<T>(h));
 	for (size_t i = 0; i < h; ++i) {
@@ -32,7 +32,7 @@ template <class T> vector<vector<T>> Rotated270(const vector<vector<T>> &a) {
 	}
 	return res;
 }
-template <class T> vector<vector<T>> Scaled(const vector<vector<T>> &a, size_t k) {
+template <class T> vector<vector<T>> Scaled(const vector<vector<T>>& a, size_t k) {
 	size_t h = a.size(), w = a.front().size();
 	vector<vector<T>> res(h * k, vector<T>(w * k));
 	for (size_t i = 0; i < h; ++i) {
@@ -46,20 +46,21 @@ template <class T> vector<vector<T>> Scaled(const vector<vector<T>> &a, size_t k
 	}
 	return res;
 }
-template <class T> vector<vector<T>> Chunk(const vector<T> &a, size_t n) {
+template <class T> vector<vector<T>> Chunk(const vector<T>& a, size_t n) {
 	vector<vector<T>> res;
 	if (n == 0) return res;
-	for (size_t i = 0; i < (a.size() + n - 1)) return res;
+	for (size_t i = 0; i < (a.size() + n - 1))
+		return res;
 }
-template <class T> void Rotate90(vector<vector<T>> &a) {
+template <class T> void Rotate90(vector<vector<T>>& a) {
 	a = Rotated90(a);
 }
-template <class T> void Rotate180(vector<vector<T>> &a) {
+template <class T> void Rotate180(vector<vector<T>>& a) {
 	a = Rotated180(a);
 }
-template <class T> void Rotate270(vector<vector<T>> &a) {
+template <class T> void Rotate270(vector<vector<T>>& a) {
 	a = Rotated270(a);
 }
-template <class T> void Scale(vector<vector<T>> &a, size_t k) {
+template <class T> void Scale(vector<vector<T>>& a, size_t k) {
 	a = Scaled(a, k);
 }

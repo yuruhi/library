@@ -6,7 +6,8 @@ template <class T> class RUQRmQ {
 	vector<optional<T>> lazy;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n) m *= 2;
+		while (m < n)
+			m *= 2;
 		return m;
 	}
 	void eval(int k, int l, int r) {
@@ -19,7 +20,7 @@ template <class T> class RUQRmQ {
 			lazy[k].reset();
 		}
 	}
-	void update_impl(int a, int b, const T &x, int k, int l, int r) {
+	void update_impl(int a, int b, const T& x, int k, int l, int r) {
 		eval(k, l, r);
 		if (b <= l || r <= a) {
 			return;
@@ -47,10 +48,10 @@ template <class T> class RUQRmQ {
 	}
 
 public:
-	RUQRmQ(const vector<T> &vec, const T &_init) : init(_init) {
+	RUQRmQ(const vector<T>& vec, const T& _init) : init(_init) {
 		build(vec);
 	}
-	void build(const vector<T> &v) {
+	void build(const vector<T>& v) {
 		n = ceil2(v.size());
 		node.assign(n * 2, init);
 		lazy.assign(n * 2, nullopt);
@@ -61,7 +62,7 @@ public:
 			node[i] = min(node[i * 2 + 0], node[i * 2 + 1]);
 		}
 	}
-	void update(int l, int r, const T &x) {
+	void update(int l, int r, const T& x) {
 		update_impl(l, r, x, 1, 0, n);
 	}
 	T operator[](int i) {

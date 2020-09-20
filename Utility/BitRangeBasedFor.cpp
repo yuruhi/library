@@ -11,7 +11,7 @@ class bit_subset {
 			sub = (sub - 1) & s;
 			f |= sub == s;
 		}
-		bool operator!=(const it &i) const {
+		bool operator!=(const it& i) const {
 			return !f;
 		}
 	} b, e;
@@ -36,7 +36,7 @@ class bit_comb {
 			long long x = s & -s, y = s + x;
 			s = ((s & ~y) / x >> 1) | y;
 		}
-		bool operator!=(const it &i) const {
+		bool operator!=(const it& i) const {
 			return s < i.s;
 		}
 	} b, e;

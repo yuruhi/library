@@ -1,10 +1,10 @@
 // description : 木の直径とそのパスを求める
-tuple<Weight, vector<int>> DiameterPath(const Graph &g) {
+tuple<Weight, vector<int>> DiameterPath(const Graph& g) {
 	int n = g.size();
 	vector<Weight> dist0(n);
 	function<void(int, int, Weight)> dfs = [&](int v, int p, Weight d) {
 		dist0[v] = d;
-		for (const auto &u : g[v])
+		for (const auto& u : g[v])
 			if (u.to != p) {
 				dfs(u.to, v, d + u.cost);
 			}
@@ -17,7 +17,7 @@ tuple<Weight, vector<int>> DiameterPath(const Graph &g) {
 	function<void(int, int, Weight)> dfs2 = [&](int v, int p, Weight d) {
 		dist[v] = d;
 		par[v] = p;
-		for (const auto &u : g[v])
+		for (const auto& u : g[v])
 			if (u.to != p) {
 				dfs2(u.to, v, d + u.cost);
 			}

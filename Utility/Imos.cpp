@@ -12,13 +12,13 @@ public:
 		table[l] += v;
 		table[r] -= v;
 	}
-	void add(const pair<int, int> &section, T v = 1) {
+	void add(const pair<int, int>& section, T v = 1) {
 		add(section.first, section.second, v);
 	}
 	void add_closed(int l, int r, T v = 1) {
 		add(l, r + 1, v);
 	}
-	void add_closed(const pair<int, int> &section, T v = 1) {
+	void add_closed(const pair<int, int>& section, T v = 1) {
 		add_closed(section.first, section.second, v);
 	}
 	void build() {
@@ -31,7 +31,7 @@ public:
 		assert(flag);
 		return table[i];
 	}
-	const vector<T> &operator*() const {
+	const vector<T>& operator*() const {
 		assert(flag);
 		return table;
 	}

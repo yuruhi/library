@@ -1,5 +1,5 @@
 // description : 重さなし木の最短経路
-vector<int> ShortestPathTree(const vector<vector<int>> &g, int s) {
+vector<int> ShortestPathTree(const vector<vector<int>>& g, int s) {
 	int V = g.size();
 	vector<int> dist(V);
 	function<void(int, int, int)> dfs = [&](int v, int p, int depth) {

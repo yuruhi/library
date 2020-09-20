@@ -1,5 +1,5 @@
 // description : 始点と終点を指定するダイクストラ法
-Weight Dijkstra(const Graph &graph, int s, int t) {
+Weight Dijkstra(const Graph& graph, int s, int t) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);
 	dist[s] = 0;

@@ -28,7 +28,7 @@ public:
 		assert(flag);
 		return X[i];
 	}
-	const vector<T> &operator*() const {
+	const vector<T>& operator*() const {
 		assert(flag);
 		return X;
 	}

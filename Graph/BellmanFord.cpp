@@ -1,5 +1,5 @@
 // description : ベルマンフォード法 O(VE)
-bool BellmanFord(const Graph &graph, vector<Weight> &dist, int s) {
+bool BellmanFord(const Graph& graph, vector<Weight>& dist, int s) {
 	int V = graph.size();
 	dist.assign(V, INF);
 	dist[s] = 0;

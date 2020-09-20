@@ -1,5 +1,5 @@
 // description : 連結成分 return : { 連結成分数, {番号} }
-tuple<int, vector<int>, vector<vector<int>>> ConnectedComponet(const vector<vector<int>> &g) {
+tuple<int, vector<int>, vector<vector<int>>> ConnectedComponet(const vector<vector<int>>& g) {
 	int V = g.size(), N = 0;
 	vector<int> id(V, -1);
 	vector<vector<int>> ind(V);

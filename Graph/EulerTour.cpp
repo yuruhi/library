@@ -15,7 +15,7 @@ class EulerTour {
 
 public:
 	EulerTour(int n) : g(n), ls(n), rs(n) {}
-	EulerTour(const vector<vector<int>> &_g) : g(_g), ls(g.size()), rs(g.size()) {}
+	EulerTour(const vector<vector<int>>& _g) : g(_g), ls(g.size()), rs(g.size()) {}
 	void add_edge(int u, int v) {
 		g[u].push_back(v);
 		g[v].push_back(u);
@@ -45,7 +45,7 @@ public:
 		assert(flag);
 		return ls[i];
 	}
-	template <class T> auto call(int v, function<T(int, int)> &&f) {
+	template <class T> auto call(int v, function<T(int, int)>&& f) {
 		assert(flag);
 		return f(ls[v], rs[v]);
 	}

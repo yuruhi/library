@@ -6,7 +6,7 @@ class FordFulkerson {
 	FLOW dfs(int v, int t, FLOW f) {
 		if (v == t) return f;
 		used[v] = true;
-		for (auto &e : G[v]) {
+		for (auto& e : G[v]) {
 			if (!used[e.to] && e.cap > 0) {
 				FLOW d = dfs(e.to, t, min(f, e.cap));
 				if (d > 0) {
@@ -21,7 +21,7 @@ class FordFulkerson {
 
 public:
 	FordFulkerson(int v) : V(v), G(v), used(v) {}
-	const GraphF &get_G() {
+	const GraphF& get_G() {
 		return G;
 	}
 	void add(int from, int to, FLOW cap) {

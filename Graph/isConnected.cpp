@@ -1,5 +1,5 @@
 // description : 連結判定
-bool isConnected(const Graph &graph, int s, int t) {
+bool isConnected(const Graph& graph, int s, int t) {
 	int V = graph.size();
 	queue<int> que;
 	que.push(s);

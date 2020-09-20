@@ -14,11 +14,11 @@ template <int MOD> struct modint {
 	constexpr modint operator-() const {
 		return n ? MOD - n : 0;
 	}
-	constexpr modint &operator++() {
+	constexpr modint& operator++() {
 		if (MOD <= ++n) n = 0;
 		return *this;
 	}
-	constexpr modint &operator--() {
+	constexpr modint& operator--() {
 		if (n <= 0) n = MOD;
 		n--;
 		return *this;
@@ -39,33 +39,33 @@ template <int MOD> struct modint {
 	constexpr modint pred() const {
 		return --modint(*this);
 	}
-	constexpr modint operator+(const modint &m) const {
+	constexpr modint operator+(const modint& m) const {
 		return modint(*this) += m;
 	}
-	constexpr modint operator-(const modint &m) const {
+	constexpr modint operator-(const modint& m) const {
 		return modint(*this) -= m;
 	}
-	constexpr modint operator*(const modint &m) const {
+	constexpr modint operator*(const modint& m) const {
 		return modint(*this) *= m;
 	}
-	constexpr modint operator/(const modint &m) const {
+	constexpr modint operator/(const modint& m) const {
 		return modint(*this) /= m;
 	}
-	constexpr modint &operator+=(const modint &m) {
+	constexpr modint& operator+=(const modint& m) {
 		n += m.n;
 		if (n >= MOD) n -= MOD;
 		return *this;
 	}
-	constexpr modint &operator-=(const modint &m) {
+	constexpr modint& operator-=(const modint& m) {
 		n -= m.n;
 		if (n < 0) n += MOD;
 		return *this;
 	}
-	constexpr modint &operator*=(const modint &m) {
+	constexpr modint& operator*=(const modint& m) {
 		n = n * m.n % MOD;
 		return *this;
 	}
-	constexpr modint &operator/=(const modint &m) {
+	constexpr modint& operator/=(const modint& m) {
 		T a = m.n, b = MOD, u = 1, v = 0;
 		while (b) {
 			T t = a / b;
@@ -78,10 +78,10 @@ template <int MOD> struct modint {
 		if (n < 0) n += MOD;
 		return *this;
 	}
-	constexpr bool operator==(const modint &m) const {
+	constexpr bool operator==(const modint& m) const {
 		return n == m.n;
 	}
-	constexpr bool operator!=(const modint &m) const {
+	constexpr bool operator!=(const modint& m) const {
 		return n != m.n;
 	}
 	constexpr modint pow(T m) const {
@@ -96,10 +96,10 @@ template <int MOD> struct modint {
 	constexpr modint operator^(T m) const {
 		return pow(m);
 	}
-	friend ostream &operator<<(ostream &os, const modint<MOD> &m) {
+	friend ostream& operator<<(ostream& os, const modint<MOD>& m) {
 		return os << m.n;
 	}
-	friend istream &operator>>(istream &is, modint<MOD> &m) {
+	friend istream& operator>>(istream& is, modint<MOD>& m) {
 		long long x;
 		cin >> x;
 		m = modint(x);

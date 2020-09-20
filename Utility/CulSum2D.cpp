@@ -4,12 +4,13 @@ template <class T> class CulSum2D {
 	vector<vector<T>> s;
 
 public:
-	CulSum2D(const vector<vector<T>> &a) : h(a.size()), w(a.front().size()), s(h + 1, vector<T>(w + 1)) {
+	CulSum2D(const vector<vector<T>>& a) : h(a.size()), w(a.front().size()), s(h + 1, vector<T>(w + 1)) {
 		for (int i = 0; i < h; ++i)
-			for (int j = 0; j < w; ++j) s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + a[i][j];
+			for (int j = 0; j < w; ++j)
+				s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + a[i][j];
 	}
 	template <class U, class F>
-	CulSum2D(const U &a, F f) : h(a.size()), w(a.front().size()), s(h + 1, vector<T>(w + 1)) {
+	CulSum2D(const U& a, F f) : h(a.size()), w(a.front().size()), s(h + 1, vector<T>(w + 1)) {
 		for (int i = 0; i < h; ++i)
 			for (int j = 0; j < w; ++j)
 				s[i + 1][j + 1] = s[i][j + 1] + s[i + 1][j] - s[i][j] + static_cast<T>(f(a[i][j]));
@@ -28,7 +29,7 @@ public:
 		y = min(max(y, 0), h);
 		return s[y][x];
 	}
-	const vector<vector<T>> &get_s() {
+	const vector<vector<T>>& get_s() {
 		return s;
 	}
 };

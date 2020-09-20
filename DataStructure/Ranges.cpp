@@ -12,14 +12,14 @@ public:
 	void clear() const {
 		s.clear();
 	}
-	const auto &operator*() const {
+	const auto& operator*() const {
 		return s;
 	}
-	bool cover(const T &x) const {
+	bool cover(const T& x) const {
 		auto it = s.upper_bound(make_pair(x, false));
 		return it != s.end() && s.upper_bound(make_pair(x, false))->second;
 	}
-	bool add(const T &x) {
+	bool add(const T& x) {
 		if (cover(x)) return false;
 		auto it = s.upper_bound(make_pair(x, false));
 		bool flag1 = it != s.begin() && prev(it)->first + 1 == x;
@@ -38,14 +38,14 @@ public:
 		}
 		return true;
 	}
-	bool add(const initializer_list<T> &init) {
+	bool add(const initializer_list<T>& init) {
 		bool res = false;
-		for (const T &x : init) {
+		for (const T& x : init) {
 			res |= add(x);
 		}
 		return res;
 	}
-	bool erase(const T &x) {
+	bool erase(const T& x) {
 		if (!cover(x)) return false;
 		auto it = s.upper_bound(make_pair(x, false));
 		bool flag1 = prev(it)->first == x;
@@ -64,26 +64,26 @@ public:
 		}
 		return true;
 	}
-	bool erase(const initializer_list<T> &init) {
+	bool erase(const initializer_list<T>& init) {
 		bool res = false;
-		for (const T &x : init) {
+		for (const T& x : init) {
 			res |= erase(x);
 		}
 		return res;
 	}
-	T get_next(const T &x) const {
+	T get_next(const T& x) const {
 		if (!cover(x)) return x;
 		auto it = s.upper_bound(make_pair(x, false));
 		return it->first + 1;
 	}
-	T get_prev(const T &x) const {
+	T get_prev(const T& x) const {
 		if (!cover(x)) return x;
 		auto it = s.upper_bound(make_pair(x, false));
 		return prev(it)->first - 1;
 	}
 };
-template <class T> ostream &operator<<(ostream &os, const Ranges<T> &r) {
-	const auto &v = *r;
+template <class T> ostream& operator<<(ostream& os, const Ranges<T>& r) {
+	const auto& v = *r;
 	bool first = true;
 	for (auto it = v.begin(); it != v.end(); advance(it, 2)) {
 		os << (exchange(first, false) ? "" : ", ") << '[' << it->first << ", " << next(it)->first << ']';

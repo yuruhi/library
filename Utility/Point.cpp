@@ -197,19 +197,27 @@ struct Point {
 			case 'L':
 			case 'l':
 			case 'W':
-			case '>': x--; break;
+			case '>':
+				x--;
+				break;
 			case 'R':
 			case 'r':
 			case 'E':
-			case '<': x++; break;
+			case '<':
+				x++;
+				break;
 			case 'U':
 			case 'u':
 			case 'N':
-			case '^': y--; break;
+			case '^':
+				y--;
+				break;
 			case 'D':
 			case 'd':
 			case 'S':
-			case 'v': y++; break;
+			case 'v':
+				y++;
+				break;
 		}
 		return *this;
 	}

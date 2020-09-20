@@ -56,7 +56,8 @@ class Input {
 	static void i(string& v) {
 		v.clear();
 		char c;
-		for (i(c); !isspace(c); c = gc()) v += c;
+		for (i(c); !isspace(c); c = gc())
+			v += c;
 	}
 	static void i(int& v) {
 		bool neg = false;
@@ -67,7 +68,8 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc())
+			v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(long long& v) {
@@ -79,7 +81,8 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc())
+			v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(double& v) {
@@ -127,7 +130,8 @@ class Input {
 		i(v.second);
 	}
 	template <class T> static void i(vector<T>& v) {
-		for (auto& e : v) i(e);
+		for (auto& e : v)
+			i(e);
 	}
 	struct InputV {
 		int n, m;
@@ -149,7 +153,8 @@ public:
 	static string read_line() {
 		string v;
 		char c;
-		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
+		for (i(c); c != '\n' && c != '\0'; c = gc())
+			v += c;
 		return v;
 	}
 	template <class T> static T in() {
@@ -202,17 +207,21 @@ class Output {
 		if (v < 0) putchar_unlocked('-'), v = -v;
 		char b[10];
 		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
+		while (v)
+			b[i++] = '0' + v % 10, v /= 10;
 		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
+		while (i--)
+			putchar_unlocked(b[i]);
 	}
 	void p(long long v) const {
 		if (v < 0) putchar_unlocked('-'), v = -v;
 		char b[20];
 		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
+		while (v)
+			b[i++] = '0' + v % 10, v /= 10;
 		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
+		while (i--)
+			putchar_unlocked(b[i]);
 	}
 	void p(bool v) const {
 		p(v ? B.t : B.f);
@@ -363,18 +372,23 @@ template <class T> struct Step {
 		return to_a();
 	}
 	template <class F> void each(const F& f) const {
-		for (T i : *this) f(i);
+		for (T i : *this)
+			f(i);
 	}
 	auto to_a() const {
 		vector<T> res;
 		res.reserve(count());
-		each([&](T i) { res.push_back(i); });
+		each([&](T i) {
+			res.push_back(i);
+		});
 		return res;
 	}
 	template <class F, class U = decay_t<result_of_t<F(T)>>> auto map(const F& f) const {
 		vector<U> res;
 		res.reserve(count());
-		each([&](T i) { res.push_back(f(i)); });
+		each([&](T i) {
+			res.push_back(f(i));
+		});
 		return res;
 	}
 	template <class F> auto select(const F& f) const {
@@ -416,7 +430,9 @@ template <class T> struct Step {
 	}
 	template <class F, class U = decay_t<result_of_t<F(T)>>> auto sum(const F& f) const {
 		U res = 0;
-		each([&](T i) { res += static_cast<U>(f(i)); });
+		each([&](T i) {
+			res += static_cast<U>(f(i));
+		});
 		return res;
 	}
 	using value_type = T;
@@ -466,10 +482,14 @@ inline namespace {
 		return a;
 	}
 	template <class T, class F> inline void SortBy(T& a, const F& f) {
-		sort(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
+		sort(all(a), [&](const auto& x, const auto& y) {
+			return f(x) < f(y);
+		});
 	}
 	template <class T, class F> inline void RSortBy(T& a, const F& f) {
-		sort(rall(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
+		sort(rall(a), [&](const auto& x, const auto& y) {
+			return f(x) < f(y);
+		});
 	}
 	template <class T> inline void Reverse(T& a) {
 		reverse(all(a));
@@ -513,10 +533,14 @@ inline namespace {
 		return min_element(all(a)) - a.begin();
 	}
 	template <class T, class F> inline auto MaxBy(const T& a, const F& f) {
-		return *max_element(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
+		return *max_element(all(a), [&](const auto& x, const auto& y) {
+			return f(x) < f(y);
+		});
 	}
 	template <class T, class F> inline auto MinBy(const T& a, const F& f) {
-		return *min_element(all(a), [&](const auto& x, const auto& y) { return f(x) < f(y); });
+		return *min_element(all(a), [&](const auto& x, const auto& y) {
+			return f(x) < f(y);
+		});
 	}
 	template <class T, class F> inline auto MaxOf(const T& a, const F& f) {
 		return Max(Map(a, f));
@@ -543,7 +567,9 @@ inline namespace {
 		return find(all(a), v) != a.end();
 	}
 	template <class T, class F> inline auto Sum(const T& v, const F& f) {
-		return accumulate(next(v.begin()), v.end(), f(*v.begin()), [&](auto a, auto b) { return a + f(b); });
+		return accumulate(next(v.begin()), v.end(), f(*v.begin()), [&](auto a, auto b) {
+			return a + f(b);
+		});
 	}
 	template <class T, class U> inline int Lower(const T& a, const U& v) {
 		return lower_bound(all(a), v) - a.begin();
@@ -556,7 +582,8 @@ inline namespace {
 	}
 	template <class F> inline auto Vector(size_t size, const F& f) {
 		vector<decay_t<result_of_t<F(size_t)>>> res(size);
-		for (size_t i = 0; i < size; ++i) res[i] = f(i);
+		for (size_t i = 0; i < size; ++i)
+			res[i] = f(i);
 		return res;
 	}
 	template <class T> inline auto Grid(size_t h, size_t w, const T& v = T()) {
@@ -566,7 +593,8 @@ inline namespace {
 		return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
 	}
 	template <class T, class F> inline auto Each(const T& v, F&& f) {
-		for (auto& i : v) f(i);
+		for (auto& i : v)
+			f(i);
 	}
 	template <class T, class F> inline auto Select(const T& v, const F& f) {
 		T res;
@@ -577,13 +605,15 @@ inline namespace {
 	template <class T, class F> inline auto Map(const T& v, F&& f) {
 		vector<decay_t<result_of_t<F(typename T::value_type)>>> res(v.size());
 		size_t i = 0;
-		for (const auto& e : v) res[i++] = f(e);
+		for (const auto& e : v)
+			res[i++] = f(e);
 		return res;
 	}
 	template <class T, class F> inline auto MapIndex(const T& v, const F& f) {
 		vector<decay_t<result_of_t<F(size_t, typename T::value_type)>>> res(v.size());
 		size_t i = 0;
-		for (auto it = v.begin(); it != v.end(); ++it, ++i) res[i] = f(i, *it);
+		for (auto it = v.begin(); it != v.end(); ++it, ++i)
+			res[i] = f(i, *it);
 		return res;
 	}
 	template <class T, class F> inline auto TrueIndex(const T& v, const F& f) {
@@ -594,12 +624,14 @@ inline namespace {
 	}
 	template <class T, class U = typename T::value_type> inline auto Indexed(const T& v) {
 		vector<pair<U, int>> res(v.size());
-		for (int i = 0; i < (int)v.size(); ++i) res[i] = make_pair(static_cast<U>(v[i]), i);
+		for (int i = 0; i < (int)v.size(); ++i)
+			res[i] = make_pair(static_cast<U>(v[i]), i);
 		return res;
 	}
 	inline auto operator*(string s, size_t n) {
 		string res;
-		for (size_t i = 0; i < n; ++i) res += s;
+		for (size_t i = 0; i < n; ++i)
+			res += s;
 		return res;
 	}
 	template <class T> inline auto& operator<<(vector<T>& v, const vector<T>& v2) {

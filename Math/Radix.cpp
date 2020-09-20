@@ -12,7 +12,7 @@ public:
 		}
 	}
 	// Num(R) -> res(10)
-	static Type to10(const string &Num, int R) {
+	static Type to10(const string& Num, int R) {
 		Type res = 0, p = 1;
 		for (int i = (int)Num.size() - 1; i >= 0; --i) {
 			assert(Map.count(Num[i]));
@@ -33,7 +33,7 @@ public:
 		return res;
 	}
 	// Num(R) -> res(N)
-	static string toN(const string &Num, int R, int N) {
+	static string toN(const string& Num, int R, int N) {
 		return toN(to10(Num, R), N);
 	}
 };

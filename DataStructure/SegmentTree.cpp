@@ -7,7 +7,8 @@ template <class T> class SegmentTree {
 	Func F;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n) m *= 2;
+		while (m < n)
+			m *= 2;
 		return m;
 	}
 
@@ -77,7 +78,8 @@ public:
 	}
 	vector<T> to_a() const {
 		vector<T> res(N);
-		for (int i = 0; i < N; ++i) res[i] = operator[](i);
+		for (int i = 0; i < N; ++i)
+			res[i] = operator[](i);
 		return res;
 	}
 };
