@@ -16,7 +16,8 @@
 - [重み付きUnionFind](https://github.com/yuruhi/library/blob/master/DataStructure/WeightedUnionFind.cpp)
 - [Binary Indexed Tree](https://github.com/yuruhi/library/blob/master/DataStructure/BinaryIndexedTree.cpp)
 - [一点更新・区間クエリ](https://github.com/yuruhi/library/blob/master/DataStructure/SegmentTree.cpp)
-- [区間加算・一点更新](https://github.com/yuruhi/library/blob/master/DataStructure/RangeAddQuery.cpp)
+- [区間加算・一点取得](https://github.com/yuruhi/library/blob/master/DataStructure/RangeAddQuery.cpp)
+- [区間更新・一点取得](https://github.com/yuruhi/library/blob/master/DataStructure/RangeUpdateQuery.cpp)
 - [区間加算・区間最大](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRMaxQ.cpp)
 - [区間加算・区間最小](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRminQ.cpp)
 - [区間加算・区間和](https://github.com/yuruhi/library/blob/master/DataStructure/RAQRSQ.cpp)
@@ -31,7 +32,7 @@
 
 - [テンプレート](https://github.com/yuruhi/library/blob/master/Graph/GraphTemplate.cpp)
 
-### 最短経路
+### shortest path
 
 - [重さなしグラフの最短経路](https://github.com/yuruhi/library/blob/master/Graph/ShortestPath.cpp)
 - [木の最短経路](https://github.com/yuruhi/library/blob/master/Graph/ShortestPathTree.cpp)
@@ -43,7 +44,7 @@
 - [ワーシャルフロイド法](https://github.com/yuruhi/library/blob/master/Graph/WarashallFloyd.cpp)
 - [辺を追加する](https://github.com/yuruhi/library/blob/master/Graph/WarashallFloydAddEdge.cpp)
 
-### 木
+### tree
 
 - [木の直径](https://github.com/yuruhi/library/blob/master/Graph/Diametar.cpp)
 - [木の直径のパス](https://github.com/yuruhi/library/blob/master/Graph/DiameterPath.cpp)
@@ -52,18 +53,18 @@
 - [木のs-t間のパス（辺）](https://github.com/yuruhi/library/blob/master/Graph/BuildTreePathEdge.cpp)
 - [全方位木DP](https://github.com/yuruhi/library/blob/master/Graph/ReRooting.cpp)
 
-### 最小全域木
+### minimum spanning tree
 
 - [クラスカル法](https://github.com/yuruhi/library/blob/master/Graph/Kruskal.cpp)
 
-### 他
+### other
 
 - [二部グラフ判定](https://github.com/yuruhi/library/blob/master/Graph/BipartiteGraph.cpp)
 - [トポロジカルソート](https://github.com/yuruhi/library/blob/master/Graph/TopologicalSort.cpp)
 - [強連結成分分解](https://github.com/yuruhi/library/blob/master/Graph/StronglyConnectedComponents.cpp)
 - [全方位木DP](https://github.com/yuruhi/library/blob/master/Graph/ReRooting.cpp)
 
-### フロー
+### flow
 
 - [フローテンプレート](https://github.com/yuruhi/library/blob/master/Graph/FlowTemplate.cpp)
 - [二部マッチング](https://github.com/yuruhi/library/blob/master/Graph/BipartiteMatching.cpp)
@@ -71,7 +72,7 @@
 - [Dinic法](https://github.com/yuruhi/library/blob/master/Graph/Dinic.cpp)
 - [FordFulkerson法](https://github.com/yuruhi/library/blob/master/Graph/FordFulkerson.cpp)
 
-### 構築・判定
+### construction, judgement
 
 - [全域木構築](https://github.com/yuruhi/library/blob/master/Graph/SpanningTree.cpp)
 - [連結成分ごとに分ける](https://github.com/yuruhi/library/blob/master/Graph/ConnectedComponet.cpp)
@@ -80,12 +81,12 @@
 
 ## [Math](https://github.com/yuruhi/library/tree/master/Serch)
 
-### 約数・倍数
+### divisor, multiple
 
 - [約数列挙](https://github.com/yuruhi/library/blob/master/Math/Divisor.cpp)
 - [拡張ユークリッドの互除法](https://github.com/yuruhi/library/blob/master/Math/extGcd.cpp)
 
-### 素数
+### prime
 
 - [素数判定](https://github.com/yuruhi/library/blob/master/Math/isPrime.cpp)
 - [エラトステネスの篩](https://github.com/yuruhi/library/blob/master/Math/Eratosthenes.cpp)
@@ -93,7 +94,7 @@
 - [素因数分解](https://github.com/yuruhi/library/blob/master/Math/PrimeFactor.cpp)
 - [篩](https://github.com/yuruhi/library/blob/master/Math/Sieve.cpp)
 
-### 組み合わせ
+### combination
 
 - [二項係数](https://github.com/yuruhi/library/blob/master/Math/Combi.cpp)
 - [二項係数テーブル](https://github.com/yuruhi/library/blob/master/Math/Combination.cpp)
@@ -104,7 +105,7 @@
 - [実行時に法が決まるmodint](https://github.com/yuruhi/library/blob/master/Math/modintRuntime.cpp)
 - [$g ^ x \equiv h \pmod{mod}$ なる $x$ を求める](https://github.com/yuruhi/library/blob/master/Math/BabystepGiantstep.cpp)
 
-### 他
+### other
 
 - [フィボナッチ数](https://github.com/yuruhi/library/blob/master/Math/Fibonacci.cpp)
 - [転倒数](https://github.com/yuruhi/library/blob/master/Math/Inversion.cpp)
