@@ -85,13 +85,17 @@ template <int MOD> struct modint {
 		return n != m.n;
 	}
 	constexpr modint pow(T m) const {
-		modint t = n, res = 1;
-		while (m > 0) {
-			if (m & 1) res *= t;
-			t *= t;
-			m >>= 1;
+		if (0 <= m) {
+			modint t = n, res = 1;
+			while (m > 0) {
+				if (m & 1) res *= t;
+				t *= t;
+				m >>= 1;
+			}
+			return res;
+		} else {
+			return (modint(1) / n).pow(-m);
 		}
-		return res;
 	}
 	constexpr modint operator^(T m) const {
 		return pow(m);
