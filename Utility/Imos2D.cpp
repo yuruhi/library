@@ -1,10 +1,13 @@
 // description : いもす法2次元
 template <class T> class Imos2D {
+public:
+	const int H, W;
+
+private:
 	vector<vector<T>> table;
 	bool flag = false;
 
 public:
-	const int H, W;
 	Imos2D(int _h, int _w) : H(_h), W(_w), table(_h + 1, vector<T>(_w + 1)) {}
 	// [x1, x2) * [y1, y2)
 	void add(int y1, int y2, int x1, int x2, const T& v = 1) {
