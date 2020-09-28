@@ -30,7 +30,7 @@ public:
 	int operator[](int i) const {
 		return cmp[i];
 	}
-	void build() {
+	int build() {
 		vs.clear();
 		fill(used.begin(), used.end(), false);
 		for (int i = 0; i < V; ++i) {
@@ -41,6 +41,7 @@ public:
 		for (int i = vs.size() - 1; i >= 0; --i) {
 			if (!used[vs[i]]) rdfs(vs[i], k++);
 		}
+		return k;
 	}
 	vector<vector<int>> make_DAG() {
 		vector<vector<int>> res(k);
