@@ -494,7 +494,7 @@ namespace Ruby {
 	struct Uniq_impl {
 		template <class T> friend auto operator|(T v, const Uniq_impl& c) {
 			sort(begin(v), end(v));
-			v.erase(unique(begin(v), end(v), end(v)));
+			v.erase(unique(begin(v), end(v)), end(v));
 			return v;
 		}
 	} Uniq;
