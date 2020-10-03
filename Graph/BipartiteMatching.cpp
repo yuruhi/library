@@ -1,16 +1,18 @@
-// description : N -> M の辺しか張らない O(VE)
+// description : Matching on Bipartite Graph
 class BipartiteMatching {
-	int N, M;
-	vector<vector<int>> G;
+	size_t left, right;
+	vector<vector<int>> graph;
 	vector<bool> used;
-	vector<int> p, q;
+	vector<int> left_match, right_match;
 	bool dfs(int v) {
-		if (used[v]) return false;
+		if (used[v]) {
+			return false;
+		}
 		used[v] = true;
-		for (auto u : G[v]) {
-			if (q[u] == -1 || dfs(q[u])) {
-				q[u] = v;
-				p[v] = u;
+		for (int u : graph[v]) {
+			if (right_match[u] == -1 || dfs(right_match[u])) {
+				left_match[v] = u;
+				right_match[u] = v;
 				return true;
 			}
 		}
@@ -18,27 +20,39 @@ class BipartiteMatching {
 	}
 
 public:
-	BipartiteMatching(int n, int m, const vector<vector<int>>& g) : N(n), M(m), G(g), used(N), p(N, -1), q(M, -1) {}
-	BipartiteMatching(int n, int m) : N(n), M(m), G(n), used(N), p(N, -1), q(M, -1) {}
-	void add_edge(int s, int t) {
-		G[s].push_back(t);
+	BipartiteMatching(size_t _left, size_t _right)
+	    : left(_left), right(_right), graph(left), used(left), left_match(left), right_match(right) {}
+	BipartiteMatching(size_t _left, size_t _right, const vector<vector<int>>& _graph)
+	    : left(_left), right(_right), graph(_graph), used(left), left_match(left), right_match(right) {
+		assert(graph.size() == left);
 	}
-	int operator()() {
+	void add_edge(int l, int r) {
+		graph[l].push_back(r);
+	}
+	int solve() {
 		int res = 0;
-		bool flag = true;
-		fill(p.begin(), p.end(), -1);
-		fill(q.begin(), q.end(), -1);
+		fill(left_match.begin(), left_match.end(), -1);
+		fill(right_match.begin(), right_match.end(), -1);
 		fill(used.begin(), used.end(), false);
-		while (flag) {
-			flag = false;
-			for (int i = 0; i < N; ++i) {
-				if (p[i] == -1 && dfs(i)) {
-					flag = true;
+		for (bool update = true; update;) {
+			update = false;
+			for (size_t i = 0; i < left; ++i) {
+				if (left_match[i] == -1 && dfs(i)) {
+					update = true;
 					++res;
 				}
 			}
-			if (flag) {
+			if (update) {
 				fill(used.begin(), used.end(), false);
+			}
+		}
+		return res;
+	}
+	vector<pair<int, int>> edges() const {
+		vector<pair<int, int>> res;
+		for (size_t i = 0; i < left; ++i) {
+			if (left_match[i] != -1) {
+				res.emplace_back(i, left_match[i]);
 			}
 		}
 		return res;
