@@ -1,4 +1,8 @@
-// description : 累積和
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> class CulSum {
 	size_t n;
 	vector<T> s;
