@@ -1,4 +1,9 @@
-// description : グラフ理論テンプレート
+#pragma once
+#include <limits>
+#include <vector>
+#include <iostream>
+using namespace std;
+
 using Weight = long long;
 constexpr Weight INF = numeric_limits<Weight>::max();
 struct Edge {

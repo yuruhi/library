@@ -1,4 +1,12 @@
-// description : 木の直径とそのパスを求める
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <functional>
+using namespace std;
+
 tuple<Weight, vector<int>> DiameterPath(const Graph& g) {
 	int n = g.size();
 	vector<Weight> dist0(n);

@@ -1,5 +1,7 @@
 # library
 
+[![Actions Status](https://github.com/yuruhi/library/workflows/verify/badge.svg)](https://github.com/yuruhi/library/actions)
+
 競技プログラミングで使うライブラリ集です
 
 ## [DP](https://github.com/yuruhi/library/tree/master/DP)

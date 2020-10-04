@@ -1,4 +1,7 @@
-// description : UnionFind木
+#include <vector>
+#include <utility>
+using namespace std;
+
 class UnionFind {
 	vector<int> d;
 	int cnt;
