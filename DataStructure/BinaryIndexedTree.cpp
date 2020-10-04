@@ -1,4 +1,7 @@
-// description : BinaryIndexedTree
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> class BinaryIndexedTree {
 	int n, n2;
 	vector<T> a;
