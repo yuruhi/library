@@ -4,7 +4,7 @@
 
 [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://yuruhi.github.io/library/)
 
-競技プログラミングで使うライブラリ集です
+競技プログラミングで使うライブラリ集
 
 ## [DP](https://github.com/yuruhi/library/tree/master/DP)
 

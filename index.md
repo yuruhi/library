@@ -225,7 +225,7 @@ data:
     - icon: ':warning:'
       path: String/RollingHash.cpp
       title: String/RollingHash.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/ZAlgorithm.cpp
       title: String/ZAlgorithm.cpp
   - name: Utility
@@ -355,7 +355,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/WeightedUnionFind.test..cpp
       title: test/WeightedUnionFind.test..cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ZAlgotihm.test.cpp
       title: test/ZAlgotihm.test.cpp
     - icon: ':heavy_check_mark:'

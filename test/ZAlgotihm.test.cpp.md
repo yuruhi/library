@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/ZAlgorithm.cpp
     title: String/ZAlgorithm.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -16,7 +16,7 @@ data:
   bundledCode: "#line 1 \"test/ZAlgotihm.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\
     \n#line 2 \"String/ZAlgorithm.cpp\"\n#include <vector>\nusing namespace std;\n\
     \ntemplate <class T> vector<int> ZAlgorithm(const T& s) {\n\tif (s.size() == 0)\
-    \ {\n\t\treturn {}\n\t}\n\tint n = s.size(), i = 1, j = 0;\n\tvector<int> res(n);\n\
+    \ {\n\t\treturn {};\n\t}\n\tint n = s.size(), i = 1, j = 0;\n\tvector<int> res(n);\n\
     \tres[0] = n;\n\twhile (i < n) {\n\t\twhile (i + j < n && s[j] == s[i + j])\n\t\
     \t\tj++;\n\t\tres[i] = j;\n\t\tif (j == 0) {\n\t\t\ti++;\n\t\t\tcontinue;\n\t\t\
     }\n\t\tint k = 1;\n\t\twhile (i + k < n && k + res[k] < j) {\n\t\t\tres[i + k]\
@@ -36,8 +36,8 @@ data:
   isVerificationFile: true
   path: test/ZAlgotihm.test.cpp
   requiredBy: []
-  timestamp: '2020-10-04 17:51:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-04 18:22:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ZAlgotihm.test.cpp
 layout: document
