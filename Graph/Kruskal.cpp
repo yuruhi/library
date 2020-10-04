@@ -1,4 +1,9 @@
-// description : クラスカル法 O(E log V)
+#pragma once
+#include "./GraphTemplate.cpp"
+#include "./../DataStructure/UnionFind.cpp"
+#include <algorithm>
+using namespace std;
+
 Weight Kruskal(int V, Edges& graph) {
 	sort(graph.begin(), graph.end(), [](const Edge2& e1, const Edge2& e2) {
 		return e1.cost < e2.cost;

@@ -1,4 +1,8 @@
-// description : Ford-Fulkerson法 O(EF)
+#pragma once
+#include "./FlowTemplate.cpp"
+#include <vector>
+using namespace std;
+
 class FordFulkerson {
 	int V;
 	GraphF G;
@@ -24,11 +28,11 @@ public:
 	const GraphF& get_G() {
 		return G;
 	}
-	void add(int from, int to, FLOW cap) {
+	void add_edge(int from, int to, FLOW cap) {
 		G[from].emplace_back(to, G[to].size(), cap);
 		G[to].emplace_back(from, G[from].size() - 1, 0);
 	}
-	FLOW operator()(int s, int t) {
+	FLOW solve(int s, int t) {
 		FLOW res = 0;
 		while (true) {
 			fill(used.begin(), used.end(), false);

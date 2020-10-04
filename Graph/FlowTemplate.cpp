@@ -1,4 +1,8 @@
-// description : フローテンプレート
+#pragma once
+#include <vector>
+#include <limits>
+using namespace std;
+
 using FLOW = long long;
 constexpr FLOW INF_FLOW = numeric_limits<FLOW>::max();
 struct EdgeF {

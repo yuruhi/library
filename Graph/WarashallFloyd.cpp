@@ -1,4 +1,6 @@
-// description : ワーシャルフロイド法 O(V^3)
+#pragma once
+#include "./GraphTemplate.cpp"
+
 bool WarashallFloyd(Matrix& dist, Weight INF_ = INF) {
 	int V = dist.size();
 	for (int i = 0; i < V; ++i)

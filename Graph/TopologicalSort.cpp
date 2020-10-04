@@ -1,4 +1,9 @@
-// description : トポロジカルソート O(V + E)
+#pragma once
+#include <vector>
+#include <functional>
+#include <algorithm>
+using namespace std;
+
 vector<int> TopologicalSort(const vector<vector<int>>& graph) {
 	int V = graph.size();
 	vector<bool> visited(V);

@@ -1,4 +1,10 @@
-// description : 最小共通祖先（ダブリング）
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <utility>
+#include <cmath>
+using namespace std;
+
 class LCA {
 	const int V, LOG;
 	vector<int> dist;
