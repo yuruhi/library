@@ -1,4 +1,9 @@
-// description : ダイクストラ法 O(E log V)
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <queue>
+using namespace std;
+
 vector<Weight> Dijkstra(const Graph& graph, int s) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);

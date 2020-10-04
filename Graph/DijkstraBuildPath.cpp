@@ -1,5 +1,12 @@
-// description : ダイクストラ法　最短パスを構築
-pair<vector<Weight>, vector<int>> Dijkstra(const Graph& graph, int s) {
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <queue>
+using namespace std;
+
+pair<vector<Weight>, vector<int>> DijkstraBuildPrev(const Graph& graph, int s) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);
 	dist[s] = 0;
