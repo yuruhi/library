@@ -1,0 +1,81 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"Math/Matrix.cpp\"\n// description : \u884C\u5217\ntemplate\
+    \ <class T> struct Matrix {\n\tsize_t h, w;\n\tvector<vector<T>> A;\n\npublic:\n\
+    \tstatic Matrix I(size_t n) {\n\t\tMatrix A(n);\n\t\tfor (size_t i = 0; i < n;\
+    \ ++i) {\n\t\t\tA[i][i] = 1;\n\t\t}\n\t\treturn A;\n\t}\n\tMatrix() {}\n\tMatrix(size_t\
+    \ _h, size_t _w) : h(_h), w(_w), A(h, vector<T>(w, 0)) {}\n\tMatrix(size_t _h)\
+    \ : h(_h), w(_h), A(h, vector<T>(w, 0)){};\n\tMatrix(const vector<vector<T>>&\
+    \ _A) : h(_A.size()), w(_A[0].size()), A(_A) {}\n\tsize_t height() const {\n\t\
+    \treturn h;\n\t}\n\tsize_t width() const {\n\t\treturn w;\n\t}\n\tconst vector<T>&\
+    \ operator[](int i) const {\n\t\treturn A[i];\n\t}\n\tvector<T>& operator[](int\
+    \ i) {\n\t\treturn A[i];\n\t}\n\tconst vector<vector<T>>& operator*() const {\n\
+    \t\treturn A;\n\t}\n\tMatrix& operator+=(const Matrix& B) {\n\t\tassert(h == B.height()\
+    \ && w == B.width());\n\t\tfor (size_t i = 0; i < h; ++i) {\n\t\t\tfor (size_t\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tA[i][j] += B[i][j];\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n\tMatrix& operator-=(const Matrix& B) {\n\t\tassert(h == B.height()\
+    \ && w == B.width());\n\t\tfor (size_t i = 0; i < h; ++i) {\n\t\t\tfor (size_t\
+    \ j = 0; j < w; ++j) {\n\t\t\t\tA[i][j] -= B[i][j];\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n\tMatrix& operator*=(const Matrix& B) {\n\t\tsize_t n = B.width();\n\
+    \t\tassert(w == B.height());\n\t\tvector<vector<T>> C(h, vector<T>(n, 0));\n\t\
+    \tfor (size_t i = 0; i < h; i++) {\n\t\t\tfor (size_t j = 0; j < n; j++) {\n\t\
+    \t\t\tfor (size_t k = 0; k < w; k++) {\n\t\t\t\t\tC[i][j] += A[i][k] * B[k][j];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tA.swap(C);\n\t\treturn *this;\n\t}\n\tMatrix& operator^=(long\
+    \ long k) {\n\t\tMatrix B = Matrix::I(h);\n\t\twhile (k > 0) {\n\t\t\tif (k &\
+    \ 1) {\n\t\t\t\tB *= *this;\n\t\t\t}\n\t\t\t*this *= *this;\n\t\t\tk >>= 1;\n\t\
+    \t}\n\t\tA.swap(B.A);\n\t\treturn *this;\n\t}\n\tMatrix operator+(const Matrix&\
+    \ B) const {\n\t\treturn Matrix(*this) += B;\n\t}\n\tMatrix operator-(const Matrix&\
+    \ B) const {\n\t\treturn Matrix(*this) -= B;\n\t}\n\tMatrix operator*(const Matrix&\
+    \ B) const {\n\t\treturn Matrix(*this) *= B;\n\t}\n\tMatrix operator^(const long\
+    \ long k) const {\n\t\treturn Matrix(*this) ^= k;\n\t}\n\tMatrix pow(long long\
+    \ k) const {\n\t\treturn *this ^ k;\n\t}\n};\n"
+  code: "// description : \u884C\u5217\ntemplate <class T> struct Matrix {\n\tsize_t\
+    \ h, w;\n\tvector<vector<T>> A;\n\npublic:\n\tstatic Matrix I(size_t n) {\n\t\t\
+    Matrix A(n);\n\t\tfor (size_t i = 0; i < n; ++i) {\n\t\t\tA[i][i] = 1;\n\t\t}\n\
+    \t\treturn A;\n\t}\n\tMatrix() {}\n\tMatrix(size_t _h, size_t _w) : h(_h), w(_w),\
+    \ A(h, vector<T>(w, 0)) {}\n\tMatrix(size_t _h) : h(_h), w(_h), A(h, vector<T>(w,\
+    \ 0)){};\n\tMatrix(const vector<vector<T>>& _A) : h(_A.size()), w(_A[0].size()),\
+    \ A(_A) {}\n\tsize_t height() const {\n\t\treturn h;\n\t}\n\tsize_t width() const\
+    \ {\n\t\treturn w;\n\t}\n\tconst vector<T>& operator[](int i) const {\n\t\treturn\
+    \ A[i];\n\t}\n\tvector<T>& operator[](int i) {\n\t\treturn A[i];\n\t}\n\tconst\
+    \ vector<vector<T>>& operator*() const {\n\t\treturn A;\n\t}\n\tMatrix& operator+=(const\
+    \ Matrix& B) {\n\t\tassert(h == B.height() && w == B.width());\n\t\tfor (size_t\
+    \ i = 0; i < h; ++i) {\n\t\t\tfor (size_t j = 0; j < w; ++j) {\n\t\t\t\tA[i][j]\
+    \ += B[i][j];\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\tMatrix& operator-=(const\
+    \ Matrix& B) {\n\t\tassert(h == B.height() && w == B.width());\n\t\tfor (size_t\
+    \ i = 0; i < h; ++i) {\n\t\t\tfor (size_t j = 0; j < w; ++j) {\n\t\t\t\tA[i][j]\
+    \ -= B[i][j];\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\tMatrix& operator*=(const\
+    \ Matrix& B) {\n\t\tsize_t n = B.width();\n\t\tassert(w == B.height());\n\t\t\
+    vector<vector<T>> C(h, vector<T>(n, 0));\n\t\tfor (size_t i = 0; i < h; i++) {\n\
+    \t\t\tfor (size_t j = 0; j < n; j++) {\n\t\t\t\tfor (size_t k = 0; k < w; k++)\
+    \ {\n\t\t\t\t\tC[i][j] += A[i][k] * B[k][j];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t\
+    A.swap(C);\n\t\treturn *this;\n\t}\n\tMatrix& operator^=(long long k) {\n\t\t\
+    Matrix B = Matrix::I(h);\n\t\twhile (k > 0) {\n\t\t\tif (k & 1) {\n\t\t\t\tB *=\
+    \ *this;\n\t\t\t}\n\t\t\t*this *= *this;\n\t\t\tk >>= 1;\n\t\t}\n\t\tA.swap(B.A);\n\
+    \t\treturn *this;\n\t}\n\tMatrix operator+(const Matrix& B) const {\n\t\treturn\
+    \ Matrix(*this) += B;\n\t}\n\tMatrix operator-(const Matrix& B) const {\n\t\t\
+    return Matrix(*this) -= B;\n\t}\n\tMatrix operator*(const Matrix& B) const {\n\
+    \t\treturn Matrix(*this) *= B;\n\t}\n\tMatrix operator^(const long long k) const\
+    \ {\n\t\treturn Matrix(*this) ^= k;\n\t}\n\tMatrix pow(long long k) const {\n\t\
+    \treturn *this ^ k;\n\t}\n};"
+  dependsOn: []
+  isVerificationFile: false
+  path: Math/Matrix.cpp
+  requiredBy: []
+  timestamp: '2020-07-05 19:18:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Math/Matrix.cpp
+layout: document
+redirect_from:
+- /library/Math/Matrix.cpp
+- /library/Math/Matrix.cpp.html
+title: Math/Matrix.cpp
+---

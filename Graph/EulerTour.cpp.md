@@ -1,0 +1,52 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"Graph/EulerTour.cpp\"\n// description : [l[i], r[i]] : i\
+    \ \u306E\u90E8\u5206\u6728\nclass EulerTour {\n\tvector<vector<int>> g;\n\tvector<int>\
+    \ ls, rs;\n\tint pos = 0;\n\tbool flag = false;\n\tvoid dfs(int v, int p = -1)\
+    \ {\n\t\tls[v] = pos++;\n\t\tfor (int u : g[v])\n\t\t\tif (u != p) {\n\t\t\t\t\
+    dfs(u, v);\n\t\t\t}\n\t\trs[v] = pos++;\n\t}\n\npublic:\n\tEulerTour(int n) :\
+    \ g(n), ls(n), rs(n) {}\n\tEulerTour(const vector<vector<int>>& _g) : g(_g), ls(g.size()),\
+    \ rs(g.size()) {}\n\tvoid add_edge(int u, int v) {\n\t\tg[u].push_back(v);\n\t\
+    \tg[v].push_back(u);\n\t}\n\tvoid build(int root = 0) {\n\t\tflag = true;\n\t\t\
+    pos = 0;\n\t\tdfs(root);\n\t}\n\tint size() const {\n\t\tassert(flag);\n\t\treturn\
+    \ pos;\n\t}\n\tint l(int i) const {\n\t\tassert(flag);\n\t\treturn ls[i];\n\t\
+    }\n\tint r(int i) const {\n\t\tassert(flag);\n\t\treturn rs[i];\n\t}\n\tpair<int,\
+    \ int> operator()(int i) {\n\t\tassert(flag);\n\t\treturn make_pair(ls[i], rs[i]);\n\
+    \t}\n\tint operator[](int i) {\n\t\tassert(flag);\n\t\treturn ls[i];\n\t}\n\t\
+    template <class T> auto call(int v, function<T(int, int)>&& f) {\n\t\tassert(flag);\n\
+    \t\treturn f(ls[v], rs[v]);\n\t}\n};\n"
+  code: "// description : [l[i], r[i]] : i \u306E\u90E8\u5206\u6728\nclass EulerTour\
+    \ {\n\tvector<vector<int>> g;\n\tvector<int> ls, rs;\n\tint pos = 0;\n\tbool flag\
+    \ = false;\n\tvoid dfs(int v, int p = -1) {\n\t\tls[v] = pos++;\n\t\tfor (int\
+    \ u : g[v])\n\t\t\tif (u != p) {\n\t\t\t\tdfs(u, v);\n\t\t\t}\n\t\trs[v] = pos++;\n\
+    \t}\n\npublic:\n\tEulerTour(int n) : g(n), ls(n), rs(n) {}\n\tEulerTour(const\
+    \ vector<vector<int>>& _g) : g(_g), ls(g.size()), rs(g.size()) {}\n\tvoid add_edge(int\
+    \ u, int v) {\n\t\tg[u].push_back(v);\n\t\tg[v].push_back(u);\n\t}\n\tvoid build(int\
+    \ root = 0) {\n\t\tflag = true;\n\t\tpos = 0;\n\t\tdfs(root);\n\t}\n\tint size()\
+    \ const {\n\t\tassert(flag);\n\t\treturn pos;\n\t}\n\tint l(int i) const {\n\t\
+    \tassert(flag);\n\t\treturn ls[i];\n\t}\n\tint r(int i) const {\n\t\tassert(flag);\n\
+    \t\treturn rs[i];\n\t}\n\tpair<int, int> operator()(int i) {\n\t\tassert(flag);\n\
+    \t\treturn make_pair(ls[i], rs[i]);\n\t}\n\tint operator[](int i) {\n\t\tassert(flag);\n\
+    \t\treturn ls[i];\n\t}\n\ttemplate <class T> auto call(int v, function<T(int,\
+    \ int)>&& f) {\n\t\tassert(flag);\n\t\treturn f(ls[v], rs[v]);\n\t}\n};"
+  dependsOn: []
+  isVerificationFile: false
+  path: Graph/EulerTour.cpp
+  requiredBy: []
+  timestamp: '2020-09-20 10:56:52+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Graph/EulerTour.cpp
+layout: document
+redirect_from:
+- /library/Graph/EulerTour.cpp
+- /library/Graph/EulerTour.cpp.html
+title: Graph/EulerTour.cpp
+---
