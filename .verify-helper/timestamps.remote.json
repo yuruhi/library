@@ -16,6 +16,7 @@
 "test/UnionFind.test.cpp": "2020-10-04 13:14:27 +0900",
 "test/WarashallFloyd.test.cpp": "2020-10-04 14:21:55 +0900",
 "test/WeightedUnionFind.test..cpp": "2020-10-04 16:56:02 +0900",
+"test/ZAlgotihm.test.cpp": "2020-10-04 18:22:02 +0900",
 "test/extGcd.test.cpp": "2020-10-04 16:56:02 +0900",
 "test/modint_pow.test.cpp": "2020-10-04 16:56:02 +0900"
 }
