@@ -4,7 +4,7 @@ using namespace std;
 
 template <class T> vector<int> ZAlgorithm(const T& s) {
 	if (s.size() == 0) {
-		return {}
+		return {};
 	}
 	int n = s.size(), i = 1, j = 0;
 	vector<int> res(n);
