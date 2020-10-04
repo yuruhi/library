@@ -1,4 +1,8 @@
-// description : modint
+#include <iostream>
+#include <vector>
+#include <utility>
+using namespace std;
+
 template <int MOD> struct modint {
 	using T = long long;
 	T n;

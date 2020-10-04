@@ -1,10 +1,14 @@
-// description : 重み付きUnionFind木
-template <class T> class UnionFind {
+#pragma once
+#include <vector>
+#include <utility>
+using namespace std;
+
+template <class T> class WeightedUnionFind {
 	vector<int> par, rank;
 	vector<T> weight_;
 
 public:
-	UnionFind(int n) : par(n), rank(n, 0), weight_(n, 0) {
+	WeightedUnionFind(int n) : par(n), rank(n, 0), weight_(n, 0) {
 		for (int i = 0; i < n; ++i)
 			par[i] = i;
 	}

@@ -1,4 +1,5 @@
-// description : ax + by = c の整数解
+#pragma once
+
 template <class T> T extGcd(T a, T b, T& x, T& y) {
 	T d = a;
 	if (b != 0) {
