@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/RAQRminQ.test.cpp
+    title: test/RAQRminQ.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/RAQRminQ.cpp\"\n#include <vector>\n#include\
@@ -26,15 +29,15 @@ data:
     \ / 2, r);\n\t\t\treturn min(vl, vr);\n\t\t}\n\t}\n\npublic:\n\tRAQRmQ(const vector<T>&\
     \ vec, const T& _init) : init(_init) {\n\t\tbuild(vec);\n\t}\n\tvoid build(const\
     \ vector<T>& v) {\n\t\tn = ceil2(v.size());\n\t\tnode.assign(n * 2, init);\n\t\
-    \tlazy.assign(n * 2, 0);\n\t\tfor (int i = 0; i < v.size(); ++i) {\n\t\t\tnode[i\
-    \ + n] = v[i];\n\t\t}\n\t\tfor (int i = n - 1; i > 0; --i) {\n\t\t\tnode[i] =\
-    \ min(node[i * 2 + 0], node[i * 2 + 1]);\n\t\t}\n\t}\n\tvoid add(int l, int r,\
-    \ const T& x) {\n\t\tadd_impl(l, r, x, 1, 0, n);\n\t}\n\tT operator[](int i) {\n\
-    \t\tassert(0 <= i && i < n);\n\t\treturn operator()(i, i + 1);\n\t}\n\tT operator()(int\
-    \ l, int r) {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\treturn query_impl(l,\
-    \ r, 1, 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\t\tfor (int\
-    \ i = 0; i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\
-    \t}\n};\n"
+    \tlazy.assign(n * 2, 0);\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\t\
+    node[i + n] = v[i];\n\t\t}\n\t\tfor (int i = n - 1; i > 0; --i) {\n\t\t\tnode[i]\
+    \ = min(node[i * 2 + 0], node[i * 2 + 1]);\n\t\t}\n\t}\n\tvoid add(int l, int\
+    \ r, const T& x) {\n\t\tadd_impl(l, r, x, 1, 0, n);\n\t}\n\tT operator[](int i)\
+    \ {\n\t\tassert(0 <= i && i < n);\n\t\treturn operator()(i, i + 1);\n\t}\n\tT\
+    \ operator()(int l, int r) {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\treturn\
+    \ query_impl(l, r, 1, 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\
+    \t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\t\
+    return res;\n\t}\n};\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n#include <cassert>\n\
     using namespace std;\n\ntemplate <class T> class RAQRmQ {\n\tint n;\n\tT init;\n\
     \tvector<T> node, lazy;\n\tstatic int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile\
@@ -53,10 +56,10 @@ data:
     \ vr = query_impl(a, b, 2 * k + 1, (l + r) / 2, r);\n\t\t\treturn min(vl, vr);\n\
     \t\t}\n\t}\n\npublic:\n\tRAQRmQ(const vector<T>& vec, const T& _init) : init(_init)\
     \ {\n\t\tbuild(vec);\n\t}\n\tvoid build(const vector<T>& v) {\n\t\tn = ceil2(v.size());\n\
-    \t\tnode.assign(n * 2, init);\n\t\tlazy.assign(n * 2, 0);\n\t\tfor (int i = 0;\
-    \ i < v.size(); ++i) {\n\t\t\tnode[i + n] = v[i];\n\t\t}\n\t\tfor (int i = n -\
-    \ 1; i > 0; --i) {\n\t\t\tnode[i] = min(node[i * 2 + 0], node[i * 2 + 1]);\n\t\
-    \t}\n\t}\n\tvoid add(int l, int r, const T& x) {\n\t\tadd_impl(l, r, x, 1, 0,\
+    \t\tnode.assign(n * 2, init);\n\t\tlazy.assign(n * 2, 0);\n\t\tfor (size_t i =\
+    \ 0; i < v.size(); ++i) {\n\t\t\tnode[i + n] = v[i];\n\t\t}\n\t\tfor (int i =\
+    \ n - 1; i > 0; --i) {\n\t\t\tnode[i] = min(node[i * 2 + 0], node[i * 2 + 1]);\n\
+    \t\t}\n\t}\n\tvoid add(int l, int r, const T& x) {\n\t\tadd_impl(l, r, x, 1, 0,\
     \ n);\n\t}\n\tT operator[](int i) {\n\t\tassert(0 <= i && i < n);\n\t\treturn\
     \ operator()(i, i + 1);\n\t}\n\tT operator()(int l, int r) {\n\t\tassert(0 <=\
     \ l && l < r && r <= n);\n\t\treturn query_impl(l, r, 1, 0, n);\n\t}\n\tvector<T>\
@@ -66,9 +69,10 @@ data:
   isVerificationFile: false
   path: DataStructure/RAQRminQ.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-10-06 22:30:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/RAQRminQ.test.cpp
 documentation_of: DataStructure/RAQRminQ.cpp
 layout: document
 redirect_from:

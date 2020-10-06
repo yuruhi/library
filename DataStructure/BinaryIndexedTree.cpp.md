@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Math/Inversion.cpp
+    title: Math/Inversion.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/BinaryIndexedTree.test.cpp
     title: test/BinaryIndexedTree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Inversion.test.cpp
+    title: test/Inversion.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -13,7 +19,7 @@ data:
   bundledCode: "#line 1 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class BinaryIndexedTree\
     \ {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int n_) : n(n_),\
-    \ a(n_ + 1), n2(1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2 /= 2;\n\t}\n\t\
+    \ n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2 /= 2;\n\t}\n\t\
     T operator()(int i) const {  // [0, i]\n\t\tassert(0 < ++i);\n\t\tT res = 0;\n\
     \t\tfor (; i > 0; i -= i & -i)\n\t\t\tres += a[i];\n\t\treturn res;\n\t}\n\tT\
     \ operator()(int i, int j) const {  // [i, j]\n\t\treturn operator()(j) - (i ?\
@@ -27,7 +33,7 @@ data:
     \ i);\n\t\treturn res;\n\t}\n};\n"
   code: "#include <vector>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> class BinaryIndexedTree {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int\
-    \ n_) : n(n_), a(n_ + 1), n2(1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2\
+    \ n_) : n(n_), n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2\
     \ /= 2;\n\t}\n\tT operator()(int i) const {  // [0, i]\n\t\tassert(0 < ++i);\n\
     \t\tT res = 0;\n\t\tfor (; i > 0; i -= i & -i)\n\t\t\tres += a[i];\n\t\treturn\
     \ res;\n\t}\n\tT operator()(int i, int j) const {  // [i, j]\n\t\treturn operator()(j)\
@@ -42,11 +48,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/BinaryIndexedTree.cpp
-  requiredBy: []
-  timestamp: '2020-10-04 11:19:16+09:00'
+  requiredBy:
+  - Math/Inversion.cpp
+  timestamp: '2020-10-06 22:30:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BinaryIndexedTree.test.cpp
+  - test/Inversion.test.cpp
 documentation_of: DataStructure/BinaryIndexedTree.cpp
 layout: document
 redirect_from:

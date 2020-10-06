@@ -26,22 +26,25 @@ data:
     - icon: ':warning:'
       path: DataStructure/RAQRMaxQ.cpp
       title: DataStructure/RAQRMaxQ.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RAQRSQ.cpp
       title: DataStructure/RAQRSQ.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RAQRminQ.cpp
       title: DataStructure/RAQRminQ.cpp
     - icon: ':warning:'
       path: DataStructure/RAUQRSQ.cpp
       title: DataStructure/RAUQRSQ.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
+      path: DataStructure/RUQRSQ.cpp
+      title: DataStructure/RUQRSQ.cpp
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RUQRminQ.cpp
       title: DataStructure/RUQRminQ.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RangeAddQuery.cpp
       title: DataStructure/RangeAddQuery.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RangeUpdateQuery.cpp
       title: DataStructure/RangeUpdateQuery.cpp
     - icon: ':warning:'
@@ -78,9 +81,9 @@ data:
     - icon: ':warning:'
       path: Graph/BuildTreePathEdge.cpp
       title: Graph/BuildTreePathEdge.cpp
-    - icon: ':warning:'
-      path: Graph/ConnectedComponet.cpp
-      title: Graph/ConnectedComponet.cpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/ConnectedComponent.cpp
+      title: Graph/ConnectedComponent.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/Diameter.cpp
       title: Graph/Diameter.cpp
@@ -173,10 +176,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Euler.cpp
       title: Math/Euler.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Fibonacci.cpp
       title: Math/Fibonacci.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Inversion.cpp
       title: Math/Inversion.cpp
     - icon: ':warning:'
@@ -222,7 +225,7 @@ data:
       title: Serch/GridBFS.cpp
   - name: String
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: String/RollingHash.cpp
       title: String/RollingHash.cpp
     - icon: ':heavy_check_mark:'
@@ -337,6 +340,9 @@ data:
       path: test/BipartiteMatching.test.cpp
       title: test/BipartiteMatching.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/ConnectedComponent.test.cpp
+      title: test/ConnectedComponent.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/CulSum.test.cpp
       title: test/CulSum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -355,8 +361,14 @@ data:
       path: test/Euler.test.cpp
       title: test/Euler.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Fibonacci.test.cpp
+      title: test/Fibonacci.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Inversion.test.cpp
+      title: test/Inversion.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Kruskal.test.cpp
       title: test/Kruskal.test.cpp
@@ -366,6 +378,27 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/PrimeFactor.test.cpp
       title: test/PrimeFactor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RAQRSQ.test.cpp
+      title: test/RAQRSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RAQRminQ.test.cpp
+      title: test/RAQRminQ.test.cpp
+    - icon: ':x:'
+      path: test/RUQRSQ.test.cpp
+      title: test/RUQRSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RUQRmQ.test.cpp
+      title: test/RUQRmQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeAddQuery.test.cpp
+      title: test/RangeAddQuery.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeUpdateQuery.test.cpp
+      title: test/RangeUpdateQuery.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RollingHash.test.cpp
+      title: test/RollingHash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp

@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/RAQRSQ.test.cpp
+    title: test/RAQRSQ.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/RAQRSQ.cpp\"\n#include <vector>\n#include\
@@ -67,8 +70,9 @@ data:
   path: DataStructure/RAQRSQ.cpp
   requiredBy: []
   timestamp: '2020-10-06 16:32:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/RAQRSQ.test.cpp
 documentation_of: DataStructure/RAQRSQ.cpp
 layout: document
 redirect_from:

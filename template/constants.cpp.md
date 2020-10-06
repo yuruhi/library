@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
@@ -10,6 +13,8 @@ data:
   bundledCode: '#line 2 "template/constants.cpp"
 
     #include <vector>
+
+    #include <string>
 
     #include <utility>
 
@@ -82,6 +87,8 @@ data:
 
     #include <vector>
 
+    #include <string>
+
     #include <utility>
 
     #include <queue>
@@ -150,8 +157,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: template/constants.cpp
-  requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  requiredBy:
+  - template/template.cpp
+  timestamp: '2020-10-06 18:41:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/constants.cpp

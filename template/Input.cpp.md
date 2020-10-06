@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
@@ -130,7 +133,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: template/Input.cpp
-  requiredBy: []
+  requiredBy:
+  - template/template.cpp
   timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

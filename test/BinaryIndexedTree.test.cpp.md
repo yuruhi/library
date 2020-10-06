@@ -17,7 +17,7 @@ data:
     \n#include <iostream>\n#line 1 \"DataStructure/BinaryIndexedTree.cpp\"\n#include\
     \ <vector>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> class\
     \ BinaryIndexedTree {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int\
-    \ n_) : n(n_), a(n_ + 1), n2(1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2\
+    \ n_) : n(n_), n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2\
     \ /= 2;\n\t}\n\tT operator()(int i) const {  // [0, i]\n\t\tassert(0 < ++i);\n\
     \t\tT res = 0;\n\t\tfor (; i > 0; i -= i & -i)\n\t\t\tres += a[i];\n\t\treturn\
     \ res;\n\t}\n\tT operator()(int i, int j) const {  // [i, j]\n\t\treturn operator()(j)\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/BinaryIndexedTree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-04 11:19:16+09:00'
+  timestamp: '2020-10-06 22:30:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/BinaryIndexedTree.test.cpp
