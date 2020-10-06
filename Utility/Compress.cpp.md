@@ -7,26 +7,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Utility/Compress.cpp\"\n// description : \u5EA7\u6A19\u5727\
-    \u7E2E\ntemplate <class T> class Compress {\n\tvector<T> v;\n\tbool flag = false;\n\
-    \npublic:\n\tCompress() {}\n\ttemplate <class U> Compress(const U& a) {\n\t\t\
-    add(a);\n\t}\n\tCompress& add(const T& a) {\n\t\tflag = false;\n\t\tv.push_back(a);\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class U> Compress& add(const vector<U>& a)\
-    \ {\n\t\tflag = false;\n\t\tfor (const auto& i : a)\n\t\t\tadd(i);\n\t\treturn\
-    \ *this;\n\t}\n\ttemplate <class U> Compress& add(const initializer_list<U>& a)\
-    \ {\n\t\tflag = false;\n\t\tfor (const auto& v : a)\n\t\t\tadd(v);\n\t\treturn\
-    \ *this;\n\t}\n\ttemplate <class U> Compress& operator<<(const U& a) {\n\t\tadd(a);\n\
-    \t\treturn *this;\n\t}\n\tvoid build() {\n\t\tsort(v.begin(), v.end());\n\t\t\
-    v.erase(unique(v.begin(), v.end()), v.end());\n\t\tflag = true;\n\t}\n\tint operator()(const\
-    \ T& x) const {\n\t\tassert(flag);\n\t\treturn lower_bound(v.begin(), v.end(),\
-    \ x) - v.begin();\n\t}\n\tvector<int> operator()(const vector<T>& x) const {\n\
-    \t\tassert(flag);\n\t\tvector<int> res;\n\t\tres.reserve(x.size());\n\t\tfor (const\
-    \ T& i : x)\n\t\t\tres.push_back(lower_bound(v.begin(), v.end(), i) - v.begin());\n\
-    \t\treturn res;\n\t}\n\tint size() const {\n\t\tassert(flag);\n\t\treturn v.size();\n\
-    \t}\n\tconst vector<T>& operator*() const {\n\t\tassert(flag);\n\t\treturn v;\n\
-    \t}\n\tconst T& operator[](int i) const {\n\t\tassert(flag);\n\t\treturn v[i];\n\
-    \t}\n};\n"
-  code: "// description : \u5EA7\u6A19\u5727\u7E2E\ntemplate <class T> class Compress\
+  bundledCode: "#line 2 \"Utility/Compress.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class Compress\
     \ {\n\tvector<T> v;\n\tbool flag = false;\n\npublic:\n\tCompress() {}\n\ttemplate\
     \ <class U> Compress(const U& a) {\n\t\tadd(a);\n\t}\n\tCompress& add(const T&\
     \ a) {\n\t\tflag = false;\n\t\tv.push_back(a);\n\t\treturn *this;\n\t}\n\ttemplate\
@@ -43,12 +25,31 @@ data:
     \ v.end(), i) - v.begin());\n\t\treturn res;\n\t}\n\tint size() const {\n\t\t\
     assert(flag);\n\t\treturn v.size();\n\t}\n\tconst vector<T>& operator*() const\
     \ {\n\t\tassert(flag);\n\t\treturn v;\n\t}\n\tconst T& operator[](int i) const\
-    \ {\n\t\tassert(flag);\n\t\treturn v[i];\n\t}\n};"
+    \ {\n\t\tassert(flag);\n\t\treturn v[i];\n\t}\n};\n"
+  code: "#pragma once\n#include <vector>\n#include <algorithm>\n#include <cassert>\n\
+    using namespace std;\n\ntemplate <class T> class Compress {\n\tvector<T> v;\n\t\
+    bool flag = false;\n\npublic:\n\tCompress() {}\n\ttemplate <class U> Compress(const\
+    \ U& a) {\n\t\tadd(a);\n\t}\n\tCompress& add(const T& a) {\n\t\tflag = false;\n\
+    \t\tv.push_back(a);\n\t\treturn *this;\n\t}\n\ttemplate <class U> Compress& add(const\
+    \ vector<U>& a) {\n\t\tflag = false;\n\t\tfor (const auto& i : a)\n\t\t\tadd(i);\n\
+    \t\treturn *this;\n\t}\n\ttemplate <class U> Compress& add(const initializer_list<U>&\
+    \ a) {\n\t\tflag = false;\n\t\tfor (const auto& v : a)\n\t\t\tadd(v);\n\t\treturn\
+    \ *this;\n\t}\n\ttemplate <class U> Compress& operator<<(const U& a) {\n\t\tadd(a);\n\
+    \t\treturn *this;\n\t}\n\tvoid build() {\n\t\tsort(v.begin(), v.end());\n\t\t\
+    v.erase(unique(v.begin(), v.end()), v.end());\n\t\tflag = true;\n\t}\n\tint operator()(const\
+    \ T& x) const {\n\t\tassert(flag);\n\t\treturn lower_bound(v.begin(), v.end(),\
+    \ x) - v.begin();\n\t}\n\tvector<int> operator()(const vector<T>& x) const {\n\
+    \t\tassert(flag);\n\t\tvector<int> res;\n\t\tres.reserve(x.size());\n\t\tfor (const\
+    \ T& i : x)\n\t\t\tres.push_back(lower_bound(v.begin(), v.end(), i) - v.begin());\n\
+    \t\treturn res;\n\t}\n\tint size() const {\n\t\tassert(flag);\n\t\treturn v.size();\n\
+    \t}\n\tconst vector<T>& operator*() const {\n\t\tassert(flag);\n\t\treturn v;\n\
+    \t}\n\tconst T& operator[](int i) const {\n\t\tassert(flag);\n\t\treturn v[i];\n\
+    \t}\n};"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Compress.cpp
   requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Compress.cpp

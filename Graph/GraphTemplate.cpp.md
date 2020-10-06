@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/BellmanFord.cpp
     title: Graph/BellmanFord.cpp
+  - icon: ':warning:'
+    path: Graph/BuildTreePath.cpp
+    title: Graph/BuildTreePath.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/Diameter.cpp
     title: Graph/Diameter.cpp
@@ -17,15 +20,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/DijkstraBuildPath.cpp
     title: Graph/DijkstraBuildPath.cpp
+  - icon: ':warning:'
+    path: Graph/DijkstraST.cpp
+    title: Graph/DijkstraST.cpp
+  - icon: ':warning:'
+    path: Graph/HasCycle.cpp
+    title: Graph/HasCycle.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/Kruskal.cpp
     title: Graph/Kruskal.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/LCA.cpp
     title: Graph/LCA.cpp
+  - icon: ':warning:'
+    path: Graph/ShortestPathTree.cpp
+    title: Graph/ShortestPathTree.cpp
+  - icon: ':warning:'
+    path: Graph/SpanningTree.cpp
+    title: Graph/SpanningTree.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/WarashallFloyd.cpp
     title: Graph/WarashallFloyd.cpp
+  - icon: ':warning:'
+    path: Graph/isConnected.cpp
+    title: Graph/isConnected.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/BellmanFord.test.cpp
@@ -88,10 +106,16 @@ data:
   path: Graph/GraphTemplate.cpp
   requiredBy:
   - Graph/BellmanFord.cpp
+  - Graph/SpanningTree.cpp
   - Graph/WarashallFloyd.cpp
   - Graph/Dijkstra.cpp
+  - Graph/ShortestPathTree.cpp
+  - Graph/DijkstraST.cpp
+  - Graph/BuildTreePath.cpp
   - Graph/DijkstraBuildPath.cpp
+  - Graph/HasCycle.cpp
   - Graph/Diameter.cpp
+  - Graph/isConnected.cpp
   - Graph/Kruskal.cpp
   - Graph/LCA.cpp
   - Graph/DiameterPath.cpp

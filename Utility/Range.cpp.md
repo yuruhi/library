@@ -1,13 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Utility/splitRange.cpp
+    title: Utility/splitRange.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Utility/Range.cpp\"\n// description : Range\ntemplate <class\
+  bundledCode: "#line 2 \"Utility/Range.cpp\"\n#include <limits>\n#include <algorithm>\n\
+    #include <iostream>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> struct Range {\n\tstatic constexpr Range nil() {\n\t\treturn {numeric_limits<T>::min(),\
     \ numeric_limits<T>::min()};\n\t}\n\tT x, y;  // [x, y]\n\tconstexpr Range() :\
     \ x(0), y(0){};\n\tconstexpr Range(T _x, T _y, bool exclude_end = false) : x(_x),\
@@ -53,8 +57,9 @@ data:
     \ Range<T> equal_range(const U& a, const Range<T>& r) {\n\tauto L = lower_bound(a.begin(),\
     \ a.end(), r.x) - a.begin();\n\tauto R = upper_bound(a.begin(), a.end(), r.y)\
     \ - a.begin();\n\treturn L == R ? Range<T>::nil() : Range<T>(L, R, true);\n}\n"
-  code: "// description : Range\ntemplate <class T> struct Range {\n\tstatic constexpr\
-    \ Range nil() {\n\t\treturn {numeric_limits<T>::min(), numeric_limits<T>::min()};\n\
+  code: "#pragma once\n#include <limits>\n#include <algorithm>\n#include <iostream>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> struct Range {\n\
+    \tstatic constexpr Range nil() {\n\t\treturn {numeric_limits<T>::min(), numeric_limits<T>::min()};\n\
     \t}\n\tT x, y;  // [x, y]\n\tconstexpr Range() : x(0), y(0){};\n\tconstexpr Range(T\
     \ _x, T _y, bool exclude_end = false) : x(_x), y(_y - exclude_end) {\n\t\tassert(x\
     \ <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end = false) :\
@@ -102,8 +107,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utility/Range.cpp
-  requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  requiredBy:
+  - Utility/splitRange.cpp
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Range.cpp

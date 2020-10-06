@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Math/Combi.cpp
+    title: Math/Combi.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/modint_pow.test.cpp
@@ -10,7 +13,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
+  bundledCode: "#line 2 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
     #include <utility>\nusing namespace std;\n\ntemplate <int MOD> struct modint {\n\
     \tusing T = long long;\n\tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD)\
     \ {\n\t\tif (n < 0) n += MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn\
@@ -46,11 +49,11 @@ data:
     \t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t}\n};\nusing mint = modint<1000000007>;\n\
     using VM = vector<mint>;\ninline mint operator\"\"_m(unsigned long long n) {\n\
     \treturn n;\n}\n"
-  code: "#include <iostream>\n#include <vector>\n#include <utility>\nusing namespace\
-    \ std;\n\ntemplate <int MOD> struct modint {\n\tusing T = long long;\n\tT n;\n\
-    \tconstexpr modint(const T x = 0) : n(x % MOD) {\n\t\tif (n < 0) n += MOD;\n\t\
-    }\n\tconstexpr int get_mod() const {\n\t\treturn MOD;\n\t}\n\tconstexpr modint\
-    \ operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr modint operator-()\
+  code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <utility>\n\
+    using namespace std;\n\ntemplate <int MOD> struct modint {\n\tusing T = long long;\n\
+    \tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD) {\n\t\tif (n < 0) n +=\
+    \ MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn MOD;\n\t}\n\tconstexpr\
+    \ modint operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr modint operator-()\
     \ const {\n\t\treturn n ? MOD - n : 0;\n\t}\n\tconstexpr modint& operator++()\
     \ {\n\t\tif (MOD <= ++n) n = 0;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator--()\
     \ {\n\t\tif (n <= 0) n = MOD;\n\t\tn--;\n\t\treturn *this;\n\t}\n\tconstexpr modint\
@@ -84,8 +87,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Math/modint.cpp
-  requiredBy: []
-  timestamp: '2020-10-04 16:56:02+09:00'
+  requiredBy:
+  - Math/Combi.cpp
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_pow.test.cpp

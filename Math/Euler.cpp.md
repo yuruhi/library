@@ -26,18 +26,18 @@ data:
     \ PrimeFactor_vector(T n) {\n\tassert(2 <= n);\n\tvector<T> res;\n\tfor (T i =\
     \ 2; i * i <= n; ++i) {\n\t\twhile (n % i == 0) {\n\t\t\tres.push_back(i);\n\t\
     \t\tn /= i;\n\t\t}\n\t}\n\tif (n != 1) {\n\t\tres.push_back(n);\n\t}\n\treturn\
-    \ res;\n}\n#line 2 \"Math/Euler.cpp\"\n\ntemplate <class T> T Euler(T x) {\n\t\
+    \ res;\n}\n#line 3 \"Math/Euler.cpp\"\n\ntemplate <class T> T Euler(T x) {\n\t\
     T res = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tres = res / p * (p - 1);\n\
     \t}\n\treturn res;\n}\n"
-  code: "#include \"./PrimeFactor.cpp\"\n\ntemplate <class T> T Euler(T x) {\n\tT\
-    \ res = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tres = res / p * (p - 1);\n\
-    \t}\n\treturn res;\n}"
+  code: "#pragma once\n#include \"./PrimeFactor.cpp\"\n\ntemplate <class T> T Euler(T\
+    \ x) {\n\tT res = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tres = res /\
+    \ p * (p - 1);\n\t}\n\treturn res;\n}"
   dependsOn:
   - Math/PrimeFactor.cpp
   isVerificationFile: false
   path: Math/Euler.cpp
   requiredBy: []
-  timestamp: '2020-10-04 16:56:02+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Euler.test.cpp

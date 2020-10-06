@@ -301,6 +301,29 @@ data:
     - icon: ':warning:'
       path: template17.cpp
       title: template17.cpp
+  - name: template
+    pages:
+    - icon: ':warning:'
+      path: template/Input.cpp
+      title: template/Input.cpp
+    - icon: ':warning:'
+      path: template/Output.cpp
+      title: template/Output.cpp
+    - icon: ':warning:'
+      path: template/Ruby.cpp
+      title: template/Ruby.cpp
+    - icon: ':warning:'
+      path: template/Step.cpp
+      title: template/Step.cpp
+    - icon: ':warning:'
+      path: template/constants.cpp
+      title: template/constants.cpp
+    - icon: ':warning:'
+      path: template/functions.cpp
+      title: template/functions.cpp
+    - icon: ':warning:'
+      path: template/template.cpp
+      title: template/template.cpp
   verificationCategories:
   - name: test
     pages:

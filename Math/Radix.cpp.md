@@ -7,7 +7,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Math/Radix.cpp\"\n// description : N\u9032\u6570\u5909\u63DB\
+  bundledCode: "#line 2 \"Math/Radix.cpp\"\n#include <vector>\n#include <string>\n\
+    #include <map>\n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\
     \nclass Radix {\n\tusing Type = long long;\n\tstatic string Str;\n\tstatic map<char,\
     \ int> Map;\n\npublic:\n\tstatic void Init(string s = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\
     ) {\n\t\tStr = s;\n\t\tfor (int i = 0; i < (int)Str.size(); i++) {\n\t\t\tMap[Str[i]]\
@@ -20,9 +21,10 @@ data:
     \ res.end());\n\t\treturn res;\n\t}\n\t// Num(R) -> res(N)\n\tstatic string toN(const\
     \ string& Num, int R, int N) {\n\t\treturn toN(to10(Num, R), N);\n\t}\n};\nstring\
     \ Radix::Str;\nmap<char, int> Radix::Map;\n"
-  code: "// description : N\u9032\u6570\u5909\u63DB\nclass Radix {\n\tusing Type =\
-    \ long long;\n\tstatic string Str;\n\tstatic map<char, int> Map;\n\npublic:\n\t\
-    static void Init(string s = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\") {\n\t\t\
+  code: "#pragma once\n#include <vector>\n#include <string>\n#include <map>\n#include\
+    \ <algorithm>\n#include <cassert>\nusing namespace std;\n\nclass Radix {\n\tusing\
+    \ Type = long long;\n\tstatic string Str;\n\tstatic map<char, int> Map;\n\npublic:\n\
+    \tstatic void Init(string s = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\") {\n\t\t\
     Str = s;\n\t\tfor (int i = 0; i < (int)Str.size(); i++) {\n\t\t\tMap[Str[i]] =\
     \ i;\n\t\t}\n\t}\n\t// Num(R) -> res(10)\n\tstatic Type to10(const string& Num,\
     \ int R) {\n\t\tType res = 0, p = 1;\n\t\tfor (int i = (int)Num.size() - 1; i\
@@ -37,7 +39,7 @@ data:
   isVerificationFile: false
   path: Math/Radix.cpp
   requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Radix.cpp

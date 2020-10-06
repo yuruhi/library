@@ -7,17 +7,18 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Utility/Point.cpp\"\n// description : Point\nstruct Point\
-    \ {\n\tstatic int H, W;\n\tstatic const vector<Point> d;\n\tstatic void set_range(int\
-    \ _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr Point zero()\
-    \ {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr Point one() {\n\t\treturn {1,\
-    \ 1};\n\t}\n\tint x, y;\n\tconstexpr Point() : x(0), y(0) {}\n\tconstexpr Point(int\
-    \ _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const pair<int, int>& xy) :\
-    \ x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W), y(n / W) {}\n\tconstexpr\
-    \ Point operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr Point operator-()\
-    \ const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point operator+(const Point&\
-    \ p) const {\n\t\treturn Point(*this) += p;\n\t}\n\tconstexpr Point operator-(const\
-    \ Point& p) const {\n\t\treturn Point(*this) -= p;\n\t}\n\tconstexpr Point operator*(const\
+  bundledCode: "#line 2 \"Utility/Point.cpp\"\n#include <vector>\n#include <utility>\n\
+    #include <opstream>\nusing namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\
+    \tstatic const vector<Point> d;\n\tstatic void set_range(int _H, int _W) {\n\t\
+    \tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr Point zero() {\n\t\treturn {0,\
+    \ 0};\n\t}\n\tstatic constexpr Point one() {\n\t\treturn {1, 1};\n\t}\n\tint x,\
+    \ y;\n\tconstexpr Point() : x(0), y(0) {}\n\tconstexpr Point(int _x, int _y) :\
+    \ x(_x), y(_y) {}\n\tconstexpr Point(const pair<int, int>& xy) : x(xy.first),\
+    \ y(xy.second) {}\n\tPoint(int n) : x(n % W), y(n / W) {}\n\tconstexpr Point operator+()\
+    \ const {\n\t\treturn *this;\n\t}\n\tconstexpr Point operator-() const {\n\t\t\
+    return {-x, -y};\n\t}\n\tconstexpr Point operator+(const Point& p) const {\n\t\
+    \treturn Point(*this) += p;\n\t}\n\tconstexpr Point operator-(const Point& p)\
+    \ const {\n\t\treturn Point(*this) -= p;\n\t}\n\tconstexpr Point operator*(const\
     \ Point& p) const {\n\t\treturn Point(*this) *= p;\n\t}\n\tconstexpr Point operator/(const\
     \ Point& p) const {\n\t\treturn Point(*this) /= p;\n\t}\n\tconstexpr Point operator%(const\
     \ Point& p) const {\n\t\treturn Point(*this) %= p;\n\t}\n\tconstexpr Point operator+(int\
@@ -79,30 +80,31 @@ data:
     \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.x\
     \ >> p.y;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
     \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
-  code: "// description : Point\nstruct Point {\n\tstatic int H, W;\n\tstatic const\
-    \ vector<Point> d;\n\tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\
-    \tW = _W;\n\t}\n\tstatic constexpr Point zero() {\n\t\treturn {0, 0};\n\t}\n\t\
-    static constexpr Point one() {\n\t\treturn {1, 1};\n\t}\n\tint x, y;\n\tconstexpr\
-    \ Point() : x(0), y(0) {}\n\tconstexpr Point(int _x, int _y) : x(_x), y(_y) {}\n\
-    \tconstexpr Point(const pair<int, int>& xy) : x(xy.first), y(xy.second) {}\n\t\
-    Point(int n) : x(n % W), y(n / W) {}\n\tconstexpr Point operator+() const {\n\t\
-    \treturn *this;\n\t}\n\tconstexpr Point operator-() const {\n\t\treturn {-x, -y};\n\
-    \t}\n\tconstexpr Point operator+(const Point& p) const {\n\t\treturn Point(*this)\
-    \ += p;\n\t}\n\tconstexpr Point operator-(const Point& p) const {\n\t\treturn\
-    \ Point(*this) -= p;\n\t}\n\tconstexpr Point operator*(const Point& p) const {\n\
-    \t\treturn Point(*this) *= p;\n\t}\n\tconstexpr Point operator/(const Point& p)\
-    \ const {\n\t\treturn Point(*this) /= p;\n\t}\n\tconstexpr Point operator%(const\
-    \ Point& p) const {\n\t\treturn Point(*this) %= p;\n\t}\n\tconstexpr Point operator+(int\
-    \ n) const {\n\t\treturn Point(*this) += n;\n\t}\n\tconstexpr Point operator-(int\
-    \ n) const {\n\t\treturn Point(*this) -= n;\n\t}\n\tconstexpr Point operator*(int\
-    \ n) const {\n\t\treturn Point(*this) *= n;\n\t}\n\tconstexpr Point operator/(int\
-    \ n) const {\n\t\treturn Point(*this) /= n;\n\t}\n\tconstexpr Point operator%(int\
-    \ n) const {\n\t\treturn Point(*this) %= n;\n\t}\n\tconstexpr Point& operator+=(const\
-    \ Point& p) {\n\t\tx += p.x;\n\t\ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr\
-    \ Point& operator-=(const Point& p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn\
-    \ *this;\n\t}\n\tconstexpr Point& operator*=(const Point& p) {\n\t\tx *= p.x;\n\
-    \t\ty *= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point& operator/=(const Point&\
-    \ p) {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
+  code: "#pragma once\n#include <vector>\n#include <utility>\n#include <opstream>\n\
+    using namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point>\
+    \ d;\n\tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t\
+    }\n\tstatic constexpr Point zero() {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr\
+    \ Point one() {\n\t\treturn {1, 1};\n\t}\n\tint x, y;\n\tconstexpr Point() : x(0),\
+    \ y(0) {}\n\tconstexpr Point(int _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const\
+    \ pair<int, int>& xy) : x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W),\
+    \ y(n / W) {}\n\tconstexpr Point operator+() const {\n\t\treturn *this;\n\t}\n\
+    \tconstexpr Point operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr\
+    \ Point operator+(const Point& p) const {\n\t\treturn Point(*this) += p;\n\t}\n\
+    \tconstexpr Point operator-(const Point& p) const {\n\t\treturn Point(*this) -=\
+    \ p;\n\t}\n\tconstexpr Point operator*(const Point& p) const {\n\t\treturn Point(*this)\
+    \ *= p;\n\t}\n\tconstexpr Point operator/(const Point& p) const {\n\t\treturn\
+    \ Point(*this) /= p;\n\t}\n\tconstexpr Point operator%(const Point& p) const {\n\
+    \t\treturn Point(*this) %= p;\n\t}\n\tconstexpr Point operator+(int n) const {\n\
+    \t\treturn Point(*this) += n;\n\t}\n\tconstexpr Point operator-(int n) const {\n\
+    \t\treturn Point(*this) -= n;\n\t}\n\tconstexpr Point operator*(int n) const {\n\
+    \t\treturn Point(*this) *= n;\n\t}\n\tconstexpr Point operator/(int n) const {\n\
+    \t\treturn Point(*this) /= n;\n\t}\n\tconstexpr Point operator%(int n) const {\n\
+    \t\treturn Point(*this) %= n;\n\t}\n\tconstexpr Point& operator+=(const Point&\
+    \ p) {\n\t\tx += p.x;\n\t\ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
+    \ operator-=(const Point& p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn *this;\n\
+    \t}\n\tconstexpr Point& operator*=(const Point& p) {\n\t\tx *= p.x;\n\t\ty *=\
+    \ p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point& operator/=(const Point& p)\
+    \ {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
     \ operator%=(const Point& p) {\n\t\tx %= p.x;\n\t\ty %= p.y;\n\t\treturn *this;\n\
     \t}\n\tconstexpr Point& operator+=(int n) {\n\t\tx += n;\n\t\ty += n;\n\t\treturn\
     \ *this;\n\t}\n\tconstexpr Point& operator-=(int n) {\n\t\tx -= n;\n\t\ty -= n;\n\
@@ -155,7 +157,7 @@ data:
   isVerificationFile: false
   path: Utility/Point.cpp
   requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Point.cpp

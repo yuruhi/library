@@ -7,25 +7,26 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"DP/LCS.cpp\"\n// description : \u6700\u9577\u5171\u901A\u90E8\
-    \u5206\u5217\nint LCS(const string& s, const string& t) {\n\tint n = s.size(),\
-    \ m = t.size();\n\tvector<vector<int>> dp(n + 1, vector<int>(m + 1));\n\tfor (int\
-    \ i = 0; i < n; ++i) {\n\t\tfor (int j = 0; j < m; ++j) {\n\t\t\tif (s[i] == t[j])\
-    \ dp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j] + 1);\n\t\t\tdp[i + 1][j +\
-    \ 1] = max(dp[i + 1][j + 1], dp[i + 1][j]);\n\t\t\tdp[i + 1][j + 1] = max(dp[i\
-    \ + 1][j + 1], dp[i][j + 1]);\n\t\t}\n\t}\n\treturn dp[n][m];\n}\n"
-  code: "// description : \u6700\u9577\u5171\u901A\u90E8\u5206\u5217\nint LCS(const\
-    \ string& s, const string& t) {\n\tint n = s.size(), m = t.size();\n\tvector<vector<int>>\
-    \ dp(n + 1, vector<int>(m + 1));\n\tfor (int i = 0; i < n; ++i) {\n\t\tfor (int\
-    \ j = 0; j < m; ++j) {\n\t\t\tif (s[i] == t[j]) dp[i + 1][j + 1] = max(dp[i +\
-    \ 1][j + 1], dp[i][j] + 1);\n\t\t\tdp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i\
-    \ + 1][j]);\n\t\t\tdp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j + 1]);\n\t\
-    \t}\n\t}\n\treturn dp[n][m];\n}"
+  bundledCode: "#line 2 \"DP/LCS.cpp\"\n#include <vector>\n#include <string>\n#include\
+    \ <algorithm>\nusing namespace std;\n\nint LCS(const string& s, const string&\
+    \ t) {\n\tint n = s.size(), m = t.size();\n\tvector<vector<int>> dp(n + 1, vector<int>(m\
+    \ + 1));\n\tfor (int i = 0; i < n; ++i) {\n\t\tfor (int j = 0; j < m; ++j) {\n\
+    \t\t\tif (s[i] == t[j]) dp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j] + 1);\n\
+    \t\t\tdp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i + 1][j]);\n\t\t\tdp[i + 1][j\
+    \ + 1] = max(dp[i + 1][j + 1], dp[i][j + 1]);\n\t\t}\n\t}\n\treturn dp[n][m];\n\
+    }\n"
+  code: "#pragma once\n#include <vector>\n#include <string>\n#include <algorithm>\n\
+    using namespace std;\n\nint LCS(const string& s, const string& t) {\n\tint n =\
+    \ s.size(), m = t.size();\n\tvector<vector<int>> dp(n + 1, vector<int>(m + 1));\n\
+    \tfor (int i = 0; i < n; ++i) {\n\t\tfor (int j = 0; j < m; ++j) {\n\t\t\tif (s[i]\
+    \ == t[j]) dp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j] + 1);\n\t\t\tdp[i\
+    \ + 1][j + 1] = max(dp[i + 1][j + 1], dp[i + 1][j]);\n\t\t\tdp[i + 1][j + 1] =\
+    \ max(dp[i + 1][j + 1], dp[i][j + 1]);\n\t\t}\n\t}\n\treturn dp[n][m];\n}"
   dependsOn: []
   isVerificationFile: false
   path: DP/LCS.cpp
   requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/LCS.cpp

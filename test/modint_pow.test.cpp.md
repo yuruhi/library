@@ -14,7 +14,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B
   bundledCode: "#line 1 \"test/modint_pow.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B\"\
-    \n#line 1 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n#include\
+    \n#line 2 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <utility>\nusing namespace std;\n\ntemplate <int MOD> struct modint {\n\tusing\
     \ T = long long;\n\tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD) {\n\t\
     \tif (n < 0) n += MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn MOD;\n\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/modint_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-10-04 16:56:02+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_pow.test.cpp

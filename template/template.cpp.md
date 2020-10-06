@@ -14,24 +14,40 @@ data:
     , line 399, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 258, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../DataStructure/BinaryIndexedTree:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: constans.cpp:\
     \ line -1: no such header\n"
-  code: "#pragma once\n#include \"./../DataStructure/BinaryIndexedTree\"\n#include\
-    \ <vector>\nusing namespace std;\n\nlong long Inversion(const vector<int>& a,\
-    \ int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val +\
-    \ 1);\n\tfor (size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i] - 1);\n\
-    \t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}"
+  code: '#pragma once
+
+    #include "./constans.cpp"
+
+    #include "./Input.cpp"
+
+    #include "./Output.cpp"
+
+    #include "./Step.cpp"
+
+    #include "./Ruby.cpp"
+
+    #if __has_include("./../dump.hpp")
+
+    #include "./../dump.hpp"
+
+    #else
+
+    #define dump(...) ((void)0)
+
+    #endif'
   dependsOn: []
   isVerificationFile: false
-  path: Math/Inversion.cpp
+  path: template/template.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/Inversion.cpp
+documentation_of: template/template.cpp
 layout: document
 redirect_from:
-- /library/Math/Inversion.cpp
-- /library/Math/Inversion.cpp.html
-title: Math/Inversion.cpp
+- /library/template/template.cpp
+- /library/template/template.cpp.html
+title: template/template.cpp
 ---

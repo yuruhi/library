@@ -29,24 +29,25 @@ data:
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"Graph/WarashallFloyd.cpp\"\
-    \n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = INF) {\n\tint V = dist.size();\n\
+    \n#include <algorithm>\n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = INF)\
+    \ {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int j = 0;\
+    \ j < V; ++j)\n\t\t\tfor (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] ==\
+    \ INF_ || dist[i][k] == INF_) continue;\n\t\t\t\tdist[j][k] = min(dist[j][k],\
+    \ dist[j][i] + dist[i][k]);\n\t\t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i]\
+    \ < 0) return true;\n\treturn false;\n}\n"
+  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <algorithm>\n\n\
+    bool WarashallFloyd(Matrix& dist, Weight INF_ = INF) {\n\tint V = dist.size();\n\
     \tfor (int i = 0; i < V; ++i)\n\t\tfor (int j = 0; j < V; ++j)\n\t\t\tfor (int\
     \ k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_)\
     \ continue;\n\t\t\t\tdist[j][k] = min(dist[j][k], dist[j][i] + dist[i][k]);\n\t\
     \t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i] < 0) return true;\n\t\
-    return false;\n}\n"
-  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n\nbool WarashallFloyd(Matrix&\
-    \ dist, Weight INF_ = INF) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V;\
-    \ ++i)\n\t\tfor (int j = 0; j < V; ++j)\n\t\t\tfor (int k = 0; k < V; ++k) {\n\
-    \t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_) continue;\n\t\t\t\tdist[j][k]\
-    \ = min(dist[j][k], dist[j][i] + dist[i][k]);\n\t\t\t}\n\tfor (int i = 0; i <\
-    \ V; ++i)\n\t\tif (dist[i][i] < 0) return true;\n\treturn false;\n}"
+    return false;\n}"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/WarashallFloyd.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-06 16:32:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WarashallFloyd.test.cpp
