@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <charconv>
+#include <cstring>
 #include <cassert>
 using namespace std;
 
