@@ -1,4 +1,5 @@
 #pragma once
+#include "./../template/functions.cpp"
 #include <vector>
 #include <unordered_map>
 #include <cmath>
