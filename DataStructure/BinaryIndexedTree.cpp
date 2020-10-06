@@ -7,7 +7,7 @@ template <class T> class BinaryIndexedTree {
 	vector<T> a;
 
 public:
-	BinaryIndexedTree(int n_) : n(n_), a(n_ + 1), n2(1) {
+	BinaryIndexedTree(int n_) : n(n_), n2(1), a(n_ + 1) {
 		while (n2 < n)
 			n2 *= 2;
 		n2 /= 2;

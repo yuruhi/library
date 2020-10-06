@@ -3,9 +3,9 @@
 #include <string>
 using namespace std;
 
-template <ull MOD> class RollingHash {
+template <uint64_t MOD> class RollingHash {
 public:
-	using ull = unsigned long long;
+	using ull = uint64_t;
 
 private:
 	int n;

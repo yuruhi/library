@@ -1,5 +1,5 @@
 #pragma once
-#include "./../DataStructure/BinaryIndexedTree"
+#include "./../DataStructure/BinaryIndexedTree.cpp"
 #include <vector>
 using namespace std;
 

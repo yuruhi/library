@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-#include <assert>
+#include <optional>
+#include <cassert>
 using namespace std;
 
 template <class T> class RAUQRSQ {

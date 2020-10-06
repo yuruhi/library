@@ -28,7 +28,7 @@ public:
 		}
 		update_count++;
 	}
-	T operator[](int i) {
+	T operator[](int i) const {
 		auto [max_count, res] = a[i += n];
 		while (i >>= 1) {
 			if (max_count < a[i].first) {
@@ -38,7 +38,7 @@ public:
 		}
 		return res;
 	}
-	vector<T> to_a() {
+	vector<T> to_a() const {
 		vector<T> res(n);
 		for (int i = 0; i < n; ++i) {
 			res[i] = operator[](i);
