@@ -1,4 +1,9 @@
-// description : 区間に一次関数を足す
+#pragma once
+#include <vector>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+
 template <class T> class ImosLinear {
 	const int N;
 	vector<T> X, A, B;

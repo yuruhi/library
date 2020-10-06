@@ -1,4 +1,10 @@
-// description : グリッド上のBFS
+#pragma once
+#include "./../Utility/Point.cpp"
+#include <vector>
+#include <string>
+#include <queue>
+using namespace std;
+
 vector<vector<int>> GridBFS(const vector<string>& grid, Point s, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);

@@ -1,4 +1,9 @@
-// description : 閉路検出
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <stack>
+using namespace std;
+
 bool HasCycle(const Graph& graph) {
 	int V = graph.size();
 	vector<int> h(V);

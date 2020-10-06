@@ -1,4 +1,9 @@
-// description : y = ax^2 + bx + c
+#pragma once
+#include <vector>
+#include <optional>
+#include <cmath>
+using namespace std;
+
 optional<vector<long double>> QuadraticEquation(long long a, long long b, long long c) {
 	long double A = a, B = b, C = c;
 	if (a == 0 && b == 0 && c == 0) {

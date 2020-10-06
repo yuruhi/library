@@ -1,6 +1,13 @@
-// description : ローリングハッシュ
-using ull = unsigned long long;
+#pragma once
+#include <vector>
+#include <string>
+using namespace std;
+
 template <ull MOD> class RollingHash {
+public:
+	using ull = unsigned long long;
+
+private:
 	int n;
 	ull base;
 	vector<ull> pow, hash;

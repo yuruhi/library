@@ -1,5 +1,6 @@
 #pragma once
 #include "./GraphTemplate.cpp"
+#include <algorithm>
 
 bool WarashallFloyd(Matrix& dist, Weight INF_ = INF) {
 	int V = dist.size();

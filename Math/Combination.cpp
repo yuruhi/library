@@ -1,4 +1,7 @@
-// description : v[n][k] := nCk O(N^2)
+#pragma once
+#include <vector>
+using namespace std;
+
 template <class T> vector<vector<T>> Combi(int n, T _Mod = 1000000007) {
 	vector<vector<T>> v(n, vector<T>(n));
 	for (int i = 0; i < n; ++i)

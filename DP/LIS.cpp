@@ -1,4 +1,8 @@
-// description : 最長増加部分列
+#pragma once
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 template <class T> int LIS(const vector<T>& a, T INF_ = 1e9) {
 	int n = a.size();
 	vector<T> dp(n, INF_);

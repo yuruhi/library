@@ -1,4 +1,8 @@
-// description : 区間加算、区間max
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> class RAQRMQ {
 	int n;
 	T init;

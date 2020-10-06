@@ -1,4 +1,8 @@
-// description : 行列
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> struct Matrix {
 	size_t h, w;
 	vector<vector<T>> A;

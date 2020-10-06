@@ -1,4 +1,9 @@
-// description : いもす法
+#pragma once
+#include <vector>
+#include <utility>
+#include <cassert>
+using namespace std;
+
 template <class T> class Imos {
 	const int N;
 	vector<T> table;

@@ -1,4 +1,9 @@
-// description : 座標圧縮
+#pragma once
+#include <vector>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+
 template <class T> class Compress {
 	vector<T> v;
 	bool flag = false;

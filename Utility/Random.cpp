@@ -1,4 +1,8 @@
-// description : Random
+#pragma once
+#include <random>
+#include <algorithm>
+using namespace std;
+
 class Random {
 	using T = unsigned int;
 	mt19937 mt;

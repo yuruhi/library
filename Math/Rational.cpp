@@ -1,6 +1,15 @@
-// description : 有理数
+#pragma once
+#include <vector>
+#include <numeric>
+#include <iostream>
+#include <cassert>
+using namespace std;
+
 class Rational {
+public:
 	using value_type = long long;
+
+private:
 	value_type n, d;  // n / d
 	constexpr void coprime() {
 		value_type g = gcd(n, d);

@@ -1,4 +1,9 @@
-// description : Point
+#pragma once
+#include <vector>
+#include <utility>
+#include <opstream>
+using namespace std;
+
 struct Point {
 	static int H, W;
 	static const vector<Point> d;

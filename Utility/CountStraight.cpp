@@ -1,4 +1,8 @@
-// description : 連続して f(i), f(i, j) が true を返す個数
+#pragma once
+#include <vector>
+#include <tuple>
+using namespace std;
+
 template <class F> tuple<vector<int>, vector<int>> CountLR(int n, F f) {
 	vector<int> left(n);
 	for (int i = 0; i < n; ++i) {

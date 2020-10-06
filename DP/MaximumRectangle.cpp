@@ -1,4 +1,9 @@
-// description : ヒストグラム中の最大長方形
+#pragma once
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
 template <class T> T MaximumRectangle(vector<T> h) {
 	int n = h.size();
 	T ans = 0;

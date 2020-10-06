@@ -1,4 +1,9 @@
-// description : 区間を保持するデータ構造
+#pragma once
+#include <set>
+#include <utility>
+#include <iostream>
+using namespace std;
+
 template <class T> class Ranges {
 	set<pair<T, bool>> s;
 

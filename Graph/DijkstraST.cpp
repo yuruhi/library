@@ -1,4 +1,9 @@
-// description : 始点と終点を指定するダイクストラ法
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <queue>
+using namespace std;
+
 Weight Dijkstra(const Graph& graph, int s, int t) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);

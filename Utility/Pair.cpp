@@ -1,4 +1,9 @@
-// description : pair
+#pragma once
+#include <utility>
+#include <tuple>
+#include <iostream>
+using namespace std;
+
 template <class T> struct Pair {
 	T x, y;
 	constexpr Pair() : x(), y() {}

@@ -1,4 +1,10 @@
-// description : [l[i], r[i]] : i の部分木
+#pragma once
+#include <vector>
+#include <utility>
+#include <cassert>
+#include <functional>
+using namespace std;
+
 class EulerTour {
 	vector<vector<int>> g;
 	vector<int> ls, rs;

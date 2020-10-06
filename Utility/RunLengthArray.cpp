@@ -1,4 +1,10 @@
-// description : RunLength圧縮みたいに保持する配列
+#pragma once
+#include <vector>
+#include <initializer_list>
+#include <utility>
+#include <cassert>
+using namespace std;
+
 template <class value_type, class size_type = size_t> class RunLengthArray {
 	using T = value_type;
 	using S = size_type;

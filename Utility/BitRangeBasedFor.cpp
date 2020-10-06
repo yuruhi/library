@@ -1,4 +1,5 @@
-// description : 部分集合, サイズkの部分集合を列挙
+#pragma once
+
 class bit_subset {
 	struct it {
 		long long sub, s;

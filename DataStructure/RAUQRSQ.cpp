@@ -1,4 +1,8 @@
-// description : 区間加算・更新、区間和
+#pragma once
+#include <vector>
+#include <assert>
+using namespace std;
+
 template <class T> class RAUQRSQ {
 	int n;
 	T init;

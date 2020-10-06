@@ -1,4 +1,8 @@
-// description : 転倒数 a : { 1..N } の順列
+#pragma once
+#include "./../DataStructure/BinaryIndexedTree"
+#include <vector>
+using namespace std;
+
 long long Inversion(const vector<int>& a, int max_val) {
 	long long ans = 0;
 	BinaryIndexedTree<int> bit(max_val + 1);

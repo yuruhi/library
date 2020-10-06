@@ -1,4 +1,9 @@
-// description : 編集距離
+#pragma once
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
 int Levenshtein(const string& s, const string& t) {
 	int S = s.size(), T = t.size();
 	vector<vector<int>> dp(S + 1, vector<int>(T + 1));

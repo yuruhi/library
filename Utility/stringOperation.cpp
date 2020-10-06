@@ -1,4 +1,8 @@
-// description : std::string の操作
+#pragma once
+#include <vector>
+#include <string>
+using namespace std;
+
 void replace_all(string& s, const string& t, const string& u) {
 	size_t pos = s.find(t);
 	while (pos != string::npos) {

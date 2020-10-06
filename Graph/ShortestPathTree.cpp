@@ -1,14 +1,19 @@
-// description : 木の最短経路
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+using namespace std;
+
 vector<Weight> ShortestPathTree(const Graph& g, int s) {
 	int V = g.size();
 	vector<Weight> dist(V);
-	function<void(int, int, Weight)> dfs = [&](int v, int p, Weight depth) {
+	auto dfs = [&](auto&& f, int v, int p, Weight depth) -> void {
 		dist[v] = depth;
-		for (auto e : g[v])
+		for (auto e : g[v]) {
 			if (e.to != p) {
-				dfs(e.to, v, depth + e.cost);
+				f(f, e.to, v, depth + e.cost);
 			}
+		}
 	};
-	dfs(s, -1, 0);
+	dfs(dfs, s, -1, 0);
 	return dist;
 }

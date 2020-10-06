@@ -1,4 +1,9 @@
-// description : update, range query
+#pragma once
+#include <vector>
+#include <functional>
+#include <cassert>
+using namespace std;
+
 template <class T> class SegmentTree {
 	using Func = function<T(T, T)>;
 	int N;

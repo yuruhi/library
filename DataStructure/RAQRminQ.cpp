@@ -1,4 +1,9 @@
-// description : 区間加算、区間min
+#pragma once
+#include <vector>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+
 template <class T> class RAQRmQ {
 	int n;
 	T init;

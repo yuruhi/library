@@ -1,4 +1,9 @@
-// description : 全域木構築 有向木を返す
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <queue>
+using namespace std;
+
 Graph SpanningTree(const Graph& g, int root) {
 	int n = g.size();
 	Graph res(n);

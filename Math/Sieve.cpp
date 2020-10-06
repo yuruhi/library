@@ -1,7 +1,15 @@
-// description : エラトステネスの篩 O(N log log N)、素因数分解 O(素因数の個数)
-struct Sieve {
+#pragma once
+#include <vector>
+#include <map>
+#include <utility>
+#include <cassert>
+using namespace std;
+
+class Sieve {
 	int n;
 	vector<int> f, primes;
+
+public:
 	Sieve(int _n) : n(_n), f(_n + 1) {
 		assert(1 <= n);
 		f[0] = f[1] = -1;
@@ -15,6 +23,9 @@ struct Sieve {
 	}
 	bool is_prime(int x) const {
 		return f[x] == x;
+	}
+	const vector<int>& get_primes() const {
+		return primes;
 	}
 	vector<pair<int, int>> factor(int x) const {
 		assert(1 <= x);

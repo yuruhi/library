@@ -1,4 +1,10 @@
-// description : Range
+#pragma once
+#include <limits>
+#include <algorithm>
+#include <iostream>
+#include <cassert>
+using namespace std;
+
 template <class T> struct Range {
 	static constexpr Range nil() {
 		return {numeric_limits<T>::min(), numeric_limits<T>::min()};

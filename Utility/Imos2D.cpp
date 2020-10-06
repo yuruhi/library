@@ -1,4 +1,9 @@
-// description : いもす法2次元
+#pragma once
+#include <vector>
+#include <utility>
+#include <cassert>
+using namespace std;
+
 template <class T> class Imos2D {
 public:
 	const int H, W;

@@ -1,4 +1,8 @@
-// description : 強連結成分分解
+#pragma once
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class StronglyConnectedComponents {
 	int V;
 	vector<vector<int>> G, rG;

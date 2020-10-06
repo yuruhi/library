@@ -1,4 +1,8 @@
-// description : rotate, scale
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> vector<vector<T>> Rotated90(const vector<vector<T>>& a) {
 	size_t h = a.size(), w = a.front().size();
 	vector<vector<T>> res(w, vector<T>(h));

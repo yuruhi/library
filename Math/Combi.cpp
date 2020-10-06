@@ -1,4 +1,8 @@
-// description : 前処理 O(N) クエリ処理 O(1)
+#pragma once
+#include "./modint.cpp"
+#include <array>
+using namespace std;
+
 template <int MOD, size_t size> class Combi {
 	using T = modint<MOD>;
 	array<T, size + 1> fac, finv, inv;

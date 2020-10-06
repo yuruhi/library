@@ -1,4 +1,9 @@
-// description : 重さなしグラフの最短経路 O(V + E)
+#pragma once
+#include <vector>
+#include <queue>
+#include <climits>
+using namespace std;
+
 vector<int> ShortestPath(const vector<vector<int>>& G, const int s) {
 	int V = G.size();
 	vector<int> dist(V, INT_MAX);

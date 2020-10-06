@@ -1,4 +1,9 @@
-// description : 実行時に法が決まる modint
+#pragma once
+#include <vector>
+#include <utility>
+#include <iostream>
+using namespace std;
+
 struct mint {
 	using T = long long;
 	static T MOD;

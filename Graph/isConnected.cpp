@@ -1,4 +1,9 @@
-// description : 連結判定
+#pragma once
+#include "./GraphTemplate.cpp"
+#include <vector>
+#include <queue>
+using namespace std;
+
 bool isConnected(const Graph& graph, int s, int t) {
 	int V = graph.size();
 	queue<int> que;

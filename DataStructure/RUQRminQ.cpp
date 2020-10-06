@@ -1,4 +1,8 @@
-// description : 区間更新、区間min
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> class RUQRmQ {
 	int n;
 	T init;

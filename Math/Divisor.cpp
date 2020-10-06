@@ -1,4 +1,9 @@
-// description : 約数列挙、約数の個数、約数の総和
+#pragma once
+#include <vector>
+#include <cmath>
+#include <cassert>
+using namespace std;
+
 template <class T> vector<T> Divisor(T n) {
 	assert(0 < n);
 	vector<T> res;

@@ -1,3 +1,4 @@
+#pragma once
 #include "./PrimeFactor.cpp"
 
 template <class T> T Euler(T x) {

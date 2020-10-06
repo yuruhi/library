@@ -1,4 +1,11 @@
-// description : 対応する括弧の場所
+#pragma once
+#include <vector>
+#include <string>
+#include <stack>
+#include <utility>
+#include <cassert>
+using namespace std;
+
 size_t BracketsPos(const string& s, size_t pos, char c1 = '(', char c2 = ')') {
 	assert(s[pos] == c1);
 	int p = 1;

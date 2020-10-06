@@ -1,4 +1,9 @@
-// description : 最長共通部分列
+#pragma once
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
 int LCS(const string& s, const string& t) {
 	int n = s.size(), m = t.size();
 	vector<vector<int>> dp(n + 1, vector<int>(m + 1));

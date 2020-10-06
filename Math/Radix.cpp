@@ -1,4 +1,11 @@
-// description : N進数変換
+#pragma once
+#include <vector>
+#include <string>
+#include <map>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+
 class Radix {
 	using Type = long long;
 	static string Str;

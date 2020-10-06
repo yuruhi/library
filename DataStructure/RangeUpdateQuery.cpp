@@ -1,4 +1,8 @@
-// description : 区間更新、一点取得
+#pragma once
+#include <vector>
+#include <utility>
+using namespace std;
+
 template <class T> class RangeUpdateQuery {
 	int n;
 	vector<pair<size_t, T>> a;

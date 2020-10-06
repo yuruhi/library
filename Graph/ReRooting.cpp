@@ -1,4 +1,7 @@
-// description : 全方位木DP
+#pragma once
+#include <vector>
+using namespace std;
+
 template <class DP> class ReRooting {
 	int n;
 	vector<vector<int>> g;

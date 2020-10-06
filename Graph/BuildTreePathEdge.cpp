@@ -1,4 +1,8 @@
-// description : 木のs-t間のパスの辺の番号を求める
+#pragma once
+#include <vector>
+#include <utility>
+using namespace std;
+
 vector<int> BuildTreePathEdge(const vector<vector<pair<int, int>>>& g, int s, int t) {
 	int n = g.size();
 	vector<pair<int, int>> par(n, make_pair(-1, -1));

@@ -1,4 +1,8 @@
-// description : Run-Length-Encoding
+#pragma once
+#include <vector>
+#include <utility>
+using namespace std;
+
 template <class T, class U = typename T::value_type> auto RLE(const T& a) {
 	int n = a.size();
 	vector<int> res1;

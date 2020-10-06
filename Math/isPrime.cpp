@@ -1,4 +1,5 @@
-// description : 素数判定（試し割法）
+#pragma once
+
 template <class T> bool isPrime(T n) {
 	if (n == 2) return true;
 	if (n < 2 || n % 2 == 0) return false;

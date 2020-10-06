@@ -1,4 +1,8 @@
-// description : 累積和2次元
+#pragma once
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 template <class T> class CulSum2D {
 	int h, w;
 	vector<vector<T>> s;

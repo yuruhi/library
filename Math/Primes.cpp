@@ -1,4 +1,8 @@
-// description : n 以下の素数列挙
+#pragma once
+#include "./Eratosthenes.cpp"
+#include <vector>
+using namespace std;
+
 vector<int> Primes(int n) {
 	vector<int> res;
 	auto p = Eratosthenes(n);

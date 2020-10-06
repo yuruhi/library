@@ -1,4 +1,7 @@
-// description : オイラーツアー
+#pragma once
+#include <vector>
+using namespace std;
+
 class EulerTourForVertex {
 	vector<int> ls, rs;
 	int pos = 0;

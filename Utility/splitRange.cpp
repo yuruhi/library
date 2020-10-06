@@ -1,4 +1,8 @@
-// description : { 1,2,3,2,1,2,1 } -> { [0-2], [2-4], [4-5], [5-6] }
+#pragma once
+#include "./Range.cpp"
+#include <vector>
+using namespace std;
+
 vector<Range> split(const vector<int>& v) {
 	int n = v.size();
 	vector<Range> res;

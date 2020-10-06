@@ -1,4 +1,8 @@
-// description : 区間加算、一点取得
+#pragma once
+#include <vector>
+#include <cassert>
+using namespace std;
+
 template <class T> class RangeAddQuery {
 	int n;
 	vector<T> a;

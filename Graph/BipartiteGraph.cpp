@@ -1,4 +1,8 @@
-// description : 二部グラフ判定 O(V + E)
+#pragma once
+#include <vector>
+#include <tuple>
+using namespace std;
+
 tuple<bool, vector<bool>> BipartiteGraph(const vector<vector<int>>& g) {
 	int n = g.size();
 	vector<int> a(n);

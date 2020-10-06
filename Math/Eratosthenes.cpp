@@ -1,4 +1,7 @@
-// description : エラトステネスの篩
+#pragma once
+#include <vector>
+using namespace std;
+
 vector<bool> Eratosthenes(int n) {
 	vector<bool> p(n + 1, true);
 	p[0] = p[1] = false;
