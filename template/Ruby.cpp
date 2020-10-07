@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <numeric>
 #include <cassert>
 using namespace std;
 
@@ -223,7 +224,7 @@ struct Sum_impl {
 		});
 	}
 	template <class T> friend auto operator|(T v, const Sum_impl& c) {
-		return accumulate(begin(v), end(v), typename T::value_type());
+		return accumulate(begin(v), end(v), typename T::value_type{});
 	}
 } Sum;
 struct Includes {
