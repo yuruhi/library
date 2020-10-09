@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <utility>
+#include <algorithm>
 #include <cassert>
 using namespace std;
 
@@ -12,10 +13,13 @@ template <class T> class Imos {
 public:
 	Imos(int _n) : N(_n), table(_n + 1) {}
 	void add(int l, int r, T v = 1) {  // [l, r)
-		assert(l < r && r <= N);
 		assert(!flag);
-		table[l] += v;
-		table[r] -= v;
+		l = clamp(l, 0, N);
+		r = clamp(r, 0, N);
+		if (l < r) {
+			table[l] += v;
+			table[r] -= v;
+		}
 	}
 	void add(const pair<int, int>& section, T v = 1) {
 		add(section.first, section.second, v);
