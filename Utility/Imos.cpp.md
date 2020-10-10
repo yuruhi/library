@@ -8,11 +8,12 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/Imos.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class Imos {\n\t\
-    const int N;\n\tvector<T> table;\n\tbool flag = false;\n\npublic:\n\tImos(int\
-    \ _n) : N(_n), table(_n + 1) {}\n\tvoid add(int l, int r, T v = 1) {  // [l, r)\n\
-    \t\tassert(l < r && r <= N);\n\t\tassert(!flag);\n\t\ttable[l] += v;\n\t\ttable[r]\
-    \ -= v;\n\t}\n\tvoid add(const pair<int, int>& section, T v = 1) {\n\t\tadd(section.first,\
+    #include <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
+    \ T> class Imos {\n\tconst int N;\n\tvector<T> table;\n\tbool flag = false;\n\n\
+    public:\n\tImos(int _n) : N(_n), table(_n + 1) {}\n\tvoid add(int l, int r, T\
+    \ v = 1) {  // [l, r)\n\t\tassert(!flag);\n\t\tl = clamp(l, 0, N);\n\t\tr = clamp(r,\
+    \ 0, N);\n\t\tif (l < r) {\n\t\t\ttable[l] += v;\n\t\t\ttable[r] -= v;\n\t\t}\n\
+    \t}\n\tvoid add(const pair<int, int>& section, T v = 1) {\n\t\tadd(section.first,\
     \ section.second, v);\n\t}\n\tvoid add_closed(int l, int r, T v = 1) {\n\t\tadd(l,\
     \ r + 1, v);\n\t}\n\tvoid add_closed(const pair<int, int>& section, T v = 1) {\n\
     \t\tadd_closed(section.first, section.second, v);\n\t}\n\tvoid build() {\n\t\t\
@@ -21,12 +22,13 @@ data:
     \t}\n\tconst vector<T>& operator*() const {\n\t\tassert(flag);\n\t\treturn table;\n\
     \t}\n\tvector<T> to_a() const {\n\t\treturn vector<T>(table.begin(), table.begin()\
     \ + N);\n\t}\n};\n"
-  code: "#pragma once\n#include <vector>\n#include <utility>\n#include <cassert>\n\
-    using namespace std;\n\ntemplate <class T> class Imos {\n\tconst int N;\n\tvector<T>\
-    \ table;\n\tbool flag = false;\n\npublic:\n\tImos(int _n) : N(_n), table(_n +\
-    \ 1) {}\n\tvoid add(int l, int r, T v = 1) {  // [l, r)\n\t\tassert(l < r && r\
-    \ <= N);\n\t\tassert(!flag);\n\t\ttable[l] += v;\n\t\ttable[r] -= v;\n\t}\n\t\
-    void add(const pair<int, int>& section, T v = 1) {\n\t\tadd(section.first, section.second,\
+  code: "#pragma once\n#include <vector>\n#include <utility>\n#include <algorithm>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class Imos {\n\t\
+    const int N;\n\tvector<T> table;\n\tbool flag = false;\n\npublic:\n\tImos(int\
+    \ _n) : N(_n), table(_n + 1) {}\n\tvoid add(int l, int r, T v = 1) {  // [l, r)\n\
+    \t\tassert(!flag);\n\t\tl = clamp(l, 0, N);\n\t\tr = clamp(r, 0, N);\n\t\tif (l\
+    \ < r) {\n\t\t\ttable[l] += v;\n\t\t\ttable[r] -= v;\n\t\t}\n\t}\n\tvoid add(const\
+    \ pair<int, int>& section, T v = 1) {\n\t\tadd(section.first, section.second,\
     \ v);\n\t}\n\tvoid add_closed(int l, int r, T v = 1) {\n\t\tadd(l, r + 1, v);\n\
     \t}\n\tvoid add_closed(const pair<int, int>& section, T v = 1) {\n\t\tadd_closed(section.first,\
     \ section.second, v);\n\t}\n\tvoid build() {\n\t\tflag = true;\n\t\tfor (int i\
@@ -39,7 +41,7 @@ data:
   isVerificationFile: false
   path: Utility/Imos.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-09 20:19:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Imos.cpp

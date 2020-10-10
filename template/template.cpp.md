@@ -160,38 +160,38 @@ data:
     template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
     \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
     \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n#line 4 \"template/Ruby.cpp\"\
-    \n#include <algorithm>\n#line 6 \"template/Ruby.cpp\"\nusing namespace std;\n\n\
-    template <class F> struct Callable {\n\tF func;\n\tCallable(const F& f) : func(f)\
-    \ {}\n};\ntemplate <class T, class F> auto operator|(const T& v, const Callable<F>&\
-    \ c) {\n\treturn c.func(v);\n}\n\nstruct Sort_impl {\n\ttemplate <class F> auto\
-    \ operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tsort(begin(v),\
-    \ end(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
-    \ operator|(T v, [[maybe_unused]] const Sort_impl& c) {\n\t\tsort(begin(v), end(v));\n\
-    \t\treturn v;\n\t}\n} Sort;\nstruct SortBy_impl {\n\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tsort(begin(v), end(v), [&](const\
-    \ auto& i, const auto& j) {\n\t\t\t\treturn f(i) < f(j);\n\t\t\t});\n\t\t\treturn\
-    \ v;\n\t\t});\n\t}\n} SortBy;\nstruct RSort_impl {\n\ttemplate <class F> auto\
-    \ operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tsort(rbegin(v),\
-    \ rend(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
-    \ operator|(T v, [[maybe_unused]] const RSort_impl& c) {\n\t\tsort(rbegin(v),\
-    \ rend(v));\n\t\treturn v;\n\t}\n} RSort;\nstruct RSortBy_impl {\n\ttemplate <class\
+    \n#include <algorithm>\n#include <numeric>\n#line 7 \"template/Ruby.cpp\"\nusing\
+    \ namespace std;\n\ntemplate <class F> struct Callable {\n\tF func;\n\tCallable(const\
+    \ F& f) : func(f) {}\n};\ntemplate <class T, class F> auto operator|(const T&\
+    \ v, const Callable<F>& c) {\n\treturn c.func(v);\n}\n\nstruct Sort_impl {\n\t\
+    template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
+    \t\t\tsort(begin(v), end(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class\
+    \ T> friend auto operator|(T v, [[maybe_unused]] const Sort_impl& c) {\n\t\tsort(begin(v),\
+    \ end(v));\n\t\treturn v;\n\t}\n} Sort;\nstruct SortBy_impl {\n\ttemplate <class\
     \ F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tsort(begin(v),\
-    \ end(v), [&](const auto& i, const auto& j) {\n\t\t\t\treturn f(i) > f(j);\n\t\
-    \t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} RSortBy;\nstruct Reverse_impl {\n\t\
-    template <class T> friend auto operator|(T v, const Reverse_impl& c) {\n\t\treverse(begin(v),\
-    \ end(v));\n\t\treturn v;\n\t}\n} Reverse;\nstruct Unique_impl {\n\ttemplate <class\
-    \ T> friend auto operator|(T v, const Unique_impl& c) {\n\t\tv.erase(unique(begin(v),\
-    \ end(v), end(v)));\n\t\treturn v;\n\t}\n} Unique;\nstruct Uniq_impl {\n\ttemplate\
-    \ <class T> friend auto operator|(T v, const Uniq_impl& c) {\n\t\tsort(begin(v),\
-    \ end(v));\n\t\tv.erase(unique(begin(v), end(v)), end(v));\n\t\treturn v;\n\t\
-    }\n} Uniq;\nstruct Rotate_impl {\n\tauto operator()(int&& left) {\n\t\treturn\
-    \ Callable([&](auto v) {\n\t\t\tint s = static_cast<int>(size(v));\n\t\t\tassert(-s\
-    \ <= left && left <= s);\n\t\t\tif (0 <= left) {\n\t\t\t\trotate(begin(v), begin(v)\
-    \ + left, end(v));\n\t\t\t} else {\n\t\t\t\trotate(begin(v), end(v) + left, end(v));\n\
-    \t\t\t}\n\t\t\treturn v;\n\t\t});\n\t}\n} Rotate;\nstruct Max_impl {\n\ttemplate\
+    \ end(v), [&](const auto& i, const auto& j) {\n\t\t\t\treturn f(i) < f(j);\n\t\
+    \t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} SortBy;\nstruct RSort_impl {\n\ttemplate\
     \ <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\t\
-    return *max_element(begin(v), end(v), f);\n\t\t});\n\t}\n\ttemplate <class T>\
-    \ friend auto operator|(T v, const Max_impl& c) {\n\t\treturn *max_element(begin(v),\
+    sort(rbegin(v), rend(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class\
+    \ T> friend auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {\n\t\t\
+    sort(rbegin(v), rend(v));\n\t\treturn v;\n\t}\n} RSort;\nstruct RSortBy_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tsort(begin(v), end(v), [&](const auto& i, const auto& j) {\n\t\t\t\t\
+    return f(i) > f(j);\n\t\t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} RSortBy;\nstruct\
+    \ Reverse_impl {\n\ttemplate <class T> friend auto operator|(T v, const Reverse_impl&\
+    \ c) {\n\t\treverse(begin(v), end(v));\n\t\treturn v;\n\t}\n} Reverse;\nstruct\
+    \ Unique_impl {\n\ttemplate <class T> friend auto operator|(T v, const Unique_impl&\
+    \ c) {\n\t\tv.erase(unique(begin(v), end(v), end(v)));\n\t\treturn v;\n\t}\n}\
+    \ Unique;\nstruct Uniq_impl {\n\ttemplate <class T> friend auto operator|(T v,\
+    \ const Uniq_impl& c) {\n\t\tsort(begin(v), end(v));\n\t\tv.erase(unique(begin(v),\
+    \ end(v)), end(v));\n\t\treturn v;\n\t}\n} Uniq;\nstruct Rotate_impl {\n\tauto\
+    \ operator()(int&& left) {\n\t\treturn Callable([&](auto v) {\n\t\t\tint s = static_cast<int>(size(v));\n\
+    \t\t\tassert(-s <= left && left <= s);\n\t\t\tif (0 <= left) {\n\t\t\t\trotate(begin(v),\
+    \ begin(v) + left, end(v));\n\t\t\t} else {\n\t\t\t\trotate(begin(v), end(v) +\
+    \ left, end(v));\n\t\t\t}\n\t\t\treturn v;\n\t\t});\n\t}\n} Rotate;\nstruct Max_impl\
+    \ {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\treturn *max_element(begin(v), end(v), f);\n\t\t});\n\t}\n\ttemplate\
+    \ <class T> friend auto operator|(T v, const Max_impl& c) {\n\t\treturn *max_element(begin(v),\
     \ end(v));\n\t}\n} Max;\nstruct Min_impl {\n\ttemplate <class F> auto operator()(F&&\
     \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn *min_element(begin(v),\
     \ end(v), f);\n\t\t});\n\t}\n\ttemplate <class T> friend auto operator|(T v, const\
@@ -237,7 +237,7 @@ data:
     \ {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn accumulate(next(begin(v)),\
     \ end(v), f(*begin(v)), [&](const auto& a, const auto& b) {\n\t\t\t\treturn a\
     \ + f(b);\n\t\t\t});\n\t\t});\n\t}\n\ttemplate <class T> friend auto operator|(T\
-    \ v, const Sum_impl& c) {\n\t\treturn accumulate(begin(v), end(v), typename T::value_type());\n\
+    \ v, const Sum_impl& c) {\n\t\treturn accumulate(begin(v), end(v), typename T::value_type{});\n\
     \t}\n} Sum;\nstruct Includes {\n\ttemplate <class V> auto operator()(const V&\
     \ val) {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn find(begin(v), end(v),\
     \ val) != end(v);\n\t\t});\n\t}\n} Includes;\nstruct IncludesIf_impl {\n\ttemplate\
@@ -311,7 +311,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-10-06 19:14:23+09:00'
+  timestamp: '2020-10-07 21:03:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

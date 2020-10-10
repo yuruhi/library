@@ -33,8 +33,8 @@ data:
   isVerificationFile: false
   path: Graph/FlowTemplate.cpp
   requiredBy:
-  - Graph/Dinic.cpp
   - Graph/FordFulkerson.cpp
+  - Graph/Dinic.cpp
   timestamp: '2020-10-04 14:21:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

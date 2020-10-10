@@ -231,8 +231,8 @@ data:
   isVerificationFile: false
   path: dump.hpp
   requiredBy:
-  - template17.cpp
   - template/template.cpp
+  - template17.cpp
   timestamp: '2020-10-06 16:34:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
