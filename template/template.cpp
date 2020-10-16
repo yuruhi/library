@@ -1,4 +1,5 @@
 #pragma once
+#include <bits/stdc++.h>
 #include "./constants.cpp"
 #include "./Input.cpp"
 #include "./Output.cpp"
