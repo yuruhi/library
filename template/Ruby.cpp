@@ -326,6 +326,25 @@ struct NoneOf_impl {
 	}
 } NoneOf;
 
+struct Tally_impl {
+	template <class F> auto operator()(size_t max_val) {
+		return Callable([&](auto v) {
+			vector<size_t> res(max_val);
+			for (const auto& i : v) {
+				res[static_cast<size_t>(i)]++;
+			}
+			return res;
+		});
+	}
+	template <class T, class value_type = typename T::value_type> friend auto operator|(const T& v, Tally_impl& c) {
+		map<value_type, size_t> res;
+		for (const auto& i : v) {
+			res[i]++;
+		}
+		return res;
+	}
+} Tally;
+
 template <class T> auto operator*(const vector<T>& a, size_t n) {
 	T res;
 	for (size_t i = 0; i < n; ++i) {
