@@ -5,6 +5,7 @@
 #include "./Output.cpp"
 #include "./Step.cpp"
 #include "./Ruby.cpp"
+#include "./functions.cpp"
 #if __has_include(<dump.hpp>)
 #include <dump.hpp>
 #else
