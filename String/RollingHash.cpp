@@ -30,4 +30,4 @@ public:
 		return (operator()(r) - operator()(l) * pow[r - l] % MOD + MOD) % MOD;
 	}
 };
-using RH = RollingHash<1000000007>
+using RH = RollingHash<1000000007>;
