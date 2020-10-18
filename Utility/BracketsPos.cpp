@@ -40,7 +40,7 @@ vector<int> AllBracketsPos(const string& s, char c1 = '(', char c2 = ')') {
 	int n = s.size();
 	vector<int> res(n, -1);
 	stack<int> st;
-	rep(i, n) {
+	for (int i = 0; i < n; ++i) {
 		if (s[i] == c1) {
 			st.push(i);
 		} else if (s[i] == c2) {

@@ -93,4 +93,4 @@ public:
 	Matrix pow(long long k) const {
 		return *this ^ k;
 	}
-};
+}

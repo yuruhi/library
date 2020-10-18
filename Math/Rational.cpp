@@ -124,4 +124,4 @@ public:
 	friend ostream& operator<<(ostream& os, const Rational& r) {
 		return os << r.n << '/' << r.d;
 	}
-};
+}
