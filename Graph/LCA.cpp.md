@@ -59,13 +59,13 @@ data:
     \ & 1) {\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\tif (u == v) return u;\n\
     \t\tfor (int k = LOG - 1; k >= 0; --k) {\n\t\t\tif (table[k][u] != table[k][v])\
     \ {\n\t\t\t\tu = table[k][u];\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\t\
-    return table[0][u];\n\t}\n};"
+    return table[0][u];\n\t}\n};\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/LCA.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/LCA.test.cpp

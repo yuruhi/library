@@ -35,12 +35,12 @@ data:
     \ false;\n\t\tif (rank[x] < rank[y]) {\n\t\t\tswap(x, y);\n\t\t\tw = -w;\n\t\t\
     }\n\t\tif (rank[x] == rank[y]) rank[x]++;\n\t\tpar[y] = x;\n\t\tweight_[y] = w;\n\
     \t\treturn true;\n\t}\n\tT diff(int x, int y) {\n\t\treturn weight(y) - weight(x);\n\
-    \t}\n};"
+    \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/WeightedUnionFind.cpp
   requiredBy: []
-  timestamp: '2020-10-04 16:56:02+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WeightedUnionFind.test..cpp

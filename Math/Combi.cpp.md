@@ -56,7 +56,7 @@ data:
     \ r || n < 0 || r < 0) ? 0 : fac[n] * finv[r] * finv[n - r];\n\t}\n\tconstexpr\
     \ T H(int n, int r) const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n\
     \ + r - 1, r);\n\t}\n\tconstexpr T fact(int n) const {\n\t\treturn fac[n];\n\t\
-    }\n};\n"
+    }\n}\n"
   code: "#pragma once\n#include \"./modint.cpp\"\n#include <array>\nusing namespace\
     \ std;\n\ntemplate <int MOD, size_t size> class Combi {\n\tusing T = modint<MOD>;\n\
     \tarray<T, size + 1> fac, finv, inv;\n\npublic:\n\tconstexpr Combi() {\n\t\tfac[0]\
@@ -68,13 +68,13 @@ data:
     \ r || n < 0 || r < 0) ? 0 : fac[n] * finv[r] * finv[n - r];\n\t}\n\tconstexpr\
     \ T H(int n, int r) const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n\
     \ + r - 1, r);\n\t}\n\tconstexpr T fact(int n) const {\n\t\treturn fac[n];\n\t\
-    }\n};"
+    }\n}\n"
   dependsOn:
   - Math/modint.cpp
   isVerificationFile: false
   path: Math/Combi.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Combi.cpp

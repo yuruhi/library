@@ -22,12 +22,12 @@ data:
     \ i] : g[v]) {\n\t\t\tif (u != p) {\n\t\t\t\tpar[u] = make_pair(v, i);\n\t\t\t\
     \tf(f, u, v);\n\t\t\t}\n\t\t}\n\t};\n\tdfs(dfs, t, -1);\n\tvector<int> res;\n\t\
     for (int v = s; v != t; v = par[v].first) {\n\t\tres.push_back(par[v].second);\n\
-    \t}\n\treturn res;\n}"
+    \t}\n\treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/BuildTreePathEdge.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/BuildTreePathEdge.cpp

@@ -15,12 +15,12 @@ data:
   code: "#pragma once\n#include <algorithm>\nusing namespace std;\n\nvoid WarashallFloydAddEdge(Matrix&\
     \ dist, const Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\n\
     \t\tfor (int j = 0; j < V; ++j)\n\t\t\tdist[i][j] = min(dist[i][j], min(dist[i][e.u]\
-    \ + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n}"
+    \ + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/WarashallFloydAddEdge.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/WarashallFloydAddEdge.cpp

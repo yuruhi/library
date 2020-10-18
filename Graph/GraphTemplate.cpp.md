@@ -100,7 +100,7 @@ data:
     \t\treturn e1.cost < e2.cost;\n\t}\n\tfriend bool operator>(const Edge2& e1, const\
     \ Edge2& e2) {\n\t\treturn e1.cost > e2.cost;\n\t}\n\tfriend ostream& operator<<(ostream&\
     \ os, const Edge2& e) {\n\t\treturn os << e.from << \"->\" << e.to << '(' << e.cost\
-    \ << ')';\n\t}\n};\nusing Edges = vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;"
+    \ << ')';\n\t}\n};\nusing Edges = vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/GraphTemplate.cpp
@@ -119,7 +119,7 @@ data:
   - Graph/Kruskal.cpp
   - Graph/Diameter.cpp
   - Graph/WarashallFloyd.cpp
-  timestamp: '2020-10-04 13:14:27+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WarashallFloyd.test.cpp

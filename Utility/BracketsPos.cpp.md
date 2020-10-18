@@ -20,9 +20,9 @@ data:
     \ string::npos};\n\t\t}\n\t} else {\n\t\treturn {string::npos, string::npos};\n\
     \t}\n}\n\nvector<int> AllBracketsPos(const string& s, char c1 = '(', char c2 =\
     \ ')') {\n\tint n = s.size();\n\tvector<int> res(n, -1);\n\tstack<int> st;\n\t\
-    rep(i, n) {\n\t\tif (s[i] == c1) {\n\t\t\tst.push(i);\n\t\t} else if (s[i] ==\
-    \ c2) {\n\t\t\tassert(st.size());\n\t\t\tres[st.top()] = i;\n\t\t\tst.pop();\n\
-    \t\t}\n\t}\n\treturn res;\n}\n"
+    for (int i = 0; i < n; ++i) {\n\t\tif (s[i] == c1) {\n\t\t\tst.push(i);\n\t\t\
+    } else if (s[i] == c2) {\n\t\t\tassert(st.size());\n\t\t\tres[st.top()] = i;\n\
+    \t\t\tst.pop();\n\t\t}\n\t}\n\treturn res;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <string>\n#include <stack>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\nsize_t BracketsPos(const\
     \ string& s, size_t pos, char c1 = '(', char c2 = ')') {\n\tassert(s[pos] == c1);\n\
@@ -35,14 +35,14 @@ data:
     \t\t} else {\n\t\t\treturn {string::npos, string::npos};\n\t\t}\n\t} else {\n\t\
     \treturn {string::npos, string::npos};\n\t}\n}\n\nvector<int> AllBracketsPos(const\
     \ string& s, char c1 = '(', char c2 = ')') {\n\tint n = s.size();\n\tvector<int>\
-    \ res(n, -1);\n\tstack<int> st;\n\trep(i, n) {\n\t\tif (s[i] == c1) {\n\t\t\t\
-    st.push(i);\n\t\t} else if (s[i] == c2) {\n\t\t\tassert(st.size());\n\t\t\tres[st.top()]\
-    \ = i;\n\t\t\tst.pop();\n\t\t}\n\t}\n\treturn res;\n}"
+    \ res(n, -1);\n\tstack<int> st;\n\tfor (int i = 0; i < n; ++i) {\n\t\tif (s[i]\
+    \ == c1) {\n\t\t\tst.push(i);\n\t\t} else if (s[i] == c2) {\n\t\t\tassert(st.size());\n\
+    \t\t\tres[st.top()] = i;\n\t\t\tst.pop();\n\t\t}\n\t}\n\treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/BracketsPos.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/BracketsPos.cpp

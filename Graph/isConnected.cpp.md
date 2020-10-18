@@ -38,13 +38,13 @@ data:
     \ vis(V);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro = que.front();\n\
     \t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (auto e : graph[fro])\n\
     \t\t\tif (!vis[e.to]) {\n\t\t\t\tque.push(e.to);\n\t\t\t\tvis[e.to] = true;\n\t\
-    \t\t}\n\t}\n\treturn false;\n}"
+    \t\t}\n\t}\n\treturn false;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/isConnected.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/isConnected.cpp

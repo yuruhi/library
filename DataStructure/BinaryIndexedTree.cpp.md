@@ -44,13 +44,13 @@ data:
     \ i /= 2) {\n\t\t\tif (res + i <= n && a[res + i] < k) {\n\t\t\t\tk -= a[res +\
     \ i];\n\t\t\t\tres += i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tvector<int>\
     \ debug() const {\n\t\tvector<int> res(n);\n\t\tfor (int i = 0; i < n; ++i)\n\t\
-    \t\tres[i] = operator()(i, i);\n\t\treturn res;\n\t}\n};"
+    \t\tres[i] = operator()(i, i);\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/BinaryIndexedTree.cpp
   requiredBy:
   - Math/Inversion.cpp
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BinaryIndexedTree.test.cpp

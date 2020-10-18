@@ -43,13 +43,13 @@ data:
     if (e.to != p) {\n\t\t\t\tauto res2 = f(f, e.to, v, depth + e.cost);\n\t\t\t\t\
     if (res2.first > res.first) res = res2;\n\t\t\t}\n\t\treturn res;\n\t};\n\tauto\
     \ d1 = dfs(dfs, 0, -1, 0);\n\tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn\
-    \ {d2.first, d1.second, d2.second};\n}"
+    \ {d2.first, d1.second, d2.second};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/Diameter.cpp
   requiredBy: []
-  timestamp: '2020-10-04 13:14:27+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp

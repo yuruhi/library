@@ -18,12 +18,12 @@ data:
     \tint n = a.size();\n\tvector<int> res1;\n\tvector<U> res2;\n\tfor (int i = 0;\
     \ i < n;) {\n\t\tint cnt = 0;\n\t\tauto e = a[i];\n\t\tfor (; i < n && a[i] ==\
     \ e; ++i)\n\t\t\t++cnt;\n\t\tres1.push_back(cnt);\n\t\tres2.push_back(e);\n\t\
-    }\n\treturn make_pair(res1, res2);\n}"
+    }\n\treturn make_pair(res1, res2);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/RLE.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/RLE.cpp

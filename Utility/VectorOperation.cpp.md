@@ -58,12 +58,12 @@ data:
     \ a) {\n\ta = Rotated90(a);\n}\ntemplate <class T> void Rotate180(vector<vector<T>>&\
     \ a) {\n\ta = Rotated180(a);\n}\ntemplate <class T> void Rotate270(vector<vector<T>>&\
     \ a) {\n\ta = Rotated270(a);\n}\ntemplate <class T> void Scale(vector<vector<T>>&\
-    \ a, size_t k) {\n\ta = Scaled(a, k);\n}"
+    \ a, size_t k) {\n\ta = Scaled(a, k);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/VectorOperation.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/VectorOperation.cpp

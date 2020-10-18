@@ -42,13 +42,13 @@ data:
     \treturn res;\n}\ntemplate <class T> vector<T> PrimeFactor_vector(T n) {\n\tassert(2\
     \ <= n);\n\tvector<T> res;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\twhile (n %\
     \ i == 0) {\n\t\t\tres.push_back(i);\n\t\t\tn /= i;\n\t\t}\n\t}\n\tif (n != 1)\
-    \ {\n\t\tres.push_back(n);\n\t}\n\treturn res;\n}"
+    \ {\n\t\tres.push_back(n);\n\t}\n\treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/PrimeFactor.cpp
   requiredBy:
   - Math/Euler.cpp
-  timestamp: '2020-10-04 16:56:02+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/PrimeFactor.test.cpp

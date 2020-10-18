@@ -24,12 +24,12 @@ data:
     \ ind(V);\n\tauto dfs = [&](auto&& f, int ID, int v) -> void {\n\t\tid[v] = ID;\n\
     \t\tind[ID].push_back(v);\n\t\tfor (auto e : g[v])\n\t\t\tif (id[e] == -1) f(f,\
     \ ID, e);\n\t};\n\tfor (int i = 0; i < V; ++i)\n\t\tif (id[i] == -1) dfs(dfs,\
-    \ N++, i);\n\tind.resize(N);\n\treturn make_tuple(N, id, ind);\n}"
+    \ N++, i);\n\tind.resize(N);\n\treturn make_tuple(N, id, ind);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/ConnectedComponent.cpp
   requiredBy: []
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ConnectedComponent.test.cpp

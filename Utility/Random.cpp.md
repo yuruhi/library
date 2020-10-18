@@ -28,12 +28,12 @@ data:
     \ u(mt);\n\t}\n\tT dice() {\n\t\treturn operator()(1, 7);\n\t}\n\tbool rand_bool()\
     \ {\n\t\treturn operator()(2);\n\t}\n\tbool rand_bool(double p) {\n\t\tbernoulli_distribution\
     \ u(p);\n\t\treturn u(mt);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
-    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} rnd;"
+    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} rnd;\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Random.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Random.cpp

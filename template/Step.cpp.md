@@ -59,13 +59,13 @@ data:
     \ <class T> inline constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\n\
     template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
     \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
-    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}"
+    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/Step.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Step.cpp

@@ -24,12 +24,12 @@ data:
     \twhile (!s.empty())\n\t\ts.pop();\n\tfor (int i = n - 1; i >= 0; --i) {\n\t\t\
     while (!s.empty() && h[s.top()] >= h[i])\n\t\t\ts.pop();\n\t\tR[i] = s.empty()\
     \ ? n : s.top();\n\t\ts.push(i);\n\t}\n\tfor (int i = 0; i < n; ++i) {\n\t\tans\
-    \ = max(ans, h[i] * (R[i] - L[i]));\n\t}\n\treturn ans;\n}"
+    \ = max(ans, h[i] * (R[i] - L[i]));\n\t}\n\treturn ans;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/MaximumRectangle.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/MaximumRectangle.cpp

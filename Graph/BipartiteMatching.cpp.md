@@ -54,12 +54,12 @@ data:
     \ false);\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tvector<pair<int, int>> edges()\
     \ const {\n\t\tvector<pair<int, int>> res;\n\t\tfor (size_t i = 0; i < left; ++i)\
     \ {\n\t\t\tif (left_match[i] != -1) {\n\t\t\t\tres.emplace_back(i, left_match[i]);\n\
-    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n};"
+    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/BipartiteMatching.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BipartiteMatching.test.cpp

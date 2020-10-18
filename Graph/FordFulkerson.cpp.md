@@ -42,13 +42,13 @@ data:
     G[to].emplace_back(from, G[from].size() - 1, 0);\n\t}\n\tFLOW solve(int s, int\
     \ t) {\n\t\tFLOW res = 0;\n\t\twhile (true) {\n\t\t\tfill(used.begin(), used.end(),\
     \ false);\n\t\t\tFLOW f = dfs(s, t, INF_FLOW);\n\t\t\tif (!f) return res;\n\t\t\
-    \tres += f;\n\t\t}\n\t}\n};"
+    \tres += f;\n\t\t}\n\t}\n};\n"
   dependsOn:
   - Graph/FlowTemplate.cpp
   isVerificationFile: false
   path: Graph/FordFulkerson.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FordFulkerson.test.cpp

@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/Diameter.test.cpp
   requiredBy: []
-  timestamp: '2020-10-04 13:14:27+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Diameter.test.cpp

@@ -152,7 +152,7 @@ data:
     \ os, const Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\
     \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.x\
     \ >> p.y;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
-    \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};"
+    \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Point.cpp

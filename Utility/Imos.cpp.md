@@ -36,12 +36,12 @@ data:
     \ i) const {\n\t\tassert(flag);\n\t\treturn table[i];\n\t}\n\tconst vector<T>&\
     \ operator*() const {\n\t\tassert(flag);\n\t\treturn table;\n\t}\n\tvector<T>\
     \ to_a() const {\n\t\treturn vector<T>(table.begin(), table.begin() + N);\n\t\
-    }\n};"
+    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Imos.cpp
   requiredBy: []
-  timestamp: '2020-10-09 20:19:26+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Imos.cpp

@@ -19,30 +19,32 @@ data:
   - icon: ':warning:'
     path: template/constants.cpp
     title: template/constants.cpp
+  - icon: ':warning:'
+    path: template/functions.cpp
+    title: template/functions.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/constants.cpp\"\n#include <vector>\n#include <string>\n\
-    #include <utility>\n#include <queue>\nusing namespace std;\n\n#define rep(i, n)\
-    \ for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for (int i = (m); i < (n);\
-    \ ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0; --i)\n#define rfor(i, m,\
-    \ n) for (int i = (m); i >= (n); --i)\n#define unless(c) if (!(c))\n#define sz(x)\
-    \ ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(),\
-    \ (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\
-    \nusing namespace std;\nusing ll = long long;\nusing LD = long double;\nusing\
-    \ VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
-    \ VVI = vector<VI>;\nusing VL = vector<ll>;\nusing VVL = vector<VL>;\nusing VS\
-    \ = vector<string>;\nusing VD = vector<LD>;\nusing PII = pair<int, int>;\nusing\
-    \ VP = vector<PII>;\nusing PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\ntemplate\
-    \ <class T> using PQ = priority_queue<T>;\ntemplate <class T> using PQS = priority_queue<T,\
-    \ vector<T>, greater<T>>;\nconstexpr int inf = 1e9;\nconstexpr long long inf_ll\
-    \ = 1e18, MOD = 1000000007;\nconstexpr long double PI = 3.14159265358979323846,\
-    \ EPS = 1e-12;\n#line 2 \"template/Input.cpp\"\n#include <iostream>\n#line 6 \"\
-    template/Input.cpp\"\n#include <tuple>\nusing namespace std;\n\n#ifdef _WIN32\n\
-    #define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
+  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\n#line\
+    \ 6 \"template/constants.cpp\"\nusing namespace std;\n\n#define rep(i, n) for\
+    \ (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n\
+    #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for\
+    \ (int i = (m); i >= (n); --i)\n#define unless(c) if (!(c))\n#define sz(x) ((int)(x).size())\n\
+    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
+    #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\nusing namespace\
+    \ std;\nusing ll = long long;\nusing LD = long double;\nusing VB = vector<bool>;\n\
+    using VVB = vector<VB>;\nusing VI = vector<int>;\nusing VVI = vector<VI>;\nusing\
+    \ VL = vector<ll>;\nusing VVL = vector<VL>;\nusing VS = vector<string>;\nusing\
+    \ VD = vector<LD>;\nusing PII = pair<int, int>;\nusing VP = vector<PII>;\nusing\
+    \ PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\ntemplate <class T> using PQ =\
+    \ priority_queue<T>;\ntemplate <class T> using PQS = priority_queue<T, vector<T>,\
+    \ greater<T>>;\nconstexpr int inf = 1e9;\nconstexpr long long inf_ll = 1e18, MOD\
+    \ = 1000000007;\nconstexpr long double PI = 3.14159265358979323846, EPS = 1e-12;\n\
+    #line 7 \"template/Input.cpp\"\nusing namespace std;\n\n#ifdef _WIN32\n#define\
+    \ getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
     #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
     \ Input {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\t}\n\ttemplate\
     \ <class T> static void i(T& v) {\n\t\tcin >> v;\n\t}\n\tstatic void i(char& v)\
@@ -100,15 +102,15 @@ data:
     #define STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\
     \tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...)\
     \ inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n\
-    #line 6 \"template/Output.cpp\"\n#include <charconv>\n#include <cstring>\n#include\
-    \ <cassert>\nusing namespace std;\n\nstruct BoolStr {\n\tconst char *t, *f;\n\t\
-    BoolStr(const char* _t, const char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"No\"\
-    ), yes(\"yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr\
-    \ {\n\tconst char *d, *l;\n\tDivStr(const char* _d, const char* _l) : d(_d), l(_l)\
-    \ {}\n} spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"\
-    ), comma(\",\", \"\\n\"), no_endl(\" \", \"\");\nclass Output {\n\tBoolStr B{Yes};\n\
-    \tDivStr D{spc};\n\tvoid p(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr,\
-    \ e] = to_chars(begin(buf), end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char),\
+    #line 6 \"template/Output.cpp\"\n#include <charconv>\n#line 9 \"template/Output.cpp\"\
+    \nusing namespace std;\n\nstruct BoolStr {\n\tconst char *t, *f;\n\tBoolStr(const\
+    \ char* _t, const char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"No\"), yes(\"\
+    yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\t\
+    const char *d, *l;\n\tDivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n\
+    } spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\"\
+    ,\", \"\\n\"), no_endl(\" \", \"\");\nclass Output {\n\tBoolStr B{Yes};\n\tDivStr\
+    \ D{spc};\n\tvoid p(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e]\
+    \ = to_chars(begin(buf), end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char),\
     \ ptr - buf, stdout);\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid\
     \ p(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
@@ -159,26 +161,25 @@ data:
     \ <class T> inline constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\n\
     template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
     \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
-    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n#line 4 \"template/Ruby.cpp\"\
-    \n#include <algorithm>\n#include <numeric>\n#line 7 \"template/Ruby.cpp\"\nusing\
-    \ namespace std;\n\ntemplate <class F> struct Callable {\n\tF func;\n\tCallable(const\
-    \ F& f) : func(f) {}\n};\ntemplate <class T, class F> auto operator|(const T&\
-    \ v, const Callable<F>& c) {\n\treturn c.func(v);\n}\n\nstruct Sort_impl {\n\t\
-    template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
-    \t\t\tsort(begin(v), end(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class\
-    \ T> friend auto operator|(T v, [[maybe_unused]] const Sort_impl& c) {\n\t\tsort(begin(v),\
-    \ end(v));\n\t\treturn v;\n\t}\n} Sort;\nstruct SortBy_impl {\n\ttemplate <class\
-    \ F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tsort(begin(v),\
-    \ end(v), [&](const auto& i, const auto& j) {\n\t\t\t\treturn f(i) < f(j);\n\t\
-    \t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} SortBy;\nstruct RSort_impl {\n\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\t\
-    sort(rbegin(v), rend(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate <class\
-    \ T> friend auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {\n\t\t\
-    sort(rbegin(v), rend(v));\n\t\treturn v;\n\t}\n} RSort;\nstruct RSortBy_impl {\n\
+    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n#line 8 \"template/Ruby.cpp\"\
+    \nusing namespace std;\n\ntemplate <class F> struct Callable {\n\tF func;\n\t\
+    Callable(const F& f) : func(f) {}\n};\ntemplate <class T, class F> auto operator|(const\
+    \ T& v, const Callable<F>& c) {\n\treturn c.func(v);\n}\n\nstruct Sort_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tsort(begin(v), end(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\ttemplate\
+    \ <class T> friend auto operator|(T v, [[maybe_unused]] const Sort_impl& c) {\n\
+    \t\tsort(begin(v), end(v));\n\t\treturn v;\n\t}\n} Sort;\nstruct SortBy_impl {\n\
     \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
     \ {\n\t\t\tsort(begin(v), end(v), [&](const auto& i, const auto& j) {\n\t\t\t\t\
-    return f(i) > f(j);\n\t\t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} RSortBy;\nstruct\
-    \ Reverse_impl {\n\ttemplate <class T> friend auto operator|(T v, const Reverse_impl&\
+    return f(i) < f(j);\n\t\t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} SortBy;\nstruct\
+    \ RSort_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\tsort(rbegin(v), rend(v), f);\n\t\t\treturn v;\n\t\t});\n\t}\n\t\
+    template <class T> friend auto operator|(T v, [[maybe_unused]] const RSort_impl&\
+    \ c) {\n\t\tsort(rbegin(v), rend(v));\n\t\treturn v;\n\t}\n} RSort;\nstruct RSortBy_impl\
+    \ {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\tsort(begin(v), end(v), [&](const auto& i, const auto& j) {\n\t\t\
+    \t\treturn f(i) > f(j);\n\t\t\t});\n\t\t\treturn v;\n\t\t});\n\t}\n} RSortBy;\n\
+    struct Reverse_impl {\n\ttemplate <class T> friend auto operator|(T v, const Reverse_impl&\
     \ c) {\n\t\treverse(begin(v), end(v));\n\t\treturn v;\n\t}\n} Reverse;\nstruct\
     \ Unique_impl {\n\ttemplate <class T> friend auto operator|(T v, const Unique_impl&\
     \ c) {\n\t\tv.erase(unique(begin(v), end(v), end(v)));\n\t\treturn v;\n\t}\n}\
@@ -268,19 +269,54 @@ data:
     \t\t\tif (f(i)) return true;\n\t\t\t}\n\t\t\treturn false;\n\t\t});\n\t}\n} AnyOf;\n\
     struct NoneOf_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) return\
-    \ false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} NoneOf;\n\ntemplate <class\
-    \ T> auto operator*(const vector<T>& a, size_t n) {\n\tT res;\n\tfor (size_t i\
-    \ = 0; i < n; ++i) {\n\t\tres.insert(res.end(), a.begin(), a.end());\n\t}\n\t\
-    return res;\n}\nauto operator*(string a, size_t n) {\n\tstring res;\n\tfor (size_t\
-    \ i = 0; i < n; ++i) {\n\t\tres += a;\n\t}\n\treturn res;\n}\ntemplate <class\
-    \ T, class U> auto& operator<<(vector<T>& a, const U& b) {\n\ta.insert(a.end(),\
+    \ false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} NoneOf;\n\nstruct Tally_impl\
+    \ {\n\ttemplate <class F> auto operator()(size_t max_val) {\n\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\tvector<size_t> res(max_val);\n\t\t\tfor (const auto& i : v) {\n\t\
+    \t\t\tres[static_cast<size_t>(i)]++;\n\t\t\t}\n\t\t\treturn res;\n\t\t});\n\t\
+    }\n\ttemplate <class T, class value_type = typename T::value_type> friend auto\
+    \ operator|(const T& v, Tally_impl& c) {\n\t\tmap<value_type, size_t> res;\n\t\
+    \tfor (const auto& i : v) {\n\t\t\tres[i]++;\n\t\t}\n\t\treturn res;\n\t}\n} Tally;\n\
+    \ntemplate <class T> auto operator*(const vector<T>& a, size_t n) {\n\tT res;\n\
+    \tfor (size_t i = 0; i < n; ++i) {\n\t\tres.insert(res.end(), a.begin(), a.end());\n\
+    \t}\n\treturn res;\n}\nauto operator*(string a, size_t n) {\n\tstring res;\n\t\
+    for (size_t i = 0; i < n; ++i) {\n\t\tres += a;\n\t}\n\treturn res;\n}\ntemplate\
+    \ <class T, class U> auto& operator<<(vector<T>& a, const U& b) {\n\ta.insert(a.end(),\
     \ all(b));\n\treturn a;\n}\ntemplate <class T> auto& operator<<(string& a, const\
     \ T& b) {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class\
     \ U> auto operator+(vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\ntemplate\
     \ <class T> auto operator+(string a, const T& b) {\n\ta << b;\n\treturn a;\n}\n\
-    #line 7 \"template/template.cpp\"\n#if __has_include(<dump.hpp>)\n#include <dump.hpp>\n\
+    #line 6 \"template/functions.cpp\"\nusing namespace std;\n\ntemplate <class T,\
+    \ class U> inline int Lower(const T& a, const U& v) {\n\treturn lower_bound(all(a),\
+    \ v) - a.begin();\n}\ntemplate <class T, class U> inline int Upper(const T& a,\
+    \ const U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate <class\
+    \ T> inline auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size()\
+    \ ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class\
+    \ T> inline T Ceil(T n, T m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class\
+    \ T> inline T Ceil2(T n, T m) {\n\treturn Ceil(n, m) * m;\n}\ntemplate <class\
+    \ T> inline T Tri(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n\
+    }\ntemplate <class T> inline T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n\
+    \ : n / 2 * (n - 1);\n}\ntemplate <class T> inline T Mid(const T& l, const T&\
+    \ r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class T> inline bool chmax(T&\
+    \ a, const T& b) {\n\tif (a < b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn\
+    \ false;\n}\ntemplate <class T> inline bool chmin(T& a, const T& b) {\n\tif (a\
+    \ > b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate <class\
+    \ T> inline bool inRange(const T& v, const T& min, const T& max) {\n\treturn min\
+    \ <= v && v < max;\n}\ntemplate <class T> inline bool isSquere(T n) {\n\tT s =\
+    \ sqrt(n);\n\treturn s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class\
+    \ T = long long> inline T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class\
+    \ T, class U = typename T::value_type> inline U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> inline U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), lcm<U, U>);\n}\ntemplate <class T> inline T Pow(T a,\
+    \ T n) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) r *= a;\n\t\ta *= a;\n\
+    \t\tn /= 2;\n\t}\n\treturn r;\n}\ntemplate <class T> inline T Powmod(T a, T n,\
+    \ T m = MOD) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\tr = r * a\
+    \ % m, n--;\n\t\telse\n\t\t\ta = a * a % m, n /= 2;\n\t}\n\treturn r;\n}\n#line\
+    \ 9 \"template/template.cpp\"\n#if __has_include(<dump.hpp>)\n#include <dump.hpp>\n\
     #else\n#define dump(...) ((void)0)\n#endif\n"
   code: '#pragma once
+
+    #include <bits/stdc++.h>
 
     #include "./constants.cpp"
 
@@ -292,6 +328,8 @@ data:
 
     #include "./Ruby.cpp"
 
+    #include "./functions.cpp"
+
     #if __has_include(<dump.hpp>)
 
     #include <dump.hpp>
@@ -300,18 +338,21 @@ data:
 
     #define dump(...) ((void)0)
 
-    #endif'
+    #endif
+
+    '
   dependsOn:
   - template/constants.cpp
   - template/Input.cpp
   - template/Output.cpp
   - template/Step.cpp
   - template/Ruby.cpp
+  - template/functions.cpp
   - dump.hpp
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-10-07 21:03:15+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

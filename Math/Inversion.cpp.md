@@ -36,13 +36,13 @@ data:
     \ <vector>\nusing namespace std;\n\nlong long Inversion(const vector<int>& a,\
     \ int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val +\
     \ 1);\n\tfor (size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i] - 1);\n\
-    \t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}"
+    \t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
   dependsOn:
   - DataStructure/BinaryIndexedTree.cpp
   isVerificationFile: false
   path: Math/Inversion.cpp
   requiredBy: []
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Inversion.test.cpp

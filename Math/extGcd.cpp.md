@@ -16,12 +16,12 @@ data:
     }\n"
   code: "#pragma once\n\ntemplate <class T> T extGcd(T a, T b, T& x, T& y) {\n\tT\
     \ d = a;\n\tif (b != 0) {\n\t\td = extGcd(b, a % b, y, x);\n\t\ty -= (a / b) *\
-    \ x;\n\t} else {\n\t\tx = 1;\n\t\ty = 0;\n\t}\n\treturn d;\n}"
+    \ x;\n\t} else {\n\t\tx = 1;\n\t\ty = 0;\n\t}\n\treturn d;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/extGcd.cpp
   requiredBy: []
-  timestamp: '2020-10-04 16:56:02+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/extGcd.test.cpp

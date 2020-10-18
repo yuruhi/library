@@ -153,13 +153,15 @@ data:
 
     constexpr long long inf_ll = 1e18, MOD = 1000000007;
 
-    constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;'
+    constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
+
+    '
   dependsOn: []
   isVerificationFile: false
   path: template/constants.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-10-06 18:41:40+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/constants.cpp

@@ -25,12 +25,12 @@ data:
     \ false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t};\n\tfor (int i = 0; i < n; ++i)\
     \ {\n\t\tif (a[i] == 0 && !dfs(dfs, 0, 1)) {\n\t\t\treturn {false, vector<bool>()};\n\
     \t\t}\n\t}\n\tvector<bool> res(n);\n\tfor (int i = 0; i < n; ++i) {\n\t\tres[i]\
-    \ = a[i] == 1;\n\t}\n\treturn {flag, res};\n}"
+    \ = a[i] == 1;\n\t}\n\treturn {flag, res};\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/BipartiteGraph.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/BipartiteGraph.cpp

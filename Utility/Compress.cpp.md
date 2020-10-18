@@ -44,12 +44,12 @@ data:
     \t\treturn res;\n\t}\n\tint size() const {\n\t\tassert(flag);\n\t\treturn v.size();\n\
     \t}\n\tconst vector<T>& operator*() const {\n\t\tassert(flag);\n\t\treturn v;\n\
     \t}\n\tconst T& operator[](int i) const {\n\t\tassert(flag);\n\t\treturn v[i];\n\
-    \t}\n};"
+    \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Compress.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Compress.cpp

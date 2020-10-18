@@ -29,12 +29,12 @@ data:
     \t\tflag = true;\n\t\tfor (int i = 0; i < N; ++i) {\n\t\t\tX[i] = A[i] + B[i]\
     \ * i;\n\t\t\tA[i + 1] += A[i];\n\t\t\tB[i + 1] += B[i];\n\t\t}\n\t}\n\tT operator[](int\
     \ i) const {\n\t\tassert(flag);\n\t\treturn X[i];\n\t}\n\tconst vector<T>& operator*()\
-    \ const {\n\t\tassert(flag);\n\t\treturn X;\n\t}\n};"
+    \ const {\n\t\tassert(flag);\n\t\treturn X;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/ImosLinear.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/ImosLinear.cpp

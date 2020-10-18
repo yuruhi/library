@@ -321,12 +321,12 @@ data:
     \ - a.x);\n\t\tif (s * t > 0) return false;\n\t\ts = (c.x - d.x) * (a.y - c.y)\
     \ - (c.y - d.y) * (a.x - c.x);\n\t\tt = (c.x - d.x) * (b.y - c.y) - (c.y - d.y)\
     \ * (b.x - c.x);\n\t\tif (s * t > 0) return false;\n\t\treturn true;\n\t}\n} \
-    \ // namespace Geometric"
+    \ // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Geometry/Geometric.cpp

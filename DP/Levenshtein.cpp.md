@@ -21,12 +21,12 @@ data:
     \ + 1));\n\tfor (int i = 0; i <= S; i++)\n\t\tdp[i][0] = i;\n\tfor (int i = 0;\
     \ i <= T; i++)\n\t\tdp[0][i] = i;\n\tfor (int i = 1; i <= S; i++)\n\t\tfor (int\
     \ j = 1; j <= T; j++)\n\t\t\tdp[i][j] = min({dp[i - 1][j] + 1, dp[i][j - 1] +\
-    \ 1, dp[i - 1][j - 1] + (s[i - 1] != t[j - 1])});\n\treturn dp[S][T];\n}"
+    \ 1, dp[i - 1][j - 1] + (s[i - 1] != t[j - 1])});\n\treturn dp[S][T];\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/Levenshtein.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/Levenshtein.cpp

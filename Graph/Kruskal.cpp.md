@@ -51,14 +51,14 @@ data:
     \ {\n\tsort(graph.begin(), graph.end(), [](const Edge2& e1, const Edge2& e2) {\n\
     \t\treturn e1.cost < e2.cost;\n\t});\n\tWeight res = 0;\n\tUnionFind uf(V);\n\t\
     for (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tres += e.cost;\n\
-    \t\t}\n\t}\n\treturn res;\n}"
+    \t\t}\n\t}\n\treturn res;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   - DataStructure/UnionFind.cpp
   isVerificationFile: false
   path: Graph/Kruskal.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Kruskal.test.cpp

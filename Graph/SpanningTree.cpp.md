@@ -38,13 +38,13 @@ data:
     vector<bool> flag(n);\n\tflag[root] = true;\n\twhile (!q.empty()) {\n\t\tint f\
     \ = q.front();\n\t\tq.pop();\n\t\tfor (const Edge& e : g[f]) {\n\t\t\tif (!flag[e.to])\
     \ {\n\t\t\t\tres[f].push_back(e);\n\t\t\t\tflag[e.to] = true;\n\t\t\t\tq.push(e.to);\n\
-    \t\t\t}\n\t\t}\n\t}\n\treturn res;\n}"
+    \t\t\t}\n\t\t}\n\t}\n\treturn res;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/SpanningTree.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/SpanningTree.cpp

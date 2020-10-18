@@ -34,13 +34,13 @@ data:
     \t\tif (d[x] > d[y]) swap(x, y);\n\t\td[x] += d[y];\n\t\td[y] = x;\n\t\tcnt--;\n\
     \t\treturn true;\n\t}\n\tbool same(int x, int y) {\n\t\treturn root(x) == root(y);\n\
     \t}\n\tint size(int x) {\n\t\treturn -d[root(x)];\n\t}\n\tint count_components()\
-    \ const {\n\t\treturn cnt;\n\t}\n};"
+    \ const {\n\t\treturn cnt;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/UnionFind.cpp
   requiredBy:
   - Graph/Kruskal.cpp
-  timestamp: '2020-10-04 13:14:27+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/UnionFind.test.cpp

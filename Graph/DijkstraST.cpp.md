@@ -42,13 +42,13 @@ data:
     \ v = p.to;\n\t\tif (v == t) return dist[t];\n\t\tif (dist[v] < p.cost) continue;\n\
     \t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\
     \t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\
-    \t}\n\t\t}\n\t}\n\treturn dist[t];\n}"
+    \t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DijkstraST.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/DijkstraST.cpp

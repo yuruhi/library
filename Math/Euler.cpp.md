@@ -31,13 +31,13 @@ data:
     \t}\n\treturn res;\n}\n"
   code: "#pragma once\n#include \"./PrimeFactor.cpp\"\n\ntemplate <class T> T Euler(T\
     \ x) {\n\tT res = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tres = res /\
-    \ p * (p - 1);\n\t}\n\treturn res;\n}"
+    \ p * (p - 1);\n\t}\n\treturn res;\n}\n"
   dependsOn:
   - Math/PrimeFactor.cpp
   isVerificationFile: false
   path: Math/Euler.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Euler.test.cpp

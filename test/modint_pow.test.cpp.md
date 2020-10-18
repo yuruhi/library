@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/modint_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_pow.test.cpp

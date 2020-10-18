@@ -53,13 +53,13 @@ data:
     \ = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn {dist, prev};\n}\nvector<int> BuildPath(const\
     \ vector<int>& prev, int t) {\n\tvector<int> res;\n\twhile (prev[t] != -1) {\n\
     \t\tres.push_back(t);\n\t\tt = prev[t];\n\t}\n\tres.push_back(t);\n\treverse(res.begin(),\
-    \ res.end());\n\treturn res;\n}"
+    \ res.end());\n\treturn res;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DijkstraBuildPath.cpp
   requiredBy: []
-  timestamp: '2020-10-04 13:39:06+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/DijkstraBuildPath.test.cpp

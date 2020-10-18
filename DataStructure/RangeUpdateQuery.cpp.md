@@ -39,12 +39,12 @@ data:
     \t\tif (max_count < a[i].first) {\n\t\t\t\tmax_count = a[i].first;\n\t\t\t\tres\
     \ = a[i].second;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tvector<T> to_a() const\
     \ {\n\t\tvector<T> res(n);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[i] =\
-    \ operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};"
+    \ operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/RangeUpdateQuery.cpp
   requiredBy: []
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeUpdateQuery.test.cpp

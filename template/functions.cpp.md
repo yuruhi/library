@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: Math/BabystepGiantstep.cpp
     title: Math/BabystepGiantstep.cpp
+  - icon: ':warning:'
+    path: template/template.cpp
+    title: template/template.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
@@ -65,13 +68,14 @@ data:
     while (n > 0) {\n\t\tif (n & 1) r *= a;\n\t\ta *= a;\n\t\tn /= 2;\n\t}\n\treturn\
     \ r;\n}\ntemplate <class T> inline T Powmod(T a, T n, T m = MOD) {\n\tT r = 1;\n\
     \twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\tr = r * a % m, n--;\n\t\telse\n\t\t\t\
-    a = a * a % m, n /= 2;\n\t}\n\treturn r;\n}"
+    a = a * a % m, n /= 2;\n\t}\n\treturn r;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/functions.cpp
   requiredBy:
+  - template/template.cpp
   - Math/BabystepGiantstep.cpp
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/functions.cpp

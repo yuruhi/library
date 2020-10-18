@@ -38,12 +38,12 @@ data:
     \ s[y2][x2] - s[y1][x2] - s[y2][x1] + s[y1][x1];\n\t}\n\t// [0, y) * [0, x)\n\t\
     T operator()(int y, int x) const {\n\t\tx = min(max(x, 0), w);\n\t\ty = min(max(y,\
     \ 0), h);\n\t\treturn s[y][x];\n\t}\n\tconst vector<vector<T>>& get_s() {\n\t\t\
-    return s;\n\t}\n};"
+    return s;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/CulSum2D.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/CulSum2D.cpp

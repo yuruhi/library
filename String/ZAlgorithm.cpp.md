@@ -24,12 +24,12 @@ data:
     \ = n;\n\twhile (i < n) {\n\t\twhile (i + j < n && s[j] == s[i + j])\n\t\t\tj++;\n\
     \t\tres[i] = j;\n\t\tif (j == 0) {\n\t\t\ti++;\n\t\t\tcontinue;\n\t\t}\n\t\tint\
     \ k = 1;\n\t\twhile (i + k < n && k + res[k] < j) {\n\t\t\tres[i + k] = res[k];\n\
-    \t\t\tk++;\n\t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\treturn res;\n}"
+    \t\t\tk++;\n\t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: String/ZAlgorithm.cpp
   requiredBy: []
-  timestamp: '2020-10-04 18:22:02+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ZAlgotihm.test.cpp

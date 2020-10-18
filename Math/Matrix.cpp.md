@@ -36,7 +36,7 @@ data:
     \t}\n\tMatrix operator*(const Matrix& B) const {\n\t\treturn Matrix(*this) *=\
     \ B;\n\t}\n\tMatrix operator^(const long long k) const {\n\t\treturn Matrix(*this)\
     \ ^= k;\n\t}\n\tMatrix pow(long long k) const {\n\t\treturn *this ^ k;\n\t}\n\
-    };\n"
+    }\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\nusing namespace std;\n\
     \ntemplate <class T> struct Matrix {\n\tsize_t h, w;\n\tvector<vector<T>> A;\n\
     \npublic:\n\tstatic Matrix I(size_t n) {\n\t\tMatrix A(n);\n\t\tfor (size_t i\
@@ -65,12 +65,12 @@ data:
     \ B) const {\n\t\treturn Matrix(*this) -= B;\n\t}\n\tMatrix operator*(const Matrix&\
     \ B) const {\n\t\treturn Matrix(*this) *= B;\n\t}\n\tMatrix operator^(const long\
     \ long k) const {\n\t\treturn Matrix(*this) ^= k;\n\t}\n\tMatrix pow(long long\
-    \ k) const {\n\t\treturn *this ^ k;\n\t}\n};"
+    \ k) const {\n\t\treturn *this ^ k;\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Matrix.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Matrix.cpp

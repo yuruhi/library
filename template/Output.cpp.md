@@ -83,13 +83,13 @@ data:
     }\n\tOutput& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn *this;\n\t}\n\tOutput&\
     \ set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\t}\n\tOutput& set(const\
     \ char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\treturn *this;\n\t}\n\
-    } out;"
+    } out;\n"
   dependsOn: []
   isVerificationFile: false
   path: template/Output.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-10-06 18:41:40+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Output.cpp

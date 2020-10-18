@@ -53,13 +53,13 @@ data:
     \ = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\ttable[e] = i;\n\t\te = e * g\
     \ % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g, mod - m - 1, mod), i =\
     \ 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn i * m + table[e];\n\
-    \t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}"
+    \t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
   dependsOn:
   - template/functions.cpp
   isVerificationFile: false
   path: Math/BabystepGiantstep.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:33:24+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/BabystepGiantstep.cpp

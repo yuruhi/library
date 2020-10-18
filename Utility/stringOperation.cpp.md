@@ -24,12 +24,12 @@ data:
     }\nvector<string> Split(string s, const string& t) {\n\tvector<string> res;\n\t\
     for (size_t p = 0; (p = s.find(t)) != string::npos;) {\n\t\tres.emplace_back(s.begin(),\
     \ s.begin() + p);\n\t\ts = s.substr(p + t.size());\n\t}\n\tres.push_back(s);\n\
-    \treturn res;\n}"
+    \treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/stringOperation.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/stringOperation.cpp

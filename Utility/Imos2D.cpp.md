@@ -38,12 +38,12 @@ data:
     \t\t\tfor (int x = 0; x <= W; ++x)\n\t\t\t\ttable[y][x] += table[y - 1][x];\n\t\
     }\n\tconst T& operator()(int y, int x) const {\n\t\tassert(flag);\n\t\treturn\
     \ table[y][x];\n\t}\n\tconst auto& operator*() const {\n\t\tassert(flag);\n\t\t\
-    return table;\n\t}\n};"
+    return table;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Imos2D.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Imos2D.cpp

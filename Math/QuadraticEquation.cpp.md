@@ -31,12 +31,12 @@ data:
     \t} else {\n\t\t\tlong double ans1 = 0, ans2 = 0;\n\t\t\tif (b > 0) {\n\t\t\t\t\
     ans1 = (-B - sqrt(D)) / (2 * A);\n\t\t\t} else {\n\t\t\t\tans1 = (-B + sqrt(D))\
     \ / (2 * A);\n\t\t\t}\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn vector{min(ans1,\
-    \ ans2), max(ans1, ans2)};\n\t\t}\n\t}\n}"
+    \ ans2), max(ans1, ans2)};\n\t\t}\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/QuadraticEquation.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/QuadraticEquation.cpp

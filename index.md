@@ -225,7 +225,7 @@ data:
       title: Serch/GridBFS.cpp
   - name: String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: String/RollingHash.cpp
       title: String/RollingHash.cpp
     - icon: ':heavy_check_mark:'
@@ -396,7 +396,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
     - icon: ':heavy_check_mark:'

@@ -42,13 +42,13 @@ data:
     }\n\tvector<int> res;\n\twhile (!st.empty()) {\n\t\tint i = st.top();\n\t\tst.pop();\n\
     \t\tres.push_back(i);\n\t\tfor (auto& e : graph[i]) {\n\t\t\th[e.to]--;\n\t\t\t\
     if (!h[e.to]) {\n\t\t\t\tst.push(e.to);\n\t\t\t\tcnt++;\n\t\t\t}\n\t\t}\n\t}\n\
-    \treturn cnt != V;\n}"
+    \treturn cnt != V;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/HasCycle.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/HasCycle.cpp

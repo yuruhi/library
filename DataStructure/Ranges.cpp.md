@@ -71,12 +71,12 @@ data:
     \ operator<<(ostream& os, const Ranges<T>& r) {\n\tconst auto& v = *r;\n\tbool\
     \ first = true;\n\tfor (auto it = v.begin(); it != v.end(); advance(it, 2)) {\n\
     \t\tos << (exchange(first, false) ? \"\" : \", \") << '[' << it->first << \",\
-    \ \" << next(it)->first << ']';\n\t}\n\treturn os;\n}"
+    \ \" << next(it)->first << ']';\n\t}\n\treturn os;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/Ranges.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/Ranges.cpp

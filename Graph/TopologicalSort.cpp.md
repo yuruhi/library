@@ -23,12 +23,12 @@ data:
     \ res;\n\tfunction<void(int)> dfs = [&](int u) {\n\t\tif (visited[u]) return;\n\
     \t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u])\n\t\t\tdfs(i);\n\t\tres.push_back(u);\n\
     \t};\n\tfor (int i = 0; i < V; i++)\n\t\tdfs(i);\n\treverse(res.begin(), res.end());\n\
-    \treturn res;\n}"
+    \treturn res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/TopologicalSort.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TopologicalSort.test.cpp

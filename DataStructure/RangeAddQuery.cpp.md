@@ -38,12 +38,12 @@ data:
     }\n\tT operator[](int i) const {\n\t\tassert(0 <= i && i < n);\n\t\tT res = a[i\
     \ += n];\n\t\twhile (i >>= 1) {\n\t\t\tres += a[i];\n\t\t}\n\t\treturn res;\n\t\
     }\n\tvector<T> to_a() const {\n\t\tvector<T> res(n);\n\t\tfor (int i = 0; i <\
-    \ n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};"
+    \ n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/RangeAddQuery.cpp
   requiredBy: []
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeAddQuery.test.cpp

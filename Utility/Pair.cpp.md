@@ -100,12 +100,12 @@ data:
     namespace std {\n\ttemplate <class T> struct tuple_size<Pair<T>> : integral_constant<size_t,\
     \ 2> {};\n\ttemplate <size_t N, class T> struct tuple_element<N, Pair<T>> { using\
     \ type = T; };\n}  // namespace std\ntemplate <size_t N, class T> T get(const\
-    \ Pair<T>& p) {\n\treturn N == 0 ? p.x : p.y;\n}"
+    \ Pair<T>& p) {\n\treturn N == 0 ? p.x : p.y;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Pair.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Pair.cpp

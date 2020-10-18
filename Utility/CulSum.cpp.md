@@ -32,12 +32,12 @@ data:
     \t\ts[i + 1] = s[i] + static_cast<T>(f(a[i]));\n\t}\n\t// [l, r)\n\tT operator()(size_t\
     \ l, size_t r) const {\n\t\treturn l > r ? 0 : s[r] - s[l];\n\t}\n\t// [0, r)\n\
     \tT operator()(size_t r) const {\n\t\tassert(r <= n);\n\t\treturn s[r];\n\t}\n\
-    \tconst vector<T>& get_s() const {\n\t\treturn s;\n\t}\n};"
+    \tconst vector<T>& get_s() const {\n\t\treturn s;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/CulSum.cpp
   requiredBy: []
-  timestamp: '2020-10-04 17:42:43+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum.test.cpp

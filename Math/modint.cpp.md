@@ -83,13 +83,13 @@ data:
     \ os, const modint<MOD>& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream&\
     \ is, modint<MOD>& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\
     \t\treturn is;\n\t}\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\n\
-    inline mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}"
+    inline mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/modint.cpp
   requiredBy:
   - Math/Combi.cpp
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_pow.test.cpp

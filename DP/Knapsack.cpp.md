@@ -16,12 +16,12 @@ data:
     \ntemplate <class T> vector<T> Knapsack(int N, T W, const vector<T>& v, const\
     \ vector<T>& w) {\n\tvector<T> dp(W + 1, 0);\n\tfor (int i = 0; i < N; ++i) {\n\
     \t\tfor (int j = W; j >= 0; --j) {\n\t\t\tif (j - w[i] >= 0) dp[j] = max(dp[j],\
-    \ dp[j - w[i]] + v[i]);\n\t\t}\n\t}\n\treturn dp;\n}"
+    \ dp[j - w[i]] + v[i]);\n\t\t}\n\t}\n\treturn dp;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/Knapsack.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/Knapsack.cpp

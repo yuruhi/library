@@ -36,12 +36,12 @@ data:
     \ int> operator()(int i) {\n\t\tassert(flag);\n\t\treturn make_pair(ls[i], rs[i]);\n\
     \t}\n\tint operator[](int i) {\n\t\tassert(flag);\n\t\treturn ls[i];\n\t}\n\t\
     template <class T> auto call(int v, function<T(int, int)>&& f) {\n\t\tassert(flag);\n\
-    \t\treturn f(ls[v], rs[v]);\n\t}\n};"
+    \t\treturn f(ls[v], rs[v]);\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/EulerTour.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/EulerTour.cpp

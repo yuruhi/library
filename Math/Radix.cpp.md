@@ -34,12 +34,12 @@ data:
     res += Str[m % N];\n\t\t\tm /= N;\n\t\t} while (m);\n\t\treverse(res.begin(),\
     \ res.end());\n\t\treturn res;\n\t}\n\t// Num(R) -> res(N)\n\tstatic string toN(const\
     \ string& Num, int R, int N) {\n\t\treturn toN(to10(Num, R), N);\n\t}\n};\nstring\
-    \ Radix::Str;\nmap<char, int> Radix::Map;"
+    \ Radix::Str;\nmap<char, int> Radix::Map;\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Radix.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Radix.cpp

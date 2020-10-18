@@ -41,13 +41,13 @@ data:
     \ k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_)\
     \ continue;\n\t\t\t\tdist[j][k] = min(dist[j][k], dist[j][i] + dist[i][k]);\n\t\
     \t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i] < 0) return true;\n\t\
-    return false;\n}"
+    return false;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/WarashallFloyd.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WarashallFloyd.test.cpp

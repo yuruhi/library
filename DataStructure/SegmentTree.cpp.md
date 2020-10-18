@@ -69,12 +69,12 @@ data:
     \ r, c, 1, 0, N);\n\t}\n\ttemplate <class C> int find_last(int l, int r, const\
     \ C& c) const {\n\t\treturn fl(l, r, c, 1, 0, N);\n\t}\n\tvector<T> to_a() const\
     \ {\n\t\tvector<T> res(N);\n\t\tfor (int i = 0; i < N; ++i)\n\t\t\tres[i] = operator[](i);\n\
-    \t\treturn res;\n\t}\n};"
+    \t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/SegmentTree.cpp

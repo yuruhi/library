@@ -103,13 +103,13 @@ data:
     \ U> constexpr Range<T> equal_range(const U& a, const Range<T>& r) {\n\tauto L\
     \ = lower_bound(a.begin(), a.end(), r.x) - a.begin();\n\tauto R = upper_bound(a.begin(),\
     \ a.end(), r.y) - a.begin();\n\treturn L == R ? Range<T>::nil() : Range<T>(L,\
-    \ R, true);\n}"
+    \ R, true);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Range.cpp
   requiredBy:
   - Utility/splitRange.cpp
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Range.cpp

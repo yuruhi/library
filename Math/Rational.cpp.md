@@ -45,7 +45,7 @@ data:
     \ double>(d);\n\t}\n\tfriend istream& operator>>(istream& is, Rational& r) {\n\
     \t\tvalue_type n, d;\n\t\tis >> n >> d;\n\t\tr = Rational(n, d);\n\t\treturn is;\n\
     \t}\n\tfriend ostream& operator<<(ostream& os, const Rational& r) {\n\t\treturn\
-    \ os << r.n << '/' << r.d;\n\t}\n};\n"
+    \ os << r.n << '/' << r.d;\n\t}\n}\n"
   code: "#pragma once\n#include <vector>\n#include <numeric>\n#include <iostream>\n\
     #include <cassert>\nusing namespace std;\n\nclass Rational {\npublic:\n\tusing\
     \ value_type = long long;\n\nprivate:\n\tvalue_type n, d;  // n / d\n\tconstexpr\
@@ -84,12 +84,12 @@ data:
     }\n\tfriend istream& operator>>(istream& is, Rational& r) {\n\t\tvalue_type n,\
     \ d;\n\t\tis >> n >> d;\n\t\tr = Rational(n, d);\n\t\treturn is;\n\t}\n\tfriend\
     \ ostream& operator<<(ostream& os, const Rational& r) {\n\t\treturn os << r.n\
-    \ << '/' << r.d;\n\t}\n};"
+    \ << '/' << r.d;\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Rational.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Rational.cpp

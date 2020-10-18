@@ -12,12 +12,12 @@ data:
     \ x) x++;\n\t}\n\treturn x;\n}\n"
   code: "#pragma once\n\ntemplate <class T> int mex(const T& a) {\n\tint x = 0;\n\t\
     for (int i : a) {\n\t\tif (x < i) break;\n\t\tif (i == x) x++;\n\t}\n\treturn\
-    \ x;\n}"
+    \ x;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Mex.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Mex.cpp

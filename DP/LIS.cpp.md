@@ -16,12 +16,12 @@ data:
     \ntemplate <class T> int LIS(const vector<T>& a, T INF_ = 1e9) {\n\tint n = a.size();\n\
     \tvector<T> dp(n, INF_);\n\tfor (auto num : a) {\n\t\t*lower_bound(dp.begin(),\
     \ dp.end(), num) = num;\n\t}\n\treturn lower_bound(dp.begin(), dp.end(), INF_)\
-    \ - dp.begin();\n}"
+    \ - dp.begin();\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/LIS.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/LIS.cpp

@@ -40,13 +40,13 @@ data:
     \tif (u.to != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\t\t}\n\t\
     \t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int> path{t};\n\twhile (path.back() !=\
     \ s) {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\treverse(path.begin(), path.end());\n\
-    \treturn path;\n}"
+    \treturn path;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/BuildTreePath.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/BuildTreePath.cpp

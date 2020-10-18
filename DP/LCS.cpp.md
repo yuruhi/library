@@ -21,12 +21,12 @@ data:
     \tfor (int i = 0; i < n; ++i) {\n\t\tfor (int j = 0; j < m; ++j) {\n\t\t\tif (s[i]\
     \ == t[j]) dp[i + 1][j + 1] = max(dp[i + 1][j + 1], dp[i][j] + 1);\n\t\t\tdp[i\
     \ + 1][j + 1] = max(dp[i + 1][j + 1], dp[i + 1][j]);\n\t\t\tdp[i + 1][j + 1] =\
-    \ max(dp[i + 1][j + 1], dp[i][j + 1]);\n\t\t}\n\t}\n\treturn dp[n][m];\n}"
+    \ max(dp[i + 1][j + 1], dp[i][j + 1]);\n\t\t}\n\t}\n\treturn dp[n][m];\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/LCS.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DP/LCS.cpp

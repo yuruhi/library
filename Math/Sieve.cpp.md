@@ -25,7 +25,7 @@ data:
     \ (x != 1) {\n\t\t\tres.push_back(f[x]);\n\t\t\tx /= f[x];\n\t\t}\n\t\treturn\
     \ res;\n\t}\n\tint diviser_count(int x) const {\n\t\tassert(1 <= x);\n\t\tint\
     \ res = 1;\n\t\tfor (auto [elem, cnt] : factor(x)) {\n\t\t\tres *= cnt + 1;\n\t\
-    \t}\n\t\treturn res;\n\t}\n};\n"
+    \t}\n\t\treturn res;\n\t}\n}\n"
   code: "#pragma once\n#include <vector>\n#include <map>\n#include <utility>\n#include\
     \ <cassert>\nusing namespace std;\n\nclass Sieve {\n\tint n;\n\tvector<int> f,\
     \ primes;\n\npublic:\n\tSieve(int _n) : n(_n), f(_n + 1) {\n\t\tassert(1 <= n);\n\
@@ -43,12 +43,12 @@ data:
     \ {\n\t\tassert(1 <= x);\n\t\tvector<int> res;\n\t\twhile (x != 1) {\n\t\t\tres.push_back(f[x]);\n\
     \t\t\tx /= f[x];\n\t\t}\n\t\treturn res;\n\t}\n\tint diviser_count(int x) const\
     \ {\n\t\tassert(1 <= x);\n\t\tint res = 1;\n\t\tfor (auto [elem, cnt] : factor(x))\
-    \ {\n\t\t\tres *= cnt + 1;\n\t\t}\n\t\treturn res;\n\t}\n};"
+    \ {\n\t\t\tres *= cnt + 1;\n\t\t}\n\t\treturn res;\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Sieve.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Sieve.cpp

@@ -33,12 +33,12 @@ data:
     \t\t\ts = ((s & ~y) / x >> 1) | y;\n\t\t}\n\t\tbool operator!=(const it& i) const\
     \ {\n\t\t\treturn s < i.s;\n\t\t}\n\t} b, e;\n\npublic:\n\tbit_comb(int k, int\
     \ n) : b((1LL << k) - 1), e(1LL << n) {}\n\tit begin() const {\n\t\treturn b;\n\
-    \t}\n\tit end() const {\n\t\treturn e;\n\t}\n};"
+    \t}\n\tit end() const {\n\t\treturn e;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/BitRangeBasedFor.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/BitRangeBasedFor.cpp

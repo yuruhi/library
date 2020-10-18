@@ -68,12 +68,12 @@ data:
     \ {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is, mint&\
     \ m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = mint(x);\n\t\treturn is;\n\t\
     }\n\tfriend mint operator\"\"_m(unsigned long long n) {\n\t\treturn n;\n\t}\n\
-    };\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;"
+    };\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/modintRuntime.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/modintRuntime.cpp

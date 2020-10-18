@@ -70,13 +70,13 @@ data:
     \ res;\n\t}\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\tfor (int i = 0; i < n;\
     \ i++) {\n\t\tif (i == n - 1 || !((flag && v[i] < v[i + 1]) || (!flag && v[i]\
     \ > v[i + 1]))) {\n\t\t\tflag = flag ? false : true;\n\t\t\tres.emplace_back(x,\
-    \ i);\n\t\t\tx = i;\n\t\t}\n\t}\n\treturn res;\n}"
+    \ i);\n\t\t\tx = i;\n\t\t}\n\t}\n\treturn res;\n}\n"
   dependsOn:
   - Utility/Range.cpp
   isVerificationFile: false
   path: Utility/splitRange.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/splitRange.cpp

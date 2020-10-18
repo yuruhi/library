@@ -41,13 +41,13 @@ data:
     \ = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V; ++v)\n\t\t\t\
     for (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to] > dist[v]\
     \ + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\tif (i == V\
-    \ - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n}"
+    \ - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/BellmanFord.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BellmanFord.test.cpp

@@ -55,13 +55,13 @@ data:
     \ v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\tauto t = max_element(dist.begin(),\
     \ dist.end());\n\tvector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p =\
     \ par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\treverse(path.begin(),\
-    \ path.end());\n\treturn {*t, path};\n}"
+    \ path.end());\n\treturn {*t, path};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DiameterPath.cpp
   requiredBy: []
-  timestamp: '2020-10-04 13:14:27+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp

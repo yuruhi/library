@@ -28,14 +28,14 @@ data:
     \nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = numeric_limits<FLOW>::max();\n\
     struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
     \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n};\nusing GraphF\
-    \ = vector<vector<EdgeF>>;"
+    \ = vector<vector<EdgeF>>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/FlowTemplate.cpp
   requiredBy:
   - Graph/FordFulkerson.cpp
   - Graph/Dinic.cpp
-  timestamp: '2020-10-04 14:21:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Dinic.test.cpp

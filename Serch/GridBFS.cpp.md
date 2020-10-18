@@ -106,7 +106,7 @@ data:
     \ char wall = '#') {\n\tint h = grid.size(), w = grid.front().size();\n\tPoint\
     \ s;\n\tfor (int i = 0; i < h; ++i)\n\t\tfor (int j = 0; j < w; ++j) {\n\t\t\t\
     if (grid[i][j] == start) {\n\t\t\t\ts = Point(j, i);\n\t\t\t}\n\t\t}\n\treturn\
-    \ GridBFS(grid, s, wall);\n}"
+    \ GridBFS(grid, s, wall);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Serch/GridBFS.cpp

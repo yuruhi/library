@@ -42,12 +42,12 @@ data:
     \t\tfor (int i = 0; i < V; ++i)\n\t\t\tfor (auto e : G[i]) {\n\t\t\t\tif (cmp[i]\
     \ != cmp[e]) res[cmp[i]].push_back(cmp[e]);\n\t\t\t}\n\t\tfor (auto& v : res)\
     \ {\n\t\t\tsort(v.begin(), v.end());\n\t\t\tv.erase(unique(v.begin(), v.end()),\
-    \ v.end());\n\t\t}\n\t\treturn res;\n\t}\n};"
+    \ v.end());\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/StronglyConnectedComponents.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/StronglyConnectedComponents.cpp

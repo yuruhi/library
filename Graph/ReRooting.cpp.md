@@ -48,12 +48,12 @@ data:
     \ ans;\n\t}\n};\n\nstruct DP {\n\tint dp;\n\tDP(int _dp = 1) : dp(_dp) {}\n\t\
     DP operator+(const DP& d) const {\n\t\treturn DP(*this) += d;\n\t}\n\tDP& operator+=(const\
     \ DP& d) {\n\t\treturn *this;\n\t}\n\tDP add_root([[maybe_unused]] int v) const\
-    \ {\n\t\tDP res = *this;\n\n\t\treturn res;\n\t}\n};"
+    \ {\n\t\tDP res = *this;\n\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/ReRooting.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/ReRooting.cpp

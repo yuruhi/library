@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/RUQRmQ.test.cpp
   requiredBy: []
-  timestamp: '2020-10-06 22:30:41+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/RUQRmQ.test.cpp

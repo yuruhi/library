@@ -68,12 +68,12 @@ data:
     \t\tindex.pop_back();\n\t\t\t\tbreak;\n\t\t\t} else if (index.back().first <=\
     \ until && until < index.back().second) {\n\t\t\t\tindex.back().second = until;\n\
     \t\t\t\tbreak;\n\t\t\t} else {\n\t\t\t\tvalue.pop_back();\n\t\t\t\tindex.pop_back();\n\
-    \t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n};"
+    \t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/RunLengthArray.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/RunLengthArray.cpp

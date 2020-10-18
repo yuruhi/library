@@ -57,12 +57,12 @@ data:
     \ j)) tl[i][j] = 1 + (i && j ? tl[i - 1][j - 1] : 0);\n\t\t}\n\tvector<vector<int>>\
     \ br(h, vector<int>(w));\n\tfor (int i = h - 1; i >= 0; --i)\n\t\tfor (int j =\
     \ w - 1; j >= 0; --j) {\n\t\t\tif (f(i, j)) br[i][j] = 1 + (i != h - 1 && j !=\
-    \ w - 1 ? br[i + 1][j + 1] : 0);\n\t\t}\n\treturn make_tuple(tl, br);\n}"
+    \ w - 1 ? br[i + 1][j + 1] : 0);\n\t\t}\n\treturn make_tuple(tl, br);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/CountStraight.cpp
   requiredBy: []
-  timestamp: '2020-10-06 16:32:55+09:00'
+  timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/CountStraight.cpp
