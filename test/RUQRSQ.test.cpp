@@ -4,8 +4,8 @@
 using namespace std;
 
 int main() {
-	// cin.tie(nullptr);
-	// ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	ios_base::sync_with_stdio(false);
 	int n, q;
 	cin >> n >> q;
 	vector<int> a(n);
@@ -17,7 +17,6 @@ int main() {
 			int l, r, x;
 			cin >> l >> r >> x;
 			seg.update(l, r + 1, x);
-			dump(seg.to_a());
 		} else {
 			int l, r;
 			cin >> l >> r;
