@@ -6,8 +6,8 @@
 #include "./Step.cpp"
 #include "./Ruby.cpp"
 #include "./functions.cpp"
-#if __has_include(<dump.hpp>)
-#include <dump.hpp>
+#if __has_include(<library/dump.hpp>)
+#include <library/dump.hpp>
 #else
 #define dump(...) ((void)0)
 #endif
