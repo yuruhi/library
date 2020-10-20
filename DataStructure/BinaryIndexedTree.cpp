@@ -41,7 +41,7 @@ public:
 		}
 		return res;
 	}
-	vector<int> debug() const {
+	vector<int> to_a() const {
 		vector<int> res(n);
 		for (int i = 0; i < n; ++i)
 			res[i] = operator()(i, i);
