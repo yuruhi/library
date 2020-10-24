@@ -30,4 +30,4 @@ public:
 	constexpr T fact(int n) const {
 		return fac[n];
 	}
-}
+};

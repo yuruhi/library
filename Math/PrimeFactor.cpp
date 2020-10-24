@@ -6,7 +6,10 @@
 using namespace std;
 
 template <class T> vector<pair<T, int>> PrimeFactor(T n) {
-	assert(2 <= n);
+	assert(1 <= n);
+	if (n == 1) {
+		return {};
+	}
 	vector<pair<T, int>> res;
 	for (T i = 2; i * i <= n; ++i) {
 		if (n % i == 0) {
@@ -23,7 +26,10 @@ template <class T> vector<pair<T, int>> PrimeFactor(T n) {
 	return res;
 }
 template <class T> map<T, int> PrimeFactor_map(T n) {
-	assert(2 <= n);
+	assert(1 <= n);
+	if (n == 1) {
+		return {};
+	}
 	map<T, int> res;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
@@ -37,7 +43,10 @@ template <class T> map<T, int> PrimeFactor_map(T n) {
 	return res;
 }
 template <class T> vector<T> PrimeFactor_vector(T n) {
-	assert(2 <= n);
+	assert(1 <= n);
+	if (n == 1) {
+		return {};
+	}
 	vector<T> res;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
