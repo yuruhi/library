@@ -5,12 +5,9 @@ data:
     path: Math/PrimeFactor.cpp
     title: Math/PrimeFactor.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/Euler.test.cpp
-    title: test/Euler.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n\
@@ -27,25 +24,31 @@ data:
     \ T> vector<T> PrimeFactor_vector(T n) {\n\tassert(1 <= n);\n\tif (n == 1) {\n\
     \t\treturn {};\n\t}\n\tvector<T> res;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\t\
     while (n % i == 0) {\n\t\t\tres.push_back(i);\n\t\t\tn /= i;\n\t\t}\n\t}\n\tif\
-    \ (n != 1) {\n\t\tres.push_back(n);\n\t}\n\treturn res;\n}\n#line 3 \"Math/Euler.cpp\"\
-    \n\ntemplate <class T> T Euler(T x) {\n\tT res = x;\n\tfor (auto [p, e] : PrimeFactor(x))\
-    \ {\n\t\tres = res / p * (p - 1);\n\t}\n\treturn res;\n}\n"
-  code: "#pragma once\n#include \"./PrimeFactor.cpp\"\n\ntemplate <class T> T Euler(T\
-    \ x) {\n\tT res = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tres = res /\
-    \ p * (p - 1);\n\t}\n\treturn res;\n}\n"
+    \ (n != 1) {\n\t\tres.push_back(n);\n\t}\n\treturn res;\n}\n#line 4 \"Math/Moebius.cpp\"\
+    \nusing namespace std;\n\ntemplate <class T> map<T, int> Moebius(T n) {\n\tmap<T,\
+    \ int> res;\n\tauto primes = PrimeFactor(n);\n\tint m = primes.size();\n\tfor\
+    \ (int bit = 0; bit < (1 << m); ++bit) {\n\t\tint mul = 1, d = 1;\n\t\tfor (int\
+    \ i = 0; i < m; ++i) {\n\t\t\tif (bit & (1 << i)) {\n\t\t\t\tmul *= -1;\n\t\t\t\
+    \td *= primes[i].first;\n\t\t\t}\n\t\t}\n\t\tres[d] = mul;\n\t}\n\treturn res;\n\
+    }\n"
+  code: "#pragma once\n#include \"./PrimeFactor.cpp\"\n#include <map>\nusing namespace\
+    \ std;\n\ntemplate <class T> map<T, int> Moebius(T n) {\n\tmap<T, int> res;\n\t\
+    auto primes = PrimeFactor(n);\n\tint m = primes.size();\n\tfor (int bit = 0; bit\
+    \ < (1 << m); ++bit) {\n\t\tint mul = 1, d = 1;\n\t\tfor (int i = 0; i < m; ++i)\
+    \ {\n\t\t\tif (bit & (1 << i)) {\n\t\t\t\tmul *= -1;\n\t\t\t\td *= primes[i].first;\n\
+    \t\t\t}\n\t\t}\n\t\tres[d] = mul;\n\t}\n\treturn res;\n}"
   dependsOn:
   - Math/PrimeFactor.cpp
   isVerificationFile: false
-  path: Math/Euler.cpp
+  path: Math/Moebius.cpp
   requiredBy: []
   timestamp: '2020-10-24 16:02:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/Euler.test.cpp
-documentation_of: Math/Euler.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: Math/Moebius.cpp
 layout: document
 redirect_from:
-- /library/Math/Euler.cpp
-- /library/Math/Euler.cpp.html
-title: Math/Euler.cpp
+- /library/Math/Moebius.cpp
+- /library/Math/Moebius.cpp.html
+title: Math/Moebius.cpp
 ---

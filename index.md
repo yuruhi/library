@@ -186,6 +186,9 @@ data:
       path: Math/Matrix.cpp
       title: Math/Matrix.cpp
     - icon: ':warning:'
+      path: Math/Moebius.cpp
+      title: Math/Moebius.cpp
+    - icon: ':warning:'
       path: Math/Partition.cpp
       title: Math/Partition.cpp
     - icon: ':heavy_check_mark:'
@@ -225,7 +228,7 @@ data:
       title: Serch/GridBFS.cpp
   - name: String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/RollingHash.cpp
       title: String/RollingHash.cpp
     - icon: ':heavy_check_mark:'
@@ -396,7 +399,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
     - icon: ':heavy_check_mark:'

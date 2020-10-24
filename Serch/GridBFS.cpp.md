@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: Utility/Point.cpp
+    title: Utility/Point.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -8,7 +11,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/Point.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <opstream>\nusing namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\
+    #include <iostream>\nusing namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\
     \tstatic const vector<Point> d;\n\tstatic void set_range(int _H, int _W) {\n\t\
     \tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr Point zero() {\n\t\treturn {0,\
     \ 0};\n\t}\n\tstatic constexpr Point one() {\n\t\treturn {1, 1};\n\t}\n\tint x,\
@@ -107,11 +110,12 @@ data:
     \ s;\n\tfor (int i = 0; i < h; ++i)\n\t\tfor (int j = 0; j < w; ++j) {\n\t\t\t\
     if (grid[i][j] == start) {\n\t\t\t\ts = Point(j, i);\n\t\t\t}\n\t\t}\n\treturn\
     \ GridBFS(grid, s, wall);\n}\n"
-  dependsOn: []
+  dependsOn:
+  - Utility/Point.cpp
   isVerificationFile: false
   path: Serch/GridBFS.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2020-10-24 14:19:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Serch/GridBFS.cpp

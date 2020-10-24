@@ -27,7 +27,7 @@ data:
     \ {\n\t\tif (k <= 0) return 0;\n\t\tint res = 0;\n\t\tfor (int i = n2; i > 0;\
     \ i /= 2) {\n\t\t\tif (res + i <= n && a[res + i] < k) {\n\t\t\t\tk -= a[res +\
     \ i];\n\t\t\t\tres += i;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\tvector<int>\
-    \ debug() const {\n\t\tvector<int> res(n);\n\t\tfor (int i = 0; i < n; ++i)\n\t\
+    \ to_a() const {\n\t\tvector<int> res(n);\n\t\tfor (int i = 0; i < n; ++i)\n\t\
     \t\tres[i] = operator()(i, i);\n\t\treturn res;\n\t}\n};\n#line 4 \"test/BinaryIndexedTree.test.cpp\"\
     \nusing namespace std;\nusing ll = long long;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, q;\n\tcin >> n >> q;\n\tBinaryIndexedTree<ll>\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/BinaryIndexedTree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-10-20 20:58:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/BinaryIndexedTree.test.cpp

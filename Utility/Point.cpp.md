@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Serch/GridBFS.cpp
+    title: Serch/GridBFS.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/Point.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <opstream>\nusing namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\
+    #include <iostream>\nusing namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\
     \tstatic const vector<Point> d;\n\tstatic void set_range(int _H, int _W) {\n\t\
     \tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr Point zero() {\n\t\treturn {0,\
     \ 0};\n\t}\n\tstatic constexpr Point one() {\n\t\treturn {1, 1};\n\t}\n\tint x,\
@@ -80,7 +83,7 @@ data:
     \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.x\
     \ >> p.y;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
     \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
-  code: "#pragma once\n#include <vector>\n#include <utility>\n#include <opstream>\n\
+  code: "#pragma once\n#include <vector>\n#include <utility>\n#include <iostream>\n\
     using namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point>\
     \ d;\n\tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t\
     }\n\tstatic constexpr Point zero() {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr\
@@ -156,8 +159,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utility/Point.cpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy:
+  - Serch/GridBFS.cpp
+  timestamp: '2020-10-24 14:19:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Point.cpp

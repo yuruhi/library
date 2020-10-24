@@ -41,26 +41,26 @@ data:
     \ query_impl(l, r, 1, 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\
     \t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\t\
     return res;\n\t}\n};\n#line 3 \"test/RUQRSQ.test.cpp\"\n#include <iostream>\n\
-    using namespace std;\n\nint main() {\n\t// cin.tie(nullptr);\n\t// ios_base::sync_with_stdio(false);\n\
+    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tvector<int> a(n);\n\tRUQRSQ<int> seg(a);\n\t\
     while (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint l,\
-    \ r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l, r + 1, x);\n\t\t\tdump(seg.to_a());\n\
-    \t\t} else {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout << seg(l, r +\
-    \ 1) << '\\n';\n\t\t}\n\t}\n}\n"
+    \ r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l, r + 1, x);\n\t\t} else\
+    \ {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout << seg(l, r + 1) << '\\\
+    n';\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I\"\
     \n#include \"./../DataStructure/RUQRSQ.cpp\"\n#include <iostream>\nusing namespace\
-    \ std;\n\nint main() {\n\t// cin.tie(nullptr);\n\t// ios_base::sync_with_stdio(false);\n\
+    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tvector<int> a(n);\n\tRUQRSQ<int> seg(a);\n\t\
     while (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint l,\
-    \ r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l, r + 1, x);\n\t\t\tdump(seg.to_a());\n\
-    \t\t} else {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout << seg(l, r +\
-    \ 1) << '\\n';\n\t\t}\n\t}\n}"
+    \ r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l, r + 1, x);\n\t\t} else\
+    \ {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout << seg(l, r + 1) << '\\\
+    n';\n\t\t}\n\t}\n}"
   dependsOn:
   - DataStructure/RUQRSQ.cpp
   isVerificationFile: true
   path: test/RUQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-10-18 20:55:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/RUQRSQ.test.cpp

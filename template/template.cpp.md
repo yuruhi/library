@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: dump.hpp
-    title: dump.hpp
-  - icon: ':warning:'
     path: template/Input.cpp
     title: template/Input.cpp
   - icon: ':warning:'
@@ -312,8 +309,8 @@ data:
     \t\tn /= 2;\n\t}\n\treturn r;\n}\ntemplate <class T> inline T Powmod(T a, T n,\
     \ T m = MOD) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\tr = r * a\
     \ % m, n--;\n\t\telse\n\t\t\ta = a * a % m, n /= 2;\n\t}\n\treturn r;\n}\n#line\
-    \ 9 \"template/template.cpp\"\n#if __has_include(<dump.hpp>)\n#include <dump.hpp>\n\
-    #else\n#define dump(...) ((void)0)\n#endif\n"
+    \ 9 \"template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include\
+    \ <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n"
   code: '#pragma once
 
     #include <bits/stdc++.h>
@@ -330,9 +327,11 @@ data:
 
     #include "./functions.cpp"
 
-    #if __has_include(<dump.hpp>)
+    #if __has_include(<library/dump.hpp>)
 
-    #include <dump.hpp>
+    #include <library/dump.hpp>
+
+    #define LOCAL
 
     #else
 
@@ -348,11 +347,10 @@ data:
   - template/Step.cpp
   - template/Ruby.cpp
   - template/functions.cpp
-  - dump.hpp
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-10-21 16:45:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

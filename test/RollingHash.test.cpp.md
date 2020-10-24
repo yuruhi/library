@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/RollingHash.cpp
     title: String/RollingHash.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B
@@ -23,7 +23,7 @@ data:
     \ 1] = (s[i] + hash[i] * base) % MOD;\n\t\t}\n\t}\n\t// [0, r)\n\tull operator()(int\
     \ r) const {\n\t\treturn hash[r];\n\t}\n\t// [l, r)\n\tull operator()(int l, int\
     \ r) const {\n\t\treturn (operator()(r) - operator()(l) * pow[r - l] % MOD + MOD)\
-    \ % MOD;\n\t}\n};\nusing RH = RollingHash<1000000007>\n#line 3 \"test/RollingHash.test.cpp\"\
+    \ % MOD;\n\t}\n};\nusing RH = RollingHash<1000000007>;\n#line 3 \"test/RollingHash.test.cpp\"\
     \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tstring s, t;\n\tcin >> s >> t;\n\tint n\
     \ = s.size(), m = t.size();\n\n\tRH rh_s(s), rh_t(t);\n\tfor (int i = 0; i <=\
@@ -40,8 +40,8 @@ data:
   isVerificationFile: true
   path: test/RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-10-18 13:50:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/RollingHash.test.cpp
 layout: document
