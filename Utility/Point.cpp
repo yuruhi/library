@@ -239,7 +239,7 @@ struct Point {
 		return os << '(' << p.x << ", " << p.y << ')';
 	}
 	friend istream& operator>>(istream& is, Point& p) {
-		return is >> p.x >> p.y;
+		return is >> p.y >> p.x;
 	}
 };
 int Point::H, Point::W;

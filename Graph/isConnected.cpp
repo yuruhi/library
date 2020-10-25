@@ -4,7 +4,7 @@
 #include <queue>
 using namespace std;
 
-bool isConnected(const Graph& graph, int s, int t) {
+bool isConnected(const vector<vector<int>>& graph, int s, int t) {
 	int V = graph.size();
 	queue<int> que;
 	que.push(s);
@@ -14,11 +14,12 @@ bool isConnected(const Graph& graph, int s, int t) {
 		int fro = que.front();
 		que.pop();
 		if (fro == t) return true;
-		for (auto e : graph[fro])
-			if (!vis[e.to]) {
-				que.push(e.to);
-				vis[e.to] = true;
+		for (int e : graph[fro]) {
+			if (!vis[e]) {
+				que.push(e);
+				vis[e] = true;
 			}
+		}
 	}
 	return false;
 }
