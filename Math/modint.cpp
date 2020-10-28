@@ -89,7 +89,7 @@ template <int MOD> struct modint {
 	constexpr bool operator!=(const modint& m) const {
 		return n != m.n;
 	}
-	constexpr modint pow(T m) const {
+	template <class M> constexpr modint pow(M m) const {
 		if (0 <= m) {
 			modint t = n, res = 1;
 			while (m > 0) {
@@ -102,7 +102,7 @@ template <int MOD> struct modint {
 			return (modint(1) / n).pow(-m);
 		}
 	}
-	constexpr modint operator^(T m) const {
+	template <class M> constexpr modint operator^(M m) const {
 		return pow(m);
 	}
 	friend ostream& operator<<(ostream& os, const modint<MOD>& m) {
