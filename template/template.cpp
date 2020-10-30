@@ -12,3 +12,11 @@
 #else
 #define dump(...) ((void)0)
 #endif
+
+template <class T> constexpr T oj_local(const T& oj, const T& local) {
+#ifndef LOCAL
+	return oj;
+#else
+	return local;
+#endif
+}
