@@ -24,6 +24,20 @@ namespace Geometric {
 			}
 			return ans / 2;
 		}
+		// 反時計回り
+		bool is_convex() const {
+			if (size() < 3) {
+				return false;
+			}
+			for (size_t i = 0; i < size(); ++i) {
+				size_t prev = i != 0 ? i - 1 : size() - 1;
+				size_t next = i != size() - 1 ? i + 1 : 0;
+				if (iSP(p[prev], p[i], p[next]) == -1) {
+					return false;
+				}
+			}
+			return true;
+		}
 	};
 
 }  // namespace Geometric
