@@ -14,6 +14,8 @@ namespace Geometric {
 		protected:
 			constexpr LineBase() = default;
 			constexpr LineBase(const Vec2& _begin, const Vec2& _end) : begin(_begin), end(_end) {}
+			constexpr LineBase(LD begin_x, LD begin_y, LD end_x, LD end_y)
+			    : begin(begin_x, begin_y), end(end_x, end_y) {}
 
 		public:
 			Vec2 begin, end;
@@ -43,6 +45,7 @@ namespace Geometric {
 	struct Line : internal::LineBase {
 		Line() = default;
 		Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		constexpr Line(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Line(const LineBase& l) : LineBase(l) {}
 		// 交点
 		optional<Vec2> intersection(const Line& l) const {
@@ -63,6 +66,7 @@ namespace Geometric {
 	struct Segment : internal::LineBase {
 		Segment() = default;
 		Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Segment(const LineBase& l) : LineBase(l) {}
 		// (共通部分を持つか, 交点)
 		pair<bool, optional<Vec2>> intersection(const Segment& s) const {

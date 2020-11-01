@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <utility>
+#include <tuple>
 using namespace std;
 
 namespace Geometric {
@@ -17,7 +18,7 @@ namespace Geometric {
 			LD ans = 0;
 			for (size_t i = 0; i < size(); ++i) {
 				size_t next = i < size() - 1 ? i : 0;
-				ans += abs((*this)[i].x * (*this)[i].y - (*this)[next].x * (*this)[i].y);
+				ans += abs(at(i).x * at(i).y - at(next).x * at(i).y);
 			}
 			return ans / 2;
 		}
@@ -29,7 +30,7 @@ namespace Geometric {
 			for (size_t i = 0; i < size(); ++i) {
 				size_t prev = i != 0 ? i - 1 : size() - 1;
 				size_t next = i != size() - 1 ? i + 1 : 0;
-				if (iSP((*this)[prev], (*this)[i], (*this)[next]) == -1) {
+				if (iSP(at(prev), at(i), at(next)) == -1) {
 					return false;
 				}
 			}
@@ -55,6 +56,35 @@ namespace Geometric {
 			}
 			res.resize(k - 1);
 			return res;
+		}
+		// 直径
+		tuple<LD, size_t, size_t> diameter() const {
+			size_t i_start = 0, j_start = 0;
+			for (size_t i = 1; i < size(); ++i) {
+				if (at(i).y > at(i_start).y) i_start = i;
+				if (at(i).y < at(j_start).y) j_start = i;
+			}
+			LD max_dist = (at(i_start) - at(j_start)).length();
+
+			auto diff = [&](int i) {
+				return at((i + 1) % size()) - at(i);
+			};
+
+			size_t i = i_start, i_max = i_start;
+			size_t j = j_start, j_max = j_start;
+			do {
+				if (diff(i).cross(diff(j)) >= 0) {
+					j = (j + 1) % size();
+				} else {
+					i = (i + 1) % size();
+				}
+				if (LD d = (at(i) - at(j)).length(); max_dist < d) {
+					max_dist = d;
+					i_max = i;
+					j_max = j;
+				}
+			} while (i != i_start || j != j_start);
+			return {max_dist, i_max, j_max};
 		}
 		friend ostream& operator<<(ostream& os, const Polygon& p) {
 			os << "{ ";
