@@ -1,0 +1,83 @@
+#pragma once
+#include "./Geometric.hpp"
+#include "./Vec2.hpp"
+#include <iostream>
+#include <cmath>
+#include <utility>
+#include <optional>
+using namespace std;
+
+namespace Geometric {
+
+	namespace internal {
+		struct LineBase {
+		protected:
+			constexpr LineBase() = default;
+			constexpr LineBase(const Vec2& _begin, const Vec2& _end) : begin(_begin), end(_end) {}
+
+		public:
+			Vec2 begin, end;
+			constexpr Vec2 vec() const {
+				return end - begin;
+			}
+			constexpr Vec2 counter_vec() const {
+				return begin - end;
+			}
+			// 平行判定
+			constexpr bool is_parallel(const LineBase& l) const {
+				return sgn(vec().cross(l.vec())) == 0;
+			}
+			// 直交判定
+			constexpr bool is_orthogonal(const LineBase& l) const {
+				return sgn(vec().dot(l.vec())) == 0;
+			}
+			friend ostream& operator<<(ostream& os, const LineBase& l) {
+				return os << '(' << l.begin << ", " << l.end << ')';
+			}
+			friend istream& operator>>(istream& is, LineBase& l) {
+				return is >> l.begin >> l.end;
+			}
+		};
+	}  // namespace internal
+
+	struct Line : internal::LineBase {
+		Line() = default;
+		Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		Line(const LineBase& l) : LineBase(l) {}
+		// 交点
+		optional<Vec2> intersection(const Line& l) const {
+			if (is_parallel(l)) {
+				return nullopt;
+			} else {
+				return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
+			}
+		}
+		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
+			return Geometric::distance(*this, shape);
+		}
+		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
+			return Geometric::intersect(*this, shape);
+		}
+	};
+
+	struct Segment : internal::LineBase {
+		Segment() = default;
+		Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		Segment(const LineBase& l) : LineBase(l) {}
+		// (共通部分を持つか, 交点)
+		pair<bool, optional<Vec2>> intersection(const Segment& s) const {
+			if (this->intersects(s)) {
+				return {true, Line(*this).intersection(s)};
+			} else {
+				return {false, nullopt};
+			}
+		}
+		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
+			return Geometric::distance(*this, shape);
+		}
+		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
+			return Geometric::intersect(*this, shape);
+		}
+	};
+
+}  // namespace Geometric
