@@ -46,12 +46,16 @@ namespace Geometric {
 	LD distance(const Circle& c, const Vec2& v);
 	LD distance(const Circle& c1, const Circle& c2);
 
-	// 交差判定
+	// 交差判定 （内包しているときも true を返す）
 	bool intersect(const Vec2& v1, const Vec2& v2);
+	bool intersect(const Vec2& v, const Line& l);
+	bool intersect(const Vec2& v, const Segment& l);
 	bool intersect(const Vec2& v, const Circle& c);
 	bool intersect(const Vec2& v, const Rect& r);
+	bool intersect(const Line& l, const Vec2& v);
 	bool intersect(const Line& l1, const Line& l2);
 	bool intersect(const Line& l, const Circle& c);
+	bool intersect(const Segment& l, const Vec2& v);
 	bool intersect(const Segment& s1, const Segment& s2);
 	bool intersect(const Segment& s, const Circle& c);
 	bool intersect(const Circle& c, const Vec2& v);

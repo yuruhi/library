@@ -98,11 +98,20 @@ namespace Geometric {
 	bool intersect(const Vec2& v1, const Vec2& v2) {
 		return v1 == v2;
 	}
+	bool intersect(const Vec2& v, const Line& l) {
+		return abs(iSP(v, l.begin, l.end)) != -1;
+	}
+	bool intersect(const Vec2& v, const Segment& l) {
+		return iSP(l.begin, l.end, v) == 0;
+	}
 	bool intersect(const Vec2& v, const Circle& c) {
 		return c.center.distance(v) < c.r + EPS;
 	}
 	bool intersect(const Vec2& v, const Rect& r) {
 		return r.pos <= v && v <= r.bottom_right();
+	}
+	bool intersect(const Line& l, const Vec2& v) {
+		return intersect(v, l);
 	}
 	bool intersect(const Line& l1, const Line& l2) {
 		return !l1.is_parallel(l2);
@@ -110,11 +119,13 @@ namespace Geometric {
 	bool intersect(const Line& l, const Circle& c) {
 		return sgn(distance(c.center, l) - c.r) <= 0;
 	}
+	bool intersect(const Segment& l, const Vec2& v) {
+		return intersect(v, l);
+	}
 	bool intersect(const Segment& s1, const Segment& s2) {
 		return iSP(s1.begin, s1.end, s2.begin) * iSP(s1.begin, s1.end, s2.end) <= 0 &&
 		    iSP(s2.begin, s2.end, s1.begin) * iSP(s2.begin, s2.end, s1.end) <= 0;
 	}
-	// 内包しているときも true を返す
 	bool intersect(const Segment& s, const Circle& c) {
 		return sgn(distance(c.center, s) - c.r) <= 0;
 	}
