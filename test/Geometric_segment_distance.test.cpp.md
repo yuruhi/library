@@ -5,6 +5,9 @@ data:
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/Geometric.cpp
+    title: Geometry/Geometric.cpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
   - icon: ':heavy_check_mark:'
@@ -20,39 +23,18 @@ data:
     path: Geometry/others.cpp
     title: Geometry/others.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_dot_cross.test.cpp
-    title: test/Geometric_dot_cross.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_iSP.test.cpp
-    title: test/Geometric_iSP.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_is_convex.test.cpp
-    title: test/Geometric_is_convex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_is_parallel_is_orthogonal.test.cpp
-    title: test/Geometric_is_parallel_is_orthogonal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_line_intersection.test.cpp
-    title: test/Geometric_line_intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_projection.test.cpp
-    title: test/Geometric_projection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_reflection.test.cpp
-    title: test/Geometric_reflection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_segment_distance.test.cpp
-    title: test/Geometric_segment_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/Geometric_segment_intersection.test.cpp
-    title: test/Geometric_segment_intersection.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: 1e-8
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_D
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_D
+  bundledCode: "#line 1 \"test/Geometric_segment_distance.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_D\"\n#define\
+    \ ERROR \"1e-8\"\n#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
     \ <vector>\n#include <algorithm>\nusing namespace std;\n\nnamespace Geometric\
     \ {\n\n\tusing LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846,\
     \ EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a\
@@ -313,95 +295,33 @@ data:
     \ Rect& r2) {\n\t\treturn max(r1.left(), r2.left()) < min(r1.right(), r2.right())\
     \ + EPS &&\n\t\t    max(r1.top(), r2.top()) < min(r1.bottom(), r2.bottom()) +\
     \ EPS;\n\t}\n\tbool intersect(const Rect& r, const Circle& c) {\n\t\treturn intersect(c,\
-    \ r);\n\t}\n\n}  // namespace Geometric\n"
-  code: "#pragma once\n#include \"./Vec2.hpp\"\n#include \"./Line.hpp\"\n#include\
-    \ \"./Circle.hpp\"\n#include \"./Rect.hpp\"\n#include \"./Geometric.hpp\"\n\n\
-    namespace Geometric {\n\n\tconstexpr bool Equal(LD a, LD b) {\n\t\treturn a <\
-    \ b ? b - a < EPS : a - b < EPS;\n\t}\n\t// a > 0  : +1\n\t// a == 0 :  0\n\t\
-    // a < 0  : -1\n\tconstexpr int sgn(LD a) {\n\t\treturn a < -EPS ? -1 : a > EPS\
-    \ ? 1 : 0;\n\t}\n\n\tconstexpr LD deg_to_rad(LD deg) {\n\t\treturn deg * PI /\
-    \ 180;\n\t}\n\tconstexpr LD rad_to_deg(LD rad) {\n\t\treturn rad * 180 / PI;\n\
-    \t}\n\n\tVec2 Vec2::projection(const Line& l) {\n\t\treturn l.begin + l.vec().normalized()\
-    \ * (*this - l.begin).dot(l.vec()) / l.vec().length();\n\t}\n\tVec2 Vec2::reflection(const\
-    \ Line& l) {\n\t\treturn *this + (projection(l) - *this) * 2;\n\t}\n\n\tint iSP(const\
-    \ Vec2& a, const Vec2& b, const Vec2& c) {\n\t\tint flag = sgn((b - a).cross(c\
-    \ - a));\n\t\tif (flag != 0) {\n\t\t\treturn flag;\n\t\t} else {\n\t\t\tif (sgn((b\
-    \ - a).dot(c - b)) > 0) {\n\t\t\t\treturn 2;\n\t\t\t} else if (sgn((a - b).dot(c\
-    \ - a)) > 0) {\n\t\t\t\treturn -2;\n\t\t\t} else {\n\t\t\t\treturn 0;\n\t\t\t\
-    }\n\t\t}\n\t}\n\n\tint angle_type(const Vec2& a, const Vec2& b, const Vec2& c)\
-    \ {\n\t\tif (int f = sgn((a - b).dot(c - b)); f > 0) {\n\t\t\treturn 0;\n\t\t\
-    } else if (f == 0) {\n\t\t\treturn 1;\n\t\t} else {\n\t\t\treturn 2;\n\t\t}\n\t\
-    }\n\n\tLD distance(const Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x -\
-    \ v2.x, v1.y - v2.y);\n\t}\n\tLD distance(const Vec2& v, const Line& l) {\n\t\t\
-    return abs(l.vec().cross(v - l.begin) / l.vec().length());\n\t}\n\tLD distance(const\
-    \ Vec2& v, const Segment& s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v\
-    \ - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin), v.distance(s.end));\n\
-    \t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\t}\n\tLD distance(const\
-    \ Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v) - c.r);\n\
-    \t}\n\tLD distance(const Line& l, const Vec2& v) {\n\t\treturn distance(v, l);\n\
-    \t}\n\tLD distance(const Line& l1, const Line& l2) {\n\t\treturn l1.is_parallel(l2)\
-    \ ? l1.distance(l2.begin) : 0;\n\t}\n\tLD distance(const Segment& s, const Vec2&\
-    \ v) {\n\t\treturn distance(v, s);\n\t}\n\tLD distance(const Segment& s1, const\
-    \ Segment& s2) {\n\t\tif (intersect(s1, s2)) {\n\t\t\treturn 0;\n\t\t} else {\n\
-    \t\t\treturn min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin,\
-    \ s2), distance(s1.end, s2)});\n\t\t}\n\t}\n\tLD distance(const Circle& c, const\
-    \ Vec2& v) {\n\t\treturn distance(v, c);\n\t}\n\tLD distance(const Circle& c1,\
-    \ const Circle& c2) {\n\t\treturn max<LD>(0, distance(c1.center, c2.center) -\
-    \ (c1.r + c2.r));\n\t}\n\n\tbool intersect(const Vec2& v1, const Vec2& v2) {\n\
-    \t\treturn v1 == v2;\n\t}\n\tbool intersect(const Vec2& v, const Line& l) {\n\t\
-    \treturn abs(iSP(v, l.begin, l.end)) != -1;\n\t}\n\tbool intersect(const Vec2&\
-    \ v, const Segment& l) {\n\t\treturn iSP(l.begin, l.end, v) == 0;\n\t}\n\tbool\
-    \ intersect(const Vec2& v, const Circle& c) {\n\t\treturn c.center.distance(v)\
-    \ < c.r + EPS;\n\t}\n\tbool intersect(const Vec2& v, const Rect& r) {\n\t\treturn\
-    \ r.pos <= v && v <= r.bottom_right();\n\t}\n\tbool intersect(const Line& l, const\
-    \ Vec2& v) {\n\t\treturn intersect(v, l);\n\t}\n\tbool intersect(const Line& l1,\
-    \ const Line& l2) {\n\t\treturn !l1.is_parallel(l2);\n\t}\n\tbool intersect(const\
-    \ Line& l, const Circle& c) {\n\t\treturn sgn(distance(c.center, l) - c.r) <=\
-    \ 0;\n\t}\n\tbool intersect(const Segment& l, const Vec2& v) {\n\t\treturn intersect(v,\
-    \ l);\n\t}\n\tbool intersect(const Segment& s1, const Segment& s2) {\n\t\treturn\
-    \ iSP(s1.begin, s1.end, s2.begin) * iSP(s1.begin, s1.end, s2.end) <= 0 &&\n\t\t\
-    \    iSP(s2.begin, s2.end, s1.begin) * iSP(s2.begin, s2.end, s1.end) <= 0;\n\t\
-    }\n\tbool intersect(const Segment& s, const Circle& c) {\n\t\treturn sgn(distance(c.center,\
-    \ s) - c.r) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Vec2& v) {\n\t\
-    \treturn intersect(v, c);\n\t}\n\tbool intersect(const Circle& c, const Line&\
-    \ l) {\n\t\treturn intersect(l, c);\n\t}\n\tbool intersect(const Circle& c, const\
-    \ Segment& s) {\n\t\treturn intersect(s, c);\n\t}\n\tbool intersect(const Circle&\
-    \ c1, const Circle& c2) {\n\t\treturn sgn(distance(c1.center, c2.center) - (c1.r\
-    \ + c2.r)) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Rect& r) {\n\t\t\
-    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center)\
-    \ ||\n\t\t    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center)\
-    \ || c.intersects(r.top_left()) ||\n\t\t    c.intersects(r.top_right()) || c.intersects(r.bottom_left())\
-    \ || c.intersects(r.bottom_right());\n\t}\n\tbool intersect(const Rect& r1, const\
-    \ Rect& r2) {\n\t\treturn max(r1.left(), r2.left()) < min(r1.right(), r2.right())\
-    \ + EPS &&\n\t\t    max(r1.top(), r2.top()) < min(r1.bottom(), r2.bottom()) +\
-    \ EPS;\n\t}\n\tbool intersect(const Rect& r, const Circle& c) {\n\t\treturn intersect(c,\
-    \ r);\n\t}\n\n}  // namespace Geometric\n"
+    \ r);\n\t}\n\n}  // namespace Geometric\n#line 6 \"test/Geometric_segment_distance.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\
+    \t\tGeometric::Segment s1, s2;\n\t\tcin >> s1 >> s2;\n\t\tprintf(\"%.12Lf\\n\"\
+    , s1.distance(s2));\n\t}\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_D\"\
+    \n#define ERROR \"1e-8\"\n#include \"./../Geometry/Line.hpp\"\n#include \"./../Geometry/Geometric.cpp\"\
+    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tint q;\n\tcin >>\
+    \ q;\n\twhile (q--) {\n\t\tGeometric::Segment s1, s2;\n\t\tcin >> s1 >> s2;\n\t\
+    \tprintf(\"%.12Lf\\n\", s1.distance(s2));\n\t}\n}"
   dependsOn:
-  - Geometry/Vec2.hpp
-  - Geometry/Geometric.hpp
   - Geometry/Line.hpp
+  - Geometry/Geometric.hpp
+  - Geometry/Vec2.hpp
+  - Geometry/Geometric.cpp
   - Geometry/Circle.hpp
   - Geometry/others.cpp
   - Geometry/Rect.hpp
-  isVerificationFile: false
-  path: Geometry/Geometric.cpp
+  isVerificationFile: true
+  path: test/Geometric_segment_distance.test.cpp
   requiredBy: []
   timestamp: '2020-11-01 17:38:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/Geometric_projection.test.cpp
-  - test/Geometric_is_convex.test.cpp
-  - test/Geometric_dot_cross.test.cpp
-  - test/Geometric_reflection.test.cpp
-  - test/Geometric_is_parallel_is_orthogonal.test.cpp
-  - test/Geometric_segment_distance.test.cpp
-  - test/Geometric_line_intersection.test.cpp
-  - test/Geometric_segment_intersection.test.cpp
-  - test/Geometric_iSP.test.cpp
-documentation_of: Geometry/Geometric.cpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/Geometric_segment_distance.test.cpp
 layout: document
 redirect_from:
-- /library/Geometry/Geometric.cpp
-- /library/Geometry/Geometric.cpp.html
-title: Geometry/Geometric.cpp
+- /verify/test/Geometric_segment_distance.test.cpp
+- /verify/test/Geometric_segment_distance.test.cpp.html
+title: test/Geometric_segment_distance.test.cpp
 ---

@@ -36,27 +36,27 @@ data:
     swap(a, b);\n\t\t\tu -= t * v;\n\t\t\tswap(u, v);\n\t\t}\n\t\tn = n * u % MOD;\n\
     \t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr bool operator==(const\
     \ modint& m) const {\n\t\treturn n == m.n;\n\t}\n\tconstexpr bool operator!=(const\
-    \ modint& m) const {\n\t\treturn n != m.n;\n\t}\n\tconstexpr modint pow(T m) const\
-    \ {\n\t\tif (0 <= m) {\n\t\t\tmodint t = n, res = 1;\n\t\t\twhile (m > 0) {\n\t\
-    \t\t\tif (m & 1) res *= t;\n\t\t\t\tt *= t;\n\t\t\t\tm >>= 1;\n\t\t\t}\n\t\t\t\
-    return res;\n\t\t} else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\t\t}\n\t}\n\
-    \tconstexpr modint operator^(T m) const {\n\t\treturn pow(m);\n\t}\n\tfriend ostream&\
-    \ operator<<(ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.n;\n\t}\n\
-    \tfriend istream& operator>>(istream& is, modint<MOD>& m) {\n\t\tlong long x;\n\
-    \t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t}\n};\nusing mint = modint<1000000007>;\n\
-    using VM = vector<mint>;\ninline mint operator\"\"_m(unsigned long long n) {\n\
-    \treturn n;\n}\n#line 3 \"Math/Combi.cpp\"\n#include <array>\nusing namespace\
-    \ std;\n\ntemplate <int MOD, size_t size> class Combi {\n\tusing T = modint<MOD>;\n\
-    \tarray<T, size + 1> fac, finv, inv;\n\npublic:\n\tconstexpr Combi() {\n\t\tfac[0]\
-    \ = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor (size_t\
-    \ i = 2; i <= size; ++i) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = -inv[MOD\
-    \ % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t}\n\tconstexpr\
-    \ T P(int n, int r) const {\n\t\treturn (n < r || n < 0 || r < 0) ? 0 : fac[n]\
-    \ * finv[n - r];\n\t}\n\tconstexpr T C(int n, int r) const {\n\t\treturn (n <\
-    \ r || n < 0 || r < 0) ? 0 : fac[n] * finv[r] * finv[n - r];\n\t}\n\tconstexpr\
-    \ T H(int n, int r) const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n\
-    \ + r - 1, r);\n\t}\n\tconstexpr T fact(int n) const {\n\t\treturn fac[n];\n\t\
-    }\n};\n"
+    \ modint& m) const {\n\t\treturn n != m.n;\n\t}\n\ttemplate <class M> constexpr\
+    \ modint pow(M m) const {\n\t\tif (0 <= m) {\n\t\t\tmodint t = n, res = 1;\n\t\
+    \t\twhile (m > 0) {\n\t\t\t\tif (m & 1) res *= t;\n\t\t\t\tt *= t;\n\t\t\t\tm\
+    \ >>= 1;\n\t\t\t}\n\t\t\treturn res;\n\t\t} else {\n\t\t\treturn (modint(1) /\
+    \ n).pow(-m);\n\t\t}\n\t}\n\ttemplate <class M> constexpr modint operator^(M m)\
+    \ const {\n\t\treturn pow(m);\n\t}\n\tfriend ostream& operator<<(ostream& os,\
+    \ const modint<MOD>& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream&\
+    \ is, modint<MOD>& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\
+    \t\treturn is;\n\t}\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\n\
+    inline mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"\
+    Math/Combi.cpp\"\n#include <array>\nusing namespace std;\n\ntemplate <int MOD,\
+    \ size_t size> class Combi {\n\tusing T = modint<MOD>;\n\tarray<T, size + 1> fac,\
+    \ finv, inv;\n\npublic:\n\tconstexpr Combi() {\n\t\tfac[0] = fac[1] = 1;\n\t\t\
+    finv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor (size_t i = 2; i <= size; ++i)\
+    \ {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = -inv[MOD % i] * (MOD / i);\n\
+    \t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t}\n\tconstexpr T P(int n, int\
+    \ r) const {\n\t\treturn (n < r || n < 0 || r < 0) ? 0 : fac[n] * finv[n - r];\n\
+    \t}\n\tconstexpr T C(int n, int r) const {\n\t\treturn (n < r || n < 0 || r <\
+    \ 0) ? 0 : fac[n] * finv[r] * finv[n - r];\n\t}\n\tconstexpr T H(int n, int r)\
+    \ const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n + r - 1, r);\n\t\
+    }\n\tconstexpr T fact(int n) const {\n\t\treturn fac[n];\n\t}\n};\n"
   code: "#pragma once\n#include \"./modint.cpp\"\n#include <array>\nusing namespace\
     \ std;\n\ntemplate <int MOD, size_t size> class Combi {\n\tusing T = modint<MOD>;\n\
     \tarray<T, size + 1> fac, finv, inv;\n\npublic:\n\tconstexpr Combi() {\n\t\tfac[0]\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: Math/Combi.cpp
   requiredBy: []
-  timestamp: '2020-10-24 16:02:07+09:00'
+  timestamp: '2020-10-28 22:10:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Combi.cpp

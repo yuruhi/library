@@ -26,25 +26,25 @@ data:
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/isConnected.cpp\"\
-    \n#include <queue>\nusing namespace std;\n\nbool isConnected(const Graph& graph,\
-    \ int s, int t) {\n\tint V = graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\
+    \n#include <queue>\nusing namespace std;\n\nbool isConnected(const vector<vector<int>>&\
+    \ graph, int s, int t) {\n\tint V = graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\
     \tvector<bool> vis(V);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro\
-    \ = que.front();\n\t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (auto\
-    \ e : graph[fro])\n\t\t\tif (!vis[e.to]) {\n\t\t\t\tque.push(e.to);\n\t\t\t\t\
-    vis[e.to] = true;\n\t\t\t}\n\t}\n\treturn false;\n}\n"
+    \ = que.front();\n\t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (int\
+    \ e : graph[fro]) {\n\t\t\tif (!vis[e]) {\n\t\t\t\tque.push(e);\n\t\t\t\tvis[e]\
+    \ = true;\n\t\t\t}\n\t\t}\n\t}\n\treturn false;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <queue>\nusing namespace std;\n\nbool isConnected(const Graph& graph, int s,\
-    \ int t) {\n\tint V = graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\tvector<bool>\
-    \ vis(V);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro = que.front();\n\
-    \t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (auto e : graph[fro])\n\
-    \t\t\tif (!vis[e.to]) {\n\t\t\t\tque.push(e.to);\n\t\t\t\tvis[e.to] = true;\n\t\
-    \t\t}\n\t}\n\treturn false;\n}\n"
+    \ <queue>\nusing namespace std;\n\nbool isConnected(const vector<vector<int>>&\
+    \ graph, int s, int t) {\n\tint V = graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\
+    \tvector<bool> vis(V);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro\
+    \ = que.front();\n\t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (int\
+    \ e : graph[fro]) {\n\t\t\tif (!vis[e]) {\n\t\t\t\tque.push(e);\n\t\t\t\tvis[e]\
+    \ = true;\n\t\t\t}\n\t\t}\n\t}\n\treturn false;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/isConnected.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-10-25 11:08:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/isConnected.cpp

@@ -10,15 +10,17 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I
+    IGNORE: ''
+    IGNORE_IF_GCC: ''
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I
-  bundledCode: "#line 1 \"test/RUQRSQ.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I\"\
-    \n#line 2 \"DataStructure/RUQRSQ.cpp\"\n#include <vector>\n#include <optional>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RUQRSQ {\n\
-    \tint n;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic int ceil2(int\
-    \ n) {\n\t\tint m = 1;\n\t\twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn m;\n\t}\n\
-    \tvoid eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
+  bundledCode: "#line 1 \"test/RUQRSQ.test.cpp\"\n#define IGNORE\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I\"\n#line\
+    \ 2 \"DataStructure/RUQRSQ.cpp\"\n#include <vector>\n#include <optional>\n#include\
+    \ <cassert>\nusing namespace std;\n\ntemplate <class T> class RUQRSQ {\n\tint\
+    \ n;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic int ceil2(int n)\
+    \ {\n\t\tint m = 1;\n\t\twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn m;\n\t}\n\t\
+    void eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
     \t\t\tif (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] = *lazy[k];\n\t\t\t\tlazy[2 *\
     \ k + 1] = *lazy[k];\n\t\t\t}\n\t\t\tlazy[k].reset();\n\t\t}\n\t}\n\tvoid update_impl(int\
     \ a, int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b\
@@ -40,14 +42,14 @@ data:
     T operator()(int l, int r) {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\treturn\
     \ query_impl(l, r, 1, 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\
     \t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\t\
-    return res;\n\t}\n};\n#line 3 \"test/RUQRSQ.test.cpp\"\n#include <iostream>\n\
+    return res;\n\t}\n};\n#line 4 \"test/RUQRSQ.test.cpp\"\n#include <iostream>\n\
     using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tvector<int> a(n);\n\tRUQRSQ<int> seg(a);\n\t\
     while (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint l,\
     \ r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l, r + 1, x);\n\t\t} else\
     \ {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout << seg(l, r + 1) << '\\\
     n';\n\t\t}\n\t}\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I\"\
+  code: "#define IGNORE\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_I\"\
     \n#include \"./../DataStructure/RUQRSQ.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tvector<int> a(n);\n\tRUQRSQ<int> seg(a);\n\t\
@@ -60,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/RUQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 20:55:56+09:00'
+  timestamp: '2020-11-01 15:48:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/RUQRSQ.test.cpp

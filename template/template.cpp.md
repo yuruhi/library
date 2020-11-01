@@ -310,36 +310,15 @@ data:
     \ T m = MOD) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\tr = r * a\
     \ % m, n--;\n\t\telse\n\t\t\ta = a * a % m, n /= 2;\n\t}\n\treturn r;\n}\n#line\
     \ 9 \"template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include\
-    \ <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n"
-  code: '#pragma once
-
-    #include <bits/stdc++.h>
-
-    #include "./constants.cpp"
-
-    #include "./Input.cpp"
-
-    #include "./Output.cpp"
-
-    #include "./Step.cpp"
-
-    #include "./Ruby.cpp"
-
-    #include "./functions.cpp"
-
-    #if __has_include(<library/dump.hpp>)
-
-    #include <library/dump.hpp>
-
-    #define LOCAL
-
-    #else
-
-    #define dump(...) ((void)0)
-
-    #endif
-
-    '
+    \ <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\
+    \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
+    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
+  code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./constants.cpp\"\n#include\
+    \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./Step.cpp\"\n#include\
+    \ \"./Ruby.cpp\"\n#include \"./functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
+    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
+    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
+    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
   dependsOn:
   - template/constants.cpp
   - template/Input.cpp
@@ -350,7 +329,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-10-21 16:45:56+09:00'
+  timestamp: '2020-10-31 08:01:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

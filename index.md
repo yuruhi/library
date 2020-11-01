@@ -61,9 +61,30 @@ data:
       title: DataStructure/WeightedUnionFind.cpp
   - name: Geometry
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Circle.hpp
+      title: Geometry/Circle.hpp
+    - icon: ':heavy_check_mark:'
       path: Geometry/Geometric.cpp
       title: Geometry/Geometric.cpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Geometric.hpp
+      title: Geometry/Geometric.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Line.hpp
+      title: Geometry/Line.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Polygon.hpp
+      title: Geometry/Polygon.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Rect.hpp
+      title: Geometry/Rect.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/Vec2.hpp
+      title: Geometry/Vec2.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/others.cpp
+      title: Geometry/others.cpp
   - name: Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -179,10 +200,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Fibonacci.cpp
       title: Math/Fibonacci.cpp
+    - icon: ':warning:'
+      path: Math/FibonacciTable.cpp
+      title: Math/FibonacciTable.cpp
     - icon: ':heavy_check_mark:'
       path: Math/Inversion.cpp
       title: Math/Inversion.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Matrix.cpp
       title: Math/Matrix.cpp
     - icon: ':warning:'
@@ -296,6 +320,59 @@ data:
     - icon: ':warning:'
       path: Utility/stringOperation.cpp
       title: Utility/stringOperation.cpp
+  - name: atcoder
+    pages:
+    - icon: ':warning:'
+      path: atcoder/convolution.hpp
+      title: atcoder/convolution.hpp
+    - icon: ':warning:'
+      path: atcoder/dsu.hpp
+      title: atcoder/dsu.hpp
+    - icon: ':warning:'
+      path: atcoder/fenwicktree.hpp
+      title: atcoder/fenwicktree.hpp
+    - icon: ':warning:'
+      path: atcoder/internal_bit.hpp
+      title: atcoder/internal_bit.hpp
+    - icon: ':warning:'
+      path: atcoder/internal_math.hpp
+      title: atcoder/internal_math.hpp
+    - icon: ':warning:'
+      path: atcoder/internal_queue.hpp
+      title: atcoder/internal_queue.hpp
+    - icon: ':warning:'
+      path: atcoder/internal_scc.hpp
+      title: atcoder/internal_scc.hpp
+    - icon: ':warning:'
+      path: atcoder/internal_type_traits.hpp
+      title: atcoder/internal_type_traits.hpp
+    - icon: ':warning:'
+      path: atcoder/lazysegtree.hpp
+      title: atcoder/lazysegtree.hpp
+    - icon: ':warning:'
+      path: atcoder/math.hpp
+      title: atcoder/math.hpp
+    - icon: ':warning:'
+      path: atcoder/maxflow.hpp
+      title: atcoder/maxflow.hpp
+    - icon: ':warning:'
+      path: atcoder/mincostflow.hpp
+      title: atcoder/mincostflow.hpp
+    - icon: ':warning:'
+      path: atcoder/modint.hpp
+      title: atcoder/modint.hpp
+    - icon: ':warning:'
+      path: atcoder/scc.hpp
+      title: atcoder/scc.hpp
+    - icon: ':warning:'
+      path: atcoder/segtree.hpp
+      title: atcoder/segtree.hpp
+    - icon: ':warning:'
+      path: atcoder/string.hpp
+      title: atcoder/string.hpp
+    - icon: ':warning:'
+      path: atcoder/twosat.hpp
+      title: atcoder/twosat.hpp
   - name: .
     pages:
     - icon: ':warning:'
@@ -369,6 +446,33 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_dot_cross.test.cpp
+      title: test/Geometric_dot_cross.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_iSP.test.cpp
+      title: test/Geometric_iSP.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_is_convex.test.cpp
+      title: test/Geometric_is_convex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_is_parallel_is_orthogonal.test.cpp
+      title: test/Geometric_is_parallel_is_orthogonal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_line_intersection.test.cpp
+      title: test/Geometric_line_intersection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_projection.test.cpp
+      title: test/Geometric_projection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_reflection.test.cpp
+      title: test/Geometric_reflection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_segment_distance.test.cpp
+      title: test/Geometric_segment_distance.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_segment_intersection.test.cpp
+      title: test/Geometric_segment_intersection.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp

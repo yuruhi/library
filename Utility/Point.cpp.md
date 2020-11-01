@@ -80,8 +80,8 @@ data:
     \ -x};\n\t}\n\tconstexpr Point rotate180() {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr\
     \ Point rotate270() {\n\t\treturn {-y, x};\n\t}\n\tfriend ostream& operator<<(ostream&\
     \ os, const Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\
-    \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.x\
-    \ >> p.y;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
+    \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y\
+    \ >> p.x;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
     \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
   code: "#pragma once\n#include <vector>\n#include <utility>\n#include <iostream>\n\
     using namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point>\
@@ -153,15 +153,15 @@ data:
     \ -x};\n\t}\n\tconstexpr Point rotate180() {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr\
     \ Point rotate270() {\n\t\treturn {-y, x};\n\t}\n\tfriend ostream& operator<<(ostream&\
     \ os, const Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\
-    \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.x\
-    \ >> p.y;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
+    \t}\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y\
+    \ >> p.x;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
     \ 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Point.cpp
   requiredBy:
   - Serch/GridBFS.cpp
-  timestamp: '2020-10-24 14:19:28+09:00'
+  timestamp: '2020-10-25 11:08:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Point.cpp
