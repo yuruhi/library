@@ -51,8 +51,12 @@ namespace Geometric {
 	bool intersect(const Vec2& v, const Circle& c);
 	bool intersect(const Vec2& v, const Rect& r);
 	bool intersect(const Line& l1, const Line& l2);
+	bool intersect(const Line& l, const Circle& c);
 	bool intersect(const Segment& s1, const Segment& s2);
+	bool intersect(const Segment& s, const Circle& c);
 	bool intersect(const Circle& c, const Vec2& v);
+	bool intersect(const Circle& c, const Line& l);
+	bool intersect(const Circle& c, const Segment& s);
 	bool intersect(const Circle& c1, const Circle& c2);
 	bool intersect(const Circle& c, const Rect& r);
 	bool intersect(const Rect& r1, const Rect& r2);
