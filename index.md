@@ -80,11 +80,11 @@ data:
       path: Geometry/Rect.hpp
       title: Geometry/Rect.hpp
     - icon: ':heavy_check_mark:'
+      path: Geometry/Triangle.hpp
+      title: Geometry/Triangle.hpp
+    - icon: ':heavy_check_mark:'
       path: Geometry/Vec2.hpp
       title: Geometry/Vec2.hpp
-    - icon: ':heavy_check_mark:'
-      path: Geometry/others.cpp
-      title: Geometry/others.cpp
   - name: Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -447,11 +447,29 @@ data:
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Geometric_cirnnumscribed_circle.test.cpp
+      title: test/Geometric_cirnnumscribed_circle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_closest_pair.test.cpp
+      title: test/Geometric_closest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_convex_hull.test.cpp
+      title: test/Geometric_convex_hull.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_cross_point_of_circles.test.cpp
+      title: test/Geometric_cross_point_of_circles.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_cross_points_between_line_and_circle.test.cpp
+      title: test/Geometric_cross_points_between_line_and_circle.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Geometric_dot_cross.test.cpp
       title: test/Geometric_dot_cross.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Geometric_iSP.test.cpp
       title: test/Geometric_iSP.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_incircle_of_triangle.test.cpp
+      title: test/Geometric_incircle_of_triangle.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Geometric_is_convex.test.cpp
       title: test/Geometric_is_convex.test.cpp
@@ -461,6 +479,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_line_intersection.test.cpp
       title: test/Geometric_line_intersection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_polygon_diameter.test.cpp
+      title: test/Geometric_polygon_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Geometric_projection.test.cpp
       title: test/Geometric_projection.test.cpp

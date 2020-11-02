@@ -14,6 +14,9 @@ data:
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/Polygon.hpp
+    title: Geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
   - icon: ':heavy_check_mark:'
@@ -28,13 +31,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B
-  bundledCode: "#line 1 \"test/Geometric_segment_intersection.test.cpp\"\n#define\
-    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B\"\
-    \n#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <algorithm>\n#include <optional>\nusing namespace std;\n\nnamespace Geometric\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_A
+  bundledCode: "#line 1 \"test/Geometric_convex_hull.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_A\"\n#line 2\
+    \ \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include <vector>\n#include\
+    \ <algorithm>\n#include <optional>\nusing namespace std;\n\nnamespace Geometric\
     \ {\n\n\tusing LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846,\
     \ EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a\
     \ = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD\
@@ -132,19 +135,72 @@ data:
     \t\treturn {-y, x};\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const\
     \ Vec2& v) {\n\t\t\treturn os << '(' << v.x << \", \" << v.y << ')';\n\t\t}\n\t\
     \tfriend istream& operator>>(istream& is, Vec2& v) {\n\t\t\treturn is >> v.x >>\
-    \ v.y;\n\t\t}\n\t};\n\n}  // namespace Geometric\n#line 5 \"Geometry/Line.hpp\"\
-    \n#include <utility>\n#include <tuple>\n#line 9 \"Geometry/Line.hpp\"\nusing namespace\
-    \ std;\n\nnamespace Geometric {\n\n\tnamespace internal {\n\t\tstruct LineBase\
-    \ {\n\t\tprotected:\n\t\t\tconstexpr LineBase() = default;\n\t\t\tconstexpr LineBase(const\
-    \ Vec2& _begin, const Vec2& _end) : begin(_begin), end(_end) {}\n\t\t\tconstexpr\
-    \ LineBase(LD begin_x, LD begin_y, LD end_x, LD end_y)\n\t\t\t    : begin(begin_x,\
-    \ begin_y), end(end_x, end_y) {}\n\n\t\tpublic:\n\t\t\tVec2 begin, end;\n\t\t\t\
-    constexpr Vec2 vec() const {\n\t\t\t\treturn end - begin;\n\t\t\t}\n\t\t\tconstexpr\
-    \ Vec2 counter_vec() const {\n\t\t\t\treturn begin - end;\n\t\t\t}\n\t\t\t// \u5E73\
-    \u884C\u5224\u5B9A\n\t\t\tconstexpr bool is_parallel(const LineBase& l) const\
-    \ {\n\t\t\t\treturn sgn(vec().cross(l.vec())) == 0;\n\t\t\t}\n\t\t\t// \u76F4\u4EA4\
-    \u5224\u5B9A\n\t\t\tconstexpr bool is_orthogonal(const LineBase& l) const {\n\t\
-    \t\t\treturn sgn(vec().dot(l.vec())) == 0;\n\t\t\t}\n\t\t\tfriend ostream& operator<<(ostream&\
+    \ v.y;\n\t\t}\n\t};\n\n}  // namespace Geometric\n#line 7 \"Geometry/Polygon.hpp\"\
+    \n#include <utility>\n#include <tuple>\nusing namespace std;\n\nnamespace Geometric\
+    \ {\n\n\tstruct Polygon : vector<Vec2> {\n\tpublic:\n\t\tPolygon(int n) : vector<Vec2>(n)\
+    \ {}\n\t\tPolygon(const vector<Vec2>& _p) : vector<Vec2>(_p) {}\n\t\tLD area()\
+    \ const {\n\t\t\tLD ans = 0;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\
+    \t\tsize_t next = i < size() - 1 ? i : 0;\n\t\t\t\tans += abs(at(i).x * at(i).y\
+    \ - at(next).x * at(i).y);\n\t\t\t}\n\t\t\treturn ans / 2;\n\t\t}\n\t\t// \u53CD\
+    \u6642\u8A08\u56DE\u308A\n\t\tbool is_convex() const {\n\t\t\tif (size() < 3)\
+    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tfor (size_t i = 0; i < size(); ++i)\
+    \ {\n\t\t\t\tsize_t prev = i != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next =\
+    \ i != size() - 1 ? i + 1 : 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) ==\
+    \ -1) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t\
+    }\n\t\t// \u51F8\u5305\uFF08\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon\
+    \ convex_hull() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(),\
+    \ ps.end(), [](const Vec2& v1, const Vec2& v2) {\n\t\t\t\treturn make_pair(v1.x,\
+    \ v1.y) < make_pair(v2.x, v2.y);\n\t\t\t});\n\t\t\tint n = ps.size(), k = 0;\n\
+    \t\t\tPolygon res(2 * n);\n\t\t\tfor (int i = 0; i < n; res[k++] = ps[i++]) {\n\
+    \t\t\t\twhile (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {\n\t\t\t\t\t\
+    --k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >= 0; res[k++]\
+    \ = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) <=\
+    \ 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tres.resize(k - 1);\n\t\t\treturn\
+    \ res;\n\t\t}\n\t\t// \u76F4\u5F84\n\t\ttuple<LD, size_t, size_t> diameter() const\
+    \ {\n\t\t\tsize_t i_start = 0, j_start = 0;\n\t\t\tfor (size_t i = 1; i < size();\
+    \ ++i) {\n\t\t\t\tif (at(i).y > at(i_start).y) i_start = i;\n\t\t\t\tif (at(i).y\
+    \ < at(j_start).y) j_start = i;\n\t\t\t}\n\t\t\tLD max_dist = (at(i_start) - at(j_start)).length();\n\
+    \n\t\t\tauto diff = [&](int i) {\n\t\t\t\treturn at((i + 1) % size()) - at(i);\n\
+    \t\t\t};\n\n\t\t\tsize_t i = i_start, i_max = i_start;\n\t\t\tsize_t j = j_start,\
+    \ j_max = j_start;\n\t\t\tdo {\n\t\t\t\tif (diff(i).cross(diff(j)) >= 0) {\n\t\
+    \t\t\t\tj = (j + 1) % size();\n\t\t\t\t} else {\n\t\t\t\t\ti = (i + 1) % size();\n\
+    \t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist < d) {\n\t\t\t\
+    \t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\t\t\t\t}\n\t\t\
+    \t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist, i_max, j_max};\n\
+    \t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2, Vec2> closest_pair()\
+    \ const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(), points.end(),\
+    \ Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left, int right) ->\
+    \ tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\tif (n <= 1)\
+    \ {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t} else {\n\t\
+    \t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\t\t\t\
+    \t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\t\t\t\
+    inplace_merge(points.begin() + left, points.begin() + mid, points.begin() + right,\
+    \ Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor (int i =\
+    \ left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x - x))\
+    \ {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size = around.size(),\
+    \ j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <= points[i].y -\
+    \ around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tif (LD\
+    \ length = (points[i] - around[j]).length(); get<0>(res) > length) {\n\t\t\t\t\
+    \t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\
+    \t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\treturn res;\n\
+    \t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\n\t\tfriend\
+    \ ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{ \";\n\t\
+    \t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \", \"\
+    ;\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \" }\";\n\t\t}\n\t\tfriend\
+    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
+    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric\n\
+    #line 9 \"Geometry/Line.hpp\"\nusing namespace std;\n\nnamespace Geometric {\n\
+    \n\tnamespace internal {\n\t\tstruct LineBase {\n\t\tprotected:\n\t\t\tconstexpr\
+    \ LineBase() = default;\n\t\t\tconstexpr LineBase(const Vec2& _begin, const Vec2&\
+    \ _end) : begin(_begin), end(_end) {}\n\t\t\tconstexpr LineBase(LD begin_x, LD\
+    \ begin_y, LD end_x, LD end_y)\n\t\t\t    : begin(begin_x, begin_y), end(end_x,\
+    \ end_y) {}\n\n\t\tpublic:\n\t\t\tVec2 begin, end;\n\t\t\tconstexpr Vec2 vec()\
+    \ const {\n\t\t\t\treturn end - begin;\n\t\t\t}\n\t\t\tconstexpr Vec2 counter_vec()\
+    \ const {\n\t\t\t\treturn begin - end;\n\t\t\t}\n\t\t\t// \u5E73\u884C\u5224\u5B9A\
+    \n\t\t\tconstexpr bool is_parallel(const LineBase& l) const {\n\t\t\t\treturn\
+    \ sgn(vec().cross(l.vec())) == 0;\n\t\t\t}\n\t\t\t// \u76F4\u4EA4\u5224\u5B9A\n\
+    \t\t\tconstexpr bool is_orthogonal(const LineBase& l) const {\n\t\t\t\treturn\
+    \ sgn(vec().dot(l.vec())) == 0;\n\t\t\t}\n\t\t\tfriend ostream& operator<<(ostream&\
     \ os, const LineBase& l) {\n\t\t\t\treturn os << '(' << l.begin << \", \" << l.end\
     \ << ')';\n\t\t\t}\n\t\t\tfriend istream& operator>>(istream& is, LineBase& l)\
     \ {\n\t\t\t\treturn is >> l.begin >> l.end;\n\t\t\t}\n\t\t};\n\t}  // namespace\
@@ -348,33 +404,45 @@ data:
     \ c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;\n\t\t\tVec2 h = c1.center\
     \ + vec * (r2_s < r1_s + dist_s ? -x : x), v2 = vec.rotate90() * y;\n\t\t\treturn\
     \ {h + v2, h - v2};\n\t\t} else {\n\t\t\treturn {};\n\t\t}\n\t}\n\n}  // namespace\
-    \ Geometric\n#line 5 \"test/Geometric_segment_intersection.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\tGeometric::Segment\
-    \ l1, l2;\n\t\tcin >> l1 >> l2;\n\t\tcout << l1.intersects(l2) << '\\n';\n\t}\n\
-    }\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B\"\
-    \n#include \"./../Geometry/Line.hpp\"\n#include \"./../Geometry/Geometric.cpp\"\
-    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tint q;\n\tcin >>\
-    \ q;\n\twhile (q--) {\n\t\tGeometric::Segment l1, l2;\n\t\tcin >> l1 >> l2;\n\t\
-    \tcout << l1.intersects(l2) << '\\n';\n\t}\n}"
+    \ Geometric\n#line 6 \"test/Geometric_convex_hull.test.cpp\"\nusing namespace\
+    \ std;\n\nint main() {\n\tint n;\n\tcin >> n;\n\tGeometric::Polygon p(n);\n\t\
+    for (int i = 0; i < n; ++i) {\n\t\tcin >> p[i];\n\t}\n\tGeometric::Polygon ans\
+    \ = p.convex_hull();\n\n\tsize_t min_index = 0;\n\tpair<Geometric::LD, Geometric::LD>\
+    \ min_val(10001, 10001);\n\tfor (size_t i = 0; i < ans.size(); ++i) {\n\t\tif\
+    \ (auto val = make_pair(ans[i].y, ans[i].x); min_val > val) {\n\t\t\tmin_val =\
+    \ val;\n\t\t\tmin_index = i;\n\t\t}\n\t}\n\n\tcout << ans.size() << '\\n';\n\t\
+    for (size_t i = 0; i < ans.size(); ++i) {\n\t\tauto v = ans[(i + min_index) %\
+    \ ans.size()];\n\t\tcout << v.x << ' ' << v.y << '\\n';\n\t}\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_4_A\"\
+    \n#include \"./../Geometry/Polygon.hpp\"\n#include \"./../Geometry/Geometric.cpp\"\
+    \n#include <iostream>\n#include <utility>\nusing namespace std;\n\nint main()\
+    \ {\n\tint n;\n\tcin >> n;\n\tGeometric::Polygon p(n);\n\tfor (int i = 0; i <\
+    \ n; ++i) {\n\t\tcin >> p[i];\n\t}\n\tGeometric::Polygon ans = p.convex_hull();\n\
+    \n\tsize_t min_index = 0;\n\tpair<Geometric::LD, Geometric::LD> min_val(10001,\
+    \ 10001);\n\tfor (size_t i = 0; i < ans.size(); ++i) {\n\t\tif (auto val = make_pair(ans[i].y,\
+    \ ans[i].x); min_val > val) {\n\t\t\tmin_val = val;\n\t\t\tmin_index = i;\n\t\t\
+    }\n\t}\n\n\tcout << ans.size() << '\\n';\n\tfor (size_t i = 0; i < ans.size();\
+    \ ++i) {\n\t\tauto v = ans[(i + min_index) % ans.size()];\n\t\tcout << v.x <<\
+    \ ' ' << v.y << '\\n';\n\t}\n}"
   dependsOn:
-  - Geometry/Line.hpp
+  - Geometry/Polygon.hpp
   - Geometry/Geometric.hpp
   - Geometry/Vec2.hpp
   - Geometry/Geometric.cpp
+  - Geometry/Line.hpp
   - Geometry/Circle.hpp
   - Geometry/Rect.hpp
   - Geometry/Triangle.hpp
   isVerificationFile: true
-  path: test/Geometric_segment_intersection.test.cpp
+  path: test/Geometric_convex_hull.test.cpp
   requiredBy: []
   timestamp: '2020-11-02 16:43:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/Geometric_segment_intersection.test.cpp
+documentation_of: test/Geometric_convex_hull.test.cpp
 layout: document
 redirect_from:
-- /verify/test/Geometric_segment_intersection.test.cpp
-- /verify/test/Geometric_segment_intersection.test.cpp.html
-title: test/Geometric_segment_intersection.test.cpp
+- /verify/test/Geometric_convex_hull.test.cpp
+- /verify/test/Geometric_convex_hull.test.cpp.html
+title: test/Geometric_convex_hull.test.cpp
 ---

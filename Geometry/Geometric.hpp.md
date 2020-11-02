@@ -18,18 +18,36 @@ data:
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
   - icon: ':heavy_check_mark:'
+    path: Geometry/Triangle.hpp
+    title: Geometry/Triangle.hpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/others.cpp
-    title: Geometry/others.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_cirnnumscribed_circle.test.cpp
+    title: test/Geometric_cirnnumscribed_circle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_closest_pair.test.cpp
+    title: test/Geometric_closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_convex_hull.test.cpp
+    title: test/Geometric_convex_hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_cross_point_of_circles.test.cpp
+    title: test/Geometric_cross_point_of_circles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_cross_points_between_line_and_circle.test.cpp
+    title: test/Geometric_cross_points_between_line_and_circle.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_dot_cross.test.cpp
     title: test/Geometric_dot_cross.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_iSP.test.cpp
     title: test/Geometric_iSP.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_incircle_of_triangle.test.cpp
+    title: test/Geometric_incircle_of_triangle.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_is_convex.test.cpp
     title: test/Geometric_is_convex.test.cpp
@@ -39,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_line_intersection.test.cpp
     title: test/Geometric_line_intersection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_polygon_diameter.test.cpp
+    title: test/Geometric_polygon_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_projection.test.cpp
     title: test/Geometric_projection.test.cpp
@@ -56,10 +77,49 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
-    \ <vector>\n#include <algorithm>\nusing namespace std;\n\nnamespace Geometric\
-    \ {\n\n\tusing LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846,\
-    \ EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a\
-    \ = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD\
+    \ <vector>\n#include <algorithm>\n#include <optional>\nusing namespace std;\n\n\
+    namespace Geometric {\n\n\tusing LD = long double;\n\tconstexpr long double PI\
+    \ = 3.14159265358979323846, EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\
+    \t// a > 0 : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\
+    \tconstexpr LD deg_to_rad(LD deg);\n\tconstexpr LD rad_to_deg(LD rad);\n\n\tstruct\
+    \ Vec2;\n\tstruct Line;\n\tstruct Segment;\n\tstruct Rect;\n\tstruct Circle;\n\
+    \tstruct Polygon;\n\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\u5DE6\u306B\u66F2\
+    \u304C\u308B   : +1\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\u53F3\u306B\u66F2\
+    \u304C\u308B   : -1\n\t// ABC, CBA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
+    \u4E26\u3076 : +2\n\t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
+    \u4E26\u3076 :  0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
+    \u4E26\u3076 : -2\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\
+    \t// \u89D2ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\t\
+    int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\
+    \n\tLD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v,\
+    \ const Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
+    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
+    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
+    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
+    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
+    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
+    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
+    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
+    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
+    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
+    \ intersect(const Line& l, const Vec2& v);\n\tbool intersect(const Line& l1, const\
+    \ Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\tbool intersect(const\
+    \ Segment& l, const Vec2& v);\n\tbool intersect(const Segment& s1, const Segment&\
+    \ s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\tbool intersect(const\
+    \ Circle& c, const Vec2& v);\n\tbool intersect(const Circle& c, const Line& l);\n\
+    \tbool intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
+    \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
+    bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
+    \ r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
+    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
+    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
+    \ c);\n\tvector<Vec2> cross_points(const Circle& c,const Line& l);\n\tvector<Vec2>\
+    \ cross_points(const Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n"
+  code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
+    #include <optional>\nusing namespace std;\n\nnamespace Geometric {\n\n\tusing\
+    \ LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846, EPS\
+    \ = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a = 0\
+    \ :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD\
     \ deg);\n\tconstexpr LD rad_to_deg(LD rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\
     \tstruct Segment;\n\tstruct Rect;\n\tstruct Circle;\n\tstruct Polygon;\n\n\t//\
     \ AB \u304B\u3089\u898B\u3066 BC \u304C\u5DE6\u306B\u66F2\u304C\u308B   : +1\n\
@@ -89,62 +149,39 @@ data:
     \ intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
     \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
     bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
-    \ r, const Circle& c);\n\n}  // namespace Geometric\n"
-  code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
-    using namespace std;\n\nnamespace Geometric {\n\n\tusing LD = long double;\n\t\
-    constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;\n\n\tconstexpr\
-    \ bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\
-    \tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD deg);\n\tconstexpr LD\
-    \ rad_to_deg(LD rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\tstruct Segment;\n\t\
-    struct Rect;\n\tstruct Circle;\n\tstruct Polygon;\n\n\t// AB \u304B\u3089\u898B\
-    \u3066 BC \u304C\u5DE6\u306B\u66F2\u304C\u308B   : +1\n\t// AB \u304B\u3089\u898B\
-    \u3066 BC \u304C\u53F3\u306B\u66F2\u304C\u308B   : -1\n\t// ABC, CBA \u306E\u9806\
-    \u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : +2\n\t// ACB, BCA \u306E\u9806\
-    \u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 :  0\n\t// BAC, CAB \u306E\u9806\
-    \u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : -2\n\tint iSP(const Vec2& a,\
-    \ const Vec2& b, const Vec2& c);\n\n\t// \u89D2ABC \u304C\u92ED\u89D2 : 0, \u76F4\
-    \u89D2 : 1, \u920D\u89D2 : 2\n\tint angle_type(const Vec2& a, const Vec2& b, const\
-    \ Vec2& c);\n\n\t// \u8DDD\u96E2\n\tLD distance(const Vec2& v1, const Vec2& v2);\n\
-    \tLD distance(const Vec2& v, const Line& l);\n\tLD distance(const Vec2& v, const\
-    \ Segment& s);\n\tLD distance(const Vec2& v, const Circle& c);\n\tLD distance(const\
-    \ Line& l, const Vec2& v);\n\tLD distance(const Line& l1, const Line& l2);\n\t\
-    LD distance(const Segment& s, const Vec2& v);\n\tLD distance(const Segment& s1,\
-    \ const Segment& s2);\n\tLD distance(const Circle& c, const Vec2& v);\n\tLD distance(const\
-    \ Circle& c1, const Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\
-    \u5305\u3057\u3066\u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\
-    \n\tbool intersect(const Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2&\
-    \ v, const Line& l);\n\tbool intersect(const Vec2& v, const Segment& l);\n\tbool\
-    \ intersect(const Vec2& v, const Circle& c);\n\tbool intersect(const Vec2& v,\
-    \ const Rect& r);\n\tbool intersect(const Line& l, const Vec2& v);\n\tbool intersect(const\
-    \ Line& l1, const Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\
-    \tbool intersect(const Segment& l, const Vec2& v);\n\tbool intersect(const Segment&\
-    \ s1, const Segment& s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\
-    \tbool intersect(const Circle& c, const Vec2& v);\n\tbool intersect(const Circle&\
-    \ c, const Line& l);\n\tbool intersect(const Circle& c, const Segment& s);\n\t\
-    bool intersect(const Circle& c1, const Circle& c2);\n\tbool intersect(const Circle&\
-    \ c, const Rect& r);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\tbool\
-    \ intersect(const Rect& r, const Circle& c);\n\n}  // namespace Geometric\n"
+    \ r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
+    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
+    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
+    \ c);\n\tvector<Vec2> cross_points(const Circle& c,const Line& l);\n\tvector<Vec2>\
+    \ cross_points(const Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.hpp
   requiredBy:
-  - Geometry/others.cpp
   - Geometry/Rect.hpp
   - Geometry/Line.hpp
   - Geometry/Circle.hpp
   - Geometry/Polygon.hpp
   - Geometry/Geometric.cpp
   - Geometry/Vec2.hpp
-  timestamp: '2020-11-01 17:38:54+09:00'
+  - Geometry/Triangle.hpp
+  timestamp: '2020-11-02 16:25:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_projection.test.cpp
+  - test/Geometric_incircle_of_triangle.test.cpp
+  - test/Geometric_closest_pair.test.cpp
   - test/Geometric_is_convex.test.cpp
   - test/Geometric_dot_cross.test.cpp
   - test/Geometric_reflection.test.cpp
   - test/Geometric_is_parallel_is_orthogonal.test.cpp
   - test/Geometric_segment_distance.test.cpp
+  - test/Geometric_polygon_diameter.test.cpp
+  - test/Geometric_convex_hull.test.cpp
   - test/Geometric_line_intersection.test.cpp
+  - test/Geometric_cross_point_of_circles.test.cpp
+  - test/Geometric_cirnnumscribed_circle.test.cpp
+  - test/Geometric_cross_points_between_line_and_circle.test.cpp
   - test/Geometric_segment_intersection.test.cpp
   - test/Geometric_iSP.test.cpp
 documentation_of: Geometry/Geometric.hpp
