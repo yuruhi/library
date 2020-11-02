@@ -56,6 +56,7 @@ namespace Geometric {
 	bool intersect(const Vec2& v, const Segment& l);
 	bool intersect(const Vec2& v, const Circle& c);
 	bool intersect(const Vec2& v, const Rect& r);
+	bool intersect(const Vec2& v, const Polygon& p);
 	bool intersect(const Line& l, const Vec2& v);
 	bool intersect(const Line& l1, const Line& l2);
 	bool intersect(const Line& l, const Circle& c);
@@ -69,6 +70,21 @@ namespace Geometric {
 	bool intersect(const Circle& c, const Rect& r);
 	bool intersect(const Rect& r1, const Rect& r2);
 	bool intersect(const Rect& r, const Circle& c);
+	bool intersect(const Polygon& p, const Vec2& v);
+
+	// 接するか判定
+	bool tangent(const Vec2& v1, const Vec2& v2);
+	bool tangent(const Vec2& v, const Line& l);
+	bool tangent(const Vec2& v, const Segment& l);
+	bool tangent(const Vec2& v, const Circle& c);
+	bool tangent(const Vec2& v, const Rect& r);
+	bool tangent(const Vec2& v, const Polygon& p);
+	bool tangent(const Line& l, const Vec2& v);
+	bool tangent(const Segment& l, const Vec2& v);
+	bool tangent(const Circle& c, const Vec2& v);
+	bool tangent(const Circle& c1, const Circle& c2);
+	bool tangent(const Rect& r, const Vec2& v);
+	bool tangent(const Polygon& p, const Vec2& v);
 
 	// 交点
 	optional<Vec2> cross_point(const Line& l1, const Line& l2);

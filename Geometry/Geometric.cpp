@@ -4,6 +4,7 @@
 #include "./Circle.hpp"
 #include "./Rect.hpp"
 #include "./Triangle.hpp"
+#include "./Polygon.hpp"
 #include "./Geometric.hpp"
 
 namespace Geometric {
@@ -115,6 +116,13 @@ namespace Geometric {
 	bool intersect(const Vec2& v, const Rect& r) {
 		return r.pos <= v && v <= r.bottom_right();
 	}
+	bool intersect(const Vec2& v, const Polygon& p) {
+		LD theta = 0;
+		for (size_t i = 0; i < p.size(); ++i) {
+			theta = angle(p[i], v, p[(i + 1) % p.size()]);
+		}
+		return abs(theta) > 0;
+	}
 	bool intersect(const Line& l, const Vec2& v) {
 		return intersect(v, l);
 	}
@@ -152,11 +160,57 @@ namespace Geometric {
 		    c.intersects(r.top_right()) || c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());
 	}
 	bool intersect(const Rect& r1, const Rect& r2) {
-		return max(r1.left(), r2.left()) < min(r1.right(), r2.right()) + EPS &&
-		    max(r1.top(), r2.top()) < min(r1.bottom(), r2.bottom()) + EPS;
+		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
+		    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;
 	}
 	bool intersect(const Rect& r, const Circle& c) {
 		return intersect(c, r);
+	}
+	bool intersect(const Polygon& p, const Vec2& v) {
+		return intersect(v, p);
+	}
+
+	bool tangent(const Vec2& v1, const Vec2& v2) {
+		return intersect(v1, v2);
+	}
+	bool tangent(const Vec2& v, const Line& l) {
+		return intersect(v, l);
+	}
+	bool tangent(const Vec2& v, const Segment& l) {
+		return intersect(v, l);
+	}
+	bool tangent(const Vec2& v, const Circle& c) {
+		return sgn(distance(v, c.center) - c.r) == 0;
+	}
+	bool tangent(const Vec2& v, const Rect& r) {
+		return r.top().tangent(v) || r.bottom().tangent(v) || r.left().tangent(v) || r.right().tangent(v);
+	}
+	bool tangent(const Vec2& v, const Polygon& p) {
+		for (size_t i = 0; i < p.size(); ++i) {
+			if (Segment(p[i], p[(i + 1) % p.size()]).tangent(v)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	bool tangent(const Line& l, const Vec2& v) {
+		return tangent(v, l);
+	}
+	bool tangent(const Segment& l, const Vec2& v) {
+		return tangent(v, l);
+	}
+	bool tangent(const Circle& c, const Vec2& v) {
+		return tangent(v, c);
+	}
+	bool tangent(const Circle& c1, const Circle& c2) {
+		LD l1 = c1.center.distance(c2.center), l2 = c1.r, l3 = c2.r;
+		return sgn(l1 + l2 + l3 - max({l1, l2, l3}) * 2) == 0;
+	}
+	bool tangent(const Rect& r, const Vec2& v) {
+		return tangent(v, r);
+	}
+	bool tangent(const Polygon& p, const Vec2& v) {
+		return tangent(v, p);
 	}
 
 	optional<Vec2> cross_point(const Line& l1, const Line& l2) {
