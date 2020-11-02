@@ -77,16 +77,16 @@ namespace Geometric {
 		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Segment(const LineBase& l) : LineBase(l) {}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return distance(*this, shape);
+			return Geometric::distance(*this, shape);
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return intersect(*this, shape);
+			return Geometric::intersect(*this, shape);
 		}
 		template <class Shape2DType> optional<Vec2> cross_point(const Shape2DType& shape) const {
-			return cross_point(*this, shape);
+			return Geometric::cross_point(*this, shape);
 		}
 		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
-			return cross_points(*this, shape);
+			return Geometric::cross_points(*this, shape);
 		}
 	};
 

@@ -168,7 +168,7 @@ namespace Geometric {
 	}
 	optional<Vec2> cross_point(const Segment& s1, const Segment& s2) {
 		if (intersect(s1, s2)) {
-			return cross_point(s1, s2);
+			return cross_point(Line(s1), Line(s2));
 		} else {
 			return nullopt;
 		}
