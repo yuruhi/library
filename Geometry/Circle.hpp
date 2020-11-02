@@ -73,15 +73,16 @@ namespace Geometric {
 		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
 			return Geometric::cross_points(*this, shape);
 		}
+		// c が this に含まれる 一致するときも true を返す
 		bool contains(const Circle& c) const {
-			return center.distance(c.center) + c.r < r - EPS;
+			return sgn(center.distance(c.center) + c.r - r) <= 0;
 		}
 		bool tangent(const Circle& c) const {
 			LD l1 = center.distance(c.center), l2 = r, l3 = c.r;
 			return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
 		}
 		friend ostream& operator<<(ostream& os, const Circle& c) {
-			return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
+			return os << '(' << c.center.x << ", " << c.center.y << ", " << c.r << ')';
 		}
 		friend istream& operator>>(istream& is, Circle& c) {
 			return is >> c.center >> c.r;

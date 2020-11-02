@@ -57,6 +57,10 @@ namespace Geometric {
 		}
 	}
 
+	LD angle(const Vec2& a, const Vec2& b, const Vec2& c) {
+		return acos((a - b).dot(c - b) / (a.distance(b) * c.distance(b)));
+	}
+
 	LD distance(const Vec2& v1, const Vec2& v2) {
 		return hypot(v1.x - v2.x, v1.y - v2.y);
 	}
@@ -218,6 +222,22 @@ namespace Geometric {
 			return Circle(v, x).cross_points(c);
 		} else {
 			return {};
+		}
+	}
+
+	LD area_of_intersection_between_two_circles(const Circle& c1, const Circle& c2) {
+		if (c1.contains(c2)) {
+			return c2.area();
+		} else if (c2.contains(c1)) {
+			return c1.area();
+		} else if (c1.intersects(c2)) {
+			LD dist = c1.center.distance(c2.center);
+			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
+			LD angle1 = acos((r1_s + dist_s - r2_s) / (2 * c1.r * dist));
+			LD angle2 = acos((r2_s + dist_s - r1_s) / (2 * c2.r * dist));
+			return r1_s * (angle1 - sin(angle1 * 2) / 2) + r2_s * (angle2 - sin(angle2 * 2) / 2);
+		} else {
+			return 0;
 		}
 	}
 

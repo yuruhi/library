@@ -23,8 +23,7 @@ namespace Geometric {
 			return {p2.distance(p3), p1.distance(p3), p1.distance(p2)};
 		}
 		LD area() const {
-			auto [l1, l2, l3] = sides();
-			return area(l1, l2, l3);
+			return abs((p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y)) / 2;
 		}
 		// 内接円
 		Circle incircle() const {

@@ -32,8 +32,11 @@ namespace Geometric {
 	// BAC, CAB の順に一直線上に並ぶ : -2
 	int iSP(const Vec2& a, const Vec2& b, const Vec2& c);
 
-	// 角ABC が鋭角 : 0, 直角 : 1, 鈍角 : 2
+	// ∠ABC が鋭角 : 0, 直角 : 1, 鈍角 : 2
 	int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);
+
+	// ∠ABC の値 (radian)
+	LD angle(const Vec2& a, const Vec2& b, const Vec2& c);
 
 	// 距離
 	LD distance(const Vec2& v1, const Vec2& v2);
@@ -77,5 +80,8 @@ namespace Geometric {
 
 	// 円の接線
 	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
+
+	// 2つの円の共通部分の面積
+	LD area_of_intersection_between_two_circles(const Circle& c1, const Circle& c2);
 
 }  // namespace Geometric
