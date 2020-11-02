@@ -7,6 +7,18 @@ namespace Geometric {
 
 	struct Vec2 {
 		LD x, y;
+		static bool compare_x(const Vec2& v1, const Vec2& v2) {
+			return v1.x < v2.x;
+		}
+		static bool compare_y(const Vec2& v1, const Vec2& v2) {
+			return v1.y < v2.y;
+		}
+		static bool compare_xy(const Vec2& v1, const Vec2& v2) {
+			return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
+		}
+		static bool compare_yx(const Vec2& v1, const Vec2& v2) {
+			return make_pair(v1.y, v1.x) < make_pair(v2.y, v2.x);
+		}
 		constexpr Vec2() : x(0), y(0) {}
 		constexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}
 		Vec2(LD rad) : x(cos(rad)), y(sin(rad)) {}
