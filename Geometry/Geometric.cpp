@@ -3,6 +3,7 @@
 #include "./Line.hpp"
 #include "./Circle.hpp"
 #include "./Rect.hpp"
+#include "./Triangle.hpp"
 #include "./Geometric.hpp"
 
 namespace Geometric {
@@ -29,6 +30,28 @@ namespace Geometric {
 	}
 	Vec2 Vec2::reflection(const Line& l) {
 		return *this + (projection(l) - *this) * 2;
+	}
+
+	vector<Vec2> Circle::intersections(const Circle& c) {
+		Vec2 v = center - c.center;
+		LD l = v.length();
+		if (contains(c) || c.contains(*this)) {
+			return {};
+		} else if (Equal(l, r + c.r)) {
+			return {c.center + v * (l / c.r)};
+		} else if (Equal(r + l, c.r)) {
+			return {c.center + v * (c.r / l)};
+		} else if (Equal(c.r + l, r)) {
+			return {center + v.rotate180() * (r / l)};
+		} else if (intersects(c)) {
+			LD area = Triangle::area(l, r, c.r);
+			LD y = 2 * area / l, x = sqrt(r * r - y * y);
+			Vec2 h = center + v.rotate180() * (x / l);
+			Vec2 v2 = v.rotate90() * (y / l);
+			return {h + v2, h - v2};
+		} else {
+			return {};
+		}
 	}
 
 	int iSP(const Vec2& a, const Vec2& b, const Vec2& c) {

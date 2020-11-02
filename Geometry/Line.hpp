@@ -2,9 +2,10 @@
 #include "./Geometric.hpp"
 #include "./Vec2.hpp"
 #include <iostream>
-#include <cmath>
 #include <utility>
+#include <tuple>
 #include <optional>
+#include <cmath>
 using namespace std;
 
 namespace Geometric {
@@ -52,7 +53,11 @@ namespace Geometric {
 			if (is_parallel(l)) {
 				return nullopt;
 			} else {
-				return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
+				// return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
+				auto [a, b, c] = abc();
+				auto [A, B, C] = l.abc();
+				LD d = A * b - a * B;
+				return Vec2((B * c - b * C) / d, (a * C - A * c) / d);
 			}
 		}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
@@ -60,6 +65,15 @@ namespace Geometric {
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
+		}
+		// ax + by + c = 0 の式に変形する
+		tuple<LD, LD, LD> abc() const {
+			if (sgn(begin.x - end.x) == 0) {
+				return {1, 0, -begin.x};
+			} else {
+				LD slope = (end.y - begin.y) / (end.x - begin.x);
+				return {slope, -1, begin.y - begin.x * slope};
+			}
 		}
 	};
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "./Geometric.hpp"
 #include "./Vec2.hpp"
-#include "./others.cpp"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -78,27 +77,7 @@ namespace Geometric {
 			LD l1 = center.distance(c.center), l2 = r, l3 = c.r;
 			return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
 		}
-		vector<Vec2> intersections(const Circle& c) {
-			Vec2 v = center - c.center;
-			LD l = v.length();
-			if (contains(c) || c.contains(*this)) {
-				return {};
-			} else if (Equal(l, r + c.r)) {
-				return {c.center + v * (l / c.r)};
-			} else if (Equal(r + l, c.r)) {
-				return {c.center + v * (c.r / l)};
-			} else if (Equal(c.r + l, r)) {
-				return {center + v.rotate180() * (r / l)};
-			} else if (intersects(c)) {
-				LD area = TriangleArea(l, r, c.r);
-				LD y = 2 * area / l, x = sqrt(r * r - y * y);
-				Vec2 h = center + v.rotate180() * (x / l);
-				Vec2 v2 = v.rotate90() * (y / l);
-				return {h + v2, h - v2};
-			} else {
-				return {};
-			}
-		}
+		vector<Vec2> intersections(const Circle& c);
 		friend ostream& operator<<(ostream& os, const Circle& c) {
 			return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
 		}
