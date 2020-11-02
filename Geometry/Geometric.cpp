@@ -211,4 +211,14 @@ namespace Geometric {
 		}
 	}
 
+	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {
+		LD dist = c.center.distance(v);
+		if (int f = sgn(dist - c.r); f >= 0) {
+			LD x = sqrt(dist * dist - c.r * c.r);
+			return Circle(v, x).cross_points(c);
+		} else {
+			return {};
+		}
+	}
+
 }  // namespace Geometric

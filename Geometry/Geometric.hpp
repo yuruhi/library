@@ -72,7 +72,10 @@ namespace Geometric {
 	optional<Vec2> cross_point(const Segment& s1, const Segment& s2);
 
 	vector<Vec2> cross_points(const Line& l, const Circle& c);
-	vector<Vec2> cross_points(const Circle& c,const Line& l);
+	vector<Vec2> cross_points(const Circle& c, const Line& l);
 	vector<Vec2> cross_points(const Circle& c1, const Circle& c2);
+
+	// 円の接線
+	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
 
 }  // namespace Geometric
