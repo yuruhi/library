@@ -44,10 +44,10 @@ namespace Geometric {
 	}  // namespace internal
 
 	struct Line : internal::LineBase {
-		Line() = default;
-		Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		constexpr Line() = default;
+		constexpr Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Line(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
-		Line(const LineBase& l) : LineBase(l) {}
+		constexpr Line(const LineBase& l) : LineBase(l) {}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
@@ -59,6 +59,9 @@ namespace Geometric {
 		}
 		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
 			return Geometric::cross_points(*this, shape);
+		}
+		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
+			return Geometric::tangent(*this, shape);
 		}
 		// ax + by + c = 0 の式に変形する
 		tuple<LD, LD, LD> abc() const {
@@ -72,10 +75,10 @@ namespace Geometric {
 	};
 
 	struct Segment : internal::LineBase {
-		Segment() = default;
-		Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
+		constexpr Segment() = default;
+		constexpr Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
-		Segment(const LineBase& l) : LineBase(l) {}
+		constexpr Segment(const LineBase& l) : LineBase(l) {}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
@@ -87,6 +90,9 @@ namespace Geometric {
 		}
 		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
 			return Geometric::cross_points(*this, shape);
+		}
+		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
+			return Geometric::tangent(*this, shape);
 		}
 	};
 
