@@ -1,6 +1,7 @@
 #pragma once
 #include "./Geometric.hpp"
 #include "./Vec2.hpp"
+#include "./Line.hpp"
 #include <iostream>
 using namespace std;
 
@@ -37,16 +38,16 @@ namespace Geometric {
 			pos = _pos - size / 2;
 			return *this;
 		}
-		constexpr LD left() const {
+		constexpr LD left_x() const {
 			return pos.x;
 		}
-		constexpr LD right() const {
+		constexpr LD right_x() const {
 			return pos.x + size.x;
 		}
-		constexpr LD top() const {
+		constexpr LD top_y() const {
 			return pos.y;
 		}
-		constexpr LD bottom() const {
+		constexpr LD bottom_y() const {
 			return pos.y + size.y;
 		}
 		constexpr Vec2 top_left() const {
@@ -60,6 +61,18 @@ namespace Geometric {
 		}
 		constexpr Vec2 bottom_right() const {
 			return pos + size;
+		}
+		constexpr Segment top() const {
+			return Segment(top_left(), top_right());
+		}
+		constexpr Segment bottom() const {
+			return Segment(bottom_left(), bottom_right());
+		}
+		constexpr Segment left() const {
+			return Segment(top_left(), bottom_left());
+		}
+		constexpr Segment right() const {
+			return Segment(top_right(), bottom_right());
 		}
 		constexpr Vec2 center() const {
 			return pos + size / 2;
