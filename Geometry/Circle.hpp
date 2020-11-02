@@ -70,6 +70,9 @@ namespace Geometric {
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
 		}
+		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
+			return Geometric::cross_points(*this, shape);
+		}
 		bool contains(const Circle& c) const {
 			return center.distance(c.center) + c.r < r - EPS;
 		}
@@ -77,7 +80,6 @@ namespace Geometric {
 			LD l1 = center.distance(c.center), l2 = r, l3 = c.r;
 			return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
 		}
-		vector<Vec2> cross_points(const Circle& c);
 		friend ostream& operator<<(ostream& os, const Circle& c) {
 			return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
 		}

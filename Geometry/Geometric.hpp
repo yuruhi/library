@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <optional>
 using namespace std;
 
 namespace Geometric {
@@ -65,5 +66,13 @@ namespace Geometric {
 	bool intersect(const Circle& c, const Rect& r);
 	bool intersect(const Rect& r1, const Rect& r2);
 	bool intersect(const Rect& r, const Circle& c);
+
+	// 交点
+	optional<Vec2> cross_point(const Line& l1, const Line& l2);
+	optional<Vec2> cross_point(const Segment& s1, const Segment& s2);
+
+	vector<Vec2> cross_points(const Line& l, const Circle& c);
+	vector<Vec2> cross_points(const Circle& c,const Line& l);
+	vector<Vec2> cross_points(const Circle& c1, const Circle& c2);
 
 }  // namespace Geometric

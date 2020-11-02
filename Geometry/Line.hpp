@@ -48,23 +48,17 @@ namespace Geometric {
 		Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Line(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Line(const LineBase& l) : LineBase(l) {}
-		// 交点
-		optional<Vec2> cross_point(const Line& l) const {
-			if (is_parallel(l)) {
-				return nullopt;
-			} else {
-				// return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
-				auto [a, b, c] = abc();
-				auto [A, B, C] = l.abc();
-				LD d = A * b - a * B;
-				return Vec2((B * c - b * C) / d, (a * C - A * c) / d);
-			}
-		}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
+		}
+		template <class Shape2DType> optional<Vec2> cross_point(const Shape2DType& shape) const {
+			return Geometric::cross_point(*this, shape);
+		}
+		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
+			return Geometric::cross_points(*this, shape);
 		}
 		// ax + by + c = 0 の式に変形する
 		tuple<LD, LD, LD> abc() const {
@@ -82,19 +76,17 @@ namespace Geometric {
 		Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Segment(const LineBase& l) : LineBase(l) {}
-		// (共通部分を持つか, 交点)
-		pair<bool, optional<Vec2>> cross_point(const Segment& s) const {
-			if (this->intersects(s)) {
-				return {true, Line(*this).cross_point(s)};
-			} else {
-				return {false, nullopt};
-			}
-		}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return Geometric::distance(*this, shape);
+			return distance(*this, shape);
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
+			return intersect(*this, shape);
+		}
+		template <class Shape2DType> optional<Vec2> cross_point(const Shape2DType& shape) const {
+			return cross_point(*this, shape);
+		}
+		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
+			return cross_points(*this, shape);
 		}
 	};
 

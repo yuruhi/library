@@ -25,33 +25,11 @@ namespace Geometric {
 		return rad * 180 / PI;
 	}
 
-	Vec2 Vec2::projection(const Line& l) {
+	Vec2 Vec2::projection(const Line& l) const {
 		return l.begin + l.vec().normalized() * (*this - l.begin).dot(l.vec()) / l.vec().length();
 	}
-	Vec2 Vec2::reflection(const Line& l) {
+	Vec2 Vec2::reflection(const Line& l) const {
 		return *this + (projection(l) - *this) * 2;
-	}
-
-	vector<Vec2> Circle::cross_points(const Circle& c) {
-		Vec2 v = center - c.center;
-		LD l = v.length();
-		if (contains(c) || c.contains(*this)) {
-			return {};
-		} else if (Equal(l, r + c.r)) {
-			return {c.center + v * (l / c.r)};
-		} else if (Equal(r + l, c.r)) {
-			return {c.center + v * (c.r / l)};
-		} else if (Equal(c.r + l, r)) {
-			return {center + v.rotate180() * (r / l)};
-		} else if (intersects(c)) {
-			LD area = Triangle::area(l, r, c.r);
-			LD y = 2 * area / l, x = sqrt(r * r - y * y);
-			Vec2 h = center + v.rotate180() * (x / l);
-			Vec2 v2 = v.rotate90() * (y / l);
-			return {h + v2, h - v2};
-		} else {
-			return {};
-		}
 	}
 
 	int iSP(const Vec2& a, const Vec2& b, const Vec2& c) {
@@ -175,6 +153,62 @@ namespace Geometric {
 	}
 	bool intersect(const Rect& r, const Circle& c) {
 		return intersect(c, r);
+	}
+
+	optional<Vec2> cross_point(const Line& l1, const Line& l2) {
+		if (intersect(l1, l2)) {
+			// return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
+			auto [a, b, c] = l1.abc();
+			auto [A, B, C] = l2.abc();
+			LD d = A * b - a * B;
+			return Vec2((B * c - b * C) / d, (a * C - A * c) / d);
+		} else {
+			return nullopt;
+		}
+	}
+	optional<Vec2> cross_point(const Segment& s1, const Segment& s2) {
+		if (intersect(s1, s2)) {
+			return cross_point(s1, s2);
+		} else {
+			return nullopt;
+		}
+	}
+
+	vector<Vec2> cross_points(const Line& l, const Circle& c) {
+		LD dist = distance(l, c.center);
+		if (int f = sgn(c.r - dist); f == 1) {
+			LD x = sqrt(c.r * c.r - dist * dist);
+			Vec2 p = c.center.projection(l);
+			return {p + l.vec().normalized() * x, p + l.counter_vec().normalized() * x};
+		} else if (f == 0) {
+			return {c.center.projection(l)};
+		} else {
+			return {};
+		}
+	}
+	vector<Vec2> cross_points(const Circle& c, const Line& l) {
+		return cross_points(l, c);
+	}
+	vector<Vec2> cross_points(const Circle& c1, const Circle& c2) {
+		Vec2 vec = (c1.center - c2.center).normalized();  // c2 -> c1
+		LD dist = c1.center.distance(c2.center);
+		if (c1.contains(c2) || c2.contains(c1)) {
+			return {};
+		} else if (sgn(dist - c1.r - c2.r) == 0) {
+			return {c2.center + vec * c2.r};
+		} else if (sgn(c1.r + dist - c2.r) == 0) {
+			return {c1.center + vec * c1.r};
+		} else if (sgn(c2.r + dist - c1.r) == 0) {
+			return {c2.center + vec.rotate180() * c2.r};
+		} else if (intersect(c1, c2)) {
+			LD area = Triangle::area(dist, c1.r, c2.r);
+			LD y = 2 * area / dist, x = sqrt(c1.r * c1.r - y * y);
+			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
+			Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x), v2 = vec.rotate90() * y;
+			return {h + v2, h - v2};
+		} else {
+			return {};
+		}
 	}
 
 }  // namespace Geometric

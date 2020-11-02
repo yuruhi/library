@@ -11,7 +11,7 @@ int main() {
 	while (q--) {
 		Geometric::Segment l1, l2;
 		cin >> l1 >> l2;
-		auto [flag, point] = l1.cross_point(l2);
-		printf("%.12Lf %.12Lf\n", point->x, point->y);
+		auto point = *l1.cross_point(l2);
+		printf("%.12Lf %.12Lf\n", point.x, point.y);
 	}
 }

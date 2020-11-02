@@ -10,7 +10,6 @@ int main() {
 	while (q--) {
 		Geometric::Segment l1, l2;
 		cin >> l1 >> l2;
-		auto [flag, point] = l1.cross_point(l2);
-		cout << flag << '\n';
+		cout << l1.intersects(l2) << '\n';
 	}
 }

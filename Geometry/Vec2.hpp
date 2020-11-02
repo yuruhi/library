@@ -144,9 +144,9 @@ namespace Geometric {
 			return atan2(y, x);
 		}
 		// 正射影
-		Vec2 projection(const Line& l);
+		Vec2 projection(const Line& l) const;
 		// 鏡映変換
-		Vec2 reflection(const Line& l);
+		Vec2 reflection(const Line& l) const;
 		constexpr Vec2 rotate90() const {
 			return {y, -x};
 		}
