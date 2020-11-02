@@ -32,7 +32,7 @@ namespace Geometric {
 		return *this + (projection(l) - *this) * 2;
 	}
 
-	vector<Vec2> Circle::intersections(const Circle& c) {
+	vector<Vec2> Circle::cross_points(const Circle& c) {
 		Vec2 v = center - c.center;
 		LD l = v.length();
 		if (contains(c) || c.contains(*this)) {

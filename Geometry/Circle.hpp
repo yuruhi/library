@@ -77,7 +77,7 @@ namespace Geometric {
 			LD l1 = center.distance(c.center), l2 = r, l3 = c.r;
 			return Equal(l1 + l2 + l3, max({l1, l2, l3}) * 2);
 		}
-		vector<Vec2> intersections(const Circle& c);
+		vector<Vec2> cross_points(const Circle& c);
 		friend ostream& operator<<(ostream& os, const Circle& c) {
 			return os << '(' << c.center.x << ',' << c.center.y << ',' << c.r << ')';
 		}

@@ -49,7 +49,7 @@ namespace Geometric {
 		constexpr Line(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Line(const LineBase& l) : LineBase(l) {}
 		// 交点
-		optional<Vec2> intersection(const Line& l) const {
+		optional<Vec2> cross_point(const Line& l) const {
 			if (is_parallel(l)) {
 				return nullopt;
 			} else {
@@ -83,9 +83,9 @@ namespace Geometric {
 		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		Segment(const LineBase& l) : LineBase(l) {}
 		// (共通部分を持つか, 交点)
-		pair<bool, optional<Vec2>> intersection(const Segment& s) const {
+		pair<bool, optional<Vec2>> cross_point(const Segment& s) const {
 			if (this->intersects(s)) {
-				return {true, Line(*this).intersection(s)};
+				return {true, Line(*this).cross_point(s)};
 			} else {
 				return {false, nullopt};
 			}
