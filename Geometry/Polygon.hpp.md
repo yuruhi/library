@@ -38,49 +38,54 @@ data:
     \u4E26\u3076 : +2\n\t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
     \u4E26\u3076 :  0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
     \u4E26\u3076 : -2\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\
-    \t// \u89D2ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\t\
-    int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\
-    \n\tLD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v,\
-    \ const Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
-    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
-    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
-    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
-    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
-    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
-    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
-    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
-    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
-    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
-    \ intersect(const Line& l, const Vec2& v);\n\tbool intersect(const Line& l1, const\
-    \ Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\tbool intersect(const\
-    \ Segment& l, const Vec2& v);\n\tbool intersect(const Segment& s1, const Segment&\
-    \ s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\tbool intersect(const\
-    \ Circle& c, const Vec2& v);\n\tbool intersect(const Circle& c, const Line& l);\n\
-    \tbool intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
-    \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
-    bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
-    \ r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
-    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
-    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Circle& c,const Line& l);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n\
-    #line 4 \"Geometry/Vec2.hpp\"\n#include <cmath>\n\nnamespace Geometric {\n\n\t\
-    struct Vec2 {\n\t\tLD x, y;\n\t\tstatic bool compare_x(const Vec2& v1, const Vec2&\
-    \ v2) {\n\t\t\treturn v1.x < v2.x;\n\t\t}\n\t\tstatic bool compare_y(const Vec2&\
-    \ v1, const Vec2& v2) {\n\t\t\treturn v1.y < v2.y;\n\t\t}\n\t\tstatic bool compare_xy(const\
-    \ Vec2& v1, const Vec2& v2) {\n\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x,\
-    \ v2.y);\n\t\t}\n\t\tstatic bool compare_yx(const Vec2& v1, const Vec2& v2) {\n\
-    \t\t\treturn make_pair(v1.y, v1.x) < make_pair(v2.y, v2.x);\n\t\t}\n\t\tconstexpr\
-    \ Vec2() : x(0), y(0) {}\n\t\tconstexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}\n\
-    \t\tVec2(LD rad) : x(cos(rad)), y(sin(rad)) {}\n\t\tconstexpr bool operator==(const\
-    \ Vec2& v) const {\n\t\t\treturn Equal(x, v.x) && Equal(y, v.y);\n\t\t}\n\t\t\
-    constexpr bool operator!=(const Vec2& v) const {\n\t\t\treturn !(*this == v);\n\
-    \t\t}\n\t\tconstexpr bool operator<(const Vec2& v) const {\n\t\t\treturn x < v.x\
-    \ - EPS && y < v.y - EPS;\n\t\t}\n\t\tconstexpr bool operator<=(const Vec2& v)\
-    \ const {\n\t\t\treturn x < v.x + EPS && y < v.y + EPS;\n\t\t}\n\t\tconstexpr\
-    \ Vec2 operator+() const {\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-()\
-    \ const {\n\t\t\treturn {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2&\
-    \ v) const {\n\t\t\treturn Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const\
+    \t// \u2220ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\t\
+    int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC\
+    \ \u306E\u5024 (radian)\n\tLD angle(const Vec2& a, const Vec2& b, const Vec2&\
+    \ c);\n\n\t// \u8DDD\u96E2\n\tLD distance(const Vec2& v1, const Vec2& v2);\n\t\
+    LD distance(const Vec2& v, const Line& l);\n\tLD distance(const Vec2& v, const\
+    \ Segment& s);\n\tLD distance(const Vec2& v, const Circle& c);\n\tLD distance(const\
+    \ Line& l, const Vec2& v);\n\tLD distance(const Line& l1, const Line& l2);\n\t\
+    LD distance(const Segment& s, const Vec2& v);\n\tLD distance(const Segment& s1,\
+    \ const Segment& s2);\n\tLD distance(const Circle& c, const Vec2& v);\n\tLD distance(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\
+    \u5305\u3057\u3066\u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\
+    \n\tbool intersect(const Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2&\
+    \ v, const Line& l);\n\tbool intersect(const Vec2& v, const Segment& l);\n\tbool\
+    \ intersect(const Vec2& v, const Circle& c);\n\tbool intersect(const Vec2& v,\
+    \ const Rect& r);\n\tbool intersect(const Line& l, const Vec2& v);\n\tbool intersect(const\
+    \ Line& l1, const Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\
+    \tbool intersect(const Segment& l, const Vec2& v);\n\tbool intersect(const Segment&\
+    \ s1, const Segment& s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\
+    \tbool intersect(const Circle& c, const Vec2& v);\n\tbool intersect(const Circle&\
+    \ c, const Line& l);\n\tbool intersect(const Circle& c, const Segment& s);\n\t\
+    bool intersect(const Circle& c1, const Circle& c2);\n\tbool intersect(const Circle&\
+    \ c, const Rect& r);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\tbool\
+    \ intersect(const Rect& r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
+    \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
+    \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
+    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c, const Line&\
+    \ l);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
+    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
+    \ const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\
+    \u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const Circle& c1,\
+    \ const Circle& c2);\n\n}  // namespace Geometric\n#line 4 \"Geometry/Vec2.hpp\"\
+    \n#include <cmath>\n\nnamespace Geometric {\n\n\tstruct Vec2 {\n\t\tLD x, y;\n\
+    \t\tstatic bool compare_x(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn v1.x\
+    \ < v2.x;\n\t\t}\n\t\tstatic bool compare_y(const Vec2& v1, const Vec2& v2) {\n\
+    \t\t\treturn v1.y < v2.y;\n\t\t}\n\t\tstatic bool compare_xy(const Vec2& v1, const\
+    \ Vec2& v2) {\n\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\
+    \t}\n\t\tstatic bool compare_yx(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn\
+    \ make_pair(v1.y, v1.x) < make_pair(v2.y, v2.x);\n\t\t}\n\t\tconstexpr Vec2()\
+    \ : x(0), y(0) {}\n\t\tconstexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}\n\t\tVec2(LD\
+    \ rad) : x(cos(rad)), y(sin(rad)) {}\n\t\tconstexpr bool operator==(const Vec2&\
+    \ v) const {\n\t\t\treturn Equal(x, v.x) && Equal(y, v.y);\n\t\t}\n\t\tconstexpr\
+    \ bool operator!=(const Vec2& v) const {\n\t\t\treturn !(*this == v);\n\t\t}\n\
+    \t\tconstexpr bool operator<(const Vec2& v) const {\n\t\t\treturn x < v.x - EPS\
+    \ && y < v.y - EPS;\n\t\t}\n\t\tconstexpr bool operator<=(const Vec2& v) const\
+    \ {\n\t\t\treturn x < v.x + EPS && y < v.y + EPS;\n\t\t}\n\t\tconstexpr Vec2 operator+()\
+    \ const {\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-() const {\n\
+    \t\t\treturn {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2& v) const\
+    \ {\n\t\t\treturn Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const\
     \ Vec2& v) const {\n\t\t\treturn Vec2(*this) -= v;\n\t\t}\n\t\tconstexpr Vec2\
     \ operator*(const Vec2& v) const {\n\t\t\treturn Vec2(*this) *= v;\n\t\t}\n\t\t\
     constexpr Vec2 operator/(const Vec2& v) const {\n\t\t\treturn Vec2(*this) /= v;\n\
@@ -130,11 +135,77 @@ data:
     \ {}\n\t\tPolygon(const vector<Vec2>& _p) : vector<Vec2>(_p) {}\n\t\tLD area()\
     \ const {\n\t\t\tLD ans = 0;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\
     \t\tsize_t next = i < size() - 1 ? i : 0;\n\t\t\t\tans += abs(at(i).x * at(i).y\
-    \ - at(next).x * at(i).y);\n\t\t\t}\n\t\t\treturn ans / 2;\n\t\t}\n\t\t// \u53CD\
-    \u6642\u8A08\u56DE\u308A\n\t\tbool is_convex() const {\n\t\t\tif (size() < 3)\
-    \ {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tfor (size_t i = 0; i < size(); ++i)\
-    \ {\n\t\t\t\tsize_t prev = i != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next =\
-    \ i != size() - 1 ? i + 1 : 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) ==\
+    \ - at(next).x * at(i).y);\n\t\t\t}\n\t\t\treturn ans / 2;\n\t\t}\n\t\t// \u51F8\
+    \u6027\u5224\u5B9A\uFF08\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tbool is_convex()\
+    \ const {\n\t\t\tif (size() < 3) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tfor\
+    \ (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t prev = i != 0 ? i - 1 : size()\
+    \ - 1;\n\t\t\t\tsize_t next = i != size() - 1 ? i + 1 : 0;\n\t\t\t\tif (iSP(at(prev),\
+    \ at(i), at(next)) == -1) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    \treturn true;\n\t\t}\n\t\t// \u51F8\u5305\uFF08\u53CD\u6642\u8A08\u56DE\u308A\
+    \uFF09\n\t\tPolygon convex_hull() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\
+    \tsort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2& v2) {\n\t\t\t\treturn\
+    \ make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\t\t});\n\t\t\tint n = ps.size(),\
+    \ k = 0;\n\t\t\tPolygon res(2 * n);\n\t\t\tfor (int i = 0; i < n; res[k++] = ps[i++])\
+    \ {\n\t\t\t\twhile (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {\n\t\t\
+    \t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >= 0; res[k++]\
+    \ = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) <=\
+    \ 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tres.resize(k - 1);\n\t\t\treturn\
+    \ res;\n\t\t}\n\t\t// \u51F8\u5305\uFF08\u4E00\u76F4\u7DDA\u4E0A\u306E3\u70B9\u3092\
+    \u542B\u3081\u306A\u3044\u3001\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon\
+    \ convex_hull_no_collinear() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(),\
+    \ ps.end(), [](const Vec2& v1, const Vec2& v2) {\n\t\t\t\treturn make_pair(v1.x,\
+    \ v1.y) < make_pair(v2.x, v2.y);\n\t\t\t});\n\t\t\tint n = ps.size(), k = 0;\n\
+    \t\t\tPolygon res(2 * n);\n\t\t\tfor (int i = 0; i < n; res[k++] = ps[i++]) {\n\
+    \t\t\t\twhile (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {\n\t\t\t\t\
+    \t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >= 0; res[k++]\
+    \ = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) !=\
+    \ -1) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tres.resize(k - 1);\n\t\t\t\
+    return res;\n\t\t}\n\t\t// \u76F4\u5F84\n\t\ttuple<LD, size_t, size_t> diameter()\
+    \ const {\n\t\t\tsize_t i_start = 0, j_start = 0;\n\t\t\tfor (size_t i = 1; i\
+    \ < size(); ++i) {\n\t\t\t\tif (at(i).y > at(i_start).y) i_start = i;\n\t\t\t\t\
+    if (at(i).y < at(j_start).y) j_start = i;\n\t\t\t}\n\t\t\tLD max_dist = (at(i_start)\
+    \ - at(j_start)).length();\n\n\t\t\tauto diff = [&](int i) {\n\t\t\t\treturn at((i\
+    \ + 1) % size()) - at(i);\n\t\t\t};\n\n\t\t\tsize_t i = i_start, i_max = i_start;\n\
+    \t\t\tsize_t j = j_start, j_max = j_start;\n\t\t\tdo {\n\t\t\t\tif (diff(i).cross(diff(j))\
+    \ >= 0) {\n\t\t\t\t\tj = (j + 1) % size();\n\t\t\t\t} else {\n\t\t\t\t\ti = (i\
+    \ + 1) % size();\n\t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist\
+    \ < d) {\n\t\t\t\t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\
+    \t\t\t\t}\n\t\t\t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist,\
+    \ i_max, j_max};\n\t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2,\
+    \ Vec2> closest_pair() const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(),\
+    \ points.end(), Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left,\
+    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\
+    \tif (n <= 1) {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t\
+    } else {\n\t\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\
+    \t\t\t\t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\
+    \t\t\tinplace_merge(points.begin() + left, points.begin() + mid, points.begin()\
+    \ + right, Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor\
+    \ (int i = left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x\
+    \ - x)) {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size =\
+    \ around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <=\
+    \ points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\
+    \t\t\t\tif (LD length = (points[i] - around[j]).length(); get<0>(res) > length)\
+    \ {\n\t\t\t\t\t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\
+    \t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\t\
+    return res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\
+    \n\t\tfriend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos <<\
+    \ \"{ \";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0)\
+    \ os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \" }\";\n\t\t\
+    }\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto&\
+    \ v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  //\
+    \ namespace Geometric\n"
+  code: "#pragma once\n#include \"./Geometric.hpp\"\n#include \"./Vec2.hpp\"\n#include\
+    \ <iostream>\n#include <vector>\n#include <algorithm>\n#include <utility>\n#include\
+    \ <tuple>\nusing namespace std;\n\nnamespace Geometric {\n\n\tstruct Polygon :\
+    \ vector<Vec2> {\n\tpublic:\n\t\tPolygon(int n) : vector<Vec2>(n) {}\n\t\tPolygon(const\
+    \ vector<Vec2>& _p) : vector<Vec2>(_p) {}\n\t\tLD area() const {\n\t\t\tLD ans\
+    \ = 0;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t next = i <\
+    \ size() - 1 ? i : 0;\n\t\t\t\tans += abs(at(i).x * at(i).y - at(next).x * at(i).y);\n\
+    \t\t\t}\n\t\t\treturn ans / 2;\n\t\t}\n\t\t// \u51F8\u6027\u5224\u5B9A\uFF08\u53CD\
+    \u6642\u8A08\u56DE\u308A\uFF09\n\t\tbool is_convex() const {\n\t\t\tif (size()\
+    \ < 3) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tfor (size_t i = 0; i < size();\
+    \ ++i) {\n\t\t\t\tsize_t prev = i != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next\
+    \ = i != size() - 1 ? i + 1 : 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) ==\
     \ -1) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t\
     }\n\t\t// \u51F8\u5305\uFF08\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon\
     \ convex_hull() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(),\
@@ -145,101 +216,57 @@ data:
     --k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >= 0; res[k++]\
     \ = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) <=\
     \ 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tres.resize(k - 1);\n\t\t\treturn\
-    \ res;\n\t\t}\n\t\t// \u76F4\u5F84\n\t\ttuple<LD, size_t, size_t> diameter() const\
-    \ {\n\t\t\tsize_t i_start = 0, j_start = 0;\n\t\t\tfor (size_t i = 1; i < size();\
-    \ ++i) {\n\t\t\t\tif (at(i).y > at(i_start).y) i_start = i;\n\t\t\t\tif (at(i).y\
-    \ < at(j_start).y) j_start = i;\n\t\t\t}\n\t\t\tLD max_dist = (at(i_start) - at(j_start)).length();\n\
-    \n\t\t\tauto diff = [&](int i) {\n\t\t\t\treturn at((i + 1) % size()) - at(i);\n\
-    \t\t\t};\n\n\t\t\tsize_t i = i_start, i_max = i_start;\n\t\t\tsize_t j = j_start,\
-    \ j_max = j_start;\n\t\t\tdo {\n\t\t\t\tif (diff(i).cross(diff(j)) >= 0) {\n\t\
-    \t\t\t\tj = (j + 1) % size();\n\t\t\t\t} else {\n\t\t\t\t\ti = (i + 1) % size();\n\
-    \t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist < d) {\n\t\t\t\
-    \t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\t\t\t\t}\n\t\t\
-    \t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist, i_max, j_max};\n\
-    \t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2, Vec2> closest_pair()\
-    \ const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(), points.end(),\
-    \ Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left, int right) ->\
-    \ tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\tif (n <= 1)\
-    \ {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t} else {\n\t\
-    \t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\t\t\t\
-    \t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\t\t\t\
-    inplace_merge(points.begin() + left, points.begin() + mid, points.begin() + right,\
-    \ Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor (int i =\
-    \ left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x - x))\
-    \ {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size = around.size(),\
-    \ j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <= points[i].y -\
-    \ around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tif (LD\
-    \ length = (points[i] - around[j]).length(); get<0>(res) > length) {\n\t\t\t\t\
-    \t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\
-    \t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\treturn res;\n\
-    \t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\n\t\tfriend\
-    \ ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{ \";\n\t\
-    \t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \", \"\
-    ;\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \" }\";\n\t\t}\n\t\tfriend\
-    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
-    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric\n"
-  code: "#pragma once\n#include \"./Geometric.hpp\"\n#include \"./Vec2.hpp\"\n#include\
-    \ <iostream>\n#include <vector>\n#include <algorithm>\n#include <utility>\n#include\
-    \ <tuple>\nusing namespace std;\n\nnamespace Geometric {\n\n\tstruct Polygon :\
-    \ vector<Vec2> {\n\tpublic:\n\t\tPolygon(int n) : vector<Vec2>(n) {}\n\t\tPolygon(const\
-    \ vector<Vec2>& _p) : vector<Vec2>(_p) {}\n\t\tLD area() const {\n\t\t\tLD ans\
-    \ = 0;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t next = i <\
-    \ size() - 1 ? i : 0;\n\t\t\t\tans += abs(at(i).x * at(i).y - at(next).x * at(i).y);\n\
-    \t\t\t}\n\t\t\treturn ans / 2;\n\t\t}\n\t\t// \u53CD\u6642\u8A08\u56DE\u308A\n\
-    \t\tbool is_convex() const {\n\t\t\tif (size() < 3) {\n\t\t\t\treturn false;\n\
-    \t\t\t}\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t prev = i\
-    \ != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next = i != size() - 1 ? i + 1 :\
-    \ 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) == -1) {\n\t\t\t\t\treturn false;\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t}\n\t\t// \u51F8\u5305\uFF08\u53CD\
-    \u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon convex_hull() const {\n\t\t\tvector<Vec2>\
-    \ ps = *this;\n\t\t\tsort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2&\
-    \ v2) {\n\t\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\t\t\
-    });\n\t\t\tint n = ps.size(), k = 0;\n\t\t\tPolygon res(2 * n);\n\t\t\tfor (int\
-    \ i = 0; i < n; res[k++] = ps[i++]) {\n\t\t\t\twhile (k >= 2 && iSP(res[k - 2],\
-    \ res[k - 1], ps[i]) <= 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int\
-    \ i = n - 2, t = k + 1; i >= 0; res[k++] = ps[i--]) {\n\t\t\t\twhile (k >= t &&\
-    \ iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t\
-    }\n\t\t\tres.resize(k - 1);\n\t\t\treturn res;\n\t\t}\n\t\t// \u76F4\u5F84\n\t\
-    \ttuple<LD, size_t, size_t> diameter() const {\n\t\t\tsize_t i_start = 0, j_start\
-    \ = 0;\n\t\t\tfor (size_t i = 1; i < size(); ++i) {\n\t\t\t\tif (at(i).y > at(i_start).y)\
-    \ i_start = i;\n\t\t\t\tif (at(i).y < at(j_start).y) j_start = i;\n\t\t\t}\n\t\
-    \t\tLD max_dist = (at(i_start) - at(j_start)).length();\n\n\t\t\tauto diff = [&](int\
-    \ i) {\n\t\t\t\treturn at((i + 1) % size()) - at(i);\n\t\t\t};\n\n\t\t\tsize_t\
-    \ i = i_start, i_max = i_start;\n\t\t\tsize_t j = j_start, j_max = j_start;\n\t\
-    \t\tdo {\n\t\t\t\tif (diff(i).cross(diff(j)) >= 0) {\n\t\t\t\t\tj = (j + 1) %\
-    \ size();\n\t\t\t\t} else {\n\t\t\t\t\ti = (i + 1) % size();\n\t\t\t\t}\n\t\t\t\
-    \tif (LD d = (at(i) - at(j)).length(); max_dist < d) {\n\t\t\t\t\tmax_dist = d;\n\
-    \t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\t\t\t\t}\n\t\t\t} while (i != i_start\
-    \ || j != j_start);\n\t\t\treturn {max_dist, i_max, j_max};\n\t\t}\n\t\t// \u6700\
-    \u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2, Vec2> closest_pair() const {\n\t\t\tvector<Vec2>\
-    \ points = *this;\n\t\t\tsort(points.begin(), points.end(), Vec2::compare_xy);\n\
-    \n\t\t\tauto dfs = [&](auto self, int left, int right) -> tuple<LD, Vec2, Vec2>\
-    \ {\n\t\t\t\tint n = right - left;\n\t\t\t\tif (n <= 1) {\n\t\t\t\t\treturn {1e64,\
-    \ points[left], points[left]};\n\t\t\t\t} else {\n\t\t\t\t\tint mid = (left +\
-    \ right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\t\t\t\t\tauto res = min(self(self,\
-    \ left, mid), self(self, mid, right));\n\t\t\t\t\tinplace_merge(points.begin()\
-    \ + left, points.begin() + mid, points.begin() + right, Vec2::compare_y);\n\n\t\
-    \t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor (int i = left; i < right; ++i) {\n\
-    \t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x - x)) {\n\t\t\t\t\t\t\tcontinue;\n\
-    \t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size = around.size(), j = size - 1; j >= 0;\
-    \ --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <= points[i].y - around[j].y) {\n\t\t\t\
-    \t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tif (LD length = (points[i] -\
-    \ around[j]).length(); get<0>(res) > length) {\n\t\t\t\t\t\t\t\tres = {length,\
-    \ points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\
-    \t\t\t\t\t}\n\t\t\t\t\treturn res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs,\
-    \ 0, size());\n\t\t}\n\n\t\tfriend ostream& operator<<(ostream& os, const Polygon&\
-    \ p) {\n\t\t\tos << \"{ \";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\
-    \t\t\tif (i != 0) os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os\
-    \ << \" }\";\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\
-    \t\t\tfor (auto& v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\
-    \t};\n\n}  // namespace Geometric"
+    \ res;\n\t\t}\n\t\t// \u51F8\u5305\uFF08\u4E00\u76F4\u7DDA\u4E0A\u306E3\u70B9\u3092\
+    \u542B\u3081\u306A\u3044\u3001\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon\
+    \ convex_hull_no_collinear() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(),\
+    \ ps.end(), [](const Vec2& v1, const Vec2& v2) {\n\t\t\t\treturn make_pair(v1.x,\
+    \ v1.y) < make_pair(v2.x, v2.y);\n\t\t\t});\n\t\t\tint n = ps.size(), k = 0;\n\
+    \t\t\tPolygon res(2 * n);\n\t\t\tfor (int i = 0; i < n; res[k++] = ps[i++]) {\n\
+    \t\t\t\twhile (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {\n\t\t\t\t\
+    \t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >= 0; res[k++]\
+    \ = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) !=\
+    \ -1) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tres.resize(k - 1);\n\t\t\t\
+    return res;\n\t\t}\n\t\t// \u76F4\u5F84\n\t\ttuple<LD, size_t, size_t> diameter()\
+    \ const {\n\t\t\tsize_t i_start = 0, j_start = 0;\n\t\t\tfor (size_t i = 1; i\
+    \ < size(); ++i) {\n\t\t\t\tif (at(i).y > at(i_start).y) i_start = i;\n\t\t\t\t\
+    if (at(i).y < at(j_start).y) j_start = i;\n\t\t\t}\n\t\t\tLD max_dist = (at(i_start)\
+    \ - at(j_start)).length();\n\n\t\t\tauto diff = [&](int i) {\n\t\t\t\treturn at((i\
+    \ + 1) % size()) - at(i);\n\t\t\t};\n\n\t\t\tsize_t i = i_start, i_max = i_start;\n\
+    \t\t\tsize_t j = j_start, j_max = j_start;\n\t\t\tdo {\n\t\t\t\tif (diff(i).cross(diff(j))\
+    \ >= 0) {\n\t\t\t\t\tj = (j + 1) % size();\n\t\t\t\t} else {\n\t\t\t\t\ti = (i\
+    \ + 1) % size();\n\t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist\
+    \ < d) {\n\t\t\t\t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\
+    \t\t\t\t}\n\t\t\t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist,\
+    \ i_max, j_max};\n\t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2,\
+    \ Vec2> closest_pair() const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(),\
+    \ points.end(), Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left,\
+    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\
+    \tif (n <= 1) {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t\
+    } else {\n\t\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\
+    \t\t\t\t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\
+    \t\t\tinplace_merge(points.begin() + left, points.begin() + mid, points.begin()\
+    \ + right, Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor\
+    \ (int i = left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x\
+    \ - x)) {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size =\
+    \ around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <=\
+    \ points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\
+    \t\t\t\tif (LD length = (points[i] - around[j]).length(); get<0>(res) > length)\
+    \ {\n\t\t\t\t\t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\
+    \t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\t\
+    return res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\
+    \n\t\tfriend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos <<\
+    \ \"{ \";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0)\
+    \ os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \" }\";\n\t\t\
+    }\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto&\
+    \ v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  //\
+    \ namespace Geometric"
   dependsOn:
   - Geometry/Geometric.hpp
   - Geometry/Vec2.hpp
   isVerificationFile: false
   path: Geometry/Polygon.hpp
   requiredBy: []
-  timestamp: '2020-11-02 16:25:38+09:00'
+  timestamp: '2020-11-02 23:13:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_closest_pair.test.cpp

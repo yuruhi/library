@@ -16,6 +16,9 @@ data:
     title: Geometry/Triangle.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/Geometric_area_of_intersection_between_two_circles.test.cpp
+    title: test/Geometric_area_of_intersection_between_two_circles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Geometric_cirnnumscribed_circle.test.cpp
     title: test/Geometric_cirnnumscribed_circle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_segment_intersection.test.cpp
     title: test/Geometric_segment_intersection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_tangent_to_circle.test.cpp
+    title: test/Geometric_tangent_to_circle.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -80,49 +86,54 @@ data:
     \u4E26\u3076 : +2\n\t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
     \u4E26\u3076 :  0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\
     \u4E26\u3076 : -2\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\
-    \t// \u89D2ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\t\
-    int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\
-    \n\tLD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v,\
-    \ const Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
-    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
-    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
-    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
-    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
-    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
-    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
-    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
-    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
-    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
-    \ intersect(const Line& l, const Vec2& v);\n\tbool intersect(const Line& l1, const\
-    \ Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\tbool intersect(const\
-    \ Segment& l, const Vec2& v);\n\tbool intersect(const Segment& s1, const Segment&\
-    \ s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\tbool intersect(const\
-    \ Circle& c, const Vec2& v);\n\tbool intersect(const Circle& c, const Line& l);\n\
-    \tbool intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
-    \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
-    bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
-    \ r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
-    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
-    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Circle& c,const Line& l);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n\
-    #line 4 \"Geometry/Vec2.hpp\"\n#include <cmath>\n\nnamespace Geometric {\n\n\t\
-    struct Vec2 {\n\t\tLD x, y;\n\t\tstatic bool compare_x(const Vec2& v1, const Vec2&\
-    \ v2) {\n\t\t\treturn v1.x < v2.x;\n\t\t}\n\t\tstatic bool compare_y(const Vec2&\
-    \ v1, const Vec2& v2) {\n\t\t\treturn v1.y < v2.y;\n\t\t}\n\t\tstatic bool compare_xy(const\
-    \ Vec2& v1, const Vec2& v2) {\n\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x,\
-    \ v2.y);\n\t\t}\n\t\tstatic bool compare_yx(const Vec2& v1, const Vec2& v2) {\n\
-    \t\t\treturn make_pair(v1.y, v1.x) < make_pair(v2.y, v2.x);\n\t\t}\n\t\tconstexpr\
-    \ Vec2() : x(0), y(0) {}\n\t\tconstexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}\n\
-    \t\tVec2(LD rad) : x(cos(rad)), y(sin(rad)) {}\n\t\tconstexpr bool operator==(const\
-    \ Vec2& v) const {\n\t\t\treturn Equal(x, v.x) && Equal(y, v.y);\n\t\t}\n\t\t\
-    constexpr bool operator!=(const Vec2& v) const {\n\t\t\treturn !(*this == v);\n\
-    \t\t}\n\t\tconstexpr bool operator<(const Vec2& v) const {\n\t\t\treturn x < v.x\
-    \ - EPS && y < v.y - EPS;\n\t\t}\n\t\tconstexpr bool operator<=(const Vec2& v)\
-    \ const {\n\t\t\treturn x < v.x + EPS && y < v.y + EPS;\n\t\t}\n\t\tconstexpr\
-    \ Vec2 operator+() const {\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-()\
-    \ const {\n\t\t\treturn {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2&\
-    \ v) const {\n\t\t\treturn Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const\
+    \t// \u2220ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\t\
+    int angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC\
+    \ \u306E\u5024 (radian)\n\tLD angle(const Vec2& a, const Vec2& b, const Vec2&\
+    \ c);\n\n\t// \u8DDD\u96E2\n\tLD distance(const Vec2& v1, const Vec2& v2);\n\t\
+    LD distance(const Vec2& v, const Line& l);\n\tLD distance(const Vec2& v, const\
+    \ Segment& s);\n\tLD distance(const Vec2& v, const Circle& c);\n\tLD distance(const\
+    \ Line& l, const Vec2& v);\n\tLD distance(const Line& l1, const Line& l2);\n\t\
+    LD distance(const Segment& s, const Vec2& v);\n\tLD distance(const Segment& s1,\
+    \ const Segment& s2);\n\tLD distance(const Circle& c, const Vec2& v);\n\tLD distance(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\
+    \u5305\u3057\u3066\u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\
+    \n\tbool intersect(const Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2&\
+    \ v, const Line& l);\n\tbool intersect(const Vec2& v, const Segment& l);\n\tbool\
+    \ intersect(const Vec2& v, const Circle& c);\n\tbool intersect(const Vec2& v,\
+    \ const Rect& r);\n\tbool intersect(const Line& l, const Vec2& v);\n\tbool intersect(const\
+    \ Line& l1, const Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\
+    \tbool intersect(const Segment& l, const Vec2& v);\n\tbool intersect(const Segment&\
+    \ s1, const Segment& s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\
+    \tbool intersect(const Circle& c, const Vec2& v);\n\tbool intersect(const Circle&\
+    \ c, const Line& l);\n\tbool intersect(const Circle& c, const Segment& s);\n\t\
+    bool intersect(const Circle& c1, const Circle& c2);\n\tbool intersect(const Circle&\
+    \ c, const Rect& r);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\tbool\
+    \ intersect(const Rect& r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
+    \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
+    \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
+    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c, const Line&\
+    \ l);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
+    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
+    \ const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\
+    \u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const Circle& c1,\
+    \ const Circle& c2);\n\n}  // namespace Geometric\n#line 4 \"Geometry/Vec2.hpp\"\
+    \n#include <cmath>\n\nnamespace Geometric {\n\n\tstruct Vec2 {\n\t\tLD x, y;\n\
+    \t\tstatic bool compare_x(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn v1.x\
+    \ < v2.x;\n\t\t}\n\t\tstatic bool compare_y(const Vec2& v1, const Vec2& v2) {\n\
+    \t\t\treturn v1.y < v2.y;\n\t\t}\n\t\tstatic bool compare_xy(const Vec2& v1, const\
+    \ Vec2& v2) {\n\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\
+    \t}\n\t\tstatic bool compare_yx(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn\
+    \ make_pair(v1.y, v1.x) < make_pair(v2.y, v2.x);\n\t\t}\n\t\tconstexpr Vec2()\
+    \ : x(0), y(0) {}\n\t\tconstexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}\n\t\tVec2(LD\
+    \ rad) : x(cos(rad)), y(sin(rad)) {}\n\t\tconstexpr bool operator==(const Vec2&\
+    \ v) const {\n\t\t\treturn Equal(x, v.x) && Equal(y, v.y);\n\t\t}\n\t\tconstexpr\
+    \ bool operator!=(const Vec2& v) const {\n\t\t\treturn !(*this == v);\n\t\t}\n\
+    \t\tconstexpr bool operator<(const Vec2& v) const {\n\t\t\treturn x < v.x - EPS\
+    \ && y < v.y - EPS;\n\t\t}\n\t\tconstexpr bool operator<=(const Vec2& v) const\
+    \ {\n\t\t\treturn x < v.x + EPS && y < v.y + EPS;\n\t\t}\n\t\tconstexpr Vec2 operator+()\
+    \ const {\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-() const {\n\
+    \t\t\treturn {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2& v) const\
+    \ {\n\t\t\treturn Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const\
     \ Vec2& v) const {\n\t\t\treturn Vec2(*this) -= v;\n\t\t}\n\t\tconstexpr Vec2\
     \ operator*(const Vec2& v) const {\n\t\t\treturn Vec2(*this) *= v;\n\t\t}\n\t\t\
     constexpr Vec2 operator/(const Vec2& v) const {\n\t\t\treturn Vec2(*this) /= v;\n\
@@ -260,7 +271,7 @@ data:
   requiredBy:
   - Geometry/Geometric.cpp
   - Geometry/Triangle.hpp
-  timestamp: '2020-11-02 16:43:21+09:00'
+  timestamp: '2020-11-02 23:13:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_projection.test.cpp
@@ -269,9 +280,11 @@ data:
   - test/Geometric_is_convex.test.cpp
   - test/Geometric_dot_cross.test.cpp
   - test/Geometric_reflection.test.cpp
+  - test/Geometric_area_of_intersection_between_two_circles.test.cpp
   - test/Geometric_is_parallel_is_orthogonal.test.cpp
   - test/Geometric_segment_distance.test.cpp
   - test/Geometric_polygon_diameter.test.cpp
+  - test/Geometric_tangent_to_circle.test.cpp
   - test/Geometric_convex_hull.test.cpp
   - test/Geometric_line_intersection.test.cpp
   - test/Geometric_cross_point_of_circles.test.cpp

@@ -447,6 +447,9 @@ data:
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Geometric_area_of_intersection_between_two_circles.test.cpp
+      title: test/Geometric_area_of_intersection_between_two_circles.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Geometric_cirnnumscribed_circle.test.cpp
       title: test/Geometric_cirnnumscribed_circle.test.cpp
     - icon: ':heavy_check_mark:'
@@ -494,6 +497,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_segment_intersection.test.cpp
       title: test/Geometric_segment_intersection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_tangent_to_circle.test.cpp
+      title: test/Geometric_tangent_to_circle.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp
