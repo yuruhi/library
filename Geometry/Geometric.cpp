@@ -196,9 +196,7 @@ namespace Geometric {
 	vector<Vec2> cross_points(const Circle& c1, const Circle& c2) {
 		Vec2 vec = (c1.center - c2.center).normalized();  // c2 -> c1
 		LD dist = c1.center.distance(c2.center);
-		if (c1.contains(c2) || c2.contains(c1)) {
-			return {};
-		} else if (sgn(dist - c1.r - c2.r) == 0) {
+		if (sgn(dist - c1.r - c2.r) == 0) {
 			return {c2.center + vec * c2.r};
 		} else if (sgn(c1.r + dist - c2.r) == 0) {
 			return {c1.center + vec * c1.r};
