@@ -22,7 +22,7 @@ namespace Geometric {
 			}
 			return ans / 2;
 		}
-		// 反時計回り
+		// 凸性判定（反時計回り）
 		bool is_convex() const {
 			if (size() < 3) {
 				return false;
@@ -51,6 +51,27 @@ namespace Geometric {
 			}
 			for (int i = n - 2, t = k + 1; i >= 0; res[k++] = ps[i--]) {
 				while (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {
+					--k;
+				}
+			}
+			res.resize(k - 1);
+			return res;
+		}
+		// 凸包（一直線上の3点を含めない、反時計回り）
+		Polygon convex_hull_no_collinear() const {
+			vector<Vec2> ps = *this;
+			sort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2& v2) {
+				return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
+			});
+			int n = ps.size(), k = 0;
+			Polygon res(2 * n);
+			for (int i = 0; i < n; res[k++] = ps[i++]) {
+				while (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {
+					--k;
+				}
+			}
+			for (int i = n - 2, t = k + 1; i >= 0; res[k++] = ps[i--]) {
+				while (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {
 					--k;
 				}
 			}
