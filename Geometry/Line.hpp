@@ -20,6 +20,22 @@ namespace Geometric {
 
 		public:
 			Vec2 begin, end;
+			constexpr LineBase operator+(const Vec2& v) {
+				return LineBase(*this) += v;
+			}
+			constexpr LineBase operator-(const Vec2& v) {
+				return LineBase(*this) -= v;
+			}
+			constexpr LineBase& operator+=(const Vec2& v) {
+				begin += v;
+				end += v;
+				return *this;
+			}
+			constexpr LineBase& operator-=(const Vec2& v) {
+				begin -= v;
+				end -= v;
+				return *this;
+			}
 			constexpr Vec2 vec() const {
 				return end - begin;
 			}
