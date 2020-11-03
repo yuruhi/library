@@ -76,7 +76,7 @@ namespace Geometric {
 		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
 			return Geometric::tangent(*this, shape);
 		}
-		// c が this に含まれる 一致するときも true を返す
+		// c が this に含まれる（一致するときも true を返す）
 		bool contains(const Circle& c) const {
 			return sgn(center.distance(c.center) + c.r - r) <= 0;
 		}
