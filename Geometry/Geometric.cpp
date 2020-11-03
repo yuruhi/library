@@ -59,7 +59,8 @@ namespace Geometric {
 	}
 
 	LD angle(const Vec2& a, const Vec2& b, const Vec2& c) {
-		return acos((a - b).dot(c - b) / (a.distance(b) * c.distance(b)));
+		// return acos((a - b).dot(c - b) / (a.distance(b) * c.distance(b)));
+		return abs((a - b).rotation(-(c - b).angle()).angle());
 	}
 
 	LD distance(const Vec2& v1, const Vec2& v2) {
@@ -119,9 +120,13 @@ namespace Geometric {
 	bool intersect(const Vec2& v, const Polygon& p) {
 		LD theta = 0;
 		for (size_t i = 0; i < p.size(); ++i) {
-			theta = angle(p[i], v, p[(i + 1) % p.size()]);
+			Vec2 next = p[i != p.size() - 1 ? i + 1 : 0];
+			if (Segment(p[i], next).intersects(v)) {
+				return true;
+			}
+			theta += angle(p[i], v, next) * sgn((p[i] - v).cross(next - v));
 		}
-		return abs(theta) > 0;
+		return abs(theta) > 1;
 	}
 	bool intersect(const Line& l, const Vec2& v) {
 		return intersect(v, l);
@@ -269,7 +274,7 @@ namespace Geometric {
 
 	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {
 		LD dist = c.center.distance(v);
-		if (int f = sgn(dist - c.r); f >= 0) {
+		if (sgn(dist - c.r) >= 0) {
 			LD x = sqrt(dist * dist - c.r * c.r);
 			return Circle(v, x).cross_points(c);
 		} else {
