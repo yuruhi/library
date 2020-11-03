@@ -14,9 +14,10 @@ int main() {
 		Geometric::Vec2 v;
 		cin >> v;
 		if (p.tangent(v)) {
-			puts("2");
-		} else if (p.intersects(v)) {
 			puts("1");
+			assert(p.intersects(v));
+		} else if (p.intersects(v)) {
+			puts("2");
 		} else {
 			puts("0");
 		}
