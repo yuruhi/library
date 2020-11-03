@@ -122,7 +122,7 @@ namespace Geometric {
 			if (Segment(p[i], next).intersects(v)) {
 				return true;
 			}
-			theta += angle(p[i], v, next) * sgn((p[i] - v).cross(next - v));
+			theta += angle(p[i], v, next);
 		}
 		return abs(theta) > 1;
 	}
