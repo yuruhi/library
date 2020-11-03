@@ -1,6 +1,7 @@
 #pragma once
 #include "./Geometric.hpp"
 #include "./Vec2.hpp"
+#include "./Line.hpp"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -12,15 +13,17 @@ namespace Geometric {
 
 	struct Polygon : vector<Vec2> {
 	public:
+		Polygon() = default;
 		Polygon(int n) : vector<Vec2>(n) {}
 		Polygon(const vector<Vec2>& _p) : vector<Vec2>(_p) {}
+		// 面積
 		LD area() const {
 			LD ans = 0;
 			for (size_t i = 0; i < size(); ++i) {
-				size_t next = i < size() - 1 ? i : 0;
-				ans += abs(at(i).x * at(i).y - at(next).x * at(i).y);
+				size_t next = i != size() - 1 ? i + 1 : 0;
+				ans += at(i).cross(at(next));
 			}
-			return ans / 2;
+			return abs(ans) / 2;
 		}
 		// 凸性判定（反時計回り）
 		bool is_convex() const {
@@ -143,6 +146,20 @@ namespace Geometric {
 
 			return dfs(dfs, 0, size());
 		}
+		// 切断
+		Polygon cut(const Line& l) const {
+			Polygon res;
+			for (size_t i = 0; i < size(); ++i) {
+				Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);
+				if (iSP(l.begin, l.end, a) != -1) {
+					res.push_back(a);
+				}
+				if (iSP(l.begin, l.end, a) * iSP(l.begin, l.end, b) < 0) {
+					res.push_back(*Line(a, b).cross_point(l));
+				}
+			}
+			return res;
+		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
 		}
@@ -150,12 +167,12 @@ namespace Geometric {
 			return Geometric::tangent(*this, shape);
 		}
 		friend ostream& operator<<(ostream& os, const Polygon& p) {
-			os << "{ ";
+			os << "{";
 			for (size_t i = 0; i < p.size(); ++i) {
 				if (i != 0) os << ", ";
 				os << p[i];
 			}
-			return os << " }";
+			return os << "}";
 		}
 		friend istream& operator>>(istream& is, Polygon& p) {
 			for (auto& v : p) {
