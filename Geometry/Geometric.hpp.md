@@ -2,28 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
+    title: test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_area_of_intersection_between_two_circles.test.cpp
     title: test/Geometric_area_of_intersection_between_two_circles.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_closest_pair.test.cpp
     title: test/Geometric_closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_common_tangent.test.cpp
+    title: test/Geometric_common_tangent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_convex_hull.test.cpp
     title: test/Geometric_convex_hull.test.cpp
@@ -66,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_polygon_diameter.test.cpp
     title: test/Geometric_polygon_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/Geometric_polygon_point_containment.test.cpp
     title: test/Geometric_polygon_point_containment.test.cpp
   - icon: ':heavy_check_mark:'
@@ -85,7 +91,7 @@ data:
     path: test/Geometric_tangent_to_circle.test.cpp
     title: test/Geometric_tangent_to_circle.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
@@ -136,11 +142,14 @@ data:
     \ \u4EA4\u70B9\n\toptional<Vec2> cross_point(const Line& l1, const Line& l2);\n\
     \toptional<Vec2> cross_point(const Segment& s1, const Segment& s2);\n\n\tvector<Vec2>\
     \ cross_points(const Line& l, const Circle& c);\n\tvector<Vec2> cross_points(const\
-    \ Circle& c, const Line& l);\n\tvector<Vec2> cross_points(const Circle& c1, const\
-    \ Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const\
-    \ Circle& c, const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\
-    \u5206\u306E\u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const\
-    \ Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n"
+    \ Segment& s, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c,\
+    \ const Line& l);\n\tvector<Vec2> cross_points(const Circle& c, const Segment&\
+    \ s);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
+    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
+    \ const Vec2& v);\n\tvector<Line> common_tangent(const Circle& c1, const Circle&\
+    \ c2);\n\n\t// 2\u3064\u306E\u56F3\u5F62\u306E\u5171\u901A\u90E8\u5206\u306E\u9762\
+    \u7A4D\n\tLD area_of_intersection(const Circle& c1, const Circle& c2);\n\tLD area_of_intersection(const\
+    \ Circle& c, const Polygon& p);\n\n}  // namespace Geometric\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
     #include <optional>\nusing namespace std;\n\nnamespace Geometric {\n\n\tusing\
     \ LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846, EPS\
@@ -188,12 +197,15 @@ data:
     \ tangent(const Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
     \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
     \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
-    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c, const Line&\
-    \ l);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
-    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
-    \ const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\
-    \u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const Circle& c1,\
-    \ const Circle& c2);\n\n}  // namespace Geometric\n"
+    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Segment& s, const Circle&\
+    \ c);\n\tvector<Vec2> cross_points(const Circle& c, const Line& l);\n\tvector<Vec2>\
+    \ cross_points(const Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2>\
+    \ tangent_to_circle(const Circle& c, const Vec2& v);\n\tvector<Line> common_tangent(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// 2\u3064\u306E\u56F3\u5F62\u306E\u5171\
+    \u901A\u90E8\u5206\u306E\u9762\u7A4D\n\tLD area_of_intersection(const Circle&\
+    \ c1, const Circle& c2);\n\tLD area_of_intersection(const Circle& c, const Polygon&\
+    \ p);\n\n}  // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.hpp
@@ -205,11 +217,13 @@ data:
   - Geometry/Geometric.cpp
   - Geometry/Vec2.hpp
   - Geometry/Triangle.hpp
-  timestamp: '2020-11-03 08:44:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-11-03 16:45:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/Geometric_common_tangent.test.cpp
   - test/Geometric_projection.test.cpp
   - test/Geometric_polygon_point_containment.test.cpp
+  - test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   - test/Geometric_incircle_of_triangle.test.cpp
   - test/Geometric_closest_pair.test.cpp
   - test/Geometric_is_convex.test.cpp

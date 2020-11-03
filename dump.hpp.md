@@ -116,7 +116,8 @@ data:
     #define dump(...)                                 \\\n\tdo {                 \
     \                         \\\n\t\tDebug::FirstLine(__LINE__, __FUNCTION__); \\\
     \n\t\tDebug::SetName(#__VA_ARGS__);             \\\n\t\tDebug::Dump(__VA_ARGS__);\
-    \                 \\\n\t} while (false)\n"
+    \                 \\\n\t\tcerr << endl;                             \\\n\t} while\
+    \ (false)\n"
   code: "#pragma once\n#include <iostream>\n#include <iomanip>\n#include <string>\n\
     #include <utility>\n#include <vector>\n#include <array>\n#include <map>\n#include\
     \ <set>\n#include <list>\n#include <stack>\n#include <queue>\n#include <cassert>\n\
@@ -223,13 +224,14 @@ data:
     #define dump(...)                                 \\\n\tdo {                 \
     \                         \\\n\t\tDebug::FirstLine(__LINE__, __FUNCTION__); \\\
     \n\t\tDebug::SetName(#__VA_ARGS__);             \\\n\t\tDebug::Dump(__VA_ARGS__);\
-    \                 \\\n\t} while (false)\n"
+    \                 \\\n\t\tcerr << endl;                             \\\n\t} while\
+    \ (false)\n"
   dependsOn: []
   isVerificationFile: false
   path: dump.hpp
   requiredBy:
   - template17.cpp
-  timestamp: '2020-10-06 16:34:45+09:00'
+  timestamp: '2020-11-03 17:34:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: dump.hpp
