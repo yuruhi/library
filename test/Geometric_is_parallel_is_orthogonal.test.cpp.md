@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedRequiredBy: []
@@ -420,22 +420,22 @@ data:
     \ Polygon& p) {\n\t\tLD theta = 0;\n\t\tfor (size_t i = 0; i < p.size(); ++i)\
     \ {\n\t\t\tVec2 next = p[i != p.size() - 1 ? i + 1 : 0];\n\t\t\tif (Segment(p[i],\
     \ next).intersects(v)) {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t\ttheta += angle(p[i],\
-    \ v, next) * sgn((p[i] - v).cross(next - v));\n\t\t}\n\t\treturn abs(theta) >\
-    \ 1;\n\t}\n\tbool intersect(const Line& l, const Vec2& v) {\n\t\treturn intersect(v,\
-    \ l);\n\t}\n\tbool intersect(const Line& l1, const Line& l2) {\n\t\treturn !l1.is_parallel(l2);\n\
-    \t}\n\tbool intersect(const Line& l, const Circle& c) {\n\t\treturn sgn(distance(c.center,\
-    \ l) - c.r) <= 0;\n\t}\n\tbool intersect(const Segment& l, const Vec2& v) {\n\t\
-    \treturn intersect(v, l);\n\t}\n\tbool intersect(const Segment& s1, const Segment&\
-    \ s2) {\n\t\treturn iSP(s1.begin, s1.end, s2.begin) * iSP(s1.begin, s1.end, s2.end)\
-    \ <= 0 &&\n\t\t    iSP(s2.begin, s2.end, s1.begin) * iSP(s2.begin, s2.end, s1.end)\
-    \ <= 0;\n\t}\n\tbool intersect(const Segment& s, const Circle& c) {\n\t\treturn\
-    \ sgn(distance(c.center, s) - c.r) <= 0;\n\t}\n\tbool intersect(const Circle&\
-    \ c, const Vec2& v) {\n\t\treturn intersect(v, c);\n\t}\n\tbool intersect(const\
-    \ Circle& c, const Line& l) {\n\t\treturn intersect(l, c);\n\t}\n\tbool intersect(const\
-    \ Circle& c, const Segment& s) {\n\t\treturn intersect(s, c);\n\t}\n\tbool intersect(const\
-    \ Circle& c1, const Circle& c2) {\n\t\treturn sgn(distance(c1.center, c2.center)\
-    \ - (c1.r + c2.r)) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Rect& r)\
-    \ {\n\t\treturn Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center)\
+    \ v, next);\n\t\t}\n\t\treturn abs(theta) > 1;\n\t}\n\tbool intersect(const Line&\
+    \ l, const Vec2& v) {\n\t\treturn intersect(v, l);\n\t}\n\tbool intersect(const\
+    \ Line& l1, const Line& l2) {\n\t\treturn !l1.is_parallel(l2);\n\t}\n\tbool intersect(const\
+    \ Line& l, const Circle& c) {\n\t\treturn sgn(distance(c.center, l) - c.r) <=\
+    \ 0;\n\t}\n\tbool intersect(const Segment& l, const Vec2& v) {\n\t\treturn intersect(v,\
+    \ l);\n\t}\n\tbool intersect(const Segment& s1, const Segment& s2) {\n\t\treturn\
+    \ iSP(s1.begin, s1.end, s2.begin) * iSP(s1.begin, s1.end, s2.end) <= 0 &&\n\t\t\
+    \    iSP(s2.begin, s2.end, s1.begin) * iSP(s2.begin, s2.end, s1.end) <= 0;\n\t\
+    }\n\tbool intersect(const Segment& s, const Circle& c) {\n\t\treturn sgn(distance(c.center,\
+    \ s) - c.r) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Vec2& v) {\n\t\
+    \treturn intersect(v, c);\n\t}\n\tbool intersect(const Circle& c, const Line&\
+    \ l) {\n\t\treturn intersect(l, c);\n\t}\n\tbool intersect(const Circle& c, const\
+    \ Segment& s) {\n\t\treturn intersect(s, c);\n\t}\n\tbool intersect(const Circle&\
+    \ c1, const Circle& c2) {\n\t\treturn sgn(distance(c1.center, c2.center) - (c1.r\
+    \ + c2.r)) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Rect& r) {\n\t\t\
+    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center)\
     \ ||\n\t\t    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center)\
     \ || c.intersects(r.top_left()) ||\n\t\t    c.intersects(r.top_right()) || c.intersects(r.bottom_left())\
     \ || c.intersects(r.bottom_right());\n\t}\n\tbool intersect(const Rect& r1, const\
@@ -558,7 +558,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_is_parallel_is_orthogonal.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 17:45:40+09:00'
+  timestamp: '2020-11-03 18:27:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_is_parallel_is_orthogonal.test.cpp

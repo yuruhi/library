@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
   _extendedVerifiedWith:
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_polygon_diameter.test.cpp
     title: test/Geometric_polygon_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Geometric_polygon_point_containment.test.cpp
     title: test/Geometric_polygon_point_containment.test.cpp
   - icon: ':heavy_check_mark:'
@@ -82,7 +82,7 @@ data:
     path: test/Geometric_tangent_to_circle.test.cpp
     title: test/Geometric_tangent_to_circle.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
@@ -349,7 +349,7 @@ data:
   requiredBy:
   - Geometry/Geometric.cpp
   timestamp: '2020-11-03 17:35:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_common_tangent.test.cpp
   - test/Geometric_projection.test.cpp
