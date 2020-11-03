@@ -91,13 +91,17 @@ namespace Geometric {
 	optional<Vec2> cross_point(const Segment& s1, const Segment& s2);
 
 	vector<Vec2> cross_points(const Line& l, const Circle& c);
+	vector<Vec2> cross_points(const Segment& s, const Circle& c);
 	vector<Vec2> cross_points(const Circle& c, const Line& l);
+	vector<Vec2> cross_points(const Circle& c, const Segment& s);
 	vector<Vec2> cross_points(const Circle& c1, const Circle& c2);
 
 	// 円の接線
 	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
+	vector<Line> common_tangent(const Circle& c1, const Circle& c2);
 
-	// 2つの円の共通部分の面積
-	LD area_of_intersection_between_two_circles(const Circle& c1, const Circle& c2);
+	// 2つの図形の共通部分の面積
+	LD area_of_intersection(const Circle& c1, const Circle& c2);
+	LD area_of_intersection(const Circle& c, const Polygon& p);
 
 }  // namespace Geometric
