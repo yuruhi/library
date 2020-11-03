@@ -61,8 +61,14 @@ data:
     path: test/Geometric_line_intersection.test.cpp
     title: test/Geometric_line_intersection.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/Geometric_polygon_cut.test.cpp
+    title: test/Geometric_polygon_cut.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Geometric_polygon_diameter.test.cpp
     title: test/Geometric_polygon_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_polygon_point_containment.test.cpp
+    title: test/Geometric_polygon_point_containment.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Geometric_projection.test.cpp
     title: test/Geometric_projection.test.cpp
@@ -109,23 +115,32 @@ data:
     \n\tbool intersect(const Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2&\
     \ v, const Line& l);\n\tbool intersect(const Vec2& v, const Segment& l);\n\tbool\
     \ intersect(const Vec2& v, const Circle& c);\n\tbool intersect(const Vec2& v,\
-    \ const Rect& r);\n\tbool intersect(const Line& l, const Vec2& v);\n\tbool intersect(const\
-    \ Line& l1, const Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\
-    \tbool intersect(const Segment& l, const Vec2& v);\n\tbool intersect(const Segment&\
-    \ s1, const Segment& s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\
-    \tbool intersect(const Circle& c, const Vec2& v);\n\tbool intersect(const Circle&\
-    \ c, const Line& l);\n\tbool intersect(const Circle& c, const Segment& s);\n\t\
-    bool intersect(const Circle& c1, const Circle& c2);\n\tbool intersect(const Circle&\
-    \ c, const Rect& r);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\tbool\
-    \ intersect(const Rect& r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
-    \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
-    \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
-    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c, const Line&\
-    \ l);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
-    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
-    \ const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\
-    \u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const Circle& c1,\
-    \ const Circle& c2);\n\n}  // namespace Geometric\n"
+    \ const Rect& r);\n\tbool intersect(const Vec2& v, const Polygon& p);\n\tbool\
+    \ intersect(const Line& l, const Vec2& v);\n\tbool intersect(const Line& l1, const\
+    \ Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\tbool intersect(const\
+    \ Segment& l, const Vec2& v);\n\tbool intersect(const Segment& s1, const Segment&\
+    \ s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\tbool intersect(const\
+    \ Circle& c, const Vec2& v);\n\tbool intersect(const Circle& c, const Line& l);\n\
+    \tbool intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
+    \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
+    bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
+    \ r, const Circle& c);\n\tbool intersect(const Polygon& p, const Vec2& v);\n\n\
+    \t// \u63A5\u3059\u308B\u304B\u5224\u5B9A\n\tbool tangent(const Vec2& v1, const\
+    \ Vec2& v2);\n\tbool tangent(const Vec2& v, const Line& l);\n\tbool tangent(const\
+    \ Vec2& v, const Segment& l);\n\tbool tangent(const Vec2& v, const Circle& c);\n\
+    \tbool tangent(const Vec2& v, const Rect& r);\n\tbool tangent(const Vec2& v, const\
+    \ Polygon& p);\n\tbool tangent(const Line& l, const Vec2& v);\n\tbool tangent(const\
+    \ Segment& l, const Vec2& v);\n\tbool tangent(const Circle& c, const Vec2& v);\n\
+    \tbool tangent(const Circle& c1, const Circle& c2);\n\tbool tangent(const Rect&\
+    \ r, const Vec2& v);\n\tbool tangent(const Polygon& p, const Vec2& v);\n\n\t//\
+    \ \u4EA4\u70B9\n\toptional<Vec2> cross_point(const Line& l1, const Line& l2);\n\
+    \toptional<Vec2> cross_point(const Segment& s1, const Segment& s2);\n\n\tvector<Vec2>\
+    \ cross_points(const Line& l, const Circle& c);\n\tvector<Vec2> cross_points(const\
+    \ Circle& c, const Line& l);\n\tvector<Vec2> cross_points(const Circle& c1, const\
+    \ Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const\
+    \ Circle& c, const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\
+    \u5206\u306E\u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const\
+    \ Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
     #include <optional>\nusing namespace std;\n\nnamespace Geometric {\n\n\tusing\
     \ LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846, EPS\
@@ -153,22 +168,32 @@ data:
     \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
     \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
     \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
-    \ intersect(const Line& l, const Vec2& v);\n\tbool intersect(const Line& l1, const\
-    \ Line& l2);\n\tbool intersect(const Line& l, const Circle& c);\n\tbool intersect(const\
-    \ Segment& l, const Vec2& v);\n\tbool intersect(const Segment& s1, const Segment&\
-    \ s2);\n\tbool intersect(const Segment& s, const Circle& c);\n\tbool intersect(const\
-    \ Circle& c, const Vec2& v);\n\tbool intersect(const Circle& c, const Line& l);\n\
-    \tbool intersect(const Circle& c, const Segment& s);\n\tbool intersect(const Circle&\
-    \ c1, const Circle& c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\t\
-    bool intersect(const Rect& r1, const Rect& r2);\n\tbool intersect(const Rect&\
-    \ r, const Circle& c);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
-    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
-    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Circle& c, const Line& l);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\
-    \u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);\n\n\t\
-    // 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const\
-    \ Circle& c1, const Circle& c2);\n\n}  // namespace Geometric\n"
+    \ intersect(const Vec2& v, const Polygon& p);\n\tbool intersect(const Line& l,\
+    \ const Vec2& v);\n\tbool intersect(const Line& l1, const Line& l2);\n\tbool intersect(const\
+    \ Line& l, const Circle& c);\n\tbool intersect(const Segment& l, const Vec2& v);\n\
+    \tbool intersect(const Segment& s1, const Segment& s2);\n\tbool intersect(const\
+    \ Segment& s, const Circle& c);\n\tbool intersect(const Circle& c, const Vec2&\
+    \ v);\n\tbool intersect(const Circle& c, const Line& l);\n\tbool intersect(const\
+    \ Circle& c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle&\
+    \ c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const\
+    \ Rect& r1, const Rect& r2);\n\tbool intersect(const Rect& r, const Circle& c);\n\
+    \tbool intersect(const Polygon& p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\
+    \u5224\u5B9A\n\tbool tangent(const Vec2& v1, const Vec2& v2);\n\tbool tangent(const\
+    \ Vec2& v, const Line& l);\n\tbool tangent(const Vec2& v, const Segment& l);\n\
+    \tbool tangent(const Vec2& v, const Circle& c);\n\tbool tangent(const Vec2& v,\
+    \ const Rect& r);\n\tbool tangent(const Vec2& v, const Polygon& p);\n\tbool tangent(const\
+    \ Line& l, const Vec2& v);\n\tbool tangent(const Segment& l, const Vec2& v);\n\
+    \tbool tangent(const Circle& c, const Vec2& v);\n\tbool tangent(const Circle&\
+    \ c1, const Circle& c2);\n\tbool tangent(const Rect& r, const Vec2& v);\n\tbool\
+    \ tangent(const Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
+    \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
+    \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
+    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Circle& c, const Line&\
+    \ l);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
+    // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
+    \ const Vec2& v);\n\n\t// 2\u3064\u306E\u5186\u306E\u5171\u901A\u90E8\u5206\u306E\
+    \u9762\u7A4D\n\tLD area_of_intersection_between_two_circles(const Circle& c1,\
+    \ const Circle& c2);\n\n}  // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.hpp
@@ -180,10 +205,11 @@ data:
   - Geometry/Geometric.cpp
   - Geometry/Vec2.hpp
   - Geometry/Triangle.hpp
-  timestamp: '2020-11-02 23:13:57+09:00'
+  timestamp: '2020-11-03 08:44:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_projection.test.cpp
+  - test/Geometric_polygon_point_containment.test.cpp
   - test/Geometric_incircle_of_triangle.test.cpp
   - test/Geometric_closest_pair.test.cpp
   - test/Geometric_is_convex.test.cpp
@@ -198,6 +224,7 @@ data:
   - test/Geometric_line_intersection.test.cpp
   - test/Geometric_cross_point_of_circles.test.cpp
   - test/Geometric_cirnnumscribed_circle.test.cpp
+  - test/Geometric_polygon_cut.test.cpp
   - test/Geometric_cross_points_between_line_and_circle.test.cpp
   - test/Geometric_segment_intersection.test.cpp
   - test/Geometric_iSP.test.cpp

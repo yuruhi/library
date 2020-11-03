@@ -483,8 +483,14 @@ data:
       path: test/Geometric_line_intersection.test.cpp
       title: test/Geometric_line_intersection.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Geometric_polygon_cut.test.cpp
+      title: test/Geometric_polygon_cut.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Geometric_polygon_diameter.test.cpp
       title: test/Geometric_polygon_diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Geometric_polygon_point_containment.test.cpp
+      title: test/Geometric_polygon_point_containment.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Geometric_projection.test.cpp
       title: test/Geometric_projection.test.cpp
