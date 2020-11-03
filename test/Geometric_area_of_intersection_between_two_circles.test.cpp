@@ -8,5 +8,5 @@ using namespace std;
 int main() {
 	Geometric::Circle c1, c2;
 	cin >> c1 >> c2;
-	printf("%.12Lf\n", Geometric::area_of_intersection_between_two_circles(c1, c2));
+	printf("%.12Lf\n", Geometric::area_of_intersection(c1, c2));
 }

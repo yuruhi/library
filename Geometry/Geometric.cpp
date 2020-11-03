@@ -60,7 +60,8 @@ namespace Geometric {
 
 	LD angle(const Vec2& a, const Vec2& b, const Vec2& c) {
 		// return acos((a - b).dot(c - b) / (a.distance(b) * c.distance(b)));
-		return abs((a - b).rotation(-(c - b).angle()).angle());
+		// return abs((a - b).rotation(-(c - b).angle()).angle());
+		return (c - b).rotation(-(a - b).angle()).angle();
 	}
 
 	LD distance(const Vec2& v1, const Vec2& v2) {
@@ -350,23 +351,36 @@ namespace Geometric {
 		}
 	}
 	LD area_of_intersection(const Circle& c, const Polygon& p) {
+		auto signed_area = [c](Vec2 x, Vec2 y, bool triangle) {
+			if (triangle) {
+				return x.cross(y) / 2;
+			} else {
+				return c.r * c.r * angle(x, Vec2::zero(), y) / 2;
+			}
+		};
+
 		// 円 c と 三角形 {(0, 0), a, b} の共通部分の面積
-		auto circle_and_triangle = [](Circle c, Vec2 a, Vec2 b) -> LD {
+		auto circle_and_triangle = [signed_area](Circle c, Vec2 a, Vec2 b) -> LD {
 			a -= c.center;
 			b -= c.center;
 			c.center -= c.center;
 			if (sgn(a.distance(b)) == 0) {
 				return 0;
 			} else if (bool in_a = a.intersects(c), in_b = b.intersects(c); in_a && in_b) {
-				return Triangle(Vec2::zero(), a, b).area();
+				return signed_area(a, b, true);
+			} else if (auto points = c.cross_points(Segment(a, b)); points.empty()) {
+				return signed_area(a, b, false);
 			} else {
-				auto points = Circle(Vec2::zero(), c.r).cross_points(Segment(a, b));
+				Vec2 p1 = points.front(), p2 = points.back();
+				swap(p1, p2);
+				return signed_area(p1, p2, true) + signed_area(a, p1, in_a) + signed_area(p2, b, in_b);
 			}
 		};
 
 		LD area = 0;
 		for (size_t i = 0; i < p.size(); ++i) {
-			area += circle_and_triangle(c, p[i], p[i != p.size() - 1 ? i + 1 : 0]);
+			LD res = circle_and_triangle(c, p[i], p[i != p.size() - 1 ? i + 1 : 0]);
+			area += res;
 		}
 		return area;
 	}
