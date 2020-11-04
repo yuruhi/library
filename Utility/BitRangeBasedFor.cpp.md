@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/BitRangeBasedFor.test.cpp
+    title: test/BitRangeBasedFor.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/BitRangeBasedFor.cpp\"\n\nclass bit_subset {\n\t\
@@ -39,8 +42,9 @@ data:
   path: Utility/BitRangeBasedFor.cpp
   requiredBy: []
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/BitRangeBasedFor.test.cpp
 documentation_of: Utility/BitRangeBasedFor.cpp
 layout: document
 redirect_from:

@@ -73,7 +73,9 @@ data:
     \ r + 1);\n\t\t\t\t\t\tif (g(op(d[r], sm))) {\n\t\t\t\t\t\t\tsm = op(d[r], sm);\n\
     \t\t\t\t\t\t\tr--;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - size;\n\
     \t\t\t\t}\n\t\t\t\tsm = op(d[r], sm);\n\t\t\t} while ((r & -r) != r);\n\t\t\t\
-    return 0;\n\t\t}\n\n\tprivate:\n\t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\
+    return 0;\n\t\t}\n\n\t\tstd::vector<S> to_a() {\n\t\t\tstd::vector<S> res(_n);\n\
+    \t\t\tfor (int i = 0; i < _n; ++i) {\n\t\t\t\tres[i] = get(i);\n\t\t\t}\n\t\t\t\
+    return res;\n\t\t}\n\n\tprivate:\n\t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\
     \t\tstd::vector<F> lz;\n\n\t\tvoid update(int k) {\n\t\t\td[k] = op(d[2 * k],\
     \ d[2 * k + 1]);\n\t\t}\n\t\tvoid all_apply(int k, F f) {\n\t\t\td[k] = mapping(f,\
     \ d[k]);\n\t\t\tif (k < size) lz[k] = composition(f, lz[k]);\n\t\t}\n\t\tvoid\
@@ -133,7 +135,9 @@ data:
     \ {\n\t\t\t\t\t\tpush(r);\n\t\t\t\t\t\tr = (2 * r + 1);\n\t\t\t\t\t\tif (g(op(d[r],\
     \ sm))) {\n\t\t\t\t\t\t\tsm = op(d[r], sm);\n\t\t\t\t\t\t\tr--;\n\t\t\t\t\t\t\
     }\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - size;\n\t\t\t\t}\n\t\t\t\tsm = op(d[r],\
-    \ sm);\n\t\t\t} while ((r & -r) != r);\n\t\t\treturn 0;\n\t\t}\n\n\tprivate:\n\
+    \ sm);\n\t\t\t} while ((r & -r) != r);\n\t\t\treturn 0;\n\t\t}\n\n\t\tstd::vector<S>\
+    \ to_a() {\n\t\t\tstd::vector<S> res(_n);\n\t\t\tfor (int i = 0; i < _n; ++i)\
+    \ {\n\t\t\t\tres[i] = get(i);\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\n\tprivate:\n\
     \t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\t\tstd::vector<F> lz;\n\n\t\t\
     void update(int k) {\n\t\t\td[k] = op(d[2 * k], d[2 * k + 1]);\n\t\t}\n\t\tvoid\
     \ all_apply(int k, F f) {\n\t\t\td[k] = mapping(f, d[k]);\n\t\t\tif (k < size)\
@@ -145,7 +149,7 @@ data:
   isVerificationFile: false
   path: atcoder/lazysegtree.hpp
   requiredBy: []
-  timestamp: '2020-10-30 19:21:58+09:00'
+  timestamp: '2020-11-04 19:58:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: atcoder/lazysegtree.hpp

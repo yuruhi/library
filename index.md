@@ -124,8 +124,8 @@ data:
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp
     - icon: ':warning:'
-      path: Graph/EulerTour.cpp
-      title: Graph/EulerTour.cpp
+      path: Graph/EulerTourForEdge.cpp
+      title: Graph/EulerTourForEdge.cpp
     - icon: ':warning:'
       path: Graph/EulerTourForVertex.cpp
       title: Graph/EulerTourForVertex.cpp
@@ -260,7 +260,7 @@ data:
       title: String/ZAlgorithm.cpp
   - name: Utility
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/BitRangeBasedFor.cpp
       title: Utility/BitRangeBasedFor.cpp
     - icon: ':warning:'
@@ -278,6 +278,9 @@ data:
     - icon: ':warning:'
       path: Utility/CulSum2D.cpp
       title: Utility/CulSum2D.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Dice.cpp
+      title: Utility/Dice.cpp
     - icon: ':warning:'
       path: Utility/Imos.cpp
       title: Utility/Imos.cpp
@@ -420,6 +423,9 @@ data:
       path: test/BipartiteMatching.test.cpp
       title: test/BipartiteMatching.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/BitRangeBasedFor.test.cpp
+      title: test/BitRangeBasedFor.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/ConnectedComponent.test.cpp
       title: test/ConnectedComponent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -428,6 +434,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Diameter.test.cpp
       title: test/Diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Dice1.test.cpp
+      title: test/Dice1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Dice2.test.cpp
+      title: test/Dice2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Dice3.test.cpp
+      title: test/Dice3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Dice4.test.cpp
+      title: test/Dice4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Dijkstra.test.cpp
       title: test/Dijkstra.test.cpp
@@ -440,6 +458,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Euler.test.cpp
       title: test/Euler.test.cpp
+    - icon: ':x:'
+      path: test/EulerTourForEdge.test.cpp
+      title: test/EulerTourForEdge.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Fibonacci.test.cpp
       title: test/Fibonacci.test.cpp
