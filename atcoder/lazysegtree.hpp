@@ -175,6 +175,14 @@ namespace atcoder {
 			return 0;
 		}
 
+		std::vector<S> to_a() {
+			std::vector<S> res(_n);
+			for (int i = 0; i < _n; ++i) {
+				res[i] = get(i);
+			}
+			return res;
+		}
+
 	private:
 		int _n, size, log;
 		std::vector<S> d;
