@@ -5,7 +5,7 @@
 #include <functional>
 using namespace std;
 
-class EulerTour {
+class EulerTourForEdge {
 	vector<vector<int>> g;
 	vector<int> ls, rs;
 	int pos = 0;
@@ -20,8 +20,8 @@ class EulerTour {
 	}
 
 public:
-	EulerTour(int n) : g(n), ls(n), rs(n) {}
-	EulerTour(const vector<vector<int>>& _g) : g(_g), ls(g.size()), rs(g.size()) {}
+	EulerTourForEdge(int n) : g(n), ls(n), rs(n) {}
+	EulerTourForEdge(const vector<vector<int>>& _g) : g(_g), ls(g.size()), rs(g.size()) {}
 	void add_edge(int u, int v) {
 		g[u].push_back(v);
 		g[v].push_back(u);
@@ -46,6 +46,12 @@ public:
 	pair<int, int> operator()(int i) {
 		assert(flag);
 		return make_pair(ls[i], rs[i]);
+	}
+	const vector<int>& get_ls() const {
+		return ls;
+	}
+	const vector<int>& get_rs() const {
+		return rs;
 	}
 	int operator[](int i) {
 		assert(flag);
