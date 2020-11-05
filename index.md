@@ -147,6 +147,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/LCA.cpp
       title: Graph/LCA.cpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/LowLink.cpp
+      title: Graph/LowLink.cpp
     - icon: ':warning:'
       path: Graph/ReRooting.cpp
       title: Graph/ReRooting.cpp
@@ -414,6 +417,9 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/ArticulationPoints.test.cpp
+      title: test/ArticulationPoints.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/BellmanFord.test.cpp
       title: test/BellmanFord.test.cpp
     - icon: ':heavy_check_mark:'
@@ -425,6 +431,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/BitRangeBasedFor.test.cpp
       title: test/BitRangeBasedFor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Bridges.test.cpp
+      title: test/Bridges.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ConnectedComponent.test.cpp
       title: test/ConnectedComponent.test.cpp
