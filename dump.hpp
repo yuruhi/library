@@ -308,5 +308,4 @@ namespace Debug {
 		Debug::FirstLine(__LINE__, __FUNCTION__); \
 		Debug::SetName(#__VA_ARGS__);             \
 		Debug::Dump(__VA_ARGS__);                 \
-		cerr << endl;                             \
 	} while (false)
