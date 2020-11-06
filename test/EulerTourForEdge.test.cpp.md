@@ -26,7 +26,7 @@ data:
     \t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint v;\n\t\t\tlong long w;\n\t\t\t\
     cin >> v >> w;\n\t\t\tbit.add(euler.l(v), +w);\n\t\t\tbit.add(euler.r(v), -w);\n\
     \t\t} else if (com == 1) {\n\t\t\tint v;\n\t\t\tcin >> v;\n\t\t\tcout << bit(euler.l(v))\
-    \ << endl;\n\t\t}\n\t}\n}"
+    \ << endl;\n\t\t}\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/EulerTourForEdge.test.cpp
