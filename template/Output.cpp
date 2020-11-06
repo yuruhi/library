@@ -59,13 +59,13 @@ class Output {
 		p(v.second);
 	}
 	template <class T> void p(const vector<T>& v) const {
-		rep(i, sz(v)) {
+		for (size_t i = 0; i < v.size(); ++i) {
 			if (i) p(D.d);
 			p(v[i]);
 		}
 	}
 	template <class T> void p(const vector<vector<T>>& v) const {
-		rep(i, sz(v)) {
+		for (size_t i = 0; i < v.size(); ++i) {
 			if (i) p(D.l);
 			p(v[i]);
 		}
