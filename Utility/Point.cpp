@@ -129,8 +129,11 @@ struct Point {
 	constexpr int operator[](int i) const {
 		return i == 0 ? x : i == 1 ? y : 0;
 	}
+	constexpr bool in_range(int height, int width) const {
+		return 0 <= x && x < width && 0 <= y && y < height;
+	}
 	bool in_range() const {
-		return 0 <= x && x < W && 0 <= y && y < H;
+		return in_range(H, W);
 	}
 	int to_i() const {
 		return x + y * W;
