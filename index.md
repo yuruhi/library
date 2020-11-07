@@ -392,10 +392,10 @@ data:
       title: template17.cpp
   - name: template
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/Input.cpp
       title: template/Input.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/Output.cpp
       title: template/Output.cpp
     - icon: ':warning:'
@@ -542,6 +542,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_tangent_to_circle.test.cpp
       title: test/Geometric_tangent_to_circle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Input_Output.test.cpp
+      title: test/Input_Output.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Input_multiple.test.cpp
+      title: test/Input_multiple.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp

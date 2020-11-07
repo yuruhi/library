@@ -5,9 +5,15 @@ data:
   - icon: ':warning:'
     path: template/template.cpp
     title: template/template.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Input_Output.test.cpp
+    title: test/Input_Output.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Input_multiple.test.cpp
+    title: test/Input_multiple.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/Input.cpp\"\n#include <iostream>\n#include <vector>\n\
@@ -136,8 +142,10 @@ data:
   requiredBy:
   - template/template.cpp
   timestamp: '2020-10-06 16:32:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Input_Output.test.cpp
+  - test/Input_multiple.test.cpp
 documentation_of: template/Input.cpp
 layout: document
 redirect_from:

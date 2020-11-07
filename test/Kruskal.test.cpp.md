@@ -35,7 +35,7 @@ data:
     \ bool operator>(const Edge2& e1, const Edge2& e2) {\n\t\treturn e1.cost > e2.cost;\n\
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
-    \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 2 \"DataStructure/UnionFind.cpp\"\
+    \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"DataStructure/UnionFind.cpp\"\
     \n#include <utility>\nusing namespace std;\n\nclass UnionFind {\n\tvector<int>\
     \ d;\n\tint cnt;\n\npublic:\n\tUnionFind(int n = 0) {\n\t\tinit(n);\n\t}\n\tvoid\
     \ init(int n) {\n\t\td.assign(n, -1);\n\t\tcnt = n;\n\t}\n\tint root(int x) {\n\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: true
   path: test/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Kruskal.test.cpp

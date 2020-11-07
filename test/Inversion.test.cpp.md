@@ -17,7 +17,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_5_D
   bundledCode: "#line 1 \"test/Inversion.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_5_D\"\
-    \n#line 1 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n#include\
+    \n#line 2 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n#include\
     \ <cassert>\nusing namespace std;\n\ntemplate <class T> class BinaryIndexedTree\
     \ {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int n_) : n(n_),\
     \ n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2 /= 2;\n\t}\n\t\
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: test/Inversion.test.cpp
   requiredBy: []
-  timestamp: '2020-10-20 20:58:14+09:00'
+  timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Inversion.test.cpp

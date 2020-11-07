@@ -13,7 +13,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n\
+  bundledCode: "#line 2 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class BinaryIndexedTree\
     \ {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int n_) : n(n_),\
     \ n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2 /= 2;\n\t}\n\t\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: Math/Inversion.cpp
   requiredBy: []
-  timestamp: '2020-10-20 20:58:14+09:00'
+  timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Inversion.test.cpp

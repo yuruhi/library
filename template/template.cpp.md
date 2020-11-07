@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/Input.cpp
     title: template/Input.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/Output.cpp
     title: template/Output.cpp
   - icon: ':warning:'
@@ -118,18 +118,19 @@ data:
     \ double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate <class T> void\
     \ p(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate <class T, class U> void\
     \ p(const pair<T, U>& v) const {\n\t\tp(v.first);\n\t\tp(D.d);\n\t\tp(v.second);\n\
-    \t}\n\ttemplate <class T> void p(const vector<T>& v) const {\n\t\trep(i, sz(v))\
-    \ {\n\t\t\tif (i) p(D.d);\n\t\t\tp(v[i]);\n\t\t}\n\t}\n\ttemplate <class T> void\
-    \ p(const vector<vector<T>>& v) const {\n\t\trep(i, sz(v)) {\n\t\t\tif (i) p(D.l);\n\
-    \t\t\tp(v[i]);\n\t\t}\n\t}\n\npublic:\n\tOutput& operator()() {\n\t\tp(D.l);\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class H> Output& operator()(H&& h) {\n\t\t\
-    p(h);\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H, class... T> Output&\
-    \ operator()(H&& h, T&&... t) {\n\t\tp(h);\n\t\tp(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\
-    \t}\n\ttemplate <class It> Output& range(const It& l, const It& r) {\n\t\tfor\
-    \ (It i = l; i != r; i++) {\n\t\t\tif (i != l) p(D.d);\n\t\t\tp(*i);\n\t\t}\n\t\
-    \tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class T> Output& range(const T&\
-    \ a) {\n\t\trange(a.begin(), a.end());\n\t\treturn *this;\n\t}\n\ttemplate <class...\
-    \ T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\t\tstd::exit(EXIT_SUCCESS);\n\
+    \t}\n\ttemplate <class T> void p(const vector<T>& v) const {\n\t\tfor (size_t\
+    \ i = 0; i < v.size(); ++i) {\n\t\t\tif (i) p(D.d);\n\t\t\tp(v[i]);\n\t\t}\n\t\
+    }\n\ttemplate <class T> void p(const vector<vector<T>>& v) const {\n\t\tfor (size_t\
+    \ i = 0; i < v.size(); ++i) {\n\t\t\tif (i) p(D.l);\n\t\t\tp(v[i]);\n\t\t}\n\t\
+    }\n\npublic:\n\tOutput& operator()() {\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\t\
+    template <class H> Output& operator()(H&& h) {\n\t\tp(h);\n\t\tp(D.l);\n\t\treturn\
+    \ *this;\n\t}\n\ttemplate <class H, class... T> Output& operator()(H&& h, T&&...\
+    \ t) {\n\t\tp(h);\n\t\tp(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\t}\n\
+    \ttemplate <class It> Output& range(const It& l, const It& r) {\n\t\tfor (It i\
+    \ = l; i != r; i++) {\n\t\t\tif (i != l) p(D.d);\n\t\t\tp(*i);\n\t\t}\n\t\tp(D.l);\n\
+    \t\treturn *this;\n\t}\n\ttemplate <class T> Output& range(const T& a) {\n\t\t\
+    range(a.begin(), a.end());\n\t\treturn *this;\n\t}\n\ttemplate <class... T> void\
+    \ exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\t\tstd::exit(EXIT_SUCCESS);\n\
     \t}\n\tOutput& flush() {\n\t\tfflush_unlocked(stdout);\n\t\treturn *this;\n\t\
     }\n\tOutput& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn *this;\n\t}\n\tOutput&\
     \ set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\t}\n\tOutput& set(const\
@@ -329,7 +330,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-10-31 08:01:29+09:00'
+  timestamp: '2020-11-06 17:54:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

@@ -14,7 +14,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/unionfind
   bundledCode: "#line 1 \"test/UnionFind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n#include <iostream>\n#line 1 \"DataStructure/UnionFind.cpp\"\n#include <vector>\n\
+    \n#include <iostream>\n#line 2 \"DataStructure/UnionFind.cpp\"\n#include <vector>\n\
     #include <utility>\nusing namespace std;\n\nclass UnionFind {\n\tvector<int> d;\n\
     \tint cnt;\n\npublic:\n\tUnionFind(int n = 0) {\n\t\tinit(n);\n\t}\n\tvoid init(int\
     \ n) {\n\t\td.assign(n, -1);\n\t\tcnt = n;\n\t}\n\tint root(int x) {\n\t\treturn\
@@ -38,7 +38,7 @@ data:
   isVerificationFile: true
   path: test/UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/UnionFind.test.cpp

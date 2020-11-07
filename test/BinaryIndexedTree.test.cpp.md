@@ -14,7 +14,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
   bundledCode: "#line 1 \"test/BinaryIndexedTree.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
-    \n#include <iostream>\n#line 1 \"DataStructure/BinaryIndexedTree.cpp\"\n#include\
+    \n#include <iostream>\n#line 2 \"DataStructure/BinaryIndexedTree.cpp\"\n#include\
     \ <vector>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> class\
     \ BinaryIndexedTree {\n\tint n, n2;\n\tvector<T> a;\n\npublic:\n\tBinaryIndexedTree(int\
     \ n_) : n(n_), n2(1), a(n_ + 1) {\n\t\twhile (n2 < n)\n\t\t\tn2 *= 2;\n\t\tn2\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: true
   path: test/BinaryIndexedTree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-20 20:58:14+09:00'
+  timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/BinaryIndexedTree.test.cpp
