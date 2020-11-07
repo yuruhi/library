@@ -226,14 +226,30 @@ struct Point {
 		}
 		return *this;
 	}
-	constexpr Point rotate90() {
+	constexpr Point rotate90() const {
 		return {y, -x};
 	}
-	constexpr Point rotate180() {
+	constexpr Point rotate180() const {
 		return {-x, -y};
 	}
-	constexpr Point rotate270() {
+	constexpr Point rotate270() const {
 		return {-y, x};
+	}
+	char to_direction_char(const string chars = "LRUD") const {
+		assert(4 <= chars.size() && chars.size() <= 5);
+		if (y == 0 && x < 0) {
+			return chars[0];
+		} else if (y == 0 && x > 0) {
+			return chars[1];
+		} else if (x == 0 && y < 0) {
+			return chars[2];
+		} else if (x == 0 && y > 0) {
+			return chars[3];
+		} else if (chars.size() == 5) {
+			return chars[4];
+		} else {
+			assert(false);
+		}
 	}
 	friend ostream& operator<<(ostream& os, const Point& p) {
 		return os << '(' << p.x << ", " << p.y << ')';
