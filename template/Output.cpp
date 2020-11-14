@@ -19,7 +19,9 @@ struct DivStr {
 class Output {
 	BoolStr B{Yes};
 	DivStr D{spc};
-	void p(int v) const {
+
+public:
+	void put(int v) const {
 		char buf[12]{};
 		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
 			fwrite(buf, sizeof(char), ptr - buf, stdout);
@@ -27,7 +29,7 @@ class Output {
 			assert(false);
 		}
 	}
-	void p(long long v) const {
+	void put(long long v) const {
 		char buf[21]{};
 		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
 			fwrite(buf, sizeof(char), ptr - buf, stdout);
@@ -35,63 +37,67 @@ class Output {
 			assert(false);
 		}
 	}
-	void p(bool v) const {
-		p(v ? B.t : B.f);
+	void put(bool v) const {
+		put(v ? B.t : B.f);
 	}
-	void p(char v) const {
+	void put(char v) const {
 		putchar_unlocked(v);
 	}
-	void p(const char* v) const {
+	void put(const char* v) const {
 		fwrite_unlocked(v, 1, strlen(v), stdout);
 	}
-	void p(double v) const {
+	void put(double v) const {
 		printf("%.20f", v);
 	}
-	void p(long double v) const {
+	void put(long double v) const {
 		printf("%.20Lf", v);
 	}
-	template <class T> void p(const T& v) const {
+	template <class T> void put(const T& v) const {
 		cout << v;
 	}
-	template <class T, class U> void p(const pair<T, U>& v) const {
-		p(v.first);
-		p(D.d);
-		p(v.second);
+	template <class T, class U> void put(const pair<T, U>& v) const {
+		put(v.first);
+		put(D.d);
+		put(v.second);
 	}
-	template <class T> void p(const vector<T>& v) const {
-		for (size_t i = 0; i < v.size(); ++i) {
-			if (i) p(D.d);
-			p(v[i]);
+	template<class It> void put_range(const It& begin ,const It& end) const {
+		for (It i = begin; i != end; ++i) {
+			if (i != begin) put(D.d);
+			put(*i);
 		}
 	}
-	template <class T> void p(const vector<vector<T>>& v) const {
+	template <class T> void put(const vector<T>& v) const {
+		put_range(v.begin(), v.end());
+	}
+	template <class T, size_t N> void put(const array<T, N>& v) const {
+		put_range(v.begin(), v.end());
+	}
+	template <class T> void put(const vector<vector<T>>& v) const {
 		for (size_t i = 0; i < v.size(); ++i) {
-			if (i) p(D.l);
-			p(v[i]);
+			if (i) put(D.l);
+			put(v[i]);
 		}
 	}
 
-public:
+	Output() = default;
+	Output(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}
 	Output& operator()() {
-		p(D.l);
+		put(D.l);
 		return *this;
 	}
 	template <class H> Output& operator()(H&& h) {
-		p(h);
-		p(D.l);
+		put(h);
+		put(D.l);
 		return *this;
 	}
 	template <class H, class... T> Output& operator()(H&& h, T&&... t) {
-		p(h);
-		p(D.d);
+		put(h);
+		put(D.d);
 		return operator()(forward<T>(t)...);
 	}
-	template <class It> Output& range(const It& l, const It& r) {
-		for (It i = l; i != r; i++) {
-			if (i != l) p(D.d);
-			p(*i);
-		}
-		p(D.l);
+	template <class It> Output& range(const It& begin, const It& end) {
+		put_range(begin, end);
+		put(D.l);
 		return *this;
 	}
 	template <class T> Output& range(const T& a) {
