@@ -82,17 +82,17 @@ template <class T> T Powmod(T a, T n, T m = MOD) {
 	return r;
 }
 namespace internal {
-	template <class T, size_t N> auto make_vector(vector<size_t>& sizes, const T& init) {
+	template <class T, size_t N> auto make_vector(vector<int>& sizes, const T& init) {
 		if constexpr (N == 1) {
 			return vector(sizes[0], init);
 		} else {
-			size_t size = sizes[N - 1];
+			int size = sizes[N - 1];
 			sizes.pop_back();
 			return vector(size, make_vector<T, N - 1>(sizes, init));
 		}
 	}
 }  // namespace internal
-template <class T, size_t N> auto make_vector(const size_t (&sizes)[N], const T& init = T()) {
-	vector s(begin(sizes), end(sizes));
+template <class T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {
+	vector s(rbegin(sizes), rend(sizes));
 	return internal::make_vector<T, N>(s, init);
 }
