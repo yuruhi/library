@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <vector>
 #include <memory>
 using namespace std;
 
@@ -28,7 +29,7 @@ private:
 			return get(i >> LOG, p->child[i & ((1 << LOG) - 1)]);
 		}
 	}
-	node_ptr set(int i, const value_type& val, node_ptr p) {
+	node_ptr set(int i, const_reference val, node_ptr p) {
 		node_ptr result = p ? make_shared<node_type>(*p) : make_shared<node_type>();
 		if (i == 0) {
 			result->value = val;
@@ -38,16 +39,42 @@ private:
 		}
 		return result;
 	}
+	void destructive_set(int i, const_reference val, node_ptr& p) {
+		if (!p) {
+			p = make_shared<node_type>();
+		}
+		if (i == 0) {
+			p->value = val;
+		} else {
+			int index = i & ((1 << LOG) - 1);
+			destructive_set(i >> LOG, val, p->child[index]);
+		}
+	}
 
 public:
 	PersistentArray() : root() {}
+	PersistentArray(const vector<value_type>& v) : root() {
+		for (size_t i = 0; i < v.size(); ++i) {
+			destructive_set(i, v[i]);
+		}
+	}
 	value_type get(int i) const {
 		return get(i, root);
 	}
 	value_type operator[](int i) const {
 		return get(i);
 	}
-	PersistentArray set(int i, const value_type& val) {
+	vector<value_type> to_a(int n) const {
+		vector<value_type> result(n);
+		for (int i = 0; i < n; ++i) {
+			result[i] = get(i);
+		}
+		return result;
+	}
+	PersistentArray set(int i, const_reference val) {
 		return PersistentArray(set(i, val, root));
+	}
+	void destructive_set(int i, const_reference val) {
+		destructive_set(i, val, root);
 	}
 };
