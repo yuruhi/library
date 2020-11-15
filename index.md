@@ -24,6 +24,18 @@ data:
       path: DataStructure/BinaryIndexedTree.cpp
       title: DataStructure/BinaryIndexedTree.cpp
     - icon: ':warning:'
+      path: DataStructure/PartiallyPersistentUnionFind.cpp
+      title: DataStructure/PartiallyPersistentUnionFind.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/PersistentArray.cpp
+      title: DataStructure/PersistentArray.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/PersistentQueue.cpp
+      title: DataStructure/PersistentQueue.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/PersistentUnionFind.cpp
+      title: DataStructure/PersistentUnionFind.cpp
+    - icon: ':warning:'
       path: DataStructure/RAQRMaxQ.cpp
       title: DataStructure/RAQRMaxQ.cpp
     - icon: ':heavy_check_mark:'
@@ -572,6 +584,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/LCA.test.cpp
       title: test/LCA.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/PersistentQueue.test.cpp
+      title: test/PersistentQueue.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/PersistentUnionFind.test.cpp
+      title: test/PersistentUnionFind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/PrimeFactor.test.cpp
       title: test/PrimeFactor.test.cpp
