@@ -5,6 +5,9 @@
 #include <vector>
 using namespace std;
 
+template <class T> int sz(const T& v) {
+	return v.size();
+}
 template <class T, class U> inline int Lower(const T& a, const U& v) {
 	return lower_bound(all(a), v) - a.begin();
 }

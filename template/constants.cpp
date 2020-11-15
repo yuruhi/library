@@ -10,7 +10,6 @@ using namespace std;
 #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 #define unless(c) if (!(c))
-#define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
