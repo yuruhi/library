@@ -31,10 +31,10 @@ data:
     auto to_a() const {\n\t\tvector<T> res;\n\t\tres.reserve(size());\n\t\tfor (auto\
     \ i : *this) {\n\t\t\tres.push_back(i);\n\t\t}\n\t\treturn res;\n\t}\n\tusing\
     \ value_type = T;\n\tusing iterator = It;\n\nprivate:\n\tIt be, en;\n};\ntemplate\
-    \ <class T> inline constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\n\
-    template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
-    \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
-    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n"
+    \ <class T> constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\ntemplate\
+    \ <class T> constexpr auto step(T a, T b) {\n\treturn Step<T>(a, b - a, 1);\n\
+    }\ntemplate <class T> constexpr auto step(T a, T b, T c) {\n\treturn Step<T>(a,\
+    \ a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n"
   code: "#pragma once\n#include <vector>\nusing namespace std;\n\ntemplate <class\
     \ T> struct Step {\n\tclass It {\n\t\tT a, b, c;\n\n\tpublic:\n\t\tconstexpr It()\
     \ : a(T()), b(T()), c(T()) {}\n\t\tconstexpr It(T _b, T _c, T _s) : a(_b), b(_c),\
@@ -56,16 +56,16 @@ data:
     auto to_a() const {\n\t\tvector<T> res;\n\t\tres.reserve(size());\n\t\tfor (auto\
     \ i : *this) {\n\t\t\tres.push_back(i);\n\t\t}\n\t\treturn res;\n\t}\n\tusing\
     \ value_type = T;\n\tusing iterator = It;\n\nprivate:\n\tIt be, en;\n};\ntemplate\
-    \ <class T> inline constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\n\
-    template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
-    \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
-    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n"
+    \ <class T> constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\ntemplate\
+    \ <class T> constexpr auto step(T a, T b) {\n\treturn Step<T>(a, b - a, 1);\n\
+    }\ntemplate <class T> constexpr auto step(T a, T b, T c) {\n\treturn Step<T>(a,\
+    \ a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/Step.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-15 09:14:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Step.cpp

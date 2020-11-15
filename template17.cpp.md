@@ -12,8 +12,8 @@ data:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 191, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 193, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 398, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ template17.cpp: line 860: unable to process #include in #if / #ifdef / #ifndef\
@@ -146,173 +146,170 @@ data:
     auto to_a() const {\n\t\tvector<T> res;\n\t\tres.reserve(size());\n\t\tfor (auto\
     \ i : *this) {\n\t\t\tres.push_back(i);\n\t\t}\n\t\treturn res;\n\t}\n\tusing\
     \ value_type = T;\n\tusing iterator = It;\n\nprivate:\n\tIt be, en;\n};\ntemplate\
-    \ <class T> inline constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\n\
-    template <class T> inline constexpr auto step(T a, T b) {\n\treturn Step<T>(a,\
-    \ b - a, 1);\n}\ntemplate <class T> inline constexpr auto step(T a, T b, T c)\
-    \ {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n\n// --- Ruby\
-    \ --- //\nnamespace Ruby {\n\ttemplate <class F> struct Callable {\n\t\tF func;\n\
-    \t\tCallable(const F& f) : func(f) {}\n\t};\n\ttemplate <class T, class F> auto\
-    \ operator|(const T& v, const Callable<F>& c) {\n\t\treturn c.func(v);\n\t}\n\n\
-    \tstruct Sort_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\t\
-    return Callable([&](auto v) {\n\t\t\t\tsort(begin(v), end(v), f);\n\t\t\t\treturn\
-    \ v;\n\t\t\t});\n\t\t}\n\t\ttemplate <class T> friend auto operator|(T v, [[maybe_unused]]\
-    \ const Sort_impl& c) {\n\t\t\tsort(begin(v), end(v));\n\t\t\treturn v;\n\t\t\
-    }\n\t} Sort;\n\tstruct SortBy_impl {\n\t\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tsort(begin(v), end(v), [&](const\
-    \ auto& i, const auto& j) {\n\t\t\t\t\treturn f(i) < f(j);\n\t\t\t\t});\n\t\t\t\
-    \treturn v;\n\t\t\t});\n\t\t}\n\t} SortBy;\n\tstruct RSort_impl {\n\t\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\
-    \t\tsort(rbegin(v), rend(v), f);\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t\ttemplate\
-    \ <class T> friend auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {\n\
-    \t\t\tsort(rbegin(v), rend(v));\n\t\t\treturn v;\n\t\t}\n\t} RSort;\n\tstruct\
-    \ RSortBy_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn\
+    \ <class T> constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\ntemplate\
+    \ <class T> constexpr auto step(T a, T b) {\n\treturn Step<T>(a, b - a, 1);\n\
+    }\ntemplate <class T> constexpr auto step(T a, T b, T c) {\n\treturn Step<T>(a,\
+    \ a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n\n// --- Ruby --- //\nnamespace Ruby\
+    \ {\n\ttemplate <class F> struct Callable {\n\t\tF func;\n\t\tCallable(const F&\
+    \ f) : func(f) {}\n\t};\n\ttemplate <class T, class F> auto operator|(const T&\
+    \ v, const Callable<F>& c) {\n\t\treturn c.func(v);\n\t}\n\n\tstruct Sort_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tsort(begin(v), end(v), f);\n\t\t\t\treturn v;\n\t\t\t});\n\t\t\
+    }\n\t\ttemplate <class T> friend auto operator|(T v, [[maybe_unused]] const Sort_impl&\
+    \ c) {\n\t\t\tsort(begin(v), end(v));\n\t\t\treturn v;\n\t\t}\n\t} Sort;\n\tstruct\
+    \ SortBy_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn\
     \ Callable([&](auto v) {\n\t\t\t\tsort(begin(v), end(v), [&](const auto& i, const\
-    \ auto& j) {\n\t\t\t\t\treturn f(i) > f(j);\n\t\t\t\t});\n\t\t\t\treturn v;\n\t\
-    \t\t});\n\t\t}\n\t} RSortBy;\n\tstruct Reverse_impl {\n\t\ttemplate <class T>\
-    \ friend auto operator|(T v, const Reverse_impl& c) {\n\t\t\treverse(begin(v),\
-    \ end(v));\n\t\t\treturn v;\n\t\t}\n\t} Reverse;\n\tstruct Unique_impl {\n\t\t\
-    template <class T> friend auto operator|(T v, const Unique_impl& c) {\n\t\t\t\
-    v.erase(unique(begin(v), end(v), end(v)));\n\t\t\treturn v;\n\t\t}\n\t} Unique;\n\
-    \tstruct Uniq_impl {\n\t\ttemplate <class T> friend auto operator|(T v, const\
-    \ Uniq_impl& c) {\n\t\t\tsort(begin(v), end(v));\n\t\t\tv.erase(unique(begin(v),\
-    \ end(v)), end(v));\n\t\t\treturn v;\n\t\t}\n\t} Uniq;\n\tstruct Rotate_impl {\n\
-    \t\tauto operator()(int&& left) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\
-    \tint s = static_cast<int>(size(v));\n\t\t\t\tassert(-s <= left && left <= s);\n\
-    \t\t\t\tif (0 <= left) {\n\t\t\t\t\trotate(begin(v), begin(v) + left, end(v));\n\
-    \t\t\t\t} else {\n\t\t\t\t\trotate(begin(v), end(v) + left, end(v));\n\t\t\t\t\
-    }\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t} Rotate;\n\tstruct Max_impl {\n\t\t\
+    \ auto& j) {\n\t\t\t\t\treturn f(i) < f(j);\n\t\t\t\t});\n\t\t\t\treturn v;\n\t\
+    \t\t});\n\t\t}\n\t} SortBy;\n\tstruct RSort_impl {\n\t\ttemplate <class F> auto\
+    \ operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tsort(rbegin(v),\
+    \ rend(v), f);\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t\ttemplate <class T> friend\
+    \ auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {\n\t\t\tsort(rbegin(v),\
+    \ rend(v));\n\t\t\treturn v;\n\t\t}\n\t} RSort;\n\tstruct RSortBy_impl {\n\t\t\
     template <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v)\
-    \ {\n\t\t\t\treturn *max_element(begin(v), end(v), f);\n\t\t\t});\n\t\t}\n\t\t\
-    template <class T> friend auto operator|(T v, const Max_impl& c) {\n\t\t\treturn\
-    \ *max_element(begin(v), end(v));\n\t\t}\n\t} Max;\n\tstruct Min_impl {\n\t\t\
-    template <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v)\
-    \ {\n\t\t\t\treturn *min_element(begin(v), end(v), f);\n\t\t\t});\n\t\t}\n\t\t\
-    template <class T> friend auto operator|(T v, const Min_impl& c) {\n\t\t\treturn\
-    \ *min_element(begin(v), end(v));\n\t\t}\n\t} Min;\n\tstruct MaxPos_impl {\n\t\
-    \ttemplate <class T> friend auto operator|(T v, const MaxPos_impl& c) {\n\t\t\t\
-    return max_element(begin(v), end(v)) - begin(v);\n\t\t}\n\t} MaxPos;\n\tstruct\
-    \ MinPos_impl {\n\t\ttemplate <class T> friend auto operator|(T v, const MinPos_impl&\
-    \ c) {\n\t\t\treturn min_element(begin(v), end(v)) - begin(v);\n\t\t}\n\t} MinPos;\n\
-    \tstruct MaxBy_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\t\
-    return Callable([&](auto v) {\n\t\t\t\tauto max_it = begin(v);\n\t\t\t\tauto max_val\
-    \ = f(*max_it);\n\t\t\t\tfor (auto it = next(begin(v)); it != end(v); ++it) {\n\
-    \t\t\t\t\tif (auto val = f(*it); max_val < val) {\n\t\t\t\t\t\tmax_it = it;\n\t\
-    \t\t\t\t\tmax_val = val;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn *max_it;\n\t\t\
-    \t});\n\t\t}\n\t} MaxBy;\n\tstruct MinBy_impl {\n\t\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tauto min_it = begin(v);\n\
-    \t\t\t\tauto min_val = f(*min_it);\n\t\t\t\tfor (auto it = next(begin(v)); it\
-    \ != end(v); ++it) {\n\t\t\t\t\tif (auto val = f(*it); min_val > val) {\n\t\t\t\
-    \t\t\tmin_it = it;\n\t\t\t\t\t\tmin_val = val;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\
-    \treturn *min_it;\n\t\t\t});\n\t\t}\n\t} MinBy;\n\tstruct MaxOf_impl {\n\t\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\
-    \t\tauto max_val = f(*begin(v));\n\t\t\t\tfor (auto it = next(begin(v)); it !=\
-    \ end(v); ++it) {\n\t\t\t\t\tif (auto val = f(*it); max_val < val) {\n\t\t\t\t\
-    \t\tmax_val = val;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn max_val;\n\t\t\t});\n\
-    \t\t}\n\t} MaxOf;\n\tstruct MinOf_impl {\n\t\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tauto min_val = f(*begin(v));\n\
+    \ {\n\t\t\t\tsort(begin(v), end(v), [&](const auto& i, const auto& j) {\n\t\t\t\
+    \t\treturn f(i) > f(j);\n\t\t\t\t});\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t\
+    } RSortBy;\n\tstruct Reverse_impl {\n\t\ttemplate <class T> friend auto operator|(T\
+    \ v, const Reverse_impl& c) {\n\t\t\treverse(begin(v), end(v));\n\t\t\treturn\
+    \ v;\n\t\t}\n\t} Reverse;\n\tstruct Unique_impl {\n\t\ttemplate <class T> friend\
+    \ auto operator|(T v, const Unique_impl& c) {\n\t\t\tv.erase(unique(begin(v),\
+    \ end(v), end(v)));\n\t\t\treturn v;\n\t\t}\n\t} Unique;\n\tstruct Uniq_impl {\n\
+    \t\ttemplate <class T> friend auto operator|(T v, const Uniq_impl& c) {\n\t\t\t\
+    sort(begin(v), end(v));\n\t\t\tv.erase(unique(begin(v), end(v)), end(v));\n\t\t\
+    \treturn v;\n\t\t}\n\t} Uniq;\n\tstruct Rotate_impl {\n\t\tauto operator()(int&&\
+    \ left) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tint s = static_cast<int>(size(v));\n\
+    \t\t\t\tassert(-s <= left && left <= s);\n\t\t\t\tif (0 <= left) {\n\t\t\t\t\t\
+    rotate(begin(v), begin(v) + left, end(v));\n\t\t\t\t} else {\n\t\t\t\t\trotate(begin(v),\
+    \ end(v) + left, end(v));\n\t\t\t\t}\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t\
+    } Rotate;\n\tstruct Max_impl {\n\t\ttemplate <class F> auto operator()(F&& f)\
+    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn *max_element(begin(v),\
+    \ end(v), f);\n\t\t\t});\n\t\t}\n\t\ttemplate <class T> friend auto operator|(T\
+    \ v, const Max_impl& c) {\n\t\t\treturn *max_element(begin(v), end(v));\n\t\t\
+    }\n\t} Max;\n\tstruct Min_impl {\n\t\ttemplate <class F> auto operator()(F&& f)\
+    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn *min_element(begin(v),\
+    \ end(v), f);\n\t\t\t});\n\t\t}\n\t\ttemplate <class T> friend auto operator|(T\
+    \ v, const Min_impl& c) {\n\t\t\treturn *min_element(begin(v), end(v));\n\t\t\
+    }\n\t} Min;\n\tstruct MaxPos_impl {\n\t\ttemplate <class T> friend auto operator|(T\
+    \ v, const MaxPos_impl& c) {\n\t\t\treturn max_element(begin(v), end(v)) - begin(v);\n\
+    \t\t}\n\t} MaxPos;\n\tstruct MinPos_impl {\n\t\ttemplate <class T> friend auto\
+    \ operator|(T v, const MinPos_impl& c) {\n\t\t\treturn min_element(begin(v), end(v))\
+    \ - begin(v);\n\t\t}\n\t} MinPos;\n\tstruct MaxBy_impl {\n\t\ttemplate <class\
+    \ F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tauto\
+    \ max_it = begin(v);\n\t\t\t\tauto max_val = f(*max_it);\n\t\t\t\tfor (auto it\
+    \ = next(begin(v)); it != end(v); ++it) {\n\t\t\t\t\tif (auto val = f(*it); max_val\
+    \ < val) {\n\t\t\t\t\t\tmax_it = it;\n\t\t\t\t\t\tmax_val = val;\n\t\t\t\t\t}\n\
+    \t\t\t\t}\n\t\t\t\treturn *max_it;\n\t\t\t});\n\t\t}\n\t} MaxBy;\n\tstruct MinBy_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tauto min_it = begin(v);\n\t\t\t\tauto min_val = f(*min_it);\n\t\
+    \t\t\tfor (auto it = next(begin(v)); it != end(v); ++it) {\n\t\t\t\t\tif (auto\
+    \ val = f(*it); min_val > val) {\n\t\t\t\t\t\tmin_it = it;\n\t\t\t\t\t\tmin_val\
+    \ = val;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn *min_it;\n\t\t\t});\n\t\t}\n\t\
+    } MinBy;\n\tstruct MaxOf_impl {\n\t\ttemplate <class F> auto operator()(F&& f)\
+    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tauto max_val = f(*begin(v));\n\
     \t\t\t\tfor (auto it = next(begin(v)); it != end(v); ++it) {\n\t\t\t\t\tif (auto\
-    \ val = f(*it); min_val > val) {\n\t\t\t\t\t\tmin_val = val;\n\t\t\t\t\t}\n\t\t\
-    \t\t}\n\t\t\t\treturn min_val;\n\t\t\t});\n\t\t}\n\t} MinOf;\n\tstruct Count_impl\
-    \ {\n\t\ttemplate <class V> auto operator()(const V& val) {\n\t\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\t\treturn count(begin(v), end(v), val);\n\t\t\t});\n\t\t}\n\t} Count;\n\
-    \tstruct CountIf_impl {\n\t\ttemplate <class F> auto operator()(const F& f) {\n\
-    \t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn count_if(begin(v), end(v),\
-    \ f);\n\t\t\t});\n\t\t}\n\t} CountIf;\n\tstruct Index_impl {\n\t\ttemplate <class\
-    \ V> auto operator()(const V& val) {\n\t\t\treturn Callable([&](auto v) -> optional<int>\
-    \ {\n\t\t\t\tauto res = find(begin(v), end(v), val);\n\t\t\t\treturn res != end(v)\
-    \ ? optional(res - begin(v)) : nullopt;\n\t\t\t});\n\t\t}\n\t} Index;\n\tstruct\
-    \ IndexIf_impl {\n\t\ttemplate <class F> auto operator()(const F& f) {\n\t\t\t\
-    return Callable([&](auto v) -> optional<int> {\n\t\t\t\tauto res = find_if(begin(v),\
-    \ end(v), f);\n\t\t\t\treturn res != end(v) ? optional(res - begin(v)) : nullopt;\n\
-    \t\t\t});\n\t\t}\n\t} IndexIf;\n\tstruct FindIf_impl {\n\t\ttemplate <class F>\
-    \ auto operator()(const F& f) {\n\t\t\treturn Callable([&](auto v) -> optional<typename\
-    \ decltype(v)::value_type> {\n\t\t\t\tauto res = find_if(begin(v), end(v), f);\n\
-    \t\t\t\treturn res != end(v) ? optional(*res) : nullopt;\n\t\t\t});\n\t\t}\n\t\
-    } FindIf;\n\tstruct Sum_impl {\n\t\ttemplate <class F> auto operator()(F&& f)\
-    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn accumulate(next(begin(v)),\
-    \ end(v), f(*begin(v)), [&](const auto& a, const auto& b) {\n\t\t\t\t\treturn\
-    \ a + f(b);\n\t\t\t\t});\n\t\t\t});\n\t\t}\n\t\ttemplate <class T> friend auto\
-    \ operator|(T v, const Sum_impl& c) {\n\t\t\treturn accumulate(begin(v), end(v),\
-    \ typename T::value_type());\n\t\t}\n\t} Sum;\n\tstruct Includes {\n\t\ttemplate\
-    \ <class V> auto operator()(const V& val) {\n\t\t\treturn Callable([&](auto v)\
-    \ {\n\t\t\t\treturn find(begin(v), end(v), val) != end(v);\n\t\t\t});\n\t\t}\n\
-    \t} Includes;\n\tstruct IncludesIf_impl {\n\t\ttemplate <class F> auto operator()(const\
-    \ F& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn find_if(begin(v),\
-    \ end(v), f) != end(v);\n\t\t\t});\n\t\t}\n\t} IncludesIf;\n\tstruct RemoveIf_impl\
-    \ {\n\t\ttemplate <class F> auto operator()(const F& f) {\n\t\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\t\tv.erase(remove_if(begin(v), end(v), f), end(v));\n\t\t\t\treturn\
-    \ v;\n\t\t\t});\n\t\t}\n\t} RemoveIf;\n\tstruct Each_impl {\n\t\ttemplate <class\
-    \ F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tfor\
-    \ (const auto& i : v) {\n\t\t\t\t\tf(i);\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\t} Each;\n\
-    \tstruct Select_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\t\
-    return Callable([&](auto v) {\n\t\t\t\tusing value_type = typename decltype(v)::value_type;\n\
-    \t\t\t\tvector<value_type> res;\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\t\
-    if (f(i)) res.push_back(i);\n\t\t\t\t}\n\t\t\t\treturn res;\n\t\t\t});\n\t\t}\n\
-    \t} Select;\n\tstruct Map_impl {\n\t\ttemplate <class F> auto operator()(F&& f)\
-    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tusing result_type = invoke_result_t<F,\
-    \ typename decltype(v)::value_type>;\n\t\t\t\tvector<result_type> res;\n\t\t\t\
-    \tres.reserve(size(v));\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tres.push_back(f(i));\n\
-    \t\t\t\t}\n\t\t\t\treturn res;\n\t\t\t});\n\t\t}\n\t} Map;\n\tstruct Indexed_impl\
-    \ {\n\t\ttemplate <class T> friend auto operator|(const T& v, Indexed_impl& c)\
-    \ {\n\t\t\tusing value_type = typename T::value_type;\n\t\t\tvector<pair<value_type,\
-    \ int>> res;\n\t\t\tres.reserve(size(v));\n\t\t\tint index = 0;\n\t\t\tfor (const\
-    \ auto& i : v) {\n\t\t\t\tres.emplace_back(i, index++);\n\t\t\t}\n\t\t\treturn\
-    \ res;\n\t\t}\n\t} Indexed;\n\tstruct AllOf_impl {\n\t\ttemplate <class F> auto\
-    \ operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tfor (const\
-    \ auto& i : v) {\n\t\t\t\t\tif (!f(i)) return false;\n\t\t\t\t}\n\t\t\t\treturn\
-    \ true;\n\t\t\t});\n\t\t}\n\t} AllOf;\n\tstruct AnyOf_impl {\n\t\ttemplate <class\
-    \ F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tfor\
-    \ (const auto& i : v) {\n\t\t\t\t\tif (f(i)) return true;\n\t\t\t\t}\n\t\t\t\t\
-    return false;\n\t\t\t});\n\t\t}\n\t} AnyOf;\n\tstruct NoneOf_impl {\n\t\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\
-    \t\tfor (const auto& i : v) {\n\t\t\t\t\tif (f(i)) return false;\n\t\t\t\t}\n\t\
-    \t\t\treturn true;\n\t\t\t});\n\t\t}\n\t} NoneOf;\n\n\ttemplate <class T> auto\
-    \ operator*(const vector<T>& a, size_t n) {\n\t\tT res;\n\t\tfor (size_t i = 0;\
-    \ i < n; ++i) {\n\t\t\tres.insert(res.end(), a.begin(), a.end());\n\t\t}\n\t\t\
-    return res;\n\t}\n\tauto operator*(string a, size_t n) {\n\t\tstring res;\n\t\t\
-    for (size_t i = 0; i < n; ++i) {\n\t\t\tres += a;\n\t\t}\n\t\treturn res;\n\t\
-    }\n\ttemplate <class T, class U> auto& operator<<(vector<T>& a, const U& b) {\n\
-    \t\ta.insert(a.end(), all(b));\n\t\treturn a;\n\t}\n\ttemplate <class T> auto&\
-    \ operator<<(string& a, const T& b) {\n\t\ta.insert(a.end(), all(b));\n\t\treturn\
-    \ a;\n\t}\n\ttemplate <class T, class U> auto operator+(vector<T> a, const U&\
-    \ b) {\n\t\ta << b;\n\t\treturn a;\n\t}\n\ttemplate <class T> auto operator+(string\
+    \ val = f(*it); max_val < val) {\n\t\t\t\t\t\tmax_val = val;\n\t\t\t\t\t}\n\t\t\
+    \t\t}\n\t\t\t\treturn max_val;\n\t\t\t});\n\t\t}\n\t} MaxOf;\n\tstruct MinOf_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tauto min_val = f(*begin(v));\n\t\t\t\tfor (auto it = next(begin(v));\
+    \ it != end(v); ++it) {\n\t\t\t\t\tif (auto val = f(*it); min_val > val) {\n\t\
+    \t\t\t\t\tmin_val = val;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn min_val;\n\t\t\
+    \t});\n\t\t}\n\t} MinOf;\n\tstruct Count_impl {\n\t\ttemplate <class V> auto operator()(const\
+    \ V& val) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn count(begin(v),\
+    \ end(v), val);\n\t\t\t});\n\t\t}\n\t} Count;\n\tstruct CountIf_impl {\n\t\ttemplate\
+    \ <class F> auto operator()(const F& f) {\n\t\t\treturn Callable([&](auto v) {\n\
+    \t\t\t\treturn count_if(begin(v), end(v), f);\n\t\t\t});\n\t\t}\n\t} CountIf;\n\
+    \tstruct Index_impl {\n\t\ttemplate <class V> auto operator()(const V& val) {\n\
+    \t\t\treturn Callable([&](auto v) -> optional<int> {\n\t\t\t\tauto res = find(begin(v),\
+    \ end(v), val);\n\t\t\t\treturn res != end(v) ? optional(res - begin(v)) : nullopt;\n\
+    \t\t\t});\n\t\t}\n\t} Index;\n\tstruct IndexIf_impl {\n\t\ttemplate <class F>\
+    \ auto operator()(const F& f) {\n\t\t\treturn Callable([&](auto v) -> optional<int>\
+    \ {\n\t\t\t\tauto res = find_if(begin(v), end(v), f);\n\t\t\t\treturn res != end(v)\
+    \ ? optional(res - begin(v)) : nullopt;\n\t\t\t});\n\t\t}\n\t} IndexIf;\n\tstruct\
+    \ FindIf_impl {\n\t\ttemplate <class F> auto operator()(const F& f) {\n\t\t\t\
+    return Callable([&](auto v) -> optional<typename decltype(v)::value_type> {\n\t\
+    \t\t\tauto res = find_if(begin(v), end(v), f);\n\t\t\t\treturn res != end(v) ?\
+    \ optional(*res) : nullopt;\n\t\t\t});\n\t\t}\n\t} FindIf;\n\tstruct Sum_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\treturn accumulate(next(begin(v)), end(v), f(*begin(v)), [&](const\
+    \ auto& a, const auto& b) {\n\t\t\t\t\treturn a + f(b);\n\t\t\t\t});\n\t\t\t});\n\
+    \t\t}\n\t\ttemplate <class T> friend auto operator|(T v, const Sum_impl& c) {\n\
+    \t\t\treturn accumulate(begin(v), end(v), typename T::value_type());\n\t\t}\n\t\
+    } Sum;\n\tstruct Includes {\n\t\ttemplate <class V> auto operator()(const V& val)\
+    \ {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\treturn find(begin(v), end(v),\
+    \ val) != end(v);\n\t\t\t});\n\t\t}\n\t} Includes;\n\tstruct IncludesIf_impl {\n\
+    \t\ttemplate <class F> auto operator()(const F& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\treturn find_if(begin(v), end(v), f) != end(v);\n\t\t\t});\n\t\t\
+    }\n\t} IncludesIf;\n\tstruct RemoveIf_impl {\n\t\ttemplate <class F> auto operator()(const\
+    \ F& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tv.erase(remove_if(begin(v),\
+    \ end(v), f), end(v));\n\t\t\t\treturn v;\n\t\t\t});\n\t\t}\n\t} RemoveIf;\n\t\
+    struct Each_impl {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn\
+    \ Callable([&](auto v) {\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tf(i);\n\
+    \t\t\t\t}\n\t\t\t});\n\t\t}\n\t} Each;\n\tstruct Select_impl {\n\t\ttemplate <class\
+    \ F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto v) {\n\t\t\t\tusing\
+    \ value_type = typename decltype(v)::value_type;\n\t\t\t\tvector<value_type> res;\n\
+    \t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tif (f(i)) res.push_back(i);\n\t\t\
+    \t\t}\n\t\t\t\treturn res;\n\t\t\t});\n\t\t}\n\t} Select;\n\tstruct Map_impl {\n\
+    \t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tusing result_type = invoke_result_t<F, typename decltype(v)::value_type>;\n\
+    \t\t\t\tvector<result_type> res;\n\t\t\t\tres.reserve(size(v));\n\t\t\t\tfor (const\
+    \ auto& i : v) {\n\t\t\t\t\tres.push_back(f(i));\n\t\t\t\t}\n\t\t\t\treturn res;\n\
+    \t\t\t});\n\t\t}\n\t} Map;\n\tstruct Indexed_impl {\n\t\ttemplate <class T> friend\
+    \ auto operator|(const T& v, Indexed_impl& c) {\n\t\t\tusing value_type = typename\
+    \ T::value_type;\n\t\t\tvector<pair<value_type, int>> res;\n\t\t\tres.reserve(size(v));\n\
+    \t\t\tint index = 0;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tres.emplace_back(i,\
+    \ index++);\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t} Indexed;\n\tstruct AllOf_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tif (!f(i)) return false;\n\
+    \t\t\t\t}\n\t\t\t\treturn true;\n\t\t\t});\n\t\t}\n\t} AllOf;\n\tstruct AnyOf_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tif (f(i)) return true;\n\t\
+    \t\t\t}\n\t\t\t\treturn false;\n\t\t\t});\n\t\t}\n\t} AnyOf;\n\tstruct NoneOf_impl\
+    \ {\n\t\ttemplate <class F> auto operator()(F&& f) {\n\t\t\treturn Callable([&](auto\
+    \ v) {\n\t\t\t\tfor (const auto& i : v) {\n\t\t\t\t\tif (f(i)) return false;\n\
+    \t\t\t\t}\n\t\t\t\treturn true;\n\t\t\t});\n\t\t}\n\t} NoneOf;\n\n\ttemplate <class\
+    \ T> auto operator*(const vector<T>& a, size_t n) {\n\t\tT res;\n\t\tfor (size_t\
+    \ i = 0; i < n; ++i) {\n\t\t\tres.insert(res.end(), a.begin(), a.end());\n\t\t\
+    }\n\t\treturn res;\n\t}\n\tauto operator*(string a, size_t n) {\n\t\tstring res;\n\
+    \t\tfor (size_t i = 0; i < n; ++i) {\n\t\t\tres += a;\n\t\t}\n\t\treturn res;\n\
+    \t}\n\ttemplate <class T, class U> auto& operator<<(vector<T>& a, const U& b)\
+    \ {\n\t\ta.insert(a.end(), all(b));\n\t\treturn a;\n\t}\n\ttemplate <class T>\
+    \ auto& operator<<(string& a, const T& b) {\n\t\ta.insert(a.end(), all(b));\n\t\
+    \treturn a;\n\t}\n\ttemplate <class T, class U> auto operator+(vector<T> a, const\
+    \ U& b) {\n\t\ta << b;\n\t\treturn a;\n\t}\n\ttemplate <class T> auto operator+(string\
     \ a, const T& b) {\n\t\ta << b;\n\t\treturn a;\n\t}\n}  // namespace Ruby\nusing\
-    \ namespace Ruby;\n\n// --- functions --- //\ntemplate <class T, class U> inline\
-    \ int Lower(const T& a, const U& v) {\n\treturn lower_bound(all(a), v) - a.begin();\n\
-    }\ntemplate <class T, class U> inline int Upper(const T& a, const U& v) {\n\t\
-    return upper_bound(all(a), v) - a.begin();\n}\ntemplate <class T> inline auto\
-    \ Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size() ? T(v.begin()\
-    \ + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class T> inline\
-    \ T Ceil(T n, T m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T> inline\
-    \ T Ceil2(T n, T m) {\n\treturn Ceil(n, m) * m;\n}\ntemplate <class T> inline\
-    \ T Tri(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\ntemplate\
-    \ <class T> inline T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 *\
-    \ (n - 1);\n}\ntemplate <class T> inline T Mid(const T& l, const T& r) {\n\treturn\
-    \ l + (r - l) / 2;\n}\ntemplate <class T> inline bool chmax(T& a, const T& b)\
-    \ {\n\tif (a < b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate\
-    \ <class T> inline bool chmin(T& a, const T& b) {\n\tif (a > b) {\n\t\ta = b;\n\
-    \t\treturn true;\n\t}\n\treturn false;\n}\ntemplate <class T> inline bool inRange(const\
-    \ T& v, const T& min, const T& max) {\n\treturn min <= v && v < max;\n}\ntemplate\
-    \ <class T> inline bool isSquere(T n) {\n\tT s = sqrt(n);\n\treturn s * s == n\
-    \ || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long> inline T BIT(int\
-    \ b) {\n\treturn T(1) << b;\n}\ntemplate <class T, class U = typename T::value_type>\
-    \ inline U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()),\
-    \ gcd<U, U>);\n}\ntemplate <class T, class U = typename T::value_type> inline\
-    \ U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()),\
-    \ lcm<U, U>);\n}\ntemplate <class T> inline T Pow(T a, T n) {\n\tT r = 1;\n\t\
-    while (n > 0) {\n\t\tif (n & 1) r *= a;\n\t\ta *= a;\n\t\tn /= 2;\n\t}\n\treturn\
-    \ r;\n}\ntemplate <class T> inline T Powmod(T a, T n, T m = MOD) {\n\tT r = 1;\n\
-    \twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\tr = r * a % m, n--;\n\t\telse\n\t\t\t\
-    a = a * a % m, n /= 2;\n\t}\n\treturn r;\n}\n\n// --- dump --- //\n#if __has_include(\"\
-    dump.hpp\")\n#include \"dump.hpp\"\n#else\n#define dump(...) ((void)0)\n#endif\n\
-    #pragma endregion\n\n// ----------------------------------------------------------------\
+    \ namespace Ruby;\n\n// --- functions --- //\ntemplate <class T, class U> int\
+    \ Lower(const T& a, const U& v) {\n\treturn lower_bound(all(a), v) - a.begin();\n\
+    }\ntemplate <class T, class U> int Upper(const T& a, const U& v) {\n\treturn upper_bound(all(a),\
+    \ v) - a.begin();\n}\ntemplate <class T> auto Slice(const T& v, size_t i, size_t\
+    \ len) {\n\treturn i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size()))\
+    \ : T();\n}\ntemplate <class T> T Ceil(T n, T m) {\n\treturn (n + m - 1) / m;\n\
+    }\ntemplate <class T> T Ceil2(T n, T m) {\n\treturn Ceil(n, m) * m;\n}\ntemplate\
+    \ <class T> T Tri(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n\
+    }\ntemplate <class T> T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2\
+    \ * (n - 1);\n}\ntemplate <class T> T Mid(const T& l, const T& r) {\n\treturn\
+    \ l + (r - l) / 2;\n}\ntemplate <class T> bool chmax(T& a, const T& b) {\n\tif\
+    \ (a < b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate <class\
+    \ T> bool chmin(T& a, const T& b) {\n\tif (a > b) {\n\t\ta = b;\n\t\treturn true;\n\
+    \t}\n\treturn false;\n}\ntemplate <class T> bool inRange(const T& v, const T&\
+    \ min, const T& max) {\n\treturn min <= v && v < max;\n}\ntemplate <class T> bool\
+    \ isSquere(T n) {\n\tT s = sqrt(n);\n\treturn s * s == n || (s + 1) * (s + 1)\
+    \ == n;\n}\ntemplate <class T = long long> T BIT(int b) {\n\treturn T(1) << b;\n\
+    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
+    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), gcd<U, U>);\n}\n\
+    template <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\t\
+    return accumulate(next(v.begin()), v.end(), U(*v.begin()), lcm<U, U>);\n}\ntemplate\
+    \ <class T> T Pow(T a, T n) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) r\
+    \ *= a;\n\t\ta *= a;\n\t\tn /= 2;\n\t}\n\treturn r;\n}\ntemplate <class T> T Powmod(T\
+    \ a, T n, T m = MOD) {\n\tT r = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\n\t\t\t\
+    r = r * a % m, n--;\n\t\telse\n\t\t\ta = a * a % m, n /= 2;\n\t}\n\treturn r;\n\
+    }\n\n// --- dump --- //\n#if __has_include(\"dump.hpp\")\n#include \"dump.hpp\"\
+    \n#else\n#define dump(...) ((void)0)\n#endif\n#pragma endregion\n\n// ----------------------------------------------------------------\
     \ //\n\nint main() {}"
   dependsOn:
   - dump.hpp
   isVerificationFile: false
   path: template17.cpp
   requiredBy: []
-  timestamp: '2020-11-05 16:42:29+09:00'
+  timestamp: '2020-11-15 09:14:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template17.cpp

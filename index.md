@@ -44,12 +44,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeAddQuery.cpp
       title: DataStructure/RangeAddQuery.cpp
+    - icon: ':warning:'
+      path: DataStructure/RangeSet.cpp
+      title: DataStructure/RangeSet.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeUpdateQuery.cpp
       title: DataStructure/RangeUpdateQuery.cpp
-    - icon: ':warning:'
-      path: DataStructure/Ranges.cpp
-      title: DataStructure/Ranges.cpp
     - icon: ':warning:'
       path: DataStructure/SegmentTree.cpp
       title: DataStructure/SegmentTree.cpp
@@ -105,6 +105,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/ConnectedComponent.cpp
       title: Graph/ConnectedComponent.cpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/CycleDetection.cpp
+      title: Graph/CycleDetection.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/Diameter.cpp
       title: Graph/Diameter.cpp
@@ -440,6 +443,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/CulSum.test.cpp
       title: test/CulSum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/CycleDetectionEdge_Directed.test.cpp
+      title: test/CycleDetectionEdge_Directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/CycleDetectionEdge_Undirected.test.cpp
+      title: test/CycleDetectionEdge_Undirected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/CycleDetectionVertex_Directed.test.cpp
+      title: test/CycleDetectionVertex_Directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/CycleDetectionVertex_Undirected.test.cpp
+      title: test/CycleDetectionVertex_Undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Diameter.test.cpp
       title: test/Diameter.test.cpp

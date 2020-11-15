@@ -33,8 +33,6 @@ data:
 
     #define unless(c) if (!(c))
 
-    #define sz(x) ((int)(x).size())
-
     #define all(x) (x).begin(), (x).end()
 
     #define rall(x) (x).rbegin(), (x).rend()
@@ -106,8 +104,6 @@ data:
 
     #define unless(c) if (!(c))
 
-    #define sz(x) ((int)(x).size())
-
     #define all(x) (x).begin(), (x).end()
 
     #define rall(x) (x).rbegin(), (x).rend()
@@ -161,7 +157,7 @@ data:
   path: template/constants.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-15 09:12:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/constants.cpp

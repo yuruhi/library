@@ -9,8 +9,8 @@ data:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 191, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 193, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 398, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ template14.cpp: line 715: unable to process #include in #if / #ifdef / #ifndef\
@@ -146,120 +146,115 @@ data:
     \ <class F, class U = decay_t<result_of_t<F(T)>>> auto sum(const F& f) const {\n\
     \t\tU res = 0;\n\t\teach([&](T i) {\n\t\t\tres += static_cast<U>(f(i));\n\t\t\
     });\n\t\treturn res;\n\t}\n\tusing value_type = T;\n\tusing iterator = It;\n\n\
-    private:\n\tIt be, en;\n};\ntemplate <class T> inline constexpr auto step(T a)\
-    \ {\n\treturn Step<T>(0, a, 1);\n}\ntemplate <class T> inline constexpr auto step(T\
-    \ a, T b) {\n\treturn Step<T>(a, b - a, 1);\n}\ntemplate <class T> inline constexpr\
-    \ auto step(T a, T b, T c) {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1\
-    \ : 0, c);\n}\n\n// --- functions --- //\ninline namespace {\n\ttemplate <class\
-    \ T> inline void Sort(T& a) {\n\t\tsort(all(a));\n\t}\n\ttemplate <class T> inline\
-    \ void RSort(T& a) {\n\t\tsort(rall(a));\n\t}\n\ttemplate <class T, class F> inline\
-    \ void Sort(T& a, const F& f) {\n\t\tsort(all(a), f);\n\t}\n\ttemplate <class\
-    \ T, class F> inline void RSort(T& a, const F& f) {\n\t\tsort(rall(a), f);\n\t\
-    }\n\ttemplate <class T> inline T Sorted(T a) {\n\t\tSort(a);\n\t\treturn a;\n\t\
-    }\n\ttemplate <class T> inline T RSorted(T a) {\n\t\tRSort(a);\n\t\treturn a;\n\
-    \t}\n\ttemplate <class T, class F> inline T Sorted(T& a, const F& f) {\n\t\tSort(a,\
-    \ f);\n\t\treturn a;\n\t}\n\ttemplate <class T, class F> inline T RSorted(T& a,\
-    \ const F& f) {\n\t\tRSort(a, f);\n\t\treturn a;\n\t}\n\ttemplate <class T, class\
-    \ F> inline void SortBy(T& a, const F& f) {\n\t\tsort(all(a), [&](const auto&\
-    \ x, const auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t}\n\ttemplate <class\
-    \ T, class F> inline void RSortBy(T& a, const F& f) {\n\t\tsort(rall(a), [&](const\
+    private:\n\tIt be, en;\n};\ntemplate <class T> constexpr auto step(T a) {\n\t\
+    return Step<T>(0, a, 1);\n}\ntemplate <class T> constexpr auto step(T a, T b)\
+    \ {\n\treturn Step<T>(a, b - a, 1);\n}\ntemplate <class T> constexpr auto step(T\
+    \ a, T b, T c) {\n\treturn Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);\n}\n\
+    \n// --- functions --- //\ninline namespace {\n\ttemplate <class T> void Sort(T&\
+    \ a) {\n\t\tsort(all(a));\n\t}\n\ttemplate <class T> void RSort(T& a) {\n\t\t\
+    sort(rall(a));\n\t}\n\ttemplate <class T, class F> void Sort(T& a, const F& f)\
+    \ {\n\t\tsort(all(a), f);\n\t}\n\ttemplate <class T, class F> void RSort(T& a,\
+    \ const F& f) {\n\t\tsort(rall(a), f);\n\t}\n\ttemplate <class T> T Sorted(T a)\
+    \ {\n\t\tSort(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> T RSorted(T a) {\n\
+    \t\tRSort(a);\n\t\treturn a;\n\t}\n\ttemplate <class T, class F> T Sorted(T& a,\
+    \ const F& f) {\n\t\tSort(a, f);\n\t\treturn a;\n\t}\n\ttemplate <class T, class\
+    \ F> T RSorted(T& a, const F& f) {\n\t\tRSort(a, f);\n\t\treturn a;\n\t}\n\ttemplate\
+    \ <class T, class F> void SortBy(T& a, const F& f) {\n\t\tsort(all(a), [&](const\
     \ auto& x, const auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t}\n\ttemplate\
-    \ <class T> inline void Reverse(T& a) {\n\t\treverse(all(a));\n\t}\n\ttemplate\
-    \ <class T> inline void Unique(T& a) {\n\t\ta.erase(unique(all(a)), a.end());\n\
-    \t}\n\ttemplate <class T> inline void Uniq(T& a) {\n\t\tSort(a);\n\t\tUnique(a);\n\
-    \t}\n\ttemplate <class T> inline void Rotate(T& a, int left) {\n\t\trotate(a.begin(),\
-    \ a.begin() + left, a.end());\n\t}\n\ttemplate <class T> inline T Reversed(T a)\
-    \ {\n\t\tReverse(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> inline T Uniqued(T\
-    \ a) {\n\t\tUnique(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> inline T Uniqed(T\
-    \ a) {\n\t\tUniq(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> inline T Rotated(T\
-    \ a, int left) {\n\t\tRotate(a, left);\n\t\treturn a;\n\t}\n\ttemplate <class\
-    \ T> inline auto Max(const T& a) {\n\t\treturn *max_element(all(a));\n\t}\n\t\
-    template <class T> inline auto Min(const T& a) {\n\t\treturn *min_element(all(a));\n\
-    \t}\n\ttemplate <class T> inline int MaxPos(const T& a) {\n\t\treturn max_element(all(a))\
-    \ - a.begin();\n\t}\n\ttemplate <class T> inline int MinPos(const T& a) {\n\t\t\
-    return min_element(all(a)) - a.begin();\n\t}\n\ttemplate <class T, class F> inline\
-    \ auto MaxBy(const T& a, const F& f) {\n\t\treturn *max_element(all(a), [&](const\
+    \ <class T, class F> void RSortBy(T& a, const F& f) {\n\t\tsort(rall(a), [&](const\
     \ auto& x, const auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t}\n\ttemplate\
-    \ <class T, class F> inline auto MinBy(const T& a, const F& f) {\n\t\treturn *min_element(all(a),\
-    \ [&](const auto& x, const auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t\
-    }\n\ttemplate <class T, class F> inline auto MaxOf(const T& a, const F& f) {\n\
-    \t\treturn Max(Map(a, f));\n\t}\n\ttemplate <class T, class F> inline auto MinOf(const\
-    \ T& a, const F& f) {\n\t\treturn Min(Map(a, f));\n\t}\n\ttemplate <class T, class\
-    \ U> inline int Count(const T& a, const U& v) {\n\t\treturn count(all(a), v);\n\
-    \t}\n\ttemplate <class T, class F> inline int CountIf(const T& a, const F& f)\
-    \ {\n\t\treturn count_if(all(a), f);\n\t}\n\ttemplate <class T, class U> inline\
-    \ int Find(const T& a, const U& v) {\n\t\treturn find(all(a), v) - a.begin();\n\
-    \t}\n\ttemplate <class T, class F> inline int FindIf(const T& a, const F& f) {\n\
-    \t\treturn find_if(all(a), f) - a.begin();\n\t}\n\ttemplate <class T, class U\
-    \ = typename T::value_type> inline U Sum(const T& a) {\n\t\treturn accumulate(all(a),\
-    \ U());\n\t}\n\ttemplate <class T, class U> inline bool Includes(const T& a, const\
-    \ U& v) {\n\t\treturn find(all(a), v) != a.end();\n\t}\n\ttemplate <class T, class\
-    \ F> inline auto Sum(const T& v, const F& f) {\n\t\treturn accumulate(next(v.begin()),\
-    \ v.end(), f(*v.begin()), [&](auto a, auto b) {\n\t\t\treturn a + f(b);\n\t\t\
-    });\n\t}\n\ttemplate <class T, class U> inline int Lower(const T& a, const U&\
-    \ v) {\n\t\treturn lower_bound(all(a), v) - a.begin();\n\t}\n\ttemplate <class\
-    \ T, class U> inline int Upper(const T& a, const U& v) {\n\t\treturn upper_bound(all(a),\
-    \ v) - a.begin();\n\t}\n\ttemplate <class T, class F> inline void RemoveIf(T&\
-    \ a, const F& f) {\n\t\ta.erase(remove_if(all(a), f), a.end());\n\t}\n\ttemplate\
-    \ <class F> inline auto Vector(size_t size, const F& f) {\n\t\tvector<decay_t<result_of_t<F(size_t)>>>\
+    \ <class T> void Reverse(T& a) {\n\t\treverse(all(a));\n\t}\n\ttemplate <class\
+    \ T> void Unique(T& a) {\n\t\ta.erase(unique(all(a)), a.end());\n\t}\n\ttemplate\
+    \ <class T> void Uniq(T& a) {\n\t\tSort(a);\n\t\tUnique(a);\n\t}\n\ttemplate <class\
+    \ T> void Rotate(T& a, int left) {\n\t\trotate(a.begin(), a.begin() + left, a.end());\n\
+    \t}\n\ttemplate <class T> T Reversed(T a) {\n\t\tReverse(a);\n\t\treturn a;\n\t\
+    }\n\ttemplate <class T> T Uniqued(T a) {\n\t\tUnique(a);\n\t\treturn a;\n\t}\n\
+    \ttemplate <class T> T Uniqed(T a) {\n\t\tUniq(a);\n\t\treturn a;\n\t}\n\ttemplate\
+    \ <class T> T Rotated(T a, int left) {\n\t\tRotate(a, left);\n\t\treturn a;\n\t\
+    }\n\ttemplate <class T> auto Max(const T& a) {\n\t\treturn *max_element(all(a));\n\
+    \t}\n\ttemplate <class T> auto Min(const T& a) {\n\t\treturn *min_element(all(a));\n\
+    \t}\n\ttemplate <class T> int MaxPos(const T& a) {\n\t\treturn max_element(all(a))\
+    \ - a.begin();\n\t}\n\ttemplate <class T> int MinPos(const T& a) {\n\t\treturn\
+    \ min_element(all(a)) - a.begin();\n\t}\n\ttemplate <class T, class F> auto MaxBy(const\
+    \ T& a, const F& f) {\n\t\treturn *max_element(all(a), [&](const auto& x, const\
+    \ auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t}\n\ttemplate <class T, class\
+    \ F> auto MinBy(const T& a, const F& f) {\n\t\treturn *min_element(all(a), [&](const\
+    \ auto& x, const auto& y) {\n\t\t\treturn f(x) < f(y);\n\t\t});\n\t}\n\ttemplate\
+    \ <class T, class F> auto MaxOf(const T& a, const F& f) {\n\t\treturn Max(Map(a,\
+    \ f));\n\t}\n\ttemplate <class T, class F> auto MinOf(const T& a, const F& f)\
+    \ {\n\t\treturn Min(Map(a, f));\n\t}\n\ttemplate <class T, class U> int Count(const\
+    \ T& a, const U& v) {\n\t\treturn count(all(a), v);\n\t}\n\ttemplate <class T,\
+    \ class F> int CountIf(const T& a, const F& f) {\n\t\treturn count_if(all(a),\
+    \ f);\n\t}\n\ttemplate <class T, class U> int Find(const T& a, const U& v) {\n\
+    \t\treturn find(all(a), v) - a.begin();\n\t}\n\ttemplate <class T, class F> int\
+    \ FindIf(const T& a, const F& f) {\n\t\treturn find_if(all(a), f) - a.begin();\n\
+    \t}\n\ttemplate <class T, class U = typename T::value_type> U Sum(const T& a)\
+    \ {\n\t\treturn accumulate(all(a), U());\n\t}\n\ttemplate <class T, class U> bool\
+    \ Includes(const T& a, const U& v) {\n\t\treturn find(all(a), v) != a.end();\n\
+    \t}\n\ttemplate <class T, class F> auto Sum(const T& v, const F& f) {\n\t\treturn\
+    \ accumulate(next(v.begin()), v.end(), f(*v.begin()), [&](auto a, auto b) {\n\t\
+    \t\treturn a + f(b);\n\t\t});\n\t}\n\ttemplate <class T, class U> int Lower(const\
+    \ T& a, const U& v) {\n\t\treturn lower_bound(all(a), v) - a.begin();\n\t}\n\t\
+    template <class T, class U> int Upper(const T& a, const U& v) {\n\t\treturn upper_bound(all(a),\
+    \ v) - a.begin();\n\t}\n\ttemplate <class T, class F> void RemoveIf(T& a, const\
+    \ F& f) {\n\t\ta.erase(remove_if(all(a), f), a.end());\n\t}\n\ttemplate <class\
+    \ F> auto Vector(size_t size, const F& f) {\n\t\tvector<decay_t<result_of_t<F(size_t)>>>\
     \ res(size);\n\t\tfor (size_t i = 0; i < size; ++i)\n\t\t\tres[i] = f(i);\n\t\t\
-    return res;\n\t}\n\ttemplate <class T> inline auto Grid(size_t h, size_t w, const\
-    \ T& v = T()) {\n\t\treturn vector<vector<T>>(h, vector<T>(w, v));\n\t}\n\ttemplate\
-    \ <class T> inline auto Slice(const T& v, size_t i, size_t len) {\n\t\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    \t}\n\ttemplate <class T, class F> inline auto Each(const T& v, F&& f) {\n\t\t\
-    for (auto& i : v)\n\t\t\tf(i);\n\t}\n\ttemplate <class T, class F> inline auto\
-    \ Select(const T& v, const F& f) {\n\t\tT res;\n\t\tfor (const auto& e : v)\n\t\
-    \t\tif (f(e)) res.push_back(e);\n\t\treturn res;\n\t}\n\ttemplate <class T, class\
-    \ F> inline auto Map(const T& v, F&& f) {\n\t\tvector<decay_t<result_of_t<F(typename\
-    \ T::value_type)>>> res(v.size());\n\t\tsize_t i = 0;\n\t\tfor (const auto& e\
-    \ : v)\n\t\t\tres[i++] = f(e);\n\t\treturn res;\n\t}\n\ttemplate <class T, class\
-    \ F> inline auto MapIndex(const T& v, const F& f) {\n\t\tvector<decay_t<result_of_t<F(size_t,\
-    \ typename T::value_type)>>> res(v.size());\n\t\tsize_t i = 0;\n\t\tfor (auto\
-    \ it = v.begin(); it != v.end(); ++it, ++i)\n\t\t\tres[i] = f(i, *it);\n\t\treturn\
-    \ res;\n\t}\n\ttemplate <class T, class F> inline auto TrueIndex(const T& v, const\
-    \ F& f) {\n\t\tvector<size_t> res;\n\t\tfor (size_t i = 0; i < v.size(); ++i)\n\
-    \t\t\tif (f(v[i])) res.push_back(i);\n\t\treturn res;\n\t}\n\ttemplate <class\
-    \ T, class U = typename T::value_type> inline auto Indexed(const T& v) {\n\t\t\
-    vector<pair<U, int>> res(v.size());\n\t\tfor (int i = 0; i < (int)v.size(); ++i)\n\
-    \t\t\tres[i] = make_pair(static_cast<U>(v[i]), i);\n\t\treturn res;\n\t}\n\tinline\
-    \ auto operator*(string s, size_t n) {\n\t\tstring res;\n\t\tfor (size_t i = 0;\
-    \ i < n; ++i)\n\t\t\tres += s;\n\t\treturn res;\n\t}\n\ttemplate <class T> inline\
+    return res;\n\t}\n\ttemplate <class T> auto Grid(size_t h, size_t w, const T&\
+    \ v = T()) {\n\t\treturn vector<vector<T>>(h, vector<T>(w, v));\n\t}\n\ttemplate\
+    \ <class T> auto Slice(const T& v, size_t i, size_t len) {\n\t\treturn i < v.size()\
+    \ ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\t}\n\ttemplate\
+    \ <class T, class F> auto Each(const T& v, F&& f) {\n\t\tfor (auto& i : v)\n\t\
+    \t\tf(i);\n\t}\n\ttemplate <class T, class F> auto Select(const T& v, const F&\
+    \ f) {\n\t\tT res;\n\t\tfor (const auto& e : v)\n\t\t\tif (f(e)) res.push_back(e);\n\
+    \t\treturn res;\n\t}\n\ttemplate <class T, class F> auto Map(const T& v, F&& f)\
+    \ {\n\t\tvector<decay_t<result_of_t<F(typename T::value_type)>>> res(v.size());\n\
+    \t\tsize_t i = 0;\n\t\tfor (const auto& e : v)\n\t\t\tres[i++] = f(e);\n\t\treturn\
+    \ res;\n\t}\n\ttemplate <class T, class F> auto MapIndex(const T& v, const F&\
+    \ f) {\n\t\tvector<decay_t<result_of_t<F(size_t, typename T::value_type)>>> res(v.size());\n\
+    \t\tsize_t i = 0;\n\t\tfor (auto it = v.begin(); it != v.end(); ++it, ++i)\n\t\
+    \t\tres[i] = f(i, *it);\n\t\treturn res;\n\t}\n\ttemplate <class T, class F> auto\
+    \ TrueIndex(const T& v, const F& f) {\n\t\tvector<size_t> res;\n\t\tfor (size_t\
+    \ i = 0; i < v.size(); ++i)\n\t\t\tif (f(v[i])) res.push_back(i);\n\t\treturn\
+    \ res;\n\t}\n\ttemplate <class T, class U = typename T::value_type> auto Indexed(const\
+    \ T& v) {\n\t\tvector<pair<U, int>> res(v.size());\n\t\tfor (int i = 0; i < (int)v.size();\
+    \ ++i)\n\t\t\tres[i] = make_pair(static_cast<U>(v[i]), i);\n\t\treturn res;\n\t\
+    }\n\tauto operator*(string s, size_t n) {\n\t\tstring res;\n\t\tfor (size_t i\
+    \ = 0; i < n; ++i)\n\t\t\tres += s;\n\t\treturn res;\n\t}\n\ttemplate <class T>\
     \ auto& operator<<(vector<T>& v, const vector<T>& v2) {\n\t\tv.insert(v.end(),\
-    \ all(v2));\n\t\treturn v;\n\t}\n\ttemplate <class T> inline T Ceil(T n, T m)\
-    \ {\n\t\treturn (n + m - 1) / m;\n\t}\n\ttemplate <class T> inline T Ceil2(T n,\
-    \ T m) {\n\t\treturn Ceil(n, m) * m;\n\t}\n\ttemplate <class T> inline T Tri(T\
-    \ n) {\n\t\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n\t}\n\ttemplate\
-    \ <class T> inline T nC2(T n) {\n\t\treturn (n & 1) ? (n - 1) / 2 * n : n / 2\
-    \ * (n - 1);\n\t}\n\ttemplate <class T> inline T Mid(const T& l, const T& r) {\n\
-    \t\treturn l + (r - l) / 2;\n\t}\n\ttemplate <class T> inline bool chmax(T& a,\
-    \ const T& b) {\n\t\tif (a < b) {\n\t\t\ta = b;\n\t\t\treturn true;\n\t\t}\n\t\
-    \treturn false;\n\t}\n\ttemplate <class T> inline bool chmin(T& a, const T& b)\
-    \ {\n\t\tif (a > b) {\n\t\t\ta = b;\n\t\t\treturn true;\n\t\t}\n\t\treturn false;\n\
-    \t}\n\ttemplate <class T> inline bool inRange(const T& v, const T& min, const\
-    \ T& max) {\n\t\treturn min <= v && v < max;\n\t}\n\ttemplate <class T> inline\
-    \ bool isSquere(T n) {\n\t\tT s = sqrt(n);\n\t\treturn s * s == n || (s + 1) *\
-    \ (s + 1) == n;\n\t}\n\ttemplate <class T = long long> inline T BIT(int b) {\n\
-    \t\treturn T(1) << b;\n\t}\n\ttemplate <class T> inline T Gcd(T n, T m) {\n\t\t\
-    return m ? Gcd(m, n % m) : n;\n\t}\n\ttemplate <class T> inline T Lcm(T n, T m)\
-    \ {\n\t\treturn n / Gcd(n, m) * m;\n\t}\n\ttemplate <class T, class U = typename\
-    \ T::value_type> inline U Gcdv(const T& v) {\n\t\treturn accumulate(next(v.begin()),\
-    \ v.end(), U(*v.begin()), Gcd<U>);\n\t}\n\ttemplate <class T, class U = typename\
-    \ T::value_type> inline U Lcmv(const T& v) {\n\t\treturn accumulate(next(v.begin()),\
-    \ v.end(), U(*v.begin()), Lcm<U>);\n\t}\n\ttemplate <class T> inline T Pow(T a,\
-    \ T n) {\n\t\tT r = 1;\n\t\twhile (n > 0) {\n\t\t\tif (n & 1) r *= a;\n\t\t\t\
-    a *= a;\n\t\t\tn /= 2;\n\t\t}\n\t\treturn r;\n\t}\n\ttemplate <class T> inline\
-    \ T Powmod(T a, T n, T m = MOD) {\n\t\tT r = 1;\n\t\twhile (n > 0) {\n\t\t\tif\
-    \ (n & 1)\n\t\t\t\tr = r * a % m, n--;\n\t\t\telse\n\t\t\t\ta = a * a % m, n /=\
-    \ 2;\n\t\t}\n\t\treturn r;\n\t}\n}  // namespace\n\n// --- dump --- //\n#if __has_include(\"\
-    /home/yuruhiya/contest/library/dump.hpp\")\n#include \"/home/yuruhiya/contest/library/dump.hpp\"\
-    \n#else\n#define dump(...) ((void)0)\n#endif\n\n// ----------------------------------------------------------------\
+    \ all(v2));\n\t\treturn v;\n\t}\n\ttemplate <class T> T Ceil(T n, T m) {\n\t\t\
+    return (n + m - 1) / m;\n\t}\n\ttemplate <class T> T Ceil2(T n, T m) {\n\t\treturn\
+    \ Ceil(n, m) * m;\n\t}\n\ttemplate <class T> T Tri(T n) {\n\t\treturn (n & 1)\
+    \ ? (n + 1) / 2 * n : n / 2 * (n + 1);\n\t}\n\ttemplate <class T> T nC2(T n) {\n\
+    \t\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);\n\t}\n\ttemplate <class\
+    \ T> T Mid(const T& l, const T& r) {\n\t\treturn l + (r - l) / 2;\n\t}\n\ttemplate\
+    \ <class T> bool chmax(T& a, const T& b) {\n\t\tif (a < b) {\n\t\t\ta = b;\n\t\
+    \t\treturn true;\n\t\t}\n\t\treturn false;\n\t}\n\ttemplate <class T> bool chmin(T&\
+    \ a, const T& b) {\n\t\tif (a > b) {\n\t\t\ta = b;\n\t\t\treturn true;\n\t\t}\n\
+    \t\treturn false;\n\t}\n\ttemplate <class T> bool inRange(const T& v, const T&\
+    \ min, const T& max) {\n\t\treturn min <= v && v < max;\n\t}\n\ttemplate <class\
+    \ T> bool isSquere(T n) {\n\t\tT s = sqrt(n);\n\t\treturn s * s == n || (s + 1)\
+    \ * (s + 1) == n;\n\t}\n\ttemplate <class T = long long> T BIT(int b) {\n\t\t\
+    return T(1) << b;\n\t}\n\ttemplate <class T> T Gcd(T n, T m) {\n\t\treturn m ?\
+    \ Gcd(m, n % m) : n;\n\t}\n\ttemplate <class T> T Lcm(T n, T m) {\n\t\treturn\
+    \ n / Gcd(n, m) * m;\n\t}\n\ttemplate <class T, class U = typename T::value_type>\
+    \ U Gcdv(const T& v) {\n\t\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()),\
+    \ Gcd<U>);\n\t}\n\ttemplate <class T, class U = typename T::value_type> U Lcmv(const\
+    \ T& v) {\n\t\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), Lcm<U>);\n\
+    \t}\n\ttemplate <class T> T Pow(T a, T n) {\n\t\tT r = 1;\n\t\twhile (n > 0) {\n\
+    \t\t\tif (n & 1) r *= a;\n\t\t\ta *= a;\n\t\t\tn /= 2;\n\t\t}\n\t\treturn r;\n\
+    \t}\n\ttemplate <class T> T Powmod(T a, T n, T m = MOD) {\n\t\tT r = 1;\n\t\t\
+    while (n > 0) {\n\t\t\tif (n & 1)\n\t\t\t\tr = r * a % m, n--;\n\t\t\telse\n\t\
+    \t\t\ta = a * a % m, n /= 2;\n\t\t}\n\t\treturn r;\n\t}\n}  // namespace\n\n//\
+    \ --- dump --- //\n#if __has_include(\"/home/yuruhiya/contest/library/dump.hpp\"\
+    )\n#include \"/home/yuruhiya/contest/library/dump.hpp\"\n#else\n#define dump(...)\
+    \ ((void)0)\n#endif\n\n// ----------------------------------------------------------------\
     \ //\n\nint main() {}"
   dependsOn: []
   isVerificationFile: false
   path: template14.cpp
   requiredBy: []
-  timestamp: '2020-09-20 10:56:52+09:00'
+  timestamp: '2020-11-15 09:14:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template14.cpp
