@@ -78,12 +78,12 @@ template <class T> struct Step {
 private:
 	It be, en;
 };
-template <class T> inline constexpr auto step(T a) {
+template <class T> constexpr auto step(T a) {
 	return Step<T>(0, a, 1);
 }
-template <class T> inline constexpr auto step(T a, T b) {
+template <class T> constexpr auto step(T a, T b) {
 	return Step<T>(a, b - a, 1);
 }
-template <class T> inline constexpr auto step(T a, T b, T c) {
+template <class T> constexpr auto step(T a, T b, T c) {
 	return Step<T>(a, a < b ? (b - a - 1) / c + 1 : 0, c);
 }

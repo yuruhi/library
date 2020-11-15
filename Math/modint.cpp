@@ -117,6 +117,6 @@ template <int MOD> struct modint {
 };
 using mint = modint<1000000007>;
 using VM = vector<mint>;
-inline mint operator""_m(unsigned long long n) {
+mint operator""_m(unsigned long long n) {
 	return n;
 }
