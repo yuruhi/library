@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/LCS.test.cpp
+    title: test/LCS.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DP/LCS.cpp\"\n#include <vector>\n#include <string>\n#include\
@@ -27,8 +30,9 @@ data:
   path: DP/LCS.cpp
   requiredBy: []
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/LCS.test.cpp
 documentation_of: DP/LCS.cpp
 layout: document
 redirect_from:

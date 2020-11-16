@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DP/Knapsack01.cpp
       title: DP/Knapsack01.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DP/LCS.cpp
       title: DP/LCS.cpp
     - icon: ':heavy_check_mark:'
@@ -596,6 +596,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/LCA.test.cpp
       title: test/LCA.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/LCS.test.cpp
+      title: test/LCS.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/LIS.test.cpp
       title: test/LIS.test.cpp
