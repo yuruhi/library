@@ -13,5 +13,5 @@ int main() {
 	for (int i = 0; i < N; ++i) {
 		cin >> v[i] >> w[i];
 	}
-	cout << Knapsack01(N, W, v, w)[W] << '\n';
+	cout << Knapsack(N, W, v, w)[W] << '\n';
 }
