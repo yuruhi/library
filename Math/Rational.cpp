@@ -5,9 +5,9 @@
 #include <cassert>
 using namespace std;
 
-class Rational {
+template <class T> class Rational {
 public:
-	using value_type = long long;
+	using value_type = T;
 
 private:
 	value_type n, d;  // n / d
@@ -109,10 +109,13 @@ public:
 	constexpr value_type to_i() const {
 		return n / d;
 	}
-	constexpr double to_d() {
+	constexpr float to_f() const {
+		return static_cast<float>(n) / static_cast<float>(d);
+	}
+	constexpr double to_d() const {
 		return static_cast<double>(n) / static_cast<double>(d);
 	}
-	constexpr double to_ld() {
+	constexpr long double to_ld() const {
 		return static_cast<long double>(n) / static_cast<long double>(d);
 	}
 	friend istream& operator>>(istream& is, Rational& r) {
@@ -124,4 +127,4 @@ public:
 	friend ostream& operator<<(ostream& os, const Rational& r) {
 		return os << r.n << '/' << r.d;
 	}
-}
+};
