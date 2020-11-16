@@ -10,10 +10,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2880
+    PROBLEM: https://yukicoder.me/problems/no/674
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/2880
-  bundledCode: "#line 1 \"test/RangeSet.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2880\"\
+    - https://yukicoder.me/problems/no/674
+  bundledCode: "#line 1 \"test/RangeSet2.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/674\"\
     \n#line 2 \"DataStructure/RangeSet.cpp\"\n#include <set>\n#include <utility>\n\
     #include <optional>\n#include <limits>\n#include <cassert>\nusing namespace std;\n\
     \ntemplate <class T> class RangeSet {\npublic:\n\tusing size_type = size_t;\n\t\
@@ -63,53 +63,31 @@ data:
     \t\t} else {\n\t\t\treturn x;\n\t\t}\n\t}\n\toptional<range_type> find_range(value_type\
     \ x) const {\n\t\trange_type r = prev_range(x);\n\t\tif (r.first <= x && x <=\
     \ r.second) {\n\t\t\treturn r;\n\t\t} else {\n\t\t\treturn nullopt;\n\t\t}\n\t\
-    }\n};\n#line 3 \"test/RangeSet.test.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <map>\n#include <tuple>\n#include <algorithm>\nusing namespace std;\n\
-    \nstruct Data {\n\tbool query;\n\tint a, b, i;\n\tData() = default;\n\tData(bool\
-    \ _q, int _a, int _b, int _i) : query(_q), a(_a), b(_b), i(_i) {}\n\tfriend bool\
-    \ operator<(const Data& d1, const Data& d2) {\n\t\treturn !d1.query < !d2.query;\n\
-    \t}\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \n\tint n, m, q;\n\tcin >> n >> m >> q;\n\tmap<int, vector<Data>> data_map;\n\t\
-    for (int i = 0; i < m; ++i) {\n\t\tint d, a, b;\n\t\tcin >> d >> a >> b;\n\t\t\
-    data_map[d].emplace_back(false, a, b, i);\n\t}\n\tfor (int i = 0; i < q; ++i)\
-    \ {\n\t\tint e, s, t;\n\t\tcin >> e >> s >> t;\n\t\tdata_map[e].emplace_back(true,\
-    \ s, t, i);\n\t}\n\n\tvector<bool> ans(q);\n\tRangeSet<int> range_set;\n\tfor\
-    \ (auto [time, datas] : data_map) {\n\t\tsort(datas.begin(), datas.end());\n\t\
-    \tfor (const Data& data : datas) {\n\t\t\tif (data.query) {\n\t\t\t\tif (data.a\
-    \ < data.b) {\n\t\t\t\t\tans[data.i] = range_set.contains(data.a, data.b - 1);\n\
-    \t\t\t\t} else {\n\t\t\t\t\tans[data.i] = true;\n\t\t\t\t}\n\t\t\t} else {\n\t\
-    \t\t\trange_set.insert(data.a, data.b - 1);\n\t\t\t}\n\t\t}\n\t}\n\tfor (bool\
-    \ f : ans) {\n\t\tcout << (f ? \"Yes\" : \"No\") << '\\n';\n\t}\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2880\"\n#include\
-    \ \"./../DataStructure/RangeSet.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <map>\n#include <tuple>\n#include <algorithm>\nusing namespace std;\n\
-    \nstruct Data {\n\tbool query;\n\tint a, b, i;\n\tData() = default;\n\tData(bool\
-    \ _q, int _a, int _b, int _i) : query(_q), a(_a), b(_b), i(_i) {}\n\tfriend bool\
-    \ operator<(const Data& d1, const Data& d2) {\n\t\treturn !d1.query < !d2.query;\n\
-    \t}\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \n\tint n, m, q;\n\tcin >> n >> m >> q;\n\tmap<int, vector<Data>> data_map;\n\t\
-    for (int i = 0; i < m; ++i) {\n\t\tint d, a, b;\n\t\tcin >> d >> a >> b;\n\t\t\
-    data_map[d].emplace_back(false, a, b, i);\n\t}\n\tfor (int i = 0; i < q; ++i)\
-    \ {\n\t\tint e, s, t;\n\t\tcin >> e >> s >> t;\n\t\tdata_map[e].emplace_back(true,\
-    \ s, t, i);\n\t}\n\n\tvector<bool> ans(q);\n\tRangeSet<int> range_set;\n\tfor\
-    \ (auto [time, datas] : data_map) {\n\t\tsort(datas.begin(), datas.end());\n\t\
-    \tfor (const Data& data : datas) {\n\t\t\tif (data.query) {\n\t\t\t\tif (data.a\
-    \ < data.b) {\n\t\t\t\t\tans[data.i] = range_set.contains(data.a, data.b - 1);\n\
-    \t\t\t\t} else {\n\t\t\t\t\tans[data.i] = true;\n\t\t\t\t}\n\t\t\t} else {\n\t\
-    \t\t\trange_set.insert(data.a, data.b - 1);\n\t\t\t}\n\t\t}\n\t}\n\tfor (bool\
-    \ f : ans) {\n\t\tcout << (f ? \"Yes\" : \"No\") << '\\n';\n\t}\n}"
+    }\n};\n#line 3 \"test/RangeSet2.test.cpp\"\n#include <iostream>\n#include <algorithm>\n\
+    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tusing ll = long long;\n\n\tll d;\n\tint q;\n\tcin >> d >> q;\n\tRangeSet<ll>\
+    \ range_set;\n\tll ans = 0;\n\twhile (q--) {\n\t\tll a, b;\n\t\tcin >> a >> b;\n\
+    \t\trange_set.insert(a, b);\n\t\tauto r = *range_set.find_range(a);\n\t\tans =\
+    \ max(ans, r.second - r.first + 1);\n\t\tcout << ans << '\\n';\n\t}\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/674\"\n#include \"./../DataStructure/RangeSet.cpp\"\
+    \n#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main()\
+    \ {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tusing ll = long\
+    \ long;\n\n\tll d;\n\tint q;\n\tcin >> d >> q;\n\tRangeSet<ll> range_set;\n\t\
+    ll ans = 0;\n\twhile (q--) {\n\t\tll a, b;\n\t\tcin >> a >> b;\n\t\trange_set.insert(a,\
+    \ b);\n\t\tauto r = *range_set.find_range(a);\n\t\tans = max(ans, r.second - r.first\
+    \ + 1);\n\t\tcout << ans << '\\n';\n\t}\n}"
   dependsOn:
   - DataStructure/RangeSet.cpp
   isVerificationFile: true
-  path: test/RangeSet.test.cpp
+  path: test/RangeSet2.test.cpp
   requiredBy: []
   timestamp: '2020-11-16 20:30:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/RangeSet.test.cpp
+documentation_of: test/RangeSet2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/RangeSet.test.cpp
-- /verify/test/RangeSet.test.cpp.html
-title: test/RangeSet.test.cpp
+- /verify/test/RangeSet2.test.cpp
+- /verify/test/RangeSet2.test.cpp.html
+title: test/RangeSet2.test.cpp
 ---

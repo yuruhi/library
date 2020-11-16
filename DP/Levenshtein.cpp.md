@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Levenshtein.test.cpp
+    title: test/Levenshtein.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DP/Levenshtein.cpp\"\n#include <vector>\n#include <string>\n\
@@ -27,8 +30,9 @@ data:
   path: DP/Levenshtein.cpp
   requiredBy: []
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Levenshtein.test.cpp
 documentation_of: DP/Levenshtein.cpp
 layout: document
 redirect_from:

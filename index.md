@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: DP/LIS.cpp
       title: DP/LIS.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DP/Levenshtein.cpp
       title: DP/Levenshtein.cpp
     - icon: ':warning:'
@@ -585,6 +585,9 @@ data:
       path: test/LCA.test.cpp
       title: test/LCA.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Levenshtein.test.cpp
+      title: test/Levenshtein.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/PersistentQueue.test.cpp
       title: test/PersistentQueue.test.cpp
     - icon: ':heavy_check_mark:'
@@ -608,6 +611,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeSet.test.cpp
       title: test/RangeSet.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeSet2.test.cpp
+      title: test/RangeSet2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
