@@ -80,6 +80,9 @@ data:
       path: Geometry/Circle.hpp
       title: Geometry/Circle.hpp
     - icon: ':heavy_check_mark:'
+      path: Geometry/ClosestPair.cpp
+      title: Geometry/ClosestPair.cpp
+    - icon: ':heavy_check_mark:'
       path: Geometry/Geometric.cpp
       title: Geometry/Geometric.cpp
     - icon: ':heavy_check_mark:'

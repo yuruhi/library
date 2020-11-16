@@ -249,91 +249,74 @@ data:
     \ + 1) % size();\n\t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist\
     \ < d) {\n\t\t\t\t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\
     \t\t\t\t}\n\t\t\t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist,\
-    \ i_max, j_max};\n\t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2,\
-    \ Vec2> closest_pair() const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(),\
-    \ points.end(), Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left,\
-    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\
-    \tif (n <= 1) {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t\
-    } else {\n\t\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\
-    \t\t\t\t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\
-    \t\t\tinplace_merge(points.begin() + left, points.begin() + mid, points.begin()\
-    \ + right, Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor\
-    \ (int i = left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x\
-    \ - x)) {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size =\
-    \ around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <=\
-    \ points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\
-    \t\t\t\tif (LD length = (points[i] - around[j]).length(); get<0>(res) > length)\
-    \ {\n\t\t\t\t\t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\t\
-    return res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\
-    \t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const {\n\t\t\tPolygon res;\n\
-    \t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tVec2 a = at(i), b = at(i\
-    \ != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin, l.end, a) != -1) {\n\t\
-    \t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin, l.end, a) * iSP(l.begin,\
-    \ l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a, b).cross_point(l));\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate <class Shape2DType> bool\
-    \ intersects(const Shape2DType& shape) const {\n\t\t\treturn Geometric::intersect(*this,\
-    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool tangent(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\t\
-    friend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{\"\
-    ;\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \"\
-    , \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \"}\";\n\t\t}\n\t\tfriend\
-    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
-    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric\n\
-    #line 6 \"Geometry/Circle.hpp\"\nusing namespace std;\n\nnamespace Geometric {\n\
-    \n\tstruct Circle {\n\t\tVec2 center;\n\t\tLD r;\n\t\tconstexpr Circle() : center(),\
-    \ r(0) {}\n\t\tconstexpr Circle(LD _r) : center(), r(_r) {}\n\t\tconstexpr Circle(LD\
-    \ _x, LD _y, LD _r) : center(_x, _y), r(_r) {}\n\t\tconstexpr Circle(const Vec2&\
-    \ _c, LD _r) : center(_c), r(_r) {}\n\t\tconstexpr bool operator==(const Circle&\
-    \ c) const {\n\t\t\treturn center == c.center && Equal(r, c.r);\n\t\t}\n\t\tconstexpr\
-    \ bool operator!=(const Circle& c) const {\n\t\t\treturn !(*this == c);\n\t\t\
-    }\n\t\tconstexpr Circle& operator+(const Vec2& v) const {\n\t\t\treturn Circle(*this)\
-    \ += v;\n\t\t}\n\t\tconstexpr Circle& operator-(const Vec2& v) const {\n\t\t\t\
-    return Circle(*this) -= v;\n\t\t}\n\t\tconstexpr Circle& operator+=(const Vec2&\
-    \ v) {\n\t\t\tcenter += v;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Circle&\
-    \ operator-=(const Vec2& v) {\n\t\t\tcenter -= v;\n\t\t\treturn *this;\n\t\t}\n\
-    \t\tconstexpr LD top_y() const {\n\t\t\treturn center.y - r;\n\t\t}\n\t\tconstexpr\
-    \ LD bottom_y() const {\n\t\t\treturn center.y + r;\n\t\t}\n\t\tconstexpr LD left_x()\
-    \ const {\n\t\t\treturn center.x - r;\n\t\t}\n\t\tconstexpr LD right_x() const\
-    \ {\n\t\t\treturn center.x + r;\n\t\t}\n\t\tconstexpr Vec2 top() const {\n\t\t\
-    \treturn center - Vec2(0, r);\n\t\t}\n\t\tconstexpr Vec2 bottom() const {\n\t\t\
-    \treturn center + Vec2(0, r);\n\t\t}\n\t\tconstexpr Vec2 left() const {\n\t\t\t\
-    return center - Vec2(r, 0);\n\t\t}\n\t\tconstexpr Vec2 right() const {\n\t\t\t\
-    return center + Vec2(r, 0);\n\t\t}\n\t\tconstexpr LD area() const {\n\t\t\treturn\
-    \ r * r * PI;\n\t\t}\n\t\tconstexpr LD perimeter() const {\n\t\t\treturn 2 * r\
-    \ * PI;\n\t\t}\n\t\ttemplate <class Shape2DType> LD distance(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::distance(*this, shape);\n\t\t}\n\t\t\
-    template <class Shape2DType> bool intersects(const Shape2DType& shape) const {\n\
-    \t\t\treturn Geometric::intersect(*this, shape);\n\t\t}\n\t\ttemplate <class Shape2DType>\
-    \ vector<Vec2> cross_points(const Shape2DType& shape) const {\n\t\t\treturn Geometric::cross_points(*this,\
-    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool tangent(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\t\
-    // c \u304C this \u306B\u542B\u307E\u308C\u308B\uFF08\u4E00\u81F4\u3059\u308B\u3068\
-    \u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\t\tbool contains(const Circle& c)\
-    \ const {\n\t\t\treturn sgn(center.distance(c.center) + c.r - r) <= 0;\n\t\t}\n\
-    \t\tfriend ostream& operator<<(ostream& os, const Circle& c) {\n\t\t\treturn os\
-    \ << '(' << c.center.x << \", \" << c.center.y << \", \" << c.r << ')';\n\t\t\
-    }\n\t\tfriend istream& operator>>(istream& is, Circle& c) {\n\t\t\treturn is >>\
-    \ c.center >> c.r;\n\t\t}\n\t};\n\n}  // namespace Geometric\n#line 6 \"Geometry/Rect.hpp\"\
-    \nusing namespace std;\n\nnamespace Geometric {\n\n\tstruct Rect {\n\t\tVec2 pos,\
-    \ size;\n\t\tconstexpr Rect() {}\n\t\tconstexpr Rect(LD _w, LD _h) : size(_w,\
-    \ _h) {}\n\t\tconstexpr Rect(const Vec2& _size) : size(_size) {}\n\t\tconstexpr\
-    \ Rect(LD _x, LD _y, LD _w, LD _h) : pos(_x, _y), size(_w, _h) {}\n\t\tconstexpr\
-    \ Rect(const Vec2& _pos, const Vec2& _size) : pos(_pos), size(_size) {}\n\t\t\
-    constexpr bool operator==(const Rect& r) const {\n\t\t\treturn pos == r.pos &&\
-    \ size == r.size;\n\t\t}\n\t\tconstexpr bool operator!=(const Rect& r) const {\n\
-    \t\t\treturn !(*this == r);\n\t\t}\n\t\tconstexpr Rect operator+(const Vec2& v)\
-    \ const {\n\t\t\treturn Rect(*this) += v;\n\t\t}\n\t\tconstexpr Rect operator-(const\
-    \ Vec2& v) const {\n\t\t\treturn Rect(*this) -= v;\n\t\t}\n\t\tconstexpr Rect&\
-    \ operator+=(const Vec2& v) {\n\t\t\tpos += v;\n\t\t\treturn *this;\n\t\t}\n\t\
-    \tconstexpr Rect& operator-=(const Vec2& v) {\n\t\t\tpos -= v;\n\t\t\treturn *this;\n\
-    \t\t}\n\t\tconstexpr Rect& set_center(const Vec2& _pos) {\n\t\t\tpos = _pos -\
-    \ size / 2;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr LD left_x() const {\n\t\
-    \t\treturn pos.x;\n\t\t}\n\t\tconstexpr LD right_x() const {\n\t\t\treturn pos.x\
-    \ + size.x;\n\t\t}\n\t\tconstexpr LD top_y() const {\n\t\t\treturn pos.y;\n\t\t\
-    }\n\t\tconstexpr LD bottom_y() const {\n\t\t\treturn pos.y + size.y;\n\t\t}\n\t\
-    \tconstexpr Vec2 top_left() const {\n\t\t\treturn pos;\n\t\t}\n\t\tconstexpr Vec2\
-    \ top_right() const {\n\t\t\treturn pos + Vec2(size.x, 0);\n\t\t}\n\t\tconstexpr\
+    \ i_max, j_max};\n\t\t}\n\t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const\
+    \ {\n\t\t\tPolygon res;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\t\
+    Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) != -1) {\n\t\t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) * iSP(l.begin, l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a,\
+    \ b).cross_point(l));\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate\
+    \ <class Shape2DType> bool intersects(const Shape2DType& shape) const {\n\t\t\t\
+    return Geometric::intersect(*this, shape);\n\t\t}\n\t\ttemplate <class Shape2DType>\
+    \ bool tangent(const Shape2DType& shape) const {\n\t\t\treturn Geometric::tangent(*this,\
+    \ shape);\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const Polygon& p)\
+    \ {\n\t\t\tos << \"{\";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\
+    \tif (i != 0) os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os <<\
+    \ \"}\";\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\t\
+    \t\tfor (auto& v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t\
+    };\n\n}  // namespace Geometric\n#line 6 \"Geometry/Circle.hpp\"\nusing namespace\
+    \ std;\n\nnamespace Geometric {\n\n\tstruct Circle {\n\t\tVec2 center;\n\t\tLD\
+    \ r;\n\t\tconstexpr Circle() : center(), r(0) {}\n\t\tconstexpr Circle(LD _r)\
+    \ : center(), r(_r) {}\n\t\tconstexpr Circle(LD _x, LD _y, LD _r) : center(_x,\
+    \ _y), r(_r) {}\n\t\tconstexpr Circle(const Vec2& _c, LD _r) : center(_c), r(_r)\
+    \ {}\n\t\tconstexpr bool operator==(const Circle& c) const {\n\t\t\treturn center\
+    \ == c.center && Equal(r, c.r);\n\t\t}\n\t\tconstexpr bool operator!=(const Circle&\
+    \ c) const {\n\t\t\treturn !(*this == c);\n\t\t}\n\t\tconstexpr Circle& operator+(const\
+    \ Vec2& v) const {\n\t\t\treturn Circle(*this) += v;\n\t\t}\n\t\tconstexpr Circle&\
+    \ operator-(const Vec2& v) const {\n\t\t\treturn Circle(*this) -= v;\n\t\t}\n\t\
+    \tconstexpr Circle& operator+=(const Vec2& v) {\n\t\t\tcenter += v;\n\t\t\treturn\
+    \ *this;\n\t\t}\n\t\tconstexpr Circle& operator-=(const Vec2& v) {\n\t\t\tcenter\
+    \ -= v;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr LD top_y() const {\n\t\t\t\
+    return center.y - r;\n\t\t}\n\t\tconstexpr LD bottom_y() const {\n\t\t\treturn\
+    \ center.y + r;\n\t\t}\n\t\tconstexpr LD left_x() const {\n\t\t\treturn center.x\
+    \ - r;\n\t\t}\n\t\tconstexpr LD right_x() const {\n\t\t\treturn center.x + r;\n\
+    \t\t}\n\t\tconstexpr Vec2 top() const {\n\t\t\treturn center - Vec2(0, r);\n\t\
+    \t}\n\t\tconstexpr Vec2 bottom() const {\n\t\t\treturn center + Vec2(0, r);\n\t\
+    \t}\n\t\tconstexpr Vec2 left() const {\n\t\t\treturn center - Vec2(r, 0);\n\t\t\
+    }\n\t\tconstexpr Vec2 right() const {\n\t\t\treturn center + Vec2(r, 0);\n\t\t\
+    }\n\t\tconstexpr LD area() const {\n\t\t\treturn r * r * PI;\n\t\t}\n\t\tconstexpr\
+    \ LD perimeter() const {\n\t\t\treturn 2 * r * PI;\n\t\t}\n\t\ttemplate <class\
+    \ Shape2DType> LD distance(const Shape2DType& shape) const {\n\t\t\treturn Geometric::distance(*this,\
+    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool intersects(const Shape2DType&\
+    \ shape) const {\n\t\t\treturn Geometric::intersect(*this, shape);\n\t\t}\n\t\t\
+    template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape)\
+    \ const {\n\t\t\treturn Geometric::cross_points(*this, shape);\n\t\t}\n\t\ttemplate\
+    \ <class Shape2DType> bool tangent(const Shape2DType& shape) const {\n\t\t\treturn\
+    \ Geometric::tangent(*this, shape);\n\t\t}\n\t\t// c \u304C this \u306B\u542B\u307E\
+    \u308C\u308B\uFF08\u4E00\u81F4\u3059\u308B\u3068\u304D\u3082 true \u3092\u8FD4\
+    \u3059\uFF09\n\t\tbool contains(const Circle& c) const {\n\t\t\treturn sgn(center.distance(c.center)\
+    \ + c.r - r) <= 0;\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const Circle&\
+    \ c) {\n\t\t\treturn os << '(' << c.center.x << \", \" << c.center.y << \", \"\
+    \ << c.r << ')';\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Circle& c)\
+    \ {\n\t\t\treturn is >> c.center >> c.r;\n\t\t}\n\t};\n\n}  // namespace Geometric\n\
+    #line 6 \"Geometry/Rect.hpp\"\nusing namespace std;\n\nnamespace Geometric {\n\
+    \n\tstruct Rect {\n\t\tVec2 pos, size;\n\t\tconstexpr Rect() {}\n\t\tconstexpr\
+    \ Rect(LD _w, LD _h) : size(_w, _h) {}\n\t\tconstexpr Rect(const Vec2& _size)\
+    \ : size(_size) {}\n\t\tconstexpr Rect(LD _x, LD _y, LD _w, LD _h) : pos(_x, _y),\
+    \ size(_w, _h) {}\n\t\tconstexpr Rect(const Vec2& _pos, const Vec2& _size) : pos(_pos),\
+    \ size(_size) {}\n\t\tconstexpr bool operator==(const Rect& r) const {\n\t\t\t\
+    return pos == r.pos && size == r.size;\n\t\t}\n\t\tconstexpr bool operator!=(const\
+    \ Rect& r) const {\n\t\t\treturn !(*this == r);\n\t\t}\n\t\tconstexpr Rect operator+(const\
+    \ Vec2& v) const {\n\t\t\treturn Rect(*this) += v;\n\t\t}\n\t\tconstexpr Rect\
+    \ operator-(const Vec2& v) const {\n\t\t\treturn Rect(*this) -= v;\n\t\t}\n\t\t\
+    constexpr Rect& operator+=(const Vec2& v) {\n\t\t\tpos += v;\n\t\t\treturn *this;\n\
+    \t\t}\n\t\tconstexpr Rect& operator-=(const Vec2& v) {\n\t\t\tpos -= v;\n\t\t\t\
+    return *this;\n\t\t}\n\t\tconstexpr Rect& set_center(const Vec2& _pos) {\n\t\t\
+    \tpos = _pos - size / 2;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr LD left_x()\
+    \ const {\n\t\t\treturn pos.x;\n\t\t}\n\t\tconstexpr LD right_x() const {\n\t\t\
+    \treturn pos.x + size.x;\n\t\t}\n\t\tconstexpr LD top_y() const {\n\t\t\treturn\
+    \ pos.y;\n\t\t}\n\t\tconstexpr LD bottom_y() const {\n\t\t\treturn pos.y + size.y;\n\
+    \t\t}\n\t\tconstexpr Vec2 top_left() const {\n\t\t\treturn pos;\n\t\t}\n\t\tconstexpr\
+    \ Vec2 top_right() const {\n\t\t\treturn pos + Vec2(size.x, 0);\n\t\t}\n\t\tconstexpr\
     \ Vec2 bottom_left() const {\n\t\t\treturn pos + Vec2(0, size.y);\n\t\t}\n\t\t\
     constexpr Vec2 bottom_right() const {\n\t\t\treturn pos + size;\n\t\t}\n\t\tconstexpr\
     \ Segment top() const {\n\t\t\treturn Segment(top_left(), top_right());\n\t\t\
@@ -555,7 +538,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_is_convex.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 18:27:33+09:00'
+  timestamp: '2020-11-16 21:37:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_is_convex.test.cpp

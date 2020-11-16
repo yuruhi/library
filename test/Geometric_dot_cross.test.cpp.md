@@ -345,59 +345,42 @@ data:
     \t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist < d) {\n\t\t\t\
     \t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\t\t\t\t}\n\t\t\
     \t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist, i_max, j_max};\n\
-    \t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2, Vec2> closest_pair()\
-    \ const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(), points.end(),\
-    \ Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left, int right) ->\
-    \ tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\tif (n <= 1)\
-    \ {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t} else {\n\t\
-    \t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\t\t\t\
-    \t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\t\t\t\
-    inplace_merge(points.begin() + left, points.begin() + mid, points.begin() + right,\
-    \ Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor (int i =\
-    \ left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x - x))\
-    \ {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size = around.size(),\
-    \ j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <= points[i].y -\
-    \ around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tif (LD\
-    \ length = (points[i] - around[j]).length(); get<0>(res) > length) {\n\t\t\t\t\
-    \t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\
-    \t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\treturn res;\n\
-    \t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\t\t// \u5207\
-    \u65AD\n\t\tPolygon cut(const Line& l) const {\n\t\t\tPolygon res;\n\t\t\tfor\
-    \ (size_t i = 0; i < size(); ++i) {\n\t\t\t\tVec2 a = at(i), b = at(i != size()\
-    \ - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin, l.end, a) != -1) {\n\t\t\t\t\tres.push_back(a);\n\
-    \t\t\t\t}\n\t\t\t\tif (iSP(l.begin, l.end, a) * iSP(l.begin, l.end, b) < 0) {\n\
-    \t\t\t\t\tres.push_back(*Line(a, b).cross_point(l));\n\t\t\t\t}\n\t\t\t}\n\t\t\
-    \treturn res;\n\t\t}\n\t\ttemplate <class Shape2DType> bool intersects(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::intersect(*this, shape);\n\t\t}\n\t\t\
-    template <class Shape2DType> bool tangent(const Shape2DType& shape) const {\n\t\
-    \t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\tfriend ostream& operator<<(ostream&\
-    \ os, const Polygon& p) {\n\t\t\tos << \"{\";\n\t\t\tfor (size_t i = 0; i < p.size();\
-    \ ++i) {\n\t\t\t\tif (i != 0) os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\
-    \treturn os << \"}\";\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Polygon&\
-    \ p) {\n\t\t\tfor (auto& v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\
-    \t\t}\n\t};\n\n}  // namespace Geometric\n#line 9 \"Geometry/Geometric.cpp\"\n\
-    \nnamespace Geometric {\n\n\tconstexpr bool Equal(LD a, LD b) {\n\t\treturn a\
-    \ < b ? b - a < EPS : a - b < EPS;\n\t}\n\tconstexpr int sgn(LD a) {\n\t\treturn\
-    \ a < -EPS ? -1 : a > EPS ? 1 : 0;\n\t}\n\n\tconstexpr LD deg_to_rad(LD deg) {\n\
-    \t\treturn deg * PI / 180;\n\t}\n\tconstexpr LD rad_to_deg(LD rad) {\n\t\treturn\
-    \ rad * 180 / PI;\n\t}\n\n\tVec2 Vec2::projection(const Line& l) const {\n\t\t\
-    return l.begin + l.vec().normalized() * (*this - l.begin).dot(l.vec()) / l.vec().length();\n\
-    \t}\n\tVec2 Vec2::reflection(const Line& l) const {\n\t\treturn *this + (projection(l)\
-    \ - *this) * 2;\n\t}\n\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c)\
-    \ {\n\t\tint flag = sgn((b - a).cross(c - a));\n\t\tif (flag != 0) {\n\t\t\treturn\
-    \ flag;\n\t\t} else {\n\t\t\tif (sgn((b - a).dot(c - b)) > 0) {\n\t\t\t\treturn\
-    \ 2;\n\t\t\t} else if (sgn((a - b).dot(c - a)) > 0) {\n\t\t\t\treturn -2;\n\t\t\
-    \t} else {\n\t\t\t\treturn 0;\n\t\t\t}\n\t\t}\n\t}\n\n\tint angle_type(const Vec2&\
-    \ a, const Vec2& b, const Vec2& c) {\n\t\tif (int f = sgn((a - b).dot(c - b));\
-    \ f > 0) {\n\t\t\treturn 0;\n\t\t} else if (f == 0) {\n\t\t\treturn 1;\n\t\t}\
-    \ else {\n\t\t\treturn 2;\n\t\t}\n\t}\n\n\tLD angle(const Vec2& a, const Vec2&\
-    \ b, const Vec2& c) {\n\t\t// return acos((a - b).dot(c - b) / (a.distance(b)\
-    \ * c.distance(b)));\n\t\t// return abs((a - b).rotation(-(c - b).angle()).angle());\n\
-    \t\treturn (c - b).rotation(-(a - b).angle()).angle();\n\t}\n\n\tLD distance(const\
-    \ Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x - v2.x, v1.y - v2.y);\n\t\
-    }\n\tLD distance(const Vec2& v, const Line& l) {\n\t\treturn abs(l.vec().cross(v\
-    \ - l.begin) / l.vec().length());\n\t}\n\tLD distance(const Vec2& v, const Segment&\
-    \ s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v\
+    \t\t}\n\t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const {\n\t\t\tPolygon\
+    \ res;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tVec2 a = at(i), b\
+    \ = at(i != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin, l.end, a) != -1)\
+    \ {\n\t\t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin, l.end, a)\
+    \ * iSP(l.begin, l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a, b).cross_point(l));\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate <class Shape2DType>\
+    \ bool intersects(const Shape2DType& shape) const {\n\t\t\treturn Geometric::intersect(*this,\
+    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool tangent(const Shape2DType&\
+    \ shape) const {\n\t\t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\t\
+    friend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{\"\
+    ;\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \"\
+    , \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \"}\";\n\t\t}\n\t\tfriend\
+    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
+    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric\n\
+    #line 9 \"Geometry/Geometric.cpp\"\n\nnamespace Geometric {\n\n\tconstexpr bool\
+    \ Equal(LD a, LD b) {\n\t\treturn a < b ? b - a < EPS : a - b < EPS;\n\t}\n\t\
+    constexpr int sgn(LD a) {\n\t\treturn a < -EPS ? -1 : a > EPS ? 1 : 0;\n\t}\n\n\
+    \tconstexpr LD deg_to_rad(LD deg) {\n\t\treturn deg * PI / 180;\n\t}\n\tconstexpr\
+    \ LD rad_to_deg(LD rad) {\n\t\treturn rad * 180 / PI;\n\t}\n\n\tVec2 Vec2::projection(const\
+    \ Line& l) const {\n\t\treturn l.begin + l.vec().normalized() * (*this - l.begin).dot(l.vec())\
+    \ / l.vec().length();\n\t}\n\tVec2 Vec2::reflection(const Line& l) const {\n\t\
+    \treturn *this + (projection(l) - *this) * 2;\n\t}\n\n\tint iSP(const Vec2& a,\
+    \ const Vec2& b, const Vec2& c) {\n\t\tint flag = sgn((b - a).cross(c - a));\n\
+    \t\tif (flag != 0) {\n\t\t\treturn flag;\n\t\t} else {\n\t\t\tif (sgn((b - a).dot(c\
+    \ - b)) > 0) {\n\t\t\t\treturn 2;\n\t\t\t} else if (sgn((a - b).dot(c - a)) >\
+    \ 0) {\n\t\t\t\treturn -2;\n\t\t\t} else {\n\t\t\t\treturn 0;\n\t\t\t}\n\t\t}\n\
+    \t}\n\n\tint angle_type(const Vec2& a, const Vec2& b, const Vec2& c) {\n\t\tif\
+    \ (int f = sgn((a - b).dot(c - b)); f > 0) {\n\t\t\treturn 0;\n\t\t} else if (f\
+    \ == 0) {\n\t\t\treturn 1;\n\t\t} else {\n\t\t\treturn 2;\n\t\t}\n\t}\n\n\tLD\
+    \ angle(const Vec2& a, const Vec2& b, const Vec2& c) {\n\t\t// return acos((a\
+    \ - b).dot(c - b) / (a.distance(b) * c.distance(b)));\n\t\t// return abs((a -\
+    \ b).rotation(-(c - b).angle()).angle());\n\t\treturn (c - b).rotation(-(a - b).angle()).angle();\n\
+    \t}\n\n\tLD distance(const Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x\
+    \ - v2.x, v1.y - v2.y);\n\t}\n\tLD distance(const Vec2& v, const Line& l) {\n\t\
+    \treturn abs(l.vec().cross(v - l.begin) / l.vec().length());\n\t}\n\tLD distance(const\
+    \ Vec2& v, const Segment& s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v\
     \ - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin), v.distance(s.end));\n\
     \t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\t}\n\tLD distance(const\
     \ Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v) - c.r);\n\
@@ -561,7 +544,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_dot_cross.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 18:27:33+09:00'
+  timestamp: '2020-11-16 21:37:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_dot_cross.test.cpp

@@ -12,6 +12,9 @@ data:
     title: Geometry/Vec2.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Geometry/ClosestPair.cpp
+    title: Geometry/ClosestPair.cpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
   _extendedVerifiedWith:
@@ -298,37 +301,21 @@ data:
     \ + 1) % size();\n\t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist\
     \ < d) {\n\t\t\t\t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\
     \t\t\t\t}\n\t\t\t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist,\
-    \ i_max, j_max};\n\t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2,\
-    \ Vec2> closest_pair() const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(),\
-    \ points.end(), Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left,\
-    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\
-    \tif (n <= 1) {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t\
-    } else {\n\t\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\
-    \t\t\t\t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\
-    \t\t\tinplace_merge(points.begin() + left, points.begin() + mid, points.begin()\
-    \ + right, Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor\
-    \ (int i = left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x\
-    \ - x)) {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size =\
-    \ around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <=\
-    \ points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\
-    \t\t\t\tif (LD length = (points[i] - around[j]).length(); get<0>(res) > length)\
-    \ {\n\t\t\t\t\t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\t\
-    return res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\
-    \t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const {\n\t\t\tPolygon res;\n\
-    \t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tVec2 a = at(i), b = at(i\
-    \ != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin, l.end, a) != -1) {\n\t\
-    \t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin, l.end, a) * iSP(l.begin,\
-    \ l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a, b).cross_point(l));\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate <class Shape2DType> bool\
-    \ intersects(const Shape2DType& shape) const {\n\t\t\treturn Geometric::intersect(*this,\
-    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool tangent(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\t\
-    friend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{\"\
-    ;\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \"\
-    , \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \"}\";\n\t\t}\n\t\tfriend\
-    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
-    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric\n"
+    \ i_max, j_max};\n\t\t}\n\t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const\
+    \ {\n\t\t\tPolygon res;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\t\
+    Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) != -1) {\n\t\t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) * iSP(l.begin, l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a,\
+    \ b).cross_point(l));\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate\
+    \ <class Shape2DType> bool intersects(const Shape2DType& shape) const {\n\t\t\t\
+    return Geometric::intersect(*this, shape);\n\t\t}\n\t\ttemplate <class Shape2DType>\
+    \ bool tangent(const Shape2DType& shape) const {\n\t\t\treturn Geometric::tangent(*this,\
+    \ shape);\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const Polygon& p)\
+    \ {\n\t\t\tos << \"{\";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\
+    \tif (i != 0) os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os <<\
+    \ \"}\";\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\t\
+    \t\tfor (auto& v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t\
+    };\n\n}  // namespace Geometric\n"
   code: "#pragma once\n#include \"./Geometric.hpp\"\n#include \"./Vec2.hpp\"\n#include\
     \ \"./Line.hpp\"\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
     #include <utility>\n#include <tuple>\nusing namespace std;\n\nnamespace Geometric\
@@ -373,37 +360,21 @@ data:
     \ + 1) % size();\n\t\t\t\t}\n\t\t\t\tif (LD d = (at(i) - at(j)).length(); max_dist\
     \ < d) {\n\t\t\t\t\tmax_dist = d;\n\t\t\t\t\ti_max = i;\n\t\t\t\t\tj_max = j;\n\
     \t\t\t\t}\n\t\t\t} while (i != i_start || j != j_start);\n\t\t\treturn {max_dist,\
-    \ i_max, j_max};\n\t\t}\n\t\t// \u6700\u8FD1\u70B9\u5BFE\n\t\ttuple<LD, Vec2,\
-    \ Vec2> closest_pair() const {\n\t\t\tvector<Vec2> points = *this;\n\t\t\tsort(points.begin(),\
-    \ points.end(), Vec2::compare_xy);\n\n\t\t\tauto dfs = [&](auto self, int left,\
-    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\t\tint n = right - left;\n\t\t\t\
-    \tif (n <= 1) {\n\t\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t\t\
-    } else {\n\t\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\t\tLD x = points[mid].x;\n\
-    \t\t\t\t\tauto res = min(self(self, left, mid), self(self, mid, right));\n\t\t\
-    \t\t\tinplace_merge(points.begin() + left, points.begin() + mid, points.begin()\
-    \ + right, Vec2::compare_y);\n\n\t\t\t\t\tvector<Vec2> around;\n\t\t\t\t\tfor\
-    \ (int i = left; i < right; ++i) {\n\t\t\t\t\t\tif (get<0>(res) <= abs(points[i].x\
-    \ - x)) {\n\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tfor (int size =\
-    \ around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\t\tif (get<0>(res) <=\
-    \ points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\t}\n\t\t\t\
-    \t\t\t\tif (LD length = (points[i] - around[j]).length(); get<0>(res) > length)\
-    \ {\n\t\t\t\t\t\t\t\tres = {length, points[i], around[j]};\n\t\t\t\t\t\t\t}\n\t\
-    \t\t\t\t\t}\n\t\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t\t}\n\t\t\t\t\t\
-    return res;\n\t\t\t\t}\n\t\t\t};\n\n\t\t\treturn dfs(dfs, 0, size());\n\t\t}\n\
-    \t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const {\n\t\t\tPolygon res;\n\
-    \t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tVec2 a = at(i), b = at(i\
-    \ != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin, l.end, a) != -1) {\n\t\
-    \t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin, l.end, a) * iSP(l.begin,\
-    \ l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a, b).cross_point(l));\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate <class Shape2DType> bool\
-    \ intersects(const Shape2DType& shape) const {\n\t\t\treturn Geometric::intersect(*this,\
-    \ shape);\n\t\t}\n\t\ttemplate <class Shape2DType> bool tangent(const Shape2DType&\
-    \ shape) const {\n\t\t\treturn Geometric::tangent(*this, shape);\n\t\t}\n\t\t\
-    friend ostream& operator<<(ostream& os, const Polygon& p) {\n\t\t\tos << \"{\"\
-    ;\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\tif (i != 0) os << \"\
-    , \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os << \"}\";\n\t\t}\n\t\tfriend\
-    \ istream& operator>>(istream& is, Polygon& p) {\n\t\t\tfor (auto& v : p) {\n\t\
-    \t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t};\n\n}  // namespace Geometric"
+    \ i_max, j_max};\n\t\t}\n\t\t// \u5207\u65AD\n\t\tPolygon cut(const Line& l) const\
+    \ {\n\t\t\tPolygon res;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\t\
+    Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) != -1) {\n\t\t\t\t\tres.push_back(a);\n\t\t\t\t}\n\t\t\t\tif (iSP(l.begin,\
+    \ l.end, a) * iSP(l.begin, l.end, b) < 0) {\n\t\t\t\t\tres.push_back(*Line(a,\
+    \ b).cross_point(l));\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn res;\n\t\t}\n\t\ttemplate\
+    \ <class Shape2DType> bool intersects(const Shape2DType& shape) const {\n\t\t\t\
+    return Geometric::intersect(*this, shape);\n\t\t}\n\t\ttemplate <class Shape2DType>\
+    \ bool tangent(const Shape2DType& shape) const {\n\t\t\treturn Geometric::tangent(*this,\
+    \ shape);\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const Polygon& p)\
+    \ {\n\t\t\tos << \"{\";\n\t\t\tfor (size_t i = 0; i < p.size(); ++i) {\n\t\t\t\
+    \tif (i != 0) os << \", \";\n\t\t\t\tos << p[i];\n\t\t\t}\n\t\t\treturn os <<\
+    \ \"}\";\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Polygon& p) {\n\t\
+    \t\tfor (auto& v : p) {\n\t\t\t\tis >> v;\n\t\t\t}\n\t\t\treturn is;\n\t\t}\n\t\
+    };\n\n}  // namespace Geometric"
   dependsOn:
   - Geometry/Geometric.hpp
   - Geometry/Vec2.hpp
@@ -411,8 +382,9 @@ data:
   isVerificationFile: false
   path: Geometry/Polygon.hpp
   requiredBy:
+  - Geometry/ClosestPair.cpp
   - Geometry/Geometric.cpp
-  timestamp: '2020-11-03 17:35:53+09:00'
+  timestamp: '2020-11-16 21:37:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_common_tangent.test.cpp

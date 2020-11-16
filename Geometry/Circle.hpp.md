@@ -9,6 +9,9 @@ data:
     title: Geometry/Vec2.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Geometry/ClosestPair.cpp
+    title: Geometry/ClosestPair.cpp
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
   - icon: ':heavy_check_mark:'
@@ -282,6 +285,7 @@ data:
   isVerificationFile: false
   path: Geometry/Circle.hpp
   requiredBy:
+  - Geometry/ClosestPair.cpp
   - Geometry/Geometric.cpp
   - Geometry/Triangle.hpp
   timestamp: '2020-11-03 17:35:53+09:00'
