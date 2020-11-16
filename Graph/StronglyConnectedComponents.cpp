@@ -1,18 +1,19 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <cassert>
 using namespace std;
 
 class StronglyConnectedComponents {
-	int V;
-	vector<vector<int>> G, rG;
+	int n;
+	vector<vector<int>> graph, rgraph;
 	vector<bool> used;
-	vector<int> cmp;
-	int k = 0;
-	vector<int> vs;
+	vector<int> cmp, vs;
+	int k;
+	bool builded = false;
 	void dfs(int v) {
 		used[v] = true;
-		for (auto e : G[v]) {
+		for (auto e : graph[v]) {
 			if (!used[e]) dfs(e);
 		}
 		vs.push_back(v);
@@ -20,24 +21,30 @@ class StronglyConnectedComponents {
 	void rdfs(int v, int k) {
 		used[v] = true;
 		cmp[v] = k;
-		for (auto e : rG[v]) {
+		for (auto e : rgraph[v]) {
 			if (!used[e]) rdfs(e, k);
 		}
 	}
 
 public:
-	StronglyConnectedComponents(int v) : V(v), G(V), rG(V), used(V), cmp(V) {}
-	void add_edge(int s, int t) {
-		G[s].push_back(t);
-		rG[t].push_back(s);
+	StronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}
+	StronglyConnectedComponents(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph), rgraph(_graph) {
+		for (int v = 0; v < n; ++v) {
+			for (int u : graph[v]) {
+				rgraph[u].push_back(v);
+			}
+		}
 	}
-	int operator[](int i) const {
-		return cmp[i];
+	void add_edge(int s, int t) {
+		builded = false;
+		graph[s].push_back(t);
+		rgraph[t].push_back(s);
 	}
 	int build() {
 		vs.clear();
-		fill(used.begin(), used.end(), false);
-		for (int i = 0; i < V; ++i) {
+		used.assign(n, false);
+		cmp.assign(n, 0);
+		for (int i = 0; i < n; ++i) {
 			if (!used[i]) dfs(i);
 		}
 		k = 0;
@@ -45,14 +52,43 @@ public:
 		for (int i = vs.size() - 1; i >= 0; --i) {
 			if (!used[vs[i]]) rdfs(vs[i], k++);
 		}
+		builded = true;
 		return k;
 	}
-	vector<vector<int>> make_DAG() {
+	int operator[](int i) const {
+		assert(builded);
+		return cmp[i];
+	}
+	const vector<int>& get_cmp() const {
+		assert(builded);
+		return cmp;
+	}
+	const vector<vector<int>>& get_graph() const {
+		assert(builded);
+		return graph;
+	}
+	int count_strongly_components() const {
+		assert(builded);
+		return k;
+	}
+	vector<vector<int>> groups() const {
+		assert(builded);
 		vector<vector<int>> res(k);
-		for (int i = 0; i < V; ++i)
-			for (auto e : G[i]) {
-				if (cmp[i] != cmp[e]) res[cmp[i]].push_back(cmp[e]);
+		for (int i = 0; i < n; ++i) {
+			res[cmp[i]].push_back(i);
+		}
+		return res;
+	}
+	vector<vector<int>> make_DAG() const {
+		assert(builded);
+		vector<vector<int>> res(k);
+		for (int i = 0; i < n; ++i) {
+			for (auto e : graph[i]) {
+				if (cmp[i] != cmp[e]) {
+					res[cmp[i]].push_back(cmp[e]);
+				}
 			}
+		}
 		for (auto& v : res) {
 			sort(v.begin(), v.end());
 			v.erase(unique(v.begin(), v.end()), v.end());
