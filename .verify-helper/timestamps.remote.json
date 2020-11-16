@@ -20,6 +20,7 @@
 "test/DijkstraBuildPath.test.cpp": "2020-10-18 11:21:32 +0900",
 "test/Dinic.test.cpp": "2020-10-18 11:21:32 +0900",
 "test/Euler.test.cpp": "2020-10-24 16:02:07 +0900",
+"test/EulerTourForEdge.test.cpp": "2020-11-16 19:30:16 +0900",
 "test/Fibonacci.test.cpp": "2020-11-01 15:48:59 +0900",
 "test/FordFulkerson.test.cpp": "2020-10-18 11:21:32 +0900",
 "test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp": "2020-11-03 18:27:33 +0900",
