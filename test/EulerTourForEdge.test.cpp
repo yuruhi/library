@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_D"
-#include "library/Graph/EulerTourForEdge.cpp"
-#include "library/DataStructure/BinaryIndexedTree.cpp"
+#include "./../Graph/EulerTourForEdge.cpp"
+#include "./../DataStructure/BinaryIndexedTree.cpp"
 #include <iostream>
 #include <vector>
 using namespace std;
