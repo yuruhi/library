@@ -56,7 +56,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeAddQuery.cpp
       title: DataStructure/RangeAddQuery.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RangeSet.cpp
       title: DataStructure/RangeSet.cpp
     - icon: ':heavy_check_mark:'
@@ -180,7 +180,7 @@ data:
     - icon: ':warning:'
       path: Graph/SpanningTree.cpp
       title: Graph/SpanningTree.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/StronglyConnectedComponents.cpp
       title: Graph/StronglyConnectedComponents.cpp
     - icon: ':heavy_check_mark:'
@@ -609,11 +609,17 @@ data:
       path: test/RangeAddQuery.test.cpp
       title: test/RangeAddQuery.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/RangeSet.test.cpp
+      title: test/RangeSet.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/StronglyConnectedComponents.test.cpp
+      title: test/StronglyConnectedComponents.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
