@@ -47,7 +47,7 @@ data:
     - icon: ':warning:'
       path: DataStructure/RAUQRSQ.cpp
       title: DataStructure/RAUQRSQ.cpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: DataStructure/RUQRSQ.cpp
       title: DataStructure/RUQRSQ.cpp
     - icon: ':heavy_check_mark:'
@@ -599,9 +599,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RAQRminQ.test.cpp
       title: test/RAQRminQ.test.cpp
-    - icon: ':x:'
-      path: test/RUQRSQ.test.cpp
-      title: test/RUQRSQ.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RUQRmQ.test.cpp
       title: test/RUQRmQ.test.cpp
