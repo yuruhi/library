@@ -7,7 +7,7 @@ public:
 	using value_type = T;
 
 private:
-	using data_type = PersistentArray<value_type, 3>;
+	using data_type = PersistentArray<value_type, 2>;
 	data_type data;
 	int begin, end;  // [begin, end)
 	PersistentQueue(const data_type& _data, int _begin, int _end) : data(_data), begin(_begin), end(_end) {}
