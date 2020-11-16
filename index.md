@@ -3,13 +3,16 @@ data:
   libraryCategories:
   - name: DP
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DP/Knapsack.cpp
       title: DP/Knapsack.cpp
+    - icon: ':heavy_check_mark:'
+      path: DP/Knapsack01.cpp
+      title: DP/Knapsack01.cpp
     - icon: ':warning:'
       path: DP/LCS.cpp
       title: DP/LCS.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DP/LIS.cpp
       title: DP/LIS.cpp
     - icon: ':heavy_check_mark:'
@@ -153,9 +156,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
-    - icon: ':warning:'
-      path: Graph/HasCycle.cpp
-      title: Graph/HasCycle.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/Kruskal.cpp
       title: Graph/Kruskal.cpp
@@ -305,7 +305,7 @@ data:
     - icon: ':warning:'
       path: Utility/Imos2D.cpp
       title: Utility/Imos2D.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/ImosLinear.cpp
       title: Utility/ImosLinear.cpp
     - icon: ':warning:'
@@ -570,6 +570,9 @@ data:
       path: test/Geometric_tangent_to_circle.test.cpp
       title: test/Geometric_tangent_to_circle.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/ImosLinear.test.cpp
+      title: test/ImosLinear.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Input_Output.test.cpp
       title: test/Input_Output.test.cpp
     - icon: ':heavy_check_mark:'
@@ -579,11 +582,20 @@ data:
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Knapsack.test.cpp
+      title: test/Knapsack.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Knapsack01.test.cpp
+      title: test/Knapsack01.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Kruskal.test.cpp
       title: test/Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/LCA.test.cpp
       title: test/LCA.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/LIS.test.cpp
+      title: test/LIS.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Levenshtein.test.cpp
       title: test/Levenshtein.test.cpp

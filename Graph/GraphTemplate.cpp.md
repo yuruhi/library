@@ -23,9 +23,6 @@ data:
   - icon: ':warning:'
     path: Graph/DijkstraST.cpp
     title: Graph/DijkstraST.cpp
-  - icon: ':warning:'
-    path: Graph/HasCycle.cpp
-    title: Graph/HasCycle.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/Kruskal.cpp
     title: Graph/Kruskal.cpp
@@ -114,7 +111,6 @@ data:
   - Graph/Diameter.cpp
   - Graph/DijkstraBuildPath.cpp
   - Graph/Dijkstra.cpp
-  - Graph/HasCycle.cpp
   - Graph/LCA.cpp
   - Graph/ShortestPathTree.cpp
   - Graph/BuildTreePath.cpp
