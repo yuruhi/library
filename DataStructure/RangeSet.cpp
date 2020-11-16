@@ -1,6 +1,8 @@
 #pragma once
 #include <set>
 #include <utility>
+#include <optional>
+#include <limits>
 #include <cassert>
 using namespace std;
 
@@ -136,6 +138,14 @@ public:
 			return r + 1;
 		} else {
 			return x;
+		}
+	}
+	optional<range_type> find_range(value_type x) const {
+		range_type r = prev_range(x);
+		if (r.first <= x && x <= r.second) {
+			return r;
+		} else {
+			return nullopt;
 		}
 	}
 };
