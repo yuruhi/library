@@ -1,78 +1,90 @@
 #pragma once
 #include <set>
 #include <utility>
-#include <iostream>
+#include <cassert>
 using namespace std;
 
 template <class T> class RangeSet {
-	constexpr static T MIN = numeric_limits<T>::min();
-	constexpr static T MAX = numeric_limits<T>::max();
-	set<pair<T, T>> ranges;
+public:
+	using size_type = size_t;
+	using value_type = T;
+	using range_type = pair<value_type, value_type>;
 
-	auto next_range_iterator(T x) const {
+private:
+	constexpr static value_type MIN = numeric_limits<value_type>::min();
+	constexpr static value_type MAX = numeric_limits<value_type>::max();
+	set<range_type> ranges;
+	size_t size_m;
+
+	auto prev_range_iterator(value_type x) const {
 		return prev(ranges.lower_bound({x + 1, x + 1}));
 	}
-	pair<T, T> next_range(T x) const {
-		return *next_range_iterator(x);
+	range_type prev_range(value_type x) const {
+		return *prev_range_iterator(x);
 	}
 
 public:
-	RangeSet() {
+	RangeSet() : size_m(0) {
 		ranges.emplace(MIN, MIN);
 		ranges.emplace(MAX, MAX);
 	};
 	size_t size() const {
+		return size_m;
+	}
+	size_t count_ranges() const {
 		return ranges.size() - 2;
+	}
+	bool empty() const {
+		return size() == 0;
 	}
 	void clear() {
 		ranges.clear();
 		ranges.emplace(MIN, MIN);
 		ranges.smplace(MAX, MAX);
+		size_m = 0;
 	}
-	bool empty() const {
-		return size() == 0;
-	}
-	bool covered(T l, T r) const {
+	bool contains(value_type l, value_type r) const {
 		assert(l <= r);
-		auto [L, R] = next_range(l);
+		auto [L, R] = prev_range(l);
 		return L <= l && r <= R;
 	}
-	bool coverd(T x) const {
-		return covered(x, x);
+	bool contains(value_type x) const {
+		return contains(x, x);
 	}
-	T insert(T l, T r) {
+	value_type insert(value_type l, value_type r) {
 		assert(l <= r);
-		auto it = next_range_iterator(l);
-		if (it->first <= l && r <= it->second) {
-			return 0;
+		auto it = prev_range_iterator(l);
+		value_type erased_count = 0;
+		if (l < it->first || it->second < r) {
+			if (it->first <= l && l <= it->second + 1) {
+				l = it->first;
+				erased_count += it->second - it->first + 1;
+				it = ranges.erase(it);
+			} else {
+				it = next(it);
+			}
+			while (r > it->second) {
+				erased_count += it->second - it->first + 1;
+				it = ranges.erase(it);
+			}
+			if (it->first - 1 <= r && r <= it->second) {
+				erased_count += it->second - it->first + 1;
+				r = it->second;
+				ranges.erase(it);
+			}
+			ranges.emplace(l, r);
 		}
-
-		T erased_count = 0;
-		if (it->first <= l && l <= it->second + 1) {
-			l = it->first;
-			erased_count += it->second - it->first + 1;
-			it = ranges.erase(it);
-		} else {
-			it = next(it);
-		}
-		while (r > it->second) {
-			erased_count += it->second - it->first + 1;
-			it = ranges.erase(it);
-		}
-		if (it->first - 1 <= r && r <= it->second) {
-			erased_count += it->second - it->first + 1;
-			r = it->second;
-			ranges.erase(it);
-		}
-		ranges.emplace(l, r);
-		return r - l + 1 - erased_count;
+		value_type inserted_count = r - l + 1 - erased_count;
+		size_m += inserted_count;
+		return inserted_count;
 	}
-	T insert(T x) {
+	value_type insert(value_type x) {
 		return insert(x, x);
 	}
-	T erase(T l, T r) {
+	value_type erase(value_type l, value_type r) {
 		assert(l <= r);
-		auto it = next_range_iterator(l);
+		auto it = prev_range_iterator(l);
+		value_type erased_count = 0;
 		if (it->first <= l && r <= it->second) {
 			if (it->first < l) {
 				ranges.emplace(it->first, l - 1);
@@ -81,45 +93,45 @@ public:
 				ranges.emplace(r + 1, it->second);
 			}
 			ranges.erase(it);
-			return r - l + 1;
-		}
-
-		T erased_count = 0;
-		if (it->first <= l && l <= it->second) {
-			erased_count += it->second - l + 1;
-			if (it->first < l) {
-				ranges.emplace(it->first, l - 1);
-			}
-			it = ranges.erase(it);
+			erased_count = r - l + 1;
 		} else {
-			it = next(it);
-		}
-		while (it->second <= r) {
-			erased_count += it->second - it->first + 1;
-			it = ranges.erase(it);
-		}
-		if (it->first <= r && r <= it->second) {
-			erased_count += r - it->first + 1;
-			if (r < it->second) {
-				ranges.emplace(r + 1, it->second);
+			if (it->first <= l && l <= it->second) {
+				erased_count += it->second - l + 1;
+				if (it->first < l) {
+					ranges.emplace(it->first, l - 1);
+				}
+				it = ranges.erase(it);
+			} else {
+				it = next(it);
 			}
-			ranges.erase(it);
+			while (it->second <= r) {
+				erased_count += it->second - it->first + 1;
+				it = ranges.erase(it);
+			}
+			if (it->first <= r && r <= it->second) {
+				erased_count += r - it->first + 1;
+				if (r < it->second) {
+					ranges.emplace(r + 1, it->second);
+				}
+				ranges.erase(it);
+			}
 		}
+		size_m -= erased_count;
 		return erased_count;
 	}
-	T erase(T x) {
+	value_type erase(value_type x) {
 		return erase(x, x);
 	}
-	T find_next(T x) const {
-		auto [l, r] = next_range(x);
+	value_type find_next(value_type x) const {
+		auto [l, r] = prev_range(x);
 		if (l <= x && x <= r) {
 			return x;
 		} else {
 			return l;
 		}
 	}
-	T mex(T x) const {
-		auto [l, r] = next_range(x);
+	value_type mex(value_type x) const {
+		auto [l, r] = prev_range(x);
 		if (l <= x && x <= r) {
 			return r + 1;
 		} else {
