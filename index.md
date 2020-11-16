@@ -138,7 +138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/EulerTourForEdge.cpp
       title: Graph/EulerTourForEdge.cpp
     - icon: ':warning:'
@@ -494,7 +494,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Euler.test.cpp
       title: test/Euler.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/EulerTourForEdge.test.cpp
       title: test/EulerTourForEdge.test.cpp
     - icon: ':heavy_check_mark:'

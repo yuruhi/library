@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/EulerTourForEdge.test.cpp
+    title: test/EulerTourForEdge.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/EulerTourForEdge.cpp\"\n#include <vector>\n#include\
@@ -46,8 +49,9 @@ data:
   path: Graph/EulerTourForEdge.cpp
   requiredBy: []
   timestamp: '2020-11-04 17:57:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/EulerTourForEdge.test.cpp
 documentation_of: Graph/EulerTourForEdge.cpp
 layout: document
 redirect_from:

@@ -10,6 +10,9 @@ data:
     path: test/BinaryIndexedTree.test.cpp
     title: test/BinaryIndexedTree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/EulerTourForEdge.test.cpp
+    title: test/EulerTourForEdge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Inversion.test.cpp
     title: test/Inversion.test.cpp
   _pathExtension: cpp
@@ -54,6 +57,7 @@ data:
   timestamp: '2020-11-07 18:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/EulerTourForEdge.test.cpp
   - test/Inversion.test.cpp
   - test/BinaryIndexedTree.test.cpp
 documentation_of: DataStructure/BinaryIndexedTree.cpp
