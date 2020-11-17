@@ -53,6 +53,7 @@
 "test/Knapsack01.test.cpp": "2020-11-16 21:19:46 +0900",
 "test/Kruskal.test.cpp": "2020-11-15 19:06:57 +0900",
 "test/LCA.test.cpp": "2020-10-18 11:21:32 +0900",
+"test/LCS.test.cpp": "2020-11-16 22:05:30 +0900",
 "test/LIS.test.cpp": "2020-11-16 21:22:49 +0900",
 "test/Levenshtein.test.cpp": "2020-11-16 20:30:09 +0900",
 "test/PersistentQueue.test.cpp": "2020-11-16 17:59:08 +0900",
