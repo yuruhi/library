@@ -8,20 +8,17 @@ template <class T, size_t LOG> class PersistentArray {
 public:
 	using value_type = T;
 	using const_reference = const value_type&;
+	static constexpr size_t CHILD_SIZE = 1 << LOG;
 
 private:
 	struct node_type;
 	using node_ptr = shared_ptr<node_type>;
-	static constexpr size_t CHILD_SIZE = 1 << LOG;
 	struct node_type {
 		value_type value;
 		array<node_ptr, CHILD_SIZE> child;
 	};
 
-	node_ptr root;
-
-	PersistentArray(node_ptr _root) : root(_root) {}
-	value_type get(size_t i, node_ptr p) const {
+	static value_type get(size_t i, node_ptr p) {
 		if (!p) {
 			return value_type();
 		} else if (i == 0) {
@@ -30,7 +27,7 @@ private:
 			return get(i >> LOG, p->child[i & (CHILD_SIZE - 1)]);
 		}
 	}
-	node_ptr set(size_t i, const_reference val, node_ptr p) {
+	static node_ptr set(size_t i, const_reference val, node_ptr p) {
 		node_ptr result = p ? make_shared<node_type>(*p) : make_shared<node_type>();
 		if (i == 0) {
 			result->value = val;
@@ -40,7 +37,7 @@ private:
 		}
 		return result;
 	}
-	void destructive_set(size_t i, const_reference val, node_ptr& p) {
+	static void destructive_set(size_t i, const_reference val, node_ptr& p) {
 		if (!p) {
 			p = make_shared<node_type>();
 		}
@@ -51,6 +48,9 @@ private:
 			destructive_set(i >> LOG, val, p->child[index]);
 		}
 	}
+
+	node_ptr root;
+	PersistentArray(node_ptr _root) : root(_root) {}
 
 public:
 	PersistentArray() : root() {}
