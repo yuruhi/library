@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/TopologicalSort.cpp
     title: Graph/TopologicalSort.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B
@@ -18,8 +18,8 @@ data:
     #include <algorithm>\nusing namespace std;\n\nvector<int> TopologicalSort(const\
     \ vector<vector<int>>& graph) {\n\tint V = graph.size();\n\tvector<bool> visited(V);\n\
     \tvector<int> res;\n\tfunction<void(int)> dfs = [&](int u) {\n\t\tif (visited[u])\
-    \ return;\n\t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u])\n\t\t\tdfs(i);\n\
-    \t\tres.push_back(u);\n\t};\n\tfor (int i = 0; i < V; i++)\n\t\tdfs(i);\n\treverse(res.begin(),\
+    \ return;\n\t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u]) dfs(i);\n\t\t\
+    res.push_back(u);\n\t};\n\tfor (int i = 0; i < V; i++) dfs(i);\n\treverse(res.begin(),\
     \ res.end());\n\treturn res;\n}\n#line 3 \"test/TopologicalSort.test.cpp\"\n#include\
     \ <iostream>\n#line 5 \"test/TopologicalSort.test.cpp\"\nusing namespace std;\n\
     \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint\
@@ -37,8 +37,8 @@ data:
   isVerificationFile: true
   path: test/TopologicalSort.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-20 21:19:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/TopologicalSort.test.cpp
 layout: document

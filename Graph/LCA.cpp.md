@@ -33,7 +33,7 @@ data:
     const int V, LOG;\n\tvector<int> dist;\n\tvector<vector<int>> table;\n\tvoid dfs(const\
     \ Graph& g, int v, int p, int d) {\n\t\ttable[0][v] = p;\n\t\tdist[v] = d;\n\t\
     \tfor (auto e : g[v])\n\t\t\tif (e.to != p) {\n\t\t\t\tdfs(g, e.to, v, d + 1);\n\
-    \t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& g, const int root) : V(g.size()),\
+    \t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& g, const int root)\n\t    : V(g.size()),\
     \ LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {\n\t\tdfs(g, root, -1,\
     \ 0);\n\t\tfor (int k = 0; k + 1 < LOG; ++k) {\n\t\t\tfor (int v = 0; v < V; ++v)\
     \ {\n\t\t\t\tif (table[k][v] < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t\
@@ -49,7 +49,7 @@ data:
     \ V, LOG;\n\tvector<int> dist;\n\tvector<vector<int>> table;\n\tvoid dfs(const\
     \ Graph& g, int v, int p, int d) {\n\t\ttable[0][v] = p;\n\t\tdist[v] = d;\n\t\
     \tfor (auto e : g[v])\n\t\t\tif (e.to != p) {\n\t\t\t\tdfs(g, e.to, v, d + 1);\n\
-    \t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& g, const int root) : V(g.size()),\
+    \t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& g, const int root)\n\t    : V(g.size()),\
     \ LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {\n\t\tdfs(g, root, -1,\
     \ 0);\n\t\tfor (int k = 0; k + 1 < LOG; ++k) {\n\t\t\tfor (int v = 0; v < V; ++v)\
     \ {\n\t\t\t\tif (table[k][v] < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: false
   path: Graph/LCA.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/LCA.test.cpp

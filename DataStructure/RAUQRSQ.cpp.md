@@ -10,8 +10,8 @@ data:
   bundledCode: "#line 2 \"DataStructure/RAUQRSQ.cpp\"\n#include <vector>\n#include\
     \ <optional>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> class\
     \ RAUQRSQ {\n\tint n;\n\tT init;\n\tvector<T> node, lazy_a;\n\tvector<optional<T>>\
-    \ lazy_u;\n\tstatic int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n)\n\t\t\
-    \tm *= 2;\n\t\treturn m;\n\t}\n\tvoid set_lazy_a(int i, const T& x) {\n\t\tlazy_a[i]\
+    \ lazy_u;\n\tstatic int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *=\
+    \ 2;\n\t\treturn m;\n\t}\n\tvoid set_lazy_a(int i, const T& x) {\n\t\tlazy_a[i]\
     \ += x;\n\t}\n\tvoid set_lazy_u(int i, const T& x) {\n\t\tlazy_a[i] = 0;\n\t\t\
     lazy_u[i] = x;\n\t}\n\tvoid eval(int k, int l, int r) {\n\t\tif (lazy_u[k]) {\n\
     \t\t\tnode[k] = *lazy_u[k];\n\t\t\tif (r - l > 1) {\n\t\t\t\tset_lazy_u(2 * k\
@@ -49,8 +49,8 @@ data:
   code: "#pragma once\n#include <vector>\n#include <optional>\n#include <cassert>\n\
     using namespace std;\n\ntemplate <class T> class RAUQRSQ {\n\tint n;\n\tT init;\n\
     \tvector<T> node, lazy_a;\n\tvector<optional<T>> lazy_u;\n\tstatic int ceil2(int\
-    \ n) {\n\t\tint m = 1;\n\t\twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn m;\n\t}\n\
-    \tvoid set_lazy_a(int i, const T& x) {\n\t\tlazy_a[i] += x;\n\t}\n\tvoid set_lazy_u(int\
+    \ n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid\
+    \ set_lazy_a(int i, const T& x) {\n\t\tlazy_a[i] += x;\n\t}\n\tvoid set_lazy_u(int\
     \ i, const T& x) {\n\t\tlazy_a[i] = 0;\n\t\tlazy_u[i] = x;\n\t}\n\tvoid eval(int\
     \ k, int l, int r) {\n\t\tif (lazy_u[k]) {\n\t\t\tnode[k] = *lazy_u[k];\n\t\t\t\
     if (r - l > 1) {\n\t\t\t\tset_lazy_u(2 * k + 0, *lazy_u[k]);\n\t\t\t\tset_lazy_u(2\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: DataStructure/RAUQRSQ.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/RAUQRSQ.cpp

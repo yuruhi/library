@@ -44,7 +44,7 @@ data:
     \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn vector(sizes[0],\
     \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
     \t\t\treturn vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}\
-    \  // namespace internal\ntemplate <class T, size_t N> auto make_vector(const\
+    \  // namespace internal\ntemplate <class T, size_t N>\nauto make_vector(const\
     \ int (&sizes)[N], const T& init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\
     \treturn internal::make_vector<T, N>(s, init);\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <cmath>\n\
@@ -78,16 +78,16 @@ data:
     \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn vector(sizes[0],\
     \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
     \t\t\treturn vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}\
-    \  // namespace internal\ntemplate <class T, size_t N> auto make_vector(const\
+    \  // namespace internal\ntemplate <class T, size_t N>\nauto make_vector(const\
     \ int (&sizes)[N], const T& init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\
     \treturn internal::make_vector<T, N>(s, init);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template/functions.cpp
   requiredBy:
-  - template/template.cpp
   - Math/BabystepGiantstep.cpp
-  timestamp: '2020-11-15 09:47:34+09:00'
+  - template/template.cpp
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/functions.cpp

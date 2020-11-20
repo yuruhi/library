@@ -28,7 +28,7 @@ data:
     \t\t\t\t\tres[i * k + y][j * k + x] = a[i][j];\n\t\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ res;\n}\ntemplate <class T> vector<vector<T>> Chunk(const vector<T>& a, size_t\
     \ n) {\n\tvector<vector<T>> res;\n\tif (n == 0) return res;\n\tfor (size_t i =\
-    \ 0; i < (a.size() + n - 1))\n\t\treturn res;\n}\ntemplate <class T> void Rotate90(vector<vector<T>>&\
+    \ 0; i < (a.size() + n - 1)) return res;\n}\ntemplate <class T> void Rotate90(vector<vector<T>>&\
     \ a) {\n\ta = Rotated90(a);\n}\ntemplate <class T> void Rotate180(vector<vector<T>>&\
     \ a) {\n\ta = Rotated180(a);\n}\ntemplate <class T> void Rotate270(vector<vector<T>>&\
     \ a) {\n\ta = Rotated270(a);\n}\ntemplate <class T> void Scale(vector<vector<T>>&\
@@ -54,7 +54,7 @@ data:
     \t\t\t\t\tres[i * k + y][j * k + x] = a[i][j];\n\t\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ res;\n}\ntemplate <class T> vector<vector<T>> Chunk(const vector<T>& a, size_t\
     \ n) {\n\tvector<vector<T>> res;\n\tif (n == 0) return res;\n\tfor (size_t i =\
-    \ 0; i < (a.size() + n - 1))\n\t\treturn res;\n}\ntemplate <class T> void Rotate90(vector<vector<T>>&\
+    \ 0; i < (a.size() + n - 1)) return res;\n}\ntemplate <class T> void Rotate90(vector<vector<T>>&\
     \ a) {\n\ta = Rotated90(a);\n}\ntemplate <class T> void Rotate180(vector<vector<T>>&\
     \ a) {\n\ta = Rotated180(a);\n}\ntemplate <class T> void Rotate270(vector<vector<T>>&\
     \ a) {\n\ta = Rotated270(a);\n}\ntemplate <class T> void Scale(vector<vector<T>>&\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: Utility/VectorOperation.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/VectorOperation.cpp

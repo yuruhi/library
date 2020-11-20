@@ -89,7 +89,8 @@ data:
     \ Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend\
     \ istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\
     \t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},\
-    \ {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
+    \   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1},\
+    \ {-1, 1}};\n"
   code: "#pragma once\n#include <vector>\n#include <utility>\n#include <iostream>\n\
     using namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point>\
     \ d;\n\tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t\
@@ -169,13 +170,14 @@ data:
     \ Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend\
     \ istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\
     \t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},\
-    \ {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
+    \   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1},\
+    \ {-1, 1}};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Point.cpp
   requiredBy:
   - Serch/GridBFS.cpp
-  timestamp: '2020-11-07 20:55:51+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Point.cpp

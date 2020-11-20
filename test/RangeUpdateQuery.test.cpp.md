@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/RangeUpdateQuery.cpp
     title: DataStructure/RangeUpdateQuery.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_D
@@ -17,8 +17,8 @@ data:
     \n#line 2 \"DataStructure/RangeUpdateQuery.cpp\"\n#include <vector>\n#include\
     \ <utility>\nusing namespace std;\n\ntemplate <class T> class RangeUpdateQuery\
     \ {\n\tint n;\n\tvector<pair<size_t, T>> a;\n\tsize_t update_count = 1;\n\tstatic\
-    \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn\
-    \ m;\n\t}\n\npublic:\n\tRangeUpdateQuery(int _n, const T& init) : n(ceil2(_n)),\
+    \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\
+    \t}\n\npublic:\n\tRangeUpdateQuery(int _n, const T& init)\n\t    : n(ceil2(_n)),\
     \ a(n * 2, make_pair(0, init)) {}\n\tRangeUpdateQuery(const vector<T>& v) : n(ceil2(v.size())),\
     \ a(n * 2) {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\ta[i + n] = make_pair(0,\
     \ v[i]);\n\t\t}\n\t}\n\tvoid update(int l, int r, const T& x) {\n\t\tfor (l +=\
@@ -49,8 +49,8 @@ data:
   isVerificationFile: true
   path: test/RangeUpdateQuery.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-20 21:19:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/RangeUpdateQuery.test.cpp
 layout: document

@@ -58,8 +58,8 @@ data:
   timestamp: '2020-10-24 16:02:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/PrimeFactor.test.cpp
   - test/Euler.test.cpp
+  - test/PrimeFactor.test.cpp
 documentation_of: Math/PrimeFactor.cpp
 layout: document
 redirect_from:

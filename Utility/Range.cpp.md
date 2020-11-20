@@ -16,12 +16,12 @@ data:
     \ numeric_limits<T>::min()};\n\t}\n\tT x, y;  // [x, y]\n\tconstexpr Range() :\
     \ x(0), y(0){};\n\tconstexpr Range(T _x, T _y, bool exclude_end = false) : x(_x),\
     \ y(_y - exclude_end) {\n\t\tassert(x <= y);\n\t}\n\tconstexpr Range(const Range&\
-    \ _r, bool exclude_end = false) : x(_r.x), y(_r.y - exclude_end) {\n\t\tassert(x\
-    \ <= y);\n\t}\n\tconstexpr operator bool() const {\n\t\treturn *this != nil();\n\
-    \t}\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn x == r.x\
-    \ && y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const {\n\t\t\
-    return x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range& r)\
-    \ const {\n\t\treturn to_pair() < r.to_pair();\n\t}\n\tconstexpr bool operator<=(const\
+    \ _r, bool exclude_end = false)\n\t    : x(_r.x), y(_r.y - exclude_end) {\n\t\t\
+    assert(x <= y);\n\t}\n\tconstexpr operator bool() const {\n\t\treturn *this !=\
+    \ nil();\n\t}\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn\
+    \ x == r.x && y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const\
+    \ {\n\t\treturn x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range&\
+    \ r) const {\n\t\treturn to_pair() < r.to_pair();\n\t}\n\tconstexpr bool operator<=(const\
     \ Range& r) const {\n\t\treturn to_pair() <= r.to_pair();\n\t}\n\tconstexpr bool\
     \ operator>(const Range& r) const {\n\t\treturn to_pair() > r.to_pair();\n\t}\n\
     \tconstexpr bool operator>=(const Range& r) const {\n\t\treturn to_pair() >= r.to_pair();\n\
@@ -51,20 +51,21 @@ data:
     \ == r.x || r.y + 1 == x;\n\t}\n\tconstexpr T size() const {\n\t\treturn *this\
     \ ? max<T>(0, y - x + 1) : 0;\n\t}\n\tconstexpr T sum() const {\n\t\treturn (x\
     \ + y) * size() / 2;\n\t}\n\tfriend ostream& operator<<(ostream& os, const Range&\
-    \ r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\") : (os << '[' << r.x\
-    \ << \", \" << r.y << ']');\n\t}\n\tfriend istream& operator>>(istream& is, Range&\
-    \ r) {\n\t\treturn is >> r.x >> r.y;\n\t}\n};\ntemplate <class T, class U> constexpr\
-    \ Range<T> equal_range(const U& a, const Range<T>& r) {\n\tauto L = lower_bound(a.begin(),\
-    \ a.end(), r.x) - a.begin();\n\tauto R = upper_bound(a.begin(), a.end(), r.y)\
-    \ - a.begin();\n\treturn L == R ? Range<T>::nil() : Range<T>(L, R, true);\n}\n"
+    \ r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\")\n\t\t             \
+    \              : (os << '[' << r.x << \", \" << r.y << ']');\n\t}\n\tfriend istream&\
+    \ operator>>(istream& is, Range& r) {\n\t\treturn is >> r.x >> r.y;\n\t}\n};\n\
+    template <class T, class U>\nconstexpr Range<T> equal_range(const U& a, const\
+    \ Range<T>& r) {\n\tauto L = lower_bound(a.begin(), a.end(), r.x) - a.begin();\n\
+    \tauto R = upper_bound(a.begin(), a.end(), r.y) - a.begin();\n\treturn L == R\
+    \ ? Range<T>::nil() : Range<T>(L, R, true);\n}\n"
   code: "#pragma once\n#include <limits>\n#include <algorithm>\n#include <iostream>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> struct Range {\n\
     \tstatic constexpr Range nil() {\n\t\treturn {numeric_limits<T>::min(), numeric_limits<T>::min()};\n\
     \t}\n\tT x, y;  // [x, y]\n\tconstexpr Range() : x(0), y(0){};\n\tconstexpr Range(T\
     \ _x, T _y, bool exclude_end = false) : x(_x), y(_y - exclude_end) {\n\t\tassert(x\
-    \ <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end = false) :\
-    \ x(_r.x), y(_r.y - exclude_end) {\n\t\tassert(x <= y);\n\t}\n\tconstexpr operator\
-    \ bool() const {\n\t\treturn *this != nil();\n\t}\n\tconstexpr bool operator==(const\
+    \ <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end = false)\n\t\
+    \    : x(_r.x), y(_r.y - exclude_end) {\n\t\tassert(x <= y);\n\t}\n\tconstexpr\
+    \ operator bool() const {\n\t\treturn *this != nil();\n\t}\n\tconstexpr bool operator==(const\
     \ Range& r) const {\n\t\treturn x == r.x && y == r.y;\n\t}\n\tconstexpr bool operator!=(const\
     \ Range& r) const {\n\t\treturn x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const\
     \ Range& r) const {\n\t\treturn to_pair() < r.to_pair();\n\t}\n\tconstexpr bool\
@@ -97,19 +98,19 @@ data:
     \ Range& r) const {\n\t\treturn y + 1 == r.x || r.y + 1 == x;\n\t}\n\tconstexpr\
     \ T size() const {\n\t\treturn *this ? max<T>(0, y - x + 1) : 0;\n\t}\n\tconstexpr\
     \ T sum() const {\n\t\treturn (x + y) * size() / 2;\n\t}\n\tfriend ostream& operator<<(ostream&\
-    \ os, const Range& r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\") :\
-    \ (os << '[' << r.x << \", \" << r.y << ']');\n\t}\n\tfriend istream& operator>>(istream&\
-    \ is, Range& r) {\n\t\treturn is >> r.x >> r.y;\n\t}\n};\ntemplate <class T, class\
-    \ U> constexpr Range<T> equal_range(const U& a, const Range<T>& r) {\n\tauto L\
-    \ = lower_bound(a.begin(), a.end(), r.x) - a.begin();\n\tauto R = upper_bound(a.begin(),\
-    \ a.end(), r.y) - a.begin();\n\treturn L == R ? Range<T>::nil() : Range<T>(L,\
-    \ R, true);\n}\n"
+    \ os, const Range& r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\")\n\t\
+    \t                           : (os << '[' << r.x << \", \" << r.y << ']');\n\t\
+    }\n\tfriend istream& operator>>(istream& is, Range& r) {\n\t\treturn is >> r.x\
+    \ >> r.y;\n\t}\n};\ntemplate <class T, class U>\nconstexpr Range<T> equal_range(const\
+    \ U& a, const Range<T>& r) {\n\tauto L = lower_bound(a.begin(), a.end(), r.x)\
+    \ - a.begin();\n\tauto R = upper_bound(a.begin(), a.end(), r.y) - a.begin();\n\
+    \treturn L == R ? Range<T>::nil() : Range<T>(L, R, true);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Range.cpp
   requiredBy:
   - Utility/splitRange.cpp
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Range.cpp

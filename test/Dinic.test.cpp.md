@@ -38,9 +38,9 @@ data:
     \ G[to].size(), cap);\n\t\tG[to].emplace_back(from, G[from].size() - 1, 0);\n\t\
     }\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true) {\n\t\t\t\
     bfs(s);\n\t\t\tif (level[t] < 0) return res;\n\t\t\tfill(iter.begin(), iter.end(),\
-    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0)\n\t\t\t\tres\
-    \ += f;\n\t\t}\n\t}\n};\n#line 3 \"test/Dinic.test.cpp\"\n#include <iostream>\n\
-    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0) res += f;\n\t\
+    \t}\n\t}\n};\n#line 3 \"test/Dinic.test.cpp\"\n#include <iostream>\nusing namespace\
+    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, m;\n\tcin >> n >> m;\n\tDinic g(n);\n\tfor (int i = 0; i < m; ++i) {\n\
     \t\tint u, v;\n\t\tFLOW d;\n\t\tcin >> u >> v >> d;\n\t\tg.add_edge(u, v, d);\n\
     \t}\n\tcout << g.solve(0, n - 1) << '\\n';\n}\n"
@@ -56,7 +56,7 @@ data:
   isVerificationFile: true
   path: test/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dinic.test.cpp

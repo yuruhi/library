@@ -89,20 +89,20 @@ data:
     \ Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend\
     \ istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\
     \t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},\
-    \ {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n#line 4 \"Serch/GridBFS.cpp\"\
-    \n#include <string>\n#include <queue>\nusing namespace std;\n\nvector<vector<int>>\
-    \ GridBFS(const vector<string>& grid, Point s, char wall = '#') {\n\tint h = grid.size(),\
-    \ w = grid.front().size();\n\tPoint::set_range(h, w);\n\tvector<vector<int>> res(h,\
-    \ vector<int>(w, INT_MAX));\n\tif (grid[s.y][s.x] == wall) {\n\t\treturn res;\n\
-    \t}\n\tres[s.y][s.x] = 0;\n\tqueue<Point> q;\n\tq.push(s);\n\twhile (!q.empty())\
-    \ {\n\t\tauto f = q.front();\n\t\tq.pop();\n\t\tfor (auto p : f.adj4_in_range())\
-    \ {\n\t\t\tif (grid[p.y][p.x] != wall && res[p.y][p.x] == INT_MAX) {\n\t\t\t\t\
-    q.push(p);\n\t\t\t\tres[p.y][p.x] = res[f.y][f.x] + 1;\n\t\t\t}\n\t\t}\n\t}\n\t\
-    return res;\n}\nvector<vector<int>> GridBFS(const vector<string>& grid, char start,\
-    \ char wall = '#') {\n\tint h = grid.size(), w = grid.front().size();\n\tPoint\
-    \ s;\n\tfor (int i = 0; i < h; ++i)\n\t\tfor (int j = 0; j < w; ++j) {\n\t\t\t\
-    if (grid[i][j] == start) {\n\t\t\t\ts = Point(j, i);\n\t\t\t}\n\t\t}\n\treturn\
-    \ GridBFS(grid, s, wall);\n}\n"
+    \   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1},\
+    \ {-1, 1}};\n#line 4 \"Serch/GridBFS.cpp\"\n#include <string>\n#include <queue>\n\
+    using namespace std;\n\nvector<vector<int>> GridBFS(const vector<string>& grid,\
+    \ Point s, char wall = '#') {\n\tint h = grid.size(), w = grid.front().size();\n\
+    \tPoint::set_range(h, w);\n\tvector<vector<int>> res(h, vector<int>(w, INT_MAX));\n\
+    \tif (grid[s.y][s.x] == wall) {\n\t\treturn res;\n\t}\n\tres[s.y][s.x] = 0;\n\t\
+    queue<Point> q;\n\tq.push(s);\n\twhile (!q.empty()) {\n\t\tauto f = q.front();\n\
+    \t\tq.pop();\n\t\tfor (auto p : f.adj4_in_range()) {\n\t\t\tif (grid[p.y][p.x]\
+    \ != wall && res[p.y][p.x] == INT_MAX) {\n\t\t\t\tq.push(p);\n\t\t\t\tres[p.y][p.x]\
+    \ = res[f.y][f.x] + 1;\n\t\t\t}\n\t\t}\n\t}\n\treturn res;\n}\nvector<vector<int>>\
+    \ GridBFS(const vector<string>& grid, char start, char wall = '#') {\n\tint h\
+    \ = grid.size(), w = grid.front().size();\n\tPoint s;\n\tfor (int i = 0; i < h;\
+    \ ++i)\n\t\tfor (int j = 0; j < w; ++j) {\n\t\t\tif (grid[i][j] == start) {\n\t\
+    \t\t\ts = Point(j, i);\n\t\t\t}\n\t\t}\n\treturn GridBFS(grid, s, wall);\n}\n"
   code: "#pragma once\n#include \"./../Utility/Point.cpp\"\n#include <vector>\n#include\
     \ <string>\n#include <queue>\nusing namespace std;\n\nvector<vector<int>> GridBFS(const\
     \ vector<string>& grid, Point s, char wall = '#') {\n\tint h = grid.size(), w\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: false
   path: Serch/GridBFS.cpp
   requiredBy: []
-  timestamp: '2020-11-07 20:55:51+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Serch/GridBFS.cpp

@@ -22,7 +22,7 @@ data:
     \n\t\tfor (size_t i = 0; i < g[v].size(); ++i) {\n\t\t\tint e = g[v][i];\n\t\t\
     \tif (e != p) {\n\t\t\t\tbfs(e, v, (dp_left[i] + dp_right[i + 1]).add_root(v));\n\
     \t\t\t}\n\t\t}\n\t}\n\npublic:\n\tReRooting(const vector<vector<int>>& _g) : n(_g.size()),\
-    \ g(_g), dp(n), ans(n) {\n\t\tfor (int i = 0; i < n; ++i)\n\t\t\tdp[i].resize(g[i].size());\n\
+    \ g(_g), dp(n), ans(n) {\n\t\tfor (int i = 0; i < n; ++i) dp[i].resize(g[i].size());\n\
     \t}\n\tvector<DP> solve() {\n\t\tdfs(0, -1);\n\t\tbfs(0, -1, DP());\n\t\treturn\
     \ ans;\n\t}\n};\n\n/*\nstruct DP {\n    int dp;\n    DP(int _dp = 1) : dp(_dp)\
     \ {}\n    DP operator+(const DP& d) const {\n        return DP(*this) += d;\n\
@@ -44,7 +44,7 @@ data:
     \ (size_t i = 0; i < g[v].size(); ++i) {\n\t\t\tint e = g[v][i];\n\t\t\tif (e\
     \ != p) {\n\t\t\t\tbfs(e, v, (dp_left[i] + dp_right[i + 1]).add_root(v));\n\t\t\
     \t}\n\t\t}\n\t}\n\npublic:\n\tReRooting(const vector<vector<int>>& _g) : n(_g.size()),\
-    \ g(_g), dp(n), ans(n) {\n\t\tfor (int i = 0; i < n; ++i)\n\t\t\tdp[i].resize(g[i].size());\n\
+    \ g(_g), dp(n), ans(n) {\n\t\tfor (int i = 0; i < n; ++i) dp[i].resize(g[i].size());\n\
     \t}\n\tvector<DP> solve() {\n\t\tdfs(0, -1);\n\t\tbfs(0, -1, DP());\n\t\treturn\
     \ ans;\n\t}\n};\n\n/*\nstruct DP {\n    int dp;\n    DP(int _dp = 1) : dp(_dp)\
     \ {}\n    DP operator+(const DP& d) const {\n        return DP(*this) += d;\n\
@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: Graph/ReRooting.cpp
   requiredBy: []
-  timestamp: '2020-11-04 21:37:08+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/ReRooting.cpp

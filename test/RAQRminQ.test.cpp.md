@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/RAQRminQ.cpp
     title: DataStructure/RAQRminQ.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H
@@ -17,15 +17,15 @@ data:
     \n#line 2 \"DataStructure/RAQRminQ.cpp\"\n#include <vector>\n#include <algorithm>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RAQRmQ {\n\
     \tint n;\n\tT init;\n\tvector<T> node, lazy;\n\tstatic int ceil2(int n) {\n\t\t\
-    int m = 1;\n\t\twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn m;\n\t}\n\tvoid eval(int\
-    \ k, int l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\t\t\
-    \tif (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 * k +\
-    \ 1] += lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int\
-    \ a, int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b\
-    \ <= l || r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\t\
-    lazy[k] += x;\n\t\t\teval(k, l, r);\n\t\t} else {\n\t\t\tadd_impl(a, b, x, 2 *\
-    \ k + 0, l, (l + r) / 2);\n\t\t\tadd_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);\n\
-    \t\t\tnode[k] = min(node[2 * k + 0], node[2 * k + 1]);\n\t\t}\n\t}\n\tT query_impl(int\
+    int m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid eval(int k,\
+    \ int l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\t\t\t\
+    if (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 * k + 1]\
+    \ += lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int a,\
+    \ int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b <=\
+    \ l || r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\tlazy[k]\
+    \ += x;\n\t\t\teval(k, l, r);\n\t\t} else {\n\t\t\tadd_impl(a, b, x, 2 * k + 0,\
+    \ l, (l + r) / 2);\n\t\t\tadd_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);\n\t\t\t\
+    node[k] = min(node[2 * k + 0], node[2 * k + 1]);\n\t\t}\n\t}\n\tT query_impl(int\
     \ a, int b, int k, int l, int r) {\n\t\tif (b <= l || r <= a) {\n\t\t\treturn\
     \ init;\n\t\t}\n\t\teval(k, l, r);\n\t\tif (a <= l && r <= b) {\n\t\t\treturn\
     \ node[k];\n\t\t} else {\n\t\t\tauto vl = query_impl(a, b, 2 * k + 0, l, (l +\
@@ -61,8 +61,8 @@ data:
   isVerificationFile: true
   path: test/RAQRminQ.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-20 21:19:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/RAQRminQ.test.cpp
 layout: document

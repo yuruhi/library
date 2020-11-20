@@ -364,36 +364,36 @@ data:
     \ a < -EPS ? -1 : a > EPS ? 1 : 0;\n\t}\n\n\tconstexpr LD deg_to_rad(LD deg) {\n\
     \t\treturn deg * PI / 180;\n\t}\n\tconstexpr LD rad_to_deg(LD rad) {\n\t\treturn\
     \ rad * 180 / PI;\n\t}\n\n\tVec2 Vec2::projection(const Line& l) const {\n\t\t\
-    return l.begin + l.vec().normalized() * (*this - l.begin).dot(l.vec()) / l.vec().length();\n\
-    \t}\n\tVec2 Vec2::reflection(const Line& l) const {\n\t\treturn *this + (projection(l)\
-    \ - *this) * 2;\n\t}\n\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c)\
-    \ {\n\t\tint flag = sgn((b - a).cross(c - a));\n\t\tif (flag != 0) {\n\t\t\treturn\
-    \ flag;\n\t\t} else {\n\t\t\tif (sgn((b - a).dot(c - b)) > 0) {\n\t\t\t\treturn\
-    \ 2;\n\t\t\t} else if (sgn((a - b).dot(c - a)) > 0) {\n\t\t\t\treturn -2;\n\t\t\
-    \t} else {\n\t\t\t\treturn 0;\n\t\t\t}\n\t\t}\n\t}\n\n\tint angle_type(const Vec2&\
-    \ a, const Vec2& b, const Vec2& c) {\n\t\tif (int f = sgn((a - b).dot(c - b));\
-    \ f > 0) {\n\t\t\treturn 0;\n\t\t} else if (f == 0) {\n\t\t\treturn 1;\n\t\t}\
-    \ else {\n\t\t\treturn 2;\n\t\t}\n\t}\n\n\tLD angle(const Vec2& a, const Vec2&\
-    \ b, const Vec2& c) {\n\t\t// return acos((a - b).dot(c - b) / (a.distance(b)\
-    \ * c.distance(b)));\n\t\t// return abs((a - b).rotation(-(c - b).angle()).angle());\n\
-    \t\treturn (c - b).rotation(-(a - b).angle()).angle();\n\t}\n\n\tLD distance(const\
-    \ Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x - v2.x, v1.y - v2.y);\n\t\
-    }\n\tLD distance(const Vec2& v, const Line& l) {\n\t\treturn abs(l.vec().cross(v\
-    \ - l.begin) / l.vec().length());\n\t}\n\tLD distance(const Vec2& v, const Segment&\
-    \ s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v\
-    \ - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin), v.distance(s.end));\n\
-    \t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\t}\n\tLD distance(const\
-    \ Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v) - c.r);\n\
-    \t}\n\tLD distance(const Line& l, const Vec2& v) {\n\t\treturn distance(v, l);\n\
-    \t}\n\tLD distance(const Line& l1, const Line& l2) {\n\t\treturn l1.is_parallel(l2)\
+    return l.begin +\n\t\t    l.vec().normalized() * (*this - l.begin).dot(l.vec())\
+    \ / l.vec().length();\n\t}\n\tVec2 Vec2::reflection(const Line& l) const {\n\t\
+    \treturn *this + (projection(l) - *this) * 2;\n\t}\n\n\tint iSP(const Vec2& a,\
+    \ const Vec2& b, const Vec2& c) {\n\t\tint flag = sgn((b - a).cross(c - a));\n\
+    \t\tif (flag != 0) {\n\t\t\treturn flag;\n\t\t} else {\n\t\t\tif (sgn((b - a).dot(c\
+    \ - b)) > 0) {\n\t\t\t\treturn 2;\n\t\t\t} else if (sgn((a - b).dot(c - a)) >\
+    \ 0) {\n\t\t\t\treturn -2;\n\t\t\t} else {\n\t\t\t\treturn 0;\n\t\t\t}\n\t\t}\n\
+    \t}\n\n\tint angle_type(const Vec2& a, const Vec2& b, const Vec2& c) {\n\t\tif\
+    \ (int f = sgn((a - b).dot(c - b)); f > 0) {\n\t\t\treturn 0;\n\t\t} else if (f\
+    \ == 0) {\n\t\t\treturn 1;\n\t\t} else {\n\t\t\treturn 2;\n\t\t}\n\t}\n\n\tLD\
+    \ angle(const Vec2& a, const Vec2& b, const Vec2& c) {\n\t\t// return acos((a\
+    \ - b).dot(c - b) / (a.distance(b) * c.distance(b)));\n\t\t// return abs((a -\
+    \ b).rotation(-(c - b).angle()).angle());\n\t\treturn (c - b).rotation(-(a - b).angle()).angle();\n\
+    \t}\n\n\tLD distance(const Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x\
+    \ - v2.x, v1.y - v2.y);\n\t}\n\tLD distance(const Vec2& v, const Line& l) {\n\t\
+    \treturn abs(l.vec().cross(v - l.begin) / l.vec().length());\n\t}\n\tLD distance(const\
+    \ Vec2& v, const Segment& s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 ||\n\
+    \t\t    sgn(s.counter_vec().dot(v - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin),\
+    \ v.distance(s.end));\n\t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\
+    \t}\n\tLD distance(const Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v)\
+    \ - c.r);\n\t}\n\tLD distance(const Line& l, const Vec2& v) {\n\t\treturn distance(v,\
+    \ l);\n\t}\n\tLD distance(const Line& l1, const Line& l2) {\n\t\treturn l1.is_parallel(l2)\
     \ ? l1.distance(l2.begin) : 0;\n\t}\n\tLD distance(const Segment& s, const Vec2&\
     \ v) {\n\t\treturn distance(v, s);\n\t}\n\tLD distance(const Segment& s1, const\
     \ Segment& s2) {\n\t\tif (intersect(s1, s2)) {\n\t\t\treturn 0;\n\t\t} else {\n\
-    \t\t\treturn min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin,\
-    \ s2), distance(s1.end, s2)});\n\t\t}\n\t}\n\tLD distance(const Circle& c, const\
-    \ Vec2& v) {\n\t\treturn distance(v, c);\n\t}\n\tLD distance(const Circle& c1,\
-    \ const Circle& c2) {\n\t\treturn max<LD>(0, distance(c1.center, c2.center) -\
-    \ (c1.r + c2.r));\n\t}\n\n\tbool intersect(const Vec2& v1, const Vec2& v2) {\n\
+    \t\t\treturn min({distance(s1, s2.begin), distance(s1, s2.end),\n\t\t\t      \
+    \      distance(s1.begin, s2), distance(s1.end, s2)});\n\t\t}\n\t}\n\tLD distance(const\
+    \ Circle& c, const Vec2& v) {\n\t\treturn distance(v, c);\n\t}\n\tLD distance(const\
+    \ Circle& c1, const Circle& c2) {\n\t\treturn max<LD>(0, distance(c1.center, c2.center)\
+    \ - (c1.r + c2.r));\n\t}\n\n\tbool intersect(const Vec2& v1, const Vec2& v2) {\n\
     \t\treturn v1 == v2;\n\t}\n\tbool intersect(const Vec2& v, const Line& l) {\n\t\
     \treturn abs(iSP(v, l.begin, l.end)) != -1;\n\t}\n\tbool intersect(const Vec2&\
     \ v, const Segment& l) {\n\t\treturn iSP(l.begin, l.end, v) == 0;\n\t}\n\tbool\
@@ -418,23 +418,23 @@ data:
     \ Segment& s) {\n\t\treturn intersect(s, c);\n\t}\n\tbool intersect(const Circle&\
     \ c1, const Circle& c2) {\n\t\treturn sgn(distance(c1.center, c2.center) - (c1.r\
     \ + c2.r)) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Rect& r) {\n\t\t\
-    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center)\
+    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2))\n\t\t           .intersects(c.center)\
     \ ||\n\t\t    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center)\
-    \ || c.intersects(r.top_left()) ||\n\t\t    c.intersects(r.top_right()) || c.intersects(r.bottom_left())\
-    \ || c.intersects(r.bottom_right());\n\t}\n\tbool intersect(const Rect& r1, const\
-    \ Rect& r2) {\n\t\treturn sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(),\
-    \ r2.right_x())) <= 0 &&\n\t\t    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(),\
-    \ r2.bottom_y())) <= 0;\n\t}\n\tbool intersect(const Rect& r, const Circle& c)\
-    \ {\n\t\treturn intersect(c, r);\n\t}\n\tbool intersect(const Polygon& p, const\
-    \ Vec2& v) {\n\t\treturn intersect(v, p);\n\t}\n\n\tbool tangent(const Vec2& v1,\
-    \ const Vec2& v2) {\n\t\treturn intersect(v1, v2);\n\t}\n\tbool tangent(const\
+    \ ||\n\t\t    c.intersects(r.top_left()) || c.intersects(r.top_right()) ||\n\t\
+    \t    c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());\n\t}\n\t\
+    bool intersect(const Rect& r1, const Rect& r2) {\n\t\treturn sgn(max(r1.left_x(),\
+    \ r2.left_x()) - min(r1.right_x(), r2.right_x())) <=\n\t\t    0 &&\n\t\t    sgn(max(r1.top_y(),\
+    \ r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;\n\t}\n\tbool intersect(const\
+    \ Rect& r, const Circle& c) {\n\t\treturn intersect(c, r);\n\t}\n\tbool intersect(const\
+    \ Polygon& p, const Vec2& v) {\n\t\treturn intersect(v, p);\n\t}\n\n\tbool tangent(const\
+    \ Vec2& v1, const Vec2& v2) {\n\t\treturn intersect(v1, v2);\n\t}\n\tbool tangent(const\
     \ Vec2& v, const Line& l) {\n\t\treturn intersect(v, l);\n\t}\n\tbool tangent(const\
     \ Vec2& v, const Segment& l) {\n\t\treturn intersect(v, l);\n\t}\n\tbool tangent(const\
     \ Vec2& v, const Circle& c) {\n\t\treturn sgn(distance(v, c.center) - c.r) ==\
     \ 0;\n\t}\n\tbool tangent(const Vec2& v, const Rect& r) {\n\t\treturn r.top().tangent(v)\
-    \ || r.bottom().tangent(v) || r.left().tangent(v) || r.right().tangent(v);\n\t\
-    }\n\tbool tangent(const Vec2& v, const Polygon& p) {\n\t\tfor (size_t i = 0; i\
-    \ < p.size(); ++i) {\n\t\t\tif (Segment(p[i], p[(i + 1) % p.size()]).tangent(v))\
+    \ || r.bottom().tangent(v) || r.left().tangent(v) ||\n\t\t    r.right().tangent(v);\n\
+    \t}\n\tbool tangent(const Vec2& v, const Polygon& p) {\n\t\tfor (size_t i = 0;\
+    \ i < p.size(); ++i) {\n\t\t\tif (Segment(p[i], p[(i + 1) % p.size()]).tangent(v))\
     \ {\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\tbool tangent(const\
     \ Line& l, const Vec2& v) {\n\t\treturn tangent(v, l);\n\t}\n\tbool tangent(const\
     \ Segment& l, const Vec2& v) {\n\t\treturn tangent(v, l);\n\t}\n\tbool tangent(const\
@@ -445,12 +445,12 @@ data:
     \ r);\n\t}\n\tbool tangent(const Polygon& p, const Vec2& v) {\n\t\treturn tangent(v,\
     \ p);\n\t}\n\n\toptional<Vec2> cross_point(const Line& l1, const Line& l2) {\n\
     \t\tif (intersect(l1, l2)) {\n\t\t\t// return begin + vec() * abs((l.end - begin).cross(l.vec())\
-    \ / vec().cross(l.vec()));\n\t\t\tauto [a, b, c] = l1.abc();\n\t\t\tauto [A, B,\
-    \ C] = l2.abc();\n\t\t\tLD d = A * b - a * B;\n\t\t\treturn Vec2((B * c - b *\
-    \ C) / d, (a * C - A * c) / d);\n\t\t} else {\n\t\t\treturn nullopt;\n\t\t}\n\t\
-    }\n\toptional<Vec2> cross_point(const Segment& s1, const Segment& s2) {\n\t\t\
-    if (intersect(s1, s2)) {\n\t\t\treturn cross_point(Line(s1), Line(s2));\n\t\t\
-    } else {\n\t\t\treturn nullopt;\n\t\t}\n\t}\n\n\tvector<Vec2> cross_points(const\
+    \ /\n\t\t\t// vec().cross(l.vec()));\n\t\t\tauto [a, b, c] = l1.abc();\n\t\t\t\
+    auto [A, B, C] = l2.abc();\n\t\t\tLD d = A * b - a * B;\n\t\t\treturn Vec2((B\
+    \ * c - b * C) / d, (a * C - A * c) / d);\n\t\t} else {\n\t\t\treturn nullopt;\n\
+    \t\t}\n\t}\n\toptional<Vec2> cross_point(const Segment& s1, const Segment& s2)\
+    \ {\n\t\tif (intersect(s1, s2)) {\n\t\t\treturn cross_point(Line(s1), Line(s2));\n\
+    \t\t} else {\n\t\t\treturn nullopt;\n\t\t}\n\t}\n\n\tvector<Vec2> cross_points(const\
     \ Line& l, const Circle& c) {\n\t\tLD dist = distance(l, c.center);\n\t\tif (int\
     \ f = sgn(c.r - dist); f == 1) {\n\t\t\tLD x = sqrt(c.r * c.r - dist * dist);\n\
     \t\t\tVec2 p = c.center.projection(l);\n\t\t\treturn {p + l.vec().normalized()\
@@ -470,7 +470,7 @@ data:
     \ * c2.r};\n\t\t} else if (intersect(c1, c2)) {\n\t\t\tLD area = Triangle::area(dist,\
     \ c1.r, c2.r);\n\t\t\tLD y = 2 * area / dist, x = sqrt(c1.r * c1.r - y * y);\n\
     \t\t\tLD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;\n\t\t\t\
-    Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x), v2 = vec.rotate90()\
+    Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x),\n\t\t\t     v2 = vec.rotate90()\
     \ * y;\n\t\t\treturn {h + v2, h - v2};\n\t\t} else {\n\t\t\treturn {};\n\t\t}\n\
     \t}\n\n\tvector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {\n\t\t\
     LD dist = c.center.distance(v);\n\t\tif (sgn(dist - c.r) >= 0) {\n\t\t\tLD x =\
@@ -500,32 +500,33 @@ data:
     \ {\n\t\t\tLD dist = c1.center.distance(c2.center);\n\t\t\tLD r1_s = c1.r * c1.r,\
     \ r2_s = c2.r * c2.r, dist_s = dist * dist;\n\t\t\tLD angle1 = acos((r1_s + dist_s\
     \ - r2_s) / (2 * c1.r * dist));\n\t\t\tLD angle2 = acos((r2_s + dist_s - r1_s)\
-    \ / (2 * c2.r * dist));\n\t\t\treturn r1_s * (angle1 - sin(angle1 * 2) / 2) +\
-    \ r2_s * (angle2 - sin(angle2 * 2) / 2);\n\t\t} else {\n\t\t\treturn 0;\n\t\t\
-    }\n\t}\n\tLD area_of_intersection(const Circle& c, const Polygon& p) {\n\t\tauto\
-    \ signed_area = [c](Vec2 x, Vec2 y, bool triangle) {\n\t\t\tif (triangle) {\n\t\
-    \t\t\treturn x.cross(y) / 2;\n\t\t\t} else {\n\t\t\t\treturn c.r * c.r * angle(x,\
-    \ Vec2::zero(), y) / 2;\n\t\t\t}\n\t\t};\n\n\t\t// \u5186 c \u3068 \u4E09\u89D2\
-    \u5F62 {(0, 0), a, b} \u306E\u5171\u901A\u90E8\u5206\u306E\u9762\u7A4D\n\t\tauto\
-    \ circle_and_triangle = [signed_area](Circle c, Vec2 a, Vec2 b) -> LD {\n\t\t\t\
-    a -= c.center;\n\t\t\tb -= c.center;\n\t\t\tc.center -= c.center;\n\t\t\tif (sgn(a.distance(b))\
-    \ == 0) {\n\t\t\t\treturn 0;\n\t\t\t} else if (bool in_a = a.intersects(c), in_b\
-    \ = b.intersects(c); in_a && in_b) {\n\t\t\t\treturn signed_area(a, b, true);\n\
-    \t\t\t} else if (auto points = c.cross_points(Segment(a, b)); points.empty())\
-    \ {\n\t\t\t\treturn signed_area(a, b, false);\n\t\t\t} else {\n\t\t\t\tVec2 p1\
-    \ = points.front(), p2 = points.back();\n\t\t\t\tswap(p1, p2);\n\t\t\t\treturn\
-    \ signed_area(p1, p2, true) + signed_area(a, p1, in_a) + signed_area(p2, b, in_b);\n\
-    \t\t\t}\n\t\t};\n\n\t\tLD area = 0;\n\t\tfor (size_t i = 0; i < p.size(); ++i)\
-    \ {\n\t\t\tLD res = circle_and_triangle(c, p[i], p[i != p.size() - 1 ? i + 1 :\
-    \ 0]);\n\t\t\tarea += res;\n\t\t}\n\t\treturn area;\n\t}\n\n}  // namespace Geometric\n\
-    #line 5 \"test/Geometric_is_convex.test.cpp\"\nusing namespace std;\n\nint main()\
-    \ {\n\tint n;\n\tcin >> n;\n\tvector<Geometric::Vec2> p(n);\n\tfor (auto& i :\
-    \ p)\n\t\tcin >> i;\n\tcout << Geometric::Polygon(p).is_convex() << endl;\n}\n"
+    \ / (2 * c2.r * dist));\n\t\t\treturn r1_s * (angle1 - sin(angle1 * 2) / 2) +\n\
+    \t\t\t    r2_s * (angle2 - sin(angle2 * 2) / 2);\n\t\t} else {\n\t\t\treturn 0;\n\
+    \t\t}\n\t}\n\tLD area_of_intersection(const Circle& c, const Polygon& p) {\n\t\
+    \tauto signed_area = [c](Vec2 x, Vec2 y, bool triangle) {\n\t\t\tif (triangle)\
+    \ {\n\t\t\t\treturn x.cross(y) / 2;\n\t\t\t} else {\n\t\t\t\treturn c.r * c.r\
+    \ * angle(x, Vec2::zero(), y) / 2;\n\t\t\t}\n\t\t};\n\n\t\t// \u5186 c \u3068\
+    \ \u4E09\u89D2\u5F62 {(0, 0), a, b} \u306E\u5171\u901A\u90E8\u5206\u306E\u9762\
+    \u7A4D\n\t\tauto circle_and_triangle = [signed_area](Circle c, Vec2 a, Vec2 b)\
+    \ -> LD {\n\t\t\ta -= c.center;\n\t\t\tb -= c.center;\n\t\t\tc.center -= c.center;\n\
+    \t\t\tif (sgn(a.distance(b)) == 0) {\n\t\t\t\treturn 0;\n\t\t\t} else if (bool\
+    \ in_a = a.intersects(c), in_b = b.intersects(c);\n\t\t\t           in_a && in_b)\
+    \ {\n\t\t\t\treturn signed_area(a, b, true);\n\t\t\t} else if (auto points = c.cross_points(Segment(a,\
+    \ b)); points.empty()) {\n\t\t\t\treturn signed_area(a, b, false);\n\t\t\t} else\
+    \ {\n\t\t\t\tVec2 p1 = points.front(), p2 = points.back();\n\t\t\t\tswap(p1, p2);\n\
+    \t\t\t\treturn signed_area(p1, p2, true) + signed_area(a, p1, in_a) +\n\t\t\t\t\
+    \    signed_area(p2, b, in_b);\n\t\t\t}\n\t\t};\n\n\t\tLD area = 0;\n\t\tfor (size_t\
+    \ i = 0; i < p.size(); ++i) {\n\t\t\tLD res = circle_and_triangle(c, p[i], p[i\
+    \ != p.size() - 1 ? i + 1 : 0]);\n\t\t\tarea += res;\n\t\t}\n\t\treturn area;\n\
+    \t}\n\n}  // namespace Geometric\n#line 5 \"test/Geometric_is_convex.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tint n;\n\tcin >> n;\n\tvector<Geometric::Vec2>\
+    \ p(n);\n\tfor (auto& i : p) cin >> i;\n\tcout << Geometric::Polygon(p).is_convex()\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B\"\
     \n#include \"./../Geometry/Polygon.hpp\"\n#include \"./../Geometry/Geometric.cpp\"\
     \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tint n;\n\tcin >>\
-    \ n;\n\tvector<Geometric::Vec2> p(n);\n\tfor (auto& i : p)\n\t\tcin >> i;\n\t\
-    cout << Geometric::Polygon(p).is_convex() << endl;\n}"
+    \ n;\n\tvector<Geometric::Vec2> p(n);\n\tfor (auto& i : p) cin >> i;\n\tcout <<\
+    \ Geometric::Polygon(p).is_convex() << endl;\n}"
   dependsOn:
   - Geometry/Polygon.hpp
   - Geometry/Geometric.hpp
@@ -538,7 +539,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_is_convex.test.cpp
   requiredBy: []
-  timestamp: '2020-11-16 21:37:23+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_is_convex.test.cpp

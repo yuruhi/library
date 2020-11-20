@@ -15,7 +15,7 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_B
   bundledCode: "#line 1 \"test/Knapsack.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_B\"\
     \n#line 2 \"DP/Knapsack.cpp\"\n#include <vector>\n#include <algorithm>\nusing\
-    \ namespace std;\n\ntemplate <class T> vector<T> Knapsack(int N, T W, const vector<T>&\
+    \ namespace std;\n\ntemplate <class T>\nvector<T> Knapsack(int N, T W, const vector<T>&\
     \ v, const vector<T>& w) {\n\tvector<T> dp(W + 1, 0);\n\tfor (int i = 0; i < N;\
     \ ++i) {\n\t\tfor (int j = W; j >= 0; --j) {\n\t\t\tif (j - w[i] >= 0) dp[j] =\
     \ max(dp[j], dp[j - w[i]] + v[i]);\n\t\t}\n\t}\n\treturn dp;\n}\n#line 3 \"test/Knapsack.test.cpp\"\
@@ -35,7 +35,7 @@ data:
   isVerificationFile: true
   path: test/Knapsack.test.cpp
   requiredBy: []
-  timestamp: '2020-11-16 21:19:40+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Knapsack.test.cpp

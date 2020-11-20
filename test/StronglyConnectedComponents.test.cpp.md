@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/StronglyConnectedComponents.cpp
     title: Graph/StronglyConnectedComponents.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/TopologicalSort.cpp
     title: Graph/TopologicalSort.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -26,7 +26,7 @@ data:
     }\n\tvoid rdfs(int v, int k) {\n\t\tused[v] = true;\n\t\tcmp[v] = k;\n\t\tfor\
     \ (auto e : rgraph[v]) {\n\t\t\tif (!used[e]) rdfs(e, k);\n\t\t}\n\t}\n\npublic:\n\
     \tStronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}\n\tStronglyConnectedComponents(const\
-    \ vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph), rgraph(_graph)\
+    \ vector<vector<int>>& _graph)\n\t    : n(_graph.size()), graph(_graph), rgraph(_graph)\
     \ {\n\t\tfor (int v = 0; v < n; ++v) {\n\t\t\tfor (int u : graph[v]) {\n\t\t\t\
     \trgraph[u].push_back(v);\n\t\t\t}\n\t\t}\n\t}\n\tvoid add_edge(int s, int t)\
     \ {\n\t\tbuilded = false;\n\t\tgraph[s].push_back(t);\n\t\trgraph[t].push_back(s);\n\
@@ -49,8 +49,8 @@ data:
     Graph/TopologicalSort.cpp\"\nusing namespace std;\n\nvector<int> TopologicalSort(const\
     \ vector<vector<int>>& graph) {\n\tint V = graph.size();\n\tvector<bool> visited(V);\n\
     \tvector<int> res;\n\tfunction<void(int)> dfs = [&](int u) {\n\t\tif (visited[u])\
-    \ return;\n\t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u])\n\t\t\tdfs(i);\n\
-    \t\tres.push_back(u);\n\t};\n\tfor (int i = 0; i < V; i++)\n\t\tdfs(i);\n\treverse(res.begin(),\
+    \ return;\n\t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u]) dfs(i);\n\t\t\
+    res.push_back(u);\n\t};\n\tfor (int i = 0; i < V; i++) dfs(i);\n\treverse(res.begin(),\
     \ res.end());\n\treturn res;\n}\n#line 4 \"test/StronglyConnectedComponents.test.cpp\"\
     \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2020-11-16 17:13:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-20 21:19:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/StronglyConnectedComponents.test.cpp
 layout: document

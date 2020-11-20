@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: DataStructure/RangeAddQuery.cpp
     title: DataStructure/RangeAddQuery.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E
@@ -17,8 +17,8 @@ data:
     \n#line 2 \"DataStructure/RangeAddQuery.cpp\"\n#include <vector>\n#include <algorithm>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RangeAddQuery\
     \ {\n\tint n;\n\tvector<T> a;\n\tstatic int ceil2(int n) {\n\t\tint m = 1;\n\t\
-    \twhile (m < n)\n\t\t\tm *= 2;\n\t\treturn m;\n\t}\n\npublic:\n\tRangeAddQuery(int\
-    \ _n) : n(ceil2(_n)), a(n * 2) {}\n\tRangeAddQuery(const vector<T>& v) : n(ceil2(v.size())),\
+    \twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\npublic:\n\tRangeAddQuery(int _n)\
+    \ : n(ceil2(_n)), a(n * 2) {}\n\tRangeAddQuery(const vector<T>& v) : n(ceil2(v.size())),\
     \ a(n * 2) {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\ta[i + n] = v[i];\n\
     \t\t}\n\t}\n\tvoid add(int l, int r, const T& x) {\n\t\tl = clamp(l, 0, n);\n\t\
     \tr = clamp(r, 0, n);\n\t\tif (l >= r) return;\n\t\tfor (l += n, r += n; l < r;\
@@ -46,8 +46,8 @@ data:
   isVerificationFile: true
   path: test/RangeAddQuery.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-20 21:19:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/RangeAddQuery.test.cpp
 layout: document

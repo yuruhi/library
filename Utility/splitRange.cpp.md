@@ -16,12 +16,12 @@ data:
     \ numeric_limits<T>::min()};\n\t}\n\tT x, y;  // [x, y]\n\tconstexpr Range() :\
     \ x(0), y(0){};\n\tconstexpr Range(T _x, T _y, bool exclude_end = false) : x(_x),\
     \ y(_y - exclude_end) {\n\t\tassert(x <= y);\n\t}\n\tconstexpr Range(const Range&\
-    \ _r, bool exclude_end = false) : x(_r.x), y(_r.y - exclude_end) {\n\t\tassert(x\
-    \ <= y);\n\t}\n\tconstexpr operator bool() const {\n\t\treturn *this != nil();\n\
-    \t}\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn x == r.x\
-    \ && y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const {\n\t\t\
-    return x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range& r)\
-    \ const {\n\t\treturn to_pair() < r.to_pair();\n\t}\n\tconstexpr bool operator<=(const\
+    \ _r, bool exclude_end = false)\n\t    : x(_r.x), y(_r.y - exclude_end) {\n\t\t\
+    assert(x <= y);\n\t}\n\tconstexpr operator bool() const {\n\t\treturn *this !=\
+    \ nil();\n\t}\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn\
+    \ x == r.x && y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const\
+    \ {\n\t\treturn x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range&\
+    \ r) const {\n\t\treturn to_pair() < r.to_pair();\n\t}\n\tconstexpr bool operator<=(const\
     \ Range& r) const {\n\t\treturn to_pair() <= r.to_pair();\n\t}\n\tconstexpr bool\
     \ operator>(const Range& r) const {\n\t\treturn to_pair() > r.to_pair();\n\t}\n\
     \tconstexpr bool operator>=(const Range& r) const {\n\t\treturn to_pair() >= r.to_pair();\n\
@@ -51,19 +51,19 @@ data:
     \ == r.x || r.y + 1 == x;\n\t}\n\tconstexpr T size() const {\n\t\treturn *this\
     \ ? max<T>(0, y - x + 1) : 0;\n\t}\n\tconstexpr T sum() const {\n\t\treturn (x\
     \ + y) * size() / 2;\n\t}\n\tfriend ostream& operator<<(ostream& os, const Range&\
-    \ r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\") : (os << '[' << r.x\
-    \ << \", \" << r.y << ']');\n\t}\n\tfriend istream& operator>>(istream& is, Range&\
-    \ r) {\n\t\treturn is >> r.x >> r.y;\n\t}\n};\ntemplate <class T, class U> constexpr\
-    \ Range<T> equal_range(const U& a, const Range<T>& r) {\n\tauto L = lower_bound(a.begin(),\
-    \ a.end(), r.x) - a.begin();\n\tauto R = upper_bound(a.begin(), a.end(), r.y)\
-    \ - a.begin();\n\treturn L == R ? Range<T>::nil() : Range<T>(L, R, true);\n}\n\
-    #line 3 \"Utility/splitRange.cpp\"\n#include <vector>\nusing namespace std;\n\n\
-    vector<Range> split(const vector<int>& v) {\n\tint n = v.size();\n\tvector<Range>\
-    \ res;\n\tif (n <= 1) {\n\t\tres.emplace_back(0, n - 1);\n\t\treturn res;\n\t\
-    }\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\tfor (int i = 0; i < n; i++) {\n\
-    \t\tif (i == n - 1 || !((flag && v[i] < v[i + 1]) || (!flag && v[i] > v[i + 1])))\
-    \ {\n\t\t\tflag = flag ? false : true;\n\t\t\tres.emplace_back(x, i);\n\t\t\t\
-    x = i;\n\t\t}\n\t}\n\treturn res;\n}\n"
+    \ r) {\n\t\treturn (r == Range::nil()) ? (os << \"[nil]\")\n\t\t             \
+    \              : (os << '[' << r.x << \", \" << r.y << ']');\n\t}\n\tfriend istream&\
+    \ operator>>(istream& is, Range& r) {\n\t\treturn is >> r.x >> r.y;\n\t}\n};\n\
+    template <class T, class U>\nconstexpr Range<T> equal_range(const U& a, const\
+    \ Range<T>& r) {\n\tauto L = lower_bound(a.begin(), a.end(), r.x) - a.begin();\n\
+    \tauto R = upper_bound(a.begin(), a.end(), r.y) - a.begin();\n\treturn L == R\
+    \ ? Range<T>::nil() : Range<T>(L, R, true);\n}\n#line 3 \"Utility/splitRange.cpp\"\
+    \n#include <vector>\nusing namespace std;\n\nvector<Range> split(const vector<int>&\
+    \ v) {\n\tint n = v.size();\n\tvector<Range> res;\n\tif (n <= 1) {\n\t\tres.emplace_back(0,\
+    \ n - 1);\n\t\treturn res;\n\t}\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\t\
+    for (int i = 0; i < n; i++) {\n\t\tif (i == n - 1 || !((flag && v[i] < v[i + 1])\
+    \ || (!flag && v[i] > v[i + 1]))) {\n\t\t\tflag = flag ? false : true;\n\t\t\t\
+    res.emplace_back(x, i);\n\t\t\tx = i;\n\t\t}\n\t}\n\treturn res;\n}\n"
   code: "#pragma once\n#include \"./Range.cpp\"\n#include <vector>\nusing namespace\
     \ std;\n\nvector<Range> split(const vector<int>& v) {\n\tint n = v.size();\n\t\
     vector<Range> res;\n\tif (n <= 1) {\n\t\tres.emplace_back(0, n - 1);\n\t\treturn\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: Utility/splitRange.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/splitRange.cpp

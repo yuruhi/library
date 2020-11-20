@@ -34,8 +34,8 @@ data:
     \ G[to].size(), cap);\n\t\tG[to].emplace_back(from, G[from].size() - 1, 0);\n\t\
     }\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true) {\n\t\t\t\
     bfs(s);\n\t\t\tif (level[t] < 0) return res;\n\t\t\tfill(iter.begin(), iter.end(),\
-    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0)\n\t\t\t\tres\
-    \ += f;\n\t\t}\n\t}\n};\n"
+    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0) res += f;\n\t\
+    \t}\n\t}\n};\n"
   code: "#pragma once\n#include \"./FlowTemplate.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\n#include <queue>\nusing namespace std;\n\nclass Dinic {\n\tint\
     \ V;\n\tGraphF G;\n\tvector<int> level, iter;\n\tvoid bfs(int s) {\n\t\tfill(level.begin(),\
@@ -53,14 +53,14 @@ data:
     \ G[to].size(), cap);\n\t\tG[to].emplace_back(from, G[from].size() - 1, 0);\n\t\
     }\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true) {\n\t\t\t\
     bfs(s);\n\t\t\tif (level[t] < 0) return res;\n\t\t\tfill(iter.begin(), iter.end(),\
-    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0)\n\t\t\t\tres\
-    \ += f;\n\t\t}\n\t}\n};\n"
+    \ 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s, t, INF_FLOW)) > 0) res += f;\n\t\
+    \t}\n\t}\n};\n"
   dependsOn:
   - Graph/FlowTemplate.cpp
   isVerificationFile: false
   path: Graph/Dinic.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-20 21:19:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Dinic.test.cpp
