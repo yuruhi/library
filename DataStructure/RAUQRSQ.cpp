@@ -11,8 +11,7 @@ template <class T> class RAUQRSQ {
 	vector<optional<T>> lazy_u;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n)
-			m *= 2;
+		while (m < n) m *= 2;
 		return m;
 	}
 	void set_lazy_a(int i, const T& x) {

@@ -5,10 +5,17 @@ using namespace std;
 
 struct Dice {
 	int top, front, right, left, back, bottom;
-	Dice(int _top = 1, int _front = 2, int _right = 3, int _left = 4, int _back = 5, int _bottom = 6)
-	    : top(_top), front(_front), right(_right), left(_left), back(_back), bottom(_bottom) {}
+	Dice(int _top = 1, int _front = 2, int _right = 3, int _left = 4, int _back = 5,
+	     int _bottom = 6)
+	    : top(_top),
+	      front(_front),
+	      right(_right),
+	      left(_left),
+	      back(_back),
+	      bottom(_bottom) {}
 	bool operator==(const Dice& d) const {
-		return tuple(top, front, right, left, back, bottom) == tuple(d.top, d.front, d.right, d.left, d.back, d.bottom);
+		return tuple(top, front, right, left, back, bottom) ==
+		    tuple(d.top, d.front, d.right, d.left, d.back, d.bottom);
 	}
 	bool operator!=(const Dice& d) const {
 		return !(*this == d);
@@ -81,8 +88,9 @@ struct Dice {
 		return false;
 	}
 	friend ostream& operator<<(ostream& os, const Dice& d) {
-		return os << "(top: " << d.top << ", front: " << d.front << ", right: " << d.right << ", left: " << d.left
-		          << ", back: " << d.back << ", bottom: " << d.bottom << ")";
+		return os << "(top: " << d.top << ", front: " << d.front << ", right: " << d.right
+		          << ", left: " << d.left << ", back: " << d.back
+		          << ", bottom: " << d.bottom << ")";
 	}
 	friend istream& operator>>(istream& is, Dice& d) {
 		return is >> d.top >> d.front >> d.right >> d.left >> d.back >> d.bottom;

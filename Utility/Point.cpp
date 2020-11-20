@@ -262,4 +262,5 @@ struct Point {
 	}
 };
 int Point::H, Point::W;
-const vector<Point> Point::d{{0, 1}, {1, 0}, {0, -1}, {-1, 0}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+const vector<Point> Point::d{{0, 1}, {1, 0},   {0, -1}, {-1, 0},
+                             {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};

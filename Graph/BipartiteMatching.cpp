@@ -27,9 +27,19 @@ class BipartiteMatching {
 
 public:
 	BipartiteMatching(size_t _left, size_t _right)
-	    : left(_left), right(_right), graph(left), used(left), left_match(left), right_match(right) {}
+	    : left(_left),
+	      right(_right),
+	      graph(left),
+	      used(left),
+	      left_match(left),
+	      right_match(right) {}
 	BipartiteMatching(size_t _left, size_t _right, const vector<vector<int>>& _graph)
-	    : left(_left), right(_right), graph(_graph), used(left), left_match(left), right_match(right) {
+	    : left(_left),
+	      right(_right),
+	      graph(_graph),
+	      used(left),
+	      left_match(left),
+	      right_match(right) {
 		assert(graph.size() == left);
 	}
 	void add_edge(int l, int r) {

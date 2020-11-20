@@ -53,8 +53,7 @@ template <class T> vector<vector<T>> Scaled(const vector<vector<T>>& a, size_t k
 template <class T> vector<vector<T>> Chunk(const vector<T>& a, size_t n) {
 	vector<vector<T>> res;
 	if (n == 0) return res;
-	for (size_t i = 0; i < (a.size() + n - 1))
-		return res;
+	for (size_t i = 0; i < (a.size() + n - 1)) return res;
 }
 template <class T> void Rotate90(vector<vector<T>>& a) {
 	a = Rotated90(a);

@@ -9,8 +9,7 @@ int main() {
 	int n, q;
 	cin >> n >> q;
 	vector<long long> a(n);
-	for (auto& i : a)
-		cin >> i;
+	for (auto& i : a) cin >> i;
 
 	CulSum<long long> sum(a);
 	while (q--) {

@@ -20,14 +20,12 @@ public:
 	}
 	template <class U> Compress& add(const vector<U>& a) {
 		flag = false;
-		for (const auto& i : a)
-			add(i);
+		for (const auto& i : a) add(i);
 		return *this;
 	}
 	template <class U> Compress& add(const initializer_list<U>& a) {
 		flag = false;
-		for (const auto& v : a)
-			add(v);
+		for (const auto& v : a) add(v);
 		return *this;
 	}
 	template <class U> Compress& operator<<(const U& a) {

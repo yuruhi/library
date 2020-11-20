@@ -14,10 +14,8 @@ int main() {
 		cin >> a >> b;
 		if (dice.left == a) dice.roll_right();
 		if (dice.right == a) dice.roll_left();
-		while (dice.top != a)
-			dice.roll_front();
-		while (dice.front != b)
-			dice.rotate_left();
+		while (dice.top != a) dice.roll_front();
+		while (dice.front != b) dice.rotate_left();
 		cout << dice.right << endl;
 	}
 }

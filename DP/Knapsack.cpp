@@ -3,7 +3,8 @@
 #include <algorithm>
 using namespace std;
 
-template <class T> vector<T> Knapsack(int N, T W, const vector<T>& v, const vector<T>& w) {
+template <class T>
+vector<T> Knapsack(int N, T W, const vector<T>& v, const vector<T>& w) {
 	vector<T> dp(W + 1, 0);
 	for (int i = 0; i < N; ++i) {
 		for (int j = W; j >= 0; --j) {

@@ -57,8 +57,7 @@ public:
 			if (level[t] < 0) return res;
 			fill(iter.begin(), iter.end(), 0);
 			FLOW f;
-			while ((f = dfs(s, t, INF_FLOW)) > 0)
-				res += f;
+			while ((f = dfs(s, t, INF_FLOW)) > 0) res += f;
 		}
 	}
 };

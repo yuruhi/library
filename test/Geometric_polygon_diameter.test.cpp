@@ -8,8 +8,7 @@ int main() {
 	int n;
 	cin >> n;
 	Geometric::Polygon p(n);
-	for (auto& i : p)
-		cin >> i;
+	for (auto& i : p) cin >> i;
 	auto [dist, i, j] = p.diameter();
 	printf("%.12Lf\n", dist);
 }

@@ -7,7 +7,6 @@ vector<bool> Eratosthenes(int n) {
 	p[0] = p[1] = false;
 	for (long long i = 2; i <= n; ++i)
 		if (p[i])
-			for (long long j = i * i; j <= n; j += i)
-				p[j] = false;
+			for (long long j = i * i; j <= n; j += i) p[j] = false;
 	return p;
 }

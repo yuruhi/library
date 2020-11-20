@@ -19,7 +19,8 @@ class LCA {
 	}
 
 public:
-	LCA(const Graph& g, const int root) : V(g.size()), LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {
+	LCA(const Graph& g, const int root)
+	    : V(g.size()), LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {
 		dfs(g, root, -1, 0);
 		for (int k = 0; k + 1 < LOG; ++k) {
 			for (int v = 0; v < V; ++v) {

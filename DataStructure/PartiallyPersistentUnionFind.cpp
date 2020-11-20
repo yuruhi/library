@@ -11,7 +11,8 @@ class PartiallyPersistentUnionFind {
 	static constexpr int INF = numeric_limits<int>::max();
 
 public:
-	PartiallyPersistentUnionFind(size_t n) : par_m(n), rank_m(n), time_m(n, INF), size_m(n), now_m(0) {
+	PartiallyPersistentUnionFind(size_t n)
+	    : par_m(n), rank_m(n), time_m(n, INF), size_m(n), now_m(0) {
 		for (size_t i = 0; i < n; ++i) {
 			par_m[i] = i;
 			size_m[i].emplace_back(0, 1);

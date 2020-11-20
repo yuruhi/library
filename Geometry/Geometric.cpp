@@ -24,7 +24,8 @@ namespace Geometric {
 	}
 
 	Vec2 Vec2::projection(const Line& l) const {
-		return l.begin + l.vec().normalized() * (*this - l.begin).dot(l.vec()) / l.vec().length();
+		return l.begin +
+		    l.vec().normalized() * (*this - l.begin).dot(l.vec()) / l.vec().length();
 	}
 	Vec2 Vec2::reflection(const Line& l) const {
 		return *this + (projection(l) - *this) * 2;
@@ -68,7 +69,8 @@ namespace Geometric {
 		return abs(l.vec().cross(v - l.begin) / l.vec().length());
 	}
 	LD distance(const Vec2& v, const Segment& s) {
-		if (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v - s.end)) < 0) {
+		if (sgn(s.vec().dot(v - s.begin)) < 0 ||
+		    sgn(s.counter_vec().dot(v - s.end)) < 0) {
 			return min(v.distance(s.begin), v.distance(s.end));
 		} else {
 			return Line(s).distance(v);
@@ -90,7 +92,8 @@ namespace Geometric {
 		if (intersect(s1, s2)) {
 			return 0;
 		} else {
-			return min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin, s2), distance(s1.end, s2)});
+			return min({distance(s1, s2.begin), distance(s1, s2.end),
+			            distance(s1.begin, s2), distance(s1.end, s2)});
 		}
 	}
 	LD distance(const Circle& c, const Vec2& v) {
@@ -158,12 +161,15 @@ namespace Geometric {
 		return sgn(distance(c1.center, c2.center) - (c1.r + c2.r)) <= 0;
 	}
 	bool intersect(const Circle& c, const Rect& r) {
-		return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center) ||
-		    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center) || c.intersects(r.top_left()) ||
-		    c.intersects(r.top_right()) || c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());
+		return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2))
+		           .intersects(c.center) ||
+		    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center) ||
+		    c.intersects(r.top_left()) || c.intersects(r.top_right()) ||
+		    c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());
 	}
 	bool intersect(const Rect& r1, const Rect& r2) {
-		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
+		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <=
+		    0 &&
 		    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;
 	}
 	bool intersect(const Rect& r, const Circle& c) {
@@ -186,7 +192,8 @@ namespace Geometric {
 		return sgn(distance(v, c.center) - c.r) == 0;
 	}
 	bool tangent(const Vec2& v, const Rect& r) {
-		return r.top().tangent(v) || r.bottom().tangent(v) || r.left().tangent(v) || r.right().tangent(v);
+		return r.top().tangent(v) || r.bottom().tangent(v) || r.left().tangent(v) ||
+		    r.right().tangent(v);
 	}
 	bool tangent(const Vec2& v, const Polygon& p) {
 		for (size_t i = 0; i < p.size(); ++i) {
@@ -218,7 +225,8 @@ namespace Geometric {
 
 	optional<Vec2> cross_point(const Line& l1, const Line& l2) {
 		if (intersect(l1, l2)) {
-			// return begin + vec() * abs((l.end - begin).cross(l.vec()) / vec().cross(l.vec()));
+			// return begin + vec() * abs((l.end - begin).cross(l.vec()) /
+			// vec().cross(l.vec()));
 			auto [a, b, c] = l1.abc();
 			auto [A, B, C] = l2.abc();
 			LD d = A * b - a * B;
@@ -275,7 +283,8 @@ namespace Geometric {
 			LD area = Triangle::area(dist, c1.r, c2.r);
 			LD y = 2 * area / dist, x = sqrt(c1.r * c1.r - y * y);
 			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
-			Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x), v2 = vec.rotate90() * y;
+			Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x),
+			     v2 = vec.rotate90() * y;
 			return {h + v2, h - v2};
 		} else {
 			return {};
@@ -342,7 +351,8 @@ namespace Geometric {
 			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
 			LD angle1 = acos((r1_s + dist_s - r2_s) / (2 * c1.r * dist));
 			LD angle2 = acos((r2_s + dist_s - r1_s) / (2 * c2.r * dist));
-			return r1_s * (angle1 - sin(angle1 * 2) / 2) + r2_s * (angle2 - sin(angle2 * 2) / 2);
+			return r1_s * (angle1 - sin(angle1 * 2) / 2) +
+			    r2_s * (angle2 - sin(angle2 * 2) / 2);
 		} else {
 			return 0;
 		}
@@ -363,14 +373,16 @@ namespace Geometric {
 			c.center -= c.center;
 			if (sgn(a.distance(b)) == 0) {
 				return 0;
-			} else if (bool in_a = a.intersects(c), in_b = b.intersects(c); in_a && in_b) {
+			} else if (bool in_a = a.intersects(c), in_b = b.intersects(c);
+			           in_a && in_b) {
 				return signed_area(a, b, true);
 			} else if (auto points = c.cross_points(Segment(a, b)); points.empty()) {
 				return signed_area(a, b, false);
 			} else {
 				Vec2 p1 = points.front(), p2 = points.back();
 				swap(p1, p2);
-				return signed_area(p1, p2, true) + signed_area(a, p1, in_a) + signed_area(p2, b, in_b);
+				return signed_area(p1, p2, true) + signed_area(a, p1, in_a) +
+				    signed_area(p2, b, in_b);
 			}
 		};
 

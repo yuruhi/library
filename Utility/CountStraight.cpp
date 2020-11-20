@@ -15,7 +15,8 @@ template <class F> tuple<vector<int>, vector<int>> CountLR(int n, F f) {
 	return make_tuple(left, right);
 }
 
-template <class F> tuple<vector<vector<int>>, vector<vector<int>>> CountLR(int h, int w, F f) {
+template <class F>
+tuple<vector<vector<int>>, vector<vector<int>>> CountLR(int h, int w, F f) {
 	vector<vector<int>> left(h, vector<int>(w));
 	for (int i = 0; i < h; ++i)
 		for (int j = 0; j < w; ++j) {
@@ -29,7 +30,8 @@ template <class F> tuple<vector<vector<int>>, vector<vector<int>>> CountLR(int h
 	return make_tuple(left, right);
 }
 
-template <class F> tuple<vector<vector<int>>, vector<vector<int>>> CountUD(int h, int w, F f) {
+template <class F>
+tuple<vector<vector<int>>, vector<vector<int>>> CountUD(int h, int w, F f) {
 	vector<vector<int>> up(h, vector<int>(w));
 	for (int i = 0; i < h; ++i)
 		for (int j = 0; j < w; ++j) {
@@ -43,7 +45,8 @@ template <class F> tuple<vector<vector<int>>, vector<vector<int>>> CountUD(int h
 	return make_tuple(up, down);
 }
 
-template <class F> tuple<vector<vector<int>>, vector<vector<int>>> CountTLBR(int h, int w, F f) {
+template <class F>
+tuple<vector<vector<int>>, vector<vector<int>>> CountTLBR(int h, int w, F f) {
 	vector<vector<int>> tl(h, vector<int>(w));
 	for (int i = 0; i < h; ++i)
 		for (int j = 0; j < w; ++j) {

@@ -10,9 +10,7 @@ int main() {
 	int n;
 	cin >> n;
 	vector<Geometric::Vec2> p(n);
-	for (auto& i : p) {
-		cin >> i;
-	}
+	for (auto& i : p) cin >> i;
 	auto [dist, p1, p2] = Geometric::closest_pair(p);
 	assert(Geometric::sgn(dist - (p1 - p2).length()) == 0);
 	printf("%.12Lf\n", dist);

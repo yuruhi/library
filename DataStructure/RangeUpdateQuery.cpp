@@ -9,13 +9,13 @@ template <class T> class RangeUpdateQuery {
 	size_t update_count = 1;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n)
-			m *= 2;
+		while (m < n) m *= 2;
 		return m;
 	}
 
 public:
-	RangeUpdateQuery(int _n, const T& init) : n(ceil2(_n)), a(n * 2, make_pair(0, init)) {}
+	RangeUpdateQuery(int _n, const T& init)
+	    : n(ceil2(_n)), a(n * 2, make_pair(0, init)) {}
 	RangeUpdateQuery(const vector<T>& v) : n(ceil2(v.size())), a(n * 2) {
 		for (size_t i = 0; i < v.size(); ++i) {
 			a[i + n] = make_pair(0, v[i]);

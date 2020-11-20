@@ -30,9 +30,8 @@ struct Sort_impl {
 struct SortBy_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
-			sort(begin(v), end(v), [&](const auto& i, const auto& j) {
-				return f(i) < f(j);
-			});
+			sort(begin(v), end(v),
+			     [&](const auto& i, const auto& j) { return f(i) < f(j); });
 			return v;
 		});
 	}
@@ -52,9 +51,8 @@ struct RSort_impl {
 struct RSortBy_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
-			sort(begin(v), end(v), [&](const auto& i, const auto& j) {
-				return f(i) > f(j);
-			});
+			sort(begin(v), end(v),
+			     [&](const auto& i, const auto& j) { return f(i) > f(j); });
 			return v;
 		});
 	}
@@ -94,9 +92,7 @@ struct Rotate_impl {
 } Rotate;
 struct Max_impl {
 	template <class F> auto operator()(F&& f) {
-		return Callable([&](auto v) {
-			return *max_element(begin(v), end(v), f);
-		});
+		return Callable([&](auto v) { return *max_element(begin(v), end(v), f); });
 	}
 	template <class T> friend auto operator|(T v, const Max_impl& c) {
 		return *max_element(begin(v), end(v));
@@ -104,9 +100,7 @@ struct Max_impl {
 } Max;
 struct Min_impl {
 	template <class F> auto operator()(F&& f) {
-		return Callable([&](auto v) {
-			return *min_element(begin(v), end(v), f);
-		});
+		return Callable([&](auto v) { return *min_element(begin(v), end(v), f); });
 	}
 	template <class T> friend auto operator|(T v, const Min_impl& c) {
 		return *min_element(begin(v), end(v));
@@ -180,16 +174,12 @@ struct MinOf_impl {
 } MinOf;
 struct Count_impl {
 	template <class V> auto operator()(const V& val) {
-		return Callable([&](auto v) {
-			return count(begin(v), end(v), val);
-		});
+		return Callable([&](auto v) { return count(begin(v), end(v), val); });
 	}
 } Count;
 struct CountIf_impl {
 	template <class F> auto operator()(const F& f) {
-		return Callable([&](auto v) {
-			return count_if(begin(v), end(v), f);
-		});
+		return Callable([&](auto v) { return count_if(begin(v), end(v), f); });
 	}
 } CountIf;
 struct Index_impl {
@@ -219,9 +209,8 @@ struct FindIf_impl {
 struct Sum_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
-			return accumulate(next(begin(v)), end(v), f(*begin(v)), [&](const auto& a, const auto& b) {
-				return a + f(b);
-			});
+			return accumulate(next(begin(v)), end(v), f(*begin(v)),
+			                  [&](const auto& a, const auto& b) { return a + f(b); });
 		});
 	}
 	template <class T> friend auto operator|(T v, const Sum_impl& c) {
@@ -230,16 +219,12 @@ struct Sum_impl {
 } Sum;
 struct Includes {
 	template <class V> auto operator()(const V& val) {
-		return Callable([&](auto v) {
-			return find(begin(v), end(v), val) != end(v);
-		});
+		return Callable([&](auto v) { return find(begin(v), end(v), val) != end(v); });
 	}
 } Includes;
 struct IncludesIf_impl {
 	template <class F> auto operator()(const F& f) {
-		return Callable([&](auto v) {
-			return find_if(begin(v), end(v), f) != end(v);
-		});
+		return Callable([&](auto v) { return find_if(begin(v), end(v), f) != end(v); });
 	}
 } IncludesIf;
 struct RemoveIf_impl {
@@ -337,7 +322,8 @@ struct Tally_impl {
 			return res;
 		});
 	}
-	template <class T, class value_type = typename T::value_type> friend auto operator|(const T& v, Tally_impl& c) {
+	template <class T, class value_type = typename T::value_type>
+	friend auto operator|(const T& v, Tally_impl& c) {
 		map<value_type, size_t> res;
 		for (const auto& i : v) {
 			res[i]++;

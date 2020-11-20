@@ -10,8 +10,7 @@ template <class T> class RAQRmQ {
 	vector<T> node, lazy;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n)
-			m *= 2;
+		while (m < n) m *= 2;
 		return m;
 	}
 	void eval(int k, int l, int r) {

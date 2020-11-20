@@ -14,7 +14,8 @@ template <class T> struct Range {
 	constexpr Range(T _x, T _y, bool exclude_end = false) : x(_x), y(_y - exclude_end) {
 		assert(x <= y);
 	}
-	constexpr Range(const Range& _r, bool exclude_end = false) : x(_r.x), y(_r.y - exclude_end) {
+	constexpr Range(const Range& _r, bool exclude_end = false)
+	    : x(_r.x), y(_r.y - exclude_end) {
 		assert(x <= y);
 	}
 	constexpr operator bool() const {
@@ -118,13 +119,15 @@ template <class T> struct Range {
 		return (x + y) * size() / 2;
 	}
 	friend ostream& operator<<(ostream& os, const Range& r) {
-		return (r == Range::nil()) ? (os << "[nil]") : (os << '[' << r.x << ", " << r.y << ']');
+		return (r == Range::nil()) ? (os << "[nil]")
+		                           : (os << '[' << r.x << ", " << r.y << ']');
 	}
 	friend istream& operator>>(istream& is, Range& r) {
 		return is >> r.x >> r.y;
 	}
 };
-template <class T, class U> constexpr Range<T> equal_range(const U& a, const Range<T>& r) {
+template <class T, class U>
+constexpr Range<T> equal_range(const U& a, const Range<T>& r) {
 	auto L = lower_bound(a.begin(), a.end(), r.x) - a.begin();
 	auto R = upper_bound(a.begin(), a.end(), r.y) - a.begin();
 	return L == R ? Range<T>::nil() : Range<T>(L, R, true);

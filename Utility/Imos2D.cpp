@@ -31,11 +31,9 @@ public:
 	void build() {
 		flag = true;
 		for (int y = 0; y <= H; ++y)
-			for (int x = 1; x <= W; ++x)
-				table[y][x] += table[y][x - 1];
+			for (int x = 1; x <= W; ++x) table[y][x] += table[y][x - 1];
 		for (int y = 1; y <= H; ++y)
-			for (int x = 0; x <= W; ++x)
-				table[y][x] += table[y - 1][x];
+			for (int x = 0; x <= W; ++x) table[y][x] += table[y - 1][x];
 	}
 	const T& operator()(int y, int x) const {
 		assert(flag);

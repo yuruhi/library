@@ -29,8 +29,7 @@ class Input {
 	static void i(string& v) {
 		v.clear();
 		char c;
-		for (i(c); !isspace(c); c = gc())
-			v += c;
+		for (i(c); !isspace(c); c = gc()) v += c;
 	}
 	static void i(int& v) {
 		bool neg = false;
@@ -41,8 +40,7 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc())
-			v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(long long& v) {
@@ -54,8 +52,7 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc())
-			v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(double& v) {
@@ -103,8 +100,7 @@ class Input {
 		i(v.second);
 	}
 	template <class T> static void i(vector<T>& v) {
-		for (auto& e : v)
-			i(e);
+		for (auto& e : v) i(e);
 	}
 	template <size_t N = 0, class T> static void input_tuple(T& v) {
 		if constexpr (N < tuple_size_v<T>) {
@@ -135,8 +131,7 @@ public:
 	static string read_line() {
 		string v;
 		char c;
-		for (i(c); c != '\n' && c != '\0'; c = gc())
-			v += c;
+		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
 	template <class T> static T in() {
@@ -164,7 +159,8 @@ public:
 
 private:
 	template <template <class...> class, class...> struct Multiple;
-	template <template <class...> class V, class Head, class... Tail> struct Multiple<V, Head, Tail...> {
+	template <template <class...> class V, class Head, class... Tail>
+	struct Multiple<V, Head, Tail...> {
 		template <class... Args> using vec = V<vector<Head>, Args...>;
 		using type = typename Multiple<vec, Tail...>::type;
 	};
@@ -182,8 +178,7 @@ private:
 public:
 	template <class... T> auto multiple(int H) const {
 		multiple_t<T...> res;
-		while (H--)
-			in_multiple(res);
+		while (H--) in_multiple(res);
 		return res;
 	}
 } in;

@@ -28,7 +28,8 @@ class StronglyConnectedComponents {
 
 public:
 	StronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}
-	StronglyConnectedComponents(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph), rgraph(_graph) {
+	StronglyConnectedComponents(const vector<vector<int>>& _graph)
+	    : n(_graph.size()), graph(_graph), rgraph(_graph) {
 		for (int v = 0; v < n; ++v) {
 			for (int u : graph[v]) {
 				rgraph[u].push_back(v);

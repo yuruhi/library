@@ -10,8 +10,7 @@ template <class T> vector<int> ZAlgorithm(const T& s) {
 	vector<int> res(n);
 	res[0] = n;
 	while (i < n) {
-		while (i + j < n && s[j] == s[i + j])
-			j++;
+		while (i + j < n && s[j] == s[i + j]) j++;
 		res[i] = j;
 		if (j == 0) {
 			i++;

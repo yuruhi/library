@@ -13,7 +13,8 @@ private:
 	vector<ull> pow, hash;
 
 public:
-	RollingHash(const string& s, ull _base = 10007) : n(s.size()), base(_base), pow(n + 1), hash(n + 1) {
+	RollingHash(const string& s, ull _base = 10007)
+	    : n(s.size()), base(_base), pow(n + 1), hash(n + 1) {
 		pow[0] = 1;
 		hash[0] = 0;
 		for (int i = 0; i < n; ++i) {

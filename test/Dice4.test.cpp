@@ -8,9 +8,7 @@ int main() {
 	int n;
 	cin >> n;
 	vector<Dice> d(n);
-	for (auto& i : d) {
-		cin >> i;
-	}
+	for (auto& i : d) cin >> i;
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
 			if (d[i].same(d[j])) {

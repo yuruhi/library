@@ -9,8 +9,7 @@ template <class T> class RangeAddQuery {
 	vector<T> a;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n)
-			m *= 2;
+		while (m < n) m *= 2;
 		return m;
 	}
 

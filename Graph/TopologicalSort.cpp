@@ -11,12 +11,10 @@ vector<int> TopologicalSort(const vector<vector<int>>& graph) {
 	function<void(int)> dfs = [&](int u) {
 		if (visited[u]) return;
 		visited[u] = true;
-		for (auto& i : graph[u])
-			dfs(i);
+		for (auto& i : graph[u]) dfs(i);
 		res.push_back(u);
 	};
-	for (int i = 0; i < V; i++)
-		dfs(i);
+	for (int i = 0; i < V; i++) dfs(i);
 	reverse(res.begin(), res.end());
 	return res;
 }

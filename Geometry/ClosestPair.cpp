@@ -16,7 +16,8 @@ namespace Geometric {
 				int mid = (left + right) / 2;
 				LD x = points[mid].x;
 				auto res = min(self(self, left, mid), self(self, mid, right));
-				inplace_merge(points.begin() + left, points.begin() + mid, points.begin() + right, Vec2::compare_y);
+				inplace_merge(points.begin() + left, points.begin() + mid,
+				              points.begin() + right, Vec2::compare_y);
 
 				vector<Vec2> around;
 				for (int i = left; i < right; ++i) {
@@ -27,7 +28,8 @@ namespace Geometric {
 						if (get<0>(res) <= points[i].y - around[j].y) {
 							break;
 						}
-						if (LD length = (points[i] - around[j]).length(); get<0>(res) > length) {
+						if (LD length = (points[i] - around[j]).length();
+						    get<0>(res) > length) {
 							res = {length, points[i], around[j]};
 						}
 					}

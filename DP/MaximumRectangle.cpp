@@ -10,16 +10,13 @@ template <class T> T MaximumRectangle(const vector<T>& a) {
 	stack<int> st;
 	vector<int> L(n), R(n);
 	for (int i = 0; i < n; ++i) {
-		while (!st.empty() && a[st.top()] >= a[i])
-			st.pop();
+		while (!st.empty() && a[st.top()] >= a[i]) st.pop();
 		L[i] = st.empty() ? 0 : st.top() + 1;
 		st.push(i);
 	}
-	while (!st.empty())
-		st.pop();
+	while (!st.empty()) st.pop();
 	for (int i = n - 1; i >= 0; --i) {
-		while (!st.empty() && a[st.top()] >= a[i])
-			st.pop();
+		while (!st.empty() && a[st.top()] >= a[i]) st.pop();
 		R[i] = st.empty() ? n : st.top();
 		st.push(i);
 	}

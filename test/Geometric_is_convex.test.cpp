@@ -8,7 +8,6 @@ int main() {
 	int n;
 	cin >> n;
 	vector<Geometric::Vec2> p(n);
-	for (auto& i : p)
-		cin >> i;
+	for (auto& i : p) cin >> i;
 	cout << Geometric::Polygon(p).is_convex() << endl;
 }

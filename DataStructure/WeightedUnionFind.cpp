@@ -9,8 +9,7 @@ template <class T> class WeightedUnionFind {
 
 public:
 	WeightedUnionFind(int n) : par(n), rank(n, 0), weight_(n, 0) {
-		for (int i = 0; i < n; ++i)
-			par[i] = i;
+		for (int i = 0; i < n; ++i) par[i] = i;
 	}
 	int root(int x) {
 		if (par[x] == x) return x;

@@ -6,7 +6,8 @@
 #include <optional>
 using namespace std;
 
-pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& edges, bool directed = true) {
+pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& edges,
+                                           bool directed = true) {
 	vector<vector<pair<int, int>>> graph(n);
 	for (size_t i = 0; i < edges.size(); ++i) {
 		auto [u, v] = edges[i];
@@ -53,7 +54,8 @@ pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& 
 	}
 }
 
-pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges, bool directed = true) {
+pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
+                                             bool directed = true) {
 	vector<vector<int>> graph(n);
 	for (auto [u, v] : edges) {
 		graph[u].push_back(v);
