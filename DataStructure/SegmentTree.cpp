@@ -5,23 +5,26 @@
 using namespace std;
 
 template <class T> class SegmentTree {
-	using Func = function<T(T, T)>;
-	int N;
-	T init;
-	vector<T> A;
-	Func F;
+public:
+	using value_type = T;
+	using func_type = function<value_type(value_type, value_type)>;
+
+private:
+	int n, original_n;
+	value_type init;
+	vector<value_type> data;
+	func_type func;
 	static int ceil2(int n) {
 		int m = 1;
-		while (m < n)
-			m *= 2;
+		while (m < n) m *= 2;
 		return m;
 	}
 
 	template <class C> int ff(int a, int b, const C& c, int k, int l, int r) const {
-		if (!c(A[k]) || r <= a || b <= l) {
+		if (!c(data[k]) || r <= a || b <= l) {
 			return -1;
-		} else if (k >= N) {
-			return k - N;
+		} else if (k >= n) {
+			return k - n;
 		} else {
 			int lv = ff(a, b, c, 2 * k, l, (l + r) / 2);
 			if (lv != -1) return lv;
@@ -29,10 +32,10 @@ template <class T> class SegmentTree {
 		}
 	}
 	template <class C> int fl(int a, int b, const C& c, int k, int l, int r) const {
-		if (!c(A[k]) || r <= a || b <= l) {
+		if (!c(data[k]) || r <= a || b <= l) {
 			return -1;
-		} else if (k >= N) {
-			return k - N;
+		} else if (k >= n) {
+			return k - n;
 		} else {
 			int rv = fl(a, b, c, 2 * k + 1, (l + r) / 2, r);
 			if (rv != -1) return rv;
@@ -41,50 +44,55 @@ template <class T> class SegmentTree {
 	}
 
 public:
-	SegmentTree(int n, const T& init_, const Func& f) : N(ceil2(n)), init(init_), A(N * 2, init), F(f) {}
-	SegmentTree(const vector<T>& vec, const T& init_, const Func& f) : init(init_), F(f) {
+	SegmentTree(int _n, const value_type& init_, const func_type& _func)
+	    : n(ceil2(_n)), original_n(_n), init(init_), data(n * 2, init), func(_func) {}
+	SegmentTree(const vector<value_type>& vec, const value_type& init_,
+	            const func_type& _func)
+	    : init(init_), func(_func) {
 		build(vec);
 	}
-	void build(const vector<T>& v) {
-		N = ceil2(v.size());
-		A.assign(N * 2, init);
+	void build(const vector<value_type>& v) {
+		n = ceil2(v.size());
+		original_n = v.size();
+		data.assign(n * 2, init);
 		for (size_t i = 0; i < v.size(); ++i) {
-			A[i + N] = v[i];
+			data[i + n] = v[i];
 		}
-		for (int i = N - 1; i > 0; --i) {
-			A[i] = F(A[i * 2], A[i * 2 + 1]);
+		for (int i = n - 1; i > 0; --i) {
+			data[i] = func(data[i * 2], data[i * 2 + 1]);
 		}
 	}
-	void update(int i, const T& x) {
-		assert(0 <= i && i < N);
-		A[i += N] = x;
+	void update(int i, const value_type& x) {
+		assert(0 <= i && i < n);
+		data[i += n] = x;
 		while (i >>= 1) {
-			A[i] = F(A[i * 2], A[i * 2 + 1]);
+			data[i] = func(data[i * 2], data[i * 2 + 1]);
 		}
 	}
-	T operator[](int i) const {
-		assert(0 <= i && i < N);
-		return A[i + N];
+	value_type operator[](int i) const {
+		assert(0 <= i && i < n);
+		return data[i + n];
 	}
-	T operator()(int l, int r) const {  // [l, r)
-		assert(0 <= l && l < r && r <= N);
-		T L = init, R = init;
-		for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
-			if (l & 1) L = F(L, A[l++]);
-			if (r & 1) R = F(A[--r], R);
+	value_type operator()(int l, int r) const {  // [l, r)
+		assert(0 <= l && l < r && r <= n);
+		value_type L = init, R = init;
+		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+			if (l & 1) L = func(L, data[l++]);
+			if (r & 1) R = func(data[--r], R);
 		}
-		return F(L, R);
+		return func(L, R);
 	}
 	template <class C> int find_first(int l, int r, const C& c) const {
-		return ff(l, r, c, 1, 0, N);
+		return ff(l, r, c, 1, 0, n);
 	}
 	template <class C> int find_last(int l, int r, const C& c) const {
-		return fl(l, r, c, 1, 0, N);
+		return fl(l, r, c, 1, 0, n);
 	}
-	vector<T> to_a() const {
-		vector<T> res(N);
-		for (int i = 0; i < N; ++i)
+	vector<value_type> to_a() const {
+		vector<value_type> res(original_n);
+		for (int i = 0; i < original_n; ++i) {
 			res[i] = operator[](i);
+		}
 		return res;
 	}
 };
