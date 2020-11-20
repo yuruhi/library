@@ -56,8 +56,7 @@ class Input {
 	static void i(string& v) {
 		v.clear();
 		char c;
-		for (i(c); !isspace(c); c = gc())
-			v += c;
+		for (i(c); !isspace(c); c = gc()) v += c;
 	}
 	static void i(int& v) {
 		bool neg = false;
@@ -68,8 +67,7 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc())
-			v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(long long& v) {
@@ -81,8 +79,7 @@ class Input {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc())
-			v = v * 10 + (c - '0');
+		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void i(double& v) {
@@ -130,8 +127,7 @@ class Input {
 		i(v.second);
 	}
 	template <class T> static void i(vector<T>& v) {
-		for (auto& e : v)
-			i(e);
+		for (auto& e : v) i(e);
 	}
 	template <size_t N = 0, class T> static void input_tuple(T& v) {
 		if constexpr (N < tuple_size_v<T>) {
@@ -162,8 +158,7 @@ public:
 	static string read_line() {
 		string v;
 		char c;
-		for (i(c); c != '\n' && c != '\0'; c = gc())
-			v += c;
+		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
 	template <class T> static T in() {
@@ -191,7 +186,8 @@ public:
 
 private:
 	template <template <class...> class, class...> struct Multiple;
-	template <template <class...> class V, class Head, class... Tail> struct Multiple<V, Head, Tail...> {
+	template <template <class...> class V, class Head, class... Tail>
+	struct Multiple<V, Head, Tail...> {
 		template <class... Args> using vec = V<vector<Head>, Args...>;
 		using type = typename Multiple<vec, Tail...>::type;
 	};
@@ -209,8 +205,7 @@ private:
 public:
 	template <class... T> auto multiple(int H) const {
 		multiple_t<T...> res;
-		while (H--)
-			in_multiple(res);
+		while (H--) in_multiple(res);
 		return res;
 	}
 } in;
@@ -233,7 +228,8 @@ struct BoolStr {
 struct DivStr {
 	const char *d, *l;
 	DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}
-} spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"), no_endl(" ", "");
+} spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"),
+    no_endl(" ", "");
 class Output {
 	BoolStr B{Yes};
 	DivStr D{spc};
@@ -442,7 +438,8 @@ namespace Ruby {
 				return v;
 			});
 		}
-		template <class T> friend auto operator|(T v, [[maybe_unused]] const Sort_impl& c) {
+		template <class T>
+		friend auto operator|(T v, [[maybe_unused]] const Sort_impl& c) {
 			sort(begin(v), end(v));
 			return v;
 		}
@@ -450,9 +447,8 @@ namespace Ruby {
 	struct SortBy_impl {
 		template <class F> auto operator()(F&& f) {
 			return Callable([&](auto v) {
-				sort(begin(v), end(v), [&](const auto& i, const auto& j) {
-					return f(i) < f(j);
-				});
+				sort(begin(v), end(v),
+				     [&](const auto& i, const auto& j) { return f(i) < f(j); });
 				return v;
 			});
 		}
@@ -464,7 +460,8 @@ namespace Ruby {
 				return v;
 			});
 		}
-		template <class T> friend auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {
+		template <class T>
+		friend auto operator|(T v, [[maybe_unused]] const RSort_impl& c) {
 			sort(rbegin(v), rend(v));
 			return v;
 		}
@@ -472,9 +469,8 @@ namespace Ruby {
 	struct RSortBy_impl {
 		template <class F> auto operator()(F&& f) {
 			return Callable([&](auto v) {
-				sort(begin(v), end(v), [&](const auto& i, const auto& j) {
-					return f(i) > f(j);
-				});
+				sort(begin(v), end(v),
+				     [&](const auto& i, const auto& j) { return f(i) > f(j); });
 				return v;
 			});
 		}
@@ -514,9 +510,7 @@ namespace Ruby {
 	} Rotate;
 	struct Max_impl {
 		template <class F> auto operator()(F&& f) {
-			return Callable([&](auto v) {
-				return *max_element(begin(v), end(v), f);
-			});
+			return Callable([&](auto v) { return *max_element(begin(v), end(v), f); });
 		}
 		template <class T> friend auto operator|(T v, const Max_impl& c) {
 			return *max_element(begin(v), end(v));
@@ -524,9 +518,7 @@ namespace Ruby {
 	} Max;
 	struct Min_impl {
 		template <class F> auto operator()(F&& f) {
-			return Callable([&](auto v) {
-				return *min_element(begin(v), end(v), f);
-			});
+			return Callable([&](auto v) { return *min_element(begin(v), end(v), f); });
 		}
 		template <class T> friend auto operator|(T v, const Min_impl& c) {
 			return *min_element(begin(v), end(v));
@@ -600,16 +592,12 @@ namespace Ruby {
 	} MinOf;
 	struct Count_impl {
 		template <class V> auto operator()(const V& val) {
-			return Callable([&](auto v) {
-				return count(begin(v), end(v), val);
-			});
+			return Callable([&](auto v) { return count(begin(v), end(v), val); });
 		}
 	} Count;
 	struct CountIf_impl {
 		template <class F> auto operator()(const F& f) {
-			return Callable([&](auto v) {
-				return count_if(begin(v), end(v), f);
-			});
+			return Callable([&](auto v) { return count_if(begin(v), end(v), f); });
 		}
 	} CountIf;
 	struct Index_impl {
@@ -639,9 +627,8 @@ namespace Ruby {
 	struct Sum_impl {
 		template <class F> auto operator()(F&& f) {
 			return Callable([&](auto v) {
-				return accumulate(next(begin(v)), end(v), f(*begin(v)), [&](const auto& a, const auto& b) {
-					return a + f(b);
-				});
+				return accumulate(next(begin(v)), end(v), f(*begin(v)),
+				                  [&](const auto& a, const auto& b) { return a + f(b); });
 			});
 		}
 		template <class T> friend auto operator|(T v, const Sum_impl& c) {
@@ -650,16 +637,14 @@ namespace Ruby {
 	} Sum;
 	struct Includes {
 		template <class V> auto operator()(const V& val) {
-			return Callable([&](auto v) {
-				return find(begin(v), end(v), val) != end(v);
-			});
+			return Callable(
+			    [&](auto v) { return find(begin(v), end(v), val) != end(v); });
 		}
 	} Includes;
 	struct IncludesIf_impl {
 		template <class F> auto operator()(const F& f) {
-			return Callable([&](auto v) {
-				return find_if(begin(v), end(v), f) != end(v);
-			});
+			return Callable(
+			    [&](auto v) { return find_if(begin(v), end(v), f) != end(v); });
 		}
 	} IncludesIf;
 	struct RemoveIf_impl {
