@@ -73,7 +73,7 @@ public:
 		assert(0 <= i && i < n);
 		return data[i + n];
 	}
-	value_type operator()(int l, int r) const {  // [l, r)
+	value_type operator()(int l, int r) const {
 		assert(0 <= l && l < r && r <= n);
 		value_type L = init, R = init;
 		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
