@@ -25,7 +25,8 @@ public:
 	}
 	template <class U, class F>
 	CulSum(const U& a, F f)
-	    : CulSum(a.size(), [a, f](size_t i, size_t j) -> value_type { return f(a[i]); });
+	    : CulSum(a.size(), [a, f](size_t i, size_t j) -> value_type { return f(a[i]); }) {
+	}
 	// [l, r)
 	value_type operator()(size_t l, size_t r) const {
 		l = min(l, n);
