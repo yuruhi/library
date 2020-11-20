@@ -5,6 +5,8 @@ on: push
 jobs:
   verify:
     runs-on: ubuntu-latest
+    env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
     - uses: actions/checkout@v1
@@ -19,8 +21,6 @@ jobs:
     # required only if you want to verify Haskell code
     - name: Install dependencies (Haskell)
       uses: actions/setup-haskell@v1.1
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     # required only if you want to verify Java code
     - name: Install dependencies (Java)
