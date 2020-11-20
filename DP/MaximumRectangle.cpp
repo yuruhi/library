@@ -4,27 +4,27 @@
 #include <algorithm>
 using namespace std;
 
-template <class T> T MaximumRectangle(vector<T> h) {
-	int n = h.size();
-	T ans = 0;
-	stack<int> s;
+template <class T> T MaximumRectangle(const vector<T>& a) {
+	int n = a.size();
+	T result = 0;
+	stack<int> st;
 	vector<int> L(n), R(n);
 	for (int i = 0; i < n; ++i) {
-		while (!s.empty() && h[s.top()] >= h[i])
-			s.pop();
-		L[i] = s.empty() ? 0 : s.top() + 1;
-		s.push(i);
+		while (!st.empty() && a[st.top()] >= a[i])
+			st.pop();
+		L[i] = st.empty() ? 0 : st.top() + 1;
+		st.push(i);
 	}
-	while (!s.empty())
-		s.pop();
+	while (!st.empty())
+		st.pop();
 	for (int i = n - 1; i >= 0; --i) {
-		while (!s.empty() && h[s.top()] >= h[i])
-			s.pop();
-		R[i] = s.empty() ? n : s.top();
-		s.push(i);
+		while (!st.empty() && a[st.top()] >= a[i])
+			st.pop();
+		R[i] = st.empty() ? n : st.top();
+		st.push(i);
 	}
 	for (int i = 0; i < n; ++i) {
-		ans = max(ans, h[i] * (R[i] - L[i]));
+		result = max(result, a[i] * (R[i] - L[i]));
 	}
-	return ans;
+	return result;
 }
