@@ -20,8 +20,8 @@ public:
 	         value_type b) {  // [l, r) += a + (i - l) * b
 		if (l >= r) return;
 		assert(!builded);
-		l = max(min(l, n), 0);
-		r = max(min(r, n), 0);
+		l = min(l, n);
+		r = min(r, n);
 		A[l] += a - b * l;
 		B[l] += b;
 		A[r] -= a - b * l;

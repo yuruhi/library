@@ -25,7 +25,7 @@ void WarashallFloydAddEdge(Matrix& dist, const Edge2& e) {
 		for (int j = 0; j < V; ++j) {
 			dist[i][j] = min(
 			    dist[i][j],
-			    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);
+			    min(dist[i][e.from] + dist[e.to][j], dist[i][e.to] + dist[e.from][j]) + e.cost);
 		}
 	}
 }
