@@ -4,8 +4,8 @@
 #include <queue>
 using namespace std;
 
-Graph SpanningTree(const Graph& g, int root) {
-	int n = g.size();
+Graph SpanningTree(const Graph& graph, int root) {
+	int n = graph.size();
 	Graph res(n);
 	queue<int> q;
 	q.push(root);
@@ -14,7 +14,7 @@ Graph SpanningTree(const Graph& g, int root) {
 	while (!q.empty()) {
 		int f = q.front();
 		q.pop();
-		for (const Edge& e : g[f]) {
+		for (const Edge& e : graph[f]) {
 			if (!flag[e.to]) {
 				res[f].push_back(e);
 				flag[e.to] = true;

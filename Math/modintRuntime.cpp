@@ -92,16 +92,20 @@ public:
 	bool operator!=(const mint& m) const {
 		return n != m.n;
 	}
-	mint pow(T m) const {
+	template <class M> mint pow(M m) const {
 		mint t = n, res = 1;
 		while (m > 0) {
-			if (m & 1) res *= t;
-			t *= t;
-			m >>= 1;
+			if (m & 1) {
+				res *= t;
+				m--;
+			} else {
+				t *= t;
+				m >>= 1;
+			}
 		}
 		return res;
 	}
-	mint operator^(T m) const {
+	template <class M> mint operator^(M m) const {
 		return pow(m);
 	}
 	friend ostream& operator<<(ostream& os, const mint& m) {

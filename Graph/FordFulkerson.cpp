@@ -4,18 +4,18 @@
 using namespace std;
 
 class FordFulkerson {
-	int V;
-	GraphF G;
+	int n;
+	GraphF graph;
 	vector<bool> used;
 	FLOW dfs(int v, int t, FLOW f) {
 		if (v == t) return f;
 		used[v] = true;
-		for (auto& e : G[v]) {
+		for (auto& e : graph[v]) {
 			if (!used[e.to] && e.cap > 0) {
 				FLOW d = dfs(e.to, t, min(f, e.cap));
 				if (d > 0) {
 					e.cap -= d;
-					G[e.to][e.rev].cap += d;
+					graph[e.to][e.rev].cap += d;
 					return d;
 				}
 			}
@@ -24,13 +24,13 @@ class FordFulkerson {
 	}
 
 public:
-	FordFulkerson(int v) : V(v), G(v), used(v) {}
+	FordFulkerson(int _n) : n(_n), graph(n), used(n) {}
 	const GraphF& get_G() {
-		return G;
+		return graph;
 	}
 	void add_edge(int from, int to, FLOW cap) {
-		G[from].emplace_back(to, G[to].size(), cap);
-		G[to].emplace_back(from, G[from].size() - 1, 0);
+		graph[from].emplace_back(to, graph[to].size(), cap);
+		graph[to].emplace_back(from, graph[from].size() - 1, 0);
 	}
 	FLOW solve(int s, int t) {
 		FLOW res = 0;

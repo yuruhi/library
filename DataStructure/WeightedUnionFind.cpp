@@ -4,22 +4,25 @@
 using namespace std;
 
 template <class T> class WeightedUnionFind {
-	vector<int> par, rank;
-	vector<T> weight_;
+	vector<int> par_m, rank_m;
+	vector<T> weight_m;
 
 public:
-	WeightedUnionFind(int n) : par(n), rank(n, 0), weight_(n, 0) {
-		for (int i = 0; i < n; ++i) par[i] = i;
+	WeightedUnionFind(int n) : par_m(n), rank_m(n, 0), weight_m(n, 0) {
+		for (int i = 0; i < n; ++i) par_m[i] = i;
 	}
 	int root(int x) {
-		if (par[x] == x) return x;
-		int r = root(par[x]);
-		weight_[x] += weight_[par[x]];
-		return par[x] = r;
+		if (par_m[x] == x) {
+			return x;
+		} else {
+			int r = root(par_m[x]);
+			weight_m[x] += weight_m[par_m[x]];
+			return par_m[x] = r;
+		}
 	}
 	T weight(int x) {
 		root(x);
-		return weight_[x];
+		return weight_m[x];
 	}
 	bool same(int x, int y) {
 		return root(x) == root(y);
@@ -30,13 +33,13 @@ public:
 		x = root(x);
 		y = root(y);
 		if (x == y) return false;
-		if (rank[x] < rank[y]) {
+		if (rank_m[x] < rank_m[y]) {
 			swap(x, y);
 			w = -w;
 		}
-		if (rank[x] == rank[y]) rank[x]++;
-		par[y] = x;
-		weight_[y] = w;
+		if (rank_m[x] == rank_m[y]) rank_m[x]++;
+		par_m[y] = x;
+		weight_m[y] = w;
 		return true;
 	}
 	T diff(int x, int y) {

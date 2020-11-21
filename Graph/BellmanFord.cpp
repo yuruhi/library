@@ -3,10 +3,10 @@
 #include <vector>
 using namespace std;
 
-pair<bool, vector<Weight>> BellmanFord(const Graph& graph, int s) {
+pair<bool, vector<Weight>> BellmanFord(const Graph& graph, int start) {
 	int V = graph.size();
 	vector<Weight> dist(V, INF);
-	dist[s] = 0;
+	dist[start] = 0;
 	for (int i = 0; i < V; ++i)
 		for (int v = 0; v < V; ++v)
 			for (auto e : graph[v]) {

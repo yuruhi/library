@@ -5,10 +5,26 @@
 using namespace std;
 
 template <class T> struct Pair {
-	T x, y;
+	using value_type = T;
+	static constexpr bool cmp_x(const Pair<value_type>& p1, const Pair<value_type>& p2) {
+		return p1.xy() < p2.xy();
+	}
+	static constexpr bool cmp_y(const Pair<value_type>& p1, const Pair<value_type>& p2) {
+		return p1.yx() < p2.yx();
+	}
+	static constexpr value_type get_x(const Pair<value_type>& p) {
+		return p.x;
+	}
+	static constexpr value_type get_y(const Pair<value_type>& p) {
+		return p.y;
+	}
+
+	value_type x, y;
 	constexpr Pair() : x(), y() {}
-	constexpr Pair(T _x, T _y) : x(_x), y(_y) {}
-	constexpr Pair(const pair<T, T>& xy) : x(xy.first), y(xy.second) {}
+	constexpr Pair(value_type _x, value_type _y) : x(_x), y(_y) {}
+	constexpr Pair(const pair<value_type, value_type>& xy) : x(xy.first), y(xy.second) {}
+	constexpr Pair(const tuple<value_type, value_type>& xy)
+	    : x(get<0>(xy)), y(get<0>(xy)) {}
 	constexpr Pair operator+() const {
 		return *this;
 	}
@@ -30,19 +46,19 @@ template <class T> struct Pair {
 	constexpr Pair operator%(const Pair& p) const {
 		return Pair(*this) %= p;
 	}
-	constexpr Pair operator+(T n) const {
+	constexpr Pair operator+(value_type n) const {
 		return Pair(*this) += n;
 	}
-	constexpr Pair operator-(T n) const {
+	constexpr Pair operator-(value_type n) const {
 		return Pair(*this) -= n;
 	}
-	constexpr Pair operator*(T n) const {
+	constexpr Pair operator*(value_type n) const {
 		return Pair(*this) *= n;
 	}
-	constexpr Pair operator/(T n) const {
+	constexpr Pair operator/(value_type n) const {
 		return Pair(*this) /= n;
 	}
-	constexpr Pair operator%(T n) const {
+	constexpr Pair operator%(value_type n) const {
 		return Pair(*this) %= n;
 	}
 	constexpr Pair& operator+=(const Pair& p) {
@@ -70,27 +86,27 @@ template <class T> struct Pair {
 		y %= p.y;
 		return *this;
 	}
-	constexpr Pair& operator+=(T n) {
+	constexpr Pair& operator+=(value_type n) {
 		x += n;
 		y += n;
 		return *this;
 	}
-	constexpr Pair& operator-=(T n) {
+	constexpr Pair& operator-=(value_type n) {
 		x -= n;
 		y -= n;
 		return *this;
 	}
-	constexpr Pair& operator*=(T n) {
+	constexpr Pair& operator*=(value_type n) {
 		x *= n;
 		y *= n;
 		return *this;
 	}
-	constexpr Pair& operator/=(T n) {
+	constexpr Pair& operator/=(value_type n) {
 		x /= n;
 		y /= n;
 		return *this;
 	}
-	constexpr Pair& operator%=(T n) {
+	constexpr Pair& operator%=(value_type n) {
 		x %= n;
 		y %= n;
 		return *this;
@@ -113,26 +129,24 @@ template <class T> struct Pair {
 	constexpr bool operator>=(const Pair& p) const {
 		return !(*this < p);
 	}
-	constexpr int operator[](int i) const {
-		return i == 0 ? x : i == 1 ? y : 0;
+	constexpr value_type operator[](size_t i) const {
+		assert(0 <= i && i < 2);
+		return i == 0 ? x : y;
 	}
-	constexpr pair<T, T> to_pair() const {
+	constexpr pair<value_type, value_type> to_pair() const {
+		return {x, y};
+	}
+	constexpr tuple<value_type, value_type> to_tuple() const {
+		return {x, y};
+	}
+	constexpr Pair xy() const {
 		return {x, y};
 	}
 	constexpr Pair yx() const {
 		return {y, x};
 	}
-	constexpr operator tuple<T&, T&>() {
-		return tuple<T&, T&>(x, y);
-	}
-	static constexpr bool cmp_y(const Pair<T>& p1, const Pair<T>& p2) {
-		return p1.yx() < p2.yx();
-	}
-	static constexpr T get_x(const Pair<T>& p) {
-		return p.x;
-	}
-	static constexpr T get_y(const Pair<T>& p) {
-		return p.y;
+	constexpr operator tuple<value_type&, value_type&>() {
+		return tuple<value_type&, value_type&>(x, y);
 	}
 	friend ostream& operator<<(ostream& os, const Pair& p) {
 		return os << p.x << ' ' << p.y;

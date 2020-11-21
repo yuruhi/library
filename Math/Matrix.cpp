@@ -4,8 +4,13 @@
 using namespace std;
 
 template <class T> struct Matrix {
+public:
+	using value_type = T;
+	using data_type = vector<vector<value_type>>;
+
+private:
 	size_t h, w;
-	vector<vector<T>> A;
+	data_type A;
 
 public:
 	static Matrix I(size_t n) {
@@ -17,8 +22,8 @@ public:
 	}
 	Matrix() {}
 	Matrix(size_t _h, size_t _w) : h(_h), w(_w), A(h, vector<T>(w, 0)) {}
-	Matrix(size_t _h) : h(_h), w(_h), A(h, vector<T>(w, 0)){};
-	Matrix(const vector<vector<T>>& _A) : h(_A.size()), w(_A[0].size()), A(_A) {}
+	Matrix(size_t _h) : h(_h), w(_h), A(h, vector<T>(w, 0)) {}
+	Matrix(const data_type& _A) : h(_A.size()), w(_A[0].size()), A(_A) {}
 	size_t height() const {
 		return h;
 	}
@@ -31,7 +36,7 @@ public:
 	vector<T>& operator[](int i) {
 		return A[i];
 	}
-	const vector<vector<T>>& operator*() const {
+	const data_type& operator*() const {
 		return A;
 	}
 	Matrix& operator+=(const Matrix& B) {
@@ -55,7 +60,7 @@ public:
 	Matrix& operator*=(const Matrix& B) {
 		size_t n = B.width();
 		assert(w == B.height());
-		vector<vector<T>> C(h, vector<T>(n, 0));
+		data_type C(h, vector<T>(n, 0));
 		for (size_t i = 0; i < h; i++) {
 			for (size_t j = 0; j < n; j++) {
 				for (size_t k = 0; k < w; k++) {

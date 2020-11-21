@@ -13,29 +13,33 @@ private:
 	class node_type;
 	using node_ptr = shared_ptr<const node_type>;
 	struct node_type {
-		value_type value;
 		node_ptr next;
+		value_type value;
 		node_type(node_ptr _next, const value_type& _value)
 		    : next(_next), value(_value) {}
 	};
 
 	node_ptr root;
-	PersistentStack(node_ptr _root) : root(_root) {}
+	size_t size_m;
+	PersistentStack(node_ptr _root, size_t _size_m) : root(_root), size_m(_size_m) {}
 
 public:
-	PersistentStack() = default;
+	PersistentStack() : size_m(0) {}
 	bool empty() const {
 		return !root;
+	}
+	size_t size() const {
+		return size_m;
 	}
 	const_reference top() const {
 		return root->value;
 	}
 	PersistentStack push(const_reference value) const {
-		return PersistentStack(make_shared<node_type>(root, value));
+		return PersistentStack(make_shared<node_type>(root, value), size_m + 1);
 	}
 	PersistentStack pop() const {
 		assert(!empty());
-		return PersistentStack(root->next);
+		return PersistentStack(root->next, size_m - 1);
 	}
 	vector<value_type> to_a() const {
 		vector<value_type> result;

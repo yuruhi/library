@@ -5,7 +5,11 @@
 using namespace std;
 
 template <class T> class Compress {
-	vector<T> v;
+public:
+	using value_type = T;
+
+private:
+	vector<value_type> v;
 	bool flag = false;
 
 public:
@@ -13,7 +17,7 @@ public:
 	template <class U> Compress(const U& a) {
 		add(a);
 	}
-	Compress& add(const T& a) {
+	Compress& add(const value_type& a) {
 		flag = false;
 		v.push_back(a);
 		return *this;
@@ -37,15 +41,15 @@ public:
 		v.erase(unique(v.begin(), v.end()), v.end());
 		flag = true;
 	}
-	int operator()(const T& x) const {
+	int operator()(const value_type& x) const {
 		assert(flag);
 		return lower_bound(v.begin(), v.end(), x) - v.begin();
 	}
-	vector<int> operator()(const vector<T>& x) const {
+	vector<int> operator()(const vector<value_type>& x) const {
 		assert(flag);
 		vector<int> res;
 		res.reserve(x.size());
-		for (const T& i : x)
+		for (const value_type& i : x)
 			res.push_back(lower_bound(v.begin(), v.end(), i) - v.begin());
 		return res;
 	}
@@ -53,11 +57,11 @@ public:
 		assert(flag);
 		return v.size();
 	}
-	const vector<T>& operator*() const {
+	const vector<value_type>& operator*() const {
 		assert(flag);
 		return v;
 	}
-	const T& operator[](int i) const {
+	const value_type& operator[](int i) const {
 		assert(flag);
 		return v[i];
 	}

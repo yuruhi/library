@@ -6,24 +6,24 @@
 using namespace std;
 
 class LCA {
-	const int V, LOG;
+	const int n, LOG;
 	vector<int> dist;
 	vector<vector<int>> table;
-	void dfs(const Graph& g, int v, int p, int d) {
+	void dfs(const Graph& graph, int v, int p, int d) {
 		table[0][v] = p;
 		dist[v] = d;
-		for (auto e : g[v])
+		for (auto e : graph[v])
 			if (e.to != p) {
-				dfs(g, e.to, v, d + 1);
+				dfs(graph, e.to, v, d + 1);
 			}
 	}
 
 public:
-	LCA(const Graph& g, const int root)
-	    : V(g.size()), LOG(log2(V) + 1), dist(V), table(LOG, vector<int>(V)) {
-		dfs(g, root, -1, 0);
+	LCA(const Graph& graph, const int root)
+	    : n(graph.size()), LOG(log2(n) + 1), dist(n), table(LOG, vector<int>(n)) {
+		dfs(graph, root, -1, 0);
 		for (int k = 0; k + 1 < LOG; ++k) {
-			for (int v = 0; v < V; ++v) {
+			for (int v = 0; v < n; ++v) {
 				if (table[k][v] < 0) {
 					table[k + 1][v] = -1;
 				} else {

@@ -4,7 +4,7 @@
 #include <cassert>
 using namespace std;
 
-template <class T> vector<T> Divisor(T n) {
+template <class T> vector<T> Divisors(T n) {
 	assert(0 < n);
 	vector<T> res;
 	T i = 1;
@@ -17,7 +17,7 @@ template <class T> vector<T> Divisor(T n) {
 	}
 	return res;
 }
-template <class T> int DivCnt(T n) {
+template <class T> int DivisorsCount(T n) {
 	assert(0 < n);
 	int cnt = 0;
 	T sq = (T)sqrt(n);
@@ -26,7 +26,7 @@ template <class T> int DivCnt(T n) {
 	}
 	return cnt * 2 - (sq * sq == n);
 }
-template <class T> T DivSum(T n) {
+template <class T> T DivisorsSum(T n) {
 	assert(0 < n);
 	T i = 1, res = 0;
 	for (; i * i < n; ++i)

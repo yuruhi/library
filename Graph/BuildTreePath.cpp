@@ -4,11 +4,11 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> BuildPathTree(const Graph& g, int s, int t) {
-	int n = g.size();
+vector<int> BuildPathTree(const Graph& graph, int s, int t) {
+	int n = graph.size();
 	vector<int> par(n);
 	auto dfs = [&](auto&& f, int v, int p) -> void {
-		for (const auto& u : g[v]) {
+		for (const auto& u : graph[v]) {
 			if (u.to != p) {
 				par[u.to] = v;
 				f(f, u.to, v);

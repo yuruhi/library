@@ -5,16 +5,16 @@
 #include <queue>
 using namespace std;
 
-vector<vector<int>> GridBFS(const vector<string>& grid, Point s, char wall = '#') {
+vector<vector<int>> GridBFS(const vector<string>& grid, Point start, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);
 	vector<vector<int>> res(h, vector<int>(w, INT_MAX));
-	if (grid[s.y][s.x] == wall) {
+	if (grid[start.y][start.x] == wall) {
 		return res;
 	}
-	res[s.y][s.x] = 0;
+	res[start.y][start.x] = 0;
 	queue<Point> q;
-	q.push(s);
+	q.push(start);
 	while (!q.empty()) {
 		auto f = q.front();
 		q.pop();

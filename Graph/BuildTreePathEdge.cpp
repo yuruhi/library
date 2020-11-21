@@ -3,11 +3,11 @@
 #include <utility>
 using namespace std;
 
-vector<int> BuildTreePathEdge(const vector<vector<pair<int, int>>>& g, int s, int t) {
-	int n = g.size();
+vector<int> BuildTreePathEdge(const vector<vector<pair<int, int>>>& graph, int s, int t) {
+	int n = graph.size();
 	vector<pair<int, int>> par(n, make_pair(-1, -1));
 	auto dfs = [&](auto&& f, int v, int p) -> void {
-		for (auto [u, i] : g[v]) {
+		for (auto [u, i] : graph[v]) {
 			if (u != p) {
 				par[u] = make_pair(v, i);
 				f(f, u, v);

@@ -7,7 +7,7 @@ using namespace std;
 
 class Dinic {
 	int V;
-	GraphF G;
+	GraphF graph;
 	vector<int> level, iter;
 	void bfs(int s) {
 		fill(level.begin(), level.end(), -1);
@@ -17,7 +17,7 @@ class Dinic {
 		while (!q.empty()) {
 			int v = q.front();
 			q.pop();
-			for (auto& e : G[v]) {
+			for (auto& e : graph[v]) {
 				if (e.cap > 0 && level[e.to] < 0) {
 					level[e.to] = level[v] + 1;
 					q.push(e.to);
@@ -27,13 +27,13 @@ class Dinic {
 	}
 	FLOW dfs(int v, int t, FLOW f) {
 		if (v == t) return f;
-		for (int i = iter[v]; i < G[v].size(); ++i) {
-			auto& e = G[v][i];
+		for (int i = iter[v]; i < graph[v].size(); ++i) {
+			auto& e = graph[v][i];
 			if (e.cap > 0 && level[v] < level[e.to]) {
 				FLOW d = dfs(e.to, t, min(f, e.cap));
 				if (d > 0) {
 					e.cap -= d;
-					G[e.to][e.rev].cap += d;
+					graph[e.to][e.rev].cap += d;
 					return d;
 				}
 			}
@@ -42,13 +42,13 @@ class Dinic {
 	}
 
 public:
-	Dinic(int v) : V(v), G(v), level(v), iter(v) {}
-	const GraphF& get_G() {
-		return G;
+	Dinic(int v) : V(v), graph(v), level(v), iter(v) {}
+	const GraphF& get_graph() {
+		return graph;
 	}
 	void add_edge(int from, int to, FLOW cap) {
-		G[from].emplace_back(to, G[to].size(), cap);
-		G[to].emplace_back(from, G[from].size() - 1, 0);
+		graph[from].emplace_back(to, graph[to].size(), cap);
+		graph[to].emplace_back(from, graph[from].size() - 1, 0);
 	}
 	FLOW solve(int s, int t) {
 		FLOW res = 0;

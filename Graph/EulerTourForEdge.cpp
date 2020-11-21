@@ -6,13 +6,13 @@
 using namespace std;
 
 class EulerTourForEdge {
-	vector<vector<int>> g;
+	vector<vector<int>> graph;
 	vector<int> ls, rs;
 	int pos = 0;
 	bool flag = false;
 	void dfs(int v, int p = -1) {
 		ls[v] = pos++;
-		for (int u : g[v])
+		for (int u : graph[v])
 			if (u != p) {
 				dfs(u, v);
 			}
@@ -20,11 +20,11 @@ class EulerTourForEdge {
 	}
 
 public:
-	EulerTourForEdge(int n) : g(n), ls(n), rs(n) {}
-	EulerTourForEdge(const vector<vector<int>>& _g) : g(_g), ls(g.size()), rs(g.size()) {}
+	EulerTourForEdge(int n) : graph(n), ls(n), rs(n) {}
+	EulerTourForEdge(const vector<vector<int>>& _graph) : graph(_graph), ls(graph.size()), rs(graph.size()) {}
 	void add_edge(int u, int v) {
-		g[u].push_back(v);
-		g[v].push_back(u);
+		graph[u].push_back(v);
+		graph[v].push_back(u);
 	}
 	void build(int root = 0) {
 		flag = true;

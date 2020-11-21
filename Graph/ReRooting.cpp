@@ -4,14 +4,14 @@ using namespace std;
 
 template <class DP> class ReRooting {
 	int n;
-	vector<vector<int>> g;
+	vector<vector<int>> graph;
 	vector<vector<DP>> dp;
 	vector<DP> ans;
 
 	DP dfs(int v, int p) {
 		DP sum;
-		for (size_t i = 0; i < g[v].size(); ++i) {
-			int e = g[v][i];
+		for (size_t i = 0; i < graph[v].size(); ++i) {
+			int e = graph[v][i];
 			DP& dp_e = dp[v][i];
 			if (e != p) {
 				dp_e = dfs(e, v);
@@ -21,24 +21,24 @@ template <class DP> class ReRooting {
 		return sum.add_root(v);
 	}
 	void bfs(int v, int p, const DP& dp_par) {
-		for (size_t i = 0; i < g[v].size(); ++i) {
-			if (g[v][i] == p) {
+		for (size_t i = 0; i < graph[v].size(); ++i) {
+			if (graph[v][i] == p) {
 				dp[v][i] = dp_par;
 			}
 		}
 
-		vector<DP> dp_left(g[v].size() + 1);
-		for (size_t i = 0; i < g[v].size(); ++i) {
+		vector<DP> dp_left(graph[v].size() + 1);
+		for (size_t i = 0; i < graph[v].size(); ++i) {
 			dp_left[i + 1] = dp_left[i] + dp[v][i];
 		}
-		vector<DP> dp_right(g[v].size() + 1);
-		for (int i = g[v].size() - 1; i >= 0; --i) {
+		vector<DP> dp_right(graph[v].size() + 1);
+		for (int i = graph[v].size() - 1; i >= 0; --i) {
 			dp_right[i] = dp_right[i + 1] + dp[v][i];
 		}
 		ans[v] = dp_left.back().add_root(v);
 
-		for (size_t i = 0; i < g[v].size(); ++i) {
-			int e = g[v][i];
+		for (size_t i = 0; i < graph[v].size(); ++i) {
+			int e = graph[v][i];
 			if (e != p) {
 				bfs(e, v, (dp_left[i] + dp_right[i + 1]).add_root(v));
 			}
@@ -46,8 +46,8 @@ template <class DP> class ReRooting {
 	}
 
 public:
-	ReRooting(const vector<vector<int>>& _g) : n(_g.size()), g(_g), dp(n), ans(n) {
-		for (int i = 0; i < n; ++i) dp[i].resize(g[i].size());
+	ReRooting(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph), dp(n), ans(n) {
+		for (int i = 0; i < n; ++i) dp[i].resize(graph[i].size());
 	}
 	vector<DP> solve() {
 		dfs(0, -1);

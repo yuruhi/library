@@ -42,4 +42,4 @@ public:
 	template <class T> void shuffle(T& v) {
 		std::shuffle(v.begin(), v.end(), mt);
 	}
-} rnd;
+} random;

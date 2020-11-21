@@ -72,7 +72,7 @@ public:
 		}
 		return result;
 	}
-	PersistentArray set(size_t i, const_reference val) {
+	PersistentArray set(size_t i, const_reference val) const {
 		return PersistentArray(set(i, val, root));
 	}
 	void destructive_set(size_t i, const_reference val) {

@@ -4,8 +4,8 @@
 #include <climits>
 using namespace std;
 
-vector<int> ShortestPath(const vector<vector<int>>& G, const int s) {
-	int V = G.size();
+vector<int> ShortestPath(const vector<vector<int>>& graph, const int s) {
+	int V = graph.size();
 	vector<int> dist(V, INT_MAX);
 	dist[s] = 0;
 	queue<int> que;
@@ -13,7 +13,7 @@ vector<int> ShortestPath(const vector<vector<int>>& G, const int s) {
 	while (!que.empty()) {
 		int f = que.front();
 		que.pop();
-		for (auto e : G[f]) {
+		for (auto e : graph[f]) {
 			if (dist[e] == INT_MAX) {
 				que.push(e);
 				dist[e] = dist[f] + 1;

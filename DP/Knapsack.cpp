@@ -4,11 +4,11 @@
 using namespace std;
 
 template <class T>
-vector<T> Knapsack(int N, T W, const vector<T>& v, const vector<T>& w) {
-	vector<T> dp(W + 1, 0);
-	for (int i = 0; i < N; ++i) {
-		for (int j = W; j >= 0; --j) {
-			if (j - w[i] >= 0) dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
+vector<T> Knapsack(int n, T weight_limit, const vector<T>& value, const vector<T>& weight) {
+	vector<T> dp(weight_limit + 1, 0);
+	for (int i = 0; i < n; ++i) {
+		for (int j = weight_limit; j >= 0; --j) {
+			if (j - weight[i] >= 0) dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
 		}
 	}
 	return dp;
