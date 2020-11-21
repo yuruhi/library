@@ -1,4 +1,4 @@
 [[languages.cpp.environments]]
 CXX = "g++-9"
 # CXXFLAGS = ["-std=c++17", "-Wall", "-g", "-fsanitize=undefined", "-D_GLIBCXX_DEBUG", "-fsplit-stack"]
-CXXFLAGS = ["-std=c++17", "-Wall", "-fsplit-stack"]
+CXXFLAGS = ["-std=c++17", "-Wall", "-fsplit-stack", "-O2"]
