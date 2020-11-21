@@ -35,7 +35,7 @@ data:
   - icon: ':warning:'
     path: Graph/SpanningTree.cpp
     title: Graph/SpanningTree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/WarashallFloyd.cpp
     title: Graph/WarashallFloyd.cpp
   - icon: ':warning:'
@@ -60,11 +60,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/LCA.test.cpp
     title: test/LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/WarashallFloyd.test.cpp
     title: test/WarashallFloyd.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -116,7 +116,7 @@ data:
   - Graph/DijkstraBuildPath.cpp
   - Graph/ShortestPathTree.cpp
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/LCA.test.cpp
   - test/Dijkstra.test.cpp

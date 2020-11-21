@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -30,38 +30,38 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/DiameterPath.cpp\"\
     \n#include <algorithm>\n#include <utility>\n#include <tuple>\n#include <functional>\n\
-    using namespace std;\n\ntuple<Weight, vector<int>> DiameterPath(const Graph& g)\
-    \ {\n\tint n = g.size();\n\tvector<Weight> dist0(n);\n\tfunction<void(int, int,\
-    \ Weight)> dfs = [&](int v, int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor (const\
-    \ auto& u : g[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d + u.cost);\n\
-    \t\t\t}\n\t};\n\tdfs(0, -1, 0);\n\n\tint s = max_element(dist0.begin(), dist0.end())\
-    \ - dist0.begin();\n\tvector<Weight> dist(n);\n\tvector<int> par(n);\n\tfunction<void(int,\
-    \ int, Weight)> dfs2 = [&](int v, int p, Weight d) {\n\t\tdist[v] = d;\n\t\tpar[v]\
-    \ = p;\n\t\tfor (const auto& u : g[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to,\
-    \ v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\tauto t = max_element(dist.begin(),\
-    \ dist.end());\n\tvector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p =\
-    \ par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\treverse(path.begin(),\
-    \ path.end());\n\treturn {*t, path};\n}\n"
+    using namespace std;\n\ntuple<Weight, vector<int>> DiameterPath(const Graph& graph)\
+    \ {\n\tint n = graph.size();\n\tvector<Weight> dist0(n);\n\tfunction<void(int,\
+    \ int, Weight)> dfs = [&](int v, int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor\
+    \ (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d +\
+    \ u.cost);\n\t\t\t}\n\t};\n\tdfs(0, -1, 0);\n\n\tint s = max_element(dist0.begin(),\
+    \ dist0.end()) - dist0.begin();\n\tvector<Weight> dist(n);\n\tvector<int> par(n);\n\
+    \tfunction<void(int, int, Weight)> dfs2 = [&](int v, int p, Weight d) {\n\t\t\
+    dist[v] = d;\n\t\tpar[v] = p;\n\t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to\
+    \ != p) {\n\t\t\t\tdfs2(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\
+    \tauto t = max_element(dist.begin(), dist.end());\n\tvector<int> path{t - dist.begin()};\n\
+    \tfor (int p = 0; (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t\
+    }\n\treverse(path.begin(), path.end());\n\treturn {*t, path};\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\n#include <utility>\n#include <tuple>\n#include <functional>\nusing\
-    \ namespace std;\n\ntuple<Weight, vector<int>> DiameterPath(const Graph& g) {\n\
-    \tint n = g.size();\n\tvector<Weight> dist0(n);\n\tfunction<void(int, int, Weight)>\
-    \ dfs = [&](int v, int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor (const auto&\
-    \ u : g[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d + u.cost);\n\t\t\t\
-    }\n\t};\n\tdfs(0, -1, 0);\n\n\tint s = max_element(dist0.begin(), dist0.end())\
-    \ - dist0.begin();\n\tvector<Weight> dist(n);\n\tvector<int> par(n);\n\tfunction<void(int,\
-    \ int, Weight)> dfs2 = [&](int v, int p, Weight d) {\n\t\tdist[v] = d;\n\t\tpar[v]\
-    \ = p;\n\t\tfor (const auto& u : g[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to,\
-    \ v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\tauto t = max_element(dist.begin(),\
-    \ dist.end());\n\tvector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p =\
-    \ par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\treverse(path.begin(),\
-    \ path.end());\n\treturn {*t, path};\n}\n"
+    \ namespace std;\n\ntuple<Weight, vector<int>> DiameterPath(const Graph& graph)\
+    \ {\n\tint n = graph.size();\n\tvector<Weight> dist0(n);\n\tfunction<void(int,\
+    \ int, Weight)> dfs = [&](int v, int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor\
+    \ (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d +\
+    \ u.cost);\n\t\t\t}\n\t};\n\tdfs(0, -1, 0);\n\n\tint s = max_element(dist0.begin(),\
+    \ dist0.end()) - dist0.begin();\n\tvector<Weight> dist(n);\n\tvector<int> par(n);\n\
+    \tfunction<void(int, int, Weight)> dfs2 = [&](int v, int p, Weight d) {\n\t\t\
+    dist[v] = d;\n\t\tpar[v] = p;\n\t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to\
+    \ != p) {\n\t\t\t\tdfs2(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\
+    \tauto t = max_element(dist.begin(), dist.end());\n\tvector<int> path{t - dist.begin()};\n\
+    \tfor (int p = 0; (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t\
+    }\n\treverse(path.begin(), path.end());\n\treturn {*t, path};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DiameterPath.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp

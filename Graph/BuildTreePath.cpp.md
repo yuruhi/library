@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -27,26 +27,26 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/BuildTreePath.cpp\"\
     \n#include <algorithm>\nusing namespace std;\n\nvector<int> BuildPathTree(const\
-    \ Graph& g, int s, int t) {\n\tint n = g.size();\n\tvector<int> par(n);\n\tauto\
-    \ dfs = [&](auto&& f, int v, int p) -> void {\n\t\tfor (const auto& u : g[v])\
+    \ Graph& graph, int s, int t) {\n\tint n = graph.size();\n\tvector<int> par(n);\n\
+    \tauto dfs = [&](auto&& f, int v, int p) -> void {\n\t\tfor (const auto& u : graph[v])\
     \ {\n\t\t\tif (u.to != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\
     \t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int> path{t};\n\twhile (path.back()\
     \ != s) {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\treverse(path.begin(),\
     \ path.end());\n\treturn path;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\nusing namespace std;\n\nvector<int> BuildPathTree(const Graph&\
-    \ g, int s, int t) {\n\tint n = g.size();\n\tvector<int> par(n);\n\tauto dfs =\
-    \ [&](auto&& f, int v, int p) -> void {\n\t\tfor (const auto& u : g[v]) {\n\t\t\
-    \tif (u.to != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\t\t}\n\t\
-    \t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int> path{t};\n\twhile (path.back() !=\
-    \ s) {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\treverse(path.begin(), path.end());\n\
-    \treturn path;\n}\n"
+    \ graph, int s, int t) {\n\tint n = graph.size();\n\tvector<int> par(n);\n\tauto\
+    \ dfs = [&](auto&& f, int v, int p) -> void {\n\t\tfor (const auto& u : graph[v])\
+    \ {\n\t\t\tif (u.to != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\
+    \t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int> path{t};\n\twhile (path.back()\
+    \ != s) {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\treverse(path.begin(),\
+    \ path.end());\n\treturn path;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/BuildTreePath.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/BuildTreePath.cpp

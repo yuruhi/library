@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/UnionFind.cpp
     title: DataStructure/UnionFind.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   - icon: ':heavy_check_mark:'

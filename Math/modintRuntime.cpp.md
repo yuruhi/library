@@ -30,14 +30,16 @@ data:
     \ t = a / b;\n\t\t\ta -= t * b;\n\t\t\tswap(a, b);\n\t\t\tu -= t * v;\n\t\t\t\
     swap(u, v);\n\t\t}\n\t\tn = n * u % MOD;\n\t\tif (n < 0) n += MOD;\n\t\treturn\
     \ *this;\n\t}\n\tbool operator==(const mint& m) const {\n\t\treturn n == m.n;\n\
-    \t}\n\tbool operator!=(const mint& m) const {\n\t\treturn n != m.n;\n\t}\n\tmint\
-    \ pow(T m) const {\n\t\tmint t = n, res = 1;\n\t\twhile (m > 0) {\n\t\t\tif (m\
-    \ & 1) res *= t;\n\t\t\tt *= t;\n\t\t\tm >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\
-    \tmint operator^(T m) const {\n\t\treturn pow(m);\n\t}\n\tfriend ostream& operator<<(ostream&\
-    \ os, const mint& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream&\
-    \ is, mint& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = mint(x);\n\t\treturn\
-    \ is;\n\t}\n\tfriend mint operator\"\"_m(unsigned long long n) {\n\t\treturn n;\n\
-    \t}\n};\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;\n"
+    \t}\n\tbool operator!=(const mint& m) const {\n\t\treturn n != m.n;\n\t}\n\ttemplate\
+    \ <class M> mint pow(M m) const {\n\t\tmint t = n, res = 1;\n\t\twhile (m > 0)\
+    \ {\n\t\t\tif (m & 1) {\n\t\t\t\tres *= t;\n\t\t\t\tm--;\n\t\t\t} else {\n\t\t\
+    \t\tt *= t;\n\t\t\t\tm >>= 1;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\ttemplate\
+    \ <class M> mint operator^(M m) const {\n\t\treturn pow(m);\n\t}\n\tfriend ostream&\
+    \ operator<<(ostream& os, const mint& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend\
+    \ istream& operator>>(istream& is, mint& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\
+    \t\tm = mint(x);\n\t\treturn is;\n\t}\n\tfriend mint operator\"\"_m(unsigned long\
+    \ long n) {\n\t\treturn n;\n\t}\n};\nlong long mint::MOD = 1000000007;\nusing\
+    \ VM = vector<mint>;\n"
   code: "#pragma once\n#include <vector>\n#include <utility>\n#include <iostream>\n\
     using namespace std;\n\nstruct mint {\n\tusing T = long long;\n\tstatic T MOD;\n\
     \tT n;\n\npublic:\n\tstatic void set_mod(T _MOD) {\n\t\tMOD = _MOD;\n\t}\n\tmint(T\
@@ -61,19 +63,20 @@ data:
     \t\t\tswap(a, b);\n\t\t\tu -= t * v;\n\t\t\tswap(u, v);\n\t\t}\n\t\tn = n * u\
     \ % MOD;\n\t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tbool operator==(const\
     \ mint& m) const {\n\t\treturn n == m.n;\n\t}\n\tbool operator!=(const mint& m)\
-    \ const {\n\t\treturn n != m.n;\n\t}\n\tmint pow(T m) const {\n\t\tmint t = n,\
-    \ res = 1;\n\t\twhile (m > 0) {\n\t\t\tif (m & 1) res *= t;\n\t\t\tt *= t;\n\t\
-    \t\tm >>= 1;\n\t\t}\n\t\treturn res;\n\t}\n\tmint operator^(T m) const {\n\t\t\
-    return pow(m);\n\t}\n\tfriend ostream& operator<<(ostream& os, const mint& m)\
-    \ {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is, mint&\
-    \ m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = mint(x);\n\t\treturn is;\n\t\
-    }\n\tfriend mint operator\"\"_m(unsigned long long n) {\n\t\treturn n;\n\t}\n\
-    };\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;\n"
+    \ const {\n\t\treturn n != m.n;\n\t}\n\ttemplate <class M> mint pow(M m) const\
+    \ {\n\t\tmint t = n, res = 1;\n\t\twhile (m > 0) {\n\t\t\tif (m & 1) {\n\t\t\t\
+    \tres *= t;\n\t\t\t\tm--;\n\t\t\t} else {\n\t\t\t\tt *= t;\n\t\t\t\tm >>= 1;\n\
+    \t\t\t}\n\t\t}\n\t\treturn res;\n\t}\n\ttemplate <class M> mint operator^(M m)\
+    \ const {\n\t\treturn pow(m);\n\t}\n\tfriend ostream& operator<<(ostream& os,\
+    \ const mint& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream&\
+    \ is, mint& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = mint(x);\n\t\treturn\
+    \ is;\n\t}\n\tfriend mint operator\"\"_m(unsigned long long n) {\n\t\treturn n;\n\
+    \t}\n};\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/modintRuntime.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/modintRuntime.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/BellmanFord.cpp
     title: Graph/BellmanFord.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -34,14 +34,14 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/BellmanFord.cpp\"\
     \nusing namespace std;\n\npair<bool, vector<Weight>> BellmanFord(const Graph&\
-    \ graph, int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\t\
-    dist[s] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V; ++v)\n\
-    \t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to] > dist[v]\
-    \ + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\tif (i == V\
-    \ - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n}\n\
-    #line 4 \"test/BellmanFord.test.cpp\"\nusing namespace std;\n\nint main() {\n\t\
-    int n, m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m; ++i)\
-    \ {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
+    \ graph, int start) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\
+    \tdist[start] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V;\
+    \ ++v)\n\t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\t\
+    if (i == V - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n\
+    }\n#line 4 \"test/BellmanFord.test.cpp\"\nusing namespace std;\n\nint main() {\n\
+    \tint n, m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m;\
+    \ ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
     \ d);\n\t}\n\n\tauto [flag, dist] = BellmanFord(g, s);\n\tif (!flag) {\n\t\tfor\
     \ (int i = 0; i < n; ++i) {\n\t\t\tif (dist[i] < INF) {\n\t\t\t\tcout << dist[i]\
     \ << '\\n';\n\t\t\t} else {\n\t\t\t\tcout << \"INF\\n\";\n\t\t\t}\n\t\t}\n\t}\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: true
   path: test/BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/BellmanFord.test.cpp

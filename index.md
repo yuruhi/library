@@ -15,10 +15,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: DP/LIS.cpp
       title: DP/LIS.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DP/Levenshtein.cpp
       title: DP/Levenshtein.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DP/MaximumRectangle.cpp
       title: DP/MaximumRectangle.cpp
   - name: DataStructure
@@ -29,25 +29,25 @@ data:
     - icon: ':warning:'
       path: DataStructure/PartiallyPersistentUnionFind.cpp
       title: DataStructure/PartiallyPersistentUnionFind.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/PersistentArray.cpp
       title: DataStructure/PersistentArray.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/PersistentQueue.cpp
       title: DataStructure/PersistentQueue.cpp
     - icon: ':warning:'
       path: DataStructure/PersistentStack.cpp
       title: DataStructure/PersistentStack.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/PersistentUnionFind.cpp
       title: DataStructure/PersistentUnionFind.cpp
     - icon: ':warning:'
       path: DataStructure/RAQRMaxQ.cpp
       title: DataStructure/RAQRMaxQ.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RAQRSQ.cpp
       title: DataStructure/RAQRSQ.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RAQRminQ.cpp
       title: DataStructure/RAQRminQ.cpp
     - icon: ':warning:'
@@ -56,16 +56,16 @@ data:
     - icon: ':warning:'
       path: DataStructure/RUQRSQ.cpp
       title: DataStructure/RUQRSQ.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RUQRminQ.cpp
       title: DataStructure/RUQRminQ.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RangeAddQuery.cpp
       title: DataStructure/RangeAddQuery.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeSet.cpp
       title: DataStructure/RangeSet.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/RangeUpdateQuery.cpp
       title: DataStructure/RangeUpdateQuery.cpp
     - icon: ':warning:'
@@ -74,7 +74,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/UnionFind.cpp
       title: DataStructure/UnionFind.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/WeightedUnionFind.cpp
       title: DataStructure/WeightedUnionFind.cpp
   - name: Geometry
@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/FordFulkerson.cpp
       title: Graph/FordFulkerson.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
     - icon: ':heavy_check_mark:'
@@ -186,18 +186,15 @@ data:
     - icon: ':warning:'
       path: Graph/SpanningTree.cpp
       title: Graph/SpanningTree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/StronglyConnectedComponents.cpp
       title: Graph/StronglyConnectedComponents.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/TopologicalSort.cpp
       title: Graph/TopologicalSort.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/WarashallFloyd.cpp
       title: Graph/WarashallFloyd.cpp
-    - icon: ':warning:'
-      path: Graph/WarashallFloydAddEdge.cpp
-      title: Graph/WarashallFloydAddEdge.cpp
     - icon: ':warning:'
       path: Graph/isConnected.cpp
       title: Graph/isConnected.cpp
@@ -276,10 +273,10 @@ data:
       title: Serch/GridBFS.cpp
   - name: String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/RollingHash.cpp
       title: String/RollingHash.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/ZAlgorithm.cpp
       title: String/ZAlgorithm.cpp
   - name: Utility
@@ -311,7 +308,7 @@ data:
     - icon: ':warning:'
       path: Utility/Imos2D.cpp
       title: Utility/Imos2D.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Utility/ImosLinear.cpp
       title: Utility/ImosLinear.cpp
     - icon: ':warning:'
@@ -575,7 +572,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_tangent_to_circle.test.cpp
       title: test/Geometric_tangent_to_circle.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
     - icon: ':heavy_check_mark:'
@@ -605,31 +602,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/LIS.test.cpp
       title: test/LIS.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/Levenshtein.test.cpp
       title: test/Levenshtein.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/MaximumRectangle.test.cpp
       title: test/MaximumRectangle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/PersistentQueue.test.cpp
       title: test/PersistentQueue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/PersistentUnionFind.test.cpp
       title: test/PersistentUnionFind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/PrimeFactor.test.cpp
       title: test/PrimeFactor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RAQRSQ.test.cpp
       title: test/RAQRSQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RAQRminQ.test.cpp
       title: test/RAQRminQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RUQRmQ.test.cpp
       title: test/RUQRmQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RangeAddQuery.test.cpp
       title: test/RangeAddQuery.test.cpp
     - icon: ':heavy_check_mark:'
@@ -638,28 +635,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeSet2.test.cpp
       title: test/RangeSet2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/StronglyConnectedComponents.test.cpp
       title: test/StronglyConnectedComponents.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/WarashallFloyd.test.cpp
       title: test/WarashallFloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/WeightedUnionFind.test..cpp
       title: test/WeightedUnionFind.test..cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ZAlgotihm.test.cpp
       title: test/ZAlgotihm.test.cpp
     - icon: ':heavy_check_mark:'

@@ -3,14 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/StronglyConnectedComponents.test.cpp
     title: test/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/TopologicalSort.test.cpp
     title: test/TopologicalSort.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/TopologicalSort.cpp\"\n#include <vector>\n#include\
@@ -32,7 +32,7 @@ data:
   path: Graph/TopologicalSort.cpp
   requiredBy: []
   timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TopologicalSort.test.cpp
   - test/StronglyConnectedComponents.test.cpp

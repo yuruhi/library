@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/PersistentArray.cpp
     title: DataStructure/PersistentArray.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/PersistentUnionFind.test.cpp
     title: test/PersistentUnionFind.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/PersistentUnionFind.cpp\"\n#include <utility>\n\
@@ -38,7 +38,7 @@ data:
     value_type operator[](size_t i) const {\n\t\treturn get(i);\n\t}\n\tvector<value_type>\
     \ to_a(size_t n) const {\n\t\tvector<value_type> result(n);\n\t\tfor (size_t i\
     \ = 0; i < n; ++i) {\n\t\t\tresult[i] = get(i);\n\t\t}\n\t\treturn result;\n\t\
-    }\n\tPersistentArray set(size_t i, const_reference val) {\n\t\treturn PersistentArray(set(i,\
+    }\n\tPersistentArray set(size_t i, const_reference val) const {\n\t\treturn PersistentArray(set(i,\
     \ val, root));\n\t}\n\tvoid destructive_set(size_t i, const_reference val) {\n\
     \t\tdestructive_set(i, val, root);\n\t}\n};\n#line 4 \"DataStructure/PersistentUnionFind.cpp\"\
     \n\nclass PersistentUnionFind {\n\tusing data_type = PersistentArray<int, 2>;\n\
@@ -67,8 +67,8 @@ data:
   isVerificationFile: false
   path: DataStructure/PersistentUnionFind.cpp
   requiredBy: []
-  timestamp: '2020-11-17 20:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-21 14:30:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/PersistentUnionFind.test.cpp
 documentation_of: DataStructure/PersistentUnionFind.cpp

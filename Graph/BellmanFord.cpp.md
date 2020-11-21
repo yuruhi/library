@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -30,14 +30,15 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/BellmanFord.cpp\"\
     \nusing namespace std;\n\npair<bool, vector<Weight>> BellmanFord(const Graph&\
-    \ graph, int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\t\
-    dist[s] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V; ++v)\n\
-    \t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to] > dist[v]\
-    \ + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\tif (i == V\
-    \ - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n}\n"
+    \ graph, int start) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\
+    \tdist[start] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V;\
+    \ ++v)\n\t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\t\
+    if (i == V - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false, dist};\n\
+    }\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\nusing\
     \ namespace std;\n\npair<bool, vector<Weight>> BellmanFord(const Graph& graph,\
-    \ int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\tdist[s]\
+    \ int start) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\tdist[start]\
     \ = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0; v < V; ++v)\n\t\t\t\
     for (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF && dist[e.to] > dist[v]\
     \ + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\t\tif (i == V\
@@ -47,7 +48,7 @@ data:
   isVerificationFile: false
   path: Graph/BellmanFord.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BellmanFord.test.cpp

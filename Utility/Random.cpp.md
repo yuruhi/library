@@ -17,7 +17,7 @@ data:
     \ u(mt);\n\t}\n\tT dice() {\n\t\treturn operator()(1, 7);\n\t}\n\tbool rand_bool()\
     \ {\n\t\treturn operator()(2);\n\t}\n\tbool rand_bool(double p) {\n\t\tbernoulli_distribution\
     \ u(p);\n\t\treturn u(mt);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
-    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} rnd;\n"
+    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} random;\n"
   code: "#pragma once\n#include <random>\n#include <algorithm>\nusing namespace std;\n\
     \nclass Random {\n\tusing T = unsigned int;\n\tmt19937 mt;\n\trandom_device rd;\n\
     \npublic:\n\tRandom() {\n\t\tseed();\n\t}\n\tvoid seed() {\n\t\tmt.seed(rd());\n\
@@ -28,12 +28,12 @@ data:
     \ u(mt);\n\t}\n\tT dice() {\n\t\treturn operator()(1, 7);\n\t}\n\tbool rand_bool()\
     \ {\n\t\treturn operator()(2);\n\t}\n\tbool rand_bool(double p) {\n\t\tbernoulli_distribution\
     \ u(p);\n\t\treturn u(mt);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
-    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} rnd;\n"
+    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} random;\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Random.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Random.cpp

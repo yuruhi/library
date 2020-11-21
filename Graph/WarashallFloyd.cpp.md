@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/WarashallFloyd.test.cpp
     title: test/WarashallFloyd.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -29,26 +29,35 @@ data:
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"Graph/WarashallFloyd.cpp\"\
-    \n#include <algorithm>\n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = INF)\
-    \ {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int j = 0;\
-    \ j < V; ++j)\n\t\t\tfor (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] ==\
-    \ INF_ || dist[i][k] == INF_) continue;\n\t\t\t\tdist[j][k] = min(dist[j][k],\
-    \ dist[j][i] + dist[i][k]);\n\t\t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i]\
-    \ < 0) return true;\n\treturn false;\n}\n"
-  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <algorithm>\n\n\
-    bool WarashallFloyd(Matrix& dist, Weight INF_ = INF) {\n\tint V = dist.size();\n\
-    \tfor (int i = 0; i < V; ++i)\n\t\tfor (int j = 0; j < V; ++j)\n\t\t\tfor (int\
-    \ k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_)\
+    \n#include <algorithm>\n#line 5 \"Graph/WarashallFloyd.cpp\"\n\nbool WarashallFloyd(Matrix&\
+    \ dist, Weight INF_ = numeric_limits<Weight>::max()) {\n\tint V = dist.size();\n\
+    \tfor (int i = 0; i < V; ++i) {\n\t\tfor (int j = 0; j < V; ++j) {\n\t\t\tfor\
+    \ (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_)\
     \ continue;\n\t\t\t\tdist[j][k] = min(dist[j][k], dist[j][i] + dist[i][k]);\n\t\
-    \t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i] < 0) return true;\n\t\
-    return false;\n}\n"
+    \t\t}\n\t\t}\n\t}\n\tfor (int i = 0; i < V; ++i) {\n\t\tif (dist[i][i] < 0) return\
+    \ true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix& dist, const\
+    \ Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor\
+    \ (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\t\
+    \t\t    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n\
+    \t\t}\n\t}\n}\n"
+  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <algorithm>\n#include\
+    \ <limits>\n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = numeric_limits<Weight>::max())\
+    \ {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor (int j =\
+    \ 0; j < V; ++j) {\n\t\t\tfor (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i]\
+    \ == INF_ || dist[i][k] == INF_) continue;\n\t\t\t\tdist[j][k] = min(dist[j][k],\
+    \ dist[j][i] + dist[i][k]);\n\t\t\t}\n\t\t}\n\t}\n\tfor (int i = 0; i < V; ++i)\
+    \ {\n\t\tif (dist[i][i] < 0) return true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix&\
+    \ dist, const Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\
+    \ {\n\t\tfor (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\
+    \t\t\t    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n\
+    \t\t}\n\t}\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/WarashallFloyd.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2020-11-21 14:30:57+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/WarashallFloyd.test.cpp
 documentation_of: Graph/WarashallFloyd.cpp

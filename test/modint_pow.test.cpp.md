@@ -42,16 +42,17 @@ data:
     \ {\n\t\treturn n == m.n;\n\t}\n\tconstexpr bool operator!=(const modint& m) const\
     \ {\n\t\treturn n != m.n;\n\t}\n\ttemplate <class M> constexpr modint pow(M m)\
     \ const {\n\t\tif (0 <= m) {\n\t\t\tmodint t = n, res = 1;\n\t\t\twhile (m > 0)\
-    \ {\n\t\t\t\tif (m & 1) res *= t;\n\t\t\t\tt *= t;\n\t\t\t\tm >>= 1;\n\t\t\t}\n\
-    \t\t\treturn res;\n\t\t} else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\t\t}\n\
-    \t}\n\ttemplate <class M> constexpr modint operator^(M m) const {\n\t\treturn\
-    \ pow(m);\n\t}\n\tfriend ostream& operator<<(ostream& os, const modint<MOD>& m)\
-    \ {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is, modint<MOD>&\
-    \ m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t\
-    }\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\nmint operator\"\
-    \"_m(unsigned long long n) {\n\treturn n;\n}\n#line 4 \"test/modint_pow.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tint m, n;\n\tcin >> m >> n;\n\tcout\
-    \ << mint(m).pow(n) << '\\n';\n}\n"
+    \ {\n\t\t\t\tif (m & 1) {\n\t\t\t\t\tres *= t;\n\t\t\t\t\tm--;\n\t\t\t\t} else\
+    \ {\n\t\t\t\t\tt *= t;\n\t\t\t\t\tm >>= 1;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn res;\n\
+    \t\t} else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\t\t}\n\t}\n\ttemplate <class\
+    \ M> constexpr modint operator^(M m) const {\n\t\treturn pow(m);\n\t}\n\tfriend\
+    \ ostream& operator<<(ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.n;\n\
+    \t}\n\tfriend istream& operator>>(istream& is, modint<MOD>& m) {\n\t\tlong long\
+    \ x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t}\n};\nusing mint =\
+    \ modint<1000000007>;\nusing VM = vector<mint>;\nmint operator\"\"_m(unsigned\
+    \ long long n) {\n\treturn n;\n}\n#line 4 \"test/modint_pow.test.cpp\"\nusing\
+    \ namespace std;\n\nint main() {\n\tint m, n;\n\tcin >> m >> n;\n\tcout << mint(m).pow(n)\
+    \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B\"\
     \n#include \"./../Math/modint.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint m, n;\n\tcin >> m >> n;\n\tcout << mint(m).pow(n) << '\\\
@@ -61,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/modint_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-11-15 09:14:44+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_pow.test.cpp

@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/ZAlgotihm.test.cpp
     title: test/ZAlgotihm.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"String/ZAlgorithm.cpp\"\n#include <vector>\nusing namespace\
@@ -30,7 +30,7 @@ data:
   path: String/ZAlgorithm.cpp
   requiredBy: []
   timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ZAlgotihm.test.cpp
 documentation_of: String/ZAlgorithm.cpp

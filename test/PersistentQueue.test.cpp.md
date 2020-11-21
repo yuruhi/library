@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/PersistentArray.cpp
     title: DataStructure/PersistentArray.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/PersistentQueue.cpp
     title: DataStructure/PersistentQueue.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
@@ -41,22 +41,25 @@ data:
     value_type operator[](size_t i) const {\n\t\treturn get(i);\n\t}\n\tvector<value_type>\
     \ to_a(size_t n) const {\n\t\tvector<value_type> result(n);\n\t\tfor (size_t i\
     \ = 0; i < n; ++i) {\n\t\t\tresult[i] = get(i);\n\t\t}\n\t\treturn result;\n\t\
-    }\n\tPersistentArray set(size_t i, const_reference val) {\n\t\treturn PersistentArray(set(i,\
+    }\n\tPersistentArray set(size_t i, const_reference val) const {\n\t\treturn PersistentArray(set(i,\
     \ val, root));\n\t}\n\tvoid destructive_set(size_t i, const_reference val) {\n\
     \t\tdestructive_set(i, val, root);\n\t}\n};\n#line 3 \"DataStructure/PersistentQueue.cpp\"\
     \n#include <cassert>\n\ntemplate <class T> class PersistentQueue {\npublic:\n\t\
-    using value_type = T;\n\nprivate:\n\tusing data_type = PersistentArray<value_type,\
-    \ 2>;\n\tdata_type data;\n\tint begin, end;  // [begin, end)\n\tPersistentQueue(const\
-    \ data_type& _data, int _begin, int _end)\n\t    : data(_data), begin(_begin),\
+    using value_type = T;\n\tusing data_type = PersistentArray<value_type, 2>;\n\n\
+    private:\n\tdata_type data;\n\tsize_t begin, end;  // [begin, end)\n\tPersistentQueue(const\
+    \ data_type& _data, size_t _begin, size_t _end)\n\t    : data(_data), begin(_begin),\
     \ end(_end) {}\n\npublic:\n\tPersistentQueue() : data(), begin(0), end(0) {}\n\
-    \tbool empty() const {\n\t\treturn begin == end;\n\t}\n\tvalue_type front() const\
-    \ {\n\t\tassert(!empty());\n\t\treturn data[begin];\n\t}\n\tvalue_type back()\
-    \ const {\n\t\tassert(!empty());\n\t\treturn data[end - 1];\n\t}\n\tPersistentQueue\
-    \ push(const T& val) {\n\t\treturn PersistentQueue(data.set(end, val), begin,\
-    \ end + 1);\n\t}\n\tPersistentQueue pop() {\n\t\tassert(!empty());\n\t\treturn\
-    \ PersistentQueue(data.set(begin, value_type()), begin + 1, end);\n\t}\n};\n#line\
-    \ 3 \"test/PersistentQueue.test.cpp\"\n#include <iostream>\n#line 5 \"test/PersistentQueue.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tbool empty() const {\n\t\treturn begin == end;\n\t}\n\tsize_t size() const {\n\
+    \t\treturn end - begin;\n\t}\n\tvalue_type front() const {\n\t\tassert(!empty());\n\
+    \t\treturn data[begin];\n\t}\n\tvalue_type back() const {\n\t\tassert(!empty());\n\
+    \t\treturn data[end - 1];\n\t}\n\tvalue_type operator[](size_t i) const {\n\t\t\
+    assert(i < size());\n\t\treturn data[begin + i];\n\t}\n\tvalue_type at(size_t\
+    \ i) const {\n\t\treturn operator[](i);\n\t}\n\tPersistentQueue push(const T&\
+    \ val) const {\n\t\treturn PersistentQueue(data.set(end, val), begin, end + 1);\n\
+    \t}\n\tPersistentQueue pop() const {\n\t\tassert(!empty());\n\t\treturn PersistentQueue(data.set(begin,\
+    \ value_type()), begin + 1, end);\n\t}\n};\n#line 3 \"test/PersistentQueue.test.cpp\"\
+    \n#include <iostream>\n#line 5 \"test/PersistentQueue.test.cpp\"\nusing namespace\
+    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \n\tint q;\n\tcin >> q;\n\tvector<PersistentQueue<int>> s(q + 1);\n\tfor (int\
     \ i = 1; i <= q; ++i) {\n\t\tint com, t;\n\t\tcin >> com >> t;\n\t\t++t;\n\t\t\
     if (com == 0) {\n\t\t\tint x;\n\t\t\tcin >> x;\n\t\t\ts[i] = s[t].push(x);\n\t\
@@ -76,8 +79,8 @@ data:
   isVerificationFile: true
   path: test/PersistentQueue.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-11-21 14:30:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/PersistentQueue.test.cpp
 layout: document

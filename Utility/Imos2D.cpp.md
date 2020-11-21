@@ -9,41 +9,49 @@ data:
     links: []
   bundledCode: "#line 2 \"Utility/Imos2D.cpp\"\n#include <vector>\n#include <utility>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class Imos2D {\n\
-    public:\n\tconst int H, W;\n\nprivate:\n\tvector<vector<T>> table;\n\tbool flag\
-    \ = false;\n\npublic:\n\tImos2D(int _h, int _w) : H(_h), W(_w), table(_h + 1,\
-    \ vector<T>(_w + 1)) {}\n\t// [x1, x2) * [y1, y2)\n\tvoid add(int y1, int y2,\
-    \ int x1, int x2, const T& v = 1) {\n\t\tassert(0 <= x1 && x1 < x2 && x2 <= W);\n\
-    \t\tassert(0 <= y1 && y1 < y2 && y2 <= H);\n\t\tassert(!flag);\n\t\ttable[y1][x1]\
-    \ += v;\n\t\ttable[y1][x2] -= v;\n\t\ttable[y2][x1] -= v;\n\t\ttable[y2][x2] +=\
-    \ v;\n\t}\n\tvoid add(const pair<int, int>& y, const pair<int, int>& x, const\
-    \ T& v = 1) {\n\t\tassert(!flag);\n\t\tadd(y.first, y.second, x.first, x.second,\
-    \ v);\n\t}\n\tvoid build() {\n\t\tflag = true;\n\t\tfor (int y = 0; y <= H; ++y)\n\
-    \t\t\tfor (int x = 1; x <= W; ++x) table[y][x] += table[y][x - 1];\n\t\tfor (int\
-    \ y = 1; y <= H; ++y)\n\t\t\tfor (int x = 0; x <= W; ++x) table[y][x] += table[y\
-    \ - 1][x];\n\t}\n\tconst T& operator()(int y, int x) const {\n\t\tassert(flag);\n\
-    \t\treturn table[y][x];\n\t}\n\tconst auto& operator*() const {\n\t\tassert(flag);\n\
-    \t\treturn table;\n\t}\n};\n"
+    public:\n\tusing value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\
+    \nprivate:\n\tsize_t h, w;\n\tdata_type table;\n\tbool builded = false;\n\npublic:\n\
+    \tImos2D(size_t _h, size_t _w) : h(_h), w(_w), table(_h + 1, vector<T>(_w + 1))\
+    \ {}\n\tsize_t height() const {\n\t\treturn h;\n\t}\n\tsize_t weight() const {\n\
+    \t\treturn w;\n\t}\n\t// [x1, x2) * [y1, y2)\n\tvoid add(size_t y1, size_t y2,\
+    \ size_t x1, size_t x2, const T& value = 1) {\n\t\tassert(0 <= x1 && x1 < x2 &&\
+    \ x2 <= w);\n\t\tassert(0 <= y1 && y1 < y2 && y2 <= h);\n\t\tassert(!builded);\n\
+    \t\ttable[y1][x1] += value;\n\t\ttable[y1][x2] -= value;\n\t\ttable[y2][x1] -=\
+    \ value;\n\t\ttable[y2][x2] += value;\n\t}\n\tvoid add(const pair<size_t, size_t>&\
+    \ y, const pair<size_t, size_t>& x,\n\t         const T& value = 1) {\n\t\tassert(!builded);\n\
+    \t\tadd(y.first, y.second, x.first, x.second, value);\n\t}\n\tvoid build() {\n\
+    \t\tbuilded = true;\n\t\tfor (size_t y = 0; y <= h; ++y) {\n\t\t\tfor (size_t\
+    \ x = 1; x <= w; ++x) {\n\t\t\t\ttable[y][x] += table[y][x - 1];\n\t\t\t}\n\t\t\
+    }\n\t\tfor (size_t y = 1; y <= h; ++y) {\n\t\t\tfor (size_t x = 0; x <= w; ++x)\
+    \ {\n\t\t\t\ttable[y][x] += table[y - 1][x];\n\t\t\t}\n\t\t}\n\t}\n\tconst value_type&\
+    \ operator()(size_t y, size_t x) const {\n\t\tassert(builded);\n\t\treturn table[y][x];\n\
+    \t}\n\tconst data_type& operator*() const {\n\t\tassert(builded);\n\t\treturn\
+    \ table;\n\t}\n};\n"
   code: "#pragma once\n#include <vector>\n#include <utility>\n#include <cassert>\n\
-    using namespace std;\n\ntemplate <class T> class Imos2D {\npublic:\n\tconst int\
-    \ H, W;\n\nprivate:\n\tvector<vector<T>> table;\n\tbool flag = false;\n\npublic:\n\
-    \tImos2D(int _h, int _w) : H(_h), W(_w), table(_h + 1, vector<T>(_w + 1)) {}\n\
-    \t// [x1, x2) * [y1, y2)\n\tvoid add(int y1, int y2, int x1, int x2, const T&\
-    \ v = 1) {\n\t\tassert(0 <= x1 && x1 < x2 && x2 <= W);\n\t\tassert(0 <= y1 &&\
-    \ y1 < y2 && y2 <= H);\n\t\tassert(!flag);\n\t\ttable[y1][x1] += v;\n\t\ttable[y1][x2]\
-    \ -= v;\n\t\ttable[y2][x1] -= v;\n\t\ttable[y2][x2] += v;\n\t}\n\tvoid add(const\
-    \ pair<int, int>& y, const pair<int, int>& x, const T& v = 1) {\n\t\tassert(!flag);\n\
-    \t\tadd(y.first, y.second, x.first, x.second, v);\n\t}\n\tvoid build() {\n\t\t\
-    flag = true;\n\t\tfor (int y = 0; y <= H; ++y)\n\t\t\tfor (int x = 1; x <= W;\
-    \ ++x) table[y][x] += table[y][x - 1];\n\t\tfor (int y = 1; y <= H; ++y)\n\t\t\
-    \tfor (int x = 0; x <= W; ++x) table[y][x] += table[y - 1][x];\n\t}\n\tconst T&\
-    \ operator()(int y, int x) const {\n\t\tassert(flag);\n\t\treturn table[y][x];\n\
-    \t}\n\tconst auto& operator*() const {\n\t\tassert(flag);\n\t\treturn table;\n\
+    using namespace std;\n\ntemplate <class T> class Imos2D {\npublic:\n\tusing value_type\
+    \ = T;\n\tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\tsize_t\
+    \ h, w;\n\tdata_type table;\n\tbool builded = false;\n\npublic:\n\tImos2D(size_t\
+    \ _h, size_t _w) : h(_h), w(_w), table(_h + 1, vector<T>(_w + 1)) {}\n\tsize_t\
+    \ height() const {\n\t\treturn h;\n\t}\n\tsize_t weight() const {\n\t\treturn\
+    \ w;\n\t}\n\t// [x1, x2) * [y1, y2)\n\tvoid add(size_t y1, size_t y2, size_t x1,\
+    \ size_t x2, const T& value = 1) {\n\t\tassert(0 <= x1 && x1 < x2 && x2 <= w);\n\
+    \t\tassert(0 <= y1 && y1 < y2 && y2 <= h);\n\t\tassert(!builded);\n\t\ttable[y1][x1]\
+    \ += value;\n\t\ttable[y1][x2] -= value;\n\t\ttable[y2][x1] -= value;\n\t\ttable[y2][x2]\
+    \ += value;\n\t}\n\tvoid add(const pair<size_t, size_t>& y, const pair<size_t,\
+    \ size_t>& x,\n\t         const T& value = 1) {\n\t\tassert(!builded);\n\t\tadd(y.first,\
+    \ y.second, x.first, x.second, value);\n\t}\n\tvoid build() {\n\t\tbuilded = true;\n\
+    \t\tfor (size_t y = 0; y <= h; ++y) {\n\t\t\tfor (size_t x = 1; x <= w; ++x) {\n\
+    \t\t\t\ttable[y][x] += table[y][x - 1];\n\t\t\t}\n\t\t}\n\t\tfor (size_t y = 1;\
+    \ y <= h; ++y) {\n\t\t\tfor (size_t x = 0; x <= w; ++x) {\n\t\t\t\ttable[y][x]\
+    \ += table[y - 1][x];\n\t\t\t}\n\t\t}\n\t}\n\tconst value_type& operator()(size_t\
+    \ y, size_t x) const {\n\t\tassert(builded);\n\t\treturn table[y][x];\n\t}\n\t\
+    const data_type& operator*() const {\n\t\tassert(builded);\n\t\treturn table;\n\
     \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Imos2D.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Imos2D.cpp

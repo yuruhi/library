@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/RangeUpdateQuery.test.cpp
     title: test/RangeUpdateQuery.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/RangeUpdateQuery.cpp\"\n#include <vector>\n\
@@ -45,7 +45,7 @@ data:
   path: DataStructure/RangeUpdateQuery.cpp
   requiredBy: []
   timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeUpdateQuery.test.cpp
 documentation_of: DataStructure/RangeUpdateQuery.cpp

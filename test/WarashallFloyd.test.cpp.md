@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/WarashallFloyd.cpp
     title: Graph/WarashallFloyd.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C
@@ -33,21 +33,25 @@ data:
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"Graph/WarashallFloyd.cpp\"\
-    \n#include <algorithm>\n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = INF)\
-    \ {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int j = 0;\
-    \ j < V; ++j)\n\t\t\tfor (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] ==\
-    \ INF_ || dist[i][k] == INF_) continue;\n\t\t\t\tdist[j][k] = min(dist[j][k],\
-    \ dist[j][i] + dist[i][k]);\n\t\t\t}\n\tfor (int i = 0; i < V; ++i)\n\t\tif (dist[i][i]\
-    \ < 0) return true;\n\treturn false;\n}\n#line 5 \"test/WarashallFloyd.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tMatrix\
-    \ g(n, vector(n, INF));\n\tfor (int i = 0; i < n; ++i) {\n\t\tg[i][i] = 0;\n\t\
-    }\n\tfor (int i = 0; i < m; ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s\
-    \ >> t >> d;\n\t\tg[s][t] = d;\n\t}\n\n\tbool flag = WarashallFloyd(g);\n\tif\
-    \ (!flag) {\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tfor (int j = 0; j < n; ++j)\
-    \ {\n\t\t\t\tif (g[i][j] < INF) {\n\t\t\t\t\tcout << g[i][j];\n\t\t\t\t} else\
-    \ {\n\t\t\t\t\tcout << \"INF\";\n\t\t\t\t}\n\t\t\t\tcout << (j < n - 1 ? ' ' :\
-    \ '\\n');\n\t\t\t}\n\t\t}\n\t} else {\n\t\tcout << \"NEGATIVE CYCLE\\n\";\n\t\
-    }\n}\n"
+    \n#include <algorithm>\n#line 5 \"Graph/WarashallFloyd.cpp\"\n\nbool WarashallFloyd(Matrix&\
+    \ dist, Weight INF_ = numeric_limits<Weight>::max()) {\n\tint V = dist.size();\n\
+    \tfor (int i = 0; i < V; ++i) {\n\t\tfor (int j = 0; j < V; ++j) {\n\t\t\tfor\
+    \ (int k = 0; k < V; ++k) {\n\t\t\t\tif (dist[j][i] == INF_ || dist[i][k] == INF_)\
+    \ continue;\n\t\t\t\tdist[j][k] = min(dist[j][k], dist[j][i] + dist[i][k]);\n\t\
+    \t\t}\n\t\t}\n\t}\n\tfor (int i = 0; i < V; ++i) {\n\t\tif (dist[i][i] < 0) return\
+    \ true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix& dist, const\
+    \ Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor\
+    \ (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\t\
+    \t\t    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n\
+    \t\t}\n\t}\n}\n#line 5 \"test/WarashallFloyd.test.cpp\"\nusing namespace std;\n\
+    \nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tMatrix g(n, vector(n, INF));\n\
+    \tfor (int i = 0; i < n; ++i) {\n\t\tg[i][i] = 0;\n\t}\n\tfor (int i = 0; i <\
+    \ m; ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s][t]\
+    \ = d;\n\t}\n\n\tbool flag = WarashallFloyd(g);\n\tif (!flag) {\n\t\tfor (int\
+    \ i = 0; i < n; ++i) {\n\t\t\tfor (int j = 0; j < n; ++j) {\n\t\t\t\tif (g[i][j]\
+    \ < INF) {\n\t\t\t\t\tcout << g[i][j];\n\t\t\t\t} else {\n\t\t\t\t\tcout << \"\
+    INF\";\n\t\t\t\t}\n\t\t\t\tcout << (j < n - 1 ? ' ' : '\\n');\n\t\t\t}\n\t\t}\n\
+    \t} else {\n\t\tcout << \"NEGATIVE CYCLE\\n\";\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C\"\
     \n#include \"./../Graph/WarashallFloyd.cpp\"\n#include <iostream>\n#include <vector>\n\
     using namespace std;\n\nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tMatrix\
@@ -65,8 +69,8 @@ data:
   isVerificationFile: true
   path: test/WarashallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-21 14:30:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/WarashallFloyd.test.cpp
 layout: document
