@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Utility/ImosLinear.cpp
     title: Utility/ImosLinear.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1008
@@ -20,13 +20,13 @@ data:
     \nprivate:\n\tsize_t n;\n\tdata_type X, A, B;\n\tbool builded = false;\n\npublic:\n\
     \tImosLinear(size_t _n) : n(_n), X(_n), A(_n + 1), B(_n + 1) {}\n\tvoid add(size_t\
     \ l, size_t r, value_type a,\n\t         value_type b) {  // [l, r) += a + (i\
-    \ - l) * b\n\t\tif (l >= r) return;\n\t\tassert(!builded);\n\t\tl = max(min(l,\
-    \ n), 0);\n\t\tr = max(min(r, n), 0);\n\t\tA[l] += a - b * l;\n\t\tB[l] += b;\n\
-    \t\tA[r] -= a - b * l;\n\t\tB[r] -= b;\n\t}\n\tvoid build() {\n\t\tbuilded = true;\n\
-    \t\tfor (size_t i = 0; i < n; ++i) {\n\t\t\tX[i] = A[i] + B[i] * i;\n\t\t\tA[i\
-    \ + 1] += A[i];\n\t\t\tB[i + 1] += B[i];\n\t\t}\n\t}\n\tvalue_type operator[](size_t\
-    \ i) const {\n\t\tassert(builded);\n\t\treturn X[i];\n\t}\n\tconst data_type&\
-    \ to_a() const {\n\t\tassert(builded);\n\t\treturn X;\n\t}\n};\n#line 3 \"test/ImosLinear.test.cpp\"\
+    \ - l) * b\n\t\tif (l >= r) return;\n\t\tassert(!builded);\n\t\tl = min(l, n);\n\
+    \t\tr = min(r, n);\n\t\tA[l] += a - b * l;\n\t\tB[l] += b;\n\t\tA[r] -= a - b\
+    \ * l;\n\t\tB[r] -= b;\n\t}\n\tvoid build() {\n\t\tbuilded = true;\n\t\tfor (size_t\
+    \ i = 0; i < n; ++i) {\n\t\t\tX[i] = A[i] + B[i] * i;\n\t\t\tA[i + 1] += A[i];\n\
+    \t\t\tB[i + 1] += B[i];\n\t\t}\n\t}\n\tvalue_type operator[](size_t i) const {\n\
+    \t\tassert(builded);\n\t\treturn X[i];\n\t}\n\tconst data_type& to_a() const {\n\
+    \t\tassert(builded);\n\t\treturn X;\n\t}\n};\n#line 3 \"test/ImosLinear.test.cpp\"\
     \n#include <iostream>\n#line 5 \"test/ImosLinear.test.cpp\"\n#include <utility>\n\
     using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tusing ll = long long;\n\n\tint n, m;\n\tcin >> n >> m;\n\tvector<ll> a(n);\n\
@@ -65,8 +65,8 @@ data:
   isVerificationFile: true
   path: test/ImosLinear.test.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-11-21 20:49:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ImosLinear.test.cpp
 layout: document

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/WarashallFloyd.test.cpp
     title: test/WarashallFloyd.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -38,8 +38,8 @@ data:
     \ true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix& dist, const\
     \ Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor\
     \ (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\t\
-    \t\t    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n\
-    \t\t}\n\t}\n}\n"
+    \t\t    min(dist[i][e.from] + dist[e.to][j], dist[i][e.to] + dist[e.from][j])\
+    \ + e.cost);\n\t\t}\n\t}\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <algorithm>\n#include\
     \ <limits>\n\nbool WarashallFloyd(Matrix& dist, Weight INF_ = numeric_limits<Weight>::max())\
     \ {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor (int j =\
@@ -49,15 +49,15 @@ data:
     \ {\n\t\tif (dist[i][i] < 0) return true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix&\
     \ dist, const Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i)\
     \ {\n\t\tfor (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\
-    \t\t\t    min(dist[i][e.u] + dist[e.v][j], dist[i][e.v] + dist[e.u][j]) + e.cost);\n\
-    \t\t}\n\t}\n}\n"
+    \t\t\t    min(dist[i][e.from] + dist[e.to][j], dist[i][e.to] + dist[e.from][j])\
+    \ + e.cost);\n\t\t}\n\t}\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/WarashallFloyd.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-21 20:49:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/WarashallFloyd.test.cpp
 documentation_of: Graph/WarashallFloyd.cpp

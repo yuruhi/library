@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/FordFulkerson.cpp
       title: Graph/FordFulkerson.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
     - icon: ':heavy_check_mark:'
@@ -192,7 +192,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/TopologicalSort.cpp
       title: Graph/TopologicalSort.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/WarashallFloyd.cpp
       title: Graph/WarashallFloyd.cpp
     - icon: ':warning:'
@@ -308,7 +308,7 @@ data:
     - icon: ':warning:'
       path: Utility/Imos2D.cpp
       title: Utility/Imos2D.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Utility/ImosLinear.cpp
       title: Utility/ImosLinear.cpp
     - icon: ':warning:'
@@ -572,7 +572,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_tangent_to_circle.test.cpp
       title: test/Geometric_tangent_to_circle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
     - icon: ':heavy_check_mark:'
@@ -650,7 +650,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/WarashallFloyd.test.cpp
       title: test/WarashallFloyd.test.cpp
     - icon: ':heavy_check_mark:'
