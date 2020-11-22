@@ -1,20 +1,19 @@
 #pragma once
 #include <vector>
-#include <functional>
 #include <algorithm>
 using namespace std;
 
 vector<int> TopologicalSort(const vector<vector<int>>& graph) {
-	int V = graph.size();
-	vector<bool> visited(V);
+	size_t n = graph.size();
+	vector<bool> visited(n);
 	vector<int> res;
-	function<void(int)> dfs = [&](int u) {
-		if (visited[u]) return;
-		visited[u] = true;
-		for (auto& i : graph[u]) dfs(i);
-		res.push_back(u);
+	auto dfs = [&](auto self, size_t v) {
+		if (visited[v]) return;
+		visited[v] = true;
+		for (size_t i : graph[v]) dfs(i);
+		res.push_back(v);
 	};
-	for (int i = 0; i < V; i++) dfs(i);
+	for (size_t i = 0; i < n; i++) dfs(i);
 	reverse(res.begin(), res.end());
 	return res;
 }
