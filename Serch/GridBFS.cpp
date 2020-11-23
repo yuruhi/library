@@ -3,12 +3,16 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <optional>
+#include <limits>
+#include <cassert>
 using namespace std;
 
-vector<vector<int>> GridBFS(const vector<string>& grid, Point start, char wall = '#') {
+vector<vector<int>> GridBFS(const vector<string>& grid, Point start, char wall) {
+	constexpr int INF = numeric_limits<int>::max();
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);
-	vector<vector<int>> result(h, vector<int>(w, INT_MAX));
+	vector<vector<int>> result(h, vector<int>(w, INF));
 	if (grid[start.y][start.x] == wall) {
 		return result;
 	}
@@ -16,25 +20,27 @@ vector<vector<int>> GridBFS(const vector<string>& grid, Point start, char wall =
 	queue<Point> q;
 	q.push(start);
 	while (!q.empty()) {
-		auto f = q.front();
+		auto now = q.front();
 		q.pop();
-		for (auto p : f.adj4_in_range()) {
-			if (grid[p.y][p.x] != wall && result[p.y][p.x] == INT_MAX) {
-				q.push(p);
-				result[p.y][p.x] = result[f.y][f.x] + 1;
+		for (auto adj : now.adj4_in_range()) {
+			if (grid[adj.y][adj.x] != wall && result[adj.y][adj.x] == INF) {
+				q.push(adj);
+				result[adj.y][adj.x] = result[now.y][now.x] + 1;
 			}
 		}
 	}
 	return result;
 }
-vector<vector<int>> GridBFS(const vector<string>& grid, char start, char wall = '#') {
-	int h = grid.size(), w = grid.front().size();
-	Point s;
-	for (int i = 0; i < h; ++i)
-		for (int j = 0; j < w; ++j) {
-			if (grid[i][j] == start) {
-				s = Point(j, i);
-			}
-		}
-	return GridBFS(grid, s, wall);
+vector<vector<int>> GridBFS(const vector<string>& grid, char start, char wall) {
+	Point::set_range(grid.size(), grid.front().size());
+	auto s = Point::find_one(grid, start);
+	assert(s);
+	return GridBFS(grid, *s, wall);
+}
+int GridBFS(const vector<string>& grid, char start, char goal, char wall) {
+	assert(start != goal);
+	Point::set_range(grid.size(), grid.front().size());
+	auto s = Point::find_one(grid, start), g = Point::find_one(grid, goal);
+	assert(s && g);
+	return GridBFS(grid, *s, wall)[g->y][g->x];
 }
