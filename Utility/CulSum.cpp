@@ -14,6 +14,7 @@ private:
 	data_type data;
 
 public:
+	CulSum() = default;
 	CulSum(const data_type& a) : n(a.size()), data(n + 1) {
 		for (size_t i = 0; i < n; ++i) {
 			data[i + 1] = data[i] + a[i];
@@ -30,6 +31,9 @@ public:
 	    : CulSum(a.size(), [a, f](size_t i) -> value_type { return f(a[i]); }) {}
 	size_t size() const {
 		return n;
+	}
+	value_type at(size_t i) const {
+		return operator()(i, i + 1);
 	}
 	// [l, r)
 	value_type operator()(size_t l, size_t r) const {
