@@ -242,7 +242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/PrimeFactor.cpp
       title: Math/PrimeFactor.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/QuadraticEquation.cpp
       title: Math/QuadraticEquation.cpp
     - icon: ':warning:'
@@ -335,7 +335,7 @@ data:
     - icon: ':warning:'
       path: Utility/VectorOperation.cpp
       title: Utility/VectorOperation.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Utility/isLeap.cpp
       title: Utility/isLeap.cpp
     - icon: ':warning:'
@@ -642,6 +642,9 @@ data:
       path: test/PrimeFactor.test.cpp
       title: test/PrimeFactor.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/QuadraticEquation.test.cpp
+      title: test/QuadraticEquation.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/RAQRSQ.test.cpp
       title: test/RAQRSQ.test.cpp
     - icon: ':heavy_check_mark:'
@@ -689,6 +692,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/extGcd.test.cpp
       title: test/extGcd.test.cpp
+    - icon: ':x:'
+      path: test/isLeap.test.cpp
+      title: test/isLeap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/isPrime.test.cpp
       title: test/isPrime.test.cpp
