@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include <utility>
+#include <optional>
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 struct Point {
@@ -17,6 +19,7 @@ struct Point {
 	static constexpr Point one() {
 		return {1, 1};
 	}
+
 	int x, y;
 	constexpr Point() : x(0), y(0) {}
 	constexpr Point(int _x, int _y) : x(_x), y(_y) {}
@@ -254,6 +257,36 @@ struct Point {
 			assert(false);
 		}
 	}
+
+	template <class T, class value_type = typename T::value_type::value_type>
+	static optional<Point> find(const T& grid, const value_type& val) {
+		assert(static_cast<int>(grid.size()) == H);
+		for (int i = 0; i < H; ++i) {
+			assert(static_cast<int>(grid[i].size()) == W);
+			for (int j = 0; j < W; ++j) {
+				if (grid[i][j] == val) {
+					return Point(j, i);
+				}
+			}
+		}
+		return nullopt;
+	}
+	template <class T, class value_type = typename T::value_type::value_type>
+	static optional<Point> find_one(const T& grid, const value_type& val) {
+		assert(static_cast<int>(grid.size()) == H);
+		optional<Point> result;
+		for (int i = 0; i < H; ++i) {
+			assert(static_cast<int>(grid[i].size()) == W);
+			for (int j = 0; j < W; ++j) {
+				if (grid[i][j] == val) {
+					assert(!result);
+					result = Point(j, i);
+				}
+			}
+		}
+		return result;
+	}
+
 	friend ostream& operator<<(ostream& os, const Point& p) {
 		return os << '(' << p.x << ", " << p.y << ')';
 	}
