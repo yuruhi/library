@@ -3,9 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Math/Combi.cpp
-    title: Math/Combi.cpp
+    path: Math/Combination.cpp
+    title: Math/Combination.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Partition.test.cpp
+    title: test/Partition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/modint_pow.test.cpp
     title: test/modint_pow.test.cpp
@@ -91,11 +94,12 @@ data:
   isVerificationFile: false
   path: Math/modint.cpp
   requiredBy:
-  - Math/Combi.cpp
+  - Math/Combination.cpp
   timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_pow.test.cpp
+  - test/Partition.test.cpp
 documentation_of: Math/modint.cpp
 layout: document
 redirect_from:

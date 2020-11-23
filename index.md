@@ -204,15 +204,18 @@ data:
       path: Math/BabystepGiantstep.cpp
       title: Math/BabystepGiantstep.cpp
     - icon: ':warning:'
-      path: Math/Combi.cpp
-      title: Math/Combi.cpp
-    - icon: ':warning:'
       path: Math/Combination.cpp
       title: Math/Combination.cpp
+    - icon: ':heavy_check_mark:'
+      path: Math/Divisors.cpp
+      title: Math/Divisors.cpp
     - icon: ':warning:'
-      path: Math/Divisor.cpp
-      title: Math/Divisor.cpp
-    - icon: ':warning:'
+      path: Math/EnumrateCombination.cpp
+      title: Math/EnumrateCombination.cpp
+    - icon: ':heavy_check_mark:'
+      path: Math/EnumratePrimes.cpp
+      title: Math/EnumratePrimes.cpp
+    - icon: ':heavy_check_mark:'
       path: Math/Eratosthenes.cpp
       title: Math/Eratosthenes.cpp
     - icon: ':heavy_check_mark:'
@@ -233,15 +236,12 @@ data:
     - icon: ':warning:'
       path: Math/Moebius.cpp
       title: Math/Moebius.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Partition.cpp
       title: Math/Partition.cpp
     - icon: ':heavy_check_mark:'
       path: Math/PrimeFactor.cpp
       title: Math/PrimeFactor.cpp
-    - icon: ':warning:'
-      path: Math/Primes.cpp
-      title: Math/Primes.cpp
     - icon: ':warning:'
       path: Math/QuadraticEquation.cpp
       title: Math/QuadraticEquation.cpp
@@ -251,13 +251,13 @@ data:
     - icon: ':warning:'
       path: Math/Rational.cpp
       title: Math/Rational.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Sieve.cpp
       title: Math/Sieve.cpp
     - icon: ':heavy_check_mark:'
       path: Math/extGcd.cpp
       title: Math/extGcd.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/isPrime.cpp
       title: Math/isPrime.cpp
     - icon: ':heavy_check_mark:'
@@ -268,7 +268,7 @@ data:
       title: Math/modintRuntime.cpp
   - name: Serch
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Serch/GridBFS.cpp
       title: Serch/GridBFS.cpp
   - name: String
@@ -317,7 +317,7 @@ data:
     - icon: ':warning:'
       path: Utility/Pair.cpp
       title: Utility/Pair.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/Point.cpp
       title: Utility/Point.cpp
     - icon: ':warning:'
@@ -495,6 +495,15 @@ data:
       path: test/Dinic.test.cpp
       title: test/Dinic.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Divisors.test.cpp
+      title: test/Divisors.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/EnumratePrimes.test.cpp
+      title: test/EnumratePrimes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Eratosthenes.test.cpp
+      title: test/Eratosthenes.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Euler.test.cpp
       title: test/Euler.test.cpp
     - icon: ':heavy_check_mark:'
@@ -573,6 +582,9 @@ data:
       path: test/Geometric_tangent_to_circle.test.cpp
       title: test/Geometric_tangent_to_circle.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/GridBFS.test.cpp
+      title: test/GridBFS.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
     - icon: ':heavy_check_mark:'
@@ -609,6 +621,9 @@ data:
       path: test/MaximumRectangle.test.cpp
       title: test/MaximumRectangle.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Partition.test.cpp
+      title: test/Partition.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/PersistentQueue.test.cpp
       title: test/PersistentQueue.test.cpp
     - icon: ':heavy_check_mark:'
@@ -642,6 +657,9 @@ data:
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Sieve.test.cpp
+      title: test/Sieve.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/StronglyConnectedComponents.test.cpp
       title: test/StronglyConnectedComponents.test.cpp
     - icon: ':heavy_check_mark:'
@@ -662,6 +680,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/extGcd.test.cpp
       title: test/extGcd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/isPrime.test.cpp
+      title: test/isPrime.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/modint_pow.test.cpp
       title: test/modint_pow.test.cpp

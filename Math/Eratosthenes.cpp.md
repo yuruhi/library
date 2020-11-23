@@ -2,30 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Math/Primes.cpp
-    title: Math/Primes.cpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: Math/EnumratePrimes.cpp
+    title: Math/EnumratePrimes.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/EnumratePrimes.test.cpp
+    title: test/EnumratePrimes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Eratosthenes.test.cpp
+    title: test/Eratosthenes.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/Eratosthenes.cpp\"\n#include <vector>\nusing namespace\
-    \ std;\n\nvector<bool> Eratosthenes(int n) {\n\tvector<bool> p(n + 1, true);\n\
-    \tp[0] = p[1] = false;\n\tfor (long long i = 2; i <= n; ++i)\n\t\tif (p[i])\n\t\
-    \t\tfor (long long j = i * i; j <= n; j += i) p[j] = false;\n\treturn p;\n}\n"
-  code: "#pragma once\n#include <vector>\nusing namespace std;\n\nvector<bool> Eratosthenes(int\
-    \ n) {\n\tvector<bool> p(n + 1, true);\n\tp[0] = p[1] = false;\n\tfor (long long\
-    \ i = 2; i <= n; ++i)\n\t\tif (p[i])\n\t\t\tfor (long long j = i * i; j <= n;\
-    \ j += i) p[j] = false;\n\treturn p;\n}\n"
+    \ std;\n\nvector<bool> Eratosthenes(size_t n) {\n\tvector<bool> result(n + 1,\
+    \ true);\n\tresult[0] = result[1] = false;\n\tfor (size_t i = 2; i * i <= n; ++i)\
+    \ {\n\t\tif (result[i]) {\n\t\t\tfor (size_t j = i * i; j <= n; j += i) result[j]\
+    \ = false;\n\t\t}\n\t}\n\treturn result;\n}\n"
+  code: "#pragma once\n#include <vector>\nusing namespace std;\n\nvector<bool> Eratosthenes(size_t\
+    \ n) {\n\tvector<bool> result(n + 1, true);\n\tresult[0] = result[1] = false;\n\
+    \tfor (size_t i = 2; i * i <= n; ++i) {\n\t\tif (result[i]) {\n\t\t\tfor (size_t\
+    \ j = i * i; j <= n; j += i) result[j] = false;\n\t\t}\n\t}\n\treturn result;\n\
+    }\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Eratosthenes.cpp
   requiredBy:
-  - Math/Primes.cpp
-  timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  - Math/EnumratePrimes.cpp
+  timestamp: '2020-11-23 16:14:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Eratosthenes.test.cpp
+  - test/EnumratePrimes.test.cpp
 documentation_of: Math/Eratosthenes.cpp
 layout: document
 redirect_from:

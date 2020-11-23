@@ -2,43 +2,46 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Serch/GridBFS.cpp
+    title: Serch/GridBFS.cpp
+  - icon: ':heavy_check_mark:'
     path: Utility/Point.cpp
     title: Utility/Point.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/GridBFS.test.cpp
-    title: test/GridBFS.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"Utility/Point.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <optional>\n#include <iostream>\n#include <cassert>\nusing namespace\
-    \ std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point> d;\n\
-    \tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t}\n\tstatic\
-    \ constexpr Point zero() {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr Point\
-    \ one() {\n\t\treturn {1, 1};\n\t}\n\n\tint x, y;\n\tconstexpr Point() : x(0),\
-    \ y(0) {}\n\tconstexpr Point(int _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const\
-    \ pair<int, int>& xy) : x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W),\
-    \ y(n / W) {}\n\tconstexpr Point operator+() const {\n\t\treturn *this;\n\t}\n\
-    \tconstexpr Point operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr\
-    \ Point operator+(const Point& p) const {\n\t\treturn Point(*this) += p;\n\t}\n\
-    \tconstexpr Point operator-(const Point& p) const {\n\t\treturn Point(*this) -=\
-    \ p;\n\t}\n\tconstexpr Point operator*(const Point& p) const {\n\t\treturn Point(*this)\
-    \ *= p;\n\t}\n\tconstexpr Point operator/(const Point& p) const {\n\t\treturn\
-    \ Point(*this) /= p;\n\t}\n\tconstexpr Point operator%(const Point& p) const {\n\
-    \t\treturn Point(*this) %= p;\n\t}\n\tconstexpr Point operator+(int n) const {\n\
-    \t\treturn Point(*this) += n;\n\t}\n\tconstexpr Point operator-(int n) const {\n\
-    \t\treturn Point(*this) -= n;\n\t}\n\tconstexpr Point operator*(int n) const {\n\
-    \t\treturn Point(*this) *= n;\n\t}\n\tconstexpr Point operator/(int n) const {\n\
-    \t\treturn Point(*this) /= n;\n\t}\n\tconstexpr Point operator%(int n) const {\n\
-    \t\treturn Point(*this) %= n;\n\t}\n\tconstexpr Point& operator+=(const Point&\
-    \ p) {\n\t\tx += p.x;\n\t\ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
-    \ operator-=(const Point& p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr Point& operator*=(const Point& p) {\n\t\tx *= p.x;\n\t\ty *=\
-    \ p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point& operator/=(const Point& p)\
-    \ {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/0558
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/0558
+  bundledCode: "#line 1 \"test/GridBFS.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0558\"\
+    \n#line 2 \"Utility/Point.cpp\"\n#include <vector>\n#include <utility>\n#include\
+    \ <optional>\n#include <iostream>\n#include <cassert>\nusing namespace std;\n\n\
+    struct Point {\n\tstatic int H, W;\n\tstatic const vector<Point> d;\n\tstatic\
+    \ void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr\
+    \ Point zero() {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr Point one() {\n\t\
+    \treturn {1, 1};\n\t}\n\n\tint x, y;\n\tconstexpr Point() : x(0), y(0) {}\n\t\
+    constexpr Point(int _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const pair<int,\
+    \ int>& xy) : x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W), y(n / W)\
+    \ {}\n\tconstexpr Point operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ Point operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point operator+(const\
+    \ Point& p) const {\n\t\treturn Point(*this) += p;\n\t}\n\tconstexpr Point operator-(const\
+    \ Point& p) const {\n\t\treturn Point(*this) -= p;\n\t}\n\tconstexpr Point operator*(const\
+    \ Point& p) const {\n\t\treturn Point(*this) *= p;\n\t}\n\tconstexpr Point operator/(const\
+    \ Point& p) const {\n\t\treturn Point(*this) /= p;\n\t}\n\tconstexpr Point operator%(const\
+    \ Point& p) const {\n\t\treturn Point(*this) %= p;\n\t}\n\tconstexpr Point operator+(int\
+    \ n) const {\n\t\treturn Point(*this) += n;\n\t}\n\tconstexpr Point operator-(int\
+    \ n) const {\n\t\treturn Point(*this) -= n;\n\t}\n\tconstexpr Point operator*(int\
+    \ n) const {\n\t\treturn Point(*this) *= n;\n\t}\n\tconstexpr Point operator/(int\
+    \ n) const {\n\t\treturn Point(*this) /= n;\n\t}\n\tconstexpr Point operator%(int\
+    \ n) const {\n\t\treturn Point(*this) %= n;\n\t}\n\tconstexpr Point& operator+=(const\
+    \ Point& p) {\n\t\tx += p.x;\n\t\ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ Point& operator-=(const Point& p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn\
+    \ *this;\n\t}\n\tconstexpr Point& operator*=(const Point& p) {\n\t\tx *= p.x;\n\
+    \t\ty *= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point& operator/=(const Point&\
+    \ p) {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Point&\
     \ operator%=(const Point& p) {\n\t\tx %= p.x;\n\t\ty %= p.y;\n\t\treturn *this;\n\
     \t}\n\tconstexpr Point& operator+=(int n) {\n\t\tx += n;\n\t\ty += n;\n\t\treturn\
     \ *this;\n\t}\n\tconstexpr Point& operator-=(int n) {\n\t\tx -= n;\n\t\ty -= n;\n\
@@ -123,37 +126,32 @@ data:
     \treturn GridBFS(grid, *s, wall);\n}\nint GridBFS(const vector<string>& grid,\
     \ char start, char goal, char wall) {\n\tassert(start != goal);\n\tPoint::set_range(grid.size(),\
     \ grid.front().size());\n\tauto s = Point::find_one(grid, start), g = Point::find_one(grid,\
-    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n"
-  code: "#pragma once\n#include \"./../Utility/Point.cpp\"\n#include <vector>\n#include\
-    \ <string>\n#include <queue>\n#include <optional>\n#include <limits>\n#include\
-    \ <cassert>\nusing namespace std;\n\nvector<vector<int>> GridBFS(const vector<string>&\
-    \ grid, Point start, char wall) {\n\tconstexpr int INF = numeric_limits<int>::max();\n\
-    \tint h = grid.size(), w = grid.front().size();\n\tPoint::set_range(h, w);\n\t\
-    vector<vector<int>> result(h, vector<int>(w, INF));\n\tif (grid[start.y][start.x]\
-    \ == wall) {\n\t\treturn result;\n\t}\n\tresult[start.y][start.x] = 0;\n\tqueue<Point>\
-    \ q;\n\tq.push(start);\n\twhile (!q.empty()) {\n\t\tauto now = q.front();\n\t\t\
-    q.pop();\n\t\tfor (auto adj : now.adj4_in_range()) {\n\t\t\tif (grid[adj.y][adj.x]\
-    \ != wall && result[adj.y][adj.x] == INF) {\n\t\t\t\tq.push(adj);\n\t\t\t\tresult[adj.y][adj.x]\
-    \ = result[now.y][now.x] + 1;\n\t\t\t}\n\t\t}\n\t}\n\treturn result;\n}\nvector<vector<int>>\
-    \ GridBFS(const vector<string>& grid, char start, char wall) {\n\tPoint::set_range(grid.size(),\
-    \ grid.front().size());\n\tauto s = Point::find_one(grid, start);\n\tassert(s);\n\
-    \treturn GridBFS(grid, *s, wall);\n}\nint GridBFS(const vector<string>& grid,\
-    \ char start, char goal, char wall) {\n\tassert(start != goal);\n\tPoint::set_range(grid.size(),\
-    \ grid.front().size());\n\tauto s = Point::find_one(grid, start), g = Point::find_one(grid,\
-    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n"
+    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n\
+    #line 7 \"test/GridBFS.test.cpp\"\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
+    \tios_base::sync_with_stdio(false);\n\n\tint h, w, n;\n\tcin >> h >> w >> n;\n\
+    \tvector<string> s(h);\n\tfor (auto& i : s) cin >> i;\n\n\tint ans = 0;\n\tfor\
+    \ (int i = 0; i < n; ++i) {\n\t\tans += GridBFS(s, i == 0 ? 'S' : '0' + i, '1'\
+    \ + i, 'X');\n\t}\n\tcout << ans << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0558\"\n#include\
+    \ \"./../Utility/Point.cpp\"\n#include \"./../Serch/GridBFS.cpp\"\n#include <iostream>\n\
+    #include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n\t\
+    cin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\tint h, w, n;\n\tcin\
+    \ >> h >> w >> n;\n\tvector<string> s(h);\n\tfor (auto& i : s) cin >> i;\n\n\t\
+    int ans = 0;\n\tfor (int i = 0; i < n; ++i) {\n\t\tans += GridBFS(s, i == 0 ?\
+    \ 'S' : '0' + i, '1' + i, 'X');\n\t}\n\tcout << ans << '\\n';\n}"
   dependsOn:
   - Utility/Point.cpp
-  isVerificationFile: false
-  path: Serch/GridBFS.cpp
+  - Serch/GridBFS.cpp
+  isVerificationFile: true
+  path: test/GridBFS.test.cpp
   requiredBy: []
   timestamp: '2020-11-23 16:15:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/GridBFS.test.cpp
-documentation_of: Serch/GridBFS.cpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/GridBFS.test.cpp
 layout: document
 redirect_from:
-- /library/Serch/GridBFS.cpp
-- /library/Serch/GridBFS.cpp.html
-title: Serch/GridBFS.cpp
+- /verify/test/GridBFS.test.cpp
+- /verify/test/GridBFS.test.cpp.html
+title: test/GridBFS.test.cpp
 ---

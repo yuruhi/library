@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Divisors.test.cpp
+    title: test/Divisors.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Divisor.cpp\"\n#include <vector>\n#include <cmath>\n\
+  bundledCode: "#line 2 \"Math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<T> Divisors(T\
     \ n) {\n\tassert(0 < n);\n\tvector<T> result;\n\tT i = 1;\n\tfor (; i * i < n;\
     \ ++i) {\n\t\tif (n % i == 0) result.push_back(i);\n\t}\n\tbool flag = i * i ==\
@@ -32,15 +35,16 @@ data:
     \ % i == 0) result += i + n / i;\n\t}\n\treturn result + i * (i * i == n);\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Divisor.cpp
+  path: Math/Divisors.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: Math/Divisor.cpp
+  timestamp: '2020-11-23 16:13:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Divisors.test.cpp
+documentation_of: Math/Divisors.cpp
 layout: document
 redirect_from:
-- /library/Math/Divisor.cpp
-- /library/Math/Divisor.cpp.html
-title: Math/Divisor.cpp
+- /library/Math/Divisors.cpp
+- /library/Math/Divisors.cpp.html
+title: Math/Divisors.cpp
 ---
