@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 #include "./../Graph/StronglyConnectedComponents.cpp"
-#include "./../Graph/TopologicalSort.cpp"
 #include <iostream>
 using namespace std;
 
@@ -18,11 +17,10 @@ int main() {
 	scc.build();
 	cout << scc.count_strongly_components() << '\n';
 	auto ans = scc.groups();
-	for (int i : TopologicalSort(scc.make_DAG())) {
+	for (size_t i = 0; i < ans.size(); ++i) {
 		cout << ans[i].size();
 		for (size_t j = 0; j < ans[i].size(); ++j) {
 			cout << ' ' << ans[i][j];
 		}
 		cout << '\n';
-	}
 }
