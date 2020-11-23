@@ -2,11 +2,13 @@
 #include <vector>
 using namespace std;
 
-vector<bool> Eratosthenes(int n) {
-	vector<bool> p(n + 1, true);
-	p[0] = p[1] = false;
-	for (long long i = 2; i <= n; ++i)
-		if (p[i])
-			for (long long j = i * i; j <= n; j += i) p[j] = false;
-	return p;
+vector<bool> Eratosthenes(size_t n) {
+	vector<bool> result(n + 1, true);
+	result[0] = result[1] = false;
+	for (size_t i = 2; i * i <= n; ++i) {
+		if (result[i]) {
+			for (size_t j = i * i; j <= n; j += i) result[j] = false;
+		}
+	}
+	return result;
 }
