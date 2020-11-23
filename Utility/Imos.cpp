@@ -10,11 +10,12 @@ public:
 	using value_type = T;
 
 private:
-	const int N;
+	int N;
 	vector<value_type> table;
 	bool builded = false;
 
 public:
+	Imos() = default;
 	Imos(int _n) : N(_n), table(_n + 1) {}
 	void add(int l, int r, value_type v = 1) {
 		assert(!builded);
