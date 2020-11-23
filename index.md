@@ -206,12 +206,15 @@ data:
     - icon: ':warning:'
       path: Math/Combination.cpp
       title: Math/Combination.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Math/Divisors.cpp
       title: Math/Divisors.cpp
     - icon: ':warning:'
       path: Math/EnumrateCombination.cpp
       title: Math/EnumrateCombination.cpp
+    - icon: ':heavy_check_mark:'
+      path: Math/EnumrateFibonacci.cpp
+      title: Math/EnumrateFibonacci.cpp
     - icon: ':heavy_check_mark:'
       path: Math/EnumratePrimes.cpp
       title: Math/EnumratePrimes.cpp
@@ -224,9 +227,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Fibonacci.cpp
       title: Math/Fibonacci.cpp
-    - icon: ':warning:'
-      path: Math/FibonacciTable.cpp
-      title: Math/FibonacciTable.cpp
     - icon: ':heavy_check_mark:'
       path: Math/Inversion.cpp
       title: Math/Inversion.cpp
@@ -296,7 +296,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/CulSum.cpp
       title: Utility/CulSum.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/CulSum2D.cpp
       title: Utility/CulSum2D.cpp
     - icon: ':heavy_check_mark:'
@@ -459,6 +459,9 @@ data:
       path: test/CulSum.test.cpp
       title: test/CulSum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/CulSum2D.test.cpp
+      title: test/CulSum2D.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/CycleDetectionEdge_Directed.test.cpp
       title: test/CycleDetectionEdge_Directed.test.cpp
     - icon: ':heavy_check_mark:'
@@ -497,6 +500,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Divisors.test.cpp
       title: test/Divisors.test.cpp
+    - icon: ':x:'
+      path: test/DivisorsCount.test.cpp
+      title: test/DivisorsCount.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/EnumrateFibonacci.test.cpp
+      title: test/EnumrateFibonacci.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/EnumratePrimes.test.cpp
       title: test/EnumratePrimes.test.cpp
