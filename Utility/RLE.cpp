@@ -4,15 +4,15 @@
 using namespace std;
 
 template <class T, class U = typename T::value_type> auto RLE(const T& a) {
-	int n = a.size();
-	vector<int> res1;
-	vector<U> res2;
-	for (int i = 0; i < n;) {
-		int cnt = 0;
-		auto e = a[i];
-		for (; i < n && a[i] == e; ++i) ++cnt;
-		res1.push_back(cnt);
-		res2.push_back(e);
+	size_t n = a.size();
+	vector<size_t> count;
+	vector<U> value;
+	for (size_t i = 0; i < n;) {
+		size_t cnt = 0;
+		auto val = a[i];
+		for (; i < n && a[i] == val; ++i) ++cnt;
+		count.push_back(cnt);
+		value.push_back(val);
 	}
-	return make_pair(res1, res2);
+	return make_pair(count, value);
 }

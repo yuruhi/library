@@ -74,26 +74,26 @@ public:
 	}
 	vector<vector<int>> groups() const {
 		assert(builded);
-		vector<vector<int>> res(k);
+		vector<vector<int>> result(k);
 		for (int i = 0; i < n; ++i) {
-			res[cmp[i]].push_back(i);
+			result[cmp[i]].push_back(i);
 		}
-		return res;
+		return result;
 	}
 	vector<vector<int>> make_DAG() const {
 		assert(builded);
-		vector<vector<int>> res(k);
+		vector<vector<int>> result(k);
 		for (int i = 0; i < n; ++i) {
 			for (auto e : graph[i]) {
 				if (cmp[i] != cmp[e]) {
-					res[cmp[i]].push_back(cmp[e]);
+					result[cmp[i]].push_back(cmp[e]);
 				}
 			}
 		}
-		for (auto& v : res) {
+		for (auto& v : result) {
 			sort(v.begin(), v.end());
 			v.erase(unique(v.begin(), v.end()), v.end());
 		}
-		return res;
+		return result;
 	}
 };

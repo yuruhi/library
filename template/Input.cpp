@@ -177,9 +177,9 @@ private:
 
 public:
 	template <class... T> auto multiple(int H) const {
-		multiple_t<T...> res;
-		while (H--) in_multiple(res);
-		return res;
+		multiple_t<T...> result;
+		while (H--) in_multiple(result);
+		return result;
 	}
 } in;
 #define input(T) Input::in<T>()

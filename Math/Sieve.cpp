@@ -29,41 +29,41 @@ public:
 	}
 	vector<pair<int, int>> factor(int x) const {
 		assert(1 <= x);
-		vector<pair<int, int>> res;
+		vector<pair<int, int>> result;
 		while (x != 1) {
-			if (res.empty() || res.back().first != f[x]) {
-				res.emplace_back(f[x], 1);
+			if (result.empty() || result.back().first != f[x]) {
+				result.emplace_back(f[x], 1);
 			} else {
-				res.back().second++;
+				result.back().second++;
 			}
 			x /= f[x];
 		}
-		return res;
+		return result;
 	}
 	map<int, int> factor_map(int x) const {
 		assert(1 <= x);
-		map<int, int> res;
+		map<int, int> result;
 		while (x != 1) {
-			res[f[x]]++;
+			result[f[x]]++;
 			x /= f[x];
 		}
-		return res;
+		return result;
 	}
 	vector<int> factor_vec(int x) const {
 		assert(1 <= x);
-		vector<int> res;
+		vector<int> result;
 		while (x != 1) {
-			res.push_back(f[x]);
+			result.push_back(f[x]);
 			x /= f[x];
 		}
-		return res;
+		return result;
 	}
 	int diviser_count(int x) const {
 		assert(1 <= x);
-		int res = 1;
+		int result = 1;
 		for (auto [elem, cnt] : factor(x)) {
-			res *= cnt + 1;
+			result *= cnt + 1;
 		}
-		return res;
+		return result;
 	}
 }

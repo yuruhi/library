@@ -15,9 +15,9 @@ vector<int> BuildTreePathEdge(const vector<vector<pair<int, int>>>& graph, int s
 		}
 	};
 	dfs(dfs, t, -1);
-	vector<int> res;
+	vector<int> result;
 	for (int v = s; v != t; v = par[v].first) {
-		res.push_back(par[v].second);
+		result.push_back(par[v].second);
 	}
-	return res;
+	return result;
 }

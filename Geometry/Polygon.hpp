@@ -46,19 +46,19 @@ namespace Geometric {
 				return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
 			});
 			int n = ps.size(), k = 0;
-			Polygon res(2 * n);
-			for (int i = 0; i < n; res[k++] = ps[i++]) {
-				while (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {
+			Polygon result(2 * n);
+			for (int i = 0; i < n; result[k++] = ps[i++]) {
+				while (k >= 2 && iSP(result[k - 2], result[k - 1], ps[i]) <= 0) {
 					--k;
 				}
 			}
-			for (int i = n - 2, t = k + 1; i >= 0; res[k++] = ps[i--]) {
-				while (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) <= 0) {
+			for (int i = n - 2, t = k + 1; i >= 0; result[k++] = ps[i--]) {
+				while (k >= t && iSP(result[k - 2], result[k - 1], ps[i]) <= 0) {
 					--k;
 				}
 			}
-			res.resize(k - 1);
-			return res;
+			result.resize(k - 1);
+			return result;
 		}
 		// 凸包（一直線上の3点を含めない、反時計回り）
 		Polygon convex_hull_no_collinear() const {
@@ -67,19 +67,19 @@ namespace Geometric {
 				return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
 			});
 			int n = ps.size(), k = 0;
-			Polygon res(2 * n);
-			for (int i = 0; i < n; res[k++] = ps[i++]) {
-				while (k >= 2 && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {
+			Polygon result(2 * n);
+			for (int i = 0; i < n; result[k++] = ps[i++]) {
+				while (k >= 2 && iSP(result[k - 2], result[k - 1], ps[i]) != -1) {
 					--k;
 				}
 			}
-			for (int i = n - 2, t = k + 1; i >= 0; res[k++] = ps[i--]) {
-				while (k >= t && iSP(res[k - 2], res[k - 1], ps[i]) != -1) {
+			for (int i = n - 2, t = k + 1; i >= 0; result[k++] = ps[i--]) {
+				while (k >= t && iSP(result[k - 2], result[k - 1], ps[i]) != -1) {
 					--k;
 				}
 			}
-			res.resize(k - 1);
-			return res;
+			result.resize(k - 1);
+			return result;
 		}
 		// 直径
 		tuple<LD, size_t, size_t> diameter() const {
@@ -112,17 +112,17 @@ namespace Geometric {
 		}
 		// 切断
 		Polygon cut(const Line& l) const {
-			Polygon res;
+			Polygon result;
 			for (size_t i = 0; i < size(); ++i) {
 				Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);
 				if (iSP(l.begin, l.end, a) != -1) {
-					res.push_back(a);
+					result.push_back(a);
 				}
 				if (iSP(l.begin, l.end, a) * iSP(l.begin, l.end, b) < 0) {
-					res.push_back(*Line(a, b).cross_point(l));
+					result.push_back(*Line(a, b).cross_point(l));
 				}
 			}
-			return res;
+			return result;
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);

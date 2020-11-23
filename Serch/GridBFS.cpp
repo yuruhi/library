@@ -8,24 +8,24 @@ using namespace std;
 vector<vector<int>> GridBFS(const vector<string>& grid, Point start, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();
 	Point::set_range(h, w);
-	vector<vector<int>> res(h, vector<int>(w, INT_MAX));
+	vector<vector<int>> result(h, vector<int>(w, INT_MAX));
 	if (grid[start.y][start.x] == wall) {
-		return res;
+		return result;
 	}
-	res[start.y][start.x] = 0;
+	result[start.y][start.x] = 0;
 	queue<Point> q;
 	q.push(start);
 	while (!q.empty()) {
 		auto f = q.front();
 		q.pop();
 		for (auto p : f.adj4_in_range()) {
-			if (grid[p.y][p.x] != wall && res[p.y][p.x] == INT_MAX) {
+			if (grid[p.y][p.x] != wall && result[p.y][p.x] == INT_MAX) {
 				q.push(p);
-				res[p.y][p.x] = res[f.y][f.x] + 1;
+				result[p.y][p.x] = result[f.y][f.x] + 1;
 			}
 		}
 	}
-	return res;
+	return result;
 }
 vector<vector<int>> GridBFS(const vector<string>& grid, char start, char wall = '#') {
 	int h = grid.size(), w = grid.front().size();

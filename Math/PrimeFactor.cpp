@@ -10,52 +10,52 @@ template <class T> vector<pair<T, int>> PrimeFactor(T n) {
 	if (n == 1) {
 		return {};
 	}
-	vector<pair<T, int>> res;
+	vector<pair<T, int>> result;
 	for (T i = 2; i * i <= n; ++i) {
 		if (n % i == 0) {
-			res.emplace_back(i, 0);
+			result.emplace_back(i, 0);
 			while (n % i == 0) {
-				res.back().second++;
+				result.back().second++;
 				n /= i;
 			}
 		}
 	}
 	if (n != 1) {
-		res.emplace_back(n, 1);
+		result.emplace_back(n, 1);
 	}
-	return res;
+	return result;
 }
 template <class T> map<T, int> PrimeFactor_map(T n) {
 	assert(1 <= n);
 	if (n == 1) {
 		return {};
 	}
-	map<T, int> res;
+	map<T, int> result;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
-			res[i]++;
+			result[i]++;
 			n /= i;
 		}
 	}
 	if (n != 1) {
-		res[n] = 1;
+		result[n] = 1;
 	}
-	return res;
+	return result;
 }
 template <class T> vector<T> PrimeFactor_vector(T n) {
 	assert(1 <= n);
 	if (n == 1) {
 		return {};
 	}
-	vector<T> res;
+	vector<T> result;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
-			res.push_back(i);
+			result.push_back(i);
 			n /= i;
 		}
 	}
 	if (n != 1) {
-		res.push_back(n);
+		result.push_back(n);
 	}
-	return res;
+	return result;
 }

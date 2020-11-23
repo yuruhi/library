@@ -46,7 +46,7 @@ public:
 		graph[l].push_back(r);
 	}
 	int solve() {
-		int res = 0;
+		int result = 0;
 		fill(left_match.begin(), left_match.end(), -1);
 		fill(right_match.begin(), right_match.end(), -1);
 		fill(used.begin(), used.end(), false);
@@ -55,22 +55,22 @@ public:
 			for (size_t i = 0; i < left; ++i) {
 				if (left_match[i] == -1 && dfs(i)) {
 					update = true;
-					++res;
+					++result;
 				}
 			}
 			if (update) {
 				fill(used.begin(), used.end(), false);
 			}
 		}
-		return res;
+		return result;
 	}
 	vector<pair<int, int>> edges() const {
-		vector<pair<int, int>> res;
+		vector<pair<int, int>> result;
 		for (size_t i = 0; i < left; ++i) {
 			if (left_match[i] != -1) {
-				res.emplace_back(i, left_match[i]);
+				result.emplace_back(i, left_match[i]);
 			}
 		}
-		return res;
+		return result;
 	}
 };

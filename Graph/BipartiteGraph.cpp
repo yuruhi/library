@@ -6,7 +6,6 @@ using namespace std;
 tuple<bool, vector<bool>> BipartiteGraph(const vector<vector<int>>& graph) {
 	int n = graph.size();
 	vector<int> a(n);
-	bool flag = true;
 	auto dfs = [&](auto&& f, int v, int color) -> bool {
 		a[v] = color;
 		for (int u : graph[v]) {
@@ -21,9 +20,9 @@ tuple<bool, vector<bool>> BipartiteGraph(const vector<vector<int>>& graph) {
 			return {false, vector<bool>()};
 		}
 	}
-	vector<bool> res(n);
+	vector<bool> result(n);
 	for (int i = 0; i < n; ++i) {
-		res[i] = a[i] == 1;
+		result[i] = a[i] == 1;
 	}
-	return {flag, res};
+	return {true, result};
 }

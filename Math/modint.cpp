@@ -91,17 +91,17 @@ template <int MOD> struct modint {
 	}
 	template <class M> constexpr modint pow(M m) const {
 		if (0 <= m) {
-			modint t = n, res = 1;
+			modint t = n, result = 1;
 			while (m > 0) {
 				if (m & 1) {
-					res *= t;
+					result *= t;
 					m--;
 				} else {
 					t *= t;
 					m >>= 1;
 				}
 			}
-			return res;
+			return result;
 		} else {
 			return (modint(1) / n).pow(-m);
 		}

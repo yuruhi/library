@@ -29,12 +29,12 @@ pair<vector<Weight>, vector<int>> DijkstraBuildPrev(const Graph& graph, int s) {
 	return {dist, prev};
 }
 vector<int> BuildPath(const vector<int>& prev, int t) {
-	vector<int> res;
+	vector<int> result;
 	while (prev[t] != -1) {
-		res.push_back(t);
+		result.push_back(t);
 		t = prev[t];
 	}
-	res.push_back(t);
-	reverse(res.begin(), res.end());
-	return res;
+	result.push_back(t);
+	reverse(result.begin(), result.end());
+	return result;
 }

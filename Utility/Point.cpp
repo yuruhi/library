@@ -159,19 +159,19 @@ struct Point {
 	}
 
 	template <class It> vector<Point> enum_adjanect(It first, It last) const {
-		vector<Point> res;
+		vector<Point> result;
 		for (; first != last; ++first) {
-			res.push_back(operator+(*first));
+			result.push_back(operator+(*first));
 		}
-		return res;
+		return result;
 	}
 	template <class It> vector<Point> enum_adj_in_range(It first, It last) const {
-		vector<Point> res;
+		vector<Point> result;
 		for (; first != last; ++first) {
 			auto p = operator+(*first);
-			if (p.in_range()) res.push_back(p);
+			if (p.in_range()) result.push_back(p);
 		}
-		return res;
+		return result;
 	}
 	vector<Point> adjacent4() const {
 		return enum_adjanect(d.begin(), d.begin() + 4);

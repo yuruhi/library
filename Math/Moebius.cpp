@@ -4,7 +4,7 @@
 using namespace std;
 
 template <class T> map<T, int> Moebius(T n) {
-	map<T, int> res;
+	map<T, int> result;
 	auto primes = PrimeFactor(n);
 	int m = primes.size();
 	for (int bit = 0; bit < (1 << m); ++bit) {
@@ -15,7 +15,7 @@ template <class T> map<T, int> Moebius(T n) {
 				d *= primes[i].first;
 			}
 		}
-		res[d] = mul;
+		result[d] = mul;
 	}
-	return res;
+	return result;
 }

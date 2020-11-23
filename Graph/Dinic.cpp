@@ -51,13 +51,13 @@ public:
 		graph[to].emplace_back(from, graph[from].size() - 1, 0);
 	}
 	FLOW solve(int s, int t) {
-		FLOW res = 0;
+		FLOW result = 0;
 		while (true) {
 			bfs(s);
-			if (level[t] < 0) return res;
+			if (level[t] < 0) return result;
 			fill(iter.begin(), iter.end(), 0);
 			FLOW f;
-			while ((f = dfs(s, t, INF_FLOW)) > 0) res += f;
+			while ((f = dfs(s, t, INF_FLOW)) > 0) result += f;
 		}
 	}
 };

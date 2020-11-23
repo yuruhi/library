@@ -21,28 +21,28 @@ public:
 			Map[Str[i]] = i;
 		}
 	}
-	// value(R) -> res(10)
+	// value(R) -> result(10)
 	static value_type to10(const string& value, int R) {
-		value_type res = 0, p = 1;
+		value_type result = 0, p = 1;
 		for (int i = (int)value.size() - 1; i >= 0; --i) {
 			assert(Map.count(value[i]));
-			res += Map[value[i]] * p;
+			result += Map[value[i]] * p;
 			p *= R;
 		}
-		return res;
+		return result;
 	}
-	// value(10) -> res(N)
+	// value(10) -> result(N)
 	static string toN(value_type value, int N) {
-		string res;
+		string result;
 		value_type m = value;
 		do {
-			res += Str[m % N];
+			result += Str[m % N];
 			m /= N;
 		} while (m);
-		reverse(res.begin(), res.end());
-		return res;
+		reverse(result.begin(), result.end());
+		return result;
 	}
-	// value(R) -> res(N)
+	// value(R) -> result(N)
 	static string toN(const string& value, int R, int N) {
 		return toN(to10(value, R), N);
 	}

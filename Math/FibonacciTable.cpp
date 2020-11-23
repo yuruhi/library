@@ -3,13 +3,13 @@
 using namespace std;
 
 template <class value_type = long long> vector<value_type> FibonacciTable(int n) {
-	vector<value_type> res(n + 1);
+	vector<value_type> result(n + 1);
 	for (int i = 0; i <= n; ++i) {
 		if (i < 2) {
-			res[i] = i;
+			result[i] = i;
 		} else {
-			res[i] = res[i - 1] + res[i - 2];
+			result[i] = result[i - 1] + result[i - 2];
 		}
 	}
-	return res;
+	return result;
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 Graph SpanningTree(const Graph& graph, int root) {
 	int n = graph.size();
-	Graph res(n);
+	Graph result(n);
 	queue<int> q;
 	q.push(root);
 	vector<bool> flag(n);
@@ -16,11 +16,11 @@ Graph SpanningTree(const Graph& graph, int root) {
 		q.pop();
 		for (const Edge& e : graph[f]) {
 			if (!flag[e.to]) {
-				res[f].push_back(e);
+				result[f].push_back(e);
 				flag[e.to] = true;
 				q.push(e.to);
 			}
 		}
 	}
-	return res;
+	return result;
 }

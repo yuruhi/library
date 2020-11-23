@@ -39,16 +39,16 @@ pair<size_t, size_t> BracketsPos2(const string& s, size_t pos, char c1 = '(',
 
 vector<int> AllBracketsPos(const string& s, char c1 = '(', char c2 = ')') {
 	int n = s.size();
-	vector<int> res(n, -1);
+	vector<int> result(n, -1);
 	stack<int> st;
 	for (int i = 0; i < n; ++i) {
 		if (s[i] == c1) {
 			st.push(i);
 		} else if (s[i] == c2) {
 			assert(st.size());
-			res[st.top()] = i;
+			result[st.top()] = i;
 			st.pop();
 		}
 	}
-	return res;
+	return result;
 }

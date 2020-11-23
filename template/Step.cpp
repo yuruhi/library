@@ -65,12 +65,12 @@ template <class T> struct Step {
 		return to_a();
 	}
 	auto to_a() const {
-		vector<T> res;
-		res.reserve(size());
+		vector<T> result;
+		result.reserve(size());
 		for (auto i : *this) {
-			res.push_back(i);
+			result.push_back(i);
 		}
-		return res;
+		return result;
 	}
 	using value_type = T;
 	using iterator = It;

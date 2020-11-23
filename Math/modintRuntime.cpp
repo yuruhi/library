@@ -93,17 +93,17 @@ public:
 		return n != m.n;
 	}
 	template <class M> mint pow(M m) const {
-		mint t = n, res = 1;
+		mint t = n, result = 1;
 		while (m > 0) {
 			if (m & 1) {
-				res *= t;
+				result *= t;
 				m--;
 			} else {
 				t *= t;
 				m >>= 1;
 			}
 		}
-		return res;
+		return result;
 	}
 	template <class M> mint operator^(M m) const {
 		return pow(m);

@@ -15,11 +15,11 @@ string replaced_all(string s, const string& t, const string& u) {
 	return s;
 }
 vector<string> Split(string s, const string& t) {
-	vector<string> res;
+	vector<string> result;
 	for (size_t p = 0; (p = s.find(t)) != string::npos;) {
-		res.emplace_back(s.begin(), s.begin() + p);
+		result.emplace_back(s.begin(), s.begin() + p);
 		s = s.substr(p + t.size());
 	}
-	res.push_back(s);
-	return res;
+	result.push_back(s);
+	return result;
 }

@@ -185,24 +185,24 @@ struct CountIf_impl {
 struct Index_impl {
 	template <class V> auto operator()(const V& val) {
 		return Callable([&](auto v) -> optional<int> {
-			auto res = find(begin(v), end(v), val);
-			return res != end(v) ? optional(res - begin(v)) : nullopt;
+			auto result = find(begin(v), end(v), val);
+			return result != end(v) ? optional(result - begin(v)) : nullopt;
 		});
 	}
 } Index;
 struct IndexIf_impl {
 	template <class F> auto operator()(const F& f) {
 		return Callable([&](auto v) -> optional<int> {
-			auto res = find_if(begin(v), end(v), f);
-			return res != end(v) ? optional(res - begin(v)) : nullopt;
+			auto result = find_if(begin(v), end(v), f);
+			return result != end(v) ? optional(result - begin(v)) : nullopt;
 		});
 	}
 } IndexIf;
 struct FindIf_impl {
 	template <class F> auto operator()(const F& f) {
 		return Callable([&](auto v) -> optional<typename decltype(v)::value_type> {
-			auto res = find_if(begin(v), end(v), f);
-			return res != end(v) ? optional(*res) : nullopt;
+			auto result = find_if(begin(v), end(v), f);
+			return result != end(v) ? optional(*result) : nullopt;
 		});
 	}
 } FindIf;
@@ -248,11 +248,11 @@ struct Select_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
 			using value_type = typename decltype(v)::value_type;
-			vector<value_type> res;
+			vector<value_type> result;
 			for (const auto& i : v) {
-				if (f(i)) res.push_back(i);
+				if (f(i)) result.push_back(i);
 			}
-			return res;
+			return result;
 		});
 	}
 } Select;
@@ -260,25 +260,25 @@ struct Map_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
 			using result_type = invoke_result_t<F, typename decltype(v)::value_type>;
-			vector<result_type> res;
-			res.reserve(size(v));
+			vector<result_type> result;
+			result.reserve(size(v));
 			for (const auto& i : v) {
-				res.push_back(f(i));
+				result.push_back(f(i));
 			}
-			return res;
+			return result;
 		});
 	}
 } Map;
 struct Indexed_impl {
 	template <class T> friend auto operator|(const T& v, Indexed_impl& c) {
 		using value_type = typename T::value_type;
-		vector<pair<value_type, int>> res;
-		res.reserve(size(v));
+		vector<pair<value_type, int>> result;
+		result.reserve(size(v));
 		int index = 0;
 		for (const auto& i : v) {
-			res.emplace_back(i, index++);
+			result.emplace_back(i, index++);
 		}
-		return res;
+		return result;
 	}
 } Indexed;
 struct AllOf_impl {
@@ -315,36 +315,36 @@ struct NoneOf_impl {
 struct Tally_impl {
 	template <class F> auto operator()(size_t max_val) {
 		return Callable([&](auto v) {
-			vector<size_t> res(max_val);
+			vector<size_t> result(max_val);
 			for (const auto& i : v) {
-				res[static_cast<size_t>(i)]++;
+				result[static_cast<size_t>(i)]++;
 			}
-			return res;
+			return result;
 		});
 	}
 	template <class T, class value_type = typename T::value_type>
 	friend auto operator|(const T& v, Tally_impl& c) {
-		map<value_type, size_t> res;
+		map<value_type, size_t> result;
 		for (const auto& i : v) {
-			res[i]++;
+			result[i]++;
 		}
-		return res;
+		return result;
 	}
 } Tally;
 
 template <class T> auto operator*(const vector<T>& a, size_t n) {
-	T res;
+	T result;
 	for (size_t i = 0; i < n; ++i) {
-		res.insert(res.end(), a.begin(), a.end());
+		result.insert(result.end(), a.begin(), a.end());
 	}
-	return res;
+	return result;
 }
 auto operator*(string a, size_t n) {
-	string res;
+	string result;
 	for (size_t i = 0; i < n; ++i) {
-		res += a;
+		result += a;
 	}
-	return res;
+	return result;
 }
 template <class T, class U> auto& operator<<(vector<T>& a, const U& b) {
 	a.insert(a.end(), all(b));

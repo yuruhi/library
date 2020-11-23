@@ -6,17 +6,17 @@ using namespace std;
 
 template <class T> vector<T> Divisors(T n) {
 	assert(0 < n);
-	vector<T> res;
+	vector<T> result;
 	T i = 1;
 	for (; i * i < n; ++i) {
-		if (n % i == 0) res.push_back(i);
+		if (n % i == 0) result.push_back(i);
 	}
 	bool flag = i * i == n;
-	if (flag) res.push_back(i);
-	for (i = (int)res.size() - 1 - flag; i >= 0; --i) {
-		res.push_back(n / res[i]);
+	if (flag) result.push_back(i);
+	for (i = (int)result.size() - 1 - flag; i >= 0; --i) {
+		result.push_back(n / result[i]);
 	}
-	return res;
+	return result;
 }
 template <class T> int DivisorsCount(T n) {
 	assert(0 < n);
@@ -29,9 +29,9 @@ template <class T> int DivisorsCount(T n) {
 }
 template <class T> T DivisorsSum(T n) {
 	assert(0 < n);
-	T i = 1, res = 0;
+	T i = 1, result = 0;
 	for (; i * i < n; ++i) {
-		if (n % i == 0) res += i + n / i;
+		if (n % i == 0) result += i + n / i;
 	}
-	return res + i * (i * i == n);
+	return result + i * (i * i == n);
 }

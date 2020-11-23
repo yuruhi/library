@@ -33,12 +33,12 @@ public:
 		graph[to].emplace_back(from, graph[from].size() - 1, 0);
 	}
 	FLOW solve(int s, int t) {
-		FLOW res = 0;
+		FLOW result = 0;
 		while (true) {
 			fill(used.begin(), used.end(), false);
 			FLOW f = dfs(s, t, INF_FLOW);
-			if (!f) return res;
-			res += f;
+			if (!f) return result;
+			result += f;
 		}
 	}
 };

@@ -4,10 +4,10 @@
 using namespace std;
 
 vector<int> Primes(int n) {
-	vector<int> res;
+	vector<int> result;
 	auto p = Eratosthenes(n);
 	for (int i = 0; i <= n; ++i) {
-		if (p[i]) res.push_back(i);
+		if (p[i]) result.push_back(i);
 	}
-	return res;
+	return result;
 }

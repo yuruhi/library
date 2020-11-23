@@ -47,11 +47,12 @@ public:
 	}
 	vector<int> operator()(const vector<value_type>& x) const {
 		assert(flag);
-		vector<int> res;
-		res.reserve(x.size());
-		for (const value_type& i : x)
-			res.push_back(lower_bound(v.begin(), v.end(), i) - v.begin());
-		return res;
+		vector<int> result;
+		result.reserve(x.size());
+		for (const value_type& i : x) {
+			result.push_back(lower_bound(v.begin(), v.end(), i) - v.begin());
+		}
+		return result;
 	}
 	int size() const {
 		assert(flag);
