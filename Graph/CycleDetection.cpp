@@ -54,13 +54,9 @@ pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& 
 	}
 }
 
-pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
+pair<bool, vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
                                              bool directed = true) {
-	vector<vector<int>> graph(n);
-	for (auto [u, v] : edges) {
-		graph[u].push_back(v);
-		if (!directed) graph[v].push_back(u);
-	}
+	int n = graph.size();
 	vector<bool> visited(n), finished(n);
 	stack<int> st;
 	optional<int> pos;
@@ -99,4 +95,14 @@ pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>
 	} else {
 		return {false, {}};
 	}
+}
+
+pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
+                                             bool directed = true) {
+	vector<vector<int>> graph(n);
+	for (auto [u, v] : edges) {
+		graph[u].push_back(v);
+		if (!directed) graph[v].push_back(u);
+	}
+	return CycleDetectionVertex(graph, directed);
 }
