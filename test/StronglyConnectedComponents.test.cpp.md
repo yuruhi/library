@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/StronglyConnectedComponents.cpp
     title: Graph/StronglyConnectedComponents.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/TopologicalSort.cpp
     title: Graph/TopologicalSort.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -45,20 +45,20 @@ data:
     \ (auto e : graph[i]) {\n\t\t\t\tif (cmp[i] != cmp[e]) {\n\t\t\t\t\tres[cmp[i]].push_back(cmp[e]);\n\
     \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : res) {\n\t\t\tsort(v.begin(), v.end());\n\
     \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn res;\n\t\
-    }\n};\n#line 3 \"Graph/TopologicalSort.cpp\"\n#include <functional>\n#line 5 \"\
-    Graph/TopologicalSort.cpp\"\nusing namespace std;\n\nvector<int> TopologicalSort(const\
-    \ vector<vector<int>>& graph) {\n\tint V = graph.size();\n\tvector<bool> visited(V);\n\
-    \tvector<int> res;\n\tfunction<void(int)> dfs = [&](int u) {\n\t\tif (visited[u])\
-    \ return;\n\t\tvisited[u] = true;\n\t\tfor (auto& i : graph[u]) dfs(i);\n\t\t\
-    res.push_back(u);\n\t};\n\tfor (int i = 0; i < V; i++) dfs(i);\n\treverse(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n#line 4 \"test/StronglyConnectedComponents.test.cpp\"\
-    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents\
-    \ scc(n);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\
-    \t\tscc.add_edge(a, b);\n\t}\n\tscc.build();\n\tcout << scc.count_strongly_components()\
-    \ << '\\n';\n\tauto ans = scc.groups();\n\tfor (int i : TopologicalSort(scc.make_DAG()))\
-    \ {\n\t\tcout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size(); ++j)\
-    \ {\n\t\t\tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}\n"
+    }\n};\n#line 4 \"Graph/TopologicalSort.cpp\"\nusing namespace std;\n\nvector<int>\
+    \ TopologicalSort(const vector<vector<int>>& graph) {\n\tsize_t n = graph.size();\n\
+    \tvector<bool> visited(n);\n\tvector<int> res;\n\tauto dfs = [&](auto self, size_t\
+    \ v) {\n\t\tif (visited[v]) return;\n\t\tvisited[v] = true;\n\t\tfor (size_t i\
+    \ : graph[v]) dfs(i);\n\t\tres.push_back(v);\n\t};\n\tfor (size_t i = 0; i < n;\
+    \ i++) dfs(i);\n\treverse(res.begin(), res.end());\n\treturn res;\n}\n#line 4\
+    \ \"test/StronglyConnectedComponents.test.cpp\"\n#include <iostream>\nusing namespace\
+    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents scc(n);\n\tfor (int\
+    \ i = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\t\tscc.add_edge(a,\
+    \ b);\n\t}\n\tscc.build();\n\tcout << scc.count_strongly_components() << '\\n';\n\
+    \tauto ans = scc.groups();\n\tfor (int i : TopologicalSort(scc.make_DAG())) {\n\
+    \t\tcout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size(); ++j) {\n\
+    \t\t\tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n#include \"./../Graph/StronglyConnectedComponents.cpp\"\
     \n#include \"./../Graph/TopologicalSort.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: true
   path: test/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2020-11-22 20:04:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/StronglyConnectedComponents.test.cpp
 layout: document

@@ -186,10 +186,10 @@ data:
     - icon: ':warning:'
       path: Graph/SpanningTree.cpp
       title: Graph/SpanningTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/StronglyConnectedComponents.cpp
       title: Graph/StronglyConnectedComponents.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/TopologicalSort.cpp
       title: Graph/TopologicalSort.cpp
     - icon: ':heavy_check_mark:'
@@ -641,10 +641,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/StronglyConnectedComponents.test.cpp
       title: test/StronglyConnectedComponents.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
     - icon: ':heavy_check_mark:'
