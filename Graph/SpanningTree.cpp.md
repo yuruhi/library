@@ -27,24 +27,24 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/SpanningTree.cpp\"\
     \n#include <queue>\nusing namespace std;\n\nGraph SpanningTree(const Graph& graph,\
-    \ int root) {\n\tint n = graph.size();\n\tGraph res(n);\n\tqueue<int> q;\n\tq.push(root);\n\
-    \tvector<bool> flag(n);\n\tflag[root] = true;\n\twhile (!q.empty()) {\n\t\tint\
-    \ f = q.front();\n\t\tq.pop();\n\t\tfor (const Edge& e : graph[f]) {\n\t\t\tif\
-    \ (!flag[e.to]) {\n\t\t\t\tres[f].push_back(e);\n\t\t\t\tflag[e.to] = true;\n\t\
-    \t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn res;\n}\n"
+    \ int root) {\n\tint n = graph.size();\n\tGraph result(n);\n\tqueue<int> q;\n\t\
+    q.push(root);\n\tvector<bool> flag(n);\n\tflag[root] = true;\n\twhile (!q.empty())\
+    \ {\n\t\tint f = q.front();\n\t\tq.pop();\n\t\tfor (const Edge& e : graph[f])\
+    \ {\n\t\t\tif (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\t\t\t\tflag[e.to]\
+    \ = true;\n\t\t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn result;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <queue>\nusing namespace std;\n\nGraph SpanningTree(const Graph& graph, int\
-    \ root) {\n\tint n = graph.size();\n\tGraph res(n);\n\tqueue<int> q;\n\tq.push(root);\n\
+    \ root) {\n\tint n = graph.size();\n\tGraph result(n);\n\tqueue<int> q;\n\tq.push(root);\n\
     \tvector<bool> flag(n);\n\tflag[root] = true;\n\twhile (!q.empty()) {\n\t\tint\
     \ f = q.front();\n\t\tq.pop();\n\t\tfor (const Edge& e : graph[f]) {\n\t\t\tif\
-    \ (!flag[e.to]) {\n\t\t\t\tres[f].push_back(e);\n\t\t\t\tflag[e.to] = true;\n\t\
-    \t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn res;\n}\n"
+    \ (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\t\t\t\tflag[e.to] = true;\n\
+    \t\t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn result;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/SpanningTree.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/SpanningTree.cpp

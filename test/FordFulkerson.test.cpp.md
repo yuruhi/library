@@ -31,14 +31,14 @@ data:
     \ graph(n), used(n) {}\n\tconst GraphF& get_G() {\n\t\treturn graph;\n\t}\n\t\
     void add_edge(int from, int to, FLOW cap) {\n\t\tgraph[from].emplace_back(to,\
     \ graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from, graph[from].size()\
-    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true)\
-    \ {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s, t, INF_FLOW);\n\
-    \t\t\tif (!f) return res;\n\t\t\tres += f;\n\t\t}\n\t}\n};\n#line 3 \"test/FordFulkerson.test.cpp\"\
-    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tFordFulkerson\
-    \ g(n);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint u, v;\n\t\tFLOW d;\n\t\tcin\
-    \ >> u >> v >> d;\n\t\tg.add_edge(u, v, d);\n\t}\n\tcout << g.solve(0, n - 1)\
-    \ << '\\n';\n}\n"
+    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result = 0;\n\t\twhile\
+    \ (true) {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s,\
+    \ t, INF_FLOW);\n\t\t\tif (!f) return result;\n\t\t\tresult += f;\n\t\t}\n\t}\n\
+    };\n#line 3 \"test/FordFulkerson.test.cpp\"\n#include <iostream>\nusing namespace\
+    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n, m;\n\tcin >> n >> m;\n\tFordFulkerson g(n);\n\tfor (int i = 0; i < m;\
+    \ ++i) {\n\t\tint u, v;\n\t\tFLOW d;\n\t\tcin >> u >> v >> d;\n\t\tg.add_edge(u,\
+    \ v, d);\n\t}\n\tcout << g.solve(0, n - 1) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\
     \n#include \"./../Graph/FordFulkerson.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/FordFulkerson.test.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FordFulkerson.test.cpp

@@ -59,38 +59,38 @@ data:
     \ - p.y)};\n\t}\n\tPoint abs() const {\n\t\treturn {std::abs(x), std::abs(y)};\n\
     \t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\t}\n\n\ttemplate\
     \ <class It> vector<Point> enum_adjanect(It first, It last) const {\n\t\tvector<Point>\
-    \ res;\n\t\tfor (; first != last; ++first) {\n\t\t\tres.push_back(operator+(*first));\n\
-    \t\t}\n\t\treturn res;\n\t}\n\ttemplate <class It> vector<Point> enum_adj_in_range(It\
-    \ first, It last) const {\n\t\tvector<Point> res;\n\t\tfor (; first != last; ++first)\
-    \ {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range()) res.push_back(p);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tvector<Point> adjacent4() const {\n\t\treturn enum_adjanect(d.begin(),\
-    \ d.begin() + 4);\n\t}\n\tvector<Point> adjacent8() const {\n\t\treturn enum_adjanect(d.begin(),\
-    \ d.end());\n\t}\n\tvector<Point> adj4_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(),\
-    \ d.begin() + 4);\n\t}\n\tvector<Point> adj8_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(),\
-    \ d.end());\n\t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t\
-    }\n\tconstexpr Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr\
-    \ Point up() const {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const\
-    \ {\n\t\treturn {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\t\
-    return Point(*this).move(c);\n\t}\n\tconstexpr Point& move(char c) {\n\t\tswitch\
-    \ (c) {\n\t\t\tcase 'L':\n\t\t\tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\
-    \t\t\tx--;\n\t\t\t\tbreak;\n\t\t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\
-    \t\t\tcase '<':\n\t\t\t\tx++;\n\t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\
-    \t\t\tcase 'N':\n\t\t\tcase '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\
-    \t\t\tcase 'd':\n\t\t\tcase 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\
-    \t\t}\n\t\treturn *this;\n\t}\n\tconstexpr Point rotate90() const {\n\t\treturn\
-    \ {y, -x};\n\t}\n\tconstexpr Point rotate180() const {\n\t\treturn {-x, -y};\n\
-    \t}\n\tconstexpr Point rotate270() const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const\
-    \ string chars = \"LRUD\") const {\n\t\tassert(4 <= chars.size() && chars.size()\
-    \ <= 5);\n\t\tif (y == 0 && x < 0) {\n\t\t\treturn chars[0];\n\t\t} else if (y\
-    \ == 0 && x > 0) {\n\t\t\treturn chars[1];\n\t\t} else if (x == 0 && y < 0) {\n\
-    \t\t\treturn chars[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn chars[3];\n\
-    \t\t} else if (chars.size() == 5) {\n\t\t\treturn chars[4];\n\t\t} else {\n\t\t\
-    \tassert(false);\n\t\t}\n\t}\n\tfriend ostream& operator<<(ostream& os, const\
-    \ Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend\
-    \ istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\
-    \t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},\
-    \   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1},\
-    \ {-1, 1}};\n"
+    \ result;\n\t\tfor (; first != last; ++first) {\n\t\t\tresult.push_back(operator+(*first));\n\
+    \t\t}\n\t\treturn result;\n\t}\n\ttemplate <class It> vector<Point> enum_adj_in_range(It\
+    \ first, It last) const {\n\t\tvector<Point> result;\n\t\tfor (; first != last;\
+    \ ++first) {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range()) result.push_back(p);\n\
+    \t\t}\n\t\treturn result;\n\t}\n\tvector<Point> adjacent4() const {\n\t\treturn\
+    \ enum_adjanect(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point> adjacent8() const\
+    \ {\n\t\treturn enum_adjanect(d.begin(), d.end());\n\t}\n\tvector<Point> adj4_in_range()\
+    \ const {\n\t\treturn enum_adj_in_range(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point>\
+    \ adj8_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(), d.end());\n\
+    \t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t}\n\tconstexpr\
+    \ Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr Point up() const\
+    \ {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const {\n\t\treturn\
+    \ {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\treturn Point(*this).move(c);\n\
+    \t}\n\tconstexpr Point& move(char c) {\n\t\tswitch (c) {\n\t\t\tcase 'L':\n\t\t\
+    \tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\t\t\tx--;\n\t\t\t\tbreak;\n\t\
+    \t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\t\t\tcase '<':\n\t\t\t\tx++;\n\
+    \t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\t\t\tcase 'N':\n\t\t\tcase\
+    \ '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\t\t\tcase 'd':\n\t\t\t\
+    case 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\t\t}\n\t\treturn *this;\n\
+    \t}\n\tconstexpr Point rotate90() const {\n\t\treturn {y, -x};\n\t}\n\tconstexpr\
+    \ Point rotate180() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point rotate270()\
+    \ const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const string chars\
+    \ = \"LRUD\") const {\n\t\tassert(4 <= chars.size() && chars.size() <= 5);\n\t\
+    \tif (y == 0 && x < 0) {\n\t\t\treturn chars[0];\n\t\t} else if (y == 0 && x >\
+    \ 0) {\n\t\t\treturn chars[1];\n\t\t} else if (x == 0 && y < 0) {\n\t\t\treturn\
+    \ chars[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn chars[3];\n\t\t}\
+    \ else if (chars.size() == 5) {\n\t\t\treturn chars[4];\n\t\t} else {\n\t\t\t\
+    assert(false);\n\t\t}\n\t}\n\tfriend ostream& operator<<(ostream& os, const Point&\
+    \ p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend istream&\
+    \ operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\t}\n};\n\
+    int Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},   {0, -1},\
+    \ {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
   code: "#pragma once\n#include <vector>\n#include <utility>\n#include <iostream>\n\
     using namespace std;\n\nstruct Point {\n\tstatic int H, W;\n\tstatic const vector<Point>\
     \ d;\n\tstatic void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t\
@@ -140,44 +140,44 @@ data:
     \ - p.y)};\n\t}\n\tPoint abs() const {\n\t\treturn {std::abs(x), std::abs(y)};\n\
     \t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\t}\n\n\ttemplate\
     \ <class It> vector<Point> enum_adjanect(It first, It last) const {\n\t\tvector<Point>\
-    \ res;\n\t\tfor (; first != last; ++first) {\n\t\t\tres.push_back(operator+(*first));\n\
-    \t\t}\n\t\treturn res;\n\t}\n\ttemplate <class It> vector<Point> enum_adj_in_range(It\
-    \ first, It last) const {\n\t\tvector<Point> res;\n\t\tfor (; first != last; ++first)\
-    \ {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range()) res.push_back(p);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tvector<Point> adjacent4() const {\n\t\treturn enum_adjanect(d.begin(),\
-    \ d.begin() + 4);\n\t}\n\tvector<Point> adjacent8() const {\n\t\treturn enum_adjanect(d.begin(),\
-    \ d.end());\n\t}\n\tvector<Point> adj4_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(),\
-    \ d.begin() + 4);\n\t}\n\tvector<Point> adj8_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(),\
-    \ d.end());\n\t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t\
-    }\n\tconstexpr Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr\
-    \ Point up() const {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const\
-    \ {\n\t\treturn {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\t\
-    return Point(*this).move(c);\n\t}\n\tconstexpr Point& move(char c) {\n\t\tswitch\
-    \ (c) {\n\t\t\tcase 'L':\n\t\t\tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\
-    \t\t\tx--;\n\t\t\t\tbreak;\n\t\t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\
-    \t\t\tcase '<':\n\t\t\t\tx++;\n\t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\
-    \t\t\tcase 'N':\n\t\t\tcase '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\
-    \t\t\tcase 'd':\n\t\t\tcase 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\
-    \t\t}\n\t\treturn *this;\n\t}\n\tconstexpr Point rotate90() const {\n\t\treturn\
-    \ {y, -x};\n\t}\n\tconstexpr Point rotate180() const {\n\t\treturn {-x, -y};\n\
-    \t}\n\tconstexpr Point rotate270() const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const\
-    \ string chars = \"LRUD\") const {\n\t\tassert(4 <= chars.size() && chars.size()\
-    \ <= 5);\n\t\tif (y == 0 && x < 0) {\n\t\t\treturn chars[0];\n\t\t} else if (y\
-    \ == 0 && x > 0) {\n\t\t\treturn chars[1];\n\t\t} else if (x == 0 && y < 0) {\n\
-    \t\t\treturn chars[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn chars[3];\n\
-    \t\t} else if (chars.size() == 5) {\n\t\t\treturn chars[4];\n\t\t} else {\n\t\t\
-    \tassert(false);\n\t\t}\n\t}\n\tfriend ostream& operator<<(ostream& os, const\
-    \ Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend\
-    \ istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\
-    \t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},\
-    \   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1},\
-    \ {-1, 1}};\n"
+    \ result;\n\t\tfor (; first != last; ++first) {\n\t\t\tresult.push_back(operator+(*first));\n\
+    \t\t}\n\t\treturn result;\n\t}\n\ttemplate <class It> vector<Point> enum_adj_in_range(It\
+    \ first, It last) const {\n\t\tvector<Point> result;\n\t\tfor (; first != last;\
+    \ ++first) {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range()) result.push_back(p);\n\
+    \t\t}\n\t\treturn result;\n\t}\n\tvector<Point> adjacent4() const {\n\t\treturn\
+    \ enum_adjanect(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point> adjacent8() const\
+    \ {\n\t\treturn enum_adjanect(d.begin(), d.end());\n\t}\n\tvector<Point> adj4_in_range()\
+    \ const {\n\t\treturn enum_adj_in_range(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point>\
+    \ adj8_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(), d.end());\n\
+    \t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t}\n\tconstexpr\
+    \ Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr Point up() const\
+    \ {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const {\n\t\treturn\
+    \ {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\treturn Point(*this).move(c);\n\
+    \t}\n\tconstexpr Point& move(char c) {\n\t\tswitch (c) {\n\t\t\tcase 'L':\n\t\t\
+    \tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\t\t\tx--;\n\t\t\t\tbreak;\n\t\
+    \t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\t\t\tcase '<':\n\t\t\t\tx++;\n\
+    \t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\t\t\tcase 'N':\n\t\t\tcase\
+    \ '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\t\t\tcase 'd':\n\t\t\t\
+    case 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\t\t}\n\t\treturn *this;\n\
+    \t}\n\tconstexpr Point rotate90() const {\n\t\treturn {y, -x};\n\t}\n\tconstexpr\
+    \ Point rotate180() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point rotate270()\
+    \ const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const string chars\
+    \ = \"LRUD\") const {\n\t\tassert(4 <= chars.size() && chars.size() <= 5);\n\t\
+    \tif (y == 0 && x < 0) {\n\t\t\treturn chars[0];\n\t\t} else if (y == 0 && x >\
+    \ 0) {\n\t\t\treturn chars[1];\n\t\t} else if (x == 0 && y < 0) {\n\t\t\treturn\
+    \ chars[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn chars[3];\n\t\t}\
+    \ else if (chars.size() == 5) {\n\t\t\treturn chars[4];\n\t\t} else {\n\t\t\t\
+    assert(false);\n\t\t}\n\t}\n\tfriend ostream& operator<<(ostream& os, const Point&\
+    \ p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t}\n\tfriend istream&\
+    \ operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\t}\n};\n\
+    int Point::H, Point::W;\nconst vector<Point> Point::d{{0, 1}, {1, 0},   {0, -1},\
+    \ {-1, 0},\n                             {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Point.cpp
   requiredBy:
   - Serch/GridBFS.cpp
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Point.cpp

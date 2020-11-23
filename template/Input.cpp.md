@@ -70,12 +70,12 @@ data:
     \ N = 0, class T> void in_multiple(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
     \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
     \t\t\tvec.push_back(in<V>());\n\t\t\tin_multiple<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\
-    \ttemplate <class... T> auto multiple(int H) const {\n\t\tmultiple_t<T...> res;\n\
-    \t\twhile (H--) in_multiple(res);\n\t\treturn res;\n\t}\n} in;\n#define input(T)\
-    \ Input::in<T>()\n#define INT input(int)\n#define LL input(long long)\n#define\
-    \ STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
-    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
-    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
+    \ttemplate <class... T> auto multiple(int H) const {\n\t\tmultiple_t<T...> result;\n\
+    \t\twhile (H--) in_multiple(result);\n\t\treturn result;\n\t}\n} in;\n#define\
+    \ input(T) Input::in<T>()\n#define INT input(int)\n#define LL input(long long)\n\
+    #define STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\
+    \tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...)\
+    \ inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <string>\n\
     #include <utility>\n#include <tuple>\nusing namespace std;\n\n#ifdef _WIN32\n\
     #define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
@@ -130,18 +130,18 @@ data:
     \ N = 0, class T> void in_multiple(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
     \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
     \t\t\tvec.push_back(in<V>());\n\t\t\tin_multiple<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\
-    \ttemplate <class... T> auto multiple(int H) const {\n\t\tmultiple_t<T...> res;\n\
-    \t\twhile (H--) in_multiple(res);\n\t\treturn res;\n\t}\n} in;\n#define input(T)\
-    \ Input::in<T>()\n#define INT input(int)\n#define LL input(long long)\n#define\
-    \ STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
-    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
-    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
+    \ttemplate <class... T> auto multiple(int H) const {\n\t\tmultiple_t<T...> result;\n\
+    \t\twhile (H--) in_multiple(result);\n\t\treturn result;\n\t}\n} in;\n#define\
+    \ input(T) Input::in<T>()\n#define INT input(int)\n#define LL input(long long)\n\
+    #define STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\
+    \tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...)\
+    \ inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
   dependsOn: []
   isVerificationFile: false
   path: template/Input.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_multiple.test.cpp

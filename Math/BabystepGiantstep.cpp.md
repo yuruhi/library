@@ -46,26 +46,26 @@ data:
     \treturn internal::make_vector<T, N>(s, init);\n}\n#line 4 \"Math/BabystepGiantstep.cpp\"\
     \n#include <unordered_map>\n#line 6 \"Math/BabystepGiantstep.cpp\"\nusing namespace\
     \ std;\n\nint64_t BabystepGiantstep(uint64_t g, uint64_t h,\n                \
-    \          uint64_t mod) {  // g ^ res = h (mod mod)\n\tconst uint64_t m = ceil(sqrt(mod));\n\
-    \tunordered_map<uint64_t, uint64_t> table;\n\tuint64_t e = 1;\n\tfor (uint64_t\
-    \ i = 0; i < m; ++i) {\n\t\ttable[e] = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\
-    \tfor (uint64_t f = Powmod(g, mod - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif\
-    \ (table.count(e)) {\n\t\t\treturn i * m + table[e];\n\t\t}\n\t\te = (e * f) %\
-    \ mod;\n\t}\n\treturn -1;\n}\n"
+    \          uint64_t mod) {  // g ^ result = h (mod mod)\n\tconst uint64_t m =\
+    \ ceil(sqrt(mod));\n\tunordered_map<uint64_t, uint64_t> table;\n\tuint64_t e =\
+    \ 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\ttable[e] = i;\n\t\te = e * g %\
+    \ mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g, mod - m - 1, mod), i = 0;\
+    \ i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn i * m + table[e];\n\t\
+    \t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
   code: "#pragma once\n#include \"./../template/functions.cpp\"\n#include <vector>\n\
     #include <unordered_map>\n#include <cmath>\nusing namespace std;\n\nint64_t BabystepGiantstep(uint64_t\
-    \ g, uint64_t h,\n                          uint64_t mod) {  // g ^ res = h (mod\
-    \ mod)\n\tconst uint64_t m = ceil(sqrt(mod));\n\tunordered_map<uint64_t, uint64_t>\
-    \ table;\n\tuint64_t e = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\ttable[e]\
-    \ = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g, mod\
-    \ - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn\
+    \ g, uint64_t h,\n                          uint64_t mod) {  // g ^ result = h\
+    \ (mod mod)\n\tconst uint64_t m = ceil(sqrt(mod));\n\tunordered_map<uint64_t,\
+    \ uint64_t> table;\n\tuint64_t e = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\
+    \ttable[e] = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g,\
+    \ mod - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn\
     \ i * m + table[e];\n\t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
   dependsOn:
   - template/functions.cpp
   isVerificationFile: false
   path: Math/BabystepGiantstep.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/BabystepGiantstep.cpp

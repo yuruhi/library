@@ -31,26 +31,26 @@ data:
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"Graph/Diameter.cpp\"\
     \n#include <utility>\n#include <tuple>\nusing namespace std;\n\ntuple<Weight,\
     \ int, int> Diameter(const Graph& graph) {\n\tauto dfs = [&](auto&& f, int v,\
-    \ int p, Weight depth) -> pair<Weight, int> {\n\t\tpair<Weight, int> res(depth,\
-    \ v);\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tauto res2\
-    \ = f(f, e.to, v, depth + e.cost);\n\t\t\t\tif (res2.first > res.first) res =\
-    \ res2;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t};\n\tauto d1 = dfs(dfs, 0, -1, 0);\n\
-    \tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn {d2.first, d1.second, d2.second};\n\
-    }\n"
+    \ int p, Weight depth) -> pair<Weight, int> {\n\t\tpair<Weight, int> result(depth,\
+    \ v);\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tauto tmp\
+    \ = f(f, e.to, v, depth + e.cost);\n\t\t\t\tif (tmp.first > result.first) result\
+    \ = tmp;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t};\n\tauto d1 = dfs(dfs, 0, -1,\
+    \ 0);\n\tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn {d2.first, d1.second,\
+    \ d2.second};\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <utility>\n#include\
     \ <tuple>\nusing namespace std;\n\ntuple<Weight, int, int> Diameter(const Graph&\
     \ graph) {\n\tauto dfs = [&](auto&& f, int v, int p, Weight depth) -> pair<Weight,\
-    \ int> {\n\t\tpair<Weight, int> res(depth, v);\n\t\tfor (auto e : graph[v]) {\n\
-    \t\t\tif (e.to != p) {\n\t\t\t\tauto res2 = f(f, e.to, v, depth + e.cost);\n\t\
-    \t\t\tif (res2.first > res.first) res = res2;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\
-    \t};\n\tauto d1 = dfs(dfs, 0, -1, 0);\n\tauto d2 = dfs(dfs, d1.second, -1, 0);\n\
-    \treturn {d2.first, d1.second, d2.second};\n}\n"
+    \ int> {\n\t\tpair<Weight, int> result(depth, v);\n\t\tfor (auto e : graph[v])\
+    \ {\n\t\t\tif (e.to != p) {\n\t\t\t\tauto tmp = f(f, e.to, v, depth + e.cost);\n\
+    \t\t\t\tif (tmp.first > result.first) result = tmp;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ result;\n\t};\n\tauto d1 = dfs(dfs, 0, -1, 0);\n\tauto d2 = dfs(dfs, d1.second,\
+    \ -1, 0);\n\treturn {d2.first, d1.second, d2.second};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/Diameter.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp

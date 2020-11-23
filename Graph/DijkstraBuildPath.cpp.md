@@ -38,9 +38,9 @@ data:
     \ e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to]\
     \ = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t\tprev[e.to]\
     \ = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn {dist, prev};\n}\nvector<int> BuildPath(const\
-    \ vector<int>& prev, int t) {\n\tvector<int> res;\n\twhile (prev[t] != -1) {\n\
-    \t\tres.push_back(t);\n\t\tt = prev[t];\n\t}\n\tres.push_back(t);\n\treverse(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n"
+    \ vector<int>& prev, int t) {\n\tvector<int> result;\n\twhile (prev[t] != -1)\
+    \ {\n\t\tresult.push_back(t);\n\t\tt = prev[t];\n\t}\n\tresult.push_back(t);\n\
+    \treverse(result.begin(), result.end());\n\treturn result;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\n#include <utility>\n#include <queue>\nusing namespace std;\n\n\
     pair<vector<Weight>, vector<int>> DijkstraBuildPrev(const Graph& graph, int s)\
@@ -51,15 +51,15 @@ data:
     \ e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to]\
     \ = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t\tprev[e.to]\
     \ = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn {dist, prev};\n}\nvector<int> BuildPath(const\
-    \ vector<int>& prev, int t) {\n\tvector<int> res;\n\twhile (prev[t] != -1) {\n\
-    \t\tres.push_back(t);\n\t\tt = prev[t];\n\t}\n\tres.push_back(t);\n\treverse(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n"
+    \ vector<int>& prev, int t) {\n\tvector<int> result;\n\twhile (prev[t] != -1)\
+    \ {\n\t\tresult.push_back(t);\n\t\tt = prev[t];\n\t}\n\tresult.push_back(t);\n\
+    \treverse(result.begin(), result.end());\n\treturn result;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DijkstraBuildPath.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/DijkstraBuildPath.test.cpp

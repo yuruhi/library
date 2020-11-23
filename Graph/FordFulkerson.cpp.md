@@ -27,9 +27,10 @@ data:
     \ graph(n), used(n) {}\n\tconst GraphF& get_G() {\n\t\treturn graph;\n\t}\n\t\
     void add_edge(int from, int to, FLOW cap) {\n\t\tgraph[from].emplace_back(to,\
     \ graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from, graph[from].size()\
-    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true)\
-    \ {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s, t, INF_FLOW);\n\
-    \t\t\tif (!f) return res;\n\t\t\tres += f;\n\t\t}\n\t}\n};\n"
+    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result = 0;\n\t\twhile\
+    \ (true) {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s,\
+    \ t, INF_FLOW);\n\t\t\tif (!f) return result;\n\t\t\tresult += f;\n\t\t}\n\t}\n\
+    };\n"
   code: "#pragma once\n#include \"./FlowTemplate.cpp\"\n#include <vector>\nusing namespace\
     \ std;\n\nclass FordFulkerson {\n\tint n;\n\tGraphF graph;\n\tvector<bool> used;\n\
     \tFLOW dfs(int v, int t, FLOW f) {\n\t\tif (v == t) return f;\n\t\tused[v] = true;\n\
@@ -40,15 +41,16 @@ data:
     \ graph(n), used(n) {}\n\tconst GraphF& get_G() {\n\t\treturn graph;\n\t}\n\t\
     void add_edge(int from, int to, FLOW cap) {\n\t\tgraph[from].emplace_back(to,\
     \ graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from, graph[from].size()\
-    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW res = 0;\n\t\twhile (true)\
-    \ {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s, t, INF_FLOW);\n\
-    \t\t\tif (!f) return res;\n\t\t\tres += f;\n\t\t}\n\t}\n};\n"
+    \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result = 0;\n\t\twhile\
+    \ (true) {\n\t\t\tfill(used.begin(), used.end(), false);\n\t\t\tFLOW f = dfs(s,\
+    \ t, INF_FLOW);\n\t\t\tif (!f) return result;\n\t\t\tresult += f;\n\t\t}\n\t}\n\
+    };\n"
   dependsOn:
   - Graph/FlowTemplate.cpp
   isVerificationFile: false
   path: Graph/FordFulkerson.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/FordFulkerson.test.cpp

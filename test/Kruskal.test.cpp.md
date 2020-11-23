@@ -48,13 +48,13 @@ data:
     \tint count_components() const {\n\t\treturn count_components_m;\n\t}\n};\n#line\
     \ 4 \"Graph/Kruskal.cpp\"\n#include <algorithm>\nusing namespace std;\n\nWeight\
     \ Kruskal(int V, Edges& graph) {\n\tsort(graph.begin(), graph.end(),\n\t     [](const\
-    \ Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\tWeight res =\
-    \ 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to))\
-    \ {\n\t\t\tres += e.cost;\n\t\t}\n\t}\n\treturn res;\n}\n#line 4 \"test/Kruskal.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tEdges\
-    \ edges(m);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\
-    \tcin >> s >> t >> d;\n\t\tedges[i] = Edge2(s, t, d);\n\t}\n\n\tcout << Kruskal(n,\
-    \ edges) << '\\n';\n}\n"
+    \ Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\tWeight result\
+    \ = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from,\
+    \ e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\treturn result;\n}\n#line 4\
+    \ \"test/Kruskal.test.cpp\"\nusing namespace std;\n\nint main() {\n\tint n, m;\n\
+    \tcin >> n >> m;\n\tEdges edges(m);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint\
+    \ s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tedges[i] = Edge2(s, t, d);\n\
+    \t}\n\n\tcout << Kruskal(n, edges) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
     \n#include \"./../Graph/Kruskal.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tEdges edges(m);\n\tfor (int i\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Kruskal.test.cpp

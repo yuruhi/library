@@ -42,10 +42,10 @@ data:
     \ e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to]\
     \ = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t\tprev[e.to]\
     \ = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn {dist, prev};\n}\nvector<int> BuildPath(const\
-    \ vector<int>& prev, int t) {\n\tvector<int> res;\n\twhile (prev[t] != -1) {\n\
-    \t\tres.push_back(t);\n\t\tt = prev[t];\n\t}\n\tres.push_back(t);\n\treverse(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n#line 5 \"test/DijkstraBuildPath.test.cpp\"\n\
-    using namespace std;\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(nullptr);\n\
+    \ vector<int>& prev, int t) {\n\tvector<int> result;\n\twhile (prev[t] != -1)\
+    \ {\n\t\tresult.push_back(t);\n\t\tt = prev[t];\n\t}\n\tresult.push_back(t);\n\
+    \treverse(result.begin(), result.end());\n\treturn result;\n}\n#line 5 \"test/DijkstraBuildPath.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(nullptr);\n\
     \n\tint n, m, s, t;\n\tcin >> n >> m >> s >> t;\n\n\tGraph g(n);\n\tfor (int i\
     \ = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tWeight c;\n\t\tcin >> a >> b >> c;\n\t\
     \tg[a].emplace_back(b, c);\n\t}\n\n\tauto [dist, prev] = DijkstraBuildPrev(g,\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/DijkstraBuildPath.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/DijkstraBuildPath.test.cpp

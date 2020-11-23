@@ -38,25 +38,26 @@ data:
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 3 \"Graph/Diameter.cpp\"\
     \n#include <utility>\n#include <tuple>\nusing namespace std;\n\ntuple<Weight,\
     \ int, int> Diameter(const Graph& graph) {\n\tauto dfs = [&](auto&& f, int v,\
-    \ int p, Weight depth) -> pair<Weight, int> {\n\t\tpair<Weight, int> res(depth,\
-    \ v);\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tauto res2\
-    \ = f(f, e.to, v, depth + e.cost);\n\t\t\t\tif (res2.first > res.first) res =\
-    \ res2;\n\t\t\t}\n\t\t}\n\t\treturn res;\n\t};\n\tauto d1 = dfs(dfs, 0, -1, 0);\n\
-    \tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn {d2.first, d1.second, d2.second};\n\
-    }\n#line 4 \"Graph/DiameterPath.cpp\"\n#include <algorithm>\n#line 7 \"Graph/DiameterPath.cpp\"\
-    \n#include <functional>\nusing namespace std;\n\ntuple<Weight, vector<int>> DiameterPath(const\
-    \ Graph& graph) {\n\tint n = graph.size();\n\tvector<Weight> dist0(n);\n\tfunction<void(int,\
-    \ int, Weight)> dfs = [&](int v, int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor\
-    \ (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d +\
-    \ u.cost);\n\t\t\t}\n\t};\n\tdfs(0, -1, 0);\n\n\tint s = max_element(dist0.begin(),\
-    \ dist0.end()) - dist0.begin();\n\tvector<Weight> dist(n);\n\tvector<int> par(n);\n\
-    \tfunction<void(int, int, Weight)> dfs2 = [&](int v, int p, Weight d) {\n\t\t\
-    dist[v] = d;\n\t\tpar[v] = p;\n\t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to\
-    \ != p) {\n\t\t\t\tdfs2(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\
-    \tauto t = max_element(dist.begin(), dist.end());\n\tvector<int> path{t - dist.begin()};\n\
-    \tfor (int p = 0; (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t\
-    }\n\treverse(path.begin(), path.end());\n\treturn {*t, path};\n}\n#line 5 \"test/Diameter.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios::sync_with_stdio(false);\n\
+    \ int p, Weight depth) -> pair<Weight, int> {\n\t\tpair<Weight, int> result(depth,\
+    \ v);\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tauto tmp\
+    \ = f(f, e.to, v, depth + e.cost);\n\t\t\t\tif (tmp.first > result.first) result\
+    \ = tmp;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t};\n\tauto d1 = dfs(dfs, 0, -1,\
+    \ 0);\n\tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn {d2.first, d1.second,\
+    \ d2.second};\n}\n#line 4 \"Graph/DiameterPath.cpp\"\n#include <algorithm>\n#line\
+    \ 7 \"Graph/DiameterPath.cpp\"\n#include <functional>\nusing namespace std;\n\n\
+    tuple<Weight, vector<int>> DiameterPath(const Graph& graph) {\n\tint n = graph.size();\n\
+    \tvector<Weight> dist0(n);\n\tfunction<void(int, int, Weight)> dfs = [&](int v,\
+    \ int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor (const auto& u : graph[v])\n\t\
+    \t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs(0,\
+    \ -1, 0);\n\n\tint s = max_element(dist0.begin(), dist0.end()) - dist0.begin();\n\
+    \tvector<Weight> dist(n);\n\tvector<int> par(n);\n\tfunction<void(int, int, Weight)>\
+    \ dfs2 = [&](int v, int p, Weight d) {\n\t\tdist[v] = d;\n\t\tpar[v] = p;\n\t\t\
+    for (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to, v,\
+    \ d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\tauto t = max_element(dist.begin(),\
+    \ dist.end());\n\tvector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p =\
+    \ par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\treverse(path.begin(),\
+    \ path.end());\n\treturn {*t, path};\n}\n#line 5 \"test/Diameter.test.cpp\"\n\
+    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios::sync_with_stdio(false);\n\
     \tint n;\n\tcin >> n;\n\tGraph g(n);\n\tfor (int i = 0; i < n - 1; i++) {\n\t\t\
     int a, b;\n\t\tWeight c;\n\t\tcin >> a >> b >> c;\n\t\tg[a].emplace_back(b, c);\n\
     \t\tg[b].emplace_back(a, c);\n\t}\n\n\tauto [dist, u, v] = Diameter(g);\n\tauto\
@@ -79,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/Diameter.test.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Diameter.test.cpp

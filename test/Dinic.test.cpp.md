@@ -36,10 +36,10 @@ data:
     public:\n\tDinic(int v) : V(v), graph(v), level(v), iter(v) {}\n\tconst GraphF&\
     \ get_graph() {\n\t\treturn graph;\n\t}\n\tvoid add_edge(int from, int to, FLOW\
     \ cap) {\n\t\tgraph[from].emplace_back(to, graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from,\
-    \ graph[from].size() - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW res\
-    \ = 0;\n\t\twhile (true) {\n\t\t\tbfs(s);\n\t\t\tif (level[t] < 0) return res;\n\
+    \ graph[from].size() - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result\
+    \ = 0;\n\t\twhile (true) {\n\t\t\tbfs(s);\n\t\t\tif (level[t] < 0) return result;\n\
     \t\t\tfill(iter.begin(), iter.end(), 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f = dfs(s,\
-    \ t, INF_FLOW)) > 0) res += f;\n\t\t}\n\t}\n};\n#line 3 \"test/Dinic.test.cpp\"\
+    \ t, INF_FLOW)) > 0) result += f;\n\t\t}\n\t}\n};\n#line 3 \"test/Dinic.test.cpp\"\
     \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tDinic g(n);\n\
     \tfor (int i = 0; i < m; ++i) {\n\t\tint u, v;\n\t\tFLOW d;\n\t\tcin >> u >> v\
@@ -57,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dinic.test.cpp

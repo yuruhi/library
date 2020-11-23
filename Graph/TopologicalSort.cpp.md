@@ -3,36 +3,36 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/StronglyConnectedComponents.test.cpp
     title: test/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/TopologicalSort.test.cpp
     title: test/TopologicalSort.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/TopologicalSort.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\nusing namespace std;\n\nvector<int> TopologicalSort(const vector<vector<int>>&\
     \ graph) {\n\tsize_t n = graph.size();\n\tvector<bool> visited(n);\n\tvector<int>\
-    \ res;\n\tauto dfs = [&](auto self, size_t v) {\n\t\tif (visited[v]) return;\n\
-    \t\tvisited[v] = true;\n\t\tfor (size_t i : graph[v]) dfs(i);\n\t\tres.push_back(v);\n\
-    \t};\n\tfor (size_t i = 0; i < n; i++) dfs(i);\n\treverse(res.begin(), res.end());\n\
-    \treturn res;\n}\n"
+    \ result;\n\tauto dfs = [&](auto self, size_t v) -> void {\n\t\tif (visited[v])\
+    \ return;\n\t\tvisited[v] = true;\n\t\tfor (size_t i : graph[v]) self(self, i);\n\
+    \t\tresult.push_back(v);\n\t};\n\tfor (size_t i = 0; i < n; i++) dfs(dfs, i);\n\
+    \treverse(result.begin(), result.end());\n\treturn result;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\
     \nvector<int> TopologicalSort(const vector<vector<int>>& graph) {\n\tsize_t n\
-    \ = graph.size();\n\tvector<bool> visited(n);\n\tvector<int> res;\n\tauto dfs\
-    \ = [&](auto self, size_t v) {\n\t\tif (visited[v]) return;\n\t\tvisited[v] =\
-    \ true;\n\t\tfor (size_t i : graph[v]) dfs(i);\n\t\tres.push_back(v);\n\t};\n\t\
-    for (size_t i = 0; i < n; i++) dfs(i);\n\treverse(res.begin(), res.end());\n\t\
-    return res;\n}\n"
+    \ = graph.size();\n\tvector<bool> visited(n);\n\tvector<int> result;\n\tauto dfs\
+    \ = [&](auto self, size_t v) -> void {\n\t\tif (visited[v]) return;\n\t\tvisited[v]\
+    \ = true;\n\t\tfor (size_t i : graph[v]) self(self, i);\n\t\tresult.push_back(v);\n\
+    \t};\n\tfor (size_t i = 0; i < n; i++) dfs(dfs, i);\n\treverse(result.begin(),\
+    \ result.end());\n\treturn result;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/TopologicalSort.cpp
   requiredBy: []
-  timestamp: '2020-11-22 20:04:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-23 14:52:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TopologicalSort.test.cpp
   - test/StronglyConnectedComponents.test.cpp

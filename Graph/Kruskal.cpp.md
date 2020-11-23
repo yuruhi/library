@@ -44,22 +44,22 @@ data:
     \tint count_components() const {\n\t\treturn count_components_m;\n\t}\n};\n#line\
     \ 4 \"Graph/Kruskal.cpp\"\n#include <algorithm>\nusing namespace std;\n\nWeight\
     \ Kruskal(int V, Edges& graph) {\n\tsort(graph.begin(), graph.end(),\n\t     [](const\
-    \ Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\tWeight res =\
-    \ 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to))\
-    \ {\n\t\t\tres += e.cost;\n\t\t}\n\t}\n\treturn res;\n}\n"
+    \ Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\tWeight result\
+    \ = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from,\
+    \ e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\treturn result;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include \"./../DataStructure/UnionFind.cpp\"\
     \n#include <algorithm>\nusing namespace std;\n\nWeight Kruskal(int V, Edges& graph)\
     \ {\n\tsort(graph.begin(), graph.end(),\n\t     [](const Edge2& e1, const Edge2&\
-    \ e2) { return e1.cost < e2.cost; });\n\tWeight res = 0;\n\tUnionFind uf(V);\n\
-    \tfor (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tres += e.cost;\n\
-    \t\t}\n\t}\n\treturn res;\n}\n"
+    \ e2) { return e1.cost < e2.cost; });\n\tWeight result = 0;\n\tUnionFind uf(V);\n\
+    \tfor (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tresult += e.cost;\n\
+    \t\t}\n\t}\n\treturn result;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   - DataStructure/UnionFind.cpp
   isVerificationFile: false
   path: Graph/Kruskal.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Kruskal.test.cpp

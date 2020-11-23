@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/StronglyConnectedComponents.test.cpp
     title: test/StronglyConnectedComponents.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/StronglyConnectedComponents.cpp\"\n#include <vector>\n\
@@ -32,13 +32,14 @@ data:
     \ cmp;\n\t}\n\tconst vector<vector<int>>& get_graph() const {\n\t\tassert(builded);\n\
     \t\treturn graph;\n\t}\n\tint count_strongly_components() const {\n\t\tassert(builded);\n\
     \t\treturn k;\n\t}\n\tvector<vector<int>> groups() const {\n\t\tassert(builded);\n\
-    \t\tvector<vector<int>> res(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[cmp[i]].push_back(i);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tvector<vector<int>> make_DAG() const {\n\t\tassert(builded);\n\
-    \t\tvector<vector<int>> res(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tfor\
-    \ (auto e : graph[i]) {\n\t\t\t\tif (cmp[i] != cmp[e]) {\n\t\t\t\t\tres[cmp[i]].push_back(cmp[e]);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : res) {\n\t\t\tsort(v.begin(), v.end());\n\
-    \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn res;\n\t\
-    }\n};\n"
+    \t\tvector<vector<int>> result(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\t\
+    result[cmp[i]].push_back(i);\n\t\t}\n\t\treturn result;\n\t}\n\tvector<vector<int>>\
+    \ make_DAG() const {\n\t\tassert(builded);\n\t\tvector<vector<int>> result(k);\n\
+    \t\tfor (int i = 0; i < n; ++i) {\n\t\t\tfor (auto e : graph[i]) {\n\t\t\t\tif\
+    \ (cmp[i] != cmp[e]) {\n\t\t\t\t\tresult[cmp[i]].push_back(cmp[e]);\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : result) {\n\t\t\tsort(v.begin(), v.end());\n\
+    \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn result;\n\
+    \t}\n};\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n#include <cassert>\n\
     using namespace std;\n\nclass StronglyConnectedComponents {\n\tint n;\n\tvector<vector<int>>\
     \ graph, rgraph;\n\tvector<bool> used;\n\tvector<int> cmp, vs;\n\tint k;\n\tbool\
@@ -60,19 +61,20 @@ data:
     \t\treturn cmp;\n\t}\n\tconst vector<vector<int>>& get_graph() const {\n\t\tassert(builded);\n\
     \t\treturn graph;\n\t}\n\tint count_strongly_components() const {\n\t\tassert(builded);\n\
     \t\treturn k;\n\t}\n\tvector<vector<int>> groups() const {\n\t\tassert(builded);\n\
-    \t\tvector<vector<int>> res(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tres[cmp[i]].push_back(i);\n\
-    \t\t}\n\t\treturn res;\n\t}\n\tvector<vector<int>> make_DAG() const {\n\t\tassert(builded);\n\
-    \t\tvector<vector<int>> res(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\tfor\
-    \ (auto e : graph[i]) {\n\t\t\t\tif (cmp[i] != cmp[e]) {\n\t\t\t\t\tres[cmp[i]].push_back(cmp[e]);\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : res) {\n\t\t\tsort(v.begin(), v.end());\n\
-    \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn res;\n\t\
-    }\n};\n"
+    \t\tvector<vector<int>> result(k);\n\t\tfor (int i = 0; i < n; ++i) {\n\t\t\t\
+    result[cmp[i]].push_back(i);\n\t\t}\n\t\treturn result;\n\t}\n\tvector<vector<int>>\
+    \ make_DAG() const {\n\t\tassert(builded);\n\t\tvector<vector<int>> result(k);\n\
+    \t\tfor (int i = 0; i < n; ++i) {\n\t\t\tfor (auto e : graph[i]) {\n\t\t\t\tif\
+    \ (cmp[i] != cmp[e]) {\n\t\t\t\t\tresult[cmp[i]].push_back(cmp[e]);\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : result) {\n\t\t\tsort(v.begin(), v.end());\n\
+    \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn result;\n\
+    \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/StronglyConnectedComponents.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2020-11-23 14:52:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/StronglyConnectedComponents.test.cpp
 documentation_of: Graph/StronglyConnectedComponents.cpp
