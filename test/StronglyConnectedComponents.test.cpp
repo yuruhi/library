@@ -23,4 +23,5 @@ int main() {
 			cout << ' ' << ans[i][j];
 		}
 		cout << '\n';
+	}
 }
