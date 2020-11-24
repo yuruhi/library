@@ -3,80 +3,81 @@
 using namespace std;
 
 template <class T> struct Step {
-	class It {
-		T a, b, c;
+	using value_type = T;
+
+	class iterator {
+		value_type a, b, c;
 
 	public:
-		constexpr It() : a(T()), b(T()), c(T()) {}
-		constexpr It(T _b, T _c, T _s) : a(_b), b(_c), c(_s) {}
-		constexpr It& operator++() {
+		constexpr iterator() : a(value_type()), b(value_type()), c(value_type()) {}
+		constexpr iterator(value_type _b, value_type _c, value_type _s)
+		    : a(_b), b(_c), c(_s) {}
+		constexpr iterator& operator++() {
 			--b;
 			a += c;
 			return *this;
 		}
-		constexpr It operator++(int) {
-			It tmp = *this;
+		constexpr iterator operator++(int) {
+			iterator tmp = *this;
 			--b;
 			a += c;
 			return tmp;
 		}
-		constexpr const T& operator*() const {
+		constexpr const value_type& operator*() const {
 			return a;
 		}
-		constexpr const T* operator->() const {
+		constexpr const value_type* operator->() const {
 			return &a;
 		}
-		constexpr bool operator==(const It& i) const {
+		constexpr bool operator==(const iterator& i) const {
 			return b == i.b;
 		}
-		constexpr bool operator!=(const It& i) const {
+		constexpr bool operator!=(const iterator& i) const {
 			return !(b == i.b);
 		}
-		constexpr T start() const {
+		constexpr value_type start() const {
 			return a;
 		}
-		constexpr T size() const {
+		constexpr value_type size() const {
 			return b;
 		}
-		constexpr T step() const {
+		constexpr value_type step() const {
 			return c;
 		}
 	};
-	constexpr Step(T b, T c, T s) : be(b, c, s) {}
-	constexpr It begin() const {
+	constexpr Step(value_type b, value_type c, value_type s) : be(b, c, s) {}
+	constexpr iterator begin() const {
 		return be;
 	}
-	constexpr It end() const {
+	constexpr iterator end() const {
 		return en;
 	}
-	constexpr T start() const {
+	constexpr value_type start() const {
 		return be.start();
 	}
-	constexpr T size() const {
+	constexpr value_type size() const {
 		return be.size();
 	}
-	constexpr T step() const {
+	constexpr value_type step() const {
 		return be.step();
 	}
-	constexpr T sum() const {
+	constexpr value_type sum() const {
 		return start() * size() + step() * (size() * (size() - 1) / 2);
 	}
-	operator vector<T>() const {
+	operator vector<value_type>() const {
 		return to_a();
 	}
 	auto to_a() const {
-		vector<T> result;
+		vector<value_type> result;
 		result.reserve(size());
 		for (auto i : *this) {
 			result.push_back(i);
 		}
 		return result;
 	}
-	using value_type = T;
-	using iterator = It;
 
 private:
-	It be, en;
+	iterator be, en;
 };
 template <class T> constexpr auto step(T a) {
 	return Step<T>(0, a, 1);

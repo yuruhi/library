@@ -3,6 +3,7 @@
 #include <utility>
 #include <string>
 #include <vector>
+#include <array>
 #include <charconv>
 #include <cstring>
 #include <cassert>
@@ -61,8 +62,9 @@ public:
 		put(D.d);
 		put(v.second);
 	}
-	template <class It> void put_range(const It& begin, const It& end) const {
-		for (It i = begin; i != end; ++i) {
+	template <class InputIterater>
+	void put_range(const InputIterater& begin, const InputIterater& end) const {
+		for (InputIterater i = begin; i != end; ++i) {
 			if (i != begin) put(D.d);
 			put(*i);
 		}
@@ -96,7 +98,8 @@ public:
 		put(D.d);
 		return operator()(forward<T>(t)...);
 	}
-	template <class It> Output& range(const It& begin, const It& end) {
+	template <class InputIterator>
+	Output& range(const InputIterator& begin, const InputIterator& end) {
 		put_range(begin, end);
 		put(D.l);
 		return *this;
