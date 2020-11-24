@@ -22,11 +22,17 @@ data:
     struct Point {\n\tstatic int H, W;\n\tstatic const vector<Point> d;\n\tstatic\
     \ void set_range(int _H, int _W) {\n\t\tH = _H;\n\t\tW = _W;\n\t}\n\tstatic constexpr\
     \ Point zero() {\n\t\treturn {0, 0};\n\t}\n\tstatic constexpr Point one() {\n\t\
-    \treturn {1, 1};\n\t}\n\n\tint x, y;\n\tconstexpr Point() : x(0), y(0) {}\n\t\
-    constexpr Point(int _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const pair<int,\
-    \ int>& xy) : x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W), y(n / W)\
-    \ {}\n\tconstexpr Point operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr\
-    \ Point operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point operator+(const\
+    \treturn {1, 1};\n\t}\n\tstatic constexpr Point L() {\n\t\treturn {-1, 0};\n\t\
+    }\n\tstatic constexpr Point R() {\n\t\treturn {1, 0};\n\t}\n\tstatic constexpr\
+    \ Point U() {\n\t\treturn {0, -1};\n\t}\n\tstatic constexpr Point D() {\n\t\t\
+    return {0, 1};\n\t}\n\tstatic constexpr Point LU() {\n\t\treturn {-1, -1};\n\t\
+    }\n\tstatic constexpr Point LD() {\n\t\treturn {-1, 1};\n\t}\n\tstatic constexpr\
+    \ Point RU() {\n\t\treturn {1, -1};\n\t}\n\tstatic constexpr Point RD() {\n\t\t\
+    return {1, 1};\n\t}\n\n\tint x, y;\n\tconstexpr Point() : x(0), y(0) {}\n\tconstexpr\
+    \ Point(int _x, int _y) : x(_x), y(_y) {}\n\tconstexpr Point(const pair<int, int>&\
+    \ xy) : x(xy.first), y(xy.second) {}\n\tPoint(int n) : x(n % W), y(n / W) {}\n\
+    \tconstexpr Point operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr Point\
+    \ operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point operator+(const\
     \ Point& p) const {\n\t\treturn Point(*this) += p;\n\t}\n\tconstexpr Point operator-(const\
     \ Point& p) const {\n\t\treturn Point(*this) -= p;\n\t}\n\tconstexpr Point operator*(const\
     \ Point& p) const {\n\t\treturn Point(*this) *= p;\n\t}\n\tconstexpr Point operator/(const\
@@ -65,39 +71,49 @@ data:
     \tPoint abs(const Point& p) const {\n\t\treturn {std::abs(x - p.x), std::abs(y\
     \ - p.y)};\n\t}\n\tPoint abs() const {\n\t\treturn {std::abs(x), std::abs(y)};\n\
     \t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\t}\n\n\ttemplate\
-    \ <class It> vector<Point> enum_adjanect(It first, It last) const {\n\t\tvector<Point>\
-    \ result;\n\t\tfor (; first != last; ++first) {\n\t\t\tresult.push_back(operator+(*first));\n\
-    \t\t}\n\t\treturn result;\n\t}\n\ttemplate <class It> vector<Point> enum_adj_in_range(It\
-    \ first, It last) const {\n\t\tvector<Point> result;\n\t\tfor (; first != last;\
-    \ ++first) {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range()) result.push_back(p);\n\
-    \t\t}\n\t\treturn result;\n\t}\n\tvector<Point> adjacent4() const {\n\t\treturn\
-    \ enum_adjanect(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point> adjacent8() const\
-    \ {\n\t\treturn enum_adjanect(d.begin(), d.end());\n\t}\n\tvector<Point> adj4_in_range()\
-    \ const {\n\t\treturn enum_adj_in_range(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point>\
-    \ adj8_in_range() const {\n\t\treturn enum_adj_in_range(d.begin(), d.end());\n\
-    \t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t}\n\tconstexpr\
-    \ Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr Point up() const\
-    \ {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const {\n\t\treturn\
-    \ {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\treturn Point(*this).move(c);\n\
-    \t}\n\tconstexpr Point& move(char c) {\n\t\tswitch (c) {\n\t\t\tcase 'L':\n\t\t\
-    \tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\t\t\tx--;\n\t\t\t\tbreak;\n\t\
-    \t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\t\t\tcase '<':\n\t\t\t\tx++;\n\
-    \t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\t\t\tcase 'N':\n\t\t\tcase\
-    \ '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\t\t\tcase 'd':\n\t\t\t\
-    case 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\t\t}\n\t\treturn *this;\n\
-    \t}\n\tconstexpr Point rotate90() const {\n\t\treturn {y, -x};\n\t}\n\tconstexpr\
-    \ Point rotate180() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Point rotate270()\
-    \ const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const string chars\
-    \ = \"LRUD\") const {\n\t\tassert(4 <= chars.size() && chars.size() <= 5);\n\t\
-    \tif (y == 0 && x < 0) {\n\t\t\treturn chars[0];\n\t\t} else if (y == 0 && x >\
-    \ 0) {\n\t\t\treturn chars[1];\n\t\t} else if (x == 0 && y < 0) {\n\t\t\treturn\
-    \ chars[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn chars[3];\n\t\t}\
-    \ else if (chars.size() == 5) {\n\t\t\treturn chars[4];\n\t\t} else {\n\t\t\t\
-    assert(false);\n\t\t}\n\t}\n\n\ttemplate <class T, class value_type = typename\
-    \ T::value_type::value_type>\n\tstatic optional<Point> find(const T& grid, const\
-    \ value_type& val) {\n\t\tassert(static_cast<int>(grid.size()) == H);\n\t\tfor\
-    \ (int i = 0; i < H; ++i) {\n\t\t\tassert(static_cast<int>(grid[i].size()) ==\
-    \ W);\n\t\t\tfor (int j = 0; j < W; ++j) {\n\t\t\t\tif (grid[i][j] == val) {\n\
+    \ <class InputIterator>\n\tvector<Point> enumrate_adjanect(InputIterator first,\
+    \ InputIterator last) const {\n\t\tvector<Point> result;\n\t\tfor (; first !=\
+    \ last; ++first) {\n\t\t\tresult.push_back(operator+(*first));\n\t\t}\n\t\treturn\
+    \ result;\n\t}\n\ttemplate <class InputIterator>\n\tvector<Point> enumrate_adj_in_range(InputIterator\
+    \ first, InputIterator last) const {\n\t\tvector<Point> result;\n\t\tfor (; first\
+    \ != last; ++first) {\n\t\t\tauto p = operator+(*first);\n\t\t\tif (p.in_range())\
+    \ result.push_back(p);\n\t\t}\n\t\treturn result;\n\t}\n\tvector<Point> adjacent4()\
+    \ const {\n\t\treturn enumrate_adjanect(d.begin(), d.begin() + 4);\n\t}\n\tvector<Point>\
+    \ adjacent8() const {\n\t\treturn enumrate_adjanect(d.begin(), d.end());\n\t}\n\
+    \tvector<Point> adj4_in_range() const {\n\t\treturn enumrate_adj_in_range(d.begin(),\
+    \ d.begin() + 4);\n\t}\n\tvector<Point> adj8_in_range() const {\n\t\treturn enumrate_adj_in_range(d.begin(),\
+    \ d.end());\n\t}\n\tconstexpr Point left() const {\n\t\treturn {x - 1, y};\n\t\
+    }\n\tconstexpr Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\tconstexpr\
+    \ Point up() const {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point down() const\
+    \ {\n\t\treturn {x, y + 1};\n\t}\n\tconstexpr Point moved(char c) const {\n\t\t\
+    return Point(*this).move(c);\n\t}\n\tconstexpr Point& move(char c) {\n\t\tswitch\
+    \ (c) {\n\t\t\tcase 'L':\n\t\t\tcase 'l':\n\t\t\tcase 'W':\n\t\t\tcase '>':\n\t\
+    \t\t\tx--;\n\t\t\t\tbreak;\n\t\t\tcase 'R':\n\t\t\tcase 'r':\n\t\t\tcase 'E':\n\
+    \t\t\tcase '<':\n\t\t\t\tx++;\n\t\t\t\tbreak;\n\t\t\tcase 'U':\n\t\t\tcase 'u':\n\
+    \t\t\tcase 'N':\n\t\t\tcase '^':\n\t\t\t\ty--;\n\t\t\t\tbreak;\n\t\t\tcase 'D':\n\
+    \t\t\tcase 'd':\n\t\t\tcase 'S':\n\t\t\tcase 'v':\n\t\t\t\ty++;\n\t\t\t\tbreak;\n\
+    \t\t}\n\t\treturn *this;\n\t}\n\tconstexpr Point rotate90() const {\n\t\treturn\
+    \ {y, -x};\n\t}\n\tconstexpr Point rotate180() const {\n\t\treturn {-x, -y};\n\
+    \t}\n\tconstexpr Point rotate270() const {\n\t\treturn {-y, x};\n\t}\n\tchar to_direction_char(const\
+    \ string& lrud = \"LRUD\") const {\n\t\tassert(4 <= lrud.size() && lrud.size()\
+    \ <= 5);\n\t\tif (y == 0 && x < 0) {\n\t\t\treturn lrud[0];\n\t\t} else if (y\
+    \ == 0 && x > 0) {\n\t\t\treturn lrud[1];\n\t\t} else if (x == 0 && y < 0) {\n\
+    \t\t\treturn lrud[2];\n\t\t} else if (x == 0 && y > 0) {\n\t\t\treturn lrud[3];\n\
+    \t\t} else if (lrud.size() == 5) {\n\t\t\treturn lrud[4];\n\t\t} else {\n\t\t\t\
+    assert(false);\n\t\t}\n\t}\n\n\tstatic Point to_direction(char c, const string&\
+    \ lrud = \"LRUD\") {\n\t\tassert(lrud.size() == 4);\n\t\tif (c == lrud[0]) {\n\
+    \t\t\treturn L();\n\t\t} else if (c == lrud[1]) {\n\t\t\treturn R();\n\t\t} else\
+    \ if (c == lrud[2]) {\n\t\t\treturn U();\n\t\t} else if (c == lrud[3]) {\n\t\t\
+    \treturn D();\n\t\t} else {\n\t\t\treturn zero();\n\t\t}\n\t}\n\n\ttemplate <class\
+    \ T, class value_type = typename T::value_type::value_type>\n\tstatic optional<Point>\
+    \ find(const T& grid, const value_type& val) {\n\t\tassert(static_cast<int>(grid.size())\
+    \ == H);\n\t\tfor (int i = 0; i < H; ++i) {\n\t\t\tassert(static_cast<int>(grid[i].size())\
+    \ == W);\n\t\t\tfor (int j = 0; j < W; ++j) {\n\t\t\t\tif (grid[i][j] == val)\
+    \ {\n\t\t\t\t\treturn Point(j, i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn nullopt;\n\
+    \t}\n\ttemplate <class T, class Predicate>\n\tstatic optional<Point> find_if(const\
+    \ T& grid, Predicate pred) {\n\t\tassert(static_cast<int>(grid.size()) == H);\n\
+    \t\tfor (int i = 0; i < H; ++i) {\n\t\t\tassert(static_cast<int>(grid[i].size())\
+    \ == W);\n\t\t\tfor (int j = 0; j < W; ++j) {\n\t\t\t\tif (pred(grid[i][j])) {\n\
     \t\t\t\t\treturn Point(j, i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn nullopt;\n\
     \t}\n\ttemplate <class T, class value_type = typename T::value_type::value_type>\n\
     \tstatic optional<Point> find_one(const T& grid, const value_type& val) {\n\t\t\
@@ -108,12 +124,12 @@ data:
     }\n\t\t}\n\t\treturn result;\n\t}\n\n\tfriend ostream& operator<<(ostream& os,\
     \ const Point& p) {\n\t\treturn os << '(' << p.x << \", \" << p.y << ')';\n\t\
     }\n\tfriend istream& operator>>(istream& is, Point& p) {\n\t\treturn is >> p.y\
-    \ >> p.x;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{{0,\
-    \ 1}, {1, 0},   {0, -1}, {-1, 0},\n                             {1, 1}, {-1, -1},\
-    \ {1, -1}, {-1, 1}};\n#line 4 \"Serch/GridBFS.cpp\"\n#include <string>\n#include\
-    \ <queue>\n#line 7 \"Serch/GridBFS.cpp\"\n#include <limits>\n#line 9 \"Serch/GridBFS.cpp\"\
-    \nusing namespace std;\n\nvector<vector<int>> GridBFS(const vector<string>& grid,\
-    \ Point start, char wall) {\n\tconstexpr int INF = numeric_limits<int>::max();\n\
+    \ >> p.x;\n\t}\n};\nint Point::H, Point::W;\nconst vector<Point> Point::d{Point::R(),\
+    \  Point::D(),  Point::U(),  Point::L(),\n                             Point::RD(),\
+    \ Point::LU(), Point::RU(), Point::LD()};\n#line 4 \"Serch/GridBFS.cpp\"\n#include\
+    \ <string>\n#include <queue>\n#line 7 \"Serch/GridBFS.cpp\"\n#include <limits>\n\
+    #line 9 \"Serch/GridBFS.cpp\"\nusing namespace std;\n\nvector<vector<int>> GridBFS(const\
+    \ vector<string>& grid, Point start, char wall) {\n\tconstexpr int INF = numeric_limits<int>::max();\n\
     \tint h = grid.size(), w = grid.front().size();\n\tPoint::set_range(h, w);\n\t\
     vector<vector<int>> result(h, vector<int>(w, INF));\n\tif (grid[start.y][start.x]\
     \ == wall) {\n\t\treturn result;\n\t}\n\tresult[start.y][start.x] = 0;\n\tqueue<Point>\
@@ -145,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:15:14+09:00'
+  timestamp: '2020-11-24 20:32:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp

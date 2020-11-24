@@ -19,8 +19,8 @@ data:
     \t\tcmp[v] = k;\n\t\tfor (auto e : rgraph[v]) {\n\t\t\tif (!used[e]) rdfs(e, k);\n\
     \t\t}\n\t}\n\npublic:\n\tStronglyConnectedComponents(int _n) : n(_n), graph(n),\
     \ rgraph(n) {}\n\tStronglyConnectedComponents(const vector<vector<int>>& _graph)\n\
-    \t    : n(_graph.size()), graph(_graph), rgraph(_graph) {\n\t\tfor (int v = 0;\
-    \ v < n; ++v) {\n\t\t\tfor (int u : graph[v]) {\n\t\t\t\trgraph[u].push_back(v);\n\
+    \t    : n(_graph.size()), graph(_graph), rgraph(n) {\n\t\tfor (int v = 0; v <\
+    \ n; ++v) {\n\t\t\tfor (int u : graph[v]) {\n\t\t\t\trgraph[u].push_back(v);\n\
     \t\t\t}\n\t\t}\n\t}\n\tvoid add_edge(int s, int t) {\n\t\tbuilded = false;\n\t\
     \tgraph[s].push_back(t);\n\t\trgraph[t].push_back(s);\n\t}\n\tint build() {\n\t\
     \tvs.clear();\n\t\tused.assign(n, false);\n\t\tcmp.assign(n, 0);\n\t\tfor (int\
@@ -48,7 +48,7 @@ data:
     }\n\tvoid rdfs(int v, int k) {\n\t\tused[v] = true;\n\t\tcmp[v] = k;\n\t\tfor\
     \ (auto e : rgraph[v]) {\n\t\t\tif (!used[e]) rdfs(e, k);\n\t\t}\n\t}\n\npublic:\n\
     \tStronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}\n\tStronglyConnectedComponents(const\
-    \ vector<vector<int>>& _graph)\n\t    : n(_graph.size()), graph(_graph), rgraph(_graph)\
+    \ vector<vector<int>>& _graph)\n\t    : n(_graph.size()), graph(_graph), rgraph(n)\
     \ {\n\t\tfor (int v = 0; v < n; ++v) {\n\t\t\tfor (int u : graph[v]) {\n\t\t\t\
     \trgraph[u].push_back(v);\n\t\t\t}\n\t\t}\n\t}\n\tvoid add_edge(int s, int t)\
     \ {\n\t\tbuilded = false;\n\t\tgraph[s].push_back(t);\n\t\trgraph[t].push_back(s);\n\
@@ -73,7 +73,7 @@ data:
   isVerificationFile: false
   path: Graph/StronglyConnectedComponents.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2020-11-23 20:12:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/StronglyConnectedComponents.test.cpp

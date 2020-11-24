@@ -4,9 +4,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/StronglyConnectedComponents.cpp
     title: Graph/StronglyConnectedComponents.cpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/TopologicalSort.cpp
-    title: Graph/TopologicalSort.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -26,7 +23,7 @@ data:
     }\n\tvoid rdfs(int v, int k) {\n\t\tused[v] = true;\n\t\tcmp[v] = k;\n\t\tfor\
     \ (auto e : rgraph[v]) {\n\t\t\tif (!used[e]) rdfs(e, k);\n\t\t}\n\t}\n\npublic:\n\
     \tStronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}\n\tStronglyConnectedComponents(const\
-    \ vector<vector<int>>& _graph)\n\t    : n(_graph.size()), graph(_graph), rgraph(_graph)\
+    \ vector<vector<int>>& _graph)\n\t    : n(_graph.size()), graph(_graph), rgraph(n)\
     \ {\n\t\tfor (int v = 0; v < n; ++v) {\n\t\t\tfor (int u : graph[v]) {\n\t\t\t\
     \trgraph[u].push_back(v);\n\t\t\t}\n\t\t}\n\t}\n\tvoid add_edge(int s, int t)\
     \ {\n\t\tbuilded = false;\n\t\tgraph[s].push_back(t);\n\t\trgraph[t].push_back(s);\n\
@@ -46,36 +43,28 @@ data:
     \ (cmp[i] != cmp[e]) {\n\t\t\t\t\tresult[cmp[i]].push_back(cmp[e]);\n\t\t\t\t\
     }\n\t\t\t}\n\t\t}\n\t\tfor (auto& v : result) {\n\t\t\tsort(v.begin(), v.end());\n\
     \t\t\tv.erase(unique(v.begin(), v.end()), v.end());\n\t\t}\n\t\treturn result;\n\
-    \t}\n};\n#line 4 \"Graph/TopologicalSort.cpp\"\nusing namespace std;\n\nvector<int>\
-    \ TopologicalSort(const vector<vector<int>>& graph) {\n\tsize_t n = graph.size();\n\
-    \tvector<bool> visited(n);\n\tvector<int> result;\n\tauto dfs = [&](auto self,\
-    \ size_t v) -> void {\n\t\tif (visited[v]) return;\n\t\tvisited[v] = true;\n\t\
-    \tfor (size_t i : graph[v]) self(self, i);\n\t\tresult.push_back(v);\n\t};\n\t\
-    for (size_t i = 0; i < n; i++) dfs(dfs, i);\n\treverse(result.begin(), result.end());\n\
-    \treturn result;\n}\n#line 4 \"test/StronglyConnectedComponents.test.cpp\"\n#include\
-    \ <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \t}\n};\n#line 3 \"test/StronglyConnectedComponents.test.cpp\"\n#include <iostream>\n\
+    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents scc(n);\n\tfor (int\
     \ i = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\t\tscc.add_edge(a,\
     \ b);\n\t}\n\tscc.build();\n\tcout << scc.count_strongly_components() << '\\n';\n\
-    \tauto ans = scc.groups();\n\tfor (int i : TopologicalSort(scc.make_DAG())) {\n\
-    \t\tcout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size(); ++j) {\n\
-    \t\t\tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}\n"
+    \tauto ans = scc.groups();\n\tfor (size_t i = 0; i < ans.size(); ++i) {\n\t\t\
+    cout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size(); ++j) {\n\t\t\
+    \tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n#include \"./../Graph/StronglyConnectedComponents.cpp\"\
-    \n#include \"./../Graph/TopologicalSort.cpp\"\n#include <iostream>\nusing namespace\
-    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents scc(n);\n\tfor (int\
-    \ i = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\t\tscc.add_edge(a,\
-    \ b);\n\t}\n\tscc.build();\n\tcout << scc.count_strongly_components() << '\\n';\n\
-    \tauto ans = scc.groups();\n\tfor (int i : TopologicalSort(scc.make_DAG())) {\n\
-    \t\tcout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size(); ++j) {\n\
-    \t\t\tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}"
+    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
+    \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tStronglyConnectedComponents\
+    \ scc(n);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\
+    \t\tscc.add_edge(a, b);\n\t}\n\tscc.build();\n\tcout << scc.count_strongly_components()\
+    \ << '\\n';\n\tauto ans = scc.groups();\n\tfor (size_t i = 0; i < ans.size();\
+    \ ++i) {\n\t\tcout << ans[i].size();\n\t\tfor (size_t j = 0; j < ans[i].size();\
+    \ ++j) {\n\t\t\tcout << ' ' << ans[i][j];\n\t\t}\n\t\tcout << '\\n';\n\t}\n}"
   dependsOn:
   - Graph/StronglyConnectedComponents.cpp
-  - Graph/TopologicalSort.cpp
   isVerificationFile: true
   path: test/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2020-11-24 20:31:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/StronglyConnectedComponents.test.cpp

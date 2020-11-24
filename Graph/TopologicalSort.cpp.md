@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/StronglyConnectedComponents.test.cpp
-    title: test/StronglyConnectedComponents.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/TopologicalSort.test.cpp
     title: test/TopologicalSort.test.cpp
   _pathExtension: cpp
@@ -35,7 +32,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TopologicalSort.test.cpp
-  - test/StronglyConnectedComponents.test.cpp
 documentation_of: Graph/TopologicalSort.cpp
 layout: document
 redirect_from:
