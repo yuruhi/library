@@ -19,6 +19,30 @@ struct Point {
 	static constexpr Point one() {
 		return {1, 1};
 	}
+	static constexpr Point L() {
+		return {-1, 0};
+	}
+	static constexpr Point R() {
+		return {1, 0};
+	}
+	static constexpr Point U() {
+		return {0, -1};
+	}
+	static constexpr Point D() {
+		return {0, 1};
+	}
+	static constexpr Point LU() {
+		return {-1, -1};
+	}
+	static constexpr Point LD() {
+		return {-1, 1};
+	}
+	static constexpr Point RU() {
+		return {1, -1};
+	}
+	static constexpr Point RD() {
+		return {1, 1};
+	}
 
 	int x, y;
 	constexpr Point() : x(0), y(0) {}
@@ -161,14 +185,16 @@ struct Point {
 		return *this;
 	}
 
-	template <class It> vector<Point> enum_adjanect(It first, It last) const {
+	template <class InputIterator>
+	vector<Point> enumrate_adjanect(InputIterator first, InputIterator last) const {
 		vector<Point> result;
 		for (; first != last; ++first) {
 			result.push_back(operator+(*first));
 		}
 		return result;
 	}
-	template <class It> vector<Point> enum_adj_in_range(It first, It last) const {
+	template <class InputIterator>
+	vector<Point> enumrate_adj_in_range(InputIterator first, InputIterator last) const {
 		vector<Point> result;
 		for (; first != last; ++first) {
 			auto p = operator+(*first);
@@ -177,16 +203,16 @@ struct Point {
 		return result;
 	}
 	vector<Point> adjacent4() const {
-		return enum_adjanect(d.begin(), d.begin() + 4);
+		return enumrate_adjanect(d.begin(), d.begin() + 4);
 	}
 	vector<Point> adjacent8() const {
-		return enum_adjanect(d.begin(), d.end());
+		return enumrate_adjanect(d.begin(), d.end());
 	}
 	vector<Point> adj4_in_range() const {
-		return enum_adj_in_range(d.begin(), d.begin() + 4);
+		return enumrate_adj_in_range(d.begin(), d.begin() + 4);
 	}
 	vector<Point> adj8_in_range() const {
-		return enum_adj_in_range(d.begin(), d.end());
+		return enumrate_adj_in_range(d.begin(), d.end());
 	}
 	constexpr Point left() const {
 		return {x - 1, y};
@@ -241,20 +267,35 @@ struct Point {
 	constexpr Point rotate270() const {
 		return {-y, x};
 	}
-	char to_direction_char(const string chars = "LRUD") const {
-		assert(4 <= chars.size() && chars.size() <= 5);
+	char to_direction_char(const string& lrud = "LRUD") const {
+		assert(4 <= lrud.size() && lrud.size() <= 5);
 		if (y == 0 && x < 0) {
-			return chars[0];
+			return lrud[0];
 		} else if (y == 0 && x > 0) {
-			return chars[1];
+			return lrud[1];
 		} else if (x == 0 && y < 0) {
-			return chars[2];
+			return lrud[2];
 		} else if (x == 0 && y > 0) {
-			return chars[3];
-		} else if (chars.size() == 5) {
-			return chars[4];
+			return lrud[3];
+		} else if (lrud.size() == 5) {
+			return lrud[4];
 		} else {
 			assert(false);
+		}
+	}
+
+	static Point to_direction(char c, const string& lrud = "LRUD") {
+		assert(lrud.size() == 4);
+		if (c == lrud[0]) {
+			return L();
+		} else if (c == lrud[1]) {
+			return R();
+		} else if (c == lrud[2]) {
+			return U();
+		} else if (c == lrud[3]) {
+			return D();
+		} else {
+			return zero();
 		}
 	}
 
@@ -265,6 +306,19 @@ struct Point {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
 				if (grid[i][j] == val) {
+					return Point(j, i);
+				}
+			}
+		}
+		return nullopt;
+	}
+	template <class T, class Predicate>
+	static optional<Point> find_if(const T& grid, Predicate pred) {
+		assert(static_cast<int>(grid.size()) == H);
+		for (int i = 0; i < H; ++i) {
+			assert(static_cast<int>(grid[i].size()) == W);
+			for (int j = 0; j < W; ++j) {
+				if (pred(grid[i][j])) {
 					return Point(j, i);
 				}
 			}
@@ -295,5 +349,5 @@ struct Point {
 	}
 };
 int Point::H, Point::W;
-const vector<Point> Point::d{{0, 1}, {1, 0},   {0, -1}, {-1, 0},
-                             {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
+const vector<Point> Point::d{Point::R(),  Point::D(),  Point::U(),  Point::L(),
+                             Point::RD(), Point::LU(), Point::RU(), Point::LD()};
