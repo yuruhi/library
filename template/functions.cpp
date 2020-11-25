@@ -8,28 +8,28 @@ using namespace std;
 template <class T> int sz(const T& v) {
 	return v.size();
 }
-template <class T, class U> int Lower(const T& a, const U& v) {
+template <class T, class U> int lower_index(const T& a, const U& v) {
 	return lower_bound(all(a), v) - a.begin();
 }
-template <class T, class U> int Upper(const T& a, const U& v) {
+template <class T, class U> int upper_index(const T& a, const U& v) {
 	return upper_bound(all(a), v) - a.begin();
 }
 template <class T> auto Slice(const T& v, size_t i, size_t len) {
 	return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
 }
-template <class T> T Ceil(T n, T m) {
+template <class T> T div_ceil(T n, T m) {
 	return (n + m - 1) / m;
 }
-template <class T> T Ceil2(T n, T m) {
-	return Ceil(n, m) * m;
+template <class T> T div_ceil2(T n, T m) {
+	return div_ceil(n, m) * m;
 }
-template <class T> T Tri(T n) {
+template <class T> T triangle(T n) {
 	return (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);
 }
 template <class T> T nC2(T n) {
 	return (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);
 }
-template <class T> T Mid(const T& l, const T& r) {
+template <class T> T middle(const T& l, const T& r) {
 	return l + (r - l) / 2;
 }
 template <class T> bool chmax(T& a, const T& b) {
@@ -46,10 +46,10 @@ template <class T> bool chmin(T& a, const T& b) {
 	}
 	return false;
 }
-template <class T> bool inRange(const T& v, const T& min, const T& max) {
+template <class T> bool in_range(const T& v, const T& min, const T& max) {
 	return min <= v && v < max;
 }
-template <class T> bool isSquere(T n) {
+template <class T> bool in_square(T n) {
 	T s = sqrt(n);
 	return s * s == n || (s + 1) * (s + 1) == n;
 }
@@ -62,24 +62,31 @@ template <class T, class U = typename T::value_type> U Gcdv(const T& v) {
 template <class T, class U = typename T::value_type> U Lcmv(const T& v) {
 	return accumulate(next(v.begin()), v.end(), U(*v.begin()), lcm<U, U>);
 }
-template <class T> T Pow(T a, T n) {
-	T r = 1;
+template <class T, class U> T Pow(T a, U n) {
+	T result = 1;
 	while (n > 0) {
-		if (n & 1) r *= a;
-		a *= a;
-		n /= 2;
+		if (n & 1) {
+			result *= a;
+			n--;
+		} else {
+			a *= a;
+			n >>= 1;
+		}
 	}
-	return r;
+	return result;
 }
-template <class T> T Powmod(T a, T n, T m = MOD) {
-	T r = 1;
+template <class T, class U> T Powmod(T a, U n, T mod) {
+	T result = 1;
 	while (n > 0) {
-		if (n & 1)
-			r = r * a % m, n--;
-		else
-			a = a * a % m, n /= 2;
+		if (n & 1) {
+			result = result * a % mod;
+			n--;
+		} else {
+			a = a * a % mod;
+			n >>= 1;
+		}
 	}
-	return r;
+	return result;
 }
 namespace internal {
 	template <class T, size_t N> auto make_vector(vector<int>& sizes, const T& init) {
