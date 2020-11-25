@@ -12,25 +12,25 @@ using namespace std;
 #define fwrite_unlocked fwrite
 #define fflush_unlocked fflush
 #endif
-class Input {
-	static int gc() {
+class Scanner {
+	int gc() const {
 		return getchar_unlocked();
 	}
-	template <class T> static void read(T& v) {
+	template <class T> void read(T& v) const {
 		cin >> v;
 	}
-	static void read(char& v) {
+	void read(char& v) const {
 		while (isspace(v = gc()))
 			;
 	}
-	static void read(bool& v) {
+	void read(bool& v) const {
 		v = read<char>() != '0';
 	}
-	static void read(string& v) {
+	void read(string& v) const {
 		v.clear();
 		for (char c = read<char>(); !isspace(c); c = gc()) v += c;
 	}
-	static void read(int& v) {
+	void read(int& v) const {
 		v = 0;
 		bool neg = false;
 		char c = read<char>();
@@ -41,7 +41,7 @@ class Input {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void read(long long& v) {
+	void read(long long& v) const {
 		v = 0;
 		bool neg = false;
 		char c = read<char>();
@@ -52,7 +52,7 @@ class Input {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void read(double& v) {
+	void read(double& v) const {
 		v = 0;
 		double dp = 1;
 		bool neg = false, after_dp = false;
@@ -72,7 +72,7 @@ class Input {
 		}
 		if (neg) v = -v;
 	}
-	static void read(long double& v) {
+	void read(long double& v) const {
 		v = 0;
 		long double dp = 1;
 		bool neg = false, after_dp = false;
@@ -92,25 +92,25 @@ class Input {
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> static void read(pair<T, U>& v) {
+	template <class T, class U> void read(pair<T, U>& v) const {
 		read(v.first);
 		read(v.second);
 	}
-	template <class T> static void read(vector<T>& v) {
+	template <class T> void read(vector<T>& v) const {
 		for (auto& e : v) read(e);
 	}
-	template <size_t N = 0, class T> static void read_tuple_impl(T& v) {
+	template <size_t N = 0, class T> void read_tuple_impl(T& v) const {
 		if constexpr (N < tuple_size_v<T>) {
 			read(get<N>(v));
 			read_tuple_impl<N + 1>(v);
 		}
 	}
-	template <class... T> static void read(tuple<T...>& v) {
+	template <class... T> void read(tuple<T...>& v) const {
 		read_tuple_impl(v);
 	}
 	struct ReadVectorHelper {
-		int n;
-		ReadVectorHelper(int _n) : n(_n) {}
+		size_t n;
+		ReadVectorHelper(size_t _n) : n(_n) {}
 		template <class T> operator vector<T>() {
 			vector<T> v(n);
 			read(v);
@@ -118,8 +118,8 @@ class Input {
 		}
 	};
 	struct Read2DVectorHelper {
-		int n, m;
-		Read2DVectorHelper(const pair<int, int>& nm) : n(nm.first), m(nm.second) {}
+		size_t n, m;
+		Read2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second) {}
 		template <class T> operator vector<vector<T>>() {
 			vector<vector<T>> v(n, vector<T>(m));
 			read(v);
@@ -128,15 +128,20 @@ class Input {
 	};
 
 public:
-	static string read_line() {
+	string read_line() const {
 		string v;
 		for (char c = read<char>(); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
-	template <class T> static T read() {
+	template <class T> T read() const {
 		T v;
 		read(v);
 		return v;
+	}
+	template <class T> vector<T> read_vector(size_t n) const {
+		vector<T> a(n);
+		read(a);
+		return a;
 	}
 	template <class T> operator T() const {
 		return read<T>();
@@ -144,10 +149,10 @@ public:
 	int operator--(int) const {
 		return read<int>() - 1;
 	}
-	ReadVectorHelper operator[](int n) const {
+	ReadVectorHelper operator[](size_t n) const {
 		return ReadVectorHelper(n);
 	}
-	Read2DVectorHelper operator[](const pair<int, int>& nm) const {
+	Read2DVectorHelper operator[](const pair<size_t, size_t>& nm) const {
 		return Read2DVectorHelper(nm);
 	}
 	void operator()() const {}
@@ -175,7 +180,7 @@ private:
 	}
 
 public:
-	template <class... T> auto multiple(int h) const {
+	template <class... T> auto multiple(size_t h) const {
 		multiple_t<T...> result;
 		while (h--) multiple_impl(result);
 		return result;
