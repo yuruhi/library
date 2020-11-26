@@ -1,14 +1,17 @@
 #pragma once
 #include <vector>
+#include <string_view>
 #include <utility>
 #include <optional>
+#include <memory>
 #include <iostream>
 #include <cassert>
 using namespace std;
 
 struct Point {
 	static int H, W;
-	static const vector<Point> d;
+	static const vector<Point> direction;
+	using direction_iterator = vector<Point>::const_iterator;
 	static void set_range(int _H, int _W) {
 		H = _H;
 		W = _W;
@@ -185,35 +188,107 @@ struct Point {
 		return *this;
 	}
 
-	template <class InputIterator>
-	vector<Point> enumrate_adjanect(InputIterator first, InputIterator last) const {
-		vector<Point> result;
-		for (; first != last; ++first) {
-			result.push_back(operator+(*first));
+	class EnumrateAdjacent {
+		shared_ptr<Point> p;
+		direction_iterator first, last;
+
+		class iterator {
+			shared_ptr<Point> p;
+			direction_iterator it;
+
+		public:
+			iterator(shared_ptr<Point> _p, direction_iterator _it) : p(_p), it(_it) {}
+			Point operator*() const {
+				return *p + *it;
+			}
+			iterator& operator++() {
+				++it;
+				return *this;
+			}
+			bool operator!=(iterator other) const {
+				return it != other.it;
+			}
+		};
+
+	public:
+		EnumrateAdjacent(shared_ptr<Point> _p, direction_iterator _first,
+		                 direction_iterator _last)
+		    : p(_p), first(_first), last(_last) {}
+		iterator begin() const {
+			return iterator(p, first);
 		}
-		return result;
-	}
-	template <class InputIterator>
-	vector<Point> enumrate_adj_in_range(InputIterator first, InputIterator last) const {
-		vector<Point> result;
-		for (; first != last; ++first) {
-			auto p = operator+(*first);
-			if (p.in_range()) result.push_back(p);
+		iterator end() const {
+			return iterator(p, last);
 		}
-		return result;
+	};
+	auto enumrate_adjacent(direction_iterator first, direction_iterator last) const {
+		return EnumrateAdjacent(make_shared<Point>(*this), first, last);
 	}
-	vector<Point> adjacent4() const {
-		return enumrate_adjanect(d.begin(), d.begin() + 4);
+	auto adjacent4() const {
+		return enumrate_adjacent(direction.begin(), direction.begin() + 4);
 	}
-	vector<Point> adjacent8() const {
-		return enumrate_adjanect(d.begin(), d.end());
+	auto adjacent8() const {
+		return enumrate_adjacent(direction.begin(), direction.begin() + 8);
 	}
-	vector<Point> adj4_in_range() const {
-		return enumrate_adj_in_range(d.begin(), d.begin() + 4);
+
+	class EnumrateAdjInRange {
+		shared_ptr<Point> p;
+		direction_iterator first, last;
+
+		class sentinel {};
+		class iterator {
+			shared_ptr<Point> p;
+			direction_iterator first, last;
+
+			void find_next_in_range() {
+				for (; first != last; ++first) {
+					if ((*p + *first).in_range()) {
+						return;
+					}
+				}
+			}
+
+		public:
+			iterator(shared_ptr<Point> _p, direction_iterator _first,
+			         direction_iterator _last)
+			    : p(_p), first(_first), last(_last) {
+				find_next_in_range();
+			}
+			Point operator*() const {
+				return *p + *first;
+			}
+			iterator& operator++() {
+				++first;
+				find_next_in_range();
+				return *this;
+			}
+			bool operator!=(sentinel other) const {
+				return first != last;
+			}
+		};
+
+	public:
+		EnumrateAdjInRange(shared_ptr<Point> _p, direction_iterator _first,
+		                   direction_iterator _last)
+		    : p(_p), first(_first), last(_last) {}
+		iterator begin() const {
+			return iterator(p, first, last);
+		}
+		sentinel end() const {
+			return sentinel();
+		}
+	};
+	template <class InputIterator>
+	auto enumrate_adj_in_range(InputIterator first, InputIterator last) const {
+		return EnumrateAdjInRange(make_shared<Point>(*this), first, last);
 	}
-	vector<Point> adj8_in_range() const {
-		return enumrate_adj_in_range(d.begin(), d.end());
+	auto adj4_in_range() const {
+		return enumrate_adj_in_range(direction.begin(), direction.begin() + 4);
 	}
+	auto adj8_in_range() const {
+		return enumrate_adj_in_range(direction.begin(), direction.end());
+	}
+
 	constexpr Point left() const {
 		return {x - 1, y};
 	}
@@ -267,7 +342,7 @@ struct Point {
 	constexpr Point rotate270() const {
 		return {-y, x};
 	}
-	char to_direction_char(const string& lrud = "LRUD") const {
+	char to_direction_char(string_view lrud = "LRUD") const {
 		assert(4 <= lrud.size() && lrud.size() <= 5);
 		if (y == 0 && x < 0) {
 			return lrud[0];
@@ -284,7 +359,7 @@ struct Point {
 		}
 	}
 
-	static Point to_direction(char c, const string& lrud = "LRUD") {
+	static Point to_direction(char c, string_view lrud = "LRUD") {
 		assert(lrud.size() == 4);
 		if (c == lrud[0]) {
 			return L();
@@ -349,5 +424,5 @@ struct Point {
 	}
 };
 int Point::H, Point::W;
-const vector<Point> Point::d{Point::R(),  Point::D(),  Point::U(),  Point::L(),
-                             Point::RD(), Point::LU(), Point::RU(), Point::LD()};
+const vector<Point> Point::direction{Point::R(),  Point::D(),  Point::U(),  Point::L(),
+                                     Point::RD(), Point::LU(), Point::RU(), Point::LD()};
