@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <queue>
 using namespace std;
@@ -31,6 +32,21 @@ using PLL = pair<ll, ll>;
 using VPL = vector<PLL>;
 template <class T> using PQ = priority_queue<T>;
 template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
-constexpr int inf = 1e9;
-constexpr long long inf_ll = 1e18, MOD = 1000000007;
+constexpr int inf = 1000000000;
+constexpr long long inf_ll = 1000000000000000000ll, MOD = 1000000007;
 constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
+namespace CharacterClass {
+	constexpr string_view
+	    digit = "0123456789",
+	    xdigit = "0123456789ABCDEFabcdef", lower = "abcdefghijklmnopqrstuvwxyz",
+	    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+	    alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+	    alnum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+	    word = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
+	    punct = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
+	    graph =
+	        "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+	    print =
+	        " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+	    blank = " \t", space = " \t\n\r\f\v";
+}  // namespace CharacterClass
