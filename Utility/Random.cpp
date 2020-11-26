@@ -1,11 +1,12 @@
 #pragma once
 #include <random>
 #include <algorithm>
+#include <type_traits>
+#include <cassert>
 using namespace std;
 
 class Random {
-	using T = unsigned int;
-	mt19937 mt;
+	mt19937 engine;
 	random_device rd;
 
 public:
@@ -13,33 +14,38 @@ public:
 		seed();
 	}
 	void seed() {
-		mt.seed(rd());
+		engine.seed(rd());
 	}
-	void seed(T s) {
-		mt.seed(s);
+	void seed(uint_fast32_t s) {
+		engine.seed(s);
 	}
-	T operator()() {
-		return mt();
+	template <class T,
+	          enable_if_t<is_integral_v<T> && !is_same_v<bool, T>, nullptr_t> = nullptr>
+	T get(T l, T r) {
+		assert(l <= r);
+		return uniform_int_distribution<T>(l, r)(engine);
 	}
-	T operator()(T r) {  // [0, r)
-		uniform_int_distribution<> u(0, 0 < r ? r - 1 : 0);
-		return u(mt);
+	template <class T, enable_if_t<is_floating_point_v<T>, nullptr_t> = nullptr>
+	T get(T l, T r) {
+		assert(l <= r);
+		return uniform_real_distribution<T>(l, r)(engine);
 	}
-	T operator()(T l, T r) {  // [l, r)
-		uniform_int_distribution<> u(l, max(l, r) - 1);
-		return u(mt);
+	template <class T, enable_if_t<is_same_v<bool, T>, nullptr_t> = nullptr>
+	T get(double probability = 0.5) {
+		bernoulli_distribution u(probability);
+		return u(engine);
 	}
-	T dice() {
-		return operator()(1, 7);
+	template <class T, enable_if_t<is_same_v<string, T>, nullptr_t> = nullptr>
+	T get(size_t n, string_view chars = "abcdefghjiklmnopqrstuvwxyz") {
+		string result;
+		result.reserve(n);
+		sample(chars.begin(), chars.end(), back_inserter(result), n, engine);
+		return result;
 	}
-	bool rand_bool() {
-		return operator()(2);
-	}
-	bool rand_bool(double p) {
-		bernoulli_distribution u(p);
-		return u(mt);
+	int dice() {
+		return get<int>(1, 7);
 	}
 	template <class T> void shuffle(T& v) {
-		std::shuffle(v.begin(), v.end(), mt);
+		std::shuffle(begin(v), end(v), engine);
 	}
-} random;
+} rnd;
