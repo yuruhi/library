@@ -188,7 +188,7 @@ struct Point {
 		return *this;
 	}
 
-	class EnumrateAdjacent {
+	class enumrate_adjacent_helper {
 		shared_ptr<Point> p;
 		direction_iterator first, last;
 
@@ -211,8 +211,8 @@ struct Point {
 		};
 
 	public:
-		EnumrateAdjacent(shared_ptr<Point> _p, direction_iterator _first,
-		                 direction_iterator _last)
+		enumrate_adjacent_helper(shared_ptr<Point> _p, direction_iterator _first,
+		                         direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
 			return iterator(p, first);
@@ -222,7 +222,7 @@ struct Point {
 		}
 	};
 	auto enumrate_adjacent(direction_iterator first, direction_iterator last) const {
-		return EnumrateAdjacent(make_shared<Point>(*this), first, last);
+		return enumrate_adjacent_helper(make_shared<Point>(*this), first, last);
 	}
 	auto adjacent4() const {
 		return enumrate_adjacent(direction.begin(), direction.begin() + 4);
@@ -231,7 +231,7 @@ struct Point {
 		return enumrate_adjacent(direction.begin(), direction.begin() + 8);
 	}
 
-	class EnumrateAdjInRange {
+	class enumrate_adj_in_range_helper {
 		shared_ptr<Point> p;
 		direction_iterator first, last;
 
@@ -240,11 +240,9 @@ struct Point {
 			shared_ptr<Point> p;
 			direction_iterator first, last;
 
-			void find_next_in_range() {
+			void increment_until_in_range() {
 				for (; first != last; ++first) {
-					if ((*p + *first).in_range()) {
-						return;
-					}
+					if ((*p + *first).in_range()) return;
 				}
 			}
 
@@ -252,14 +250,14 @@ struct Point {
 			iterator(shared_ptr<Point> _p, direction_iterator _first,
 			         direction_iterator _last)
 			    : p(_p), first(_first), last(_last) {
-				find_next_in_range();
+				increment_until_in_range();
 			}
 			Point operator*() const {
 				return *p + *first;
 			}
 			iterator& operator++() {
 				++first;
-				find_next_in_range();
+				increment_until_in_range();
 				return *this;
 			}
 			bool operator!=(sentinel other) const {
@@ -268,8 +266,8 @@ struct Point {
 		};
 
 	public:
-		EnumrateAdjInRange(shared_ptr<Point> _p, direction_iterator _first,
-		                   direction_iterator _last)
+		enumrate_adj_in_range_helper(shared_ptr<Point> _p, direction_iterator _first,
+		                             direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
 			return iterator(p, first, last);
@@ -280,7 +278,7 @@ struct Point {
 	};
 	template <class InputIterator>
 	auto enumrate_adj_in_range(InputIterator first, InputIterator last) const {
-		return EnumrateAdjInRange(make_shared<Point>(*this), first, last);
+		return enumrate_adj_in_range_helper(make_shared<Point>(*this), first, last);
 	}
 	auto adj4_in_range() const {
 		return enumrate_adj_in_range(direction.begin(), direction.begin() + 4);
@@ -300,6 +298,20 @@ struct Point {
 	}
 	constexpr Point down() const {
 		return {x, y + 1};
+	}
+	Point succ() const {
+		if (x != W - 1) {
+			return {x + 1, y};
+		} else {
+			return {0, y + 1};
+		}
+	}
+	Point pred() const {
+		if (x != 0) {
+			return {x - 1, y};
+		} else {
+			return {W - 1, y - 1};
+		}
 	}
 	constexpr Point moved(char c) const {
 		return Point(*this).move(c);
@@ -414,6 +426,39 @@ struct Point {
 			}
 		}
 		return result;
+	}
+
+	static auto enumrate_2D_points() {
+		class enumrate_2D_points_helper {
+		public:
+			class iterator {
+				Point p;
+
+			public:
+				iterator(const Point& _p) : p(_p) {}
+				Point operator*() const {
+					return p;
+				}
+				iterator& operator++() {
+					p = p.succ();
+					return *this;
+				}
+				iterator& operator--() {
+					p = p.pred();
+					return *this;
+				}
+				bool operator!=(iterator other) const {
+					return p != other.p;
+				}
+			};
+			iterator begin() const {
+				return iterator(Point(0, 0));
+			}
+			iterator end() const {
+				return iterator(Point(0, H));
+			}
+		};
+		return enumrate_2D_points_helper();
 	}
 
 	friend ostream& operator<<(ostream& os, const Point& p) {
