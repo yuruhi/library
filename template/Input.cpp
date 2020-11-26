@@ -13,27 +13,32 @@ using namespace std;
 #define fflush_unlocked fflush
 #endif
 class Scanner {
-	int gc() const {
+	static int gc() {
 		return getchar_unlocked();
 	}
-	template <class T> void read(T& v) const {
+	static char next_char() {
+		char c;
+		read(c);
+		return c;
+	}
+	template <class T> static void read(T& v) {
 		cin >> v;
 	}
-	void read(char& v) const {
+	static void read(char& v) {
 		while (isspace(v = gc()))
 			;
 	}
-	void read(bool& v) const {
-		v = read<char>() != '0';
+	static void read(bool& v) {
+		v = next_char() != '0';
 	}
-	void read(string& v) const {
+	static void read(string& v) {
 		v.clear();
-		for (char c = read<char>(); !isspace(c); c = gc()) v += c;
+		for (char c = next_char(); !isspace(c); c = gc()) v += c;
 	}
-	void read(int& v) const {
+	static void read(int& v) {
 		v = 0;
 		bool neg = false;
-		char c = read<char>();
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -41,10 +46,10 @@ class Scanner {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	void read(long long& v) const {
+	static void read(long long& v) {
 		v = 0;
 		bool neg = false;
-		char c = read<char>();
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -52,11 +57,11 @@ class Scanner {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	void read(double& v) const {
+	static void read(double& v) {
 		v = 0;
 		double dp = 1;
 		bool neg = false, after_dp = false;
-		char c = read<char>();
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -72,11 +77,11 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	void read(long double& v) const {
+	static void read(long double& v) {
 		v = 0;
 		long double dp = 1;
 		bool neg = false, after_dp = false;
-		char c = read<char>();
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -92,20 +97,20 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> void read(pair<T, U>& v) const {
+	template <class T, class U> static void read(pair<T, U>& v) {
 		read(v.first);
 		read(v.second);
 	}
-	template <class T> void read(vector<T>& v) const {
+	template <class T> static void read(vector<T>& v) {
 		for (auto& e : v) read(e);
 	}
-	template <size_t N = 0, class T> void read_tuple_impl(T& v) const {
+	template <size_t N = 0, class T> static void read_tuple_impl(T& v) {
 		if constexpr (N < tuple_size_v<T>) {
 			read(get<N>(v));
 			read_tuple_impl<N + 1>(v);
 		}
 	}
-	template <class... T> void read(tuple<T...>& v) const {
+	template <class... T> static void read(tuple<T...>& v) {
 		read_tuple_impl(v);
 	}
 	struct ReadVectorHelper {
@@ -130,7 +135,7 @@ class Scanner {
 public:
 	string read_line() const {
 		string v;
-		for (char c = read<char>(); c != '\n' && c != '\0'; c = gc()) v += c;
+		for (char c = next_char(); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
 	template <class T> T read() const {
