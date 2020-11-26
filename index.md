@@ -431,6 +431,9 @@ data:
     - icon: ':warning:'
       path: template/template.cpp
       title: template/template.cpp
+    - icon: ':warning:'
+      path: template/template_no_Ruby.cpp
+      title: template/template_no_Ruby.cpp
   verificationCategories:
   - name: test
     pages:

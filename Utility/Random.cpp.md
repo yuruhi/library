@@ -8,32 +8,43 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/Random.cpp\"\n#include <random>\n#include <algorithm>\n\
-    using namespace std;\n\nclass Random {\n\tusing T = unsigned int;\n\tmt19937 mt;\n\
+    #include <type_traits>\n#include <cassert>\nusing namespace std;\n\nclass Random\
+    \ {\n\tmt19937 engine;\n\trandom_device rd;\n\npublic:\n\tRandom() {\n\t\tseed();\n\
+    \t}\n\tvoid seed() {\n\t\tengine.seed(rd());\n\t}\n\tvoid seed(uint_fast32_t s)\
+    \ {\n\t\tengine.seed(s);\n\t}\n\ttemplate <class T,\n\t          enable_if_t<is_integral_v<T>\
+    \ && !is_same_v<bool, T>, nullptr_t> = nullptr>\n\tT get(T l, T r) {\n\t\tassert(l\
+    \ <= r);\n\t\treturn uniform_int_distribution<T>(l, r)(engine);\n\t}\n\ttemplate\
+    \ <class T, enable_if_t<is_floating_point_v<T>, nullptr_t> = nullptr>\n\tT get(T\
+    \ l, T r) {\n\t\tassert(l <= r);\n\t\treturn uniform_real_distribution<T>(l, r)(engine);\n\
+    \t}\n\ttemplate <class T, enable_if_t<is_same_v<bool, T>, nullptr_t> = nullptr>\n\
+    \tT get(double probability = 0.5) {\n\t\tbernoulli_distribution u(probability);\n\
+    \t\treturn u(engine);\n\t}\n\ttemplate <class T, enable_if_t<is_same_v<string,\
+    \ T>, nullptr_t> = nullptr>\n\tT get(size_t n, string_view chars = \"abcdefghjiklmnopqrstuvwxyz\"\
+    ) {\n\t\tstring result;\n\t\tresult.reserve(n);\n\t\tsample(chars.begin(), chars.end(),\
+    \ back_inserter(result), n, engine);\n\t\treturn result;\n\t}\n\tint dice() {\n\
+    \t\treturn get<int>(1, 7);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
+    \tstd::shuffle(begin(v), end(v), engine);\n\t}\n} rnd;\n"
+  code: "#pragma once\n#include <random>\n#include <algorithm>\n#include <type_traits>\n\
+    #include <cassert>\nusing namespace std;\n\nclass Random {\n\tmt19937 engine;\n\
     \trandom_device rd;\n\npublic:\n\tRandom() {\n\t\tseed();\n\t}\n\tvoid seed()\
-    \ {\n\t\tmt.seed(rd());\n\t}\n\tvoid seed(T s) {\n\t\tmt.seed(s);\n\t}\n\tT operator()()\
-    \ {\n\t\treturn mt();\n\t}\n\tT operator()(T r) {  // [0, r)\n\t\tuniform_int_distribution<>\
-    \ u(0, 0 < r ? r - 1 : 0);\n\t\treturn u(mt);\n\t}\n\tT operator()(T l, T r) {\
-    \  // [l, r)\n\t\tuniform_int_distribution<> u(l, max(l, r) - 1);\n\t\treturn\
-    \ u(mt);\n\t}\n\tT dice() {\n\t\treturn operator()(1, 7);\n\t}\n\tbool rand_bool()\
-    \ {\n\t\treturn operator()(2);\n\t}\n\tbool rand_bool(double p) {\n\t\tbernoulli_distribution\
-    \ u(p);\n\t\treturn u(mt);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
-    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} random;\n"
-  code: "#pragma once\n#include <random>\n#include <algorithm>\nusing namespace std;\n\
-    \nclass Random {\n\tusing T = unsigned int;\n\tmt19937 mt;\n\trandom_device rd;\n\
-    \npublic:\n\tRandom() {\n\t\tseed();\n\t}\n\tvoid seed() {\n\t\tmt.seed(rd());\n\
-    \t}\n\tvoid seed(T s) {\n\t\tmt.seed(s);\n\t}\n\tT operator()() {\n\t\treturn\
-    \ mt();\n\t}\n\tT operator()(T r) {  // [0, r)\n\t\tuniform_int_distribution<>\
-    \ u(0, 0 < r ? r - 1 : 0);\n\t\treturn u(mt);\n\t}\n\tT operator()(T l, T r) {\
-    \  // [l, r)\n\t\tuniform_int_distribution<> u(l, max(l, r) - 1);\n\t\treturn\
-    \ u(mt);\n\t}\n\tT dice() {\n\t\treturn operator()(1, 7);\n\t}\n\tbool rand_bool()\
-    \ {\n\t\treturn operator()(2);\n\t}\n\tbool rand_bool(double p) {\n\t\tbernoulli_distribution\
-    \ u(p);\n\t\treturn u(mt);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
-    \tstd::shuffle(v.begin(), v.end(), mt);\n\t}\n} random;\n"
+    \ {\n\t\tengine.seed(rd());\n\t}\n\tvoid seed(uint_fast32_t s) {\n\t\tengine.seed(s);\n\
+    \t}\n\ttemplate <class T,\n\t          enable_if_t<is_integral_v<T> && !is_same_v<bool,\
+    \ T>, nullptr_t> = nullptr>\n\tT get(T l, T r) {\n\t\tassert(l <= r);\n\t\treturn\
+    \ uniform_int_distribution<T>(l, r)(engine);\n\t}\n\ttemplate <class T, enable_if_t<is_floating_point_v<T>,\
+    \ nullptr_t> = nullptr>\n\tT get(T l, T r) {\n\t\tassert(l <= r);\n\t\treturn\
+    \ uniform_real_distribution<T>(l, r)(engine);\n\t}\n\ttemplate <class T, enable_if_t<is_same_v<bool,\
+    \ T>, nullptr_t> = nullptr>\n\tT get(double probability = 0.5) {\n\t\tbernoulli_distribution\
+    \ u(probability);\n\t\treturn u(engine);\n\t}\n\ttemplate <class T, enable_if_t<is_same_v<string,\
+    \ T>, nullptr_t> = nullptr>\n\tT get(size_t n, string_view chars = \"abcdefghjiklmnopqrstuvwxyz\"\
+    ) {\n\t\tstring result;\n\t\tresult.reserve(n);\n\t\tsample(chars.begin(), chars.end(),\
+    \ back_inserter(result), n, engine);\n\t\treturn result;\n\t}\n\tint dice() {\n\
+    \t\treturn get<int>(1, 7);\n\t}\n\ttemplate <class T> void shuffle(T& v) {\n\t\
+    \tstd::shuffle(begin(v), end(v), engine);\n\t}\n} rnd;\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Random.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-11-26 14:21:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Random.cpp

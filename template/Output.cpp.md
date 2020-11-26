@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: template/template.cpp
     title: template/template.cpp
+  - icon: ':warning:'
+    path: template/template_no_Ruby.cpp
+    title: template/template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Input_Output.test.cpp
@@ -106,6 +109,7 @@ data:
   path: template/Output.cpp
   requiredBy:
   - template/template.cpp
+  - template/template_no_Ruby.cpp
   timestamp: '2020-11-24 22:24:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

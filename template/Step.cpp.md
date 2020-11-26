@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: template/template.cpp
     title: template/template.cpp
+  - icon: ':warning:'
+    path: template/template_no_Ruby.cpp
+    title: template/template_no_Ruby.cpp
   _extendedVerifiedWith: []
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
@@ -71,6 +74,7 @@ data:
   path: template/Step.cpp
   requiredBy:
   - template/template.cpp
+  - template/template_no_Ruby.cpp
   timestamp: '2020-11-24 22:24:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
