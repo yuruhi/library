@@ -4,8 +4,12 @@
 using namespace std;
 
 template <class T> class WeightedUnionFind {
+public:
+	using value_type = T;
+
+private:
 	vector<int> par_m, rank_m;
-	vector<T> weight_m;
+	vector<value_type> weight_m;
 
 public:
 	WeightedUnionFind(int n) : par_m(n), rank_m(n, 0), weight_m(n, 0) {
@@ -20,14 +24,14 @@ public:
 			return par_m[x] = r;
 		}
 	}
-	T weight(int x) {
+	value_type weight(int x) {
 		root(x);
 		return weight_m[x];
 	}
 	bool same(int x, int y) {
 		return root(x) == root(y);
 	}
-	bool merge(int x, int y, T w) {
+	bool merge(int x, int y, value_type w) {
 		w += weight(x);
 		w -= weight(y);
 		x = root(x);
@@ -42,7 +46,7 @@ public:
 		weight_m[y] = w;
 		return true;
 	}
-	T diff(int x, int y) {
+	value_type diff(int x, int y) {
 		return weight(y) - weight(x);
 	}
 };
