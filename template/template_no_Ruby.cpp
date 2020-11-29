@@ -3,7 +3,6 @@
 #include "./constants.cpp"
 #include "./Input.cpp"
 #include "./Output.cpp"
-#include "./Step.cpp"
 #include "./functions.cpp"
 #if __has_include(<library/dump.hpp>)
 #include <library/dump.hpp>
