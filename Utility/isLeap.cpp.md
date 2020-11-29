@@ -2,12 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/isLeap.test.cpp
-    title: test/isLeap.test.cpp
+  _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/isLeap.cpp\"\n\nbool isLeap(int y) {\n\treturn !(y\
@@ -19,9 +16,8 @@ data:
   path: Utility/isLeap.cpp
   requiredBy: []
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/isLeap.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Utility/isLeap.cpp
 layout: document
 redirect_from:

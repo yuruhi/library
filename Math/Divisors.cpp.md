@@ -6,11 +6,8 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Divisors.test.cpp
     title: test/Divisors.test.cpp
-  - icon: ':x:'
-    path: test/DivisorsCount.test.cpp
-    title: test/DivisorsCount.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n\
@@ -41,10 +38,9 @@ data:
   path: Math/Divisors.cpp
   requiredBy: []
   timestamp: '2020-11-23 16:13:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Divisors.test.cpp
-  - test/DivisorsCount.test.cpp
 documentation_of: Math/Divisors.cpp
 layout: document
 redirect_from:

@@ -59,31 +59,31 @@ data:
     \t\tRead2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second)\
     \ {}\n\t\ttemplate <class T> operator vector<vector<T>>() {\n\t\t\tvector<vector<T>>\
     \ v(n, vector<T>(m));\n\t\t\tread(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\
-    \tstring read_line() const {\n\t\tstring v;\n\t\tfor (char c = next_char(); c\
-    \ != '\\n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class\
-    \ T> T read() const {\n\t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate\
-    \ <class T> vector<T> read_vector(size_t n) const {\n\t\tvector<T> a(n);\n\t\t\
-    read(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> operator T() const {\n\t\t\
-    return read<T>();\n\t}\n\tint operator--(int) const {\n\t\treturn read<int>()\
-    \ - 1;\n\t}\n\tReadVectorHelper operator[](size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\
-    \t}\n\tRead2DVectorHelper operator[](const pair<size_t, size_t>& nm) const {\n\
-    \t\treturn Read2DVectorHelper(nm);\n\t}\n\tvoid operator()() const {}\n\ttemplate\
-    \ <class H, class... T> void operator()(H&& h, T&&... t) const {\n\t\tread(h);\n\
-    \t\toperator()(forward<T>(t)...);\n\t}\n\nprivate:\n\ttemplate <template <class...>\
-    \ class, class...> struct Multiple;\n\ttemplate <template <class...> class V,\
-    \ class Head, class... Tail>\n\tstruct Multiple<V, Head, Tail...> {\n\t\ttemplate\
-    \ <class... Args> using vec = V<vector<Head>, Args...>;\n\t\tusing type = typename\
-    \ Multiple<vec, Tail...>::type;\n\t};\n\ttemplate <template <class...> class V>\
-    \ struct Multiple<V> { using type = V<>; };\n\ttemplate <class... T> using multiple_t\
-    \ = typename Multiple<tuple, T...>::type;\n\ttemplate <size_t N = 0, class T>\
-    \ void multiple_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\
-    \t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
-    \t\t\tvec.push_back(read<V>());\n\t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
-    public:\n\ttemplate <class... T> auto multiple(size_t h) const {\n\t\tmultiple_t<T...>\
-    \ result;\n\t\twhile (h--) multiple_impl(result);\n\t\treturn result;\n\t}\n}\
-    \ in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
-    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
-    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
+    \tstring read_line() const {\n\t\tstring v;\n\t\tfor (char c = gc(); c != '\\\
+    n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T>\
+    \ T read() const {\n\t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate <class\
+    \ T> vector<T> read_vector(size_t n) const {\n\t\tvector<T> a(n);\n\t\tread(a);\n\
+    \t\treturn a;\n\t}\n\ttemplate <class T> operator T() const {\n\t\treturn read<T>();\n\
+    \t}\n\tint operator--(int) const {\n\t\treturn read<int>() - 1;\n\t}\n\tReadVectorHelper\
+    \ operator[](size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tRead2DVectorHelper\
+    \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
+    \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
+    \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
+    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
+    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
+    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
+    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
+    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
+    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
+    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
+    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
+    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
+    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
+    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
+    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
+    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
+    \ inputs(string, __VA_ARGS__)\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <string>\n\
     #include <utility>\n#include <tuple>\nusing namespace std;\n\n#ifdef _WIN32\n\
     #define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
@@ -124,38 +124,38 @@ data:
     \t\tRead2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second)\
     \ {}\n\t\ttemplate <class T> operator vector<vector<T>>() {\n\t\t\tvector<vector<T>>\
     \ v(n, vector<T>(m));\n\t\t\tread(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\
-    \tstring read_line() const {\n\t\tstring v;\n\t\tfor (char c = next_char(); c\
-    \ != '\\n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class\
-    \ T> T read() const {\n\t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate\
-    \ <class T> vector<T> read_vector(size_t n) const {\n\t\tvector<T> a(n);\n\t\t\
-    read(a);\n\t\treturn a;\n\t}\n\ttemplate <class T> operator T() const {\n\t\t\
-    return read<T>();\n\t}\n\tint operator--(int) const {\n\t\treturn read<int>()\
-    \ - 1;\n\t}\n\tReadVectorHelper operator[](size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\
-    \t}\n\tRead2DVectorHelper operator[](const pair<size_t, size_t>& nm) const {\n\
-    \t\treturn Read2DVectorHelper(nm);\n\t}\n\tvoid operator()() const {}\n\ttemplate\
-    \ <class H, class... T> void operator()(H&& h, T&&... t) const {\n\t\tread(h);\n\
-    \t\toperator()(forward<T>(t)...);\n\t}\n\nprivate:\n\ttemplate <template <class...>\
-    \ class, class...> struct Multiple;\n\ttemplate <template <class...> class V,\
-    \ class Head, class... Tail>\n\tstruct Multiple<V, Head, Tail...> {\n\t\ttemplate\
-    \ <class... Args> using vec = V<vector<Head>, Args...>;\n\t\tusing type = typename\
-    \ Multiple<vec, Tail...>::type;\n\t};\n\ttemplate <template <class...> class V>\
-    \ struct Multiple<V> { using type = V<>; };\n\ttemplate <class... T> using multiple_t\
-    \ = typename Multiple<tuple, T...>::type;\n\ttemplate <size_t N = 0, class T>\
-    \ void multiple_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\
-    \t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
-    \t\t\tvec.push_back(read<V>());\n\t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
-    public:\n\ttemplate <class... T> auto multiple(size_t h) const {\n\t\tmultiple_t<T...>\
-    \ result;\n\t\twhile (h--) multiple_impl(result);\n\t\treturn result;\n\t}\n}\
-    \ in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
-    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
-    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n"
+    \tstring read_line() const {\n\t\tstring v;\n\t\tfor (char c = gc(); c != '\\\
+    n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T>\
+    \ T read() const {\n\t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate <class\
+    \ T> vector<T> read_vector(size_t n) const {\n\t\tvector<T> a(n);\n\t\tread(a);\n\
+    \t\treturn a;\n\t}\n\ttemplate <class T> operator T() const {\n\t\treturn read<T>();\n\
+    \t}\n\tint operator--(int) const {\n\t\treturn read<int>() - 1;\n\t}\n\tReadVectorHelper\
+    \ operator[](size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tRead2DVectorHelper\
+    \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
+    \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
+    \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
+    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
+    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
+    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
+    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
+    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
+    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
+    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
+    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
+    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
+    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
+    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
+    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
+    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
+    \ inputs(string, __VA_ARGS__)\n"
   dependsOn: []
   isVerificationFile: false
   path: template/Input.cpp
   requiredBy:
   - template/template.cpp
   - template/template_no_Ruby.cpp
-  timestamp: '2020-11-26 12:19:47+09:00'
+  timestamp: '2020-11-29 15:45:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_multiple.test.cpp

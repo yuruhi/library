@@ -209,7 +209,7 @@ data:
     - icon: ':warning:'
       path: Math/Combination.cpp
       title: Math/Combination.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Math/Divisors.cpp
       title: Math/Divisors.cpp
     - icon: ':warning:'
@@ -338,7 +338,7 @@ data:
     - icon: ':warning:'
       path: Utility/VectorOperation.cpp
       title: Utility/VectorOperation.cpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: Utility/isLeap.cpp
       title: Utility/isLeap.cpp
     - icon: ':warning:'
@@ -509,9 +509,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Divisors.test.cpp
       title: test/Divisors.test.cpp
-    - icon: ':x:'
-      path: test/DivisorsCount.test.cpp
-      title: test/DivisorsCount.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/EnumrateFibonacci.test.cpp
       title: test/EnumrateFibonacci.test.cpp
@@ -701,9 +698,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/extGcd.test.cpp
       title: test/extGcd.test.cpp
-    - icon: ':x:'
-      path: test/isLeap.test.cpp
-      title: test/isLeap.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/isPrime.test.cpp
       title: test/isPrime.test.cpp
