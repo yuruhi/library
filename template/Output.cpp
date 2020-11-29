@@ -42,6 +42,9 @@ public:
 	void put(bool v) const {
 		put(v ? B.t : B.f);
 	}
+	void put(vector<bool>::reference v) const {
+		put(v ? B.t : B.f);
+	}
 	void put(char v) const {
 		putchar_unlocked(v);
 	}
