@@ -135,7 +135,7 @@ class Scanner {
 public:
 	string read_line() const {
 		string v;
-		for (char c = next_char(); c != '\n' && c != '\0'; c = gc()) v += c;
+		for (char c = gc(); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
 	template <class T> T read() const {
