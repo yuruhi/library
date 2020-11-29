@@ -4,7 +4,6 @@
 #include <string_view>
 #include <utility>
 #include <queue>
-using namespace std;
 
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
