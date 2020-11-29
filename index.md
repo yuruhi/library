@@ -124,6 +124,9 @@ data:
       path: Graph/BuildTreePathEdge.cpp
       title: Graph/BuildTreePathEdge.cpp
     - icon: ':heavy_check_mark:'
+      path: Graph/ChinesePostman.cpp
+      title: Graph/ChinesePostman.cpp
+    - icon: ':heavy_check_mark:'
       path: Graph/ConnectedComponent.cpp
       title: Graph/ConnectedComponent.cpp
     - icon: ':heavy_check_mark:'
@@ -455,6 +458,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Bridges.test.cpp
       title: test/Bridges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ChinesePostman.test.cpp
+      title: test/ChinesePostman.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ConnectedComponent.test.cpp
       title: test/ConnectedComponent.test.cpp

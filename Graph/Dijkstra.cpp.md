@@ -4,8 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Graph/ChinesePostman.cpp
+    title: Graph/ChinesePostman.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/ChinesePostman.test.cpp
+    title: test/ChinesePostman.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Dijkstra.test.cpp
     title: test/Dijkstra.test.cpp
@@ -50,11 +56,13 @@ data:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/Dijkstra.cpp
-  requiredBy: []
+  requiredBy:
+  - Graph/ChinesePostman.cpp
   timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Dijkstra.test.cpp
+  - test/ChinesePostman.test.cpp
 documentation_of: Graph/Dijkstra.cpp
 layout: document
 redirect_from:

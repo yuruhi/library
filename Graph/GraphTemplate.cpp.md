@@ -9,6 +9,9 @@ data:
     path: Graph/BuildTreePath.cpp
     title: Graph/BuildTreePath.cpp
   - icon: ':heavy_check_mark:'
+    path: Graph/ChinesePostman.cpp
+    title: Graph/ChinesePostman.cpp
+  - icon: ':heavy_check_mark:'
     path: Graph/Diameter.cpp
     title: Graph/Diameter.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/BellmanFord.test.cpp
     title: test/BellmanFord.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/ChinesePostman.test.cpp
+    title: test/ChinesePostman.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Diameter.test.cpp
     title: test/Diameter.test.cpp
@@ -105,6 +111,7 @@ data:
   - Graph/BellmanFord.cpp
   - Graph/LCA.cpp
   - Graph/BuildTreePath.cpp
+  - Graph/ChinesePostman.cpp
   - Graph/Diameter.cpp
   - Graph/SpanningTree.cpp
   - Graph/DiameterPath.cpp
@@ -125,6 +132,7 @@ data:
   - test/BellmanFord.test.cpp
   - test/WarashallFloyd.test.cpp
   - test/DijkstraBuildPath.test.cpp
+  - test/ChinesePostman.test.cpp
 documentation_of: Graph/GraphTemplate.cpp
 layout: document
 redirect_from:

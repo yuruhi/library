@@ -46,10 +46,10 @@ data:
     ,\n\t    alpha = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\",\n\t\
     \    alnum = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"\
     ,\n\t    word = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz\"\
-    ,\n\t    punct = \"!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~\",\n\t    graph =\n\t\
-    \        \"!\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\\
-    ]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    print =\n\t        \" !\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
-    \\]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    blank = \" \\t\", space = \" \\\
+    ,\n\t    punct = R\"(!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~)\",\n\t    graph =\n\t\
+    \        R\"(!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~)\"\
+    ,\n\t    print =\n\t        R\"( !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
+    ]^_`abcdefghijklmnopqrstuvwxyz{|}~)\",\n\t    blank = \" \\t\", space = \" \\\
     t\\n\\r\\f\\v\";\n}  // namespace CharacterClass\n#line 7 \"template/Input.cpp\"\
     \nusing namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
     #define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked fwrite\n#define\
@@ -361,7 +361,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-11-26 15:23:28+09:00'
+  timestamp: '2020-11-27 22:42:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

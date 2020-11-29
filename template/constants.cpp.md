@@ -34,10 +34,10 @@ data:
     ,\n\t    alpha = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\",\n\t\
     \    alnum = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"\
     ,\n\t    word = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz\"\
-    ,\n\t    punct = \"!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~\",\n\t    graph =\n\t\
-    \        \"!\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\\
-    ]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    print =\n\t        \" !\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
-    \\]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    blank = \" \\t\", space = \" \\\
+    ,\n\t    punct = R\"(!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~)\",\n\t    graph =\n\t\
+    \        R\"(!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~)\"\
+    ,\n\t    print =\n\t        R\"( !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
+    ]^_`abcdefghijklmnopqrstuvwxyz{|}~)\",\n\t    blank = \" \\t\", space = \" \\\
     t\\n\\r\\f\\v\";\n}  // namespace CharacterClass\n"
   code: "#pragma once\n#include <vector>\n#include <string>\n#include <string_view>\n\
     #include <utility>\n#include <queue>\nusing namespace std;\n\n#define rep(i, n)\
@@ -59,10 +59,10 @@ data:
     ,\n\t    upper = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\n\t    alpha = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"\
     ,\n\t    alnum = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"\
     ,\n\t    word = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz\"\
-    ,\n\t    punct = \"!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~\",\n\t    graph =\n\t\
-    \        \"!\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\\
-    ]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    print =\n\t        \" !\\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
-    \\]^_`abcdefghijklmnopqrstuvwxyz{|}~\",\n\t    blank = \" \\t\", space = \" \\\
+    ,\n\t    punct = R\"(!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~)\",\n\t    graph =\n\t\
+    \        R\"(!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~)\"\
+    ,\n\t    print =\n\t        R\"( !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
+    ]^_`abcdefghijklmnopqrstuvwxyz{|}~)\",\n\t    blank = \" \\t\", space = \" \\\
     t\\n\\r\\f\\v\";\n}  // namespace CharacterClass\n"
   dependsOn: []
   isVerificationFile: false
@@ -70,7 +70,7 @@ data:
   requiredBy:
   - template/template.cpp
   - template/template_no_Ruby.cpp
-  timestamp: '2020-11-26 15:23:28+09:00'
+  timestamp: '2020-11-27 22:42:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/constants.cpp
