@@ -8,9 +8,6 @@ data:
     path: template/Output.cpp
     title: template/Output.cpp
   - icon: ':warning:'
-    path: template/Step.cpp
-    title: template/Step.cpp
-  - icon: ':warning:'
     path: template/constants.cpp
     title: template/constants.cpp
   - icon: ':warning:'
@@ -24,13 +21,13 @@ data:
     links: []
   bundledCode: "#line 2 \"template/template_no_Ruby.cpp\"\n#include <bits/stdc++.h>\n\
     #line 4 \"template/constants.cpp\"\n#include <string_view>\n#line 7 \"template/constants.cpp\"\
-    \nusing namespace std;\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define\
-    \ FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i\
-    \ = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n\
-    #define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x)\
-    \ (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin()\
-    \ + (r)\n\nusing namespace std;\nusing ll = long long;\nusing LD = long double;\n\
-    using VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
+    \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
+    \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
+    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define unless(c)\
+    \ if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(),\
+    \ (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\
+    \nusing namespace std;\nusing ll = long long;\nusing LD = long double;\nusing\
+    \ VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
     \ VVI = vector<VI>;\nusing VL = vector<ll>;\nusing VVL = vector<VL>;\nusing VS\
     \ = vector<string>;\nusing VD = vector<LD>;\nusing PII = pair<int, int>;\nusing\
     \ VP = vector<PII>;\nusing PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\ntemplate\
@@ -124,7 +121,8 @@ data:
     \ put(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
     \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\
-    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
+    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\t\
+    put(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
     \t}\n\tvoid put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
     \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
     \ double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate <class T> void\
@@ -152,39 +150,12 @@ data:
     Output& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn *this;\n\t}\n\tOutput&\
     \ set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\t}\n\tOutput& set(const\
     \ char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\treturn *this;\n\t}\n\
-    } out;\n#line 3 \"template/Step.cpp\"\nusing namespace std;\n\ntemplate <class\
-    \ T> struct Step {\n\tusing value_type = T;\n\n\tclass iterator {\n\t\tvalue_type\
-    \ a, b, c;\n\n\tpublic:\n\t\tconstexpr iterator() : a(value_type()), b(value_type()),\
-    \ c(value_type()) {}\n\t\tconstexpr iterator(value_type _b, value_type _c, value_type\
-    \ _s)\n\t\t    : a(_b), b(_c), c(_s) {}\n\t\tconstexpr iterator& operator++()\
-    \ {\n\t\t\t--b;\n\t\t\ta += c;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr iterator\
-    \ operator++(int) {\n\t\t\titerator tmp = *this;\n\t\t\t--b;\n\t\t\ta += c;\n\t\
-    \t\treturn tmp;\n\t\t}\n\t\tconstexpr const value_type& operator*() const {\n\t\
-    \t\treturn a;\n\t\t}\n\t\tconstexpr const value_type* operator->() const {\n\t\
-    \t\treturn &a;\n\t\t}\n\t\tconstexpr bool operator==(const iterator& i) const\
-    \ {\n\t\t\treturn b == i.b;\n\t\t}\n\t\tconstexpr bool operator!=(const iterator&\
-    \ i) const {\n\t\t\treturn !(b == i.b);\n\t\t}\n\t\tconstexpr value_type start()\
-    \ const {\n\t\t\treturn a;\n\t\t}\n\t\tconstexpr value_type size() const {\n\t\
-    \t\treturn b;\n\t\t}\n\t\tconstexpr value_type step() const {\n\t\t\treturn c;\n\
-    \t\t}\n\t};\n\tconstexpr Step(value_type b, value_type c, value_type s) : be(b,\
-    \ c, s) {}\n\tconstexpr iterator begin() const {\n\t\treturn be;\n\t}\n\tconstexpr\
-    \ iterator end() const {\n\t\treturn en;\n\t}\n\tconstexpr value_type start()\
-    \ const {\n\t\treturn be.start();\n\t}\n\tconstexpr value_type size() const {\n\
-    \t\treturn be.size();\n\t}\n\tconstexpr value_type step() const {\n\t\treturn\
-    \ be.step();\n\t}\n\tconstexpr value_type sum() const {\n\t\treturn start() *\
-    \ size() + step() * (size() * (size() - 1) / 2);\n\t}\n\toperator vector<value_type>()\
-    \ const {\n\t\treturn to_a();\n\t}\n\tauto to_a() const {\n\t\tvector<value_type>\
-    \ result;\n\t\tresult.reserve(size());\n\t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\
-    \t\t}\n\t\treturn result;\n\t}\n\nprivate:\n\titerator be, en;\n};\ntemplate <class\
-    \ T> constexpr auto step(T a) {\n\treturn Step<T>(0, a, 1);\n}\ntemplate <class\
-    \ T> constexpr auto step(T a, T b) {\n\treturn Step<T>(a, b - a, 1);\n}\ntemplate\
-    \ <class T> constexpr auto step(T a, T b, T c) {\n\treturn Step<T>(a, a < b ?\
-    \ (b - a - 1) / c + 1 : 0, c);\n}\n#line 6 \"template/functions.cpp\"\nusing namespace\
-    \ std;\n\ntemplate <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate\
-    \ <class T, class U> int lower_index(const T& a, const U& v) {\n\treturn lower_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
-    \ const U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate <class\
-    \ T> auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size() ? T(v.begin()\
+    } out;\n#line 6 \"template/functions.cpp\"\nusing namespace std;\n\ntemplate <class\
+    \ T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class T, class U>\
+    \ int lower_index(const T& a, const U& v) {\n\treturn lower_bound(all(a), v) -\
+    \ a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a, const\
+    \ U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate <class T>\
+    \ auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size() ? T(v.begin()\
     \ + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class T> T div_ceil(T\
     \ n, T m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T> T div_ceil2(T n,\
     \ T m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class T> T triangle(T n)\
@@ -213,27 +184,26 @@ data:
     \t\t\treturn vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}\
     \  // namespace internal\ntemplate <class T, size_t N>\nauto make_vector(const\
     \ int (&sizes)[N], const T& init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n#line 8 \"template/template_no_Ruby.cpp\"\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n#line 7 \"template/template_no_Ruby.cpp\"\
     \n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define\
     \ LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr\
     \ T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\
     \treturn local;\n#endif\n}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./constants.cpp\"\n#include\
-    \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./Step.cpp\"\n#include\
-    \ \"./functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
-    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
-    \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
-    \ oj;\n#else\n\treturn local;\n#endif\n}\n"
+    \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./functions.cpp\"\n#if\
+    \ __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define LOCAL\n\
+    #else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr T oj_local(const\
+    \ T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n\
+    #endif\n}\n"
   dependsOn:
   - template/constants.cpp
   - template/Input.cpp
   - template/Output.cpp
-  - template/Step.cpp
   - template/functions.cpp
   isVerificationFile: false
   path: template/template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2020-11-29 15:45:37+09:00'
+  timestamp: '2020-11-29 20:24:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template_no_Ruby.cpp

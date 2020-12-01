@@ -31,6 +31,7 @@ data:
     \ {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf),\
     \ v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t\
     } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\tput(v\
+    \ ? B.t : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\tput(v\
     \ ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\t\
     }\n\tvoid put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
     \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
@@ -75,6 +76,7 @@ data:
     \ buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e ==\
     \ errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else {\n\
     \t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\tput(v ? B.t\
+    \ : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\tput(v ? B.t\
     \ : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\t}\n\t\
     void put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
     \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
@@ -110,7 +112,7 @@ data:
   requiredBy:
   - template/template.cpp
   - template/template_no_Ruby.cpp
-  timestamp: '2020-11-24 22:24:28+09:00'
+  timestamp: '2020-11-29 18:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp

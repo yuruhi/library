@@ -27,16 +27,25 @@ data:
     \ tuple(left, top, right, bottom);\n\t}\n\tvoid roll_front() {\n\t\ttie(top, front,\
     \ bottom, back) = tuple(back, top, front, bottom);\n\t}\n\tvoid roll_back() {\n\
     \t\ttie(top, front, bottom, back) = tuple(front, bottom, back, top);\n\t}\n\t\
-    void roll(char c) {\n\t\tswitch (c) {\n\t\t\tcase 'W':\n\t\t\t\troll_left();\n\
-    \t\t\t\tbreak;\n\t\t\tcase 'E':\n\t\t\t\troll_right();\n\t\t\t\tbreak;\n\t\t\t\
-    case 'S':\n\t\t\t\troll_front();\n\t\t\t\tbreak;\n\t\t\tcase 'N':\n\t\t\t\troll_back();\n\
-    \t\t\t\tbreak;\n\t\t}\n\t}\n\tvoid rotate_left() {\n\t\ttie(front, right, back,\
-    \ left) = tuple(right, back, left, front);\n\t}\n\tvoid rotate_right() {\n\t\t\
-    tie(front, right, back, left) = tuple(left, front, right, back);\n\t}\n\tbool\
-    \ same(Dice other) const {\n\t\tDice d(*this);\n\t\tfor (int i = 4; i--;) {\n\t\
-    \t\tif (d == other) return true;\n\t\t\td.rotate_left();\n\t\t}\n\t\td.roll_left();\n\
-    \t\tfor (int i = 4; i--;) {\n\t\t\tif (d == other) return true;\n\t\t\td.roll_front();\n\
-    \t\t}\n\t\td.rotate_right();\n\t\tfor (int i = 4; i--;) {\n\t\t\tif (d == other)\
+    Dice rolled_left() const {\n\t\tDice x(*this);\n\t\tx.roll_left();\n\t\treturn\
+    \ x;\n\t}\n\tDice rolled_right() const {\n\t\tDice x(*this);\n\t\tx.roll_right();\n\
+    \t\treturn x;\n\t}\n\tDice rolled_front() const {\n\t\tDice x(*this);\n\t\tx.roll_front();\n\
+    \t\treturn x;\n\t}\n\tDice rolled_back() const {\n\t\tDice x(*this);\n\t\tx.roll_back();\n\
+    \t\treturn x;\n\t}\n\tvoid roll(char c) {\n\t\tswitch (c) {\n\t\t\tcase 'W':\n\
+    \t\t\tcase 'L':\n\t\t\t\troll_left();\n\t\t\t\tbreak;\n\t\t\tcase 'E':\n\t\t\t\
+    case 'R':\n\t\t\t\troll_right();\n\t\t\t\tbreak;\n\t\t\tcase 'S':\n\t\t\tcase\
+    \ 'D':\n\t\t\t\troll_front();\n\t\t\t\tbreak;\n\t\t\tcase 'N':\n\t\t\tcase 'U':\n\
+    \t\t\t\troll_back();\n\t\t\t\tbreak;\n\t\t}\n\t}\n\tDice rolled(char c) const\
+    \ {\n\t\tDice x(*this);\n\t\tx.roll(c);\n\t\treturn x;\n\t}\n\tvoid rotate_left()\
+    \ {\n\t\ttie(front, right, back, left) = tuple(right, back, left, front);\n\t\
+    }\n\tvoid rotate_right() {\n\t\ttie(front, right, back, left) = tuple(left, front,\
+    \ right, back);\n\t}\n\tDice rotated_left() const {\n\t\tDice x(*this);\n\t\t\
+    x.rotate_left();\n\t\treturn x;\n\t}\n\tDice rotated_right() const {\n\t\tDice\
+    \ x(*this);\n\t\tx.rotate_right();\n\t\treturn x;\n\t}\n\tbool same(Dice other)\
+    \ const {\n\t\tDice d(*this);\n\t\tfor (int i = 4; i--;) {\n\t\t\tif (d == other)\
+    \ return true;\n\t\t\td.rotate_left();\n\t\t}\n\t\td.roll_left();\n\t\tfor (int\
+    \ i = 4; i--;) {\n\t\t\tif (d == other) return true;\n\t\t\td.roll_front();\n\t\
+    \t}\n\t\td.rotate_right();\n\t\tfor (int i = 4; i--;) {\n\t\t\tif (d == other)\
     \ return true;\n\t\t\td.roll_right();\n\t\t}\n\t\td.rotate_right();\n\t\tfor (int\
     \ i = 4; i--;) {\n\t\t\tif (d == other) return true;\n\t\t\td.roll_front();\n\t\
     \t}\n\t\td.rotate_right();\n\t\tfor (int i = 4; i--;) {\n\t\t\tif (d == other)\
@@ -67,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/Dice2.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2020-11-29 18:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dice2.test.cpp

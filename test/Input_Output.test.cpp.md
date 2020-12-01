@@ -95,7 +95,8 @@ data:
     \ put(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
     \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\
-    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
+    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\t\
+    put(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
     \t}\n\tvoid put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
     \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
     \ double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate <class T> void\
@@ -136,7 +137,7 @@ data:
   isVerificationFile: true
   path: test/Input_Output.test.cpp
   requiredBy: []
-  timestamp: '2020-11-29 15:45:37+09:00'
+  timestamp: '2020-11-29 18:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Input_Output.test.cpp
