@@ -171,19 +171,19 @@ struct Point {
 	constexpr pair<int, int> to_pair() const {
 		return {x, y};
 	}
-	int manhattan_distance(const Point& p) const {
+	constexpr int manhattan_distance(const Point& p) const {
 		return std::abs(x - p.x) + std::abs(y - p.y);
 	}
-	int distance_square(const Point& p) const {
+	constexpr int distance_square(const Point& p) const {
 		return (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y);
 	}
-	template <class Real> Real distance(const Point& p) const {
+	template <class Real> constexpr Real distance(const Point& p) const {
 		return sqrt(static_cast<Real>(distance_square(p)));
 	}
-	Point abs(const Point& p) const {
+	constexpr Point abs(const Point& p) const {
 		return {std::abs(x - p.x), std::abs(y - p.y)};
 	}
-	Point abs() const {
+	constexpr Point abs() const {
 		return {std::abs(x), std::abs(y)};
 	}
 	Point& swap() {
