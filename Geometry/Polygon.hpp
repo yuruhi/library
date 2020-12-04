@@ -16,7 +16,6 @@ namespace Geometric {
 		Polygon() = default;
 		Polygon(int n) : vector<Vec2>(n) {}
 		Polygon(const vector<Vec2>& _p) : vector<Vec2>(_p) {}
-		// 面積
 		LD area() const {
 			LD ans = 0;
 			for (size_t i = 0; i < size(); ++i) {
@@ -42,9 +41,7 @@ namespace Geometric {
 		// 凸包（反時計回り）
 		Polygon convex_hull() const {
 			vector<Vec2> ps = *this;
-			sort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2& v2) {
-				return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
-			});
+			sort(ps.begin(), ps.end(), Vec2::compare_xy);
 			int n = ps.size(), k = 0;
 			Polygon result(2 * n);
 			for (int i = 0; i < n; result[k++] = ps[i++]) {
@@ -63,9 +60,7 @@ namespace Geometric {
 		// 凸包（一直線上の3点を含めない、反時計回り）
 		Polygon convex_hull_no_collinear() const {
 			vector<Vec2> ps = *this;
-			sort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2& v2) {
-				return make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);
-			});
+			sort(ps.begin(), ps.end(), Vec2::compare_xy);
 			int n = ps.size(), k = 0;
 			Polygon result(2 * n);
 			for (int i = 0; i < n; result[k++] = ps[i++]) {
