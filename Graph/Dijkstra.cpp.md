@@ -61,8 +61,8 @@ data:
   timestamp: '2020-10-18 11:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Dijkstra.test.cpp
   - test/ChinesePostman.test.cpp
+  - test/Dijkstra.test.cpp
 documentation_of: Graph/Dijkstra.cpp
 layout: document
 redirect_from:

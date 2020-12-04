@@ -110,8 +110,8 @@ data:
   isVerificationFile: false
   path: template/Output.cpp
   requiredBy:
-  - template/template.cpp
   - template/template_no_Ruby.cpp
+  - template/template.cpp
   timestamp: '2020-11-29 18:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

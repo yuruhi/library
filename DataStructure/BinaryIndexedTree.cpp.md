@@ -61,9 +61,9 @@ data:
   timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/EulerTourForEdge.test.cpp
   - test/Inversion.test.cpp
   - test/BinaryIndexedTree.test.cpp
-  - test/EulerTourForEdge.test.cpp
 documentation_of: DataStructure/BinaryIndexedTree.cpp
 layout: document
 redirect_from:

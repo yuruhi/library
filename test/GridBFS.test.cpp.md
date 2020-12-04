@@ -67,13 +67,15 @@ data:
     \ height, int width) const {\n\t\treturn 0 <= x && x < width && 0 <= y && y <\
     \ height;\n\t}\n\tbool in_range() const {\n\t\treturn in_range(H, W);\n\t}\n\t\
     int to_i() const {\n\t\treturn x + y * W;\n\t}\n\tconstexpr pair<int, int> to_pair()\
-    \ const {\n\t\treturn {x, y};\n\t}\n\tint dist(const Point& p) const {\n\t\treturn\
-    \ std::abs(x - p.x) + std::abs(y - p.y);\n\t}\n\tint dist_square(const Point&\
-    \ p) const {\n\t\treturn (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y);\n\t}\n\
-    \tPoint abs(const Point& p) const {\n\t\treturn {std::abs(x - p.x), std::abs(y\
-    \ - p.y)};\n\t}\n\tPoint abs() const {\n\t\treturn {std::abs(x), std::abs(y)};\n\
-    \t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\t}\n\n\tclass\
-    \ enumrate_adjacent_helper {\n\t\tshared_ptr<Point> p;\n\t\tdirection_iterator\
+    \ const {\n\t\treturn {x, y};\n\t}\n\tconstexpr int manhattan_distance(const Point&\
+    \ p) const {\n\t\treturn std::abs(x - p.x) + std::abs(y - p.y);\n\t}\n\tconstexpr\
+    \ int distance_square(const Point& p) const {\n\t\treturn (x - p.x) * (x - p.x)\
+    \ + (y - p.y) * (y - p.y);\n\t}\n\ttemplate <class Real> constexpr Real distance(const\
+    \ Point& p) const {\n\t\treturn sqrt(static_cast<Real>(distance_square(p)));\n\
+    \t}\n\tconstexpr Point abs(const Point& p) const {\n\t\treturn {std::abs(x - p.x),\
+    \ std::abs(y - p.y)};\n\t}\n\tconstexpr Point abs() const {\n\t\treturn {std::abs(x),\
+    \ std::abs(y)};\n\t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\
+    \t}\n\n\tclass enumrate_adjacent_helper {\n\t\tshared_ptr<Point> p;\n\t\tdirection_iterator\
     \ first, last;\n\n\t\tclass iterator {\n\t\t\tshared_ptr<Point> p;\n\t\t\tdirection_iterator\
     \ it;\n\n\t\tpublic:\n\t\t\titerator(shared_ptr<Point> _p, direction_iterator\
     \ _it) : p(_p), it(_it) {}\n\t\t\tPoint operator*() const {\n\t\t\t\treturn *p\
@@ -199,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2020-11-26 20:00:22+09:00'
+  timestamp: '2020-12-04 17:35:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp

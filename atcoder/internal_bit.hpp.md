@@ -39,9 +39,9 @@ data:
   isVerificationFile: false
   path: atcoder/internal_bit.hpp
   requiredBy:
+  - atcoder/segtree.hpp
   - atcoder/convolution.hpp
   - atcoder/lazysegtree.hpp
-  - atcoder/segtree.hpp
   timestamp: '2020-10-30 19:21:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
