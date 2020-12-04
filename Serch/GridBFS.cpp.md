@@ -176,9 +176,11 @@ data:
     \ vector<string>& grid, char start, char wall) {\n\tPoint::set_range(grid.size(),\
     \ grid.front().size());\n\tauto s = Point::find_one(grid, start);\n\tassert(s);\n\
     \treturn GridBFS(grid, *s, wall);\n}\nint GridBFS(const vector<string>& grid,\
-    \ char start, char goal, char wall) {\n\tassert(start != goal);\n\tPoint::set_range(grid.size(),\
-    \ grid.front().size());\n\tauto s = Point::find_one(grid, start), g = Point::find_one(grid,\
-    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n"
+    \ Point start, Point goal, char wall) {\n\treturn GridBFS(grid, start, wall)[goal.y][goal.x];\n\
+    }\nint GridBFS(const vector<string>& grid, char start, char goal, char wall) {\n\
+    \tassert(start != goal);\n\tPoint::set_range(grid.size(), grid.front().size());\n\
+    \tauto s = Point::find_one(grid, start), g = Point::find_one(grid, goal);\n\t\
+    assert(s && g);\n\treturn GridBFS(grid, *s, *g, wall);\n}\n"
   code: "#pragma once\n#include \"./../Utility/Point.cpp\"\n#include <vector>\n#include\
     \ <string>\n#include <queue>\n#include <optional>\n#include <limits>\n#include\
     \ <cassert>\nusing namespace std;\n\nvector<vector<int>> GridBFS(const vector<string>&\
@@ -193,15 +195,17 @@ data:
     \ GridBFS(const vector<string>& grid, char start, char wall) {\n\tPoint::set_range(grid.size(),\
     \ grid.front().size());\n\tauto s = Point::find_one(grid, start);\n\tassert(s);\n\
     \treturn GridBFS(grid, *s, wall);\n}\nint GridBFS(const vector<string>& grid,\
-    \ char start, char goal, char wall) {\n\tassert(start != goal);\n\tPoint::set_range(grid.size(),\
-    \ grid.front().size());\n\tauto s = Point::find_one(grid, start), g = Point::find_one(grid,\
-    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n"
+    \ Point start, Point goal, char wall) {\n\treturn GridBFS(grid, start, wall)[goal.y][goal.x];\n\
+    }\nint GridBFS(const vector<string>& grid, char start, char goal, char wall) {\n\
+    \tassert(start != goal);\n\tPoint::set_range(grid.size(), grid.front().size());\n\
+    \tauto s = Point::find_one(grid, start), g = Point::find_one(grid, goal);\n\t\
+    assert(s && g);\n\treturn GridBFS(grid, *s, *g, wall);\n}"
   dependsOn:
   - Utility/Point.cpp
   isVerificationFile: false
   path: Serch/GridBFS.cpp
   requiredBy: []
-  timestamp: '2020-12-04 17:35:17+09:00'
+  timestamp: '2020-12-04 20:06:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/GridBFS.test.cpp

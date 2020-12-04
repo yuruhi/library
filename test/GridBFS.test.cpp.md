@@ -180,14 +180,16 @@ data:
     \ vector<string>& grid, char start, char wall) {\n\tPoint::set_range(grid.size(),\
     \ grid.front().size());\n\tauto s = Point::find_one(grid, start);\n\tassert(s);\n\
     \treturn GridBFS(grid, *s, wall);\n}\nint GridBFS(const vector<string>& grid,\
-    \ char start, char goal, char wall) {\n\tassert(start != goal);\n\tPoint::set_range(grid.size(),\
-    \ grid.front().size());\n\tauto s = Point::find_one(grid, start), g = Point::find_one(grid,\
-    \ goal);\n\tassert(s && g);\n\treturn GridBFS(grid, *s, wall)[g->y][g->x];\n}\n\
-    #line 7 \"test/GridBFS.test.cpp\"\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\n\tint h, w, n;\n\tcin >> h >> w >> n;\n\
-    \tvector<string> s(h);\n\tfor (auto& i : s) cin >> i;\n\n\tint ans = 0;\n\tfor\
-    \ (int i = 0; i < n; ++i) {\n\t\tans += GridBFS(s, i == 0 ? 'S' : '0' + i, '1'\
-    \ + i, 'X');\n\t}\n\tcout << ans << '\\n';\n}\n"
+    \ Point start, Point goal, char wall) {\n\treturn GridBFS(grid, start, wall)[goal.y][goal.x];\n\
+    }\nint GridBFS(const vector<string>& grid, char start, char goal, char wall) {\n\
+    \tassert(start != goal);\n\tPoint::set_range(grid.size(), grid.front().size());\n\
+    \tauto s = Point::find_one(grid, start), g = Point::find_one(grid, goal);\n\t\
+    assert(s && g);\n\treturn GridBFS(grid, *s, *g, wall);\n}\n#line 7 \"test/GridBFS.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \n\tint h, w, n;\n\tcin >> h >> w >> n;\n\tvector<string> s(h);\n\tfor (auto&\
+    \ i : s) cin >> i;\n\n\tint ans = 0;\n\tfor (int i = 0; i < n; ++i) {\n\t\tans\
+    \ += GridBFS(s, i == 0 ? 'S' : '0' + i, '1' + i, 'X');\n\t}\n\tcout << ans <<\
+    \ '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0558\"\n#include\
     \ \"./../Utility/Point.cpp\"\n#include \"./../Serch/GridBFS.cpp\"\n#include <iostream>\n\
     #include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n\t\
@@ -201,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2020-12-04 17:35:17+09:00'
+  timestamp: '2020-12-04 20:06:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp
