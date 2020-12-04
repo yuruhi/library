@@ -7,6 +7,9 @@ data:
     title: Math/Fibonacci.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/EnumrateFibonacci.test.cpp
+    title: test/EnumrateFibonacci.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Fibonacci.test.cpp
     title: test/Fibonacci.test.cpp
   _pathExtension: cpp
@@ -83,6 +86,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Fibonacci.test.cpp
+  - test/EnumrateFibonacci.test.cpp
 documentation_of: Math/Matrix.cpp
 layout: document
 redirect_from:

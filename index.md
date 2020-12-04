@@ -216,9 +216,6 @@ data:
       path: Math/EnumrateCombination.cpp
       title: Math/EnumrateCombination.cpp
     - icon: ':heavy_check_mark:'
-      path: Math/EnumrateFibonacci.cpp
-      title: Math/EnumrateFibonacci.cpp
-    - icon: ':heavy_check_mark:'
       path: Math/EnumratePrimes.cpp
       title: Math/EnumratePrimes.cpp
     - icon: ':heavy_check_mark:'
@@ -509,6 +506,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Divisors.test.cpp
       title: test/Divisors.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/EnumrateEuler.test.cpp
+      title: test/EnumrateEuler.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/EnumrateFibonacci.test.cpp
       title: test/EnumrateFibonacci.test.cpp

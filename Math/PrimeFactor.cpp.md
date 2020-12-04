@@ -10,6 +10,9 @@ data:
     title: Math/Moebius.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/EnumrateEuler.test.cpp
+    title: test/EnumrateEuler.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Euler.test.cpp
     title: test/Euler.test.cpp
   - icon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/EnumrateEuler.test.cpp
   - test/Euler.test.cpp
   - test/PrimeFactor.test.cpp
 documentation_of: Math/PrimeFactor.cpp

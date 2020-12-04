@@ -13,11 +13,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_D
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_D
-  bundledCode: "#line 1 \"test/Euler.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_D\"\
-    \n#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
+    - https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011
+  bundledCode: "#line 1 \"test/EnumrateEuler.test.cpp\"\n#define PROBLEM \\\n\t\"\
+    https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\n\
+    #line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<pair<T,\
     \ int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1) {\n\t\treturn {};\n\
     \t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\t\
@@ -38,25 +39,32 @@ data:
     \ {\n\tvector<int> result(x + 1);\n\tiota(result.begin(), result.end(), 0);\n\t\
     for (int i = 2; i <= x; ++i) {\n\t\tif (result[i] == i) {\n\t\t\tfor (int j =\
     \ i; j <= x; j += i) {\n\t\t\t\tresult[j] = result[j] / i * (i - 1);\n\t\t\t}\n\
-    \t\t}\n\t}\n\treturn result;\n}\n#line 3 \"test/Euler.test.cpp\"\n#include <iostream>\n\
-    using namespace std;\n\nint main() {\n\tlong long x;\n\tcin >> x;\n\tcout << Euler(x)\
-    \ << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_D\"\
+    \t\t}\n\t}\n\treturn result;\n}\n#line 4 \"test/EnumrateEuler.test.cpp\"\n#include\
+    \ <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \n\tconst int MAX_A = 1000000;\n\tvector<int> euler = EnumrateEuler(MAX_A);\n\t\
+    vector<long long> ans(MAX_A + 1, 1);\n\tfor (int i = 1; i <= MAX_A; ++i) {\n\t\
+    \tans[i] = ans[i - 1] + euler[i];\n\t}\n\n\tint q;\n\tcin >> q;\n\twhile (q--)\
+    \ {\n\t\tint x;\n\t\tcin >> x;\n\t\tcout << ans[x] << '\\n';\n\t}\n}\n"
+  code: "#define PROBLEM \\\n\t\"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
     \n#include \"./../Math/Euler.cpp\"\n#include <iostream>\nusing namespace std;\n\
-    \nint main() {\n\tlong long x;\n\tcin >> x;\n\tcout << Euler(x) << '\\n';\n}"
+    \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\t\
+    const int MAX_A = 1000000;\n\tvector<int> euler = EnumrateEuler(MAX_A);\n\tvector<long\
+    \ long> ans(MAX_A + 1, 1);\n\tfor (int i = 1; i <= MAX_A; ++i) {\n\t\tans[i] =\
+    \ ans[i - 1] + euler[i];\n\t}\n\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\t\
+    int x;\n\t\tcin >> x;\n\t\tcout << ans[x] << '\\n';\n\t}\n}"
   dependsOn:
   - Math/Euler.cpp
   - Math/PrimeFactor.cpp
   isVerificationFile: true
-  path: test/Euler.test.cpp
+  path: test/EnumrateEuler.test.cpp
   requiredBy: []
   timestamp: '2020-12-04 17:58:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/Euler.test.cpp
+documentation_of: test/EnumrateEuler.test.cpp
 layout: document
 redirect_from:
-- /verify/test/Euler.test.cpp
-- /verify/test/Euler.test.cpp.html
-title: test/Euler.test.cpp
+- /verify/test/EnumrateEuler.test.cpp
+- /verify/test/EnumrateEuler.test.cpp.html
+title: test/EnumrateEuler.test.cpp
 ---

@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/EnumrateFibonacci.test.cpp
+    title: test/EnumrateFibonacci.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Fibonacci.test.cpp
     title: test/Fibonacci.test.cpp
   _pathExtension: cpp
@@ -46,20 +49,29 @@ data:
     };\n#line 4 \"Math/Fibonacci.cpp\"\nusing namespace std;\n\ntemplate <class value_type>\
     \ value_type Fibonacci(long long n) {\n\tMatrix<value_type> A(vector<vector<value_type>>{{1,\
     \ 1}, {1, 0}});\n\tMatrix<value_type> B(vector<vector<value_type>>{{1}, {0}});\n\
-    \treturn (A.pow(n) * B)[1][0];\n}\n"
+    \treturn (A.pow(n) * B)[1][0];\n}\n\ntemplate <class value_type = long long> vector<value_type>\
+    \ EnumrateFibonacci(int n) {\n\tvector<value_type> result(n + 1);\n\tfor (int\
+    \ i = 0; i <= n; ++i) {\n\t\tif (i < 2) {\n\t\t\tresult[i] = i;\n\t\t} else {\n\
+    \t\t\tresult[i] = result[i - 1] + result[i - 2];\n\t\t}\n\t}\n\treturn result;\n\
+    }\n"
   code: "#pragma once\n#include \"./Matrix.cpp\"\n#include <vector>\nusing namespace\
     \ std;\n\ntemplate <class value_type> value_type Fibonacci(long long n) {\n\t\
     Matrix<value_type> A(vector<vector<value_type>>{{1, 1}, {1, 0}});\n\tMatrix<value_type>\
-    \ B(vector<vector<value_type>>{{1}, {0}});\n\treturn (A.pow(n) * B)[1][0];\n}\n"
+    \ B(vector<vector<value_type>>{{1}, {0}});\n\treturn (A.pow(n) * B)[1][0];\n}\n\
+    \ntemplate <class value_type = long long> vector<value_type> EnumrateFibonacci(int\
+    \ n) {\n\tvector<value_type> result(n + 1);\n\tfor (int i = 0; i <= n; ++i) {\n\
+    \t\tif (i < 2) {\n\t\t\tresult[i] = i;\n\t\t} else {\n\t\t\tresult[i] = result[i\
+    \ - 1] + result[i - 2];\n\t\t}\n\t}\n\treturn result;\n}\n"
   dependsOn:
   - Math/Matrix.cpp
   isVerificationFile: false
   path: Math/Fibonacci.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-12-04 17:58:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Fibonacci.test.cpp
+  - test/EnumrateFibonacci.test.cpp
 documentation_of: Math/Fibonacci.cpp
 layout: document
 redirect_from:
