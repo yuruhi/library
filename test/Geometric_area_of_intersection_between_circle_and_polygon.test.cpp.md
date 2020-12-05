@@ -247,31 +247,28 @@ data:
     \ Geometric\n#line 10 \"Geometry/Polygon.hpp\"\nusing namespace std;\n\nnamespace\
     \ Geometric {\n\n\tstruct Polygon : vector<Vec2> {\n\tpublic:\n\t\tPolygon() =\
     \ default;\n\t\tPolygon(int n) : vector<Vec2>(n) {}\n\t\tPolygon(const vector<Vec2>&\
-    \ _p) : vector<Vec2>(_p) {}\n\t\t// \u9762\u7A4D\n\t\tLD area() const {\n\t\t\t\
-    LD ans = 0;\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t next\
-    \ = i != size() - 1 ? i + 1 : 0;\n\t\t\t\tans += at(i).cross(at(next));\n\t\t\t\
-    }\n\t\t\treturn abs(ans) / 2;\n\t\t}\n\t\t// \u51F8\u6027\u5224\u5B9A\uFF08\u53CD\
-    \u6642\u8A08\u56DE\u308A\uFF09\n\t\tbool is_convex() const {\n\t\t\tif (size()\
-    \ < 3) {\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\tfor (size_t i = 0; i < size();\
-    \ ++i) {\n\t\t\t\tsize_t prev = i != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next\
-    \ = i != size() - 1 ? i + 1 : 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) ==\
-    \ -1) {\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t\
-    }\n\t\t// \u51F8\u5305\uFF08\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon\
-    \ convex_hull() const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(),\
-    \ ps.end(), [](const Vec2& v1, const Vec2& v2) {\n\t\t\t\treturn make_pair(v1.x,\
-    \ v1.y) < make_pair(v2.x, v2.y);\n\t\t\t});\n\t\t\tint n = ps.size(), k = 0;\n\
-    \t\t\tPolygon result(2 * n);\n\t\t\tfor (int i = 0; i < n; result[k++] = ps[i++])\
-    \ {\n\t\t\t\twhile (k >= 2 && iSP(result[k - 2], result[k - 1], ps[i]) <= 0) {\n\
-    \t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tfor (int i = n - 2, t = k + 1; i >=\
-    \ 0; result[k++] = ps[i--]) {\n\t\t\t\twhile (k >= t && iSP(result[k - 2], result[k\
-    \ - 1], ps[i]) <= 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\tresult.resize(k\
-    \ - 1);\n\t\t\treturn result;\n\t\t}\n\t\t// \u51F8\u5305\uFF08\u4E00\u76F4\u7DDA\
-    \u4E0A\u306E3\u70B9\u3092\u542B\u3081\u306A\u3044\u3001\u53CD\u6642\u8A08\u56DE\
-    \u308A\uFF09\n\t\tPolygon convex_hull_no_collinear() const {\n\t\t\tvector<Vec2>\
-    \ ps = *this;\n\t\t\tsort(ps.begin(), ps.end(), [](const Vec2& v1, const Vec2&\
-    \ v2) {\n\t\t\t\treturn make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\t\t\
-    });\n\t\t\tint n = ps.size(), k = 0;\n\t\t\tPolygon result(2 * n);\n\t\t\tfor\
-    \ (int i = 0; i < n; result[k++] = ps[i++]) {\n\t\t\t\twhile (k >= 2 && iSP(result[k\
+    \ _p) : vector<Vec2>(_p) {}\n\t\tLD area() const {\n\t\t\tLD ans = 0;\n\t\t\t\
+    for (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t next = i != size() - 1 ?\
+    \ i + 1 : 0;\n\t\t\t\tans += at(i).cross(at(next));\n\t\t\t}\n\t\t\treturn abs(ans)\
+    \ / 2;\n\t\t}\n\t\t// \u51F8\u6027\u5224\u5B9A\uFF08\u53CD\u6642\u8A08\u56DE\u308A\
+    \uFF09\n\t\tbool is_convex() const {\n\t\t\tif (size() < 3) {\n\t\t\t\treturn\
+    \ false;\n\t\t\t}\n\t\t\tfor (size_t i = 0; i < size(); ++i) {\n\t\t\t\tsize_t\
+    \ prev = i != 0 ? i - 1 : size() - 1;\n\t\t\t\tsize_t next = i != size() - 1 ?\
+    \ i + 1 : 0;\n\t\t\t\tif (iSP(at(prev), at(i), at(next)) == -1) {\n\t\t\t\t\t\
+    return false;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn true;\n\t\t}\n\t\t// \u51F8\u5305\
+    \uFF08\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon convex_hull() const {\n\
+    \t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(), ps.end(), Vec2::compare_xy);\n\
+    \t\t\tint n = ps.size(), k = 0;\n\t\t\tPolygon result(2 * n);\n\t\t\tfor (int\
+    \ i = 0; i < n; result[k++] = ps[i++]) {\n\t\t\t\twhile (k >= 2 && iSP(result[k\
+    \ - 2], result[k - 1], ps[i]) <= 0) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\t\
+    \tfor (int i = n - 2, t = k + 1; i >= 0; result[k++] = ps[i--]) {\n\t\t\t\twhile\
+    \ (k >= t && iSP(result[k - 2], result[k - 1], ps[i]) <= 0) {\n\t\t\t\t\t--k;\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t\tresult.resize(k - 1);\n\t\t\treturn result;\n\t\t}\n\
+    \t\t// \u51F8\u5305\uFF08\u4E00\u76F4\u7DDA\u4E0A\u306E3\u70B9\u3092\u542B\u3081\
+    \u306A\u3044\u3001\u53CD\u6642\u8A08\u56DE\u308A\uFF09\n\t\tPolygon convex_hull_no_collinear()\
+    \ const {\n\t\t\tvector<Vec2> ps = *this;\n\t\t\tsort(ps.begin(), ps.end(), Vec2::compare_xy);\n\
+    \t\t\tint n = ps.size(), k = 0;\n\t\t\tPolygon result(2 * n);\n\t\t\tfor (int\
+    \ i = 0; i < n; result[k++] = ps[i++]) {\n\t\t\t\twhile (k >= 2 && iSP(result[k\
     \ - 2], result[k - 1], ps[i]) != -1) {\n\t\t\t\t\t--k;\n\t\t\t\t}\n\t\t\t}\n\t\
     \t\tfor (int i = n - 2, t = k + 1; i >= 0; result[k++] = ps[i--]) {\n\t\t\t\t\
     while (k >= t && iSP(result[k - 2], result[k - 1], ps[i]) != -1) {\n\t\t\t\t\t\
@@ -545,7 +542,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2020-12-04 20:22:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp

@@ -196,6 +196,9 @@ data:
       path: Graph/TopologicalSort.cpp
       title: Graph/TopologicalSort.cpp
     - icon: ':heavy_check_mark:'
+      path: Graph/TravelingSalesmanProblem.cpp
+      title: Graph/TravelingSalesmanProblem.cpp
+    - icon: ':heavy_check_mark:'
       path: Graph/WarashallFloyd.cpp
       title: Graph/WarashallFloyd.cpp
     - icon: ':warning:'
@@ -683,6 +686,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/TravelingSalesmanProblem.test.cpp
+      title: test/TravelingSalesmanProblem.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
