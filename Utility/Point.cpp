@@ -172,7 +172,10 @@ struct Point {
 		return {x, y};
 	}
 	constexpr int manhattan_distance(const Point& p) const {
-		return std::abs(x - p.x) + std::abs(y - p.y);
+		return abs(x - p.x) + abs(y - p.y);
+	}
+	constexpr int chebyshev_distance(const Point& p) const {
+		return max(abs(x - p.x), abs(y - p.y));
 	}
 	constexpr int distance_square(const Point& p) const {
 		return (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y);
@@ -180,11 +183,11 @@ struct Point {
 	template <class Real> constexpr Real distance(const Point& p) const {
 		return sqrt(static_cast<Real>(distance_square(p)));
 	}
-	constexpr Point abs(const Point& p) const {
-		return {std::abs(x - p.x), std::abs(y - p.y)};
+	constexpr Point absolute(const Point& p) const {
+		return absolute(*this - p);
 	}
-	constexpr Point abs() const {
-		return {std::abs(x), std::abs(y)};
+	constexpr Point absolute() const {
+		return {abs(x), abs(y)};
 	}
 	Point& swap() {
 		std::swap(x, y);
@@ -425,6 +428,20 @@ struct Point {
 				if (grid[i][j] == val) {
 					assert(!result);
 					result = Point(j, i);
+				}
+			}
+		}
+		return result;
+	}
+	template <class T, class value_type = typename T::value_type::value_type>
+	static vector<Point> find_all(const T& grid, const value_type& val) {
+		assert(static_cast<int>(grid.size()) == H);
+		vector<Point> result;
+		for (int i = 0; i < H; ++i) {
+			assert(static_cast<int>(grid[i].size()) == W);
+			for (int j = 0; j < W; ++j) {
+				if (grid[i][j] == val) {
+					result.emplace_back(j, i);
 				}
 			}
 		}
