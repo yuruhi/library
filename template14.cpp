@@ -1,4 +1,3 @@
-// description : C++14用テンプレート
 #define _USE_MATH_DEFINES
 #include <bits/stdc++.h>
 #define rep(i, n) for (int i = 0; i < (n); ++i)
@@ -684,12 +683,11 @@ inline namespace {
 }  // namespace
 
 // --- dump --- //
-#if __has_include("/home/yuruhiya/contest/library/dump.hpp")
-#include "/home/yuruhiya/contest/library/dump.hpp"
+#if __has_include(<library/dump.hpp>)
+#include <library/dump.hpp>
 #else
 #define dump(...) ((void)0)
 #endif
 
 // ---------------------------------------------------------------- //
 
-int main() {}

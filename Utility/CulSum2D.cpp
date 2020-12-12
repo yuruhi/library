@@ -13,6 +13,7 @@ private:
 	vector<vector<T>> data;
 
 public:
+	CulSum2D() = default;
 	CulSum2D(const data_type& a)
 	    : h(a.size()), w(a.front().size()), data(h + 1, vector<value_type>(w + 1)) {
 		for (size_t i = 0; i < h; ++i) {
