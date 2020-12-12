@@ -20,13 +20,13 @@ public:
 			data[i + 1] = data[i] + a[i];
 		}
 	}
-	template <class U, class F, enable_if_t<is_integral<U>::value, nullptr_t> = nullptr>
+	template <class U, class F, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>
 	CulSum(const U& _n, F f) : n(_n), data(n + 1) {
 		for (size_t i = 0; i < n; ++i) {
 			data[i + 1] = data[i] + static_cast<value_type>(f(i));
 		}
 	}
-	template <class U, class F, enable_if_t<!is_integral<U>::value, nullptr_t> = nullptr>
+	template <class U, class F, enable_if_t<!is_integral_v<U>, nullptr_t> = nullptr>
 	CulSum(const U& a, F f)
 	    : CulSum(a.size(), [a, f](size_t i) -> value_type { return f(a[i]); }) {}
 	size_t size() const {

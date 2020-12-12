@@ -22,7 +22,7 @@ public:
 			}
 		}
 	}
-	template <class U, class F, enable_if_t<is_integral<U>::value, nullptr_t> = nullptr>
+	template <class U, class F, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>
 	CulSum2D(const U& _h, const U& _w, F f)
 	    : h(_h), w(_w), data(h + 1, vector<value_type>(w + 1)) {
 		for (size_t i = 0; i < h; ++i) {
@@ -32,7 +32,7 @@ public:
 			}
 		}
 	}
-	template <class U, class F, enable_if_t<!is_integral<U>::value, nullptr_t> = nullptr>
+	template <class U, class F, enable_if_t<!is_integral_v<U>, nullptr_t> = nullptr>
 	CulSum2D(const U& a, F f)
 	    : CulSum2D(a.size(), a.front().size(),
 	               [a, f](size_t i, size_t j) -> value_type { return f(a[i][j]); }) {}
