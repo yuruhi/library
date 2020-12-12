@@ -63,9 +63,9 @@ int main() {
 		static_assert(!is_square(15));
 		static_assert(is_square(16));
 		static_assert(!is_square(17));
-		static_assert(!is_square(996491788296388608));
-		static_assert(is_square(996491788296388609));
-		static_assert(!is_square(996491788296388610));
+		static_assert(!is_square(996491788296388608ll));
+		static_assert(is_square(996491788296388609ll));
+		static_assert(!is_square(996491788296388610ll));
 	}
 	{
 		static_assert(BIT<int>(0) == 1);
