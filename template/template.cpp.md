@@ -16,7 +16,7 @@ data:
   - icon: ':warning:'
     path: template/constants.cpp
     title: template/constants.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: template/functions.cpp
     title: template/functions.cpp
   _extendedRequiredBy: []
@@ -307,42 +307,50 @@ data:
     \ T> auto& operator<<(string& a, const T& b) {\n\ta.insert(a.end(), all(b));\n\
     \treturn a;\n}\ntemplate <class T, class U> auto operator+(vector<T> a, const\
     \ U& b) {\n\ta << b;\n\treturn a;\n}\ntemplate <class T> auto operator+(string\
-    \ a, const T& b) {\n\ta << b;\n\treturn a;\n}\n#line 6 \"template/functions.cpp\"\
-    \nusing namespace std;\n\ntemplate <class T> int sz(const T& v) {\n\treturn v.size();\n\
-    }\ntemplate <class T, class U> int lower_index(const T& a, const U& v) {\n\treturn\
-    \ lower_bound(all(a), v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const\
-    \ T& a, const U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size()\
-    \ ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class\
-    \ T> T div_ceil(T n, T m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T>\
-    \ T div_ceil2(T n, T m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class T>\
+    \ a, const T& b) {\n\ta << b;\n\treturn a;\n}\n#line 7 \"template/functions.cpp\"\
+    \nusing namespace std;\n\ntemplate <class T = long long> constexpr T TEN(size_t\
+    \ n) {\n\tT result = 1;\n\tfor (size_t i = 0; i < n; ++i) result *= 10;\n\treturn\
+    \ result;\n}\ntemplate <class T, class U,\n          enable_if_t<is_integral_v<T>\
+    \ && is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr auto div_ceil(T n, U m)\
+    \ {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T, class U> constexpr auto\
+    \ div_ceil2(T n, U m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class T> constexpr\
     \ T triangle(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\n\
-    template <class T> T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 *\
-    \ (n - 1);\n}\ntemplate <class T> T middle(const T& l, const T& r) {\n\treturn\
-    \ l + (r - l) / 2;\n}\ntemplate <class T> bool chmax(T& a, const T& b) {\n\tif\
-    \ (a < b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate <class\
-    \ T> bool chmin(T& a, const T& b) {\n\tif (a > b) {\n\t\ta = b;\n\t\treturn true;\n\
-    \t}\n\treturn false;\n}\ntemplate <class T> bool in_range(const T& v, const T&\
-    \ min, const T& max) {\n\treturn min <= v && v < max;\n}\ntemplate <class T> bool\
-    \ in_square(T n) {\n\tT s = sqrt(n);\n\treturn s * s == n || (s + 1) * (s + 1)\
-    \ == n;\n}\ntemplate <class T = long long> T BIT(int b) {\n\treturn T(1) << b;\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), gcd<U, U>);\n}\n\
-    template <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\t\
-    return accumulate(next(v.begin()), v.end(), U(*v.begin()), lcm<U, U>);\n}\ntemplate\
-    \ <class T, class U> T Pow(T a, U n) {\n\tT result = 1;\n\twhile (n > 0) {\n\t\
-    \tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\
-    \t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U> T Powmod(T\
-    \ a, U n, T mod) {\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\
-    \tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\
-    \t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\nnamespace internal {\n\ttemplate\
-    \ <class T, size_t N> auto make_vector(vector<int>& sizes, const T& init) {\n\t\
-    \tif constexpr (N == 1) {\n\t\t\treturn vector(sizes[0], init);\n\t\t} else {\n\
-    \t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn vector(size,\
-    \ make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\n\
-    template <class T, size_t N>\nauto make_vector(const int (&sizes)[N], const T&\
-    \ init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T,\
-    \ N>(s, init);\n}\n#line 9 \"template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
+    template <class T> constexpr T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n\
+    \ : n / 2 * (n - 1);\n}\ntemplate <class T, class U> constexpr auto middle(const\
+    \ T& l, const U& r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class T, class\
+    \ U, class V>\nconstexpr bool in_range(const T& v, const U& lower, const V& upper)\
+    \ {\n\treturn lower <= v && v < upper;\n}\ntemplate <class T, enable_if_t<is_integral_v<T>,\
+    \ nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = sqrt(n);\n\t\
+    return s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
+    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T, class U,\
+    \ enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr T Pow(T a, U\
+    \ n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\
+    \ {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\t\tn >>=\
+    \ 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U, enable_if_t<is_integral_v<U>,\
+    \ nullptr_t> = nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >=\
+    \ 0);\n\tif (a > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n\
+    \ & 1) {\n\t\t\tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta\
+    \ = a * a % mod;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class\
+    \ T> bool chmax(T& a, const T& b) {\n\tif (a < b) {\n\t\ta = b;\n\t\treturn true;\n\
+    \t}\n\treturn false;\n}\ntemplate <class T> bool chmin(T& a, const T& b) {\n\t\
+    if (a > b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate\
+    \ <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class T, class\
+    \ U> int lower_index(const T& a, const U& v) {\n\treturn lower_bound(all(a), v)\
+    \ - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a, const\
+    \ U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate <class T>\
+    \ auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size() ? T(v.begin()\
+    \ + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class T, class\
+    \ U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class T, size_t\
+    \ N> auto make_vector(vector<int>& sizes, const T& init) {\n\t\tif constexpr (N\
+    \ == 1) {\n\t\t\treturn vector(sizes[0], init);\n\t\t} else {\n\t\t\tint size\
+    \ = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn vector(size, make_vector<T,\
+    \ N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\ntemplate <class\
+    \ T, size_t N>\nauto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
+    \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
+    \ init);\n}\n#line 9 \"template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
     #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
     #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
     \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
@@ -362,7 +370,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-11-29 18:18:00+09:00'
+  timestamp: '2020-12-12 20:18:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

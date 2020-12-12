@@ -18,13 +18,13 @@ data:
     \ + 1)) {\n\t\tfor (size_t i = 0; i < h; ++i) {\n\t\t\tfor (size_t j = 0; j <\
     \ w; ++j) {\n\t\t\t\tdata[i + 1][j + 1] =\n\t\t\t\t    data[i][j + 1] + data[i\
     \ + 1][j] - data[i][j] + a[i][j];\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class U, class\
-    \ F, enable_if_t<is_integral<U>::value, nullptr_t> = nullptr>\n\tCulSum2D(const\
-    \ U& _h, const U& _w, F f)\n\t    : h(_h), w(_w), data(h + 1, vector<value_type>(w\
+    \ F, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\n\tCulSum2D(const U&\
+    \ _h, const U& _w, F f)\n\t    : h(_h), w(_w), data(h + 1, vector<value_type>(w\
     \ + 1)) {\n\t\tfor (size_t i = 0; i < h; ++i) {\n\t\t\tfor (size_t j = 0; j <\
     \ w; ++j) {\n\t\t\t\tdata[i + 1][j + 1] =\n\t\t\t\t    data[i][j + 1] + data[i\
     \ + 1][j] - data[i][j] + f(i, j);\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class U, class\
-    \ F, enable_if_t<!is_integral<U>::value, nullptr_t> = nullptr>\n\tCulSum2D(const\
-    \ U& a, F f)\n\t    : CulSum2D(a.size(), a.front().size(),\n\t               [a,\
+    \ F, enable_if_t<!is_integral_v<U>, nullptr_t> = nullptr>\n\tCulSum2D(const U&\
+    \ a, F f)\n\t    : CulSum2D(a.size(), a.front().size(),\n\t               [a,\
     \ f](size_t i, size_t j) -> value_type { return f(a[i][j]); }) {}\n\t// [y1, y2)\
     \ * [x1, x2)\n\tvalue_type operator()(size_t y1, size_t y2, size_t x1, size_t\
     \ x2) const {\n\t\ty1 = min(y1, h);\n\t\ty2 = min(y2, h);\n\t\tx1 = min(x1, w);\n\
@@ -40,12 +40,12 @@ data:
     \ data(h + 1, vector<value_type>(w + 1)) {\n\t\tfor (size_t i = 0; i < h; ++i)\
     \ {\n\t\t\tfor (size_t j = 0; j < w; ++j) {\n\t\t\t\tdata[i + 1][j + 1] =\n\t\t\
     \t\t    data[i][j + 1] + data[i + 1][j] - data[i][j] + a[i][j];\n\t\t\t}\n\t\t\
-    }\n\t}\n\ttemplate <class U, class F, enable_if_t<is_integral<U>::value, nullptr_t>\
+    }\n\t}\n\ttemplate <class U, class F, enable_if_t<is_integral_v<U>, nullptr_t>\
     \ = nullptr>\n\tCulSum2D(const U& _h, const U& _w, F f)\n\t    : h(_h), w(_w),\
     \ data(h + 1, vector<value_type>(w + 1)) {\n\t\tfor (size_t i = 0; i < h; ++i)\
     \ {\n\t\t\tfor (size_t j = 0; j < w; ++j) {\n\t\t\t\tdata[i + 1][j + 1] =\n\t\t\
     \t\t    data[i][j + 1] + data[i + 1][j] - data[i][j] + f(i, j);\n\t\t\t}\n\t\t\
-    }\n\t}\n\ttemplate <class U, class F, enable_if_t<!is_integral<U>::value, nullptr_t>\
+    }\n\t}\n\ttemplate <class U, class F, enable_if_t<!is_integral_v<U>, nullptr_t>\
     \ = nullptr>\n\tCulSum2D(const U& a, F f)\n\t    : CulSum2D(a.size(), a.front().size(),\n\
     \t               [a, f](size_t i, size_t j) -> value_type { return f(a[i][j]);\
     \ }) {}\n\t// [y1, y2) * [x1, x2)\n\tvalue_type operator()(size_t y1, size_t y2,\
@@ -59,7 +59,7 @@ data:
   isVerificationFile: false
   path: Utility/CulSum2D.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:47:36+09:00'
+  timestamp: '2020-12-12 20:18:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum2D.test.cpp

@@ -428,7 +428,7 @@ data:
     - icon: ':warning:'
       path: template/constants.cpp
       title: template/constants.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: template/functions.cpp
       title: template/functions.cpp
     - icon: ':warning:'
@@ -683,6 +683,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/StronglyConnectedComponents.test.cpp
       title: test/StronglyConnectedComponents.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/TemplateFunctions.test.cpp
+      title: test/TemplateFunctions.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
