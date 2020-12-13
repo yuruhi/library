@@ -51,7 +51,7 @@ data:
     \ value_type Fibonacci(long long n) {\n\tMatrix<value_type> A(vector<vector<value_type>>{{1,\
     \ 1}, {1, 0}});\n\tMatrix<value_type> B(vector<vector<value_type>>{{1}, {0}});\n\
     \treturn (A.pow(n) * B)[1][0];\n}\n\ntemplate <class value_type = long long> vector<value_type>\
-    \ EnumrateFibonacci(int n) {\n\tvector<value_type> result(n + 1);\n\tfor (int\
+    \ EnumerateFibonacci(int n) {\n\tvector<value_type> result(n + 1);\n\tfor (int\
     \ i = 0; i <= n; ++i) {\n\t\tif (i < 2) {\n\t\t\tresult[i] = i;\n\t\t} else {\n\
     \t\t\tresult[i] = result[i - 1] + result[i - 2];\n\t\t}\n\t}\n\treturn result;\n\
     }\n#line 3 \"test/Fibonacci.test.cpp\"\n#include <iostream>\nusing namespace std;\n\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/Fibonacci.test.cpp
   requiredBy: []
-  timestamp: '2020-12-04 17:58:12+09:00'
+  timestamp: '2020-12-13 11:47:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Fibonacci.test.cpp

@@ -216,11 +216,11 @@ data:
       path: Math/Divisors.cpp
       title: Math/Divisors.cpp
     - icon: ':warning:'
-      path: Math/EnumrateCombination.cpp
-      title: Math/EnumrateCombination.cpp
+      path: Math/EnumerateCombination.cpp
+      title: Math/EnumerateCombination.cpp
     - icon: ':heavy_check_mark:'
-      path: Math/EnumratePrimes.cpp
-      title: Math/EnumratePrimes.cpp
+      path: Math/EnumeratePrimes.cpp
+      title: Math/EnumeratePrimes.cpp
     - icon: ':heavy_check_mark:'
       path: Math/Eratosthenes.cpp
       title: Math/Eratosthenes.cpp
@@ -510,14 +510,14 @@ data:
       path: test/Divisors.test.cpp
       title: test/Divisors.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/EnumrateEuler.test.cpp
-      title: test/EnumrateEuler.test.cpp
+      path: test/EnumerateEuler.test.cpp
+      title: test/EnumerateEuler.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/EnumrateFibonacci.test.cpp
-      title: test/EnumrateFibonacci.test.cpp
+      path: test/EnumerateFibonacci.test.cpp
+      title: test/EnumerateFibonacci.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/EnumratePrimes.test.cpp
-      title: test/EnumratePrimes.test.cpp
+      path: test/EnumeratePrimes.test.cpp
+      title: test/EnumeratePrimes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Eratosthenes.test.cpp
       title: test/Eratosthenes.test.cpp

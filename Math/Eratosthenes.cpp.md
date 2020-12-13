@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Math/EnumratePrimes.cpp
-    title: Math/EnumratePrimes.cpp
+    path: Math/EnumeratePrimes.cpp
+    title: Math/EnumeratePrimes.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/EnumratePrimes.test.cpp
-    title: test/EnumratePrimes.test.cpp
+    path: test/EnumeratePrimes.test.cpp
+    title: test/EnumeratePrimes.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Eratosthenes.test.cpp
     title: test/Eratosthenes.test.cpp
@@ -30,11 +30,11 @@ data:
   isVerificationFile: false
   path: Math/Eratosthenes.cpp
   requiredBy:
-  - Math/EnumratePrimes.cpp
+  - Math/EnumeratePrimes.cpp
   timestamp: '2020-11-23 16:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/EnumratePrimes.test.cpp
+  - test/EnumeratePrimes.test.cpp
   - test/Eratosthenes.test.cpp
 documentation_of: Math/Eratosthenes.cpp
 layout: document

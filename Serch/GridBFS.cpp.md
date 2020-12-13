@@ -72,21 +72,21 @@ data:
     \t}\n\tconstexpr Point absolute(const Point& p) const {\n\t\treturn absolute(*this\
     \ - p);\n\t}\n\tconstexpr Point absolute() const {\n\t\treturn {abs(x), abs(y)};\n\
     \t}\n\tPoint& swap() {\n\t\tstd::swap(x, y);\n\t\treturn *this;\n\t}\n\n\tclass\
-    \ enumrate_adjacent_helper {\n\t\tshared_ptr<Point> p;\n\t\tdirection_iterator\
+    \ enumerate_adjacent_helper {\n\t\tshared_ptr<Point> p;\n\t\tdirection_iterator\
     \ first, last;\n\n\t\tclass iterator {\n\t\t\tshared_ptr<Point> p;\n\t\t\tdirection_iterator\
     \ it;\n\n\t\tpublic:\n\t\t\titerator(shared_ptr<Point> _p, direction_iterator\
     \ _it) : p(_p), it(_it) {}\n\t\t\tPoint operator*() const {\n\t\t\t\treturn *p\
     \ + *it;\n\t\t\t}\n\t\t\titerator& operator++() {\n\t\t\t\t++it;\n\t\t\t\treturn\
     \ *this;\n\t\t\t}\n\t\t\tbool operator!=(iterator other) const {\n\t\t\t\treturn\
-    \ it != other.it;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumrate_adjacent_helper(shared_ptr<Point>\
+    \ it != other.it;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adjacent_helper(shared_ptr<Point>\
     \ _p, direction_iterator _first,\n\t\t                         direction_iterator\
     \ _last)\n\t\t    : p(_p), first(_first), last(_last) {}\n\t\titerator begin()\
     \ const {\n\t\t\treturn iterator(p, first);\n\t\t}\n\t\titerator end() const {\n\
-    \t\t\treturn iterator(p, last);\n\t\t}\n\t};\n\tauto enumrate_adjacent(direction_iterator\
-    \ first, direction_iterator last) const {\n\t\treturn enumrate_adjacent_helper(make_shared<Point>(*this),\
-    \ first, last);\n\t}\n\tauto adjacent4() const {\n\t\treturn enumrate_adjacent(direction.begin(),\
-    \ direction.begin() + 4);\n\t}\n\tauto adjacent8() const {\n\t\treturn enumrate_adjacent(direction.begin(),\
-    \ direction.begin() + 8);\n\t}\n\n\tclass enumrate_adj_in_range_helper {\n\t\t\
+    \t\t\treturn iterator(p, last);\n\t\t}\n\t};\n\tauto enumerate_adjacent(direction_iterator\
+    \ first, direction_iterator last) const {\n\t\treturn enumerate_adjacent_helper(make_shared<Point>(*this),\
+    \ first, last);\n\t}\n\tauto adjacent4() const {\n\t\treturn enumerate_adjacent(direction.begin(),\
+    \ direction.begin() + 4);\n\t}\n\tauto adjacent8() const {\n\t\treturn enumerate_adjacent(direction.begin(),\
+    \ direction.begin() + 8);\n\t}\n\n\tclass enumerate_adj_in_range_helper {\n\t\t\
     shared_ptr<Point> p;\n\t\tdirection_iterator first, last;\n\n\t\tclass sentinel\
     \ {};\n\t\tclass iterator {\n\t\t\tshared_ptr<Point> p;\n\t\t\tdirection_iterator\
     \ first, last;\n\n\t\t\tvoid increment_until_in_range() {\n\t\t\t\tfor (; first\
@@ -97,15 +97,15 @@ data:
     \ const {\n\t\t\t\treturn *p + *first;\n\t\t\t}\n\t\t\titerator& operator++()\
     \ {\n\t\t\t\t++first;\n\t\t\t\tincrement_until_in_range();\n\t\t\t\treturn *this;\n\
     \t\t\t}\n\t\t\tbool operator!=(sentinel other) const {\n\t\t\t\treturn first !=\
-    \ last;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumrate_adj_in_range_helper(shared_ptr<Point>\
+    \ last;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adj_in_range_helper(shared_ptr<Point>\
     \ _p, direction_iterator _first,\n\t\t                             direction_iterator\
     \ _last)\n\t\t    : p(_p), first(_first), last(_last) {}\n\t\titerator begin()\
     \ const {\n\t\t\treturn iterator(p, first, last);\n\t\t}\n\t\tsentinel end() const\
     \ {\n\t\t\treturn sentinel();\n\t\t}\n\t};\n\ttemplate <class InputIterator>\n\
-    \tauto enumrate_adj_in_range(InputIterator first, InputIterator last) const {\n\
-    \t\treturn enumrate_adj_in_range_helper(make_shared<Point>(*this), first, last);\n\
-    \t}\n\tauto adj4_in_range() const {\n\t\treturn enumrate_adj_in_range(direction.begin(),\
-    \ direction.begin() + 4);\n\t}\n\tauto adj8_in_range() const {\n\t\treturn enumrate_adj_in_range(direction.begin(),\
+    \tauto enumerate_adj_in_range(InputIterator first, InputIterator last) const {\n\
+    \t\treturn enumerate_adj_in_range_helper(make_shared<Point>(*this), first, last);\n\
+    \t}\n\tauto adj4_in_range() const {\n\t\treturn enumerate_adj_in_range(direction.begin(),\
+    \ direction.begin() + 4);\n\t}\n\tauto adj8_in_range() const {\n\t\treturn enumerate_adj_in_range(direction.begin(),\
     \ direction.end());\n\t}\n\n\tconstexpr Point left() const {\n\t\treturn {x -\
     \ 1, y};\n\t}\n\tconstexpr Point right() const {\n\t\treturn {x + 1, y};\n\t}\n\
     \tconstexpr Point up() const {\n\t\treturn {x, y - 1};\n\t}\n\tconstexpr Point\
@@ -154,7 +154,7 @@ data:
     \ result;\n\t\tfor (int i = 0; i < H; ++i) {\n\t\t\tassert(static_cast<int>(grid[i].size())\
     \ == W);\n\t\t\tfor (int j = 0; j < W; ++j) {\n\t\t\t\tif (grid[i][j] == val)\
     \ {\n\t\t\t\t\tresult.emplace_back(j, i);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n\n\tstatic auto enumrate_2D_points() {\n\t\tclass enumrate_2D_points_helper\
+    \ result;\n\t}\n\n\tstatic auto enumerate_2D_points() {\n\t\tclass enumerate_2D_points_helper\
     \ {\n\t\tpublic:\n\t\t\tclass iterator {\n\t\t\t\tPoint p;\n\n\t\t\tpublic:\n\t\
     \t\t\titerator(const Point& _p) : p(_p) {}\n\t\t\t\tPoint operator*() const {\n\
     \t\t\t\t\treturn p;\n\t\t\t\t}\n\t\t\t\titerator& operator++() {\n\t\t\t\t\tp\
@@ -163,7 +163,7 @@ data:
     \ operator!=(iterator other) const {\n\t\t\t\t\treturn p != other.p;\n\t\t\t\t\
     }\n\t\t\t};\n\t\t\titerator begin() const {\n\t\t\t\treturn iterator(Point(0,\
     \ 0));\n\t\t\t}\n\t\t\titerator end() const {\n\t\t\t\treturn iterator(Point(0,\
-    \ H));\n\t\t\t}\n\t\t};\n\t\treturn enumrate_2D_points_helper();\n\t}\n\n\tfriend\
+    \ H));\n\t\t\t}\n\t\t};\n\t\treturn enumerate_2D_points_helper();\n\t}\n\n\tfriend\
     \ ostream& operator<<(ostream& os, const Point& p) {\n\t\treturn os << '(' <<\
     \ p.x << \", \" << p.y << ')';\n\t}\n\tfriend istream& operator>>(istream& is,\
     \ Point& p) {\n\t\treturn is >> p.y >> p.x;\n\t}\n};\nint Point::H, Point::W;\n\
@@ -212,7 +212,7 @@ data:
   isVerificationFile: false
   path: Serch/GridBFS.cpp
   requiredBy: []
-  timestamp: '2020-12-05 16:06:43+09:00'
+  timestamp: '2020-12-13 11:47:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/GridBFS.test.cpp

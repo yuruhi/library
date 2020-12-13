@@ -16,7 +16,7 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A
-  bundledCode: "#line 1 \"test/EnumrateFibonacci.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
+  bundledCode: "#line 1 \"test/EnumerateFibonacci.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
     \n#line 2 \"Math/Matrix.cpp\"\n#include <vector>\n#include <cassert>\nusing namespace\
     \ std;\n\ntemplate <class T> struct Matrix {\npublic:\n\tusing value_type = T;\n\
     \tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\tsize_t h, w;\n\t\
@@ -51,29 +51,29 @@ data:
     \ value_type Fibonacci(long long n) {\n\tMatrix<value_type> A(vector<vector<value_type>>{{1,\
     \ 1}, {1, 0}});\n\tMatrix<value_type> B(vector<vector<value_type>>{{1}, {0}});\n\
     \treturn (A.pow(n) * B)[1][0];\n}\n\ntemplate <class value_type = long long> vector<value_type>\
-    \ EnumrateFibonacci(int n) {\n\tvector<value_type> result(n + 1);\n\tfor (int\
+    \ EnumerateFibonacci(int n) {\n\tvector<value_type> result(n + 1);\n\tfor (int\
     \ i = 0; i <= n; ++i) {\n\t\tif (i < 2) {\n\t\t\tresult[i] = i;\n\t\t} else {\n\
     \t\t\tresult[i] = result[i - 1] + result[i - 2];\n\t\t}\n\t}\n\treturn result;\n\
-    }\n#line 3 \"test/EnumrateFibonacci.test.cpp\"\n#include <iostream>\nusing namespace\
-    \ std;\n\nint main() {\n\tint n;\n\tcin >> n;\n\tcout << EnumrateFibonacci<long\
+    }\n#line 3 \"test/EnumerateFibonacci.test.cpp\"\n#include <iostream>\nusing namespace\
+    \ std;\n\nint main() {\n\tint n;\n\tcin >> n;\n\tcout << EnumerateFibonacci<long\
     \ long>(n + 1)[n + 1] << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
     \n#include \"./../Math/Fibonacci.cpp\"\n#include <iostream>\nusing namespace std;\n\
-    \nint main() {\n\tint n;\n\tcin >> n;\n\tcout << EnumrateFibonacci<long long>(n\
+    \nint main() {\n\tint n;\n\tcin >> n;\n\tcout << EnumerateFibonacci<long long>(n\
     \ + 1)[n + 1] << '\\n';\n}"
   dependsOn:
   - Math/Fibonacci.cpp
   - Math/Matrix.cpp
   isVerificationFile: true
-  path: test/EnumrateFibonacci.test.cpp
+  path: test/EnumerateFibonacci.test.cpp
   requiredBy: []
-  timestamp: '2020-12-04 17:58:12+09:00'
+  timestamp: '2020-12-13 11:47:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/EnumrateFibonacci.test.cpp
+documentation_of: test/EnumerateFibonacci.test.cpp
 layout: document
 redirect_from:
-- /verify/test/EnumrateFibonacci.test.cpp
-- /verify/test/EnumrateFibonacci.test.cpp.html
-title: test/EnumrateFibonacci.test.cpp
+- /verify/test/EnumerateFibonacci.test.cpp
+- /verify/test/EnumerateFibonacci.test.cpp.html
+title: test/EnumerateFibonacci.test.cpp
 ---

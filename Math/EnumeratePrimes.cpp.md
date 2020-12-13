@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/EnumratePrimes.test.cpp
-    title: test/EnumratePrimes.test.cpp
+    path: test/EnumeratePrimes.test.cpp
+    title: test/EnumeratePrimes.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -17,27 +17,27 @@ data:
     \ std;\n\nvector<bool> Eratosthenes(size_t n) {\n\tvector<bool> result(n + 1,\
     \ true);\n\tresult[0] = result[1] = false;\n\tfor (size_t i = 2; i * i <= n; ++i)\
     \ {\n\t\tif (result[i]) {\n\t\t\tfor (size_t j = i * i; j <= n; j += i) result[j]\
-    \ = false;\n\t\t}\n\t}\n\treturn result;\n}\n#line 4 \"Math/EnumratePrimes.cpp\"\
-    \nusing namespace std;\n\nvector<int> EnumratePrimes(int n) {\n\tvector<int> result;\n\
-    \tauto p = Eratosthenes(n);\n\tfor (int i = 0; i <= n; ++i) {\n\t\tif (p[i]) result.push_back(i);\n\
-    \t}\n\treturn result;\n}\n"
+    \ = false;\n\t\t}\n\t}\n\treturn result;\n}\n#line 4 \"Math/EnumeratePrimes.cpp\"\
+    \nusing namespace std;\n\nvector<int> EnumeratePrimes(int n) {\n\tvector<int>\
+    \ result;\n\tauto p = Eratosthenes(n);\n\tfor (int i = 0; i <= n; ++i) {\n\t\t\
+    if (p[i]) result.push_back(i);\n\t}\n\treturn result;\n}\n"
   code: "#pragma once\n#include \"./Eratosthenes.cpp\"\n#include <vector>\nusing namespace\
-    \ std;\n\nvector<int> EnumratePrimes(int n) {\n\tvector<int> result;\n\tauto p\
-    \ = Eratosthenes(n);\n\tfor (int i = 0; i <= n; ++i) {\n\t\tif (p[i]) result.push_back(i);\n\
+    \ std;\n\nvector<int> EnumeratePrimes(int n) {\n\tvector<int> result;\n\tauto\
+    \ p = Eratosthenes(n);\n\tfor (int i = 0; i <= n; ++i) {\n\t\tif (p[i]) result.push_back(i);\n\
     \t}\n\treturn result;\n}\n"
   dependsOn:
   - Math/Eratosthenes.cpp
   isVerificationFile: false
-  path: Math/EnumratePrimes.cpp
+  path: Math/EnumeratePrimes.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:14:16+09:00'
+  timestamp: '2020-12-13 11:47:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/EnumratePrimes.test.cpp
-documentation_of: Math/EnumratePrimes.cpp
+  - test/EnumeratePrimes.test.cpp
+documentation_of: Math/EnumeratePrimes.cpp
 layout: document
 redirect_from:
-- /library/Math/EnumratePrimes.cpp
-- /library/Math/EnumratePrimes.cpp.html
-title: Math/EnumratePrimes.cpp
+- /library/Math/EnumeratePrimes.cpp
+- /library/Math/EnumeratePrimes.cpp.html
+title: Math/EnumeratePrimes.cpp
 ---

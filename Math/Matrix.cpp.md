@@ -7,8 +7,8 @@ data:
     title: Math/Fibonacci.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/EnumrateFibonacci.test.cpp
-    title: test/EnumrateFibonacci.test.cpp
+    path: test/EnumerateFibonacci.test.cpp
+    title: test/EnumerateFibonacci.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Fibonacci.test.cpp
     title: test/Fibonacci.test.cpp
@@ -85,8 +85,8 @@ data:
   timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/EnumerateFibonacci.test.cpp
   - test/Fibonacci.test.cpp
-  - test/EnumrateFibonacci.test.cpp
 documentation_of: Math/Matrix.cpp
 layout: document
 redirect_from:
