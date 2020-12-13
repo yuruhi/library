@@ -10,7 +10,7 @@ template <class T> T Euler(T x) {
 	return result;
 }
 
-vector<int> EnumrateEuler(int x) {
+vector<int> EnumerateEuler(int x) {
 	vector<int> result(x + 1);
 	iota(result.begin(), result.end(), 0);
 	for (int i = 2; i <= x; ++i) {

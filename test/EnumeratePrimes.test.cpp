@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C"
-#include "./../Math/EnumratePrimes.cpp"
+#include "./../Math/EnumeratePrimes.cpp"
 #include <iostream>
 #include <algorithm>
 using namespace std;
@@ -8,7 +8,7 @@ int main() {
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
 
-	auto primes = EnumratePrimes(100000000);
+	auto primes = EnumeratePrimes(100000000);
 	int n;
 	cin >> n;
 	int ans = 0;

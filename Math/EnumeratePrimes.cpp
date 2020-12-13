@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-vector<int> EnumratePrimes(int n) {
+vector<int> EnumeratePrimes(int n) {
 	vector<int> result;
 	auto p = Eratosthenes(n);
 	for (int i = 0; i <= n; ++i) {

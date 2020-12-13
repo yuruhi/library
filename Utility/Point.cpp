@@ -194,7 +194,7 @@ struct Point {
 		return *this;
 	}
 
-	class enumrate_adjacent_helper {
+	class enumerate_adjacent_helper {
 		shared_ptr<Point> p;
 		direction_iterator first, last;
 
@@ -217,7 +217,7 @@ struct Point {
 		};
 
 	public:
-		enumrate_adjacent_helper(shared_ptr<Point> _p, direction_iterator _first,
+		enumerate_adjacent_helper(shared_ptr<Point> _p, direction_iterator _first,
 		                         direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
@@ -227,17 +227,17 @@ struct Point {
 			return iterator(p, last);
 		}
 	};
-	auto enumrate_adjacent(direction_iterator first, direction_iterator last) const {
-		return enumrate_adjacent_helper(make_shared<Point>(*this), first, last);
+	auto enumerate_adjacent(direction_iterator first, direction_iterator last) const {
+		return enumerate_adjacent_helper(make_shared<Point>(*this), first, last);
 	}
 	auto adjacent4() const {
-		return enumrate_adjacent(direction.begin(), direction.begin() + 4);
+		return enumerate_adjacent(direction.begin(), direction.begin() + 4);
 	}
 	auto adjacent8() const {
-		return enumrate_adjacent(direction.begin(), direction.begin() + 8);
+		return enumerate_adjacent(direction.begin(), direction.begin() + 8);
 	}
 
-	class enumrate_adj_in_range_helper {
+	class enumerate_adj_in_range_helper {
 		shared_ptr<Point> p;
 		direction_iterator first, last;
 
@@ -272,7 +272,7 @@ struct Point {
 		};
 
 	public:
-		enumrate_adj_in_range_helper(shared_ptr<Point> _p, direction_iterator _first,
+		enumerate_adj_in_range_helper(shared_ptr<Point> _p, direction_iterator _first,
 		                             direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
@@ -283,14 +283,14 @@ struct Point {
 		}
 	};
 	template <class InputIterator>
-	auto enumrate_adj_in_range(InputIterator first, InputIterator last) const {
-		return enumrate_adj_in_range_helper(make_shared<Point>(*this), first, last);
+	auto enumerate_adj_in_range(InputIterator first, InputIterator last) const {
+		return enumerate_adj_in_range_helper(make_shared<Point>(*this), first, last);
 	}
 	auto adj4_in_range() const {
-		return enumrate_adj_in_range(direction.begin(), direction.begin() + 4);
+		return enumerate_adj_in_range(direction.begin(), direction.begin() + 4);
 	}
 	auto adj8_in_range() const {
-		return enumrate_adj_in_range(direction.begin(), direction.end());
+		return enumerate_adj_in_range(direction.begin(), direction.end());
 	}
 
 	constexpr Point left() const {
@@ -448,8 +448,8 @@ struct Point {
 		return result;
 	}
 
-	static auto enumrate_2D_points() {
-		class enumrate_2D_points_helper {
+	static auto enumerate_2D_points() {
+		class enumerate_2D_points_helper {
 		public:
 			class iterator {
 				Point p;
@@ -478,7 +478,7 @@ struct Point {
 				return iterator(Point(0, H));
 			}
 		};
-		return enumrate_2D_points_helper();
+		return enumerate_2D_points_helper();
 	}
 
 	friend ostream& operator<<(ostream& os, const Point& p) {

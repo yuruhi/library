@@ -6,5 +6,5 @@ using namespace std;
 int main() {
 	int n;
 	cin >> n;
-	cout << EnumrateFibonacci<long long>(n + 1)[n + 1] << '\n';
+	cout << EnumerateFibonacci<long long>(n + 1)[n + 1] << '\n';
 }

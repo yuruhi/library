@@ -9,7 +9,7 @@ template <class value_type> value_type Fibonacci(long long n) {
 	return (A.pow(n) * B)[1][0];
 }
 
-template <class value_type = long long> vector<value_type> EnumrateFibonacci(int n) {
+template <class value_type = long long> vector<value_type> EnumerateFibonacci(int n) {
 	vector<value_type> result(n + 1);
 	for (int i = 0; i <= n; ++i) {
 		if (i < 2) {
