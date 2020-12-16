@@ -40,13 +40,19 @@ data:
     \ v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
     \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
     \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\n#line 5 \"test/Dijkstra.test.cpp\"\nusing namespace std;\n\nint main()\
-    \ {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint n, m, s;\n\
-    \tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint\
-    \ s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t, d);\n\
-    \t}\n\n\tauto dist = Dijkstra(g, s);\n\tfor (int i = 0; i < n; ++i) {\n\t\tif\
-    \ (dist[i] < INF) {\n\t\t\tcout << dist[i] << '\\n';\n\t\t} else {\n\t\t\tcout\
-    \ << \"INF\\n\";\n\t\t}\n\t}\n}\n"
+    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tint V = graph.size();\n\
+    \tvector<Weight> dist(V, INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>,\
+    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
+    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
+    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n#line 5 \"test/Dijkstra.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n, m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m;\
+    \ ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
+    \ d);\n\t}\n\n\tauto dist = Dijkstra(g, s);\n\tfor (int i = 0; i < n; ++i) {\n\
+    \t\tif (dist[i] < INF) {\n\t\t\tcout << dist[i] << '\\n';\n\t\t} else {\n\t\t\t\
+    cout << \"INF\\n\";\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_A\"\
     \n\n#include \"./../Graph/Dijkstra.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
@@ -61,7 +67,7 @@ data:
   isVerificationFile: true
   path: test/Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-12-15 12:46:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dijkstra.test.cpp

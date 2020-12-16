@@ -43,22 +43,29 @@ data:
     \ v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
     \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
     \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\n#line 4 \"Graph/ChinesePostman.cpp\"\nusing namespace std;\n\nWeight\
-    \ ChinesePostman(const Graph& graph) {\n\tsize_t n = graph.size();\n\tWeight sum\
-    \ = 0;\n\tvector<int> odds;\n\tfor (size_t v = 0; v < n; ++v) {\n\t\tfor (const\
-    \ auto& e : graph[v]) sum += e.cost;\n\t\tif (graph[v].size() % 2 == 1) odds.push_back(v);\n\
-    \t}\n\tsum /= 2;\n\n\tsize_t m = odds.size(), M = 1 << m;\n\tMatrix dist(m, vector<Weight>(m));\n\
-    \tfor (size_t i = 0; i < m; ++i) {\n\t\tauto dist_v = Dijkstra(graph, odds[i]);\n\
-    \t\tfor (size_t j = 0; j < m; ++j) {\n\t\t\tdist[i][j] = dist_v[odds[j]];\n\t\t\
-    }\n\t}\n\n\tvector<Weight> dp(M, INF);\n\tdp[0] = 0;\n\tfor (size_t s = 0; s <\
-    \ M; ++s) {\n\t\tfor (size_t i = 0; i < m; ++i) {\n\t\t\tif (!(s & (1 << i)))\
-    \ {\n\t\t\t\tfor (size_t j = i + 1; j < m; ++j) {\n\t\t\t\t\tif (!(s & (1 << j)))\
-    \ {\n\t\t\t\t\t\tsize_t t = s | (1 << i) | (1 << j);\n\t\t\t\t\t\tdp[t] = min(dp[t],\
-    \ dp[s] + dist[i][j]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ sum + dp[M - 1];\n}\n#line 4 \"test/ChinesePostman.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \n\tint n, m;\n\tcin >> n >> m;\n\tGraph g(n);\n\tfor (int i = 0; i < m; ++i)\
-    \ {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
+    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tint V = graph.size();\n\
+    \tvector<Weight> dist(V, INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>,\
+    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
+    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
+    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n#line 4 \"Graph/ChinesePostman.cpp\"\
+    \nusing namespace std;\n\nWeight ChinesePostman(const Graph& graph) {\n\tsize_t\
+    \ n = graph.size();\n\tWeight sum = 0;\n\tvector<int> odds;\n\tfor (size_t v =\
+    \ 0; v < n; ++v) {\n\t\tfor (const auto& e : graph[v]) sum += e.cost;\n\t\tif\
+    \ (graph[v].size() % 2 == 1) odds.push_back(v);\n\t}\n\tsum /= 2;\n\n\tsize_t\
+    \ m = odds.size(), M = 1 << m;\n\tMatrix dist(m, vector<Weight>(m));\n\tfor (size_t\
+    \ i = 0; i < m; ++i) {\n\t\tauto dist_v = Dijkstra(graph, odds[i]);\n\t\tfor (size_t\
+    \ j = 0; j < m; ++j) {\n\t\t\tdist[i][j] = dist_v[odds[j]];\n\t\t}\n\t}\n\n\t\
+    vector<Weight> dp(M, INF);\n\tdp[0] = 0;\n\tfor (size_t s = 0; s < M; ++s) {\n\
+    \t\tfor (size_t i = 0; i < m; ++i) {\n\t\t\tif (!(s & (1 << i))) {\n\t\t\t\tfor\
+    \ (size_t j = i + 1; j < m; ++j) {\n\t\t\t\t\tif (!(s & (1 << j))) {\n\t\t\t\t\
+    \t\tsize_t t = s | (1 << i) | (1 << j);\n\t\t\t\t\t\tdp[t] = min(dp[t], dp[s]\
+    \ + dist[i][j]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn sum +\
+    \ dp[M - 1];\n}\n#line 4 \"test/ChinesePostman.test.cpp\"\nusing namespace std;\n\
+    \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\t\
+    int n, m;\n\tcin >> n >> m;\n\tGraph g(n);\n\tfor (int i = 0; i < m; ++i) {\n\t\
+    \tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
     \ d);\n\t\tg[t].emplace_back(s, d);\n\t}\n\tcout << ChinesePostman(g) << '\\n';\n\
     }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_2_B\"\
@@ -75,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/ChinesePostman.test.cpp
   requiredBy: []
-  timestamp: '2020-11-29 12:11:22+09:00'
+  timestamp: '2020-12-15 12:46:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ChinesePostman.test.cpp

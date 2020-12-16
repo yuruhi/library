@@ -144,9 +144,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/DijkstraBuildPath.cpp
       title: Graph/DijkstraBuildPath.cpp
-    - icon: ':warning:'
-      path: Graph/DijkstraST.cpp
-      title: Graph/DijkstraST.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp

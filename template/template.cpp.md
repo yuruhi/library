@@ -322,11 +322,12 @@ data:
     \ {\n\treturn lower <= v && v < upper;\n}\ntemplate <class T, enable_if_t<is_integral_v<T>,\
     \ nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = sqrt(n);\n\t\
     return s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
-    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T, class U,\
-    \ enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr T Pow(T a, U\
-    \ n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1)\
-    \ {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\t\tn >>=\
-    \ 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U, enable_if_t<is_integral_v<U>,\
+    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
+    \ int BIT(T x, int i) {\n\treturn (x & (1 << i)) ? 1 : 0;\n}\ntemplate <class\
+    \ T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr T\
+    \ Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\t\
+    if (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\t\
+    \tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U, enable_if_t<is_integral_v<U>,\
     \ nullptr_t> = nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >=\
     \ 0);\n\tif (a > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n\
     \ & 1) {\n\t\t\tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta\
@@ -370,7 +371,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-12-12 20:18:51+09:00'
+  timestamp: '2020-12-16 21:28:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

@@ -42,7 +42,13 @@ data:
     \ v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
     \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
     \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\n"
+    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tint V = graph.size();\n\
+    \tvector<Weight> dist(V, INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>,\
+    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
+    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
+    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <queue>\nusing namespace std;\n\nvector<Weight> Dijkstra(const Graph& graph,\
     \ int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\tdist[s]\
@@ -51,14 +57,20 @@ data:
     \ v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
     \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
     \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\n"
+    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tint V = graph.size();\n\
+    \tvector<Weight> dist(V, INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>,\
+    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
+    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
+    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/Dijkstra.cpp
   requiredBy:
   - Graph/ChinesePostman.cpp
-  timestamp: '2020-10-18 11:21:32+09:00'
+  timestamp: '2020-12-15 12:46:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ChinesePostman.test.cpp
