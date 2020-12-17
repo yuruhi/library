@@ -112,10 +112,10 @@ data:
   timestamp: '2020-11-29 18:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Dice3.test.cpp
   - test/Dice4.test.cpp
-  - test/Dice2.test.cpp
   - test/Dice1.test.cpp
+  - test/Dice3.test.cpp
+  - test/Dice2.test.cpp
 documentation_of: Utility/Dice.cpp
 layout: document
 redirect_from:

@@ -114,90 +114,90 @@ data:
     YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\t\
     DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"\
     ), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"),\n\
-    \    no_endl(\" \", \"\");\nclass Output {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
-    \npublic:\n\tvoid put(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr,\
+    \    no_endl(\" \", \"\");\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
+    \npublic:\n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr,\
     \ e] = to_chars(begin(buf), end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char),\
     \ ptr - buf, stdout);\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid\
-    \ put(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
+    \ print(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
-    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\
-    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\t\
-    put(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
-    \t}\n\tvoid put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
-    \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
-    \ double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate <class T> void\
-    \ put(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate <class T, class U>\
-    \ void put(const pair<T, U>& v) const {\n\t\tput(v.first);\n\t\tput(D.d);\n\t\t\
-    put(v.second);\n\t}\n\ttemplate <class InputIterater>\n\tvoid put_range(const\
-    \ InputIterater& begin, const InputIterater& end) const {\n\t\tfor (InputIterater\
-    \ i = begin; i != end; ++i) {\n\t\t\tif (i != begin) put(D.d);\n\t\t\tput(*i);\n\
-    \t\t}\n\t}\n\ttemplate <class T> void put(const vector<T>& v) const {\n\t\tput_range(v.begin(),\
-    \ v.end());\n\t}\n\ttemplate <class T, size_t N> void put(const array<T, N>& v)\
-    \ const {\n\t\tput_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void\
-    \ put(const vector<vector<T>>& v) const {\n\t\tfor (size_t i = 0; i < v.size();\
-    \ ++i) {\n\t\t\tif (i) put(D.l);\n\t\t\tput(v[i]);\n\t\t}\n\t}\n\n\tOutput() =\
-    \ default;\n\tOutput(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr),\
-    \ D(_divstr) {}\n\tOutput& operator()() {\n\t\tput(D.l);\n\t\treturn *this;\n\t\
-    }\n\ttemplate <class H> Output& operator()(H&& h) {\n\t\tput(h);\n\t\tput(D.l);\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class H, class... T> Output& operator()(H&&\
-    \ h, T&&... t) {\n\t\tput(h);\n\t\tput(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\
-    \t}\n\ttemplate <class InputIterator>\n\tOutput& range(const InputIterator& begin,\
-    \ const InputIterator& end) {\n\t\tput_range(begin, end);\n\t\tput(D.l);\n\t\t\
-    return *this;\n\t}\n\ttemplate <class T> Output& range(const T& a) {\n\t\trange(a.begin(),\
-    \ a.end());\n\t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&...\
-    \ t) {\n\t\toperator()(forward<T>(t)...);\n\t\tstd::exit(EXIT_SUCCESS);\n\t}\n\
-    \tOutput& flush() {\n\t\tfflush_unlocked(stdout);\n\t\treturn *this;\n\t}\n\t\
-    Output& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn *this;\n\t}\n\tOutput&\
-    \ set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\t}\n\tOutput& set(const\
-    \ char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\treturn *this;\n\t}\n\
-    } out;\n#line 7 \"template/functions.cpp\"\nusing namespace std;\n\ntemplate <class\
-    \ T = long long> constexpr T TEN(size_t n) {\n\tT result = 1;\n\tfor (size_t i\
-    \ = 0; i < n; ++i) result *= 10;\n\treturn result;\n}\ntemplate <class T, class\
-    \ U,\n          enable_if_t<is_integral_v<T> && is_integral_v<U>, nullptr_t> =\
-    \ nullptr>\nconstexpr auto div_ceil(T n, U m) {\n\treturn (n + m - 1) / m;\n}\n\
-    template <class T, class U> constexpr auto div_ceil2(T n, U m) {\n\treturn div_ceil(n,\
-    \ m) * m;\n}\ntemplate <class T> constexpr T triangle(T n) {\n\treturn (n & 1)\
-    \ ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\ntemplate <class T> constexpr T nC2(T\
-    \ n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate <class\
-    \ T, class U> constexpr auto middle(const T& l, const U& r) {\n\treturn l + (r\
-    \ - l) / 2;\n}\ntemplate <class T, class U, class V>\nconstexpr bool in_range(const\
-    \ T& v, const U& lower, const V& upper) {\n\treturn lower <= v && v < upper;\n\
-    }\ntemplate <class T, enable_if_t<is_integral_v<T>, nullptr_t> = nullptr>\nconstexpr\
-    \ bool is_square(T n) {\n\tT s = sqrt(n);\n\treturn s * s == n || (s + 1) * (s\
-    \ + 1) == n;\n}\ntemplate <class T = long long> constexpr T BIT(int b) {\n\treturn\
-    \ T(1) << b;\n}\ntemplate <class T> constexpr int BIT(T x, int i) {\n\treturn\
-    \ (x & (1 << i)) ? 1 : 0;\n}\ntemplate <class T, class U, enable_if_t<is_integral_v<U>,\
-    \ nullptr_t> = nullptr>\nconstexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result\
-    \ = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\
-    \t} else {\n\t\t\ta *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate\
-    \ <class T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr\
-    \ T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a > mod) a %= mod;\n\t\
-    T result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult = result * a\
-    \ % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\t\t\tn >>= 1;\n\t\
-    \t}\n\t}\n\treturn result;\n}\ntemplate <class T> bool chmax(T& a, const T& b)\
-    \ {\n\tif (a < b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate\
-    \ <class T> bool chmin(T& a, const T& b) {\n\tif (a > b) {\n\t\ta = b;\n\t\treturn\
-    \ true;\n\t}\n\treturn false;\n}\ntemplate <class T> int sz(const T& v) {\n\t\
-    return v.size();\n}\ntemplate <class T, class U> int lower_index(const T& a, const\
-    \ U& v) {\n\treturn lower_bound(all(a), v) - a.begin();\n}\ntemplate <class T,\
-    \ class U> int upper_index(const T& a, const U& v) {\n\treturn upper_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T> auto Slice(const T& v, size_t i, size_t\
-    \ len) {\n\treturn i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size()))\
-    \ : T();\n}\ntemplate <class T, class U = typename T::value_type> U Gcdv(const\
-    \ T& v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), gcd<U,\
-    \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
-    \ v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, size_t N> auto make_vector(vector<int>&\
-    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn vector(sizes[0],\
-    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
-    \t\t\treturn vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}\
-    \  // namespace internal\ntemplate <class T, size_t N>\nauto make_vector(const\
-    \ int (&sizes)[N], const T& init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n#line 7 \"template/template_no_Ruby.cpp\"\
-    \n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define\
-    \ LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr\
-    \ T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\
-    \treturn local;\n#endif\n}\n"
+    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\
+    \t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference v) const\
+    \ {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
+    \t}\n\tvoid print(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v),\
+    \ stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t\
+    }\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate\
+    \ <class T> void print(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate <class\
+    \ T, class U> void print(const pair<T, U>& v) const {\n\t\tprint(v.first);\n\t\
+    \tprint(D.d);\n\t\tprint(v.second);\n\t}\n\ttemplate <class InputIterater>\n\t\
+    void print_range(const InputIterater& begin, const InputIterater& end) const {\n\
+    \t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i != begin) print(D.d);\n\
+    \t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class T> void print(const vector<T>&\
+    \ v) const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T,\
+    \ size_t N> void print(const array<T, N>& v) const {\n\t\tprint_range(v.begin(),\
+    \ v.end());\n\t}\n\ttemplate <class T> void print(const vector<vector<T>>& v)\
+    \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
+    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
+    \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
+    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
+    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
+    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
+    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
+    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
+    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
+    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
+    \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
+    \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
+    \treturn *this;\n\t}\n} out;\n#line 7 \"template/functions.cpp\"\nusing namespace\
+    \ std;\n\ntemplate <class T = long long> constexpr T TEN(size_t n) {\n\tT result\
+    \ = 1;\n\tfor (size_t i = 0; i < n; ++i) result *= 10;\n\treturn result;\n}\n\
+    template <class T, class U,\n          enable_if_t<is_integral_v<T> && is_integral_v<U>,\
+    \ nullptr_t> = nullptr>\nconstexpr auto div_ceil(T n, U m) {\n\treturn (n + m\
+    \ - 1) / m;\n}\ntemplate <class T, class U> constexpr auto div_ceil2(T n, U m)\
+    \ {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class T> constexpr T triangle(T\
+    \ n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\ntemplate <class\
+    \ T> constexpr T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 * (n -\
+    \ 1);\n}\ntemplate <class T, class U> constexpr auto middle(const T& l, const\
+    \ U& r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class T, class U, class V>\n\
+    constexpr bool in_range(const T& v, const U& lower, const V& upper) {\n\treturn\
+    \ lower <= v && v < upper;\n}\ntemplate <class T, enable_if_t<is_integral_v<T>,\
+    \ nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = sqrt(n);\n\t\
+    return s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
+    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
+    \ int BIT(T x, int i) {\n\treturn (x & (1 << i)) ? 1 : 0;\n}\ntemplate <class\
+    \ T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr T\
+    \ Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\t\
+    if (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\t\
+    \tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U, enable_if_t<is_integral_v<U>,\
+    \ nullptr_t> = nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >=\
+    \ 0);\n\tif (a > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n\
+    \ & 1) {\n\t\t\tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta\
+    \ = a * a % mod;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class\
+    \ T> bool chmax(T& a, const T& b) {\n\tif (a < b) {\n\t\ta = b;\n\t\treturn true;\n\
+    \t}\n\treturn false;\n}\ntemplate <class T> bool chmin(T& a, const T& b) {\n\t\
+    if (a > b) {\n\t\ta = b;\n\t\treturn true;\n\t}\n\treturn false;\n}\ntemplate\
+    \ <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class T, class\
+    \ U> int lower_index(const T& a, const U& v) {\n\treturn lower_bound(all(a), v)\
+    \ - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a, const\
+    \ U& v) {\n\treturn upper_bound(all(a), v) - a.begin();\n}\ntemplate <class T>\
+    \ auto Slice(const T& v, size_t i, size_t len) {\n\treturn i < v.size() ? T(v.begin()\
+    \ + i, v.begin() + min(i + len, v.size())) : T();\n}\ntemplate <class T, class\
+    \ U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class T, size_t\
+    \ N> auto make_vector(vector<int>& sizes, const T& init) {\n\t\tif constexpr (N\
+    \ == 1) {\n\t\t\treturn vector(sizes[0], init);\n\t\t} else {\n\t\t\tint size\
+    \ = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn vector(size, make_vector<T,\
+    \ N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\ntemplate <class\
+    \ T, size_t N>\nauto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
+    \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
+    \ init);\n}\n#line 7 \"template/template_no_Ruby.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
+    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
+    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
+    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./constants.cpp\"\n#include\
     \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./functions.cpp\"\n#if\
     \ __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define LOCAL\n\
@@ -212,7 +212,7 @@ data:
   isVerificationFile: false
   path: template/template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2020-12-16 21:28:46+09:00'
+  timestamp: '2020-12-17 18:09:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template_no_Ruby.cpp

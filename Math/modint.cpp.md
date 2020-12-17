@@ -98,8 +98,8 @@ data:
   timestamp: '2020-11-23 14:52:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modint_pow.test.cpp
   - test/Partition.test.cpp
+  - test/modint_pow.test.cpp
 documentation_of: Math/modint.cpp
 layout: document
 redirect_from:

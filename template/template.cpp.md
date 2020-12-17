@@ -120,63 +120,63 @@ data:
     YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\t\
     DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"\
     ), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"),\n\
-    \    no_endl(\" \", \"\");\nclass Output {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
-    \npublic:\n\tvoid put(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr,\
+    \    no_endl(\" \", \"\");\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
+    \npublic:\n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr,\
     \ e] = to_chars(begin(buf), end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char),\
     \ ptr - buf, stdout);\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid\
-    \ put(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
+    \ print(long long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
-    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid put(bool v) const {\n\t\
-    \tput(v ? B.t : B.f);\n\t}\n\tvoid put(vector<bool>::reference v) const {\n\t\t\
-    put(v ? B.t : B.f);\n\t}\n\tvoid put(char v) const {\n\t\tputchar_unlocked(v);\n\
-    \t}\n\tvoid put(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v), stdout);\n\
-    \t}\n\tvoid put(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t}\n\tvoid put(long\
-    \ double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate <class T> void\
-    \ put(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate <class T, class U>\
-    \ void put(const pair<T, U>& v) const {\n\t\tput(v.first);\n\t\tput(D.d);\n\t\t\
-    put(v.second);\n\t}\n\ttemplate <class InputIterater>\n\tvoid put_range(const\
-    \ InputIterater& begin, const InputIterater& end) const {\n\t\tfor (InputIterater\
-    \ i = begin; i != end; ++i) {\n\t\t\tif (i != begin) put(D.d);\n\t\t\tput(*i);\n\
-    \t\t}\n\t}\n\ttemplate <class T> void put(const vector<T>& v) const {\n\t\tput_range(v.begin(),\
-    \ v.end());\n\t}\n\ttemplate <class T, size_t N> void put(const array<T, N>& v)\
-    \ const {\n\t\tput_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void\
-    \ put(const vector<vector<T>>& v) const {\n\t\tfor (size_t i = 0; i < v.size();\
-    \ ++i) {\n\t\t\tif (i) put(D.l);\n\t\t\tput(v[i]);\n\t\t}\n\t}\n\n\tOutput() =\
-    \ default;\n\tOutput(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr),\
-    \ D(_divstr) {}\n\tOutput& operator()() {\n\t\tput(D.l);\n\t\treturn *this;\n\t\
-    }\n\ttemplate <class H> Output& operator()(H&& h) {\n\t\tput(h);\n\t\tput(D.l);\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class H, class... T> Output& operator()(H&&\
-    \ h, T&&... t) {\n\t\tput(h);\n\t\tput(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\
-    \t}\n\ttemplate <class InputIterator>\n\tOutput& range(const InputIterator& begin,\
-    \ const InputIterator& end) {\n\t\tput_range(begin, end);\n\t\tput(D.l);\n\t\t\
-    return *this;\n\t}\n\ttemplate <class T> Output& range(const T& a) {\n\t\trange(a.begin(),\
-    \ a.end());\n\t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&...\
-    \ t) {\n\t\toperator()(forward<T>(t)...);\n\t\tstd::exit(EXIT_SUCCESS);\n\t}\n\
-    \tOutput& flush() {\n\t\tfflush_unlocked(stdout);\n\t\treturn *this;\n\t}\n\t\
-    Output& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn *this;\n\t}\n\tOutput&\
-    \ set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\t}\n\tOutput& set(const\
-    \ char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\treturn *this;\n\t}\n\
-    } out;\n#line 3 \"template/Step.cpp\"\nusing namespace std;\n\ntemplate <class\
-    \ T> struct Step {\n\tusing value_type = T;\n\n\tclass iterator {\n\t\tvalue_type\
-    \ a, b, c;\n\n\tpublic:\n\t\tconstexpr iterator() : a(value_type()), b(value_type()),\
-    \ c(value_type()) {}\n\t\tconstexpr iterator(value_type _b, value_type _c, value_type\
-    \ _s)\n\t\t    : a(_b), b(_c), c(_s) {}\n\t\tconstexpr iterator& operator++()\
-    \ {\n\t\t\t--b;\n\t\t\ta += c;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr iterator\
-    \ operator++(int) {\n\t\t\titerator tmp = *this;\n\t\t\t--b;\n\t\t\ta += c;\n\t\
-    \t\treturn tmp;\n\t\t}\n\t\tconstexpr const value_type& operator*() const {\n\t\
-    \t\treturn a;\n\t\t}\n\t\tconstexpr const value_type* operator->() const {\n\t\
-    \t\treturn &a;\n\t\t}\n\t\tconstexpr bool operator==(const iterator& i) const\
-    \ {\n\t\t\treturn b == i.b;\n\t\t}\n\t\tconstexpr bool operator!=(const iterator&\
-    \ i) const {\n\t\t\treturn !(b == i.b);\n\t\t}\n\t\tconstexpr value_type start()\
-    \ const {\n\t\t\treturn a;\n\t\t}\n\t\tconstexpr value_type size() const {\n\t\
-    \t\treturn b;\n\t\t}\n\t\tconstexpr value_type step() const {\n\t\t\treturn c;\n\
-    \t\t}\n\t};\n\tconstexpr Step(value_type b, value_type c, value_type s) : be(b,\
-    \ c, s) {}\n\tconstexpr iterator begin() const {\n\t\treturn be;\n\t}\n\tconstexpr\
-    \ iterator end() const {\n\t\treturn en;\n\t}\n\tconstexpr value_type start()\
-    \ const {\n\t\treturn be.start();\n\t}\n\tconstexpr value_type size() const {\n\
-    \t\treturn be.size();\n\t}\n\tconstexpr value_type step() const {\n\t\treturn\
-    \ be.step();\n\t}\n\tconstexpr value_type sum() const {\n\t\treturn start() *\
-    \ size() + step() * (size() * (size() - 1) / 2);\n\t}\n\toperator vector<value_type>()\
+    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\
+    \t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference v) const\
+    \ {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
+    \t}\n\tvoid print(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v),\
+    \ stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t\
+    }\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\ttemplate\
+    \ <class T> void print(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate <class\
+    \ T, class U> void print(const pair<T, U>& v) const {\n\t\tprint(v.first);\n\t\
+    \tprint(D.d);\n\t\tprint(v.second);\n\t}\n\ttemplate <class InputIterater>\n\t\
+    void print_range(const InputIterater& begin, const InputIterater& end) const {\n\
+    \t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i != begin) print(D.d);\n\
+    \t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class T> void print(const vector<T>&\
+    \ v) const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T,\
+    \ size_t N> void print(const array<T, N>& v) const {\n\t\tprint_range(v.begin(),\
+    \ v.end());\n\t}\n\ttemplate <class T> void print(const vector<vector<T>>& v)\
+    \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
+    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
+    \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
+    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
+    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
+    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
+    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
+    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
+    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
+    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
+    \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
+    \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
+    \treturn *this;\n\t}\n} out;\n#line 3 \"template/Step.cpp\"\nusing namespace std;\n\
+    \ntemplate <class T> struct Step {\n\tusing value_type = T;\n\n\tclass iterator\
+    \ {\n\t\tvalue_type a, b, c;\n\n\tpublic:\n\t\tconstexpr iterator() : a(value_type()),\
+    \ b(value_type()), c(value_type()) {}\n\t\tconstexpr iterator(value_type _b, value_type\
+    \ _c, value_type _s)\n\t\t    : a(_b), b(_c), c(_s) {}\n\t\tconstexpr iterator&\
+    \ operator++() {\n\t\t\t--b;\n\t\t\ta += c;\n\t\t\treturn *this;\n\t\t}\n\t\t\
+    constexpr iterator operator++(int) {\n\t\t\titerator tmp = *this;\n\t\t\t--b;\n\
+    \t\t\ta += c;\n\t\t\treturn tmp;\n\t\t}\n\t\tconstexpr const value_type& operator*()\
+    \ const {\n\t\t\treturn a;\n\t\t}\n\t\tconstexpr const value_type* operator->()\
+    \ const {\n\t\t\treturn &a;\n\t\t}\n\t\tconstexpr bool operator==(const iterator&\
+    \ i) const {\n\t\t\treturn b == i.b;\n\t\t}\n\t\tconstexpr bool operator!=(const\
+    \ iterator& i) const {\n\t\t\treturn !(b == i.b);\n\t\t}\n\t\tconstexpr value_type\
+    \ start() const {\n\t\t\treturn a;\n\t\t}\n\t\tconstexpr value_type size() const\
+    \ {\n\t\t\treturn b;\n\t\t}\n\t\tconstexpr value_type step() const {\n\t\t\treturn\
+    \ c;\n\t\t}\n\t};\n\tconstexpr Step(value_type b, value_type c, value_type s)\
+    \ : be(b, c, s) {}\n\tconstexpr iterator begin() const {\n\t\treturn be;\n\t}\n\
+    \tconstexpr iterator end() const {\n\t\treturn en;\n\t}\n\tconstexpr value_type\
+    \ start() const {\n\t\treturn be.start();\n\t}\n\tconstexpr value_type size()\
+    \ const {\n\t\treturn be.size();\n\t}\n\tconstexpr value_type step() const {\n\
+    \t\treturn be.step();\n\t}\n\tconstexpr value_type sum() const {\n\t\treturn start()\
+    \ * size() + step() * (size() * (size() - 1) / 2);\n\t}\n\toperator vector<value_type>()\
     \ const {\n\t\treturn to_a();\n\t}\n\tauto to_a() const {\n\t\tvector<value_type>\
     \ result;\n\t\tresult.reserve(size());\n\t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\
     \t\t}\n\t\treturn result;\n\t}\n\nprivate:\n\titerator be, en;\n};\ntemplate <class\
@@ -371,7 +371,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-12-16 21:28:46+09:00'
+  timestamp: '2020-12-17 18:09:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp
