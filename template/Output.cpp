@@ -18,12 +18,12 @@ struct DivStr {
 	DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}
 } spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"),
     no_endl(" ", "");
-class Output {
+class Printer {
 	BoolStr B{Yes};
 	DivStr D{spc};
 
 public:
-	void put(int v) const {
+	void print(int v) const {
 		char buf[12]{};
 		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
 			fwrite(buf, sizeof(char), ptr - buf, stdout);
@@ -31,7 +31,7 @@ public:
 			assert(false);
 		}
 	}
-	void put(long long v) const {
+	void print(long long v) const {
 		char buf[21]{};
 		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
 			fwrite(buf, sizeof(char), ptr - buf, stdout);
@@ -39,75 +39,75 @@ public:
 			assert(false);
 		}
 	}
-	void put(bool v) const {
-		put(v ? B.t : B.f);
+	void print(bool v) const {
+		print(v ? B.t : B.f);
 	}
-	void put(vector<bool>::reference v) const {
-		put(v ? B.t : B.f);
+	void print(vector<bool>::reference v) const {
+		print(v ? B.t : B.f);
 	}
-	void put(char v) const {
+	void print(char v) const {
 		putchar_unlocked(v);
 	}
-	void put(const char* v) const {
+	void print(const char* v) const {
 		fwrite_unlocked(v, 1, strlen(v), stdout);
 	}
-	void put(double v) const {
+	void print(double v) const {
 		printf("%.20f", v);
 	}
-	void put(long double v) const {
+	void print(long double v) const {
 		printf("%.20Lf", v);
 	}
-	template <class T> void put(const T& v) const {
+	template <class T> void print(const T& v) const {
 		cout << v;
 	}
-	template <class T, class U> void put(const pair<T, U>& v) const {
-		put(v.first);
-		put(D.d);
-		put(v.second);
+	template <class T, class U> void print(const pair<T, U>& v) const {
+		print(v.first);
+		print(D.d);
+		print(v.second);
 	}
 	template <class InputIterater>
-	void put_range(const InputIterater& begin, const InputIterater& end) const {
+	void print_range(const InputIterater& begin, const InputIterater& end) const {
 		for (InputIterater i = begin; i != end; ++i) {
-			if (i != begin) put(D.d);
-			put(*i);
+			if (i != begin) print(D.d);
+			print(*i);
 		}
 	}
-	template <class T> void put(const vector<T>& v) const {
-		put_range(v.begin(), v.end());
+	template <class T> void print(const vector<T>& v) const {
+		print_range(v.begin(), v.end());
 	}
-	template <class T, size_t N> void put(const array<T, N>& v) const {
-		put_range(v.begin(), v.end());
+	template <class T, size_t N> void print(const array<T, N>& v) const {
+		print_range(v.begin(), v.end());
 	}
-	template <class T> void put(const vector<vector<T>>& v) const {
+	template <class T> void print(const vector<vector<T>>& v) const {
 		for (size_t i = 0; i < v.size(); ++i) {
-			if (i) put(D.l);
-			put(v[i]);
+			if (i) print(D.l);
+			print(v[i]);
 		}
 	}
 
-	Output() = default;
-	Output(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}
-	Output& operator()() {
-		put(D.l);
+	Printer() = default;
+	Printer(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}
+	Printer& operator()() {
+		print(D.l);
 		return *this;
 	}
-	template <class H> Output& operator()(H&& h) {
-		put(h);
-		put(D.l);
+	template <class H> Printer& operator()(H&& h) {
+		print(h);
+		print(D.l);
 		return *this;
 	}
-	template <class H, class... T> Output& operator()(H&& h, T&&... t) {
-		put(h);
-		put(D.d);
+	template <class H, class... T> Printer& operator()(H&& h, T&&... t) {
+		print(h);
+		print(D.d);
 		return operator()(forward<T>(t)...);
 	}
 	template <class InputIterator>
-	Output& range(const InputIterator& begin, const InputIterator& end) {
-		put_range(begin, end);
-		put(D.l);
+	Printer& range(const InputIterator& begin, const InputIterator& end) {
+		print_range(begin, end);
+		print(D.l);
 		return *this;
 	}
-	template <class T> Output& range(const T& a) {
+	template <class T> Printer& range(const T& a) {
 		range(a.begin(), a.end());
 		return *this;
 	}
@@ -115,19 +115,19 @@ public:
 		operator()(forward<T>(t)...);
 		std::exit(EXIT_SUCCESS);
 	}
-	Output& flush() {
+	Printer& flush() {
 		fflush_unlocked(stdout);
 		return *this;
 	}
-	Output& set(const BoolStr& b) {
+	Printer& set(const BoolStr& b) {
 		B = b;
 		return *this;
 	}
-	Output& set(const DivStr& d) {
+	Printer& set(const DivStr& d) {
 		D = d;
 		return *this;
 	}
-	Output& set(const char* t, const char* f) {
+	Printer& set(const char* t, const char* f) {
 		B = BoolStr(t, f);
 		return *this;
 	}
