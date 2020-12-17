@@ -218,7 +218,7 @@ struct Point {
 
 	public:
 		enumerate_adjacent_helper(shared_ptr<Point> _p, direction_iterator _first,
-		                         direction_iterator _last)
+		                          direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
 			return iterator(p, first);
@@ -273,7 +273,7 @@ struct Point {
 
 	public:
 		enumerate_adj_in_range_helper(shared_ptr<Point> _p, direction_iterator _first,
-		                             direction_iterator _last)
+		                              direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
 			return iterator(p, first, last);
@@ -389,6 +389,18 @@ struct Point {
 			return D();
 		} else {
 			return zero();
+		}
+	}
+	static Point to_direction(string s, string_view lrud = "LRUD") {
+		if (s.size() == 1) {
+			return to_direction(s[0], lrud);
+		} else if (s.size() == 2) {
+			Point p1 = to_direction(s[0], lrud), p2 = to_direction(s[1], lrud);
+			assert((p1.x == 0) ^ (p2.x == 0));
+			assert((p1.y == 0) ^ (p2.y == 0));
+			return p1 + p2;
+		} else {
+			assert(false);
 		}
 	}
 
