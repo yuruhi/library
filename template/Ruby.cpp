@@ -189,6 +189,12 @@ struct Index_impl {
 			return result != end(v) ? optional(result - begin(v)) : nullopt;
 		});
 	}
+	template <class V> auto operator()(const V& val, size_t i) {
+		return Callable([&](auto v) -> optional<int> {
+			auto result = find(next(begin(v), i), end(v), val);
+			return result != end(v) ? optional(result - begin(v)) : nullopt;
+		});
+	}
 } Index;
 struct IndexIf_impl {
 	template <class F> auto operator()(const F& f) {
