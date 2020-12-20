@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: DP/Knapsack.cpp
     title: DP/Knapsack.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_C
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_C
   bundledCode: "#line 1 \"test/Knapsack.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_C\"\
-    \n#line 2 \"DP/Knapsack.cpp\"\n#include <vector>\n#include <algorithm>\nusing\
-    \ namespace std;\n\ntemplate <class T>\nvector<T> Knapsack(int n, int wight_limit,\
-    \ const vector<T>& value,\n                   const vector<int>& weight) {\n\t\
-    assert(n == static_cast<int>(value.size()));\n\tassert(n == static_cast<int>(weight.size()));\n\
+    \n#line 2 \"DP/Knapsack.cpp\"\n#include <vector>\n#include <algorithm>\n#include\
+    \ <cassert>\nusing namespace std;\n\ntemplate <class T>\nvector<T> Knapsack(int\
+    \ n, int wight_limit, const vector<T>& value,\n                   const vector<int>&\
+    \ weight) {\n\tassert(n == static_cast<int>(value.size()));\n\tassert(n == static_cast<int>(weight.size()));\n\
     \tvector<T> dp(wight_limit + 1, 0);\n\tfor (int i = 0; i < n; ++i) {\n\t\tfor\
     \ (int j = 0; j <= wight_limit - weight[i]; ++j) {\n\t\t\tdp[j + weight[i]] =\
     \ max(dp[j + weight[i]], dp[j] + value[i]);\n\t\t}\n\t}\n\treturn dp;\n}\n#line\
@@ -37,8 +37,8 @@ data:
   isVerificationFile: true
   path: test/Knapsack.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 17:36:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-12-20 17:43:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Knapsack.test.cpp
 layout: document
