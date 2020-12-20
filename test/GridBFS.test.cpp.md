@@ -83,7 +83,7 @@ data:
     \ + *it;\n\t\t\t}\n\t\t\titerator& operator++() {\n\t\t\t\t++it;\n\t\t\t\treturn\
     \ *this;\n\t\t\t}\n\t\t\tbool operator!=(iterator other) const {\n\t\t\t\treturn\
     \ it != other.it;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adjacent_helper(shared_ptr<Point>\
-    \ _p, direction_iterator _first,\n\t\t                         direction_iterator\
+    \ _p, direction_iterator _first,\n\t\t                          direction_iterator\
     \ _last)\n\t\t    : p(_p), first(_first), last(_last) {}\n\t\titerator begin()\
     \ const {\n\t\t\treturn iterator(p, first);\n\t\t}\n\t\titerator end() const {\n\
     \t\t\treturn iterator(p, last);\n\t\t}\n\t};\n\tauto enumerate_adjacent(direction_iterator\
@@ -102,7 +102,7 @@ data:
     \ {\n\t\t\t\t++first;\n\t\t\t\tincrement_until_in_range();\n\t\t\t\treturn *this;\n\
     \t\t\t}\n\t\t\tbool operator!=(sentinel other) const {\n\t\t\t\treturn first !=\
     \ last;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adj_in_range_helper(shared_ptr<Point>\
-    \ _p, direction_iterator _first,\n\t\t                             direction_iterator\
+    \ _p, direction_iterator _first,\n\t\t                              direction_iterator\
     \ _last)\n\t\t    : p(_p), first(_first), last(_last) {}\n\t\titerator begin()\
     \ const {\n\t\t\treturn iterator(p, first, last);\n\t\t}\n\t\tsentinel end() const\
     \ {\n\t\t\treturn sentinel();\n\t\t}\n\t};\n\ttemplate <class InputIterator>\n\
@@ -136,7 +136,12 @@ data:
     \ == 4);\n\t\tif (c == lrud[0]) {\n\t\t\treturn L();\n\t\t} else if (c == lrud[1])\
     \ {\n\t\t\treturn R();\n\t\t} else if (c == lrud[2]) {\n\t\t\treturn U();\n\t\t\
     } else if (c == lrud[3]) {\n\t\t\treturn D();\n\t\t} else {\n\t\t\treturn zero();\n\
-    \t\t}\n\t}\n\n\ttemplate <class T, class value_type = typename T::value_type::value_type>\n\
+    \t\t}\n\t}\n\tstatic Point to_direction(string s, string_view lrud = \"LRUD\"\
+    ) {\n\t\tif (s.size() == 1) {\n\t\t\treturn to_direction(s[0], lrud);\n\t\t} else\
+    \ if (s.size() == 2) {\n\t\t\tPoint p1 = to_direction(s[0], lrud), p2 = to_direction(s[1],\
+    \ lrud);\n\t\t\tassert((p1.x == 0) ^ (p2.x == 0));\n\t\t\tassert((p1.y == 0) ^\
+    \ (p2.y == 0));\n\t\t\treturn p1 + p2;\n\t\t} else {\n\t\t\tassert(false);\n\t\
+    \t}\n\t}\n\n\ttemplate <class T, class value_type = typename T::value_type::value_type>\n\
     \tstatic optional<Point> find(const T& grid, const value_type& val) {\n\t\tassert(static_cast<int>(grid.size())\
     \ == H);\n\t\tfor (int i = 0; i < H; ++i) {\n\t\t\tassert(static_cast<int>(grid[i].size())\
     \ == W);\n\t\t\tfor (int j = 0; j < W; ++j) {\n\t\t\t\tif (grid[i][j] == val)\
@@ -210,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2020-12-13 11:47:50+09:00'
+  timestamp: '2020-12-17 19:33:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp
