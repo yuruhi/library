@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: DP
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DP/Knapsack.cpp
       title: DP/Knapsack.cpp
     - icon: ':heavy_check_mark:'
@@ -611,7 +611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Knapsack.test.cpp
       title: test/Knapsack.test.cpp
     - icon: ':heavy_check_mark:'
