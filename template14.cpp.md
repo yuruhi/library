@@ -23,82 +23,93 @@ data:
     \ long long inf_ll = 1e18, MOD = 1000000007;\nconstexpr long double PI = M_PI,\
     \ EPS = 1e-12;\n\n// --- input --- //\n#ifdef _WIN32\n#define getchar_unlocked\
     \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
-    \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Input {\n\tstatic int\
-    \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\ttemplate <class T> static void\
-    \ i(T& v) {\n\t\tcin >> v;\n\t}\n\tstatic void i(char& v) {\n\t\twhile (isspace(v\
-    \ = gc()))\n\t\t\t;\n\t}\n\tstatic void i(bool& v) {\n\t\tv = in<char>() != '0';\n\
-    \t}\n\tstatic void i(string& v) {\n\t\tv.clear();\n\t\tchar c;\n\t\tfor (i(c);\
-    \ !isspace(c); c = gc()) v += c;\n\t}\n\tstatic void i(int& v) {\n\t\tbool neg\
-    \ = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\t\tif (c == '-') {\n\t\t\tneg\
-    \ = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c); c = gc()) v = v * 10\
-    \ + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void i(long long& v) {\n\t\
-    \tbool neg = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\t\tif (c == '-') {\n\
-    \t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c); c = gc()) v\
-    \ = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void i(double& v)\
-    \ {\n\t\tdouble dp = 1;\n\t\tbool neg = false, adp = false;\n\t\tv = 0;\n\t\t\
-    char c;\n\t\ti(c);\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\
-    \t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\n\t\t\
-    \t\tadp = true;\n\t\t\telse if (adp)\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\
-    \t\telse\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\t\
-    static void i(long double& v) {\n\t\tlong double dp = 1;\n\t\tbool neg = false,\
-    \ adp = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\t\tif (c == '-') {\n\t\t\t\
-    neg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc())\
-    \ {\n\t\t\tif (c == '.')\n\t\t\t\tadp = true;\n\t\t\telse if (adp)\n\t\t\t\tv\
-    \ += (c - '0') * (dp *= 0.1);\n\t\t\telse\n\t\t\t\tv = v * 10 + (c - '0');\n\t\
-    \t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void i(pair<T,\
-    \ U>& v) {\n\t\ti(v.first);\n\t\ti(v.second);\n\t}\n\ttemplate <class T> static\
-    \ void i(vector<T>& v) {\n\t\tfor (auto& e : v) i(e);\n\t}\n\tstruct InputV {\n\
-    \t\tint n, m;\n\t\tInputV(int _n) : n(_n), m(0) {}\n\t\tInputV(const pair<int,\
-    \ int>& nm) : n(nm.first), m(nm.second) {}\n\t\ttemplate <class T> operator vector<T>()\
-    \ {\n\t\t\tvector<T> v(n);\n\t\t\ti(v);\n\t\t\treturn v;\n\t\t}\n\t\ttemplate\
-    \ <class T> operator vector<vector<T>>() {\n\t\t\tvector<vector<T>> v(n, vector<T>(m));\n\
-    \t\t\ti(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\tstatic string read_line()\
-    \ {\n\t\tstring v;\n\t\tchar c;\n\t\tfor (i(c); c != '\\n' && c != '\\0'; c =\
-    \ gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T> static T in() {\n\t\t\
-    T v;\n\t\ti(v);\n\t\treturn v;\n\t}\n\ttemplate <class T> operator T() const {\n\
-    \t\treturn in<T>();\n\t}\n\tint operator--(int) const {\n\t\treturn in<int>()\
-    \ - 1;\n\t}\n\tInputV operator[](int n) const {\n\t\treturn InputV(n);\n\t}\n\t\
-    InputV operator[](const pair<int, int>& n) const {\n\t\treturn InputV(n);\n\t\
-    }\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
-    \ h, T&&... t) const {\n\t\ti(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n} in;\n\
-    #define input(T) Input::in<T>()\n#define INT input(int)\n#define LL input(long\
-    \ long)\n#define STR input(string)\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;\
-    \     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n#define\
-    \ inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n\
-    \n// --- output --- //\nstruct BoolStr {\n\tconst char *t, *f;\n\tBoolStr(const\
-    \ char* _t, const char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"No\"), yes(\"\
-    yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\t\
-    const char *d, *l;\n\tDivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n\
-    } spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\"\
-    ,\", \"\\n\"),\n    no_endl(\" \", \"\");\nclass Output {\n\tBoolStr B{Yes};\n\
-    \tDivStr D{spc};\n\tvoid p(int v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
+    \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int\
+    \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\
+    \tchar c;\n\t\tread(c);\n\t\treturn c;\n\t}\n\ttemplate <class T> static void\
+    \ read(T& v) {\n\t\tcin >> v;\n\t}\n\tstatic void read(char& v) {\n\t\twhile (isspace(v\
+    \ = gc()))\n\t\t\t;\n\t}\n\tstatic void read(bool& v) {\n\t\tv = next_char() !=\
+    \ '0';\n\t}\n\tstatic void read(string& v) {\n\t\tv.clear();\n\t\tfor (char c\
+    \ = next_char(); !isspace(c); c = gc()) v += c;\n\t}\n\tstatic void read(int&\
+    \ v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\tif (c\
+    \ == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c);\
+    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
+    \ read(long long& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
+    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c);\
+    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
+    \ read(double& v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp\
+    \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
+    \t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\t\
+    if (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\
+    \tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\
+    \t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void read(long double& v)\
+    \ {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp = false;\n\
+    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\
+    \t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0')\
+    \ * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\
+    \t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void read(pair<T,\
+    \ U>& v) {\n\t\tread(v.first);\n\t\tread(v.second);\n\t}\n\ttemplate <class T>\
+    \ static void read(vector<T>& v) {\n\t\tfor (auto& e : v) read(e);\n\t}\n\tstruct\
+    \ ReadVectorHelper {\n\t\tsize_t n;\n\t\tReadVectorHelper(size_t _n) : n(_n) {}\n\
+    \t\ttemplate <class T> operator vector<T>() {\n\t\t\tvector<T> v(n);\n\t\t\tread(v);\n\
+    \t\t\treturn v;\n\t\t}\n\t};\n\tstruct Read2DVectorHelper {\n\t\tsize_t n, m;\n\
+    \t\tRead2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second)\
+    \ {}\n\t\ttemplate <class T> operator vector<vector<T>>() {\n\t\t\tvector<vector<T>>\
+    \ v(n, vector<T>(m));\n\t\t\tread(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\
+    \tstring read_line() const {\n\t\tstring v;\n\t\tfor (char c = gc(); c != '\\\
+    n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T>\
+    \ T read() const {\n\t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate <class\
+    \ T> vector<T> read_vector(size_t n) const {\n\t\tvector<T> a(n);\n\t\tread(a);\n\
+    \t\treturn a;\n\t}\n\ttemplate <class T> operator T() const {\n\t\treturn read<T>();\n\
+    \t}\n\tint operator--(int) const {\n\t\treturn read<int>() - 1;\n\t}\n\tReadVectorHelper\
+    \ operator[](size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tRead2DVectorHelper\
+    \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
+    \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
+    \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
+    } in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
+    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
+    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n\n// --- output\
+    \ --- //\nstruct BoolStr {\n\tconst char *t, *f;\n\tBoolStr(const char* _t, const\
+    \ char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"No\"), yes(\"yes\", \"no\"), YES(\"\
+    YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\t\
+    DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"\
+    ), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"),\n\
+    \    no_endl(\" \", \"\");\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
+    \npublic:\n\tvoid print(int v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
     \ v = -v;\n\t\tchar b[10];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10,\
     \ v /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
-    \t}\n\tvoid p(long long v) const {\n\t\tif (v < 0) putchar_unlocked('-'), v =\
-    \ -v;\n\t\tchar b[20];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10, v\
-    \ /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
-    \t}\n\tvoid p(bool v) const {\n\t\tp(v ? B.t : B.f);\n\t}\n\tvoid p(char v) const\
-    \ {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid p(const char* v) const {\n\t\tfwrite_unlocked(v,\
-    \ 1, strlen(v), stdout);\n\t}\n\tvoid p(double v) const {\n\t\tprintf(\"%.20f\"\
-    , v);\n\t}\n\tvoid p(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\
-    \ttemplate <class T> void p(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate\
-    \ <class T, class U> void p(const pair<T, U>& v) const {\n\t\tp(v.first);\n\t\t\
-    p(D.d);\n\t\tp(v.second);\n\t}\n\ttemplate <class T> void p(const vector<T>& v)\
-    \ const {\n\t\trep(i, sz(v)) {\n\t\t\tif (i) p(D.d);\n\t\t\tp(v[i]);\n\t\t}\n\t\
-    }\n\ttemplate <class T> void p(const vector<vector<T>>& v) const {\n\t\trep(i,\
-    \ sz(v)) {\n\t\t\tif (i) p(D.l);\n\t\t\tp(v[i]);\n\t\t}\n\t}\n\npublic:\n\tOutput&\
-    \ operator()() {\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Output&\
-    \ operator()(H&& h) {\n\t\tp(h);\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
-    \ <class H, class... T> Output& operator()(H&& h, T&&... t) {\n\t\tp(h);\n\t\t\
-    p(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class It>\
-    \ Output& range(const It& l, const It& r) {\n\t\tfor (It i = l; i != r; i++) {\n\
-    \t\t\tif (i != l) p(D.d);\n\t\t\tp(*i);\n\t\t}\n\t\tp(D.l);\n\t\treturn *this;\n\
-    \t}\n\ttemplate <class T> Output& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
-    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tOutput& flush() {\n\t\tfflush_unlocked(stdout);\n\
-    \t\treturn *this;\n\t}\n\tOutput& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
-    \ *this;\n\t}\n\tOutput& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
-    \t}\n\tOutput& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
+    \t}\n\tvoid print(long long v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
+    \ v = -v;\n\t\tchar b[20];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10,\
+    \ v /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
+    \t}\n\tvoid print(bool v) const {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference\
+    \ v) const {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\
+    \tputchar_unlocked(v);\n\t}\n\tvoid print(const char* v) const {\n\t\tfwrite_unlocked(v,\
+    \ 1, strlen(v), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\"\
+    , v);\n\t}\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t\
+    }\n\ttemplate <class T> void print(const T& v) const {\n\t\tcout << v;\n\t}\n\t\
+    template <class T, class U> void print(const pair<T, U>& v) const {\n\t\tprint(v.first);\n\
+    \t\tprint(D.d);\n\t\tprint(v.second);\n\t}\n\ttemplate <class InputIterater>\n\
+    \tvoid print_range(const InputIterater& begin, const InputIterater& end) const\
+    \ {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i != begin)\
+    \ print(D.d);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class T> void print(const\
+    \ vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate\
+    \ <class T, size_t N> void print(const array<T, N>& v) const {\n\t\tprint_range(v.begin(),\
+    \ v.end());\n\t}\n\ttemplate <class T> void print(const vector<vector<T>>& v)\
+    \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
+    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
+    \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
+    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
+    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
+    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
+    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
+    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
+    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
+    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
+    \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
+    \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
     \treturn *this;\n\t}\n} out;\n\n// --- step --- //\ntemplate <class T> struct\
     \ Step {\n\tclass It {\n\t\tT a, b, c;\n\n\tpublic:\n\t\tconstexpr It() : a(T()),\
     \ b(T()), c(T()) {}\n\t\tconstexpr It(T _b, T _c, T _s) : a(_b), b(_c), c(_s)\
@@ -239,7 +250,7 @@ data:
     \tr = r * a % m, n--;\n\t\t\telse\n\t\t\t\ta = a * a % m, n /= 2;\n\t\t}\n\t\t\
     return r;\n\t}\n}  // namespace\n\n// --- dump --- //\n#if __has_include(<library/dump.hpp>)\n\
     #include <library/dump.hpp>\n#else\n#define dump(...) ((void)0)\n#endif\n\n//\
-    \ ---------------------------------------------------------------- //\n\n"
+    \ ---------------------------------------------------------------- //\n"
   code: "#define _USE_MATH_DEFINES\n#include <bits/stdc++.h>\n#define rep(i, n) for\
     \ (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n\
     #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for\
@@ -256,81 +267,93 @@ data:
     \ = 1000000007;\nconstexpr long double PI = M_PI, EPS = 1e-12;\n\n// --- input\
     \ --- //\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
     \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
-    #endif\nclass Input {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\t\
-    }\n\ttemplate <class T> static void i(T& v) {\n\t\tcin >> v;\n\t}\n\tstatic void\
-    \ i(char& v) {\n\t\twhile (isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void i(bool&\
-    \ v) {\n\t\tv = in<char>() != '0';\n\t}\n\tstatic void i(string& v) {\n\t\tv.clear();\n\
-    \t\tchar c;\n\t\tfor (i(c); !isspace(c); c = gc()) v += c;\n\t}\n\tstatic void\
-    \ i(int& v) {\n\t\tbool neg = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\t\t\
-    if (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ i(long long& v) {\n\t\tbool neg = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ i(double& v) {\n\t\tdouble dp = 1;\n\t\tbool neg = false, adp = false;\n\t\t\
-    v = 0;\n\t\tchar c;\n\t\ti(c);\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\t\
-    c = gc();\n\t\t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c\
-    \ == '.')\n\t\t\t\tadp = true;\n\t\t\telse if (adp)\n\t\t\t\tv += (c - '0') *\
-    \ (dp *= 0.1);\n\t\t\telse\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t}\n\t\tif (neg)\
-    \ v = -v;\n\t}\n\tstatic void i(long double& v) {\n\t\tlong double dp = 1;\n\t\
-    \tbool neg = false, adp = false;\n\t\tv = 0;\n\t\tchar c;\n\t\ti(c);\n\t\tif (c\
+    #endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\
+    \t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tread(c);\n\t\treturn c;\n\t\
+    }\n\ttemplate <class T> static void read(T& v) {\n\t\tcin >> v;\n\t}\n\tstatic\
+    \ void read(char& v) {\n\t\twhile (isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic\
+    \ void read(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void read(string&\
+    \ v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !isspace(c); c = gc())\
+    \ v += c;\n\t}\n\tstatic void read(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\
+    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; isdigit(c); c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg)\
+    \ v = -v;\n\t}\n\tstatic void read(long long& v) {\n\t\tv = 0;\n\t\tbool neg =\
+    \ false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\
+    \t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c); c = gc()) v = v * 10 + (c - '0');\n\
+    \t\tif (neg) v = -v;\n\t}\n\tstatic void read(double& v) {\n\t\tv = 0;\n\t\tdouble\
+    \ dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\
+    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c)\
+    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
+    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
+    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
+    }\n\tstatic void read(long double& v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\
+    \t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\t\tif (c\
     \ == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c)\
-    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\n\t\t\t\tadp = true;\n\t\t\telse\
-    \ if (adp)\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\telse\n\t\t\t\tv = v *\
-    \ 10 + (c - '0');\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class\
-    \ U> static void i(pair<T, U>& v) {\n\t\ti(v.first);\n\t\ti(v.second);\n\t}\n\t\
-    template <class T> static void i(vector<T>& v) {\n\t\tfor (auto& e : v) i(e);\n\
-    \t}\n\tstruct InputV {\n\t\tint n, m;\n\t\tInputV(int _n) : n(_n), m(0) {}\n\t\
-    \tInputV(const pair<int, int>& nm) : n(nm.first), m(nm.second) {}\n\t\ttemplate\
-    \ <class T> operator vector<T>() {\n\t\t\tvector<T> v(n);\n\t\t\ti(v);\n\t\t\t\
-    return v;\n\t\t}\n\t\ttemplate <class T> operator vector<vector<T>>() {\n\t\t\t\
-    vector<vector<T>> v(n, vector<T>(m));\n\t\t\ti(v);\n\t\t\treturn v;\n\t\t}\n\t\
-    };\n\npublic:\n\tstatic string read_line() {\n\t\tstring v;\n\t\tchar c;\n\t\t\
-    for (i(c); c != '\\n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\t\
-    template <class T> static T in() {\n\t\tT v;\n\t\ti(v);\n\t\treturn v;\n\t}\n\t\
-    template <class T> operator T() const {\n\t\treturn in<T>();\n\t}\n\tint operator--(int)\
-    \ const {\n\t\treturn in<int>() - 1;\n\t}\n\tInputV operator[](int n) const {\n\
-    \t\treturn InputV(n);\n\t}\n\tInputV operator[](const pair<int, int>& n) const\
-    \ {\n\t\treturn InputV(n);\n\t}\n\tvoid operator()() const {}\n\ttemplate <class\
-    \ H, class... T> void operator()(H&& h, T&&... t) const {\n\t\ti(h);\n\t\toperator()(forward<T>(t)...);\n\
-    \t}\n} in;\n#define input(T) Input::in<T>()\n#define INT input(int)\n#define LL\
-    \ input(long long)\n#define STR input(string)\n#define inputs(T, ...) \\\n\tT\
-    \ __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n\
-    #define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(string,\
-    \ __VA_ARGS__)\n\n// --- output --- //\nstruct BoolStr {\n\tconst char *t, *f;\n\
-    \tBoolStr(const char* _t, const char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"\
-    No\"), yes(\"yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\", \"0\");\nstruct\
-    \ DivStr {\n\tconst char *d, *l;\n\tDivStr(const char* _d, const char* _l) : d(_d),\
-    \ l(_l) {}\n} spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\
-    \\n\"), comma(\",\", \"\\n\"),\n    no_endl(\" \", \"\");\nclass Output {\n\t\
-    BoolStr B{Yes};\n\tDivStr D{spc};\n\tvoid p(int v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
+    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
+    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
+    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
+    }\n\ttemplate <class T, class U> static void read(pair<T, U>& v) {\n\t\tread(v.first);\n\
+    \t\tread(v.second);\n\t}\n\ttemplate <class T> static void read(vector<T>& v)\
+    \ {\n\t\tfor (auto& e : v) read(e);\n\t}\n\tstruct ReadVectorHelper {\n\t\tsize_t\
+    \ n;\n\t\tReadVectorHelper(size_t _n) : n(_n) {}\n\t\ttemplate <class T> operator\
+    \ vector<T>() {\n\t\t\tvector<T> v(n);\n\t\t\tread(v);\n\t\t\treturn v;\n\t\t\
+    }\n\t};\n\tstruct Read2DVectorHelper {\n\t\tsize_t n, m;\n\t\tRead2DVectorHelper(const\
+    \ pair<size_t, size_t>& nm) : n(nm.first), m(nm.second) {}\n\t\ttemplate <class\
+    \ T> operator vector<vector<T>>() {\n\t\t\tvector<vector<T>> v(n, vector<T>(m));\n\
+    \t\t\tread(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\tstring read_line()\
+    \ const {\n\t\tstring v;\n\t\tfor (char c = gc(); c != '\\n' && c != '\\0'; c\
+    \ = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T> T read() const {\n\
+    \t\tT v;\n\t\tread(v);\n\t\treturn v;\n\t}\n\ttemplate <class T> vector<T> read_vector(size_t\
+    \ n) const {\n\t\tvector<T> a(n);\n\t\tread(a);\n\t\treturn a;\n\t}\n\ttemplate\
+    \ <class T> operator T() const {\n\t\treturn read<T>();\n\t}\n\tint operator--(int)\
+    \ const {\n\t\treturn read<int>() - 1;\n\t}\n\tReadVectorHelper operator[](size_t\
+    \ n) const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tRead2DVectorHelper operator[](const\
+    \ pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\t}\n\
+    \tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
+    \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
+    } in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
+    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
+    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n\n// --- output\
+    \ --- //\nstruct BoolStr {\n\tconst char *t, *f;\n\tBoolStr(const char* _t, const\
+    \ char* _f) : t(_t), f(_f) {}\n} Yes(\"Yes\", \"No\"), yes(\"yes\", \"no\"), YES(\"\
+    YES\", \"NO\"), Int(\"1\", \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\t\
+    DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"\
+    ), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"),\n\
+    \    no_endl(\" \", \"\");\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\
+    \npublic:\n\tvoid print(int v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
     \ v = -v;\n\t\tchar b[10];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10,\
     \ v /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
-    \t}\n\tvoid p(long long v) const {\n\t\tif (v < 0) putchar_unlocked('-'), v =\
-    \ -v;\n\t\tchar b[20];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10, v\
-    \ /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
-    \t}\n\tvoid p(bool v) const {\n\t\tp(v ? B.t : B.f);\n\t}\n\tvoid p(char v) const\
-    \ {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid p(const char* v) const {\n\t\tfwrite_unlocked(v,\
-    \ 1, strlen(v), stdout);\n\t}\n\tvoid p(double v) const {\n\t\tprintf(\"%.20f\"\
-    , v);\n\t}\n\tvoid p(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t}\n\
-    \ttemplate <class T> void p(const T& v) const {\n\t\tcout << v;\n\t}\n\ttemplate\
-    \ <class T, class U> void p(const pair<T, U>& v) const {\n\t\tp(v.first);\n\t\t\
-    p(D.d);\n\t\tp(v.second);\n\t}\n\ttemplate <class T> void p(const vector<T>& v)\
-    \ const {\n\t\trep(i, sz(v)) {\n\t\t\tif (i) p(D.d);\n\t\t\tp(v[i]);\n\t\t}\n\t\
-    }\n\ttemplate <class T> void p(const vector<vector<T>>& v) const {\n\t\trep(i,\
-    \ sz(v)) {\n\t\t\tif (i) p(D.l);\n\t\t\tp(v[i]);\n\t\t}\n\t}\n\npublic:\n\tOutput&\
-    \ operator()() {\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Output&\
-    \ operator()(H&& h) {\n\t\tp(h);\n\t\tp(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
-    \ <class H, class... T> Output& operator()(H&& h, T&&... t) {\n\t\tp(h);\n\t\t\
-    p(D.d);\n\t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class It>\
-    \ Output& range(const It& l, const It& r) {\n\t\tfor (It i = l; i != r; i++) {\n\
-    \t\t\tif (i != l) p(D.d);\n\t\t\tp(*i);\n\t\t}\n\t\tp(D.l);\n\t\treturn *this;\n\
-    \t}\n\ttemplate <class T> Output& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
-    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tOutput& flush() {\n\t\tfflush_unlocked(stdout);\n\
-    \t\treturn *this;\n\t}\n\tOutput& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
-    \ *this;\n\t}\n\tOutput& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
-    \t}\n\tOutput& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
+    \t}\n\tvoid print(long long v) const {\n\t\tif (v < 0) putchar_unlocked('-'),\
+    \ v = -v;\n\t\tchar b[20];\n\t\tint i = 0;\n\t\twhile (v) b[i++] = '0' + v % 10,\
+    \ v /= 10;\n\t\tif (!i) b[i++] = '0';\n\t\twhile (i--) putchar_unlocked(b[i]);\n\
+    \t}\n\tvoid print(bool v) const {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference\
+    \ v) const {\n\t\tprint(v ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\
+    \tputchar_unlocked(v);\n\t}\n\tvoid print(const char* v) const {\n\t\tfwrite_unlocked(v,\
+    \ 1, strlen(v), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\"\
+    , v);\n\t}\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t\
+    }\n\ttemplate <class T> void print(const T& v) const {\n\t\tcout << v;\n\t}\n\t\
+    template <class T, class U> void print(const pair<T, U>& v) const {\n\t\tprint(v.first);\n\
+    \t\tprint(D.d);\n\t\tprint(v.second);\n\t}\n\ttemplate <class InputIterater>\n\
+    \tvoid print_range(const InputIterater& begin, const InputIterater& end) const\
+    \ {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i != begin)\
+    \ print(D.d);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class T> void print(const\
+    \ vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate\
+    \ <class T, size_t N> void print(const array<T, N>& v) const {\n\t\tprint_range(v.begin(),\
+    \ v.end());\n\t}\n\ttemplate <class T> void print(const vector<vector<T>>& v)\
+    \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
+    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
+    \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
+    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
+    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
+    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
+    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
+    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
+    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
+    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
+    \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
+    \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
     \treturn *this;\n\t}\n} out;\n\n// --- step --- //\ntemplate <class T> struct\
     \ Step {\n\tclass It {\n\t\tT a, b, c;\n\n\tpublic:\n\t\tconstexpr It() : a(T()),\
     \ b(T()), c(T()) {}\n\t\tconstexpr It(T _b, T _c, T _s) : a(_b), b(_c), c(_s)\
@@ -471,12 +494,12 @@ data:
     \tr = r * a % m, n--;\n\t\t\telse\n\t\t\t\ta = a * a % m, n /= 2;\n\t\t}\n\t\t\
     return r;\n\t}\n}  // namespace\n\n// --- dump --- //\n#if __has_include(<library/dump.hpp>)\n\
     #include <library/dump.hpp>\n#else\n#define dump(...) ((void)0)\n#endif\n\n//\
-    \ ---------------------------------------------------------------- //\n\n"
+    \ ---------------------------------------------------------------- //\n"
   dependsOn: []
   isVerificationFile: false
   path: template14.cpp
   requiredBy: []
-  timestamp: '2020-12-12 22:39:54+09:00'
+  timestamp: '2020-12-20 11:57:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template14.cpp
