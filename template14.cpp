@@ -206,20 +206,20 @@ class Printer {
 
 public:
 	void print(int v) const {
-		char buf[12]{};
-		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
-			fwrite(buf, sizeof(char), ptr - buf, stdout);
-		} else {
-			assert(false);
-		}
+		if (v < 0) putchar_unlocked('-'), v = -v;
+		char b[10];
+		int i = 0;
+		while (v) b[i++] = '0' + v % 10, v /= 10;
+		if (!i) b[i++] = '0';
+		while (i--) putchar_unlocked(b[i]);
 	}
 	void print(long long v) const {
-		char buf[21]{};
-		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
-			fwrite(buf, sizeof(char), ptr - buf, stdout);
-		} else {
-			assert(false);
-		}
+		if (v < 0) putchar_unlocked('-'), v = -v;
+		char b[20];
+		int i = 0;
+		while (v) b[i++] = '0' + v % 10, v /= 10;
+		if (!i) b[i++] = '0';
+		while (i--) putchar_unlocked(b[i]);
 	}
 	void print(bool v) const {
 		print(v ? B.t : B.f);
