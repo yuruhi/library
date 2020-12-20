@@ -38,30 +38,33 @@ constexpr long double PI = M_PI, EPS = 1e-12;
 #define fwrite_unlocked fwrite
 #define fflush_unlocked fflush
 #endif
-class Input {
+class Scanner {
 	static int gc() {
 		return getchar_unlocked();
 	}
-	template <class T> static void i(T& v) {
+	static char next_char() {
+		char c;
+		read(c);
+		return c;
+	}
+	template <class T> static void read(T& v) {
 		cin >> v;
 	}
-	static void i(char& v) {
+	static void read(char& v) {
 		while (isspace(v = gc()))
 			;
 	}
-	static void i(bool& v) {
-		v = in<char>() != '0';
+	static void read(bool& v) {
+		v = next_char() != '0';
 	}
-	static void i(string& v) {
+	static void read(string& v) {
 		v.clear();
-		char c;
-		for (i(c); !isspace(c); c = gc()) v += c;
+		for (char c = next_char(); !isspace(c); c = gc()) v += c;
 	}
-	static void i(int& v) {
-		bool neg = false;
+	static void read(int& v) {
 		v = 0;
-		char c;
-		i(c);
+		bool neg = false;
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -69,11 +72,10 @@ class Input {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void i(long long& v) {
-		bool neg = false;
+	static void read(long long& v) {
 		v = 0;
-		char c;
-		i(c);
+		bool neg = false;
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
@@ -81,103 +83,106 @@ class Input {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void i(double& v) {
+	static void read(double& v) {
+		v = 0;
 		double dp = 1;
-		bool neg = false, adp = false;
-		v = 0;
-		char c;
-		i(c);
+		bool neg = false, after_dp = false;
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
 		}
 		for (; isdigit(c) || c == '.'; c = gc()) {
-			if (c == '.')
-				adp = true;
-			else if (adp)
+			if (c == '.') {
+				after_dp = true;
+			} else if (after_dp) {
 				v += (c - '0') * (dp *= 0.1);
-			else
+			} else {
 				v = v * 10 + (c - '0');
+			}
 		}
 		if (neg) v = -v;
 	}
-	static void i(long double& v) {
+	static void read(long double& v) {
+		v = 0;
 		long double dp = 1;
-		bool neg = false, adp = false;
-		v = 0;
-		char c;
-		i(c);
+		bool neg = false, after_dp = false;
+		char c = next_char();
 		if (c == '-') {
 			neg = true;
 			c = gc();
 		}
 		for (; isdigit(c) || c == '.'; c = gc()) {
-			if (c == '.')
-				adp = true;
-			else if (adp)
+			if (c == '.') {
+				after_dp = true;
+			} else if (after_dp) {
 				v += (c - '0') * (dp *= 0.1);
-			else
+			} else {
 				v = v * 10 + (c - '0');
+			}
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> static void i(pair<T, U>& v) {
-		i(v.first);
-		i(v.second);
+	template <class T, class U> static void read(pair<T, U>& v) {
+		read(v.first);
+		read(v.second);
 	}
-	template <class T> static void i(vector<T>& v) {
-		for (auto& e : v) i(e);
+	template <class T> static void read(vector<T>& v) {
+		for (auto& e : v) read(e);
 	}
-	struct InputV {
-		int n, m;
-		InputV(int _n) : n(_n), m(0) {}
-		InputV(const pair<int, int>& nm) : n(nm.first), m(nm.second) {}
+	struct ReadVectorHelper {
+		size_t n;
+		ReadVectorHelper(size_t _n) : n(_n) {}
 		template <class T> operator vector<T>() {
 			vector<T> v(n);
-			i(v);
+			read(v);
 			return v;
 		}
+	};
+	struct Read2DVectorHelper {
+		size_t n, m;
+		Read2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second) {}
 		template <class T> operator vector<vector<T>>() {
 			vector<vector<T>> v(n, vector<T>(m));
-			i(v);
+			read(v);
 			return v;
 		}
 	};
 
 public:
-	static string read_line() {
+	string read_line() const {
 		string v;
-		char c;
-		for (i(c); c != '\n' && c != '\0'; c = gc()) v += c;
+		for (char c = gc(); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
-	template <class T> static T in() {
+	template <class T> T read() const {
 		T v;
-		i(v);
+		read(v);
 		return v;
+	}
+	template <class T> vector<T> read_vector(size_t n) const {
+		vector<T> a(n);
+		read(a);
+		return a;
 	}
 	template <class T> operator T() const {
-		return in<T>();
+		return read<T>();
 	}
 	int operator--(int) const {
-		return in<int>() - 1;
+		return read<int>() - 1;
 	}
-	InputV operator[](int n) const {
-		return InputV(n);
+	ReadVectorHelper operator[](size_t n) const {
+		return ReadVectorHelper(n);
 	}
-	InputV operator[](const pair<int, int>& n) const {
-		return InputV(n);
+	Read2DVectorHelper operator[](const pair<size_t, size_t>& nm) const {
+		return Read2DVectorHelper(nm);
 	}
 	void operator()() const {}
 	template <class H, class... T> void operator()(H&& h, T&&... t) const {
-		i(h);
+		read(h);
 		operator()(forward<T>(t)...);
 	}
 } in;
-#define input(T) Input::in<T>()
-#define INT input(int)
-#define LL input(long long)
-#define STR input(string)
 #define inputs(T, ...) \
 	T __VA_ARGS__;     \
 	in(__VA_ARGS__)
@@ -195,85 +200,96 @@ struct DivStr {
 	DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}
 } spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"),
     no_endl(" ", "");
-class Output {
+class Printer {
 	BoolStr B{Yes};
 	DivStr D{spc};
-	void p(int v) const {
-		if (v < 0) putchar_unlocked('-'), v = -v;
-		char b[10];
-		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
-		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
-	}
-	void p(long long v) const {
-		if (v < 0) putchar_unlocked('-'), v = -v;
-		char b[20];
-		int i = 0;
-		while (v) b[i++] = '0' + v % 10, v /= 10;
-		if (!i) b[i++] = '0';
-		while (i--) putchar_unlocked(b[i]);
-	}
-	void p(bool v) const {
-		p(v ? B.t : B.f);
-	}
-	void p(char v) const {
-		putchar_unlocked(v);
-	}
-	void p(const char* v) const {
-		fwrite_unlocked(v, 1, strlen(v), stdout);
-	}
-	void p(double v) const {
-		printf("%.20f", v);
-	}
-	void p(long double v) const {
-		printf("%.20Lf", v);
-	}
-	template <class T> void p(const T& v) const {
-		cout << v;
-	}
-	template <class T, class U> void p(const pair<T, U>& v) const {
-		p(v.first);
-		p(D.d);
-		p(v.second);
-	}
-	template <class T> void p(const vector<T>& v) const {
-		rep(i, sz(v)) {
-			if (i) p(D.d);
-			p(v[i]);
+
+public:
+	void print(int v) const {
+		char buf[12]{};
+		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
+			fwrite(buf, sizeof(char), ptr - buf, stdout);
+		} else {
+			assert(false);
 		}
 	}
-	template <class T> void p(const vector<vector<T>>& v) const {
-		rep(i, sz(v)) {
-			if (i) p(D.l);
-			p(v[i]);
+	void print(long long v) const {
+		char buf[21]{};
+		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
+			fwrite(buf, sizeof(char), ptr - buf, stdout);
+		} else {
+			assert(false);
+		}
+	}
+	void print(bool v) const {
+		print(v ? B.t : B.f);
+	}
+	void print(vector<bool>::reference v) const {
+		print(v ? B.t : B.f);
+	}
+	void print(char v) const {
+		putchar_unlocked(v);
+	}
+	void print(const char* v) const {
+		fwrite_unlocked(v, 1, strlen(v), stdout);
+	}
+	void print(double v) const {
+		printf("%.20f", v);
+	}
+	void print(long double v) const {
+		printf("%.20Lf", v);
+	}
+	template <class T> void print(const T& v) const {
+		cout << v;
+	}
+	template <class T, class U> void print(const pair<T, U>& v) const {
+		print(v.first);
+		print(D.d);
+		print(v.second);
+	}
+	template <class InputIterater>
+	void print_range(const InputIterater& begin, const InputIterater& end) const {
+		for (InputIterater i = begin; i != end; ++i) {
+			if (i != begin) print(D.d);
+			print(*i);
+		}
+	}
+	template <class T> void print(const vector<T>& v) const {
+		print_range(v.begin(), v.end());
+	}
+	template <class T, size_t N> void print(const array<T, N>& v) const {
+		print_range(v.begin(), v.end());
+	}
+	template <class T> void print(const vector<vector<T>>& v) const {
+		for (size_t i = 0; i < v.size(); ++i) {
+			if (i) print(D.l);
+			print(v[i]);
 		}
 	}
 
-public:
-	Output& operator()() {
-		p(D.l);
+	Printer() = default;
+	Printer(const BoolStr& _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}
+	Printer& operator()() {
+		print(D.l);
 		return *this;
 	}
-	template <class H> Output& operator()(H&& h) {
-		p(h);
-		p(D.l);
+	template <class H> Printer& operator()(H&& h) {
+		print(h);
+		print(D.l);
 		return *this;
 	}
-	template <class H, class... T> Output& operator()(H&& h, T&&... t) {
-		p(h);
-		p(D.d);
+	template <class H, class... T> Printer& operator()(H&& h, T&&... t) {
+		print(h);
+		print(D.d);
 		return operator()(forward<T>(t)...);
 	}
-	template <class It> Output& range(const It& l, const It& r) {
-		for (It i = l; i != r; i++) {
-			if (i != l) p(D.d);
-			p(*i);
-		}
-		p(D.l);
+	template <class InputIterator>
+	Printer& range(const InputIterator& begin, const InputIterator& end) {
+		print_range(begin, end);
+		print(D.l);
 		return *this;
 	}
-	template <class T> Output& range(const T& a) {
+	template <class T> Printer& range(const T& a) {
 		range(a.begin(), a.end());
 		return *this;
 	}
@@ -281,19 +297,19 @@ public:
 		operator()(forward<T>(t)...);
 		std::exit(EXIT_SUCCESS);
 	}
-	Output& flush() {
+	Printer& flush() {
 		fflush_unlocked(stdout);
 		return *this;
 	}
-	Output& set(const BoolStr& b) {
+	Printer& set(const BoolStr& b) {
 		B = b;
 		return *this;
 	}
-	Output& set(const DivStr& d) {
+	Printer& set(const DivStr& d) {
 		D = d;
 		return *this;
 	}
-	Output& set(const char* t, const char* f) {
+	Printer& set(const char* t, const char* f) {
 		B = BoolStr(t, f);
 		return *this;
 	}
@@ -690,4 +706,3 @@ inline namespace {
 #endif
 
 // ---------------------------------------------------------------- //
-
