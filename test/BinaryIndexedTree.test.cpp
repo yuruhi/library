@@ -7,6 +7,7 @@ using ll = long long;
 int main() {
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
+
 	int n, q;
 	cin >> n >> q;
 	BinaryIndexedTree<ll> bit(n);
@@ -27,7 +28,7 @@ int main() {
 		} else {
 			int l, r;
 			cin >> l >> r;
-			cout << bit(l, r - 1) << endl;
+			cout << bit(l, r) << endl;
 		}
 	}
 }

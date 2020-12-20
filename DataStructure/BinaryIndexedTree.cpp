@@ -16,19 +16,20 @@ public:
 		while (n2 < n) n2 *= 2;
 		n2 /= 2;
 	}
-	value_type operator()(int i) const {  // [0, i]
-		assert(0 < ++i);
+	value_type operator()(int i) const {  // [0, i)
+		if (i == 0) return 0;
+		assert(0 < i && i <= n);
 		value_type result = 0;
 		for (; i > 0; i -= i & -i) {
 			result += a[i];
 		}
 		return result;
 	}
-	value_type operator()(int i, int j) const {  // [i, j]
-		return operator()(j) - (i ? operator()(i - 1) : 0);
+	value_type operator()(int l, int r) const {  // [l, r)
+		return operator()(r) - operator()(l);
 	}
 	value_type operator[](int i) const {
-		return operator()(i, i);
+		return operator()(i, i + 1);
 	}
 	void add(int i, value_type x) {
 		assert(0 < ++i);
@@ -50,7 +51,7 @@ public:
 	vector<value_type> to_a() const {
 		vector<value_type> result(n);
 		for (int i = 0; i < n; ++i) {
-			result[i] = operator()(i, i);
+			result[i] = operator[](i);
 		}
 		return result;
 	}

@@ -38,7 +38,7 @@ int main() {
 		} else if (com == 1) {
 			int v;
 			cin >> v;
-			cout << bit(euler.l(v)) << endl;
+			cout << bit(euler.l(v) + 1) << endl;
 		}
 	}
 }
