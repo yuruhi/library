@@ -43,6 +43,9 @@ template <class T = long long> constexpr T BIT(int b) {
 template <class T> constexpr int BIT(T x, int i) {
 	return (x & (T(1) << i)) ? 1 : 0;
 }
+template <class T> constexpr int Sgn(T x) {
+	return (0 < x) - (0 > x);
+}
 template <class T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>
 constexpr T Pow(T a, U n) {
 	assert(n >= 0);
