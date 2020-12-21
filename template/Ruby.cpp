@@ -250,6 +250,19 @@ struct Each_impl {
 		});
 	}
 } Each;
+struct EachConsPair_impl {
+	template <class T, class value_type = typename T::value_type>
+	friend auto operator|(const T& v, EachConsPair_impl& c) {
+		vector<pair<value_type, value_type>> result;
+		if (size(v) >= 2) {
+			result.reserve(size(v) - 1);
+			for (size_t i = 0; i < size(v) - 1; ++i) {
+				result.emplace_back(v[i], v[i + 1]);
+			}
+		}
+		return result;
+	}
+} EachConsPair;
 struct Select_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
