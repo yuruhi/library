@@ -32,10 +32,11 @@ data:
     data[i] = func(data[i * 2], data[i * 2 + 1]);\n\t\t}\n\t}\n\tvoid update(int i,\
     \ const value_type& x) {\n\t\tassert(0 <= i && i < n);\n\t\tdata[i += n] = x;\n\
     \t\twhile (i >>= 1) {\n\t\t\tdata[i] = func(data[i * 2], data[i * 2 + 1]);\n\t\
-    \t}\n\t}\n\tvalue_type operator[](int i) const {\n\t\tassert(0 <= i && i < n);\n\
-    \t\treturn data[i + n];\n\t}\n\tvalue_type operator()(int l, int r) const {\n\t\
-    \tassert(0 <= l && l < r && r <= n);\n\t\tvalue_type L = init, R = init;\n\t\t\
-    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\tif (l & 1) L = func(L,\
+    \t}\n\t}\n\tvoid add(int i, const value_type& x) {\n\t\tupdate(i, operator[](i)\
+    \ + x);\n\t}\n\tvalue_type operator[](int i) const {\n\t\tassert(0 <= i && i <\
+    \ n);\n\t\treturn data[i + n];\n\t}\n\tvalue_type operator()(int l, int r) const\
+    \ {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\tvalue_type L = init, R = init;\n\
+    \t\tfor (l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\tif (l & 1) L = func(L,\
     \ data[l++]);\n\t\t\tif (r & 1) R = func(data[--r], R);\n\t\t}\n\t\treturn func(L,\
     \ R);\n\t}\n\ttemplate <class C> int find_first(int l, int r, const C& c) const\
     \ {\n\t\treturn ff(l, r, c, 1, 0, n);\n\t}\n\ttemplate <class C> int find_last(int\
@@ -68,10 +69,11 @@ data:
     data[i] = func(data[i * 2], data[i * 2 + 1]);\n\t\t}\n\t}\n\tvoid update(int i,\
     \ const value_type& x) {\n\t\tassert(0 <= i && i < n);\n\t\tdata[i += n] = x;\n\
     \t\twhile (i >>= 1) {\n\t\t\tdata[i] = func(data[i * 2], data[i * 2 + 1]);\n\t\
-    \t}\n\t}\n\tvalue_type operator[](int i) const {\n\t\tassert(0 <= i && i < n);\n\
-    \t\treturn data[i + n];\n\t}\n\tvalue_type operator()(int l, int r) const {\n\t\
-    \tassert(0 <= l && l < r && r <= n);\n\t\tvalue_type L = init, R = init;\n\t\t\
-    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\tif (l & 1) L = func(L,\
+    \t}\n\t}\n\tvoid add(int i, const value_type& x) {\n\t\tupdate(i, operator[](i)\
+    \ + x);\n\t}\n\tvalue_type operator[](int i) const {\n\t\tassert(0 <= i && i <\
+    \ n);\n\t\treturn data[i + n];\n\t}\n\tvalue_type operator()(int l, int r) const\
+    \ {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\tvalue_type L = init, R = init;\n\
+    \t\tfor (l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\tif (l & 1) L = func(L,\
     \ data[l++]);\n\t\t\tif (r & 1) R = func(data[--r], R);\n\t\t}\n\t\treturn func(L,\
     \ R);\n\t}\n\ttemplate <class C> int find_first(int l, int r, const C& c) const\
     \ {\n\t\treturn ff(l, r, c, 1, 0, n);\n\t}\n\ttemplate <class C> int find_last(int\
@@ -83,7 +85,7 @@ data:
   isVerificationFile: false
   path: DataStructure/SegmentTree.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:13:00+09:00'
+  timestamp: '2020-12-21 09:21:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: DataStructure/SegmentTree.cpp
