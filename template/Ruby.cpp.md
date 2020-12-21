@@ -101,9 +101,14 @@ data:
     \t\t\tv.erase(remove_if(begin(v), end(v), f), end(v));\n\t\t\treturn v;\n\t\t\
     });\n\t}\n} RemoveIf;\nstruct Each_impl {\n\ttemplate <class F> auto operator()(F&&\
     \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\
-    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct Select_impl {\n\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\t\
-    using value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
+    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl {\n\ttemplate\
+    \ <class T, class value_type = typename T::value_type>\n\tfriend auto operator|(const\
+    \ T& v, EachConsPair_impl& c) {\n\t\tvector<pair<value_type, value_type>> result;\n\
+    \t\tif (size(v) >= 2) {\n\t\t\tresult.reserve(size(v) - 1);\n\t\t\tfor (size_t\
+    \ i = 0; i < size(v) - 1; ++i) {\n\t\t\t\tresult.emplace_back(v[i], v[i + 1]);\n\
+    \t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n} EachConsPair;\nstruct Select_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
     \ result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) result.push_back(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Select;\nstruct Map_impl {\n\t\
     template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
@@ -230,9 +235,14 @@ data:
     \t\t\tv.erase(remove_if(begin(v), end(v), f), end(v));\n\t\t\treturn v;\n\t\t\
     });\n\t}\n} RemoveIf;\nstruct Each_impl {\n\ttemplate <class F> auto operator()(F&&\
     \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\
-    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct Select_impl {\n\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\t\
-    using value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
+    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl {\n\ttemplate\
+    \ <class T, class value_type = typename T::value_type>\n\tfriend auto operator|(const\
+    \ T& v, EachConsPair_impl& c) {\n\t\tvector<pair<value_type, value_type>> result;\n\
+    \t\tif (size(v) >= 2) {\n\t\t\tresult.reserve(size(v) - 1);\n\t\t\tfor (size_t\
+    \ i = 0; i < size(v) - 1; ++i) {\n\t\t\t\tresult.emplace_back(v[i], v[i + 1]);\n\
+    \t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n} EachConsPair;\nstruct Select_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
     \ result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) result.push_back(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Select;\nstruct Map_impl {\n\t\
     template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
@@ -273,7 +283,7 @@ data:
   path: template/Ruby.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2020-12-18 21:25:25+09:00'
+  timestamp: '2020-12-21 12:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Ruby.cpp

@@ -288,6 +288,9 @@ data:
       path: Utility/BracketsPos.cpp
       title: Utility/BracketsPos.cpp
     - icon: ':warning:'
+      path: Utility/CharacterClass.cpp
+      title: Utility/CharacterClass.cpp
+    - icon: ':warning:'
       path: Utility/Compress.cpp
       title: Utility/Compress.cpp
     - icon: ':warning:'

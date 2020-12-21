@@ -26,32 +26,21 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\n#line\
-    \ 4 \"template/constants.cpp\"\n#include <string_view>\n#line 7 \"template/constants.cpp\"\
-    \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
-    \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
-    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define unless(c)\
-    \ if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(),\
-    \ (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\
-    \nusing namespace std;\nusing ll = long long;\nusing LD = long double;\nusing\
-    \ VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
+    \ 6 \"template/constants.cpp\"\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n\
+    #define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int\
+    \ i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n\
+    #define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x)\
+    \ (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin()\
+    \ + (r)\n\nusing namespace std;\nusing ll = long long;\nusing LD = long double;\n\
+    using VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
     \ VVI = vector<VI>;\nusing VL = vector<ll>;\nusing VVL = vector<VL>;\nusing VS\
     \ = vector<string>;\nusing VD = vector<LD>;\nusing PII = pair<int, int>;\nusing\
     \ VP = vector<PII>;\nusing PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\ntemplate\
     \ <class T> using PQ = priority_queue<T>;\ntemplate <class T> using PQS = priority_queue<T,\
     \ vector<T>, greater<T>>;\nconstexpr int inf = 1000000000;\nconstexpr long long\
     \ inf_ll = 1000000000000000000ll, MOD = 1000000007;\nconstexpr long double PI\
-    \ = 3.14159265358979323846, EPS = 1e-12;\nnamespace CharacterClass {\n\tconstexpr\
-    \ string_view\n\t    digit = \"0123456789\",\n\t    xdigit = \"0123456789ABCDEFabcdef\"\
-    , lower = \"abcdefghijklmnopqrstuvwxyz\",\n\t    upper = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\
-    ,\n\t    alpha = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\",\n\t\
-    \    alnum = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\"\
-    ,\n\t    word = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz\"\
-    ,\n\t    punct = R\"(!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~)\",\n\t    graph =\n\t\
-    \        R\"(!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~)\"\
-    ,\n\t    print =\n\t        R\"( !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\
-    ]^_`abcdefghijklmnopqrstuvwxyz{|}~)\",\n\t    blank = \" \\t\", space = \" \\\
-    t\\n\\r\\f\\v\";\n}  // namespace CharacterClass\n#line 7 \"template/Input.cpp\"\
-    \nusing namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
+    \ = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"template/Input.cpp\"\nusing\
+    \ namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
     #define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked fwrite\n#define\
     \ fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn\
     \ getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tread(c);\n\
@@ -273,9 +262,14 @@ data:
     \t\t\tv.erase(remove_if(begin(v), end(v), f), end(v));\n\t\t\treturn v;\n\t\t\
     });\n\t}\n} RemoveIf;\nstruct Each_impl {\n\ttemplate <class F> auto operator()(F&&\
     \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\
-    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct Select_impl {\n\ttemplate\
-    \ <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\t\
-    using value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
+    \t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl {\n\ttemplate\
+    \ <class T, class value_type = typename T::value_type>\n\tfriend auto operator|(const\
+    \ T& v, EachConsPair_impl& c) {\n\t\tvector<pair<value_type, value_type>> result;\n\
+    \t\tif (size(v) >= 2) {\n\t\t\tresult.reserve(size(v) - 1);\n\t\t\tfor (size_t\
+    \ i = 0; i < size(v) - 1; ++i) {\n\t\t\t\tresult.emplace_back(v[i], v[i + 1]);\n\
+    \t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n} EachConsPair;\nstruct Select_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\t\t\tvector<value_type>\
     \ result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) result.push_back(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Select;\nstruct Map_impl {\n\t\
     template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
@@ -374,7 +368,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2020-12-20 21:22:35+09:00'
+  timestamp: '2020-12-21 12:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp
