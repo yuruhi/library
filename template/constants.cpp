@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <string_view>
 #include <utility>
 #include <queue>
 
@@ -34,18 +33,3 @@ template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
 constexpr int inf = 1000000000;
 constexpr long long inf_ll = 1000000000000000000ll, MOD = 1000000007;
 constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
-namespace CharacterClass {
-	constexpr string_view
-	    digit = "0123456789",
-	    xdigit = "0123456789ABCDEFabcdef", lower = "abcdefghijklmnopqrstuvwxyz",
-	    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-	    alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-	    alnum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-	    word = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
-	    punct = R"(!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)",
-	    graph =
-	        R"(!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~)",
-	    print =
-	        R"( !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~)",
-	    blank = " \t", space = " \t\n\r\f\v";
-}  // namespace CharacterClass
