@@ -54,6 +54,14 @@ public:
 		}
 		return result;
 	}
+	int lower(const value_type& x) const {
+		assert(flag);
+		return lower_bound(v.begin(), v.end(), x) - v.begin();
+	}
+	int upper(const value_type& x) const {
+		assert(flag);
+		return upper_bound(v.begin(), v.end(), x) - v.begin();
+	}
 	int size() const {
 		assert(flag);
 		return v.size();
