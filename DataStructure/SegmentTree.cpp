@@ -69,6 +69,9 @@ public:
 			data[i] = func(data[i * 2], data[i * 2 + 1]);
 		}
 	}
+	void add(int i, const value_type& x) {
+		update(i, operator[](i) + x);
+	}
 	value_type operator[](int i) const {
 		assert(0 <= i && i < n);
 		return data[i + n];
