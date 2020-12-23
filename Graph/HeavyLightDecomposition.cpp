@@ -75,6 +75,10 @@ public:
 		assert(builded);
 		return index;
 	}
+	int operator[](int v) const {
+		assert(builded);
+		return index[v];
+	}
 
 	template <class F> void each_vertex(int v, int u, F f) const {
 		assert(builded);
