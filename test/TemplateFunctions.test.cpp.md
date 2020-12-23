@@ -32,6 +32,7 @@ data:
     return s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
     \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
     \ int BIT(T x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class\
+    \ T> constexpr int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class\
     \ T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\nconstexpr T\
     \ Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\t\
     if (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\t\
@@ -165,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 21:22:35+09:00'
+  timestamp: '2020-12-21 16:46:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/HLD_edge.test.cpp
+    title: test/HLD_edge.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/HLD_vertex.test.cpp
+    title: test/HLD_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/RAQRSQ.test.cpp
     title: test/RAQRSQ.test.cpp
   _pathExtension: cpp
@@ -73,6 +79,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RAQRSQ.test.cpp
+  - test/HLD_vertex.test.cpp
+  - test/HLD_edge.test.cpp
 documentation_of: DataStructure/RAQRSQ.cpp
 layout: document
 redirect_from:

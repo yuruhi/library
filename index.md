@@ -163,6 +163,9 @@ data:
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
     - icon: ':heavy_check_mark:'
+      path: Graph/HeavyLightDecomposition.cpp
+      title: Graph/HeavyLightDecomposition.cpp
+    - icon: ':heavy_check_mark:'
       path: Graph/Kruskal.cpp
       title: Graph/Kruskal.cpp
     - icon: ':heavy_check_mark:'
@@ -602,6 +605,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/GridBFS.test.cpp
       title: test/GridBFS.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/HLD_edge.test.cpp
+      title: test/HLD_edge.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/HLD_vertex.test.cpp
+      title: test/HLD_vertex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
