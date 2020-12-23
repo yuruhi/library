@@ -69,6 +69,18 @@ public:
 		return index;
 	}
 
+	template <class F> void each_vertex(int v, int u, F f) const {
+		while (true) {
+			if (index[v] > index[u]) swap(v, u);
+			if (head[v] != head[u]) {
+				f(index[head[u]], index[u]);
+				u = parent[head[u]];
+			} else {
+				f(index[v], index[u]);
+				break;
+			}
+		}
+	}
 	template <class F> void each_edge(int v, int u, F f) const {
 		while (true) {
 			if (index[v] > index[u]) swap(v, u);
@@ -80,5 +92,15 @@ public:
 				break;
 			}
 		}
+	}
+	vector<pair<int, int>> query_vertex(int u, int v) {
+		vector<pair<int, int>> result;
+		each_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b); });
+		return result;
+	}
+	vector<pair<int, int>> query_edge(int u, int v) {
+		vector<pair<int, int>> result;
+		each_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });
+		return result;
 	}
 };
