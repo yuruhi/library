@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cassert>
 using namespace std;
 
 class HLD {
@@ -8,6 +9,7 @@ class HLD {
 	vector<int> parent, size, depth;
 	int k;
 	vector<int> head, hld, index;
+	bool builded = false;
 
 	int calc_size(int v, int p, int d) {
 		parent[v] = p;
@@ -47,6 +49,7 @@ public:
 	void add_edge(int u, int v) {
 		graph[u].push_back(v);
 		graph[v].push_back(u);
+		builded = false;
 	}
 	void build(int root) {
 		parent.assign(n, -1);
@@ -58,18 +61,23 @@ public:
 		hld.assign(n, 0);
 		index.assign(n, 0);
 		rec(root, -1, root);
+		builded = true;
 	}
 	const vector<int>& get_head() const {
+		assert(builded);
 		return head;
 	}
 	const vector<int>& get_hld() const {
+		assert(builded);
 		return hld;
 	}
 	const vector<int>& get_index() const {
+		assert(builded);
 		return index;
 	}
 
 	template <class F> void each_vertex(int v, int u, F f) const {
+		assert(builded);
 		while (true) {
 			if (index[v] > index[u]) swap(v, u);
 			if (head[v] != head[u]) {
@@ -82,6 +90,7 @@ public:
 		}
 	}
 	template <class F> void each_edge(int v, int u, F f) const {
+		assert(builded);
 		while (true) {
 			if (index[v] > index[u]) swap(v, u);
 			if (head[v] != head[u]) {
@@ -94,11 +103,13 @@ public:
 		}
 	}
 	vector<pair<int, int>> query_vertex(int u, int v) {
+		assert(builded);
 		vector<pair<int, int>> result;
 		each_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;
 	}
 	vector<pair<int, int>> query_edge(int u, int v) {
+		assert(builded);
 		vector<pair<int, int>> result;
 		each_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;

@@ -1,9 +1,10 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E"
-#include "./../Graph/HLD.cpp"
+#include "./../Graph/HeavyLightDecomposition.cpp"
 #include "./../DataStructure/RAQRSQ.cpp"
 #include <iostream>
 #include <vector>
 using namespace std;
+using ll = long long;
 
 int main() {
 	cin.tie(nullptr);
