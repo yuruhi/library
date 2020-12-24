@@ -38,12 +38,13 @@ data:
     \ 0);\n\t\trec(root, -1, root);\n\t\tbuilded = true;\n\t}\n\tconst vector<int>&\
     \ get_head() const {\n\t\tassert(builded);\n\t\treturn head;\n\t}\n\tconst vector<int>&\
     \ get_hld() const {\n\t\tassert(builded);\n\t\treturn hld;\n\t}\n\tconst vector<int>&\
-    \ get_index() const {\n\t\tassert(builded);\n\t\treturn index;\n\t}\n\n\ttemplate\
-    \ <class F> void each_vertex(int v, int u, F f) const {\n\t\tassert(builded);\n\
-    \t\twhile (true) {\n\t\t\tif (index[v] > index[u]) swap(v, u);\n\t\t\tif (head[v]\
-    \ != head[u]) {\n\t\t\t\tf(index[head[u]], index[u]);\n\t\t\t\tu = parent[head[u]];\n\
-    \t\t\t} else {\n\t\t\t\tf(index[v], index[u]);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\
-    }\n\t}\n\ttemplate <class F> void each_edge(int v, int u, F f) const {\n\t\tassert(builded);\n\
+    \ get_index() const {\n\t\tassert(builded);\n\t\treturn index;\n\t}\n\tint operator[](int\
+    \ v) const {\n\t\tassert(builded);\n\t\treturn index[v];\n\t}\n\n\ttemplate <class\
+    \ F> void each_vertex(int v, int u, F f) const {\n\t\tassert(builded);\n\t\twhile\
+    \ (true) {\n\t\t\tif (index[v] > index[u]) swap(v, u);\n\t\t\tif (head[v] != head[u])\
+    \ {\n\t\t\t\tf(index[head[u]], index[u]);\n\t\t\t\tu = parent[head[u]];\n\t\t\t\
+    } else {\n\t\t\t\tf(index[v], index[u]);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\
+    \ttemplate <class F> void each_edge(int v, int u, F f) const {\n\t\tassert(builded);\n\
     \t\twhile (true) {\n\t\t\tif (index[v] > index[u]) swap(v, u);\n\t\t\tif (head[v]\
     \ != head[u]) {\n\t\t\t\tf(index[head[u]], index[u]);\n\t\t\t\tu = parent[head[u]];\n\
     \t\t\t} else {\n\t\t\t\tif (v != u) f(index[v] + 1, index[u]);\n\t\t\t\tbreak;\n\
@@ -103,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/HLD_vertex.test.cpp
   requiredBy: []
-  timestamp: '2020-12-23 12:15:50+09:00'
+  timestamp: '2020-12-23 14:02:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/HLD_vertex.test.cpp
