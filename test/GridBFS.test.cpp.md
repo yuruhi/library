@@ -67,8 +67,8 @@ data:
     \ height, int width) const {\n\t\treturn 0 <= x && x < width && 0 <= y && y <\
     \ height;\n\t}\n\tbool in_range() const {\n\t\treturn in_range(H, W);\n\t}\n\t\
     int to_i() const {\n\t\treturn x + y * W;\n\t}\n\tconstexpr pair<int, int> to_pair()\
-    \ const {\n\t\treturn {x, y};\n\t}\n\tconstexpr int manhattan_distance(const Point&\
-    \ p) const {\n\t\treturn abs(x - p.x) + abs(y - p.y);\n\t}\n\tconstexpr int chebyshev_distance(const\
+    \ const {\n\t\treturn {x, y};\n\t}\n\tconstexpr int manhattan(const Point& p)\
+    \ const {\n\t\treturn abs(x - p.x) + abs(y - p.y);\n\t}\n\tconstexpr int chebyshev(const\
     \ Point& p) const {\n\t\treturn max(abs(x - p.x), abs(y - p.y));\n\t}\n\tconstexpr\
     \ int distance_square(const Point& p) const {\n\t\treturn (x - p.x) * (x - p.x)\
     \ + (y - p.y) * (y - p.y);\n\t}\n\ttemplate <class Real> constexpr Real distance(const\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2020-12-17 19:33:17+09:00'
+  timestamp: '2020-12-25 12:00:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp

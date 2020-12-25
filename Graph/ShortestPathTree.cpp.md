@@ -27,22 +27,22 @@ data:
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/ShortestPathTree.cpp\"\
     \nusing namespace std;\n\nvector<Weight> ShortestPathTree(const Graph& graph,\
-    \ int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V);\n\tauto dfs = [&](auto&&\
-    \ f, int v, int p, Weight depth) -> void {\n\t\tdist[v] = depth;\n\t\tfor (auto\
-    \ e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tf(f, e.to, v, depth + e.cost);\n\
-    \t\t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1, 0);\n\treturn dist;\n}\n"
+    \ int s) {\n\tvector<Weight> dist(graph.size());\n\tauto dfs = [&](auto&& f, int\
+    \ v, int p, Weight depth) -> void {\n\t\tdist[v] = depth;\n\t\tfor (auto e : graph[v])\
+    \ {\n\t\t\tif (e.to != p) {\n\t\t\t\tf(f, e.to, v, depth + e.cost);\n\t\t\t}\n\
+    \t\t}\n\t};\n\tdfs(dfs, s, -1, 0);\n\treturn dist;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\nusing\
     \ namespace std;\n\nvector<Weight> ShortestPathTree(const Graph& graph, int s)\
-    \ {\n\tint V = graph.size();\n\tvector<Weight> dist(V);\n\tauto dfs = [&](auto&&\
-    \ f, int v, int p, Weight depth) -> void {\n\t\tdist[v] = depth;\n\t\tfor (auto\
-    \ e : graph[v]) {\n\t\t\tif (e.to != p) {\n\t\t\t\tf(f, e.to, v, depth + e.cost);\n\
-    \t\t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1, 0);\n\treturn dist;\n}\n"
+    \ {\n\tvector<Weight> dist(graph.size());\n\tauto dfs = [&](auto&& f, int v, int\
+    \ p, Weight depth) -> void {\n\t\tdist[v] = depth;\n\t\tfor (auto e : graph[v])\
+    \ {\n\t\t\tif (e.to != p) {\n\t\t\t\tf(f, e.to, v, depth + e.cost);\n\t\t\t}\n\
+    \t\t}\n\t};\n\tdfs(dfs, s, -1, 0);\n\treturn dist;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/ShortestPathTree.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2020-12-25 10:05:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/ShortestPathTree.cpp
