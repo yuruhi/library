@@ -4,8 +4,7 @@
 using namespace std;
 
 vector<Weight> ShortestPathTree(const Graph& graph, int s) {
-	int V = graph.size();
-	vector<Weight> dist(V);
+	vector<Weight> dist(graph.size());
 	auto dfs = [&](auto&& f, int v, int p, Weight depth) -> void {
 		dist[v] = depth;
 		for (auto e : graph[v]) {
