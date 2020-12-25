@@ -171,10 +171,10 @@ struct Point {
 	constexpr pair<int, int> to_pair() const {
 		return {x, y};
 	}
-	constexpr int manhattan_distance(const Point& p) const {
+	constexpr int manhattan(const Point& p) const {
 		return abs(x - p.x) + abs(y - p.y);
 	}
-	constexpr int chebyshev_distance(const Point& p) const {
+	constexpr int chebyshev(const Point& p) const {
 		return max(abs(x - p.x), abs(y - p.y));
 	}
 	constexpr int distance_square(const Point& p) const {
