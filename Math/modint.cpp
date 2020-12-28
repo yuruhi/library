@@ -44,18 +44,6 @@ template <int MOD> struct modint {
 	constexpr modint pred() const {
 		return --modint(*this);
 	}
-	constexpr modint operator+(const modint& m) const {
-		return modint(*this) += m;
-	}
-	constexpr modint operator-(const modint& m) const {
-		return modint(*this) -= m;
-	}
-	constexpr modint operator*(const modint& m) const {
-		return modint(*this) *= m;
-	}
-	constexpr modint operator/(const modint& m) const {
-		return modint(*this) /= m;
-	}
 	constexpr modint& operator+=(const modint& m) {
 		n += m.n;
 		if (n >= MOD) n -= MOD;
@@ -106,8 +94,17 @@ template <int MOD> struct modint {
 			return (modint(1) / n).pow(-m);
 		}
 	}
-	template <class M> constexpr modint operator^(M m) const {
-		return pow(m);
+	friend constexpr modint operator+(const modint& a, const modint& b) {
+		return modint(a) += b;
+	}
+	friend constexpr modint operator-(const modint& a, const modint& b) {
+		return modint(a) -= b;
+	}
+	friend constexpr modint operator*(const modint& a, const modint& b) {
+		return modint(a) *= b;
+	}
+	friend constexpr modint operator/(const modint& a, const modint& b) {
+		return modint(a) /= b;
 	}
 	friend ostream& operator<<(ostream& os, const modint<MOD>& m) {
 		return os << m.n;
