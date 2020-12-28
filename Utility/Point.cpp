@@ -266,7 +266,7 @@ struct Point {
 				increment_until_in_range();
 				return *this;
 			}
-			bool operator!=(sentinel other) const {
+			bool operator!=([[maybe_unused]] sentinel other) const {
 				return first != last;
 			}
 		};
