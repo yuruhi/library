@@ -22,31 +22,31 @@ data:
     \t++*this;\n\t\treturn t;\n\t}\n\tconstexpr modint operator--(int) {\n\t\tmodint\
     \ t = *this;\n\t\t--*this;\n\t\treturn t;\n\t}\n\tconstexpr modint next() const\
     \ {\n\t\treturn ++modint(*this);\n\t}\n\tconstexpr modint pred() const {\n\t\t\
-    return --modint(*this);\n\t}\n\tconstexpr modint operator+(const modint& m) const\
-    \ {\n\t\treturn modint(*this) += m;\n\t}\n\tconstexpr modint operator-(const modint&\
-    \ m) const {\n\t\treturn modint(*this) -= m;\n\t}\n\tconstexpr modint operator*(const\
-    \ modint& m) const {\n\t\treturn modint(*this) *= m;\n\t}\n\tconstexpr modint\
-    \ operator/(const modint& m) const {\n\t\treturn modint(*this) /= m;\n\t}\n\t\
-    constexpr modint& operator+=(const modint& m) {\n\t\tn += m.n;\n\t\tif (n >= MOD)\
-    \ n -= MOD;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator-=(const modint&\
-    \ m) {\n\t\tn -= m.n;\n\t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr\
-    \ modint& operator*=(const modint& m) {\n\t\tn = n * m.n % MOD;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr modint& operator/=(const modint& m) {\n\t\tT a = m.n, b = MOD,\
-    \ u = 1, v = 0;\n\t\twhile (b) {\n\t\t\tT t = a / b;\n\t\t\ta -= t * b;\n\t\t\t\
-    swap(a, b);\n\t\t\tu -= t * v;\n\t\t\tswap(u, v);\n\t\t}\n\t\tn = n * u % MOD;\n\
-    \t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr bool operator==(const\
-    \ modint& m) const {\n\t\treturn n == m.n;\n\t}\n\tconstexpr bool operator!=(const\
-    \ modint& m) const {\n\t\treturn n != m.n;\n\t}\n\ttemplate <class M> constexpr\
-    \ modint pow(M m) const {\n\t\tif (0 <= m) {\n\t\t\tmodint t = n, result = 1;\n\
-    \t\t\twhile (m > 0) {\n\t\t\t\tif (m & 1) {\n\t\t\t\t\tresult *= t;\n\t\t\t\t\t\
-    m--;\n\t\t\t\t} else {\n\t\t\t\t\tt *= t;\n\t\t\t\t\tm >>= 1;\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t\treturn result;\n\t\t} else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\
-    \t\t}\n\t}\n\ttemplate <class M> constexpr modint operator^(M m) const {\n\t\t\
-    return pow(m);\n\t}\n\tfriend ostream& operator<<(ostream& os, const modint<MOD>&\
-    \ m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is,\
-    \ modint<MOD>& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\t\t\
-    return is;\n\t}\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\n\
-    mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"Math/Combination.cpp\"\
+    return --modint(*this);\n\t}\n\tconstexpr modint& operator+=(const modint& m)\
+    \ {\n\t\tn += m.n;\n\t\tif (n >= MOD) n -= MOD;\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ modint& operator-=(const modint& m) {\n\t\tn -= m.n;\n\t\tif (n < 0) n += MOD;\n\
+    \t\treturn *this;\n\t}\n\tconstexpr modint& operator*=(const modint& m) {\n\t\t\
+    n = n * m.n % MOD;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator/=(const\
+    \ modint& m) {\n\t\tT a = m.n, b = MOD, u = 1, v = 0;\n\t\twhile (b) {\n\t\t\t\
+    T t = a / b;\n\t\t\ta -= t * b;\n\t\t\tswap(a, b);\n\t\t\tu -= t * v;\n\t\t\t\
+    swap(u, v);\n\t\t}\n\t\tn = n * u % MOD;\n\t\tif (n < 0) n += MOD;\n\t\treturn\
+    \ *this;\n\t}\n\tconstexpr bool operator==(const modint& m) const {\n\t\treturn\
+    \ n == m.n;\n\t}\n\tconstexpr bool operator!=(const modint& m) const {\n\t\treturn\
+    \ n != m.n;\n\t}\n\ttemplate <class M> constexpr modint pow(M m) const {\n\t\t\
+    if (0 <= m) {\n\t\t\tmodint t = n, result = 1;\n\t\t\twhile (m > 0) {\n\t\t\t\t\
+    if (m & 1) {\n\t\t\t\t\tresult *= t;\n\t\t\t\t\tm--;\n\t\t\t\t} else {\n\t\t\t\
+    \t\tt *= t;\n\t\t\t\t\tm >>= 1;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn result;\n\t\t\
+    } else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\t\t}\n\t}\n\tfriend constexpr\
+    \ modint operator+(const modint& a, const modint& b) {\n\t\treturn modint(a) +=\
+    \ b;\n\t}\n\tfriend constexpr modint operator-(const modint& a, const modint&\
+    \ b) {\n\t\treturn modint(a) -= b;\n\t}\n\tfriend constexpr modint operator*(const\
+    \ modint& a, const modint& b) {\n\t\treturn modint(a) *= b;\n\t}\n\tfriend constexpr\
+    \ modint operator/(const modint& a, const modint& b) {\n\t\treturn modint(a) /=\
+    \ b;\n\t}\n\tfriend ostream& operator<<(ostream& os, const modint<MOD>& m) {\n\
+    \t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is, modint<MOD>&\
+    \ m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t\
+    }\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\nmint operator\"\
+    \"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"Math/Combination.cpp\"\
     \n#include <array>\nusing namespace std;\n\ntemplate <int MOD, size_t N> class\
     \ Combination {\n\tusing value_type = modint<MOD>;\n\tarray<value_type, N + 1>\
     \ fac, finv, inv;\n\npublic:\n\tconstexpr Combination() {\n\t\tfac[0] = fac[1]\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: Math/Combination.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:13:19+09:00'
+  timestamp: '2020-12-28 14:25:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/Combination.cpp
