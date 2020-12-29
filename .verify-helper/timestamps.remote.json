@@ -67,7 +67,7 @@
 "test/LIS.test.cpp": "2020-12-15 11:08:34 +0900",
 "test/Levenshtein.test.cpp": "2020-11-20 21:19:41 +0900",
 "test/MaximumRectangle.test.cpp": "2020-11-20 21:19:41 +0900",
-"test/Partition.test.cpp": "2020-11-23 16:29:29 +0900",
+"test/Partition.test.cpp": "2020-12-28 14:25:49 +0900",
 "test/PersistentQueue.test.cpp": "2020-11-21 14:30:57 +0900",
 "test/PersistentUnionFind.test.cpp": "2020-11-21 14:30:57 +0900",
 "test/PrimeFactor.test.cpp": "2020-11-23 14:52:17 +0900",
@@ -91,5 +91,5 @@
 "test/ZAlgotihm.test.cpp": "2020-11-23 14:52:17 +0900",
 "test/extGcd.test.cpp": "2020-10-18 11:21:32 +0900",
 "test/isPrime.test.cpp": "2020-11-23 16:14:42 +0900",
-"test/modint_pow.test.cpp": "2020-11-23 14:52:17 +0900"
+"test/modint_pow.test.cpp": "2020-12-28 14:25:49 +0900"
 }
