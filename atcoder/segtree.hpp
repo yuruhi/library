@@ -16,8 +16,7 @@ namespace atcoder {
 			log = internal::ceil_pow2(_n);
 			size = 1 << log;
 			d = std::vector<S>(2 * size, e());
-			for (int i = 0; i < _n; i++)
-				d[size + i] = v[i];
+			for (int i = 0; i < _n; i++) d[size + i] = v[i];
 			for (int i = size - 1; i >= 1; i--) {
 				update(i);
 			}
@@ -27,13 +26,16 @@ namespace atcoder {
 			assert(0 <= p && p < _n);
 			p += size;
 			d[p] = x;
-			for (int i = 1; i <= log; i++)
-				update(p >> i);
+			for (int i = 1; i <= log; i++) update(p >> i);
 		}
 
 		S get(int p) {
 			assert(0 <= p && p < _n);
 			return d[p + size];
+		}
+
+		S operator[](int p) {
+			return get(p);
 		}
 
 		S prod(int l, int r) {
@@ -51,14 +53,16 @@ namespace atcoder {
 			return op(sml, smr);
 		}
 
+		S operator()(int l, int r) {
+			return prod(l, r);
+		}
+
 		S all_prod() {
 			return d[1];
 		}
 
 		template <bool (*f)(S)> int max_right(int l) {
-			return max_right(l, [](S x) {
-				return f(x);
-			});
+			return max_right(l, [](S x) { return f(x); });
 		}
 		template <class F> int max_right(int l, F f) {
 			assert(0 <= l && l <= _n);
@@ -67,8 +71,7 @@ namespace atcoder {
 			l += size;
 			S sm = e();
 			do {
-				while (l % 2 == 0)
-					l >>= 1;
+				while (l % 2 == 0) l >>= 1;
 				if (!f(op(sm, d[l]))) {
 					while (l < size) {
 						l = (2 * l);
@@ -86,9 +89,7 @@ namespace atcoder {
 		}
 
 		template <bool (*f)(S)> int min_left(int r) {
-			return min_left(r, [](S x) {
-				return f(x);
-			});
+			return min_left(r, [](S x) { return f(x); });
 		}
 		template <class F> int min_left(int r, F f) {
 			assert(0 <= r && r <= _n);
@@ -98,8 +99,7 @@ namespace atcoder {
 			S sm = e();
 			do {
 				r--;
-				while (r > 1 && (r % 2))
-					r >>= 1;
+				while (r > 1 && (r % 2)) r >>= 1;
 				if (!f(op(d[r], sm))) {
 					while (r < size) {
 						r = (2 * r + 1);
