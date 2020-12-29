@@ -96,8 +96,8 @@ data:
     \ last(_last) {\n\t\t\t\tincrement_until_in_range();\n\t\t\t}\n\t\t\tPoint operator*()\
     \ const {\n\t\t\t\treturn *p + *first;\n\t\t\t}\n\t\t\titerator& operator++()\
     \ {\n\t\t\t\t++first;\n\t\t\t\tincrement_until_in_range();\n\t\t\t\treturn *this;\n\
-    \t\t\t}\n\t\t\tbool operator!=(sentinel other) const {\n\t\t\t\treturn first !=\
-    \ last;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adj_in_range_helper(shared_ptr<Point>\
+    \t\t\t}\n\t\t\tbool operator!=([[maybe_unused]] sentinel other) const {\n\t\t\t\
+    \treturn first != last;\n\t\t\t}\n\t\t};\n\n\tpublic:\n\t\tenumerate_adj_in_range_helper(shared_ptr<Point>\
     \ _p, direction_iterator _first,\n\t\t                              direction_iterator\
     \ _last)\n\t\t    : p(_p), first(_first), last(_last) {}\n\t\titerator begin()\
     \ const {\n\t\t\treturn iterator(p, first, last);\n\t\t}\n\t\tsentinel end() const\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: false
   path: Serch/GridBFS.cpp
   requiredBy: []
-  timestamp: '2020-12-25 12:00:00+09:00'
+  timestamp: '2020-12-28 21:38:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/GridBFS.test.cpp
