@@ -14,7 +14,7 @@ template <class T> struct Range {
 	    : x(_x), y(_y - !exclude_end) {
 		assert(x <= y);
 	}
-	constexpr Range(const Range& _r, bool exclude_end = false)
+	constexpr Range(const Range& _r, bool exclude_end = true)
 	    : x(_r.x), y(_r.y - !exclude_end) {
 		assert(x <= y);
 	}
