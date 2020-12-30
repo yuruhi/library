@@ -11,11 +11,11 @@ template <class T> struct Range {
 	value_type x, y;  // [x, y]
 	constexpr Range() : x(0), y(0) {}
 	constexpr Range(value_type _x, value_type _y, bool exclude_end = false)
-	    : x(_x), y(_y - exclude_end) {
+	    : x(_x), y(_y - !exclude_end) {
 		assert(x <= y);
 	}
 	constexpr Range(const Range& _r, bool exclude_end = false)
-	    : x(_r.x), y(_r.y - exclude_end) {
+	    : x(_r.x), y(_r.y - !exclude_end) {
 		assert(x <= y);
 	}
 	constexpr bool operator==(const Range& r) const {
