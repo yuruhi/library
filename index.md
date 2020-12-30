@@ -254,7 +254,7 @@ data:
     - icon: ':warning:'
       path: Math/Rational.cpp
       title: Math/Rational.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Math/Sieve.cpp
       title: Math/Sieve.cpp
     - icon: ':heavy_check_mark:'
@@ -689,7 +689,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Sieve.test.cpp
       title: test/Sieve.test.cpp
     - icon: ':heavy_check_mark:'

@@ -14,9 +14,9 @@ data:
     #include <iostream>\n#include <cassert>\n#include <optional>\nusing namespace\
     \ std;\n\ntemplate <class T> struct Range {\n\tusing value_type = T;\n\tvalue_type\
     \ x, y;  // [x, y]\n\tconstexpr Range() : x(0), y(0) {}\n\tconstexpr Range(value_type\
-    \ _x, value_type _y, bool exclude_end = false)\n\t    : x(_x), y(_y - exclude_end)\
+    \ _x, value_type _y, bool exclude_end = false)\n\t    : x(_x), y(_y - !exclude_end)\
     \ {\n\t\tassert(x <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end\
-    \ = false)\n\t    : x(_r.x), y(_r.y - exclude_end) {\n\t\tassert(x <= y);\n\t\
+    \ = false)\n\t    : x(_r.x), y(_r.y - !exclude_end) {\n\t\tassert(x <= y);\n\t\
     }\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn x == r.x &&\
     \ y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const {\n\t\treturn\
     \ x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range& r) const\
@@ -73,7 +73,7 @@ data:
   isVerificationFile: false
   path: Utility/splitRange.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2020-12-30 12:50:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/splitRange.cpp
