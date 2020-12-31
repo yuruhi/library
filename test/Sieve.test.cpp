@@ -10,7 +10,7 @@ int main() {
 	ios_base::sync_with_stdio(false);
 
 	Sieve sieve(100000000);
-	const auto& primes = sieve.get_primes();
+	const auto& primes = sieve.primes();
 	int n;
 	cin >> n;
 	int ans = 0;
