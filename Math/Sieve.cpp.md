@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Sieve.test.cpp
     title: test/Sieve.test.cpp
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/Sieve.cpp\"\n#include <vector>\n#include <map>\n#include\
@@ -63,7 +63,7 @@ data:
   path: Math/Sieve.cpp
   requiredBy: []
   timestamp: '2020-12-30 13:04:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Sieve.test.cpp
 documentation_of: Math/Sieve.cpp

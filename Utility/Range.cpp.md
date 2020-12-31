@@ -16,7 +16,7 @@ data:
     \ x, y;  // [x, y]\n\tconstexpr Range() : x(0), y(0) {}\n\tconstexpr Range(value_type\
     \ _x, value_type _y, bool exclude_end = false)\n\t    : x(_x), y(_y - !exclude_end)\
     \ {\n\t\tassert(x <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end\
-    \ = false)\n\t    : x(_r.x), y(_r.y - !exclude_end) {\n\t\tassert(x <= y);\n\t\
+    \ = true)\n\t    : x(_r.x), y(_r.y - !exclude_end) {\n\t\tassert(x <= y);\n\t\
     }\n\tconstexpr bool operator==(const Range& r) const {\n\t\treturn x == r.x &&\
     \ y == r.y;\n\t}\n\tconstexpr bool operator!=(const Range& r) const {\n\t\treturn\
     \ x != r.x || y != r.y;\n\t}\n\tconstexpr bool operator<(const Range& r) const\
@@ -60,7 +60,7 @@ data:
     \ T> struct Range {\n\tusing value_type = T;\n\tvalue_type x, y;  // [x, y]\n\t\
     constexpr Range() : x(0), y(0) {}\n\tconstexpr Range(value_type _x, value_type\
     \ _y, bool exclude_end = false)\n\t    : x(_x), y(_y - !exclude_end) {\n\t\tassert(x\
-    \ <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end = false)\n\t\
+    \ <= y);\n\t}\n\tconstexpr Range(const Range& _r, bool exclude_end = true)\n\t\
     \    : x(_r.x), y(_r.y - !exclude_end) {\n\t\tassert(x <= y);\n\t}\n\tconstexpr\
     \ bool operator==(const Range& r) const {\n\t\treturn x == r.x && y == r.y;\n\t\
     }\n\tconstexpr bool operator!=(const Range& r) const {\n\t\treturn x != r.x ||\
@@ -105,7 +105,7 @@ data:
   path: Utility/Range.cpp
   requiredBy:
   - Utility/splitRange.cpp
-  timestamp: '2020-12-30 12:50:34+09:00'
+  timestamp: '2020-12-30 17:12:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Range.cpp

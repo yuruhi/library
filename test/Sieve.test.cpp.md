@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Math/Sieve.cpp
     title: Math/Sieve.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C
@@ -40,16 +40,16 @@ data:
     }\n};\n#line 3 \"test/Sieve.test.cpp\"\n#include <iostream>\n#include <algorithm>\n\
     #line 6 \"test/Sieve.test.cpp\"\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\n\tSieve sieve(100000000);\n\tconst auto&\
-    \ primes = sieve.get_primes();\n\tint n;\n\tcin >> n;\n\tint ans = 0;\n\twhile\
-    \ (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += sieve.is_prime(x);\n\t\tassert(sieve.is_prime(x)\
+    \ primes = sieve.primes();\n\tint n;\n\tcin >> n;\n\tint ans = 0;\n\twhile (n--)\
+    \ {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += sieve.is_prime(x);\n\t\tassert(sieve.is_prime(x)\
     \ == binary_search(primes.begin(), primes.end(), x));\n\t}\n\tcout << ans << '\\\
     n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C\"\
     \n#include \"./../Math/Sieve.cpp\"\n#include <iostream>\n#include <algorithm>\n\
     #include <cassert>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\n\tSieve sieve(100000000);\n\tconst auto&\
-    \ primes = sieve.get_primes();\n\tint n;\n\tcin >> n;\n\tint ans = 0;\n\twhile\
-    \ (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += sieve.is_prime(x);\n\t\tassert(sieve.is_prime(x)\
+    \ primes = sieve.primes();\n\tint n;\n\tcin >> n;\n\tint ans = 0;\n\twhile (n--)\
+    \ {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += sieve.is_prime(x);\n\t\tassert(sieve.is_prime(x)\
     \ == binary_search(primes.begin(), primes.end(), x));\n\t}\n\tcout << ans << '\\\
     n';\n}"
   dependsOn:
@@ -57,8 +57,8 @@ data:
   isVerificationFile: true
   path: test/Sieve.test.cpp
   requiredBy: []
-  timestamp: '2020-12-30 13:04:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2020-12-31 12:10:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Sieve.test.cpp
 layout: document
