@@ -19,9 +19,6 @@ struct Point {
 	static constexpr Point zero() {
 		return {0, 0};
 	}
-	static constexpr Point one() {
-		return {1, 1};
-	}
 	static constexpr Point L() {
 		return {-1, 0};
 	}
@@ -230,11 +227,17 @@ struct Point {
 	auto enumerate_adjacent(direction_iterator first, direction_iterator last) const {
 		return enumerate_adjacent_helper(make_shared<Point>(*this), first, last);
 	}
-	auto adjacent4() const {
-		return enumerate_adjacent(direction.begin(), direction.begin() + 4);
+	auto adj4() const {
+		return enumerate_adjacent(direction.begin() + 1, direction.begin() + 5);
+	}
+	auto adj4_and_this() const {
+		return enumerate_adjacent(direction.begin(), direction.begin() + 5);
 	}
 	auto adjacent8() const {
-		return enumerate_adjacent(direction.begin(), direction.begin() + 8);
+		return enumerate_adjacent(direction.begin() + 1, direction.begin() + 9);
+	}
+	auto adj8_and_this() const {
+		return enumerate_adjacent(direction.begin(), direction.begin() + 9);
 	}
 
 	class enumerate_adj_in_range_helper {
@@ -253,8 +256,7 @@ struct Point {
 			}
 
 		public:
-			iterator(shared_ptr<Point> _p, direction_iterator _first,
-			         direction_iterator _last)
+			iterator(shared_ptr<Point> _p, direction_iterator _first, direction_iterator _last)
 			    : p(_p), first(_first), last(_last) {
 				increment_until_in_range();
 			}
@@ -287,10 +289,16 @@ struct Point {
 		return enumerate_adj_in_range_helper(make_shared<Point>(*this), first, last);
 	}
 	auto adj4_in_range() const {
-		return enumerate_adj_in_range(direction.begin(), direction.begin() + 4);
+		return enumerate_adj_in_range(direction.begin() + 1, direction.begin() + 5);
+	}
+	auto adj4_and_this_in_range() const {
+		return enumerate_adj_in_range(direction.begin(), direction.begin() + 5);
 	}
 	auto adj8_in_range() const {
-		return enumerate_adj_in_range(direction.begin(), direction.end());
+		return enumerate_adj_in_range(direction.begin() + 1, direction.begin() + 9);
+	}
+	auto ajd8_and_this_in_range() const {
+		return enumerate_adj_in_range(direction.begin(), direction.begin() + 9);
 	}
 
 	constexpr Point left() const {
@@ -501,5 +509,6 @@ struct Point {
 	}
 };
 int Point::H, Point::W;
-const vector<Point> Point::direction{Point::R(),  Point::D(),  Point::U(),  Point::L(),
-                                     Point::RD(), Point::LU(), Point::RU(), Point::LD()};
+const vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),
+                                     Point::U(),    Point::L(),  Point::RD(),
+                                     Point::LU(),   Point::RU(), Point::LD()};
