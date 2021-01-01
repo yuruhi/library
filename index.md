@@ -26,6 +26,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/BinaryIndexedTree.cpp
       title: DataStructure/BinaryIndexedTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/LazySegmentTree.cpp
+      title: DataStructure/LazySegmentTree.cpp
     - icon: ':warning:'
       path: DataStructure/PartiallyPersistentUnionFind.cpp
       title: DataStructure/PartiallyPersistentUnionFind.cpp
@@ -68,9 +71,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeUpdateQuery.cpp
       title: DataStructure/RangeUpdateQuery.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/SegmentTree.cpp
       title: DataStructure/SegmentTree.cpp
+    - icon: ':warning:'
+      path: DataStructure/SegmentTree_old.cpp
+      title: DataStructure/SegmentTree_old.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/UnionFind.cpp
       title: DataStructure/UnionFind.cpp
@@ -364,7 +370,7 @@ data:
     - icon: ':warning:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
     - icon: ':warning:'
@@ -379,7 +385,7 @@ data:
     - icon: ':warning:'
       path: atcoder/internal_type_traits.hpp
       title: atcoder/internal_type_traits.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/lazysegtree.hpp
       title: atcoder/lazysegtree.hpp
     - icon: ':warning:'
@@ -397,7 +403,7 @@ data:
     - icon: ':warning:'
       path: atcoder/scc.hpp
       title: atcoder/scc.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/segtree.hpp
       title: atcoder/segtree.hpp
     - icon: ':warning:'
@@ -678,14 +684,32 @@ data:
       path: test/RangeAddQuery.test.cpp
       title: test/RangeAddQuery.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/RangeAddRangeMin.test.cpp
+      title: test/RangeAddRangeMin.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeAddRangeSum.test.cpp
+      title: test/RangeAddRangeSum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeMinQuery.test.cpp
+      title: test/RangeMinQuery.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/RangeSet.test.cpp
       title: test/RangeSet.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RangeSet2.test.cpp
       title: test/RangeSet2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/RangeSumQuery.test.cpp
+      title: test/RangeSumQuery.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/RangeUpdateQuery.test.cpp
       title: test/RangeUpdateQuery.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeUpdateRangeMin.test.cpp
+      title: test/RangeUpdateRangeMin.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RangeUpdateRangeSum.test.cpp
+      title: test/RangeUpdateRangeSum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp

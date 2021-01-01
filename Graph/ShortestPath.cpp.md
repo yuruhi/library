@@ -15,7 +15,7 @@ data:
     \t\tque.pop();\n\t\tfor (auto e : graph[f]) {\n\t\t\tif (dist[e] == inf) {\n\t\
     \t\t\tque.push(e);\n\t\t\t\tdist[e] = dist[f] + 1;\n\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ dist;\n}\nint ShortestPathST(const vector<vector<int>>& graph, int s, int t,\n\
-    \                 int inf = numeric_limits<int>::max()) {\n\tsize_t n = graph.size();\n\
+    \                   int inf = numeric_limits<int>::max()) {\n\tsize_t n = graph.size();\n\
     \tvector<int> dist(n, inf);\n\tdist[s] = 0;\n\tqueue<int> que;\n\tque.push(s);\n\
     \twhile (!que.empty()) {\n\t\tint v = que.front();\n\t\tif (v == t) return dist[t];\n\
     \t\tque.pop();\n\t\tfor (auto u : graph[v]) {\n\t\t\tif (dist[u] == inf) {\n\t\
@@ -29,7 +29,7 @@ data:
     \t\tque.pop();\n\t\tfor (auto e : graph[f]) {\n\t\t\tif (dist[e] == inf) {\n\t\
     \t\t\tque.push(e);\n\t\t\t\tdist[e] = dist[f] + 1;\n\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ dist;\n}\nint ShortestPathST(const vector<vector<int>>& graph, int s, int t,\n\
-    \                 int inf = numeric_limits<int>::max()) {\n\tsize_t n = graph.size();\n\
+    \                   int inf = numeric_limits<int>::max()) {\n\tsize_t n = graph.size();\n\
     \tvector<int> dist(n, inf);\n\tdist[s] = 0;\n\tqueue<int> que;\n\tque.push(s);\n\
     \twhile (!que.empty()) {\n\t\tint v = que.front();\n\t\tif (v == t) return dist[t];\n\
     \t\tque.pop();\n\t\tfor (auto u : graph[v]) {\n\t\t\tif (dist[u] == inf) {\n\t\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: Graph/ShortestPath.cpp
   requiredBy: []
-  timestamp: '2020-12-14 10:40:21+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/ShortestPath.cpp

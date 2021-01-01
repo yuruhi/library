@@ -23,9 +23,9 @@ data:
     \ f(_f) {}\n} Yes(\"Yes\", \"No\"), yes(\"yes\", \"no\"), YES(\"YES\", \"NO\"\
     ), Int(\"1\", \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\tDivStr(const char*\
     \ _d, const char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"), no_spc(\"\", \"\
-    \\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"),\n    no_endl(\" \"\
-    , \"\");\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\npublic:\n\t\
-    void print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
+    \\n\"), end_line(\"\\n\", \"\\n\"), comma(\",\", \"\\n\"), no_endl(\" \", \"\"\
+    );\nclass Printer {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\npublic:\n\tvoid print(int\
+    \ v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
     \ end(buf), v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\
     \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const\
     \ {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf),\
@@ -68,15 +68,15 @@ data:
     , \"No\"), yes(\"yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\", \"0\");\nstruct\
     \ DivStr {\n\tconst char *d, *l;\n\tDivStr(const char* _d, const char* _l) : d(_d),\
     \ l(_l) {}\n} spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\\n\", \"\
-    \\n\"), comma(\",\", \"\\n\"),\n    no_endl(\" \", \"\");\nclass Printer {\n\t\
-    BoolStr B{Yes};\n\tDivStr D{spc};\n\npublic:\n\tvoid print(int v) const {\n\t\t\
-    char buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e\
-    \ == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else\
-    \ {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\t\t\
-    char buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e\
-    \ == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else\
-    \ {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v\
-    \ ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v\
+    \\n\"), comma(\",\", \"\\n\"), no_endl(\" \", \"\");\nclass Printer {\n\tBoolStr\
+    \ B{Yes};\n\tDivStr D{spc};\n\npublic:\n\tvoid print(int v) const {\n\t\tchar\
+    \ buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e ==\
+    \ errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else {\n\
+    \t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\t\tchar\
+    \ buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e ==\
+    \ errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else {\n\
+    \t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v ?\
+    \ B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v\
     \ ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
     \t}\n\tvoid print(const char* v) const {\n\t\tfwrite_unlocked(v, 1, strlen(v),\
     \ stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\", v);\n\t\
@@ -112,7 +112,7 @@ data:
   requiredBy:
   - template/template_no_Ruby.cpp
   - template/template.cpp
-  timestamp: '2020-12-17 18:09:23+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp

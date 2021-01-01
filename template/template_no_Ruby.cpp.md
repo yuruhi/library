@@ -103,13 +103,13 @@ data:
     } Yes(\"Yes\", \"No\"), yes(\"yes\", \"no\"), YES(\"YES\", \"NO\"), Int(\"1\"\
     , \"0\");\nstruct DivStr {\n\tconst char *d, *l;\n\tDivStr(const char* _d, const\
     \ char* _l) : d(_d), l(_l) {}\n} spc(\" \", \"\\n\"), no_spc(\"\", \"\\n\"), end_line(\"\
-    \\n\", \"\\n\"), comma(\",\", \"\\n\"),\n    no_endl(\" \", \"\");\nclass Printer\
-    \ {\n\tBoolStr B{Yes};\n\tDivStr D{spc};\n\npublic:\n\tvoid print(int v) const\
-    \ {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf),\
-    \ v); e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t\
-    } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\
-    \t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v);\
+    \\n\", \"\\n\"), comma(\",\", \"\\n\"), no_endl(\" \", \"\");\nclass Printer {\n\
+    \tBoolStr B{Yes};\n\tDivStr D{spc};\n\npublic:\n\tvoid print(int v) const {\n\t\
+    \tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v);\
     \ e == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else\
+    \ {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\t\t\
+    char buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e\
+    \ == errc{}) {\n\t\t\tfwrite(buf, sizeof(char), ptr - buf, stdout);\n\t\t} else\
     \ {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v\
     \ ? B.t : B.f);\n\t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v\
     \ ? B.t : B.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
@@ -183,7 +183,7 @@ data:
     \ == 1) {\n\t\t\treturn vector(sizes[0], init);\n\t\t} else {\n\t\t\tint size\
     \ = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn vector(size, make_vector<T,\
     \ N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\ntemplate <class\
-    \ T, size_t N>\nauto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
+    \ T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
     \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
     \ init);\n}\n#line 7 \"template/template_no_Ruby.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
     #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
@@ -203,7 +203,7 @@ data:
   isVerificationFile: false
   path: template/template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2020-12-21 16:46:27+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template_no_Ruby.cpp

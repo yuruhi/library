@@ -18,8 +18,8 @@ data:
     \ <utility>\nusing namespace std;\n\ntemplate <class T> class RangeUpdateQuery\
     \ {\n\tint n;\n\tvector<pair<size_t, T>> a;\n\tsize_t update_count = 1;\n\tstatic\
     \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\
-    \t}\n\npublic:\n\tRangeUpdateQuery(int _n, const T& init)\n\t    : n(ceil2(_n)),\
-    \ a(n * 2, make_pair(0, init)) {}\n\tRangeUpdateQuery(const vector<T>& v) : n(ceil2(v.size())),\
+    \t}\n\npublic:\n\tRangeUpdateQuery(int _n, const T& init) : n(ceil2(_n)), a(n\
+    \ * 2, make_pair(0, init)) {}\n\tRangeUpdateQuery(const vector<T>& v) : n(ceil2(v.size())),\
     \ a(n * 2) {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\ta[i + n] = make_pair(0,\
     \ v[i]);\n\t\t}\n\t}\n\tvoid update(int l, int r, const T& x) {\n\t\tfor (l +=\
     \ n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\tif (l & 1) a[l++] = make_pair(update_count,\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/RangeUpdateQuery.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/RangeUpdateQuery.test.cpp

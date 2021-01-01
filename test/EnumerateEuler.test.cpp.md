@@ -16,9 +16,8 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011
     links:
     - https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011
-  bundledCode: "#line 1 \"test/EnumerateEuler.test.cpp\"\n#define PROBLEM \\\n\t\"\
-    https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\n\
-    #line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
+  bundledCode: "#line 1 \"test/EnumerateEuler.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
+    \n#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<pair<T,\
     \ int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1) {\n\t\treturn {};\n\
     \t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\t\
@@ -39,13 +38,13 @@ data:
     \ {\n\tvector<int> result(x + 1);\n\tiota(result.begin(), result.end(), 0);\n\t\
     for (int i = 2; i <= x; ++i) {\n\t\tif (result[i] == i) {\n\t\t\tfor (int j =\
     \ i; j <= x; j += i) {\n\t\t\t\tresult[j] = result[j] / i * (i - 1);\n\t\t\t}\n\
-    \t\t}\n\t}\n\treturn result;\n}\n#line 4 \"test/EnumerateEuler.test.cpp\"\n#include\
+    \t\t}\n\t}\n\treturn result;\n}\n#line 3 \"test/EnumerateEuler.test.cpp\"\n#include\
     \ <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \n\tconst int MAX_A = 1000000;\n\tvector<int> euler = EnumerateEuler(MAX_A);\n\
     \tvector<long long> ans(MAX_A + 1, 1);\n\tfor (int i = 1; i <= MAX_A; ++i) {\n\
     \t\tans[i] = ans[i - 1] + euler[i];\n\t}\n\n\tint q;\n\tcin >> q;\n\twhile (q--)\
     \ {\n\t\tint x;\n\t\tcin >> x;\n\t\tcout << ans[x] << '\\n';\n\t}\n}\n"
-  code: "#define PROBLEM \\\n\t\"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
     \n#include \"./../Math/Euler.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\t\
     const int MAX_A = 1000000;\n\tvector<int> euler = EnumerateEuler(MAX_A);\n\tvector<long\
@@ -58,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/EnumerateEuler.test.cpp
   requiredBy: []
-  timestamp: '2020-12-13 11:47:50+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/EnumerateEuler.test.cpp

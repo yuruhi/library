@@ -20,21 +20,21 @@ data:
     if (result[i]) {\n\t\t\tfor (size_t j = i * i; j <= n; j += i) result[j] = false;\n\
     \t\t}\n\t}\n\treturn result;\n}\n#line 3 \"test/Eratosthenes.test.cpp\"\n#include\
     \ <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \t\n\tauto table = Eratosthenes(100000000);\n\tint n;\n\tcin >> n;\n\tint ans\
-    \ = 0;\n\twhile (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += table[x];\n\t}\n\
-    \tcout << ans << '\\n';\n}\n"
+    \n\tauto table = Eratosthenes(100000000);\n\tint n;\n\tcin >> n;\n\tint ans =\
+    \ 0;\n\twhile (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += table[x];\n\t}\n\t\
+    cout << ans << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"./../Math/Eratosthenes.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \t\n\tauto table = Eratosthenes(100000000);\n\tint n;\n\tcin >> n;\n\tint ans\
-    \ = 0;\n\twhile (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += table[x];\n\t}\n\
-    \tcout << ans << '\\n';\n}"
+    \n\tauto table = Eratosthenes(100000000);\n\tint n;\n\tcin >> n;\n\tint ans =\
+    \ 0;\n\twhile (n--) {\n\t\tint x;\n\t\tcin >> x;\n\t\tans += table[x];\n\t}\n\t\
+    cout << ans << '\\n';\n}"
   dependsOn:
   - Math/Eratosthenes.cpp
   isVerificationFile: true
   path: test/Eratosthenes.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:14:42+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Eratosthenes.test.cpp

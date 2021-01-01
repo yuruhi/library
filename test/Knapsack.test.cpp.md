@@ -16,8 +16,8 @@ data:
   bundledCode: "#line 1 \"test/Knapsack.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_C\"\
     \n#line 2 \"DP/Knapsack.cpp\"\n#include <vector>\n#include <algorithm>\n#include\
     \ <cassert>\nusing namespace std;\n\ntemplate <class T>\nvector<T> Knapsack(int\
-    \ n, int wight_limit, const vector<T>& value,\n                   const vector<int>&\
-    \ weight) {\n\tassert(n == static_cast<int>(value.size()));\n\tassert(n == static_cast<int>(weight.size()));\n\
+    \ n, int wight_limit, const vector<T>& value, const vector<int>& weight) {\n\t\
+    assert(n == static_cast<int>(value.size()));\n\tassert(n == static_cast<int>(weight.size()));\n\
     \tvector<T> dp(wight_limit + 1, 0);\n\tfor (int i = 0; i < n; ++i) {\n\t\tfor\
     \ (int j = 0; j <= wight_limit - weight[i]; ++j) {\n\t\t\tdp[j + weight[i]] =\
     \ max(dp[j + weight[i]], dp[j] + value[i]);\n\t\t}\n\t}\n\treturn dp;\n}\n#line\
@@ -37,7 +37,7 @@ data:
   isVerificationFile: true
   path: test/Knapsack.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 17:43:21+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Knapsack.test.cpp

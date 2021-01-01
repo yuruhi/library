@@ -379,17 +379,17 @@ data:
     \t}\n\n\tLD distance(const Vec2& v1, const Vec2& v2) {\n\t\treturn hypot(v1.x\
     \ - v2.x, v1.y - v2.y);\n\t}\n\tLD distance(const Vec2& v, const Line& l) {\n\t\
     \treturn abs(l.vec().cross(v - l.begin) / l.vec().length());\n\t}\n\tLD distance(const\
-    \ Vec2& v, const Segment& s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 ||\n\
-    \t\t    sgn(s.counter_vec().dot(v - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin),\
-    \ v.distance(s.end));\n\t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\
-    \t}\n\tLD distance(const Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v)\
-    \ - c.r);\n\t}\n\tLD distance(const Line& l, const Vec2& v) {\n\t\treturn distance(v,\
-    \ l);\n\t}\n\tLD distance(const Line& l1, const Line& l2) {\n\t\treturn l1.is_parallel(l2)\
+    \ Vec2& v, const Segment& s) {\n\t\tif (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v\
+    \ - s.end)) < 0) {\n\t\t\treturn min(v.distance(s.begin), v.distance(s.end));\n\
+    \t\t} else {\n\t\t\treturn Line(s).distance(v);\n\t\t}\n\t}\n\tLD distance(const\
+    \ Vec2& v, const Circle& c) {\n\t\treturn max<LD>(0, c.center.distance(v) - c.r);\n\
+    \t}\n\tLD distance(const Line& l, const Vec2& v) {\n\t\treturn distance(v, l);\n\
+    \t}\n\tLD distance(const Line& l1, const Line& l2) {\n\t\treturn l1.is_parallel(l2)\
     \ ? l1.distance(l2.begin) : 0;\n\t}\n\tLD distance(const Segment& s, const Vec2&\
     \ v) {\n\t\treturn distance(v, s);\n\t}\n\tLD distance(const Segment& s1, const\
     \ Segment& s2) {\n\t\tif (intersect(s1, s2)) {\n\t\t\treturn 0;\n\t\t} else {\n\
-    \t\t\treturn min({distance(s1, s2.begin), distance(s1, s2.end),\n\t\t\t      \
-    \      distance(s1.begin, s2), distance(s1.end, s2)});\n\t\t}\n\t}\n\tLD distance(const\
+    \t\t\treturn min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin,\
+    \ s2),\n\t\t\t            distance(s1.end, s2)});\n\t\t}\n\t}\n\tLD distance(const\
     \ Circle& c, const Vec2& v) {\n\t\treturn distance(v, c);\n\t}\n\tLD distance(const\
     \ Circle& c1, const Circle& c2) {\n\t\treturn max<LD>(0, distance(c1.center, c2.center)\
     \ - (c1.r + c2.r));\n\t}\n\n\tbool intersect(const Vec2& v1, const Vec2& v2) {\n\
@@ -417,12 +417,12 @@ data:
     \ Segment& s) {\n\t\treturn intersect(s, c);\n\t}\n\tbool intersect(const Circle&\
     \ c1, const Circle& c2) {\n\t\treturn sgn(distance(c1.center, c2.center) - (c1.r\
     \ + c2.r)) <= 0;\n\t}\n\tbool intersect(const Circle& c, const Rect& r) {\n\t\t\
-    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2))\n\t\t           .intersects(c.center)\
+    return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center)\
     \ ||\n\t\t    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center)\
     \ ||\n\t\t    c.intersects(r.top_left()) || c.intersects(r.top_right()) ||\n\t\
     \t    c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());\n\t}\n\t\
     bool intersect(const Rect& r1, const Rect& r2) {\n\t\treturn sgn(max(r1.left_x(),\
-    \ r2.left_x()) - min(r1.right_x(), r2.right_x())) <=\n\t\t    0 &&\n\t\t    sgn(max(r1.top_y(),\
+    \ r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&\n\t\t    sgn(max(r1.top_y(),\
     \ r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;\n\t}\n\tbool intersect(const\
     \ Rect& r, const Circle& c) {\n\t\treturn intersect(c, r);\n\t}\n\tbool intersect(const\
     \ Polygon& p, const Vec2& v) {\n\t\treturn intersect(v, p);\n\t}\n\n\tbool tangent(const\
@@ -510,8 +510,8 @@ data:
     \u7A4D\n\t\tauto circle_and_triangle = [signed_area](Circle c, Vec2 a, Vec2 b)\
     \ -> LD {\n\t\t\ta -= c.center;\n\t\t\tb -= c.center;\n\t\t\tc.center -= c.center;\n\
     \t\t\tif (sgn(a.distance(b)) == 0) {\n\t\t\t\treturn 0;\n\t\t\t} else if (bool\
-    \ in_a = a.intersects(c), in_b = b.intersects(c);\n\t\t\t           in_a && in_b)\
-    \ {\n\t\t\t\treturn signed_area(a, b, true);\n\t\t\t} else if (auto points = c.cross_points(Segment(a,\
+    \ in_a = a.intersects(c), in_b = b.intersects(c); in_a && in_b) {\n\t\t\t\treturn\
+    \ signed_area(a, b, true);\n\t\t\t} else if (auto points = c.cross_points(Segment(a,\
     \ b)); points.empty()) {\n\t\t\t\treturn signed_area(a, b, false);\n\t\t\t} else\
     \ {\n\t\t\t\tVec2 p1 = points.front(), p2 = points.back();\n\t\t\t\tswap(p1, p2);\n\
     \t\t\t\treturn signed_area(p1, p2, true) + signed_area(a, p1, in_a) +\n\t\t\t\t\
@@ -539,7 +539,7 @@ data:
   isVerificationFile: true
   path: test/Geometric_polygon_diameter.test.cpp
   requiredBy: []
-  timestamp: '2020-12-04 20:22:32+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_polygon_diameter.test.cpp

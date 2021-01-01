@@ -16,7 +16,7 @@ data:
     - https://yukicoder.me/problems/no/1179
   bundledCode: "#line 1 \"test/QuadraticEquation.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1179\"\
     \n#define ERROR \"1e-4\"\n#line 2 \"Math/QuadraticEquation.cpp\"\n#include <vector>\n\
-    #include <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate<class\
+    #include <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate <class\
     \ T>\noptional<vector<T>> QuadraticEquation(long long a, long long b, long long\
     \ c) {\n\tT A = a, B = b, C = c;\n\tif (a == 0 && b == 0 && c == 0) {\n\t\treturn\
     \ nullopt;\n\t} else if (a == 0 && b == 0) {\n\t\treturn {};\n\t} else if (a ==\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/QuadraticEquation.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 17:08:01+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/QuadraticEquation.test.cpp

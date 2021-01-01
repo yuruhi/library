@@ -54,7 +54,7 @@ data:
     \ == 1) {\n\t\t\treturn vector(sizes[0], init);\n\t\t} else {\n\t\t\tint size\
     \ = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn vector(size, make_vector<T,\
     \ N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\ntemplate <class\
-    \ T, size_t N>\nauto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
+    \ T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
     \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
     \ init);\n}\n#line 4 \"Math/BabystepGiantstep.cpp\"\n#include <unordered_map>\n\
     #line 6 \"Math/BabystepGiantstep.cpp\"\nusing namespace std;\n\nint64_t BabystepGiantstep(uint64_t\
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: Math/BabystepGiantstep.cpp
   requiredBy: []
-  timestamp: '2020-12-21 16:46:27+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/BabystepGiantstep.cpp

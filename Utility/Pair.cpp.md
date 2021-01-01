@@ -18,12 +18,12 @@ data:
     \ y;\n\tconstexpr Pair() : x(), y() {}\n\tconstexpr Pair(value_type _x, value_type\
     \ _y) : x(_x), y(_y) {}\n\tconstexpr Pair(const pair<value_type, value_type>&\
     \ xy) : x(xy.first), y(xy.second) {}\n\tconstexpr Pair(const tuple<value_type,\
-    \ value_type>& xy)\n\t    : x(get<0>(xy)), y(get<0>(xy)) {}\n\tconstexpr Pair\
-    \ operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr Pair operator-() const\
-    \ {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Pair operator+(const Pair& p) const\
-    \ {\n\t\treturn Pair(*this) += p;\n\t}\n\tconstexpr Pair operator-(const Pair&\
-    \ p) const {\n\t\treturn Pair(*this) -= p;\n\t}\n\tconstexpr Pair operator*(const\
-    \ Pair& p) const {\n\t\treturn Pair(*this) *= p;\n\t}\n\tconstexpr Pair operator/(const\
+    \ value_type>& xy) : x(get<0>(xy)), y(get<0>(xy)) {}\n\tconstexpr Pair operator+()\
+    \ const {\n\t\treturn *this;\n\t}\n\tconstexpr Pair operator-() const {\n\t\t\
+    return {-x, -y};\n\t}\n\tconstexpr Pair operator+(const Pair& p) const {\n\t\t\
+    return Pair(*this) += p;\n\t}\n\tconstexpr Pair operator-(const Pair& p) const\
+    \ {\n\t\treturn Pair(*this) -= p;\n\t}\n\tconstexpr Pair operator*(const Pair&\
+    \ p) const {\n\t\treturn Pair(*this) *= p;\n\t}\n\tconstexpr Pair operator/(const\
     \ Pair& p) const {\n\t\treturn Pair(*this) /= p;\n\t}\n\tconstexpr Pair operator%(const\
     \ Pair& p) const {\n\t\treturn Pair(*this) %= p;\n\t}\n\tconstexpr Pair operator+(value_type\
     \ n) const {\n\t\treturn Pair(*this) += n;\n\t}\n\tconstexpr Pair operator-(value_type\
@@ -72,29 +72,29 @@ data:
     \t\treturn p.y;\n\t}\n\n\tvalue_type x, y;\n\tconstexpr Pair() : x(), y() {}\n\
     \tconstexpr Pair(value_type _x, value_type _y) : x(_x), y(_y) {}\n\tconstexpr\
     \ Pair(const pair<value_type, value_type>& xy) : x(xy.first), y(xy.second) {}\n\
-    \tconstexpr Pair(const tuple<value_type, value_type>& xy)\n\t    : x(get<0>(xy)),\
-    \ y(get<0>(xy)) {}\n\tconstexpr Pair operator+() const {\n\t\treturn *this;\n\t\
-    }\n\tconstexpr Pair operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr\
-    \ Pair operator+(const Pair& p) const {\n\t\treturn Pair(*this) += p;\n\t}\n\t\
-    constexpr Pair operator-(const Pair& p) const {\n\t\treturn Pair(*this) -= p;\n\
-    \t}\n\tconstexpr Pair operator*(const Pair& p) const {\n\t\treturn Pair(*this)\
-    \ *= p;\n\t}\n\tconstexpr Pair operator/(const Pair& p) const {\n\t\treturn Pair(*this)\
-    \ /= p;\n\t}\n\tconstexpr Pair operator%(const Pair& p) const {\n\t\treturn Pair(*this)\
-    \ %= p;\n\t}\n\tconstexpr Pair operator+(value_type n) const {\n\t\treturn Pair(*this)\
-    \ += n;\n\t}\n\tconstexpr Pair operator-(value_type n) const {\n\t\treturn Pair(*this)\
-    \ -= n;\n\t}\n\tconstexpr Pair operator*(value_type n) const {\n\t\treturn Pair(*this)\
-    \ *= n;\n\t}\n\tconstexpr Pair operator/(value_type n) const {\n\t\treturn Pair(*this)\
-    \ /= n;\n\t}\n\tconstexpr Pair operator%(value_type n) const {\n\t\treturn Pair(*this)\
-    \ %= n;\n\t}\n\tconstexpr Pair& operator+=(const Pair& p) {\n\t\tx += p.x;\n\t\
-    \ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator-=(const Pair&\
-    \ p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Pair&\
-    \ operator*=(const Pair& p) {\n\t\tx *= p.x;\n\t\ty *= p.y;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr Pair& operator/=(const Pair& p) {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\
-    \t\treturn *this;\n\t}\n\tconstexpr Pair& operator%=(const Pair& p) {\n\t\tx %=\
-    \ p.x;\n\t\ty %= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator+=(value_type\
-    \ n) {\n\t\tx += n;\n\t\ty += n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator-=(value_type\
-    \ n) {\n\t\tx -= n;\n\t\ty -= n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator*=(value_type\
-    \ n) {\n\t\tx *= n;\n\t\ty *= n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator/=(value_type\
+    \tconstexpr Pair(const tuple<value_type, value_type>& xy) : x(get<0>(xy)), y(get<0>(xy))\
+    \ {}\n\tconstexpr Pair operator+() const {\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ Pair operator-() const {\n\t\treturn {-x, -y};\n\t}\n\tconstexpr Pair operator+(const\
+    \ Pair& p) const {\n\t\treturn Pair(*this) += p;\n\t}\n\tconstexpr Pair operator-(const\
+    \ Pair& p) const {\n\t\treturn Pair(*this) -= p;\n\t}\n\tconstexpr Pair operator*(const\
+    \ Pair& p) const {\n\t\treturn Pair(*this) *= p;\n\t}\n\tconstexpr Pair operator/(const\
+    \ Pair& p) const {\n\t\treturn Pair(*this) /= p;\n\t}\n\tconstexpr Pair operator%(const\
+    \ Pair& p) const {\n\t\treturn Pair(*this) %= p;\n\t}\n\tconstexpr Pair operator+(value_type\
+    \ n) const {\n\t\treturn Pair(*this) += n;\n\t}\n\tconstexpr Pair operator-(value_type\
+    \ n) const {\n\t\treturn Pair(*this) -= n;\n\t}\n\tconstexpr Pair operator*(value_type\
+    \ n) const {\n\t\treturn Pair(*this) *= n;\n\t}\n\tconstexpr Pair operator/(value_type\
+    \ n) const {\n\t\treturn Pair(*this) /= n;\n\t}\n\tconstexpr Pair operator%(value_type\
+    \ n) const {\n\t\treturn Pair(*this) %= n;\n\t}\n\tconstexpr Pair& operator+=(const\
+    \ Pair& p) {\n\t\tx += p.x;\n\t\ty += p.y;\n\t\treturn *this;\n\t}\n\tconstexpr\
+    \ Pair& operator-=(const Pair& p) {\n\t\tx -= p.x;\n\t\ty -= p.y;\n\t\treturn\
+    \ *this;\n\t}\n\tconstexpr Pair& operator*=(const Pair& p) {\n\t\tx *= p.x;\n\t\
+    \ty *= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator/=(const Pair&\
+    \ p) {\n\t\tx /= p.x;\n\t\ty /= p.y;\n\t\treturn *this;\n\t}\n\tconstexpr Pair&\
+    \ operator%=(const Pair& p) {\n\t\tx %= p.x;\n\t\ty %= p.y;\n\t\treturn *this;\n\
+    \t}\n\tconstexpr Pair& operator+=(value_type n) {\n\t\tx += n;\n\t\ty += n;\n\t\
+    \treturn *this;\n\t}\n\tconstexpr Pair& operator-=(value_type n) {\n\t\tx -= n;\n\
+    \t\ty -= n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator*=(value_type n)\
+    \ {\n\t\tx *= n;\n\t\ty *= n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator/=(value_type\
     \ n) {\n\t\tx /= n;\n\t\ty /= n;\n\t\treturn *this;\n\t}\n\tconstexpr Pair& operator%=(value_type\
     \ n) {\n\t\tx %= n;\n\t\ty %= n;\n\t\treturn *this;\n\t}\n\tconstexpr bool operator==(const\
     \ Pair& p) const {\n\t\treturn x == p.x && y == p.y;\n\t}\n\tconstexpr bool operator!=(const\
@@ -120,7 +120,7 @@ data:
   isVerificationFile: false
   path: Utility/Pair.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/Pair.cpp

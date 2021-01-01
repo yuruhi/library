@@ -41,9 +41,9 @@ data:
     \t\t}\n\t\t}\n\t}\n\tfor (int i = 0; i < V; ++i) {\n\t\tif (dist[i][i] < 0) return\
     \ true;\n\t}\n\treturn false;\n}\n\nvoid WarashallFloydAddEdge(Matrix& dist, const\
     \ Edge2& e) {\n\tint V = dist.size();\n\tfor (int i = 0; i < V; ++i) {\n\t\tfor\
-    \ (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] = min(\n\t\t\t    dist[i][j],\n\t\
-    \t\t    min(dist[i][e.from] + dist[e.to][j], dist[i][e.to] + dist[e.from][j])\
-    \ +\n\t\t\t        e.cost);\n\t\t}\n\t}\n}\n#line 5 \"test/WarashallFloyd.test.cpp\"\
+    \ (int j = 0; j < V; ++j) {\n\t\t\tdist[i][j] =\n\t\t\t    min(dist[i][j],\n\t\
+    \t\t        min(dist[i][e.from] + dist[e.to][j], dist[i][e.to] + dist[e.from][j])\
+    \ +\n\t\t\t            e.cost);\n\t\t}\n\t}\n}\n#line 5 \"test/WarashallFloyd.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tMatrix\
     \ g(n, vector(n, INF));\n\tfor (int i = 0; i < n; ++i) {\n\t\tg[i][i] = 0;\n\t\
     }\n\tfor (int i = 0; i < m; ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/WarashallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2020-11-29 12:11:14+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/WarashallFloyd.test.cpp

@@ -1,13 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: DataStructure/SegmentTree.cpp
+    title: DataStructure/SegmentTree.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/RangeMinQuery.test.cpp
+    title: test/RangeMinQuery.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeSumQuery.test.cpp
+    title: test/RangeSumQuery.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/segtree.hpp\"\n\n\n\n#include <algorithm>\n#line\
@@ -53,11 +62,12 @@ data:
     \ < size) {\n\t\t\t\t\t\tr = (2 * r + 1);\n\t\t\t\t\t\tif (f(op(d[r], sm))) {\n\
     \t\t\t\t\t\t\tsm = op(d[r], sm);\n\t\t\t\t\t\t\tr--;\n\t\t\t\t\t\t}\n\t\t\t\t\t\
     }\n\t\t\t\t\treturn r + 1 - size;\n\t\t\t\t}\n\t\t\t\tsm = op(d[r], sm);\n\t\t\
-    \t} while ((r & -r) != r);\n\t\t\treturn 0;\n\t\t}\n\n\t\tvector<S> to_a() {\n\
-    \t\t\tvector<S> result(_n);\n\t\t\tfor (int i = 0; i < _n; ++i) {\n\t\t\t\tresult[i]\
-    \ = get(i);\n\t\t\t}\n\t\t\treturn result;\n\t\t}\n\n\tprivate:\n\t\tint _n, size,\
-    \ log;\n\t\tstd::vector<S> d;\n\n\t\tvoid update(int k) {\n\t\t\td[k] = op(d[2\
-    \ * k], d[2 * k + 1]);\n\t\t}\n\t};\n\n}  // namespace atcoder\n\n\n"
+    \t} while ((r & -r) != r);\n\t\t\treturn 0;\n\t\t}\n\n\t\tstd::vector<S> to_a()\
+    \ {\n\t\t\tstd::vector<S> result(_n);\n\t\t\tfor (int i = 0; i < _n; ++i) {\n\t\
+    \t\t\tresult[i] = get(i);\n\t\t\t}\n\t\t\treturn result;\n\t\t}\n\n\tprivate:\n\
+    \t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\n\t\tvoid update(int k) {\n\t\t\
+    \td[k] = op(d[2 * k], d[2 * k + 1]);\n\t\t}\n\t};\n\n}  // namespace atcoder\n\
+    \n\n"
   code: "#ifndef ATCODER_SEGTREE_HPP\n#define ATCODER_SEGTREE_HPP 1\n\n#include <algorithm>\n\
     #include \"./internal_bit.hpp\"\n#include <cassert>\n#include <vector>\n\nnamespace\
     \ atcoder {\n\n\ttemplate <class S, S (*op)(S, S), S (*e)()> struct segtree {\n\
@@ -93,19 +103,22 @@ data:
     if (f(op(d[r], sm))) {\n\t\t\t\t\t\t\tsm = op(d[r], sm);\n\t\t\t\t\t\t\tr--;\n\
     \t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn r + 1 - size;\n\t\t\t\t}\n\t\t\t\t\
     sm = op(d[r], sm);\n\t\t\t} while ((r & -r) != r);\n\t\t\treturn 0;\n\t\t}\n\n\
-    \t\tvector<S> to_a() {\n\t\t\tvector<S> result(_n);\n\t\t\tfor (int i = 0; i <\
-    \ _n; ++i) {\n\t\t\t\tresult[i] = get(i);\n\t\t\t}\n\t\t\treturn result;\n\t\t\
-    }\n\n\tprivate:\n\t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\n\t\tvoid update(int\
-    \ k) {\n\t\t\td[k] = op(d[2 * k], d[2 * k + 1]);\n\t\t}\n\t};\n\n}  // namespace\
-    \ atcoder\n\n#endif  // ATCODER_SEGTREE_HPP\n"
+    \t\tstd::vector<S> to_a() {\n\t\t\tstd::vector<S> result(_n);\n\t\t\tfor (int\
+    \ i = 0; i < _n; ++i) {\n\t\t\t\tresult[i] = get(i);\n\t\t\t}\n\t\t\treturn result;\n\
+    \t\t}\n\n\tprivate:\n\t\tint _n, size, log;\n\t\tstd::vector<S> d;\n\n\t\tvoid\
+    \ update(int k) {\n\t\t\td[k] = op(d[2 * k], d[2 * k + 1]);\n\t\t}\n\t};\n\n}\
+    \  // namespace atcoder\n\n#endif  // ATCODER_SEGTREE_HPP\n"
   dependsOn:
   - atcoder/internal_bit.hpp
   isVerificationFile: false
   path: atcoder/segtree.hpp
-  requiredBy: []
-  timestamp: '2020-12-30 14:12:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - DataStructure/SegmentTree.cpp
+  timestamp: '2021-01-01 18:54:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/RangeMinQuery.test.cpp
+  - test/RangeSumQuery.test.cpp
 documentation_of: atcoder/segtree.hpp
 layout: document
 redirect_from:

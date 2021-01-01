@@ -11,7 +11,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Math/QuadraticEquation.cpp\"\n#include <vector>\n#include\
-    \ <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate<class T>\noptional<vector<T>>\
+    \ <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate <class T>\noptional<vector<T>>\
     \ QuadraticEquation(long long a, long long b, long long c) {\n\tT A = a, B = b,\
     \ C = c;\n\tif (a == 0 && b == 0 && c == 0) {\n\t\treturn nullopt;\n\t} else if\
     \ (a == 0 && b == 0) {\n\t\treturn {};\n\t} else if (a == 0) {\n\t\treturn vector{-(C\
@@ -22,7 +22,7 @@ data:
     \ sqrt(D)) / (2 * A);\n\t\t\t}\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn vector{min(ans1,\
     \ ans2), max(ans1, ans2)};\n\t\t}\n\t}\n}\n"
   code: "#pragma once\n#include <vector>\n#include <optional>\n#include <cmath>\n\
-    using namespace std;\n\ntemplate<class T>\noptional<vector<T>> QuadraticEquation(long\
+    using namespace std;\n\ntemplate <class T>\noptional<vector<T>> QuadraticEquation(long\
     \ long a, long long b, long long c) {\n\tT A = a, B = b, C = c;\n\tif (a == 0\
     \ && b == 0 && c == 0) {\n\t\treturn nullopt;\n\t} else if (a == 0 && b == 0)\
     \ {\n\t\treturn {};\n\t} else if (a == 0) {\n\t\treturn vector{-(C / B)};\n\t\
@@ -36,7 +36,7 @@ data:
   isVerificationFile: false
   path: Math/QuadraticEquation.cpp
   requiredBy: []
-  timestamp: '2020-11-23 17:08:01+09:00'
+  timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/QuadraticEquation.test.cpp

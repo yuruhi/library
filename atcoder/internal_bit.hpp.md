@@ -2,18 +2,42 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: DataStructure/LazySegmentTree.cpp
+    title: DataStructure/LazySegmentTree.cpp
+  - icon: ':heavy_check_mark:'
+    path: DataStructure/SegmentTree.cpp
+    title: DataStructure/SegmentTree.cpp
   - icon: ':warning:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/RangeAddRangeMin.test.cpp
+    title: test/RangeAddRangeMin.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeAddRangeSum.test.cpp
+    title: test/RangeAddRangeSum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeMinQuery.test.cpp
+    title: test/RangeMinQuery.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeSumQuery.test.cpp
+    title: test/RangeSumQuery.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeUpdateRangeMin.test.cpp
+    title: test/RangeUpdateRangeMin.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/RangeUpdateRangeSum.test.cpp
+    title: test/RangeUpdateRangeSum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include\
@@ -42,9 +66,17 @@ data:
   - atcoder/segtree.hpp
   - atcoder/lazysegtree.hpp
   - atcoder/convolution.hpp
+  - DataStructure/LazySegmentTree.cpp
+  - DataStructure/SegmentTree.cpp
   timestamp: '2020-10-30 19:21:58+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/RangeMinQuery.test.cpp
+  - test/RangeUpdateRangeSum.test.cpp
+  - test/RangeAddRangeMin.test.cpp
+  - test/RangeUpdateRangeMin.test.cpp
+  - test/RangeSumQuery.test.cpp
+  - test/RangeAddRangeSum.test.cpp
 documentation_of: atcoder/internal_bit.hpp
 layout: document
 redirect_from:
