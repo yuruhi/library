@@ -30,8 +30,7 @@ struct Sort_impl {
 struct SortBy_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
-			sort(begin(v), end(v),
-			     [&](const auto& i, const auto& j) { return f(i) < f(j); });
+			sort(begin(v), end(v), [&](const auto& i, const auto& j) { return f(i) < f(j); });
 			return v;
 		});
 	}
@@ -51,8 +50,7 @@ struct RSort_impl {
 struct RSortBy_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
-			sort(begin(v), end(v),
-			     [&](const auto& i, const auto& j) { return f(i) > f(j); });
+			sort(begin(v), end(v), [&](const auto& i, const auto& j) { return f(i) > f(j); });
 			return v;
 		});
 	}
@@ -219,7 +217,7 @@ struct Sum_impl {
 			                  [&](const auto& a, const auto& b) { return a + f(b); });
 		});
 	}
-	template <class T> friend auto operator|(T v, const Sum_impl& c) {
+	template <class T> friend auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {
 		return accumulate(begin(v), end(v), typename T::value_type{});
 	}
 } Sum;
