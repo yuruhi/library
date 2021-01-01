@@ -115,8 +115,8 @@ namespace atcoder {
 			return 0;
 		}
 
-		vector<S> to_a() {
-			vector<S> result(_n);
+		std::vector<S> to_a() {
+			std::vector<S> result(_n);
 			for (int i = 0; i < _n; ++i) {
 				result[i] = get(i);
 			}
