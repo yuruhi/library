@@ -5,7 +5,8 @@
 using namespace std;
 
 template <class T>
-vector<T> Knapsack01(int n, int weight_limit, const vector<T>& value, const vector<int>& weight) {
+vector<T> Knapsack01(int n, int weight_limit, const vector<T>& value,
+                     const vector<int>& weight) {
 	assert(n == static_cast<int>(value.size()));
 	assert(n == static_cast<int>(weight.size()));
 	vector<T> dp(weight_limit + 1, 0);

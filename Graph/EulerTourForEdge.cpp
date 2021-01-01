@@ -21,7 +21,8 @@ class EulerTourForEdge {
 
 public:
 	EulerTourForEdge(int n) : graph(n), ls(n), rs(n) {}
-	EulerTourForEdge(const vector<vector<int>>& _graph) : graph(_graph), ls(graph.size()), rs(graph.size()) {}
+	EulerTourForEdge(const vector<vector<int>>& _graph)
+	    : graph(_graph), ls(graph.size()), rs(graph.size()) {}
 	void add_edge(int u, int v) {
 		graph[u].push_back(v);
 		graph[v].push_back(u);

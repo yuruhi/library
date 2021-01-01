@@ -46,8 +46,7 @@ private:
 public:
 	SegmentTree(int _n, const value_type& init_, const func_type& _func)
 	    : n(ceil2(_n)), original_n(_n), init(init_), data(n * 2, init), func(_func) {}
-	SegmentTree(const vector<value_type>& vec, const value_type& init_,
-	            const func_type& _func)
+	SegmentTree(const vector<value_type>& vec, const value_type& init_, const func_type& _func)
 	    : init(init_), func(_func) {
 		build(vec);
 	}

@@ -22,8 +22,7 @@ size_t BracketsPos(const string& s, size_t pos, char c1 = '(', char c2 = ')') {
 	return string::npos;
 }
 
-pair<size_t, size_t> BracketsPos2(const string& s, size_t pos, char c1 = '(',
-                                  char c2 = ')') {
+pair<size_t, size_t> BracketsPos2(const string& s, size_t pos, char c1 = '(', char c2 = ')') {
 	size_t l = s.find(c1, pos);
 	if (l != string::npos) {
 		size_t r = BracketsPos(s, l, c1, c2);

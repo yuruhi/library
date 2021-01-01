@@ -15,8 +15,7 @@ private:
 	struct node_type {
 		node_ptr next;
 		value_type value;
-		node_type(node_ptr _next, const value_type& _value)
-		    : next(_next), value(_value) {}
+		node_type(node_ptr _next, const value_type& _value) : next(_next), value(_value) {}
 	};
 
 	node_ptr root;

@@ -14,8 +14,7 @@ template <class T> class RangeUpdateQuery {
 	}
 
 public:
-	RangeUpdateQuery(int _n, const T& init)
-	    : n(ceil2(_n)), a(n * 2, make_pair(0, init)) {}
+	RangeUpdateQuery(int _n, const T& init) : n(ceil2(_n)), a(n * 2, make_pair(0, init)) {}
 	RangeUpdateQuery(const vector<T>& v) : n(ceil2(v.size())), a(n * 2) {
 		for (size_t i = 0; i < v.size(); ++i) {
 			a[i + n] = make_pair(0, v[i]);

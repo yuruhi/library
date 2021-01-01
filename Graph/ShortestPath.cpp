@@ -25,7 +25,7 @@ vector<int> ShortestPath(const vector<vector<int>>& graph, int s,
 	return dist;
 }
 int ShortestPathST(const vector<vector<int>>& graph, int s, int t,
-                 int inf = numeric_limits<int>::max()) {
+                   int inf = numeric_limits<int>::max()) {
 	size_t n = graph.size();
 	vector<int> dist(n, inf);
 	dist[s] = 0;

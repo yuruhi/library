@@ -6,7 +6,7 @@ using namespace std;
 int main() {
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
-	
+
 	auto table = Eratosthenes(100000000);
 	int n;
 	cin >> n;

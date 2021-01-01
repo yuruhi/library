@@ -120,8 +120,7 @@ namespace internal {
 		}
 	}
 }  // namespace internal
-template <class T, size_t N>
-auto make_vector(const int (&sizes)[N], const T& init = T()) {
+template <class T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {
 	vector s(rbegin(sizes), rend(sizes));
 	return internal::make_vector<T, N>(s, init);
 }

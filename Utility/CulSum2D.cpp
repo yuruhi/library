@@ -18,8 +18,7 @@ public:
 	    : h(a.size()), w(a.front().size()), data(h + 1, vector<value_type>(w + 1)) {
 		for (size_t i = 0; i < h; ++i) {
 			for (size_t j = 0; j < w; ++j) {
-				data[i + 1][j + 1] =
-				    data[i][j + 1] + data[i + 1][j] - data[i][j] + a[i][j];
+				data[i + 1][j + 1] = data[i][j + 1] + data[i + 1][j] - data[i][j] + a[i][j];
 			}
 		}
 	}
@@ -28,8 +27,7 @@ public:
 	    : h(_h), w(_w), data(h + 1, vector<value_type>(w + 1)) {
 		for (size_t i = 0; i < h; ++i) {
 			for (size_t j = 0; j < w; ++j) {
-				data[i + 1][j + 1] =
-				    data[i][j + 1] + data[i + 1][j] - data[i][j] + f(i, j);
+				data[i + 1][j + 1] = data[i][j + 1] + data[i + 1][j] - data[i][j] + f(i, j);
 			}
 		}
 	}

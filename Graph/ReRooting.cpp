@@ -46,7 +46,8 @@ template <class DP> class ReRooting {
 	}
 
 public:
-	ReRooting(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph), dp(n), ans(n) {
+	ReRooting(const vector<vector<int>>& _graph)
+	    : n(_graph.size()), graph(_graph), dp(n), ans(n) {
 		for (int i = 0; i < n; ++i) dp[i].resize(graph[i].size());
 	}
 	vector<DP> solve() {

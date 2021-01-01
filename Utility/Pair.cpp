@@ -23,8 +23,7 @@ template <class T> struct Pair {
 	constexpr Pair() : x(), y() {}
 	constexpr Pair(value_type _x, value_type _y) : x(_x), y(_y) {}
 	constexpr Pair(const pair<value_type, value_type>& xy) : x(xy.first), y(xy.second) {}
-	constexpr Pair(const tuple<value_type, value_type>& xy)
-	    : x(get<0>(xy)), y(get<0>(xy)) {}
+	constexpr Pair(const tuple<value_type, value_type>& xy) : x(get<0>(xy)), y(get<0>(xy)) {}
 	constexpr Pair operator+() const {
 		return *this;
 	}

@@ -69,8 +69,7 @@ namespace Geometric {
 		return abs(l.vec().cross(v - l.begin) / l.vec().length());
 	}
 	LD distance(const Vec2& v, const Segment& s) {
-		if (sgn(s.vec().dot(v - s.begin)) < 0 ||
-		    sgn(s.counter_vec().dot(v - s.end)) < 0) {
+		if (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v - s.end)) < 0) {
 			return min(v.distance(s.begin), v.distance(s.end));
 		} else {
 			return Line(s).distance(v);
@@ -92,8 +91,8 @@ namespace Geometric {
 		if (intersect(s1, s2)) {
 			return 0;
 		} else {
-			return min({distance(s1, s2.begin), distance(s1, s2.end),
-			            distance(s1.begin, s2), distance(s1.end, s2)});
+			return min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin, s2),
+			            distance(s1.end, s2)});
 		}
 	}
 	LD distance(const Circle& c, const Vec2& v) {
@@ -161,15 +160,13 @@ namespace Geometric {
 		return sgn(distance(c1.center, c2.center) - (c1.r + c2.r)) <= 0;
 	}
 	bool intersect(const Circle& c, const Rect& r) {
-		return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2))
-		           .intersects(c.center) ||
+		return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center) ||
 		    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center) ||
 		    c.intersects(r.top_left()) || c.intersects(r.top_right()) ||
 		    c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());
 	}
 	bool intersect(const Rect& r1, const Rect& r2) {
-		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <=
-		    0 &&
+		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
 		    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;
 	}
 	bool intersect(const Rect& r, const Circle& c) {
@@ -373,8 +370,7 @@ namespace Geometric {
 			c.center -= c.center;
 			if (sgn(a.distance(b)) == 0) {
 				return 0;
-			} else if (bool in_a = a.intersects(c), in_b = b.intersects(c);
-			           in_a && in_b) {
+			} else if (bool in_a = a.intersects(c), in_b = b.intersects(c); in_a && in_b) {
 				return signed_area(a, b, true);
 			} else if (auto points = c.cross_points(Segment(a, b)); points.empty()) {
 				return signed_area(a, b, false);

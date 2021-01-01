@@ -16,8 +16,7 @@ struct BoolStr {
 struct DivStr {
 	const char *d, *l;
 	DivStr(const char* _d, const char* _l) : d(_d), l(_l) {}
-} spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"),
-    no_endl(" ", "");
+} spc(" ", "\n"), no_spc("", "\n"), end_line("\n", "\n"), comma(",", "\n"), no_endl(" ", "");
 class Printer {
 	BoolStr B{Yes};
 	DivStr D{spc};

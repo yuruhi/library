@@ -4,7 +4,7 @@
 #include <cmath>
 using namespace std;
 
-template<class T>
+template <class T>
 optional<vector<T>> QuadraticEquation(long long a, long long b, long long c) {
 	T A = a, B = b, C = c;
 	if (a == 0 && b == 0 && c == 0) {
