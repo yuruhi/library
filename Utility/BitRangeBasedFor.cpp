@@ -12,7 +12,7 @@ class bit_subset {
 			sub = (sub - 1) & s;
 			f |= sub == s;
 		}
-		bool operator!=(const it& i) const {
+		bool operator!=([[maybe_unused]] const it& i) const {
 			return !f;
 		}
 	} b, e;
