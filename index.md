@@ -129,6 +129,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp
+    - icon: ':warning:'
+      path: Graph/DirectedMinimumSpanningTree.cpp
+      title: Graph/DirectedMinimumSpanningTree.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/EulerTourForEdge.cpp
       title: Graph/EulerTourForEdge.cpp
@@ -537,6 +540,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Dinic.test.cpp
       title: test/Dinic.test.cpp
+    - icon: ':x:'
+      path: test/DirectedMinimumSpanningTree.test.cpp
+      title: test/DirectedMinimumSpanningTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Divisors.test.cpp
       title: test/Divisors.test.cpp
