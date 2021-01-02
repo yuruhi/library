@@ -19,11 +19,11 @@ int main() {
 		edges[i] = {u, v};
 		index[{u, v}] = i;
 	}
-	auto [detected, cycle] = CycleDetectionVertex(n, edges);
-	if (detected) {
-		cout << cycle.size() << '\n';
-		for (size_t i = 0; i < cycle.size(); ++i) {
-			cout << index[{cycle[i], cycle[(i + 1) % cycle.size()]}] << '\n';
+	auto cycle = CycleDetectionVertex(n, edges);
+	if (cycle) {
+		cout << cycle->size() << '\n';
+		for (size_t i = 0; i < cycle->size(); ++i) {
+			cout << index[{cycle.value()[i], cycle.value()[(i + 1) % cycle->size()]}] << '\n';
 		}
 	} else {
 		cout << -1 << '\n';

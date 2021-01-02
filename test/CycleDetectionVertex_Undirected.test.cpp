@@ -18,10 +18,10 @@ int main() {
 		v--;
 		edges[i] = {u, v};
 	}
-	auto [detected, cycle] = CycleDetectionVertex(n, edges, false);
-	assert(detected);
+	auto cycle = CycleDetectionVertex(n, edges, false);
+	assert(cycle);
 	vector<bool> flag(n);
-	for (int i : cycle) {
+	for (int i : *cycle) {
 		flag[i] = true;
 	}
 	int q;

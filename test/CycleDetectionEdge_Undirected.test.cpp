@@ -18,10 +18,10 @@ int main() {
 		v--;
 		edges[i] = {u, v};
 	}
-	auto [detected, cycle] = CycleDetectionEdge(n, edges, false);
-	assert(detected);
+	auto cycle = CycleDetectionEdge(n, edges, false);
+	assert(cycle);
 	vector<bool> flag(n);
-	for (int i : cycle) {
+	for (int i : *cycle) {
 		flag[edges[i].first] = true;
 		flag[edges[i].second] = true;
 	}

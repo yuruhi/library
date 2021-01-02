@@ -16,10 +16,10 @@ int main() {
 		cin >> u >> v;
 		edges[i] = {u, v};
 	}
-	auto [detected, cycle] = CycleDetectionEdge(n, edges);
-	if (detected) {
-		cout << cycle.size() << '\n';
-		for (int e : cycle) {
+	auto cycle = CycleDetectionEdge(n, edges);
+	if (cycle) {
+		cout << cycle->size() << '\n';
+		for (int e : *cycle) {
 			cout << e << '\n';
 		}
 	} else {

@@ -1,13 +1,12 @@
 #pragma once
 #include <vector>
 #include <stack>
-#include <utility>
 #include <algorithm>
 #include <optional>
 using namespace std;
 
-pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& edges,
-                                           bool directed = true) {
+optional<vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& edges,
+                                         bool directed = true) {
 	vector<vector<pair<int, int>>> graph(n);
 	for (size_t i = 0; i < edges.size(); ++i) {
 		auto [u, v] = edges[i];
@@ -48,14 +47,14 @@ pair<bool, vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& 
 			}
 		}
 		reverse(cycle.begin(), cycle.end());
-		return {true, cycle};
+		return cycle;
 	} else {
-		return {false, {}};
+		return nullopt;
 	}
 }
 
-pair<bool, vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
-                                             bool directed = true) {
+optional<vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
+                                           bool directed = true) {
 	int n = graph.size();
 	vector<bool> visited(n), finished(n);
 	stack<int> st;
@@ -91,14 +90,14 @@ pair<bool, vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
 			}
 		}
 		reverse(cycle.begin(), cycle.end());
-		return {true, cycle};
+		return cycle;
 	} else {
-		return {false, {}};
+		return nullopt;
 	}
 }
 
-pair<bool, vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
-                                             bool directed = true) {
+optional<vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
+                                           bool directed = true) {
 	vector<vector<int>> graph(n);
 	for (auto [u, v] : edges) {
 		graph[u].push_back(v);
