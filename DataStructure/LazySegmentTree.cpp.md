@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/HLD_edge.test.cpp
+    title: test/HLD_edge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/HLD_vertex.test.cpp
     title: test/HLD_vertex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,6 +198,7 @@ data:
   - test/RangeUpdateRangeMin.test.cpp
   - test/HLD_vertex.test.cpp
   - test/RangeAddRangeSum.test.cpp
+  - test/HLD_edge.test.cpp
 documentation_of: DataStructure/LazySegmentTree.cpp
 layout: document
 redirect_from:
