@@ -19,6 +19,9 @@ data:
     title: atcoder/segtree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/HLD_vertex.test.cpp
+    title: test/HLD_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/RangeAddRangeMin.test.cpp
     title: test/RangeAddRangeMin.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,6 +79,7 @@ data:
   - test/RangeAddRangeMin.test.cpp
   - test/RangeUpdateRangeMin.test.cpp
   - test/RangeSumQuery.test.cpp
+  - test/HLD_vertex.test.cpp
   - test/RangeAddRangeSum.test.cpp
 documentation_of: atcoder/internal_bit.hpp
 layout: document

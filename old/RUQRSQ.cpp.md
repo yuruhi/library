@@ -7,11 +7,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"DataStructure/RUQRSQ.cpp\"\n#include <vector>\n#include\
-    \ <optional>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> class\
-    \ RUQRSQ {\n\tint n;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic\
-    \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\
-    \t}\n\tvoid eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
+  bundledCode: "#line 2 \"old/RUQRSQ.cpp\"\n#include <vector>\n#include <optional>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RUQRSQ {\n\
+    \tint n;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic int ceil2(int\
+    \ n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid\
+    \ eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
     \t\t\tif (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] = *lazy[k];\n\t\t\t\tlazy[2 *\
     \ k + 1] = *lazy[k];\n\t\t\t}\n\t\t\tlazy[k].reset();\n\t\t}\n\t}\n\tvoid update_impl(int\
     \ a, int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b\
@@ -63,15 +63,15 @@ data:
     return res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: DataStructure/RUQRSQ.cpp
+  path: old/RUQRSQ.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: DataStructure/RUQRSQ.cpp
+documentation_of: old/RUQRSQ.cpp
 layout: document
 redirect_from:
-- /library/DataStructure/RUQRSQ.cpp
-- /library/DataStructure/RUQRSQ.cpp.html
-title: DataStructure/RUQRSQ.cpp
+- /library/old/RUQRSQ.cpp
+- /library/old/RUQRSQ.cpp.html
+title: old/RUQRSQ.cpp
 ---

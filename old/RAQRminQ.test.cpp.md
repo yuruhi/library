@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: DataStructure/RAQRminQ.cpp
-    title: DataStructure/RAQRminQ.cpp
+    path: old/RAQRminQ.cpp
+    title: old/RAQRminQ.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -13,16 +13,16 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H
-  bundledCode: "#line 1 \"test/RAQRminQ.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H\"\
-    \n#line 2 \"DataStructure/RAQRminQ.cpp\"\n#include <vector>\n#include <algorithm>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RAQRmQ {\n\
-    \tint n;\n\tT init;\n\tvector<T> node, lazy;\n\tstatic int ceil2(int n) {\n\t\t\
-    int m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid eval(int k,\
-    \ int l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\t\t\t\
-    if (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 * k + 1]\
-    \ += lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int a,\
-    \ int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b <=\
-    \ l || r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\tlazy[k]\
+  bundledCode: "#line 1 \"old/RAQRminQ.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H\"\
+    \n#line 2 \"old/RAQRminQ.cpp\"\n#include <vector>\n#include <algorithm>\n#include\
+    \ <cassert>\nusing namespace std;\n\ntemplate <class T> class RAQRmQ {\n\tint\
+    \ n;\n\tT init;\n\tvector<T> node, lazy;\n\tstatic int ceil2(int n) {\n\t\tint\
+    \ m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid eval(int k, int\
+    \ l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\t\t\tif (r\
+    \ - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 * k + 1] +=\
+    \ lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int a, int\
+    \ b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b <= l ||\
+    \ r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\tlazy[k]\
     \ += x;\n\t\t\teval(k, l, r);\n\t\t} else {\n\t\t\tadd_impl(a, b, x, 2 * k + 0,\
     \ l, (l + r) / 2);\n\t\t\tadd_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);\n\t\t\t\
     node[k] = min(node[2 * k + 0], node[2 * k + 1]);\n\t\t}\n\t}\n\tT query_impl(int\
@@ -41,7 +41,7 @@ data:
     \ r) {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\treturn query_impl(l, r, 1,\
     \ 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\t\tfor (int i = 0;\
     \ i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n\
-    };\n#line 3 \"test/RAQRminQ.test.cpp\"\n#include <iostream>\n#line 5 \"test/RAQRminQ.test.cpp\"\
+    };\n#line 3 \"old/RAQRminQ.test.cpp\"\n#include <iostream>\n#line 5 \"old/RAQRminQ.test.cpp\"\
     \n#include <limits>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, q;\n\tcin >> n >> q;\n\tRAQRmQ<int>\
     \ seg(vector<int>(n), numeric_limits<int>::max());\n\twhile (q--) {\n\t\tint com;\n\
@@ -49,25 +49,25 @@ data:
     \ >> x;\n\t\t\tseg.add(l, r + 1, x);\n\t\t} else {\n\t\t\tint l, r;\n\t\t\tcin\
     \ >> l >> r;\n\t\t\tcout << seg(l, r + 1) << '\\n';\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H\"\
-    \n#include \"./../DataStructure/RAQRminQ.cpp\"\n#include <iostream>\n#include\
-    \ <vector>\n#include <limits>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
+    \n#include \"./../old/RAQRminQ.cpp\"\n#include <iostream>\n#include <vector>\n\
+    #include <limits>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, q;\n\tcin >> n >> q;\n\tRAQRmQ<int>\
     \ seg(vector<int>(n), numeric_limits<int>::max());\n\twhile (q--) {\n\t\tint com;\n\
     \t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint l, r, x;\n\t\t\tcin >> l >> r\
     \ >> x;\n\t\t\tseg.add(l, r + 1, x);\n\t\t} else {\n\t\t\tint l, r;\n\t\t\tcin\
     \ >> l >> r;\n\t\t\tcout << seg(l, r + 1) << '\\n';\n\t\t}\n\t}\n}"
   dependsOn:
-  - DataStructure/RAQRminQ.cpp
+  - old/RAQRminQ.cpp
   isVerificationFile: true
-  path: test/RAQRminQ.test.cpp
+  path: old/RAQRminQ.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/RAQRminQ.test.cpp
+documentation_of: old/RAQRminQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/RAQRminQ.test.cpp
-- /verify/test/RAQRminQ.test.cpp.html
-title: test/RAQRminQ.test.cpp
+- /verify/old/RAQRminQ.test.cpp
+- /verify/old/RAQRminQ.test.cpp.html
+title: old/RAQRminQ.test.cpp
 ---

@@ -4,24 +4,24 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/RAQRminQ.test.cpp
-    title: test/RAQRminQ.test.cpp
+    path: old/RAQRminQ.test.cpp
+    title: old/RAQRminQ.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"DataStructure/RAQRminQ.cpp\"\n#include <vector>\n#include\
-    \ <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T>\
-    \ class RAQRmQ {\n\tint n;\n\tT init;\n\tvector<T> node, lazy;\n\tstatic int ceil2(int\
-    \ n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid\
-    \ eval(int k, int l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\
-    \t\t\tif (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 *\
-    \ k + 1] += lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int\
-    \ a, int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b\
-    \ <= l || r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\t\
-    lazy[k] += x;\n\t\t\teval(k, l, r);\n\t\t} else {\n\t\t\tadd_impl(a, b, x, 2 *\
-    \ k + 0, l, (l + r) / 2);\n\t\t\tadd_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);\n\
-    \t\t\tnode[k] = min(node[2 * k + 0], node[2 * k + 1]);\n\t\t}\n\t}\n\tT query_impl(int\
+  bundledCode: "#line 2 \"old/RAQRminQ.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RAQRmQ {\n\
+    \tint n;\n\tT init;\n\tvector<T> node, lazy;\n\tstatic int ceil2(int n) {\n\t\t\
+    int m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\tvoid eval(int k,\
+    \ int l, int r) {\n\t\tif (lazy[k] != 0) {\n\t\t\tnode[k] += lazy[k];\n\t\t\t\
+    if (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] += lazy[k];\n\t\t\t\tlazy[2 * k + 1]\
+    \ += lazy[k];\n\t\t\t}\n\t\t\tlazy[k] = 0;\n\t\t}\n\t}\n\tvoid add_impl(int a,\
+    \ int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b <=\
+    \ l || r <= a) {\n\t\t\treturn;\n\t\t} else if (a <= l && r <= b) {\n\t\t\tlazy[k]\
+    \ += x;\n\t\t\teval(k, l, r);\n\t\t} else {\n\t\t\tadd_impl(a, b, x, 2 * k + 0,\
+    \ l, (l + r) / 2);\n\t\t\tadd_impl(a, b, x, 2 * k + 1, (l + r) / 2, r);\n\t\t\t\
+    node[k] = min(node[2 * k + 0], node[2 * k + 1]);\n\t\t}\n\t}\n\tT query_impl(int\
     \ a, int b, int k, int l, int r) {\n\t\tif (b <= l || r <= a) {\n\t\t\treturn\
     \ init;\n\t\t}\n\t\teval(k, l, r);\n\t\tif (a <= l && r <= b) {\n\t\t\treturn\
     \ node[k];\n\t\t} else {\n\t\t\tauto vl = query_impl(a, b, 2 * k + 0, l, (l +\
@@ -67,16 +67,16 @@ data:
     return res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: DataStructure/RAQRminQ.cpp
+  path: old/RAQRminQ.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RAQRminQ.test.cpp
-documentation_of: DataStructure/RAQRminQ.cpp
+  - old/RAQRminQ.test.cpp
+documentation_of: old/RAQRminQ.cpp
 layout: document
 redirect_from:
-- /library/DataStructure/RAQRminQ.cpp
-- /library/DataStructure/RAQRminQ.cpp.html
-title: DataStructure/RAQRminQ.cpp
+- /library/old/RAQRminQ.cpp
+- /library/old/RAQRminQ.cpp.html
+title: old/RAQRminQ.cpp
 ---

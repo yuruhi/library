@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: DataStructure/RUQRminQ.cpp
-    title: DataStructure/RUQRminQ.cpp
+    path: old/RUQRminQ.cpp
+    title: old/RUQRminQ.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -13,12 +13,12 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F
-  bundledCode: "#line 1 \"test/RUQRmQ.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
-    \n#line 2 \"DataStructure/RUQRminQ.cpp\"\n#include <vector>\n#include <optional>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RUQRmQ {\n\
-    \tint n;\n\tT init;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic\
-    \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\
-    \t}\n\tvoid eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
+  bundledCode: "#line 1 \"old/RUQRmQ.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
+    \n#line 2 \"old/RUQRminQ.cpp\"\n#include <vector>\n#include <optional>\n#include\
+    \ <cassert>\nusing namespace std;\n\ntemplate <class T> class RUQRmQ {\n\tint\
+    \ n;\n\tT init;\n\tvector<T> node;\n\tvector<optional<T>> lazy;\n\tstatic int\
+    \ ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t\
+    }\n\tvoid eval(int k, int l, int r) {\n\t\tif (lazy[k]) {\n\t\t\tnode[k] = *lazy[k];\n\
     \t\t\tif (r - l > 1) {\n\t\t\t\tlazy[2 * k + 0] = *lazy[k];\n\t\t\t\tlazy[2 *\
     \ k + 1] = *lazy[k];\n\t\t\t}\n\t\t\tlazy[k].reset();\n\t\t}\n\t}\n\tvoid update_impl(int\
     \ a, int b, const T& x, int k, int l, int r) {\n\t\teval(k, l, r);\n\t\tif (b\
@@ -41,7 +41,7 @@ data:
     \ l, int r) {\n\t\tassert(0 <= l && l < r && r <= n);\n\t\treturn query_impl(l,\
     \ r, 1, 0, n);\n\t}\n\tvector<T> to_a() {\n\t\tvector<T> res(n);\n\t\tfor (int\
     \ i = 0; i < n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\
-    \t}\n};\n#line 3 \"test/RUQRmQ.test.cpp\"\n#include <iostream>\n#include <limits>\n\
+    \t}\n};\n#line 3 \"old/RUQRmQ.test.cpp\"\n#include <iostream>\n#include <limits>\n\
     using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tRUQRmQ<int> seg(vector(n, numeric_limits<int>::max()),\
     \ numeric_limits<int>::max());\n\twhile (q--) {\n\t\tint com;\n\t\tcin >> com;\n\
@@ -49,25 +49,25 @@ data:
     \ r + 1, x);\n\t\t} else {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout\
     \ << seg(l, r + 1) << '\\n';\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
-    \n#include \"./../DataStructure/RUQRminQ.cpp\"\n#include <iostream>\n#include\
-    \ <limits>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \n#include \"./../old/RUQRminQ.cpp\"\n#include <iostream>\n#include <limits>\n\
+    using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tRUQRmQ<int> seg(vector(n, numeric_limits<int>::max()),\
     \ numeric_limits<int>::max());\n\twhile (q--) {\n\t\tint com;\n\t\tcin >> com;\n\
     \t\tif (com == 0) {\n\t\t\tint l, r, x;\n\t\t\tcin >> l >> r >> x;\n\t\t\tseg.update(l,\
     \ r + 1, x);\n\t\t} else {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\tcout\
     \ << seg(l, r + 1) << '\\n';\n\t\t}\n\t}\n}"
   dependsOn:
-  - DataStructure/RUQRminQ.cpp
+  - old/RUQRminQ.cpp
   isVerificationFile: true
-  path: test/RUQRmQ.test.cpp
+  path: old/RUQRmQ.test.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/RUQRmQ.test.cpp
+documentation_of: old/RUQRmQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/RUQRmQ.test.cpp
-- /verify/test/RUQRmQ.test.cpp.html
-title: test/RUQRmQ.test.cpp
+- /verify/old/RUQRmQ.test.cpp
+- /verify/old/RUQRmQ.test.cpp.html
+title: old/RUQRmQ.test.cpp
 ---

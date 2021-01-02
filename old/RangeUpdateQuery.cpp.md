@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/RangeUpdateQuery.test.cpp
-    title: test/RangeUpdateQuery.test.cpp
+    path: old/RangeUpdateQuery.test.cpp
+    title: old/RangeUpdateQuery.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"DataStructure/RangeUpdateQuery.cpp\"\n#include <vector>\n\
-    #include <utility>\nusing namespace std;\n\ntemplate <class T> class RangeUpdateQuery\
+  bundledCode: "#line 2 \"old/RangeUpdateQuery.cpp\"\n#include <vector>\n#include\
+    \ <utility>\nusing namespace std;\n\ntemplate <class T> class RangeUpdateQuery\
     \ {\n\tint n;\n\tvector<pair<size_t, T>> a;\n\tsize_t update_count = 1;\n\tstatic\
     \ int ceil2(int n) {\n\t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\
     \t}\n\npublic:\n\tRangeUpdateQuery(int _n, const T& init) : n(ceil2(_n)), a(n\
@@ -42,16 +42,16 @@ data:
     \ operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: DataStructure/RangeUpdateQuery.cpp
+  path: old/RangeUpdateQuery.cpp
   requiredBy: []
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeUpdateQuery.test.cpp
-documentation_of: DataStructure/RangeUpdateQuery.cpp
+  - old/RangeUpdateQuery.test.cpp
+documentation_of: old/RangeUpdateQuery.cpp
 layout: document
 redirect_from:
-- /library/DataStructure/RangeUpdateQuery.cpp
-- /library/DataStructure/RangeUpdateQuery.cpp.html
-title: DataStructure/RangeUpdateQuery.cpp
+- /library/old/RangeUpdateQuery.cpp
+- /library/old/RangeUpdateQuery.cpp.html
+title: old/RangeUpdateQuery.cpp
 ---

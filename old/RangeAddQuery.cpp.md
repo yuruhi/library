@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/RangeAddQuery.test.cpp
-    title: test/RangeAddQuery.test.cpp
+    path: old/RangeAddQuery.test.cpp
+    title: old/RangeAddQuery.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"DataStructure/RangeAddQuery.cpp\"\n#include <vector>\n#include\
-    \ <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T>\
-    \ class RangeAddQuery {\n\tint n;\n\tvector<T> a;\n\tstatic int ceil2(int n) {\n\
-    \t\tint m = 1;\n\t\twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\npublic:\n\tRangeAddQuery(int\
-    \ _n) : n(ceil2(_n)), a(n * 2) {}\n\tRangeAddQuery(const vector<T>& v) : n(ceil2(v.size())),\
+  bundledCode: "#line 2 \"old/RangeAddQuery.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class RangeAddQuery\
+    \ {\n\tint n;\n\tvector<T> a;\n\tstatic int ceil2(int n) {\n\t\tint m = 1;\n\t\
+    \twhile (m < n) m *= 2;\n\t\treturn m;\n\t}\n\npublic:\n\tRangeAddQuery(int _n)\
+    \ : n(ceil2(_n)), a(n * 2) {}\n\tRangeAddQuery(const vector<T>& v) : n(ceil2(v.size())),\
     \ a(n * 2) {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\ta[i + n] = v[i];\n\
     \t\t}\n\t}\n\tvoid add(int l, int r, const T& x) {\n\t\tl = clamp(l, 0, n);\n\t\
     \tr = clamp(r, 0, n);\n\t\tif (l >= r) return;\n\t\tfor (l += n, r += n; l < r;\
@@ -40,16 +40,16 @@ data:
     \ n; ++i) {\n\t\t\tres[i] = operator[](i);\n\t\t}\n\t\treturn res;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: DataStructure/RangeAddQuery.cpp
+  path: old/RangeAddQuery.cpp
   requiredBy: []
-  timestamp: '2020-11-20 21:19:41+09:00'
+  timestamp: '2021-01-02 15:13:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeAddQuery.test.cpp
-documentation_of: DataStructure/RangeAddQuery.cpp
+  - old/RangeAddQuery.test.cpp
+documentation_of: old/RangeAddQuery.cpp
 layout: document
 redirect_from:
-- /library/DataStructure/RangeAddQuery.cpp
-- /library/DataStructure/RangeAddQuery.cpp.html
-title: DataStructure/RangeAddQuery.cpp
+- /library/old/RangeAddQuery.cpp
+- /library/old/RangeAddQuery.cpp.html
+title: old/RangeAddQuery.cpp
 ---

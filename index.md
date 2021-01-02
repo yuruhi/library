@@ -44,33 +44,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/PersistentUnionFind.cpp
       title: DataStructure/PersistentUnionFind.cpp
-    - icon: ':warning:'
-      path: DataStructure/RAQRMaxQ.cpp
-      title: DataStructure/RAQRMaxQ.cpp
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/RAQRSQ.cpp
-      title: DataStructure/RAQRSQ.cpp
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/RAQRminQ.cpp
-      title: DataStructure/RAQRminQ.cpp
-    - icon: ':warning:'
-      path: DataStructure/RAUQRSQ.cpp
-      title: DataStructure/RAUQRSQ.cpp
-    - icon: ':warning:'
-      path: DataStructure/RUQRSQ.cpp
-      title: DataStructure/RUQRSQ.cpp
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/RUQRminQ.cpp
-      title: DataStructure/RUQRminQ.cpp
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/RangeAddQuery.cpp
-      title: DataStructure/RangeAddQuery.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/RangeSet.cpp
       title: DataStructure/RangeSet.cpp
-    - icon: ':heavy_check_mark:'
-      path: DataStructure/RangeUpdateQuery.cpp
-      title: DataStructure/RangeUpdateQuery.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/SegmentTree.cpp
       title: DataStructure/SegmentTree.cpp
@@ -423,6 +399,32 @@ data:
     - icon: ':warning:'
       path: template17.cpp
       title: template17.cpp
+  - name: old
+    pages:
+    - icon: ':warning:'
+      path: old/RAQRMaxQ.cpp
+      title: old/RAQRMaxQ.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RAQRSQ.cpp
+      title: old/RAQRSQ.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RAQRminQ.cpp
+      title: old/RAQRminQ.cpp
+    - icon: ':warning:'
+      path: old/RAUQRSQ.cpp
+      title: old/RAUQRSQ.cpp
+    - icon: ':warning:'
+      path: old/RUQRSQ.cpp
+      title: old/RUQRSQ.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RUQRminQ.cpp
+      title: old/RUQRminQ.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RangeAddQuery.cpp
+      title: old/RangeAddQuery.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RangeUpdateQuery.cpp
+      title: old/RangeUpdateQuery.cpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
@@ -450,6 +452,23 @@ data:
       path: template/template_no_Ruby.cpp
       title: template/template_no_Ruby.cpp
   verificationCategories:
+  - name: old
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: old/RAQRSQ.test.cpp
+      title: old/RAQRSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RAQRminQ.test.cpp
+      title: old/RAQRminQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RUQRmQ.test.cpp
+      title: old/RUQRmQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RangeAddQuery.test.cpp
+      title: old/RangeAddQuery.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: old/RangeUpdateQuery.test.cpp
+      title: old/RangeUpdateQuery.test.cpp
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
@@ -614,7 +633,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/GridBFS.test.cpp
       title: test/GridBFS.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/HLD_edge.test.cpp
       title: test/HLD_edge.test.cpp
     - icon: ':heavy_check_mark:'
@@ -672,18 +691,6 @@ data:
       path: test/QuadraticEquation.test.cpp
       title: test/QuadraticEquation.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/RAQRSQ.test.cpp
-      title: test/RAQRSQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/RAQRminQ.test.cpp
-      title: test/RAQRminQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/RUQRmQ.test.cpp
-      title: test/RUQRmQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/RangeAddQuery.test.cpp
-      title: test/RangeAddQuery.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/RangeAddRangeMin.test.cpp
       title: test/RangeAddRangeMin.test.cpp
     - icon: ':heavy_check_mark:'
@@ -701,9 +708,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeSumQuery.test.cpp
       title: test/RangeSumQuery.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/RangeUpdateQuery.test.cpp
-      title: test/RangeUpdateQuery.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RangeUpdateRangeMin.test.cpp
       title: test/RangeUpdateRangeMin.test.cpp
