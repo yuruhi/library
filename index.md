@@ -129,7 +129,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/DirectedMinimumSpanningTree.cpp
       title: Graph/DirectedMinimumSpanningTree.cpp
     - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Dinic.test.cpp
       title: test/Dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/DirectedMinimumSpanningTree.test.cpp
       title: test/DirectedMinimumSpanningTree.test.cpp
     - icon: ':heavy_check_mark:'

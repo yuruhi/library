@@ -24,6 +24,9 @@ data:
     path: Graph/DijkstraBuildPath.cpp
     title: Graph/DijkstraBuildPath.cpp
   - icon: ':heavy_check_mark:'
+    path: Graph/DirectedMinimumSpanningTree.cpp
+    title: Graph/DirectedMinimumSpanningTree.cpp
+  - icon: ':heavy_check_mark:'
     path: Graph/Kruskal.cpp
     title: Graph/Kruskal.cpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/DijkstraBuildPath.test.cpp
     title: test/DijkstraBuildPath.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/DirectedMinimumSpanningTree.test.cpp
+    title: test/DirectedMinimumSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/Kruskal.test.cpp
     title: test/Kruskal.test.cpp
@@ -117,6 +123,7 @@ data:
   - Graph/LCA.cpp
   - Graph/Kruskal.cpp
   - Graph/TravelingSalesmanProblem.cpp
+  - Graph/DirectedMinimumSpanningTree.cpp
   - Graph/SpanningTree.cpp
   - Graph/DijkstraBuildPath.cpp
   - Graph/BuildTreePath.cpp
@@ -135,6 +142,7 @@ data:
   - test/DijkstraBuildPath.test.cpp
   - test/BellmanFord.test.cpp
   - test/LCA.test.cpp
+  - test/DirectedMinimumSpanningTree.test.cpp
   - test/ChinesePostman.test.cpp
   - test/Kruskal.test.cpp
 documentation_of: Graph/GraphTemplate.cpp
