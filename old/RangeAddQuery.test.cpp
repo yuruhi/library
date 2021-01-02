@@ -1,7 +1,7 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_D"
-#include "./../DataStructure/RangeUpdateQuery.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E"
+#include "./../old/RangeAddQuery.cpp"
 #include <iostream>
-#include <limits>
+#include <vector>
 using namespace std;
 
 int main() {
@@ -9,18 +9,18 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	int n, q;
 	cin >> n >> q;
-	RangeUpdateQuery<int> seg(n, numeric_limits<int>::max());
+	RangeAddQuery<int> seg(n);
 	while (q--) {
 		int com;
 		cin >> com;
 		if (com == 0) {
 			int l, r, x;
 			cin >> l >> r >> x;
-			seg.update(l, r + 1, x);
+			seg.add(l - 1, r, x);
 		} else {
 			int i;
 			cin >> i;
-			cout << seg[i] << '\n';
+			cout << seg[i - 1] << '\n';
 		}
 	}
 }

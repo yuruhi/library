@@ -1,5 +1,5 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H"
-#include "./../DataStructure/RAQRminQ.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
+#include "./../old/RAQRSQ.cpp"
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -10,18 +10,19 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	int n, q;
 	cin >> n >> q;
-	RAQRmQ<int> seg(vector<int>(n), numeric_limits<int>::max());
+	RAQRSQ<long long> seg(vector<long long>(n), 0);
 	while (q--) {
 		int com;
 		cin >> com;
 		if (com == 0) {
-			int l, r, x;
+			int l, r;
+			long long x;
 			cin >> l >> r >> x;
-			seg.add(l, r + 1, x);
+			seg.add(l - 1, r, x);
 		} else {
 			int l, r;
 			cin >> l >> r;
-			cout << seg(l, r + 1) << '\n';
+			cout << seg(l - 1, r) << '\n';
 		}
 	}
 }
