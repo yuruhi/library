@@ -1,6 +1,6 @@
 #pragma once
-#include "library/Graph/GraphTemplate.cpp"
-#include "library/Graph/CycleDetection.cpp"
+#include "./GraphTemplate.cpp"
+#include "./Graph/CycleDetection.cpp"
 #include <vector>
 #include <utility>
 #include <numeric>
