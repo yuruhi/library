@@ -1,6 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E"
 #include "./../Graph/HeavyLightDecomposition.cpp"
-#include "./../DataStructure/RAQRSQ.cpp"
 #include "./../DataStructure/LazySegmentTree.cpp"
 #include <iostream>
 #include <vector>
