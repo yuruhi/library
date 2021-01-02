@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/399"
 #include "./../Graph/HeavyLightDecomposition.cpp"
-#include "./../DataStructure/RAQRSQ.cpp"
+#include "./../DataStructure/LazySegmentTree.cpp"
 #include <iostream>
 using namespace std;
 using ll = long long;
@@ -22,7 +22,7 @@ int main() {
 	hld.build(0);
 
 	ll ans = 0;
-	RAQRSQ<ll> seg(vector(n, 1ll), 0);
+	RangeAddRangeSum<ll, ll> seg(vector<S_sum<ll>>(n, 1));
 	int q;
 	cin >> q;
 	while (q--) {
@@ -31,8 +31,8 @@ int main() {
 		a--;
 		b--;
 		hld.each_vertex(a, b, [&](int p, int q) {
-			ans += seg(p, q + 1);
-			seg.add(p, q + 1, 1);
+			ans += seg(p, q + 1).value;
+			seg.apply(p, q + 1, 1);
 		});
 	}
 	cout << ans << '\n';
