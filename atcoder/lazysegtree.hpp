@@ -8,7 +8,8 @@
 #include <vector>
 namespace atcoder {
 
-	template <class S, S (*op)(S, S), S (*e)(), class F, S (*mapping)(F, S), F (*composition)(F, F), F (*id)()>
+	template <class S, S (*op)(S, S), S (*e)(), class F, S (*mapping)(F, S),
+	          F (*composition)(F, F), F (*id)()>
 	struct lazy_segtree {
 	public:
 		lazy_segtree() : lazy_segtree(0) {}
@@ -18,8 +19,7 @@ namespace atcoder {
 			size = 1 << log;
 			d = std::vector<S>(2 * size, e());
 			lz = std::vector<F>(size, id());
-			for (int i = 0; i < _n; i++)
-				d[size + i] = v[i];
+			for (int i = 0; i < _n; i++) d[size + i] = v[i];
 			for (int i = size - 1; i >= 1; i--) {
 				update(i);
 			}
@@ -28,19 +28,20 @@ namespace atcoder {
 		void set(int p, S x) {
 			assert(0 <= p && p < _n);
 			p += size;
-			for (int i = log; i >= 1; i--)
-				push(p >> i);
+			for (int i = log; i >= 1; i--) push(p >> i);
 			d[p] = x;
-			for (int i = 1; i <= log; i++)
-				update(p >> i);
+			for (int i = 1; i <= log; i++) update(p >> i);
 		}
 
 		S get(int p) {
 			assert(0 <= p && p < _n);
 			p += size;
-			for (int i = log; i >= 1; i--)
-				push(p >> i);
+			for (int i = log; i >= 1; i--) push(p >> i);
 			return d[p];
+		}
+
+		S operator[](int p) {
+			return get(p);
 		}
 
 		S prod(int l, int r) {
@@ -66,6 +67,10 @@ namespace atcoder {
 			return op(sml, smr);
 		}
 
+		S operator()(int l, int r) {
+			return prod(l, r);
+		}
+
 		S all_prod() {
 			return d[1];
 		}
@@ -73,11 +78,9 @@ namespace atcoder {
 		void apply(int p, F f) {
 			assert(0 <= p && p < _n);
 			p += size;
-			for (int i = log; i >= 1; i--)
-				push(p >> i);
+			for (int i = log; i >= 1; i--) push(p >> i);
 			d[p] = mapping(f, d[p]);
-			for (int i = 1; i <= log; i++)
-				update(p >> i);
+			for (int i = 1; i <= log; i++) update(p >> i);
 		}
 		void apply(int l, int r, F f) {
 			assert(0 <= l && l <= r && r <= _n);
@@ -110,21 +113,17 @@ namespace atcoder {
 		}
 
 		template <bool (*g)(S)> int max_right(int l) {
-			return max_right(l, [](S x) {
-				return g(x);
-			});
+			return max_right(l, [](S x) { return g(x); });
 		}
 		template <class G> int max_right(int l, G g) {
 			assert(0 <= l && l <= _n);
 			assert(g(e()));
 			if (l == _n) return _n;
 			l += size;
-			for (int i = log; i >= 1; i--)
-				push(l >> i);
+			for (int i = log; i >= 1; i--) push(l >> i);
 			S sm = e();
 			do {
-				while (l % 2 == 0)
-					l >>= 1;
+				while (l % 2 == 0) l >>= 1;
 				if (!g(op(sm, d[l]))) {
 					while (l < size) {
 						push(l);
@@ -143,22 +142,18 @@ namespace atcoder {
 		}
 
 		template <bool (*g)(S)> int min_left(int r) {
-			return min_left(r, [](S x) {
-				return g(x);
-			});
+			return min_left(r, [](S x) { return g(x); });
 		}
 		template <class G> int min_left(int r, G g) {
 			assert(0 <= r && r <= _n);
 			assert(g(e()));
 			if (r == 0) return 0;
 			r += size;
-			for (int i = log; i >= 1; i--)
-				push((r - 1) >> i);
+			for (int i = log; i >= 1; i--) push((r - 1) >> i);
 			S sm = e();
 			do {
 				r--;
-				while (r > 1 && (r % 2))
-					r >>= 1;
+				while (r > 1 && (r % 2)) r >>= 1;
 				if (!g(op(d[r], sm))) {
 					while (r < size) {
 						push(r);
