@@ -10,14 +10,14 @@ optional<vector<T>> QuadraticEquation(long long a, long long b, long long c) {
 	if (a == 0 && b == 0 && c == 0) {
 		return nullopt;
 	} else if (a == 0 && b == 0) {
-		return {};
+		return vector<T>();
 	} else if (a == 0) {
 		return vector{-(C / B)};
 	} else {
 		long long d = b * b - 4 * a * c;
 		T D = static_cast<T>(d);
 		if (d < 0) {
-			return {};
+			return vector<T>();
 		} else if (d == 0) {
 			return vector{-B / (2 * A)};
 		} else {
