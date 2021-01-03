@@ -7,6 +7,7 @@
 #include <array>
 #include <map>
 #include <set>
+#include <unordered_set>
 #include <list>
 #include <stack>
 #include <queue>
@@ -30,7 +31,8 @@ namespace Debug {
 	string Empty = "{ empty }", Separate = ", ", Indent = "  ";
 	string True = "O", False = "X";
 	void FirstLine(int line, string func) {
-		cerr << BeginLine + string(15, '-') << line << " : " << func << string(15, '-') << EndLine;
+		cerr << BeginLine + string(15, '-') << line << " : " << func << string(15, '-')
+		     << EndLine;
 	}
 
 	template <class T> void DebugPrint(const T& v);
@@ -54,6 +56,7 @@ namespace Debug {
 	template <class T, class U> void DebugPrint(const map<T, U>& v);
 	template <class T> void DebugPrint(const set<T>& v);
 	template <class T> void DebugPrint(const multiset<T>& v);
+	template <class T> void DebugPrint(const unordered_set<T>& v);
 	template <class T> void DebugPrint(const list<T>& v);
 	template <class T> void DebugPrint(stack<T> v);
 	template <class T> void DebugPrint(queue<T> v);
@@ -201,6 +204,18 @@ namespace Debug {
 			cerr << End;
 		}
 	}
+	template <class T> void DebugPrint(const unordered_set<T>& v) {
+		if (v.empty()) {
+			cerr << Empty;
+		} else {
+			cerr << Begin;
+			for (auto it = v.begin(); it != v.end(); ++it) {
+				if (it != v.begin()) cerr << Separate;
+				DebugPrint(*it);
+			}
+			cerr << End;
+		}
+	}
 	template <class T> void DebugPrint(const list<T>& v) {
 		if (v.empty()) {
 			cerr << Empty;
@@ -271,10 +286,12 @@ namespace Debug {
 		int size = s.size(), par = 0;
 		string name;
 		for (int i = 0; i < size; i++) {
-			if (s[i] == '(' || s[i] == '{' || (s[i] == '<' && s[i + 1] != '=' && s[i - 1] != ' ' && s[i + 1] != ' ')) {
+			if (s[i] == '(' || s[i] == '{' ||
+			    (s[i] == '<' && s[i + 1] != '=' && s[i - 1] != ' ' && s[i + 1] != ' ')) {
 				par++;
 			} else if (s[i] == ')' || s[i] == '}' ||
-			           (s[i] == '>' && s[i + 1] != '=' && s[i - 1] != ' ' && s[i + 1] != ' ')) {
+			           (s[i] == '>' && s[i + 1] != '=' && s[i - 1] != ' ' &&
+			            s[i + 1] != ' ')) {
 				par--;
 			}
 			if (!par && s[i] == ',') {
