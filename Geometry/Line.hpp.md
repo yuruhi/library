@@ -135,96 +135,99 @@ data:
     \ v);\n\tbool intersect(const Circle& c, const Line& l);\n\tbool intersect(const\
     \ Circle& c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle&\
     \ c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const\
-    \ Rect& r1, const Rect& r2);\n\tbool intersect(const Rect& r, const Circle& c);\n\
-    \tbool intersect(const Polygon& p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\
-    \u5224\u5B9A\n\tbool tangent(const Vec2& v1, const Vec2& v2);\n\tbool tangent(const\
-    \ Vec2& v, const Line& l);\n\tbool tangent(const Vec2& v, const Segment& l);\n\
-    \tbool tangent(const Vec2& v, const Circle& c);\n\tbool tangent(const Vec2& v,\
-    \ const Rect& r);\n\tbool tangent(const Vec2& v, const Polygon& p);\n\tbool tangent(const\
-    \ Line& l, const Vec2& v);\n\tbool tangent(const Segment& l, const Vec2& v);\n\
-    \tbool tangent(const Circle& c, const Vec2& v);\n\tbool tangent(const Circle&\
-    \ c1, const Circle& c2);\n\tbool tangent(const Rect& r, const Vec2& v);\n\tbool\
-    \ tangent(const Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2>\
-    \ cross_point(const Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const\
-    \ Segment& s1, const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line&\
-    \ l, const Circle& c);\n\tvector<Vec2> cross_points(const Segment& s, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Circle& c, const Line& l);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const\
-    \ Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2>\
-    \ tangent_to_circle(const Circle& c, const Vec2& v);\n}  // namespace Geometric\n\
-    #line 4 \"Geometry/Vec2.hpp\"\n#include <cmath>\n\nnamespace Geometric {\n\n\t\
-    struct Vec2 {\n\t\tLD x, y;\n\t\tstatic constexpr bool compare_x(const Vec2& v1,\
-    \ const Vec2& v2) {\n\t\t\treturn v1.x < v2.x;\n\t\t}\n\t\tstatic constexpr bool\
-    \ compare_y(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn v1.y < v2.y;\n\t\t\
-    }\n\t\tstatic constexpr bool compare_xy(const Vec2& v1, const Vec2& v2) {\n\t\t\
-    \treturn make_pair(v1.x, v1.y) < make_pair(v2.x, v2.y);\n\t\t}\n\t\tstatic constexpr\
-    \ bool compare_yx(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn make_pair(v1.y,\
-    \ v1.x) < make_pair(v2.y, v2.x);\n\t\t}\n\t\tstatic constexpr Vec2 zero() {\n\t\
-    \t\treturn Vec2(0, 0);\n\t\t}\n\t\tconstexpr Vec2() : x(0), y(0) {}\n\t\tconstexpr\
-    \ Vec2(LD _x, LD _y) : x(_x), y(_y) {}\n\t\tVec2(LD rad) : x(cos(rad)), y(sin(rad))\
-    \ {}\n\t\tconstexpr bool operator==(const Vec2& v) const {\n\t\t\treturn sgn(x\
-    \ - v.x) == 0 && sgn(y - v.y) == 0;\n\t\t}\n\t\tconstexpr bool operator!=(const\
-    \ Vec2& v) const {\n\t\t\treturn !(*this == v);\n\t\t}\n\t\tconstexpr Vec2 operator+()\
-    \ const {\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-() const {\n\
-    \t\t\treturn {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2& v) const\
-    \ {\n\t\t\treturn Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const\
-    \ Vec2& v) const {\n\t\t\treturn Vec2(*this) -= v;\n\t\t}\n\t\tconstexpr Vec2\
-    \ operator*(const Vec2& v) const {\n\t\t\treturn Vec2(*this) *= v;\n\t\t}\n\t\t\
-    constexpr Vec2 operator/(const Vec2& v) const {\n\t\t\treturn Vec2(*this) /= v;\n\
-    \t\t}\n\t\tconstexpr Vec2 operator+(LD n) const {\n\t\t\treturn Vec2(*this) +=\
-    \ Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2 operator-(LD n) const {\n\t\t\treturn\
-    \ Vec2(*this) -= Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2 operator*(LD n) const\
-    \ {\n\t\t\treturn Vec2(*this) *= Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2 operator/(LD\
-    \ n) const {\n\t\t\treturn Vec2(*this) /= Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2&\
-    \ operator+=(const Vec2& v) {\n\t\t\tx += v.x;\n\t\t\ty += v.y;\n\t\t\treturn\
-    \ *this;\n\t\t}\n\t\tconstexpr Vec2& operator-=(const Vec2& v) {\n\t\t\tx -= v.x;\n\
-    \t\t\ty -= v.y;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator*=(const\
-    \ Vec2& v) {\n\t\t\tx *= v.x;\n\t\t\ty *= v.y;\n\t\t\treturn *this;\n\t\t}\n\t\
-    \tconstexpr Vec2& operator/=(const Vec2& v) {\n\t\t\tx /= v.x;\n\t\t\ty /= v.y;\n\
-    \t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator+=(LD n) {\n\t\t\tx +=\
-    \ n;\n\t\t\tx += n;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator-=(LD\
-    \ n) {\n\t\t\tx -= n;\n\t\t\tx -= n;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr\
-    \ Vec2& operator*=(LD n) {\n\t\t\tx *= n;\n\t\t\tx *= n;\n\t\t\treturn *this;\n\
-    \t\t}\n\t\tconstexpr Vec2& operator/=(LD n) {\n\t\t\tx /= n;\n\t\t\tx /= n;\n\t\
-    \t\treturn *this;\n\t\t}\n\t\tconstexpr LD operator[](size_t i) const {\n\t\t\t\
-    return i == 0 ? x : i == 1 ? y : 0;\n\t\t}\n\t\tLD manhattan(const Vec2& v) const\
-    \ {\n\t\t\treturn std::abs(x - v.x) + std::abs(y - v.y);\n\t\t}\n\t\tconstexpr\
-    \ LD length_square() const {\n\t\t\treturn dot(*this);\n\t\t}\n\t\tLD length()\
-    \ const {\n\t\t\treturn sqrt(length_square());\n\t\t}\n\t\t// \u5185\u7A4D\n\t\
-    \tconstexpr LD dot(const Vec2& v) const {\n\t\t\treturn x * v.x + y * v.y;\n\t\
-    \t}\n\t\t// \u5916\u7A4D\n\t\tconstexpr LD cross(const Vec2& v) const {\n\t\t\t\
-    return x * v.y - y * v.x;\n\t\t}\n\t\t// \u6B63\u898F\u5316\uFF08\u9577\u3055\u3092\
-    1\u306B\u3057\u305F\uFF09\u30D9\u30AF\u30C8\u30EB\n\t\tVec2 normalized() const\
-    \ {\n\t\t\treturn *this / length();\n\t\t}\n\t\t// \u539F\u70B9\u4E2D\u5FC3\u306B\
-    \ rad \u56DE\u8EE2\u3057\u305F\u5EA7\u6A19\n\t\tVec2 rotation(LD rad) const {\n\
-    \t\t\tLD c = cos(rad), s = sin(rad);\n\t\t\treturn {x * c - y * s, x * s + y *\
-    \ c};\n\t\t}\n\t\t// \u539F\u70B9\u4E2D\u5FC3\u306E\u5186\u4E0A\u306B\u4E57\u3063\
-    \u3066\u3044\u308B\u3068\u3057\u305F\u3068\u304D\u306E\u504F\u89D2\n\t\tLD angle()\
-    \ const {\n\t\t\treturn atan2(y, x);\n\t\t}\n\t\t// \u6B63\u5C04\u5F71\n\t\tVec2\
-    \ projection(const Line& l) const;\n\t\t// \u93E1\u6620\u5909\u63DB\n\t\tVec2\
-    \ reflection(const Line& l) const;\n\t\tconstexpr Vec2 rotate90() const {\n\t\t\
-    \treturn {y, -x};\n\t\t}\n\t\tconstexpr Vec2 rotate180() const {\n\t\t\treturn\
-    \ {-x, -y};\n\t\t}\n\t\tconstexpr Vec2 rotate270() const {\n\t\t\treturn {-y,\
-    \ x};\n\t\t}\n\t\tfriend ostream& operator<<(ostream& os, const Vec2& v) {\n\t\
-    \t\treturn os << '(' << v.x << \", \" << v.y << ')';\n\t\t}\n\t\tfriend istream&\
-    \ operator>>(istream& is, Vec2& v) {\n\t\t\treturn is >> v.x >> v.y;\n\t\t}\n\t\
-    };\n\n}  // namespace Geometric\n#line 5 \"Geometry/Line.hpp\"\n#include <utility>\n\
-    #include <tuple>\n#line 9 \"Geometry/Line.hpp\"\nusing namespace std;\n\nnamespace\
-    \ Geometric {\n\n\tnamespace internal {\n\t\tstruct LineBase {\n\t\tprotected:\n\
-    \t\t\tconstexpr LineBase() = default;\n\t\t\tconstexpr LineBase(const Vec2& _begin,\
-    \ const Vec2& _end) : begin(_begin), end(_end) {}\n\t\t\tconstexpr LineBase(LD\
-    \ begin_x, LD begin_y, LD end_x, LD end_y)\n\t\t\t    : begin(begin_x, begin_y),\
-    \ end(end_x, end_y) {}\n\n\t\tpublic:\n\t\t\tVec2 begin, end;\n\t\t\tconstexpr\
-    \ LineBase operator+(const Vec2& v) {\n\t\t\t\treturn LineBase(*this) += v;\n\t\
-    \t\t}\n\t\t\tconstexpr LineBase operator-(const Vec2& v) {\n\t\t\t\treturn LineBase(*this)\
-    \ -= v;\n\t\t\t}\n\t\t\tconstexpr LineBase& operator+=(const Vec2& v) {\n\t\t\t\
-    \tbegin += v;\n\t\t\t\tend += v;\n\t\t\t\treturn *this;\n\t\t\t}\n\t\t\tconstexpr\
-    \ LineBase& operator-=(const Vec2& v) {\n\t\t\t\tbegin -= v;\n\t\t\t\tend -= v;\n\
-    \t\t\t\treturn *this;\n\t\t\t}\n\t\t\tconstexpr Vec2 vec() const {\n\t\t\t\treturn\
-    \ end - begin;\n\t\t\t}\n\t\t\tconstexpr Vec2 counter_vec() const {\n\t\t\t\t\
-    return begin - end;\n\t\t\t}\n\t\t\t// \u5E73\u884C\u5224\u5B9A\n\t\t\tconstexpr\
-    \ bool is_parallel(const LineBase& l) const {\n\t\t\t\treturn sgn(vec().cross(l.vec()))\
-    \ == 0;\n\t\t\t}\n\t\t\t// \u76F4\u4EA4\u5224\u5B9A\n\t\t\tconstexpr bool is_orthogonal(const\
+    \ Rect& r, const Vec2& v);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\
+    \tbool intersect(const Rect& r, const Circle& c);\n\tbool intersect(const Polygon&\
+    \ p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\u5224\u5B9A\n\tbool tangent(const\
+    \ Vec2& v1, const Vec2& v2);\n\tbool tangent(const Vec2& v, const Line& l);\n\t\
+    bool tangent(const Vec2& v, const Segment& l);\n\tbool tangent(const Vec2& v,\
+    \ const Circle& c);\n\tbool tangent(const Vec2& v, const Rect& r);\n\tbool tangent(const\
+    \ Vec2& v, const Polygon& p);\n\tbool tangent(const Line& l, const Vec2& v);\n\
+    \tbool tangent(const Line& l, const Circle& c);\n\tbool tangent(const Line& l,\
+    \ const Rect& r);\n\tbool tangent(const Segment& l, const Vec2& v);\n\tbool tangent(const\
+    \ Circle& c, const Vec2& v);\n\tbool tangent(const Circle& c, const Line& l);\n\
+    \tbool tangent(const Circle& c1, const Circle& c2);\n\tbool tangent(const Rect&\
+    \ r, const Vec2& v);\n\tbool tangent(const Rect& r, const Line& l);\n\tbool tangent(const\
+    \ Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
+    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
+    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
+    \ c);\n\tvector<Vec2> cross_points(const Segment& s, const Circle& c);\n\tvector<Vec2>\
+    \ cross_points(const Circle& c, const Line& l);\n\tvector<Vec2> cross_points(const\
+    \ Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const Circle& c1,\
+    \ const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const\
+    \ Circle& c, const Vec2& v);\n}  // namespace Geometric\n#line 4 \"Geometry/Vec2.hpp\"\
+    \n#include <cmath>\n\nnamespace Geometric {\n\n\tstruct Vec2 {\n\t\tLD x, y;\n\
+    \t\tstatic constexpr bool compare_x(const Vec2& v1, const Vec2& v2) {\n\t\t\t\
+    return v1.x < v2.x;\n\t\t}\n\t\tstatic constexpr bool compare_y(const Vec2& v1,\
+    \ const Vec2& v2) {\n\t\t\treturn v1.y < v2.y;\n\t\t}\n\t\tstatic constexpr bool\
+    \ compare_xy(const Vec2& v1, const Vec2& v2) {\n\t\t\treturn make_pair(v1.x, v1.y)\
+    \ < make_pair(v2.x, v2.y);\n\t\t}\n\t\tstatic constexpr bool compare_yx(const\
+    \ Vec2& v1, const Vec2& v2) {\n\t\t\treturn make_pair(v1.y, v1.x) < make_pair(v2.y,\
+    \ v2.x);\n\t\t}\n\t\tstatic constexpr Vec2 zero() {\n\t\t\treturn Vec2(0, 0);\n\
+    \t\t}\n\t\tconstexpr Vec2() : x(0), y(0) {}\n\t\tconstexpr Vec2(LD _x, LD _y)\
+    \ : x(_x), y(_y) {}\n\t\tVec2(LD rad) : x(cos(rad)), y(sin(rad)) {}\n\t\tconstexpr\
+    \ bool operator==(const Vec2& v) const {\n\t\t\treturn sgn(x - v.x) == 0 && sgn(y\
+    \ - v.y) == 0;\n\t\t}\n\t\tconstexpr bool operator!=(const Vec2& v) const {\n\t\
+    \t\treturn !(*this == v);\n\t\t}\n\t\tconstexpr Vec2 operator+() const {\n\t\t\
+    \treturn *this;\n\t\t}\n\t\tconstexpr Vec2 operator-() const {\n\t\t\treturn {-x,\
+    \ -y};\n\t\t}\n\t\tconstexpr Vec2 operator+(const Vec2& v) const {\n\t\t\treturn\
+    \ Vec2(*this) += v;\n\t\t}\n\t\tconstexpr Vec2 operator-(const Vec2& v) const\
+    \ {\n\t\t\treturn Vec2(*this) -= v;\n\t\t}\n\t\tconstexpr Vec2 operator*(const\
+    \ Vec2& v) const {\n\t\t\treturn Vec2(*this) *= v;\n\t\t}\n\t\tconstexpr Vec2\
+    \ operator/(const Vec2& v) const {\n\t\t\treturn Vec2(*this) /= v;\n\t\t}\n\t\t\
+    constexpr Vec2 operator+(LD n) const {\n\t\t\treturn Vec2(*this) += Vec2(n, n);\n\
+    \t\t}\n\t\tconstexpr Vec2 operator-(LD n) const {\n\t\t\treturn Vec2(*this) -=\
+    \ Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2 operator*(LD n) const {\n\t\t\treturn\
+    \ Vec2(*this) *= Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2 operator/(LD n) const\
+    \ {\n\t\t\treturn Vec2(*this) /= Vec2(n, n);\n\t\t}\n\t\tconstexpr Vec2& operator+=(const\
+    \ Vec2& v) {\n\t\t\tx += v.x;\n\t\t\ty += v.y;\n\t\t\treturn *this;\n\t\t}\n\t\
+    \tconstexpr Vec2& operator-=(const Vec2& v) {\n\t\t\tx -= v.x;\n\t\t\ty -= v.y;\n\
+    \t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator*=(const Vec2& v) {\n\t\
+    \t\tx *= v.x;\n\t\t\ty *= v.y;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2&\
+    \ operator/=(const Vec2& v) {\n\t\t\tx /= v.x;\n\t\t\ty /= v.y;\n\t\t\treturn\
+    \ *this;\n\t\t}\n\t\tconstexpr Vec2& operator+=(LD n) {\n\t\t\tx += n;\n\t\t\t\
+    x += n;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator-=(LD n) {\n\t\
+    \t\tx -= n;\n\t\t\tx -= n;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr Vec2& operator*=(LD\
+    \ n) {\n\t\t\tx *= n;\n\t\t\tx *= n;\n\t\t\treturn *this;\n\t\t}\n\t\tconstexpr\
+    \ Vec2& operator/=(LD n) {\n\t\t\tx /= n;\n\t\t\tx /= n;\n\t\t\treturn *this;\n\
+    \t\t}\n\t\tconstexpr LD operator[](size_t i) const {\n\t\t\treturn i == 0 ? x\
+    \ : i == 1 ? y : 0;\n\t\t}\n\t\tLD manhattan(const Vec2& v) const {\n\t\t\treturn\
+    \ std::abs(x - v.x) + std::abs(y - v.y);\n\t\t}\n\t\tconstexpr LD length_square()\
+    \ const {\n\t\t\treturn dot(*this);\n\t\t}\n\t\tLD length() const {\n\t\t\treturn\
+    \ sqrt(length_square());\n\t\t}\n\t\t// \u5185\u7A4D\n\t\tconstexpr LD dot(const\
+    \ Vec2& v) const {\n\t\t\treturn x * v.x + y * v.y;\n\t\t}\n\t\t// \u5916\u7A4D\
+    \n\t\tconstexpr LD cross(const Vec2& v) const {\n\t\t\treturn x * v.y - y * v.x;\n\
+    \t\t}\n\t\t// \u6B63\u898F\u5316\uFF08\u9577\u3055\u30921\u306B\u3057\u305F\uFF09\
+    \u30D9\u30AF\u30C8\u30EB\n\t\tVec2 normalized() const {\n\t\t\treturn *this /\
+    \ length();\n\t\t}\n\t\t// \u539F\u70B9\u4E2D\u5FC3\u306B rad \u56DE\u8EE2\u3057\
+    \u305F\u5EA7\u6A19\n\t\tVec2 rotation(LD rad) const {\n\t\t\tLD c = cos(rad),\
+    \ s = sin(rad);\n\t\t\treturn {x * c - y * s, x * s + y * c};\n\t\t}\n\t\t// \u539F\
+    \u70B9\u4E2D\u5FC3\u306E\u5186\u4E0A\u306B\u4E57\u3063\u3066\u3044\u308B\u3068\
+    \u3057\u305F\u3068\u304D\u306E\u504F\u89D2\n\t\tLD angle() const {\n\t\t\treturn\
+    \ atan2(y, x);\n\t\t}\n\t\t// \u6B63\u5C04\u5F71\n\t\tVec2 projection(const Line&\
+    \ l) const;\n\t\t// \u93E1\u6620\u5909\u63DB\n\t\tVec2 reflection(const Line&\
+    \ l) const;\n\t\tconstexpr Vec2 rotate90() const {\n\t\t\treturn {y, -x};\n\t\t\
+    }\n\t\tconstexpr Vec2 rotate180() const {\n\t\t\treturn {-x, -y};\n\t\t}\n\t\t\
+    constexpr Vec2 rotate270() const {\n\t\t\treturn {-y, x};\n\t\t}\n\t\tfriend ostream&\
+    \ operator<<(ostream& os, const Vec2& v) {\n\t\t\treturn os << '(' << v.x << \"\
+    , \" << v.y << ')';\n\t\t}\n\t\tfriend istream& operator>>(istream& is, Vec2&\
+    \ v) {\n\t\t\treturn is >> v.x >> v.y;\n\t\t}\n\t};\n\n}  // namespace Geometric\n\
+    #line 5 \"Geometry/Line.hpp\"\n#include <utility>\n#include <tuple>\n#line 9 \"\
+    Geometry/Line.hpp\"\nusing namespace std;\n\nnamespace Geometric {\n\n\tnamespace\
+    \ internal {\n\t\tstruct LineBase {\n\t\tprotected:\n\t\t\tconstexpr LineBase()\
+    \ = default;\n\t\t\tconstexpr LineBase(const Vec2& _begin, const Vec2& _end) :\
+    \ begin(_begin), end(_end) {}\n\t\t\tconstexpr LineBase(LD begin_x, LD begin_y,\
+    \ LD end_x, LD end_y)\n\t\t\t    : begin(begin_x, begin_y), end(end_x, end_y)\
+    \ {}\n\n\t\tpublic:\n\t\t\tVec2 begin, end;\n\t\t\tconstexpr LineBase operator+(const\
+    \ Vec2& v) {\n\t\t\t\treturn LineBase(*this) += v;\n\t\t\t}\n\t\t\tconstexpr LineBase\
+    \ operator-(const Vec2& v) {\n\t\t\t\treturn LineBase(*this) -= v;\n\t\t\t}\n\t\
+    \t\tconstexpr LineBase& operator+=(const Vec2& v) {\n\t\t\t\tbegin += v;\n\t\t\
+    \t\tend += v;\n\t\t\t\treturn *this;\n\t\t\t}\n\t\t\tconstexpr LineBase& operator-=(const\
+    \ Vec2& v) {\n\t\t\t\tbegin -= v;\n\t\t\t\tend -= v;\n\t\t\t\treturn *this;\n\t\
+    \t\t}\n\t\t\tconstexpr Vec2 vec() const {\n\t\t\t\treturn end - begin;\n\t\t\t\
+    }\n\t\t\tconstexpr Vec2 counter_vec() const {\n\t\t\t\treturn begin - end;\n\t\
+    \t\t}\n\t\t\t// \u5E73\u884C\u5224\u5B9A\n\t\t\tconstexpr bool is_parallel(const\
+    \ LineBase& l) const {\n\t\t\t\treturn sgn(vec().cross(l.vec())) == 0;\n\t\t\t\
+    }\n\t\t\t// \u76F4\u4EA4\u5224\u5B9A\n\t\t\tconstexpr bool is_orthogonal(const\
     \ LineBase& l) const {\n\t\t\t\treturn sgn(vec().dot(l.vec())) == 0;\n\t\t\t}\n\
     \t\t\tfriend ostream& operator<<(ostream& os, const LineBase& l) {\n\t\t\t\treturn\
     \ os << '(' << l.begin << \", \" << l.end << ')';\n\t\t\t}\n\t\t\tfriend istream&\
@@ -291,7 +294,7 @@ data:
   - Geometry/Triangle.hpp
   - Geometry/Rect.hpp
   - Geometry/Polygon.hpp
-  timestamp: '2021-01-04 20:13:43+09:00'
+  timestamp: '2021-01-04 21:28:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_iSP.test.cpp
