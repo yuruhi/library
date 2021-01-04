@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedRequiredBy: []

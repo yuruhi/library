@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/closest_pair.cpp
     title: Geometry/closest_pair.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: 1e-8
@@ -445,12 +445,13 @@ data:
     \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\tint n = right - left;\n\t\t\tif\
     \ (n <= 1) {\n\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t} else\
     \ {\n\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\tLD x = points[mid].x;\n\t\t\
-    \t\tauto result = min(self(self, left, mid), self(self, mid, right));\n\t\t\t\t\
-    inplace_merge(points.begin() + left, points.begin() + mid,\n\t\t\t\t         \
-    \     points.begin() + right, Vec2::compare_y);\n\n\t\t\t\tvector<Vec2> around;\n\
-    \t\t\t\tfor (int i = left; i < right; ++i) {\n\t\t\t\t\tif (get<0>(result) <=\
-    \ abs(points[i].x - x)) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tfor (int\
-    \ size = around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\tif (get<0>(result)\
+    \t\tauto result = min(\n\t\t\t\t    self(self, left, mid), self(self, mid, right),\n\
+    \t\t\t\t    [](const auto& t1, const auto& t2) { return get<0>(t1) < get<0>(t2);\
+    \ });\n\t\t\t\tinplace_merge(points.begin() + left, points.begin() + mid,\n\t\t\
+    \t\t              points.begin() + right, Vec2::compare_y);\n\n\t\t\t\tvector<Vec2>\
+    \ around;\n\t\t\t\tfor (int i = left; i < right; ++i) {\n\t\t\t\t\tif (get<0>(result)\
+    \ <= abs(points[i].x - x)) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tfor\
+    \ (int size = around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\tif (get<0>(result)\
     \ <= points[i].y - around[j].y) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\
     \t\t\tif (LD length = (points[i] - around[j]).length();\n\t\t\t\t\t\t    get<0>(result)\
     \ > length) {\n\t\t\t\t\t\t\tresult = {length, points[i], around[j]};\n\t\t\t\t\
@@ -480,8 +481,8 @@ data:
   isVerificationFile: true
   path: test/Geometric_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2021-01-04 19:41:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-01-04 19:59:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Geometric_closest_pair.test.cpp
 layout: document

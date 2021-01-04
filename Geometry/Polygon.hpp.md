@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.hpp
     title: Geometry/Geometric.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
   - icon: ':heavy_check_mark:'
     path: Geometry/area_of_intersection.cpp
     title: Geometry/area_of_intersection.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Geometry/closest_pair.cpp
     title: Geometry/closest_pair.cpp
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_cirnnumscribed_circle.test.cpp
     title: test/Geometric_cirnnumscribed_circle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Geometric_closest_pair.test.cpp
     title: test/Geometric_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     path: test/Geometric_tangent_to_circle.test.cpp
     title: test/Geometric_tangent_to_circle.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
@@ -353,7 +353,7 @@ data:
   - Geometry/closest_pair.cpp
   - Geometry/Geometric.cpp
   timestamp: '2021-01-04 19:41:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_iSP.test.cpp
   - test/Geometric_is_convex.test.cpp
