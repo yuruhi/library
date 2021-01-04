@@ -31,12 +31,6 @@ namespace Geometric {
 		constexpr bool operator!=(const Vec2& v) const {
 			return !(*this == v);
 		}
-		constexpr bool operator<(const Vec2& v) const {
-			return x < v.x - EPS && y < v.y - EPS;
-		}
-		constexpr bool operator<=(const Vec2& v) const {
-			return x < v.x + EPS && y < v.y + EPS;
-		}
 		constexpr Vec2 operator+() const {
 			return *this;
 		}

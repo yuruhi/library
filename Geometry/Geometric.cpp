@@ -115,7 +115,8 @@ namespace Geometric {
 		return distance(c.center, v) < c.r + EPS;
 	}
 	bool intersect(const Vec2& v, const Rect& r) {
-		return r.pos <= v && v <= r.bottom_right();
+		return sgn(r.left_x() - v.x) <= 0 && sgn(v.x - r.right_x()) &&
+		    sgn(r.top_y() - v.y) <= 0 && sgn(v.y - r.bottom_y());
 	}
 	bool intersect(const Vec2& v, const Polygon& p) {
 		LD theta = 0;
