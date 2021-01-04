@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 	Geometric::Circle c1, c2;
 	cin >> c1 >> c2;
-	auto ans = c1.cross_points(c2);
+	auto ans = cross_points(c1, c2);
 	assert(1 <= ans.size() && ans.size() <= 2);
 	if (ans.size() == 1) {
 		ans.push_back(ans[0]);

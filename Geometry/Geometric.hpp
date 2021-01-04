@@ -98,10 +98,4 @@ namespace Geometric {
 
 	// 円の接線
 	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
-	vector<Line> common_tangent(const Circle& c1, const Circle& c2);
-
-	// 2つの図形の共通部分の面積
-	LD area_of_intersection(const Circle& c1, const Circle& c2);
-	LD area_of_intersection(const Circle& c, const Polygon& p);
-
 }  // namespace Geometric

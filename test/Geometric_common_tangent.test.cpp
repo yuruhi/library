@@ -1,7 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G"
 #define ERROR "1e-6"
-#include "./../Geometry/Circle.hpp"
-#include "./../Geometry/Geometric.cpp"
+#include "./../Geometry/common_tangent.cpp"
 #include <iostream>
 #include <algorithm>
 using namespace std;

@@ -70,9 +70,6 @@ namespace Geometric {
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
 		}
-		template <class Shape2DType> vector<Vec2> cross_points(const Shape2DType& shape) const {
-			return Geometric::cross_points(*this, shape);
-		}
 		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
 			return Geometric::tangent(*this, shape);
 		}

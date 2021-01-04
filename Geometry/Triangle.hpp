@@ -39,7 +39,7 @@ namespace Geometric {
 		Circle cirnumscribed_circle() const {
 			Line l1((p1 + p2) / 2, (p1 + p2) / 2 + (p1 - p2).rotate270());
 			Line l2((p1 + p3) / 2, (p1 + p3) / 2 + (p1 - p3).rotate270());
-			Vec2 center = *l1.cross_point(l2);
+			Vec2 center = *cross_point(l1, l2);
 			return Circle(center, center.distance(p1));
 		}
 		friend ostream& operator<<(ostream& os, const Triangle& t) {

@@ -114,7 +114,7 @@ namespace Geometric {
 					result.push_back(a);
 				}
 				if (iSP(l.begin, l.end, a) * iSP(l.begin, l.end, b) < 0) {
-					result.push_back(*Line(a, b).cross_point(l));
+					result.push_back(*cross_point(Line(a, b), l));
 				}
 			}
 			return result;

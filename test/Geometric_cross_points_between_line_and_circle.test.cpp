@@ -17,7 +17,7 @@ int main() {
 	while (q--) {
 		Geometric::Line l;
 		cin >> l;
-		auto ans = c.cross_points(l);
+		auto ans = cross_points(c, l);
 		assert(1 <= ans.size() && ans.size() <= 2);
 		if (ans.size() == 1) {
 			ans.push_back(ans[0]);
