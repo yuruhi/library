@@ -10,6 +10,6 @@ int main() {
 	while (q--) {
 		Geometric::Segment l1, l2;
 		cin >> l1 >> l2;
-		cout << l1.intersects(l2) << '\n';
+		cout << intersect(l1, l2) << '\n';
 	}
 }

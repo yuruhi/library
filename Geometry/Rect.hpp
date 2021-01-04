@@ -86,9 +86,6 @@ namespace Geometric {
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
-		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
-		}
 		constexpr bool contains(const Rect& r) const {
 			return top_left() <= r.top_left() && r.bottom_right() <= bottom_right();
 		}

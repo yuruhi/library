@@ -67,9 +67,6 @@ namespace Geometric {
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
-		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
-		}
 		// ax + by + c = 0 の式に変形する
 		tuple<LD, LD, LD> abc() const {
 			if (sgn(begin.x - end.x) == 0) {
@@ -88,9 +85,6 @@ namespace Geometric {
 		constexpr Segment(const LineBase& l) : LineBase(l) {}
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
-		}
-		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
 		}
 	};
 

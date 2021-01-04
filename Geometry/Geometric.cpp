@@ -121,7 +121,7 @@ namespace Geometric {
 		LD theta = 0;
 		for (size_t i = 0; i < p.size(); ++i) {
 			Vec2 next = p[i != p.size() - 1 ? i + 1 : 0];
-			if (Segment(p[i], next).intersects(v)) {
+			if (intersect(Segment(p[i], next), v)) {
 				return true;
 			}
 			theta += angle(p[i], v, next);
@@ -160,10 +160,10 @@ namespace Geometric {
 		return sgn(distance(c1.center, c2.center) - (c1.r + c2.r)) <= 0;
 	}
 	bool intersect(const Circle& c, const Rect& r) {
-		return Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)).intersects(c.center) ||
-		    Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)).intersects(c.center) ||
-		    c.intersects(r.top_left()) || c.intersects(r.top_right()) ||
-		    c.intersects(r.bottom_left()) || c.intersects(r.bottom_right());
+		return intersect(Rect(r.pos - Vec2(0, c.r), r.size + Vec2(0, c.r * 2)), c.center) ||
+		    intersect(Rect(r.pos - Vec2(c.r, 0), r.size + Vec2(c.r * 2, 0)), c.center) ||
+		    intersect(c, r.top_left()) || intersect(c, r.top_right()) ||
+		    intersect(c, r.bottom_left()) || intersect(c, r.bottom_right());
 	}
 	bool intersect(const Rect& r1, const Rect& r2) {
 		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
@@ -189,7 +189,7 @@ namespace Geometric {
 		return sgn(distance(v, c.center) - c.r) == 0;
 	}
 	bool tangent(const Vec2& v, const Rect& r) {
-		return tangent(r.top(), v) || tangent(r.bottom(), v) || rangent(r.left(), v) ||
+		return tangent(r.top(), v) || tangent(r.bottom(), v) || tangent(r.left(), v) ||
 		    tangent(r.right(), v);
 	}
 	bool tangent(const Vec2& v, const Polygon& p) {
@@ -255,7 +255,7 @@ namespace Geometric {
 	vector<Vec2> cross_points(const Segment& s, const Circle& c) {
 		vector<Vec2> result;
 		for (const Vec2& v : cross_points(Line(s), c)) {
-			if (v.intersects(s)) {
+			if (intersect(v, s)) {
 				result.push_back(v);
 			}
 		}

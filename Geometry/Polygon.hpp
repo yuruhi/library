@@ -119,9 +119,6 @@ namespace Geometric {
 			}
 			return result;
 		}
-		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
-		}
 		friend ostream& operator<<(ostream& os, const Polygon& p) {
 			os << "{";
 			for (size_t i = 0; i < p.size(); ++i) {

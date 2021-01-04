@@ -15,8 +15,8 @@ int main() {
 		cin >> v;
 		if (tangent(p, v)) {
 			puts("1");
-			assert(p.intersects(v));
-		} else if (p.intersects(v)) {
+			assert(intersect(p, v));
+		} else if (intersect(p, v)) {
 			puts("2");
 		} else {
 			puts("0");

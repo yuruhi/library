@@ -116,9 +116,6 @@ namespace Geometric {
 		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
 			return Geometric::distance(*this, shape);
 		}
-		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
-			return Geometric::intersect(*this, shape);
-		}
 		constexpr LD length_square() const {
 			return dot(*this);
 		}
