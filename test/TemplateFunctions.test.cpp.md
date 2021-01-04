@@ -61,112 +61,106 @@ data:
     \ T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
     \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
     \ init);\n}\n#line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\n\
-    using namespace std;\n\nint main() {\n\t{\n\t\tstatic_assert(div_ceil(9, 3) ==\
-    \ 3);\n\t\tstatic_assert(div_ceil(10, 3) == 4);\n\t\tstatic_assert(div_ceil(11,\
-    \ 3) == 4);\n\t\tstatic_assert(div_ceil(12, 3) == 4);\n\t\tstatic_assert(div_ceil(13,\
-    \ 3) == 5);\n\t\tstatic_assert(div_ceil(1000000000000000000ll, 3) == 333333333333333334ll);\n\
-    \t\tstatic_assert(div_ceil(3, 1000000000000000000ll) == 1);\n\t\tstatic_assert(div_ceil(1000000000000000000ll,\
-    \ 300000000000000000) == 4);\n\t}\n\t{\n\t\tstatic_assert(div_ceil2(9, 3) == 9);\n\
-    \t\tstatic_assert(div_ceil2(10, 3) == 12);\n\t\tstatic_assert(div_ceil2(11, 3)\
-    \ == 12);\n\t\tstatic_assert(div_ceil2(12, 3) == 12);\n\t\tstatic_assert(div_ceil2(13,\
-    \ 3) == 15);\n\t\tstatic_assert(div_ceil2(1000000000000000000ll, 3) == 1000000000000000002ll);\n\
-    \t\tstatic_assert(div_ceil2(3, 1000000000000000000ll) == 1000000000000000000ll);\n\
-    \t\tstatic_assert(div_ceil2(1000000000000000000ll, 300000000000000000) ==\n\t\t\
-    \              1200000000000000000ll);\n\t}\n\t{\n\t\tstatic_assert(triangle(0)\
-    \ == 0);\n\t\tstatic_assert(triangle(1) == 1);\n\t\tstatic_assert(triangle(2)\
-    \ == 3);\n\t\tstatic_assert(triangle(3) == 6);\n\t\tstatic_assert(triangle(1000000000ll)\
-    \ == 500000000500000000ll);\n\t\tstatic_assert(triangle(4000000000ll) == 8000000002000000000ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(nC2(0) == 0);\n\t\tstatic_assert(nC2(1) == 0);\n\t\
-    \tstatic_assert(nC2(2) == 1);\n\t\tstatic_assert(nC2(3) == 3);\n\t\tstatic_assert(nC2(1000000000ll)\
-    \ == 499999999500000000ll);\n\t\tstatic_assert(nC2(4000000000ll) == 7999999998000000000ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(middle(-10, 10) == 0);\n\t\tstatic_assert(middle(10,\
-    \ 10) == 10);\n\t\tstatic_assert(middle(10, 15) == 12);\n\t\tstatic_assert(middle(0,\
-    \ 1000000000000000000ll) == 500000000000000000ll);\n\t\tstatic_assert(middle(1000000000000000000ll,\
-    \ 3000000000000000000ll) ==\n\t\t              2000000000000000000ll);\n\t}\n\t\
-    {\n\t\tstatic_assert(!in_range(-1, 0, 20));\n\t\tstatic_assert(in_range(0, 0,\
-    \ 20));\n\t\tstatic_assert(in_range(19, 0, 20));\n\t\tstatic_assert(!in_range(20,\
-    \ 0, 20));\n\t\tstatic_assert(!in_range(-1, 0, 1000000000000000000ll));\n\t\t\
-    static_assert(in_range(0, 0, 1000000000000000000ll));\n\t\tstatic_assert(in_range(999999999999999999ll,\
-    \ 0, 1000000000000000000ll));\n\t\tstatic_assert(!in_range(1000000000000000000ll,\
-    \ 0, 1000000000000000000ll));\n\t}\n\t{\n\t\tstatic_assert(!is_square(15));\n\t\
-    \tstatic_assert(is_square(16));\n\t\tstatic_assert(!is_square(17));\n\t\tstatic_assert(!is_square(996491788296388608ll));\n\
-    \t\tstatic_assert(is_square(996491788296388609ll));\n\t\tstatic_assert(!is_square(996491788296388610ll));\n\
-    \t}\n\t{\n\t\tstatic_assert(BIT<int>(0) == 1);\n\t\tstatic_assert(BIT<int>(1)\
-    \ == 2);\n\t\tstatic_assert(BIT(0) == 1);\n\t\tstatic_assert(BIT(1) == 2);\n\t\
-    \tstatic_assert(BIT(32) == 4294967296ll);\n\t\tstatic_assert(BIT(62) == 4611686018427387904ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(Pow(0, 0) == 1);\n\t\tstatic_assert(Pow(1000000000000000000ll,\
-    \ 0) == 1);\n\t\tstatic_assert(Pow(0, 1) == 0);\n\t\tstatic_assert(Pow(1000000000000000000ll,\
-    \ 1) == 1000000000000000000ll);\n\t\tstatic_assert(Pow(2, 10) == 1024);\n\t\t\
-    static_assert(Pow(2ll, 62) == 4611686018427387904ll);\n\t\tstatic_assert(Pow(10,\
-    \ 9) == 1000000000);\n\t\tstatic_assert(Pow(10ll, 18) == 1000000000000000000ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(Powmod(0, 0, 2) == 1);\n\t\tstatic_assert(Powmod(1000000000000000000ll,\
-    \ 0, 2ll) == 1);\n\t\tstatic_assert(Powmod(0, 1, 2) == 0);\n\t\tstatic_assert(Powmod(1000000000000000000ll,\
-    \ 1, 3ll) == 1);\n\t\tstatic_assert(Powmod(2, 10, 1000000000) == 1024);\n\t\t\
-    static_assert(Powmod(2ll, 998244353, 1000000007ll) == 213467670);\n\t\tstatic_assert(Powmod(10ll,\
-    \ 998244353998244353ll, 1000000007ll) == 821601853);\n\t\tstatic_assert(Powmod(998244353998244353ll,\
-    \ 998244353998244353ll, 1000000007ll) ==\n\t\t              55266312);\n\t}\n\t\
-    {\n\t\tstatic_assert(TEN<int>(0) == 1);\n\t\tstatic_assert(TEN<int>(1) == 10);\n\
-    \t\tstatic_assert(TEN<int>(9) == 1000000000);\n\t\tstatic_assert(TEN(0) == 1);\n\
-    \t\tstatic_assert(TEN(1) == 10);\n\t\tstatic_assert(TEN(9) == 1000000000);\n\t\
-    \tstatic_assert(TEN(18) == 1000000000000000000);\n\t}\n\n\tcout << \"Hello World\"\
-    \ << endl;\n}\n"
+    using namespace std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\t\
+    static_assert(div_ceil(10, 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\
+    \tstatic_assert(div_ceil(12, 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\
+    \tstatic_assert(div_ceil(1000000000000000000ll, 3) == 333333333333333334ll);\n\
+    \tstatic_assert(div_ceil(3, 1000000000000000000ll) == 1);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
+    \ 300000000000000000) == 4);\n\n\tstatic_assert(div_ceil2(9, 3) == 9);\n\tstatic_assert(div_ceil2(10,\
+    \ 3) == 12);\n\tstatic_assert(div_ceil2(11, 3) == 12);\n\tstatic_assert(div_ceil2(12,\
+    \ 3) == 12);\n\tstatic_assert(div_ceil2(13, 3) == 15);\n\tstatic_assert(div_ceil2(1000000000000000000ll,\
+    \ 3) == 1000000000000000002ll);\n\tstatic_assert(div_ceil2(3, 1000000000000000000ll)\
+    \ == 1000000000000000000ll);\n\tstatic_assert(div_ceil2(1000000000000000000ll,\
+    \ 300000000000000000) ==\n\t              1200000000000000000ll);\n\n\tstatic_assert(triangle(0)\
+    \ == 0);\n\tstatic_assert(triangle(1) == 1);\n\tstatic_assert(triangle(2) == 3);\n\
+    \tstatic_assert(triangle(3) == 6);\n\tstatic_assert(triangle(1000000000ll) ==\
+    \ 500000000500000000ll);\n\tstatic_assert(triangle(4000000000ll) == 8000000002000000000ll);\n\
+    \n\tstatic_assert(nC2(0) == 0);\n\tstatic_assert(nC2(1) == 0);\n\tstatic_assert(nC2(2)\
+    \ == 1);\n\tstatic_assert(nC2(3) == 3);\n\tstatic_assert(nC2(1000000000ll) ==\
+    \ 499999999500000000ll);\n\tstatic_assert(nC2(4000000000ll) == 7999999998000000000ll);\n\
+    \n\tstatic_assert(middle(-10, 10) == 0);\n\tstatic_assert(middle(10, 10) == 10);\n\
+    \tstatic_assert(middle(10, 15) == 12);\n\tstatic_assert(middle(0, 1000000000000000000ll)\
+    \ == 500000000000000000ll);\n\tstatic_assert(middle(1000000000000000000ll, 3000000000000000000ll)\
+    \ ==\n\t              2000000000000000000ll);\n\n\tstatic_assert(!in_range(-1,\
+    \ 0, 20));\n\tstatic_assert(in_range(0, 0, 20));\n\tstatic_assert(in_range(19,\
+    \ 0, 20));\n\tstatic_assert(!in_range(20, 0, 20));\n\tstatic_assert(!in_range(-1,\
+    \ 0, 1000000000000000000ll));\n\tstatic_assert(in_range(0, 0, 1000000000000000000ll));\n\
+    \tstatic_assert(in_range(999999999999999999ll, 0, 1000000000000000000ll));\n\t\
+    static_assert(!in_range(1000000000000000000ll, 0, 1000000000000000000ll));\n\n\
+    \tstatic_assert(!is_square(15));\n\tstatic_assert(is_square(16));\n\tstatic_assert(!is_square(17));\n\
+    \tstatic_assert(!is_square(996491788296388608ll));\n\tstatic_assert(is_square(996491788296388609ll));\n\
+    \tstatic_assert(!is_square(996491788296388610ll));\n\n\tstatic_assert(BIT<int>(0)\
+    \ == 1);\n\tstatic_assert(BIT<int>(1) == 2);\n\tstatic_assert(BIT(0) == 1);\n\t\
+    static_assert(BIT(1) == 2);\n\tstatic_assert(BIT(32) == 4294967296ll);\n\tstatic_assert(BIT(62)\
+    \ == 4611686018427387904ll);\n\n\tstatic_assert(Pow(0, 0) == 1);\n\tstatic_assert(Pow(1000000000000000000ll,\
+    \ 0) == 1);\n\tstatic_assert(Pow(0, 1) == 0);\n\tstatic_assert(Pow(1000000000000000000ll,\
+    \ 1) == 1000000000000000000ll);\n\tstatic_assert(Pow(2, 10) == 1024);\n\tstatic_assert(Pow(2ll,\
+    \ 62) == 4611686018427387904ll);\n\tstatic_assert(Pow(10, 9) == 1000000000);\n\
+    \tstatic_assert(Pow(10ll, 18) == 1000000000000000000ll);\n\n\tstatic_assert(Powmod(0,\
+    \ 0, 2) == 1);\n\tstatic_assert(Powmod(1000000000000000000ll, 0, 2ll) == 1);\n\
+    \tstatic_assert(Powmod(0, 1, 2) == 0);\n\tstatic_assert(Powmod(1000000000000000000ll,\
+    \ 1, 3ll) == 1);\n\tstatic_assert(Powmod(2, 10, 1000000000) == 1024);\n\tstatic_assert(Powmod(2ll,\
+    \ 998244353, 1000000007ll) == 213467670);\n\tstatic_assert(Powmod(10ll, 998244353998244353ll,\
+    \ 1000000007ll) == 821601853);\n\tstatic_assert(Powmod(998244353998244353ll, 998244353998244353ll,\
+    \ 1000000007ll) ==\n\t              55266312);\n\n\tstatic_assert(TEN<int>(0)\
+    \ == 1);\n\tstatic_assert(TEN<int>(1) == 10);\n\tstatic_assert(TEN<int>(9) ==\
+    \ 1000000000);\n\tstatic_assert(TEN(0) == 1);\n\tstatic_assert(TEN(1) == 10);\n\
+    \tstatic_assert(TEN(9) == 1000000000);\n\tstatic_assert(TEN(18) == 1000000000000000000);\n\
+    \n\tcout << \"Hello World\" << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
     \n#include \"./../template/functions.cpp\"\n#include <iostream>\nusing namespace\
-    \ std;\n\nint main() {\n\t{\n\t\tstatic_assert(div_ceil(9, 3) == 3);\n\t\tstatic_assert(div_ceil(10,\
-    \ 3) == 4);\n\t\tstatic_assert(div_ceil(11, 3) == 4);\n\t\tstatic_assert(div_ceil(12,\
-    \ 3) == 4);\n\t\tstatic_assert(div_ceil(13, 3) == 5);\n\t\tstatic_assert(div_ceil(1000000000000000000ll,\
-    \ 3) == 333333333333333334ll);\n\t\tstatic_assert(div_ceil(3, 1000000000000000000ll)\
-    \ == 1);\n\t\tstatic_assert(div_ceil(1000000000000000000ll, 300000000000000000)\
-    \ == 4);\n\t}\n\t{\n\t\tstatic_assert(div_ceil2(9, 3) == 9);\n\t\tstatic_assert(div_ceil2(10,\
-    \ 3) == 12);\n\t\tstatic_assert(div_ceil2(11, 3) == 12);\n\t\tstatic_assert(div_ceil2(12,\
-    \ 3) == 12);\n\t\tstatic_assert(div_ceil2(13, 3) == 15);\n\t\tstatic_assert(div_ceil2(1000000000000000000ll,\
-    \ 3) == 1000000000000000002ll);\n\t\tstatic_assert(div_ceil2(3, 1000000000000000000ll)\
-    \ == 1000000000000000000ll);\n\t\tstatic_assert(div_ceil2(1000000000000000000ll,\
-    \ 300000000000000000) ==\n\t\t              1200000000000000000ll);\n\t}\n\t{\n\
-    \t\tstatic_assert(triangle(0) == 0);\n\t\tstatic_assert(triangle(1) == 1);\n\t\
-    \tstatic_assert(triangle(2) == 3);\n\t\tstatic_assert(triangle(3) == 6);\n\t\t\
-    static_assert(triangle(1000000000ll) == 500000000500000000ll);\n\t\tstatic_assert(triangle(4000000000ll)\
-    \ == 8000000002000000000ll);\n\t}\n\t{\n\t\tstatic_assert(nC2(0) == 0);\n\t\t\
-    static_assert(nC2(1) == 0);\n\t\tstatic_assert(nC2(2) == 1);\n\t\tstatic_assert(nC2(3)\
-    \ == 3);\n\t\tstatic_assert(nC2(1000000000ll) == 499999999500000000ll);\n\t\t\
-    static_assert(nC2(4000000000ll) == 7999999998000000000ll);\n\t}\n\t{\n\t\tstatic_assert(middle(-10,\
-    \ 10) == 0);\n\t\tstatic_assert(middle(10, 10) == 10);\n\t\tstatic_assert(middle(10,\
-    \ 15) == 12);\n\t\tstatic_assert(middle(0, 1000000000000000000ll) == 500000000000000000ll);\n\
-    \t\tstatic_assert(middle(1000000000000000000ll, 3000000000000000000ll) ==\n\t\t\
-    \              2000000000000000000ll);\n\t}\n\t{\n\t\tstatic_assert(!in_range(-1,\
-    \ 0, 20));\n\t\tstatic_assert(in_range(0, 0, 20));\n\t\tstatic_assert(in_range(19,\
-    \ 0, 20));\n\t\tstatic_assert(!in_range(20, 0, 20));\n\t\tstatic_assert(!in_range(-1,\
-    \ 0, 1000000000000000000ll));\n\t\tstatic_assert(in_range(0, 0, 1000000000000000000ll));\n\
-    \t\tstatic_assert(in_range(999999999999999999ll, 0, 1000000000000000000ll));\n\
-    \t\tstatic_assert(!in_range(1000000000000000000ll, 0, 1000000000000000000ll));\n\
-    \t}\n\t{\n\t\tstatic_assert(!is_square(15));\n\t\tstatic_assert(is_square(16));\n\
-    \t\tstatic_assert(!is_square(17));\n\t\tstatic_assert(!is_square(996491788296388608ll));\n\
-    \t\tstatic_assert(is_square(996491788296388609ll));\n\t\tstatic_assert(!is_square(996491788296388610ll));\n\
-    \t}\n\t{\n\t\tstatic_assert(BIT<int>(0) == 1);\n\t\tstatic_assert(BIT<int>(1)\
-    \ == 2);\n\t\tstatic_assert(BIT(0) == 1);\n\t\tstatic_assert(BIT(1) == 2);\n\t\
-    \tstatic_assert(BIT(32) == 4294967296ll);\n\t\tstatic_assert(BIT(62) == 4611686018427387904ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(Pow(0, 0) == 1);\n\t\tstatic_assert(Pow(1000000000000000000ll,\
-    \ 0) == 1);\n\t\tstatic_assert(Pow(0, 1) == 0);\n\t\tstatic_assert(Pow(1000000000000000000ll,\
-    \ 1) == 1000000000000000000ll);\n\t\tstatic_assert(Pow(2, 10) == 1024);\n\t\t\
-    static_assert(Pow(2ll, 62) == 4611686018427387904ll);\n\t\tstatic_assert(Pow(10,\
-    \ 9) == 1000000000);\n\t\tstatic_assert(Pow(10ll, 18) == 1000000000000000000ll);\n\
-    \t}\n\t{\n\t\tstatic_assert(Powmod(0, 0, 2) == 1);\n\t\tstatic_assert(Powmod(1000000000000000000ll,\
-    \ 0, 2ll) == 1);\n\t\tstatic_assert(Powmod(0, 1, 2) == 0);\n\t\tstatic_assert(Powmod(1000000000000000000ll,\
-    \ 1, 3ll) == 1);\n\t\tstatic_assert(Powmod(2, 10, 1000000000) == 1024);\n\t\t\
-    static_assert(Powmod(2ll, 998244353, 1000000007ll) == 213467670);\n\t\tstatic_assert(Powmod(10ll,\
-    \ 998244353998244353ll, 1000000007ll) == 821601853);\n\t\tstatic_assert(Powmod(998244353998244353ll,\
-    \ 998244353998244353ll, 1000000007ll) ==\n\t\t              55266312);\n\t}\n\t\
-    {\n\t\tstatic_assert(TEN<int>(0) == 1);\n\t\tstatic_assert(TEN<int>(1) == 10);\n\
-    \t\tstatic_assert(TEN<int>(9) == 1000000000);\n\t\tstatic_assert(TEN(0) == 1);\n\
-    \t\tstatic_assert(TEN(1) == 10);\n\t\tstatic_assert(TEN(9) == 1000000000);\n\t\
-    \tstatic_assert(TEN(18) == 1000000000000000000);\n\t}\n\n\tcout << \"Hello World\"\
-    \ << endl;\n}"
+    \ std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\tstatic_assert(div_ceil(10,\
+    \ 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\tstatic_assert(div_ceil(12,\
+    \ 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
+    \ 3) == 333333333333333334ll);\n\tstatic_assert(div_ceil(3, 1000000000000000000ll)\
+    \ == 1);\n\tstatic_assert(div_ceil(1000000000000000000ll, 300000000000000000)\
+    \ == 4);\n\n\tstatic_assert(div_ceil2(9, 3) == 9);\n\tstatic_assert(div_ceil2(10,\
+    \ 3) == 12);\n\tstatic_assert(div_ceil2(11, 3) == 12);\n\tstatic_assert(div_ceil2(12,\
+    \ 3) == 12);\n\tstatic_assert(div_ceil2(13, 3) == 15);\n\tstatic_assert(div_ceil2(1000000000000000000ll,\
+    \ 3) == 1000000000000000002ll);\n\tstatic_assert(div_ceil2(3, 1000000000000000000ll)\
+    \ == 1000000000000000000ll);\n\tstatic_assert(div_ceil2(1000000000000000000ll,\
+    \ 300000000000000000) ==\n\t              1200000000000000000ll);\n\n\tstatic_assert(triangle(0)\
+    \ == 0);\n\tstatic_assert(triangle(1) == 1);\n\tstatic_assert(triangle(2) == 3);\n\
+    \tstatic_assert(triangle(3) == 6);\n\tstatic_assert(triangle(1000000000ll) ==\
+    \ 500000000500000000ll);\n\tstatic_assert(triangle(4000000000ll) == 8000000002000000000ll);\n\
+    \n\tstatic_assert(nC2(0) == 0);\n\tstatic_assert(nC2(1) == 0);\n\tstatic_assert(nC2(2)\
+    \ == 1);\n\tstatic_assert(nC2(3) == 3);\n\tstatic_assert(nC2(1000000000ll) ==\
+    \ 499999999500000000ll);\n\tstatic_assert(nC2(4000000000ll) == 7999999998000000000ll);\n\
+    \n\tstatic_assert(middle(-10, 10) == 0);\n\tstatic_assert(middle(10, 10) == 10);\n\
+    \tstatic_assert(middle(10, 15) == 12);\n\tstatic_assert(middle(0, 1000000000000000000ll)\
+    \ == 500000000000000000ll);\n\tstatic_assert(middle(1000000000000000000ll, 3000000000000000000ll)\
+    \ ==\n\t              2000000000000000000ll);\n\n\tstatic_assert(!in_range(-1,\
+    \ 0, 20));\n\tstatic_assert(in_range(0, 0, 20));\n\tstatic_assert(in_range(19,\
+    \ 0, 20));\n\tstatic_assert(!in_range(20, 0, 20));\n\tstatic_assert(!in_range(-1,\
+    \ 0, 1000000000000000000ll));\n\tstatic_assert(in_range(0, 0, 1000000000000000000ll));\n\
+    \tstatic_assert(in_range(999999999999999999ll, 0, 1000000000000000000ll));\n\t\
+    static_assert(!in_range(1000000000000000000ll, 0, 1000000000000000000ll));\n\n\
+    \tstatic_assert(!is_square(15));\n\tstatic_assert(is_square(16));\n\tstatic_assert(!is_square(17));\n\
+    \tstatic_assert(!is_square(996491788296388608ll));\n\tstatic_assert(is_square(996491788296388609ll));\n\
+    \tstatic_assert(!is_square(996491788296388610ll));\n\n\tstatic_assert(BIT<int>(0)\
+    \ == 1);\n\tstatic_assert(BIT<int>(1) == 2);\n\tstatic_assert(BIT(0) == 1);\n\t\
+    static_assert(BIT(1) == 2);\n\tstatic_assert(BIT(32) == 4294967296ll);\n\tstatic_assert(BIT(62)\
+    \ == 4611686018427387904ll);\n\n\tstatic_assert(Pow(0, 0) == 1);\n\tstatic_assert(Pow(1000000000000000000ll,\
+    \ 0) == 1);\n\tstatic_assert(Pow(0, 1) == 0);\n\tstatic_assert(Pow(1000000000000000000ll,\
+    \ 1) == 1000000000000000000ll);\n\tstatic_assert(Pow(2, 10) == 1024);\n\tstatic_assert(Pow(2ll,\
+    \ 62) == 4611686018427387904ll);\n\tstatic_assert(Pow(10, 9) == 1000000000);\n\
+    \tstatic_assert(Pow(10ll, 18) == 1000000000000000000ll);\n\n\tstatic_assert(Powmod(0,\
+    \ 0, 2) == 1);\n\tstatic_assert(Powmod(1000000000000000000ll, 0, 2ll) == 1);\n\
+    \tstatic_assert(Powmod(0, 1, 2) == 0);\n\tstatic_assert(Powmod(1000000000000000000ll,\
+    \ 1, 3ll) == 1);\n\tstatic_assert(Powmod(2, 10, 1000000000) == 1024);\n\tstatic_assert(Powmod(2ll,\
+    \ 998244353, 1000000007ll) == 213467670);\n\tstatic_assert(Powmod(10ll, 998244353998244353ll,\
+    \ 1000000007ll) == 821601853);\n\tstatic_assert(Powmod(998244353998244353ll, 998244353998244353ll,\
+    \ 1000000007ll) ==\n\t              55266312);\n\n\tstatic_assert(TEN<int>(0)\
+    \ == 1);\n\tstatic_assert(TEN<int>(1) == 10);\n\tstatic_assert(TEN<int>(9) ==\
+    \ 1000000000);\n\tstatic_assert(TEN(0) == 1);\n\tstatic_assert(TEN(1) == 10);\n\
+    \tstatic_assert(TEN(9) == 1000000000);\n\tstatic_assert(TEN(18) == 1000000000000000000);\n\
+    \n\tcout << \"Hello World\" << endl;\n}"
   dependsOn:
   - template/functions.cpp
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-01-04 18:31:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp
