@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Line.hpp
     title: Geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Polygon.hpp
     title: Geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Rect.hpp
     title: Geometry/Rect.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Triangle.hpp
     title: Geometry/Triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   - icon: ':heavy_check_mark:'
     path: Geometry/area_of_intersection.cpp
     title: Geometry/area_of_intersection.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Geometry/closest_pair.cpp
     title: Geometry/closest_pair.cpp
   - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_cirnnumscribed_circle.test.cpp
     title: test/Geometric_cirnnumscribed_circle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/Geometric_closest_pair.test.cpp
     title: test/Geometric_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -100,7 +100,7 @@ data:
     path: test/Geometric_tangent_to_circle.test.cpp
     title: test/Geometric_tangent_to_circle.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
@@ -223,7 +223,7 @@ data:
   - Geometry/Rect.hpp
   - Geometry/Polygon.hpp
   timestamp: '2021-01-04 17:53:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/Geometric_iSP.test.cpp
   - test/Geometric_is_convex.test.cpp

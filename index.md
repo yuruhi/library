@@ -58,34 +58,34 @@ data:
       title: DataStructure/WeightedUnionFind.cpp
   - name: Geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Circle.hpp
       title: Geometry/Circle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Geometric.cpp
       title: Geometry/Geometric.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Geometric.hpp
       title: Geometry/Geometric.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Line.hpp
       title: Geometry/Line.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Polygon.hpp
       title: Geometry/Polygon.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Rect.hpp
       title: Geometry/Rect.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Triangle.hpp
       title: Geometry/Triangle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Geometry/Vec2.hpp
       title: Geometry/Vec2.hpp
     - icon: ':heavy_check_mark:'
       path: Geometry/area_of_intersection.cpp
       title: Geometry/area_of_intersection.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Geometry/closest_pair.cpp
       title: Geometry/closest_pair.cpp
     - icon: ':heavy_check_mark:'
@@ -585,7 +585,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Geometric_cirnnumscribed_circle.test.cpp
       title: test/Geometric_cirnnumscribed_circle.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Geometric_closest_pair.test.cpp
       title: test/Geometric_closest_pair.test.cpp
     - icon: ':heavy_check_mark:'
