@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_5_A"
 #define ERROR "1e-8"
-#include "./../Geometry/ClosestPair.cpp"
+#include "./../Geometry/closest_pair.cpp"
 #include <iostream>
 #include <vector>
 #include <cassert>
