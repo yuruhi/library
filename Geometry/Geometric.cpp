@@ -204,11 +204,17 @@ namespace Geometric {
 	bool tangent(const Line& l, const Vec2& v) {
 		return tangent(v, l);
 	}
+	bool tangent(const Line& l, const Circle& c) {
+		return sgn(distance(c.center, l) - c.r) == 0;
+	}
 	bool tangent(const Segment& l, const Vec2& v) {
 		return tangent(v, l);
 	}
 	bool tangent(const Circle& c, const Vec2& v) {
 		return tangent(v, c);
+	}
+	bool tangent(const Circle& c, const Line& l) {
+		return tangent(l, c);
 	}
 	bool tangent(const Circle& c1, const Circle& c2) {
 		LD l1 = distance(c1.center, c2.center), l2 = c1.r, l3 = c2.r;

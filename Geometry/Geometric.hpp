@@ -80,8 +80,10 @@ namespace Geometric {
 	bool tangent(const Vec2& v, const Rect& r);
 	bool tangent(const Vec2& v, const Polygon& p);
 	bool tangent(const Line& l, const Vec2& v);
+	bool tangent(const Line& l, const Circle& c);
 	bool tangent(const Segment& l, const Vec2& v);
 	bool tangent(const Circle& c, const Vec2& v);
+	bool tangent(const Circle& c, const Line& l);
 	bool tangent(const Circle& c1, const Circle& c2);
 	bool tangent(const Rect& r, const Vec2& v);
 	bool tangent(const Polygon& p, const Vec2& v);
