@@ -10,7 +10,6 @@ namespace Geometric {
 	using LD = long double;
 	constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
 
-	constexpr bool Equal(LD a, LD b);
 	// a > 0 : +1
 	// a = 0 :  0
 	// a < 0 : -1

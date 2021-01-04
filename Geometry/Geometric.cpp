@@ -9,9 +9,6 @@
 
 namespace Geometric {
 
-	constexpr bool Equal(LD a, LD b) {
-		return a < b ? b - a < EPS : a - b < EPS;
-	}
 	constexpr int sgn(LD a) {
 		return a < -EPS ? -1 : a > EPS ? 1 : 0;
 	}

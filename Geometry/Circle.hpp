@@ -15,7 +15,7 @@ namespace Geometric {
 		constexpr Circle(LD _x, LD _y, LD _r) : center(_x, _y), r(_r) {}
 		constexpr Circle(const Vec2& _c, LD _r) : center(_c), r(_r) {}
 		constexpr bool operator==(const Circle& c) const {
-			return center == c.center && Equal(r, c.r);
+			return center == c.center && sgn(r - c.r) == 0;
 		}
 		constexpr bool operator!=(const Circle& c) const {
 			return !(*this == c);

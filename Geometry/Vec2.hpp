@@ -26,7 +26,7 @@ namespace Geometric {
 		constexpr Vec2(LD _x, LD _y) : x(_x), y(_y) {}
 		Vec2(LD rad) : x(cos(rad)), y(sin(rad)) {}
 		constexpr bool operator==(const Vec2& v) const {
-			return Equal(x, v.x) && Equal(y, v.y);
+			return sgn(x - v.x) == 0 && sgn(y - v.y) == 0;
 		}
 		constexpr bool operator!=(const Vec2& v) const {
 			return !(*this == v);
