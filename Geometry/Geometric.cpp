@@ -103,7 +103,7 @@ namespace Geometric {
 		return v1 == v2;
 	}
 	bool intersect(const Vec2& v, const Line& l) {
-		return abs(iSP(v, l.begin, l.end)) != -1;
+		return abs(iSP(v, l.begin, l.end)) != 1;
 	}
 	bool intersect(const Vec2& v, const Segment& l) {
 		return iSP(l.begin, l.end, v) == 0;
