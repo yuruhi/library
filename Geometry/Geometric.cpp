@@ -207,6 +207,11 @@ namespace Geometric {
 	bool tangent(const Line& l, const Circle& c) {
 		return sgn(distance(c.center, l) - c.r) == 0;
 	}
+	bool tangent(const Line& l, const Rect& r) {
+		bool f1 = tangent(r.top_left(), l), f2 = tangent(r.top_right(), l),
+		     f3 = tangent(r.bottom_right(), l), f4 = tangent(r.bottom_left(), l);
+		return f1 + f2 + f3 + f4 == 1 || (f1 && f2) || (f2 && f3) || (f3 && f4) || (f4 && f1);
+	}
 	bool tangent(const Segment& l, const Vec2& v) {
 		return tangent(v, l);
 	}
@@ -222,6 +227,9 @@ namespace Geometric {
 	}
 	bool tangent(const Rect& r, const Vec2& v) {
 		return tangent(v, r);
+	}
+	bool tangent(const Rect& r, const Line& l) {
+		return tangent(l, r);
 	}
 	bool tangent(const Polygon& p, const Vec2& v) {
 		return tangent(v, p);
