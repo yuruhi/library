@@ -50,9 +50,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/SegmentTree.cpp
       title: DataStructure/SegmentTree.cpp
-    - icon: ':warning:'
-      path: DataStructure/SegmentTree_old.cpp
-      title: DataStructure/SegmentTree_old.cpp
     - icon: ':heavy_check_mark:'
       path: DataStructure/UnionFind.cpp
       title: DataStructure/UnionFind.cpp
@@ -64,9 +61,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Geometry/Circle.hpp
       title: Geometry/Circle.hpp
-    - icon: ':heavy_check_mark:'
-      path: Geometry/ClosestPair.cpp
-      title: Geometry/ClosestPair.cpp
     - icon: ':heavy_check_mark:'
       path: Geometry/Geometric.cpp
       title: Geometry/Geometric.cpp
@@ -88,6 +82,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: Geometry/Vec2.hpp
       title: Geometry/Vec2.hpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/area_of_intersection.cpp
+      title: Geometry/area_of_intersection.cpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/closest_pair.cpp
+      title: Geometry/closest_pair.cpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/common_tangent.cpp
+      title: Geometry/common_tangent.cpp
   - name: Graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -428,6 +431,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: old/RangeUpdateQuery.cpp
       title: old/RangeUpdateQuery.cpp
+    - icon: ':warning:'
+      path: old/SegmentTree_old.cpp
+      title: old/SegmentTree_old.cpp
   - name: template
     pages:
     - icon: ':heavy_check_mark:'

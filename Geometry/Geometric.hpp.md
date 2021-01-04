@@ -6,9 +6,6 @@ data:
     path: Geometry/Circle.hpp
     title: Geometry/Circle.hpp
   - icon: ':heavy_check_mark:'
-    path: Geometry/ClosestPair.cpp
-    title: Geometry/ClosestPair.cpp
-  - icon: ':heavy_check_mark:'
     path: Geometry/Geometric.cpp
     title: Geometry/Geometric.cpp
   - icon: ':heavy_check_mark:'
@@ -26,6 +23,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/area_of_intersection.cpp
+    title: Geometry/area_of_intersection.cpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/closest_pair.cpp
+    title: Geometry/closest_pair.cpp
+  - icon: ':heavy_check_mark:'
+    path: Geometry/common_tangent.cpp
+    title: Geometry/common_tangent.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
@@ -149,10 +155,7 @@ data:
     \ const Line& l);\n\tvector<Vec2> cross_points(const Circle& c, const Segment&\
     \ s);\n\tvector<Vec2> cross_points(const Circle& c1, const Circle& c2);\n\n\t\
     // \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const Circle& c,\
-    \ const Vec2& v);\n\tvector<Line> common_tangent(const Circle& c1, const Circle&\
-    \ c2);\n\n\t// 2\u3064\u306E\u56F3\u5F62\u306E\u5171\u901A\u90E8\u5206\u306E\u9762\
-    \u7A4D\n\tLD area_of_intersection(const Circle& c1, const Circle& c2);\n\tLD area_of_intersection(const\
-    \ Circle& c, const Polygon& p);\n\n}  // namespace Geometric\n"
+    \ const Vec2& v);\n}  // namespace Geometric\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
     #include <optional>\nusing namespace std;\n\nnamespace Geometric {\n\n\tusing\
     \ LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846, EPS\
@@ -204,24 +207,22 @@ data:
     \ c);\n\tvector<Vec2> cross_points(const Circle& c, const Line& l);\n\tvector<Vec2>\
     \ cross_points(const Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const\
     \ Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2>\
-    \ tangent_to_circle(const Circle& c, const Vec2& v);\n\tvector<Line> common_tangent(const\
-    \ Circle& c1, const Circle& c2);\n\n\t// 2\u3064\u306E\u56F3\u5F62\u306E\u5171\
-    \u901A\u90E8\u5206\u306E\u9762\u7A4D\n\tLD area_of_intersection(const Circle&\
-    \ c1, const Circle& c2);\n\tLD area_of_intersection(const Circle& c, const Polygon&\
-    \ p);\n\n}  // namespace Geometric\n"
+    \ tangent_to_circle(const Circle& c, const Vec2& v);\n}  // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.hpp
   requiredBy:
   - Geometry/Vec2.hpp
-  - Geometry/ClosestPair.cpp
+  - Geometry/area_of_intersection.cpp
+  - Geometry/common_tangent.cpp
+  - Geometry/closest_pair.cpp
   - Geometry/Geometric.cpp
   - Geometry/Triangle.hpp
   - Geometry/Circle.hpp
   - Geometry/Line.hpp
   - Geometry/Rect.hpp
   - Geometry/Polygon.hpp
-  timestamp: '2020-11-03 16:45:22+09:00'
+  timestamp: '2021-01-04 17:53:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_iSP.test.cpp

@@ -25,22 +25,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
-  - icon: ':heavy_check_mark:'
-    path: Geometry/common_tangent.cpp
-    title: Geometry/common_tangent.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_common_tangent.test.cpp
+    title: test/Geometric_common_tangent.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: 1e-6
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G
-  bundledCode: "#line 1 \"test/Geometric_common_tangent.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G\"\n#define\
-    \ ERROR \"1e-6\"\n#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
+    links: []
+  bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
     \ <vector>\n#include <algorithm>\n#include <optional>\nusing namespace std;\n\n\
     namespace Geometric {\n\n\tusing LD = long double;\n\tconstexpr long double PI\
     \ = 3.14159265358979323846, EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\
@@ -458,21 +452,30 @@ data:
     \ c2_p.size()); ++i) {\n\t\t\t\t\tresult.emplace_back(c1_p[i], c2_p[i]);\n\t\t\
     \t\t}\n\t\t\t} else if (f == 0) {  //\u5916\u63A5\n\t\t\t\tVec2 p = c1.center\
     \ + vec * c1.r;\n\t\t\t\tresult.emplace_back(p, p + vec.rotate90());\n\t\t\t}\n\
-    \t\t\treturn result;\n\t\t}\n\t}\n}  // namespace Geometric\n#line 6 \"test/Geometric_common_tangent.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tGeometric::Circle c1, c2;\n\tcin >>\
-    \ c1 >> c2;\n\tauto lines = Geometric::common_tangent(c1, c2);\n\tvector<Geometric::Vec2>\
-    \ ans;\n\tfor (const auto& line : lines) {\n\t\tans.push_back(line.begin);\n\t\
-    }\n\tsort(ans.begin(), ans.end(), Geometric::Vec2::compare_xy);\n\tfor (const\
-    \ auto& v : ans) {\n\t\tprintf(\"%.12Lf %.12Lf\\n\", v.x, v.y);\n\t}\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_G\"\
-    \n#define ERROR \"1e-6\"\n#include \"./../Geometry/common_tangent.cpp\"\n#include\
-    \ <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n\tGeometric::Circle\
-    \ c1, c2;\n\tcin >> c1 >> c2;\n\tauto lines = Geometric::common_tangent(c1, c2);\n\
-    \tvector<Geometric::Vec2> ans;\n\tfor (const auto& line : lines) {\n\t\tans.push_back(line.begin);\n\
-    \t}\n\tsort(ans.begin(), ans.end(), Geometric::Vec2::compare_xy);\n\tfor (const\
-    \ auto& v : ans) {\n\t\tprintf(\"%.12Lf %.12Lf\\n\", v.x, v.y);\n\t}\n}"
+    \t\t\treturn result;\n\t\t}\n\t}\n}  // namespace Geometric\n"
+  code: "#pragma once\n#include \"./Geometric.hpp\"\n#include \"./Geometric.cpp\"\n\
+    \nnamespace Geometric {\n\tvector<Line> common_tangent(const Circle& c1, const\
+    \ Circle& c2) {\n\t\tLD dist = distance(c1.center, c2.center);\n\t\tVec2 vec =\
+    \ (c2.center - c1.center).normalized();\n\t\tif (sgn(dist - abs(c1.r - c2.r))\
+    \ < 0) {\n\t\t\treturn {};\n\t\t} else if (sgn(dist - abs(c1.r - c2.r)) == 0)\
+    \ {  // \u5185\u63A5\n\t\t\tVec2 p;\n\t\t\tif (c1.r > c2.r) {\n\t\t\t\tp = c2.center\
+    \ + vec * c2.r;\n\t\t\t} else {\n\t\t\t\tp = c1.center + vec.rotate180() * c1.r;\n\
+    \t\t\t}\n\t\t\treturn {Line(p, p + vec.rotate90())};\n\t\t} else {\n\t\t\tvector<Line>\
+    \ result;\n\t\t\tif (sgn(c1.r - c2.r) == 0) {\n\t\t\t\tLine l(c1.center, c2.center);\n\
+    \t\t\t\tresult.push_back(l + vec.rotate90() * c1.r);\n\t\t\t\tresult.push_back(l\
+    \ + vec.rotate270() * c1.r);\n\t\t\t} else {\n\t\t\t\tVec2 p = c2.center + vec\
+    \ * ((dist * c2.r) / (c1.r - c2.r));\n\t\t\t\tauto c1_p = tangent_to_circle(c1,\
+    \ p), c2_p = tangent_to_circle(c2, p);\n\t\t\t\tfor (size_t i = 0; i < min(c1_p.size(),\
+    \ c2_p.size()); ++i) {\n\t\t\t\t\tresult.emplace_back(c1_p[i], c2_p[i]);\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t\tif (int f = sgn(dist - (c1.r + c2.r)); f > 0) {  // \u4EA4\
+    \u70B9\u3092\u6301\u305F\u306A\u3044\n\t\t\t\tVec2 p = c1.center + vec * ((dist\
+    \ * c1.r) / (c1.r + c2.r));\n\t\t\t\tauto c1_p = tangent_to_circle(c1, p), c2_p\
+    \ = tangent_to_circle(c2, p);\n\t\t\t\tfor (size_t i = 0; i < min(c1_p.size(),\
+    \ c2_p.size()); ++i) {\n\t\t\t\t\tresult.emplace_back(c1_p[i], c2_p[i]);\n\t\t\
+    \t\t}\n\t\t\t} else if (f == 0) {  //\u5916\u63A5\n\t\t\t\tVec2 p = c1.center\
+    \ + vec * c1.r;\n\t\t\t\tresult.emplace_back(p, p + vec.rotate90());\n\t\t\t}\n\
+    \t\t\treturn result;\n\t\t}\n\t}\n}  // namespace Geometric\n"
   dependsOn:
-  - Geometry/common_tangent.cpp
   - Geometry/Geometric.hpp
   - Geometry/Geometric.cpp
   - Geometry/Vec2.hpp
@@ -481,16 +484,17 @@ data:
   - Geometry/Rect.hpp
   - Geometry/Triangle.hpp
   - Geometry/Polygon.hpp
-  isVerificationFile: true
-  path: test/Geometric_common_tangent.test.cpp
+  isVerificationFile: false
+  path: Geometry/common_tangent.cpp
   requiredBy: []
   timestamp: '2021-01-04 18:09:15+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/Geometric_common_tangent.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Geometric_common_tangent.test.cpp
+documentation_of: Geometry/common_tangent.cpp
 layout: document
 redirect_from:
-- /verify/test/Geometric_common_tangent.test.cpp
-- /verify/test/Geometric_common_tangent.test.cpp.html
-title: test/Geometric_common_tangent.test.cpp
+- /library/Geometry/common_tangent.cpp
+- /library/Geometry/common_tangent.cpp.html
+title: Geometry/common_tangent.cpp
 ---

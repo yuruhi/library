@@ -26,55 +26,52 @@ data:
     path: Geometry/Vec2.hpp
     title: Geometry/Vec2.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/Geometric_closest_pair.test.cpp
+    title: test/Geometric_closest_pair.test.cpp
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: 1e-6
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_D
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_D
-  bundledCode: "#line 1 \"test/Geometric_cross_points_between_line_and_circle.test.cpp\"\
-    \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_D\"\
-    \n#define ERROR \"1e-6\"\n#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n\
-    #include <vector>\n#include <algorithm>\n#include <optional>\nusing namespace\
-    \ std;\n\nnamespace Geometric {\n\n\tusing LD = long double;\n\tconstexpr long\
-    \ double PI = 3.14159265358979323846, EPS = 1e-12;\n\n\tconstexpr bool Equal(LD\
-    \ a, LD b);\n\t// a > 0 : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int\
-    \ sgn(LD a);\n\tconstexpr LD deg_to_rad(LD deg);\n\tconstexpr LD rad_to_deg(LD\
-    \ rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\tstruct Segment;\n\tstruct Rect;\n\
-    \tstruct Circle;\n\tstruct Polygon;\n\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\
-    \u5DE6\u306B\u66F2\u304C\u308B   : +1\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\
-    \u53F3\u306B\u66F2\u304C\u308B   : -1\n\t// ABC, CBA \u306E\u9806\u306B\u4E00\u76F4\
-    \u7DDA\u4E0A\u306B\u4E26\u3076 : +2\n\t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\
-    \u7DDA\u4E0A\u306B\u4E26\u3076 :  0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\
-    \u7DDA\u4E0A\u306B\u4E26\u3076 : -2\n\tint iSP(const Vec2& a, const Vec2& b, const\
-    \ Vec2& c);\n\n\t// \u2220ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\
-    \u89D2 : 2\n\tint angle_type(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\
-    \t// \u2220ABC \u306E\u5024 (radian)\n\tLD angle(const Vec2& a, const Vec2& b,\
-    \ const Vec2& c);\n\n\t// \u8DDD\u96E2\n\tLD distance(const Vec2& v1, const Vec2&\
-    \ v2);\n\tLD distance(const Vec2& v, const Line& l);\n\tLD distance(const Vec2&\
-    \ v, const Segment& s);\n\tLD distance(const Vec2& v, const Circle& c);\n\tLD\
-    \ distance(const Line& l, const Vec2& v);\n\tLD distance(const Line& l1, const\
-    \ Line& l2);\n\tLD distance(const Segment& s, const Vec2& v);\n\tLD distance(const\
-    \ Segment& s1, const Segment& s2);\n\tLD distance(const Circle& c, const Vec2&\
-    \ v);\n\tLD distance(const Circle& c1, const Circle& c2);\n\n\t// \u4EA4\u5DEE\
-    \u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\u3044\u308B\u3068\u304D\u3082 true\
-    \ \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const Vec2& v1, const Vec2& v2);\n\
-    \tbool intersect(const Vec2& v, const Line& l);\n\tbool intersect(const Vec2&\
-    \ v, const Segment& l);\n\tbool intersect(const Vec2& v, const Circle& c);\n\t\
-    bool intersect(const Vec2& v, const Rect& r);\n\tbool intersect(const Vec2& v,\
-    \ const Polygon& p);\n\tbool intersect(const Line& l, const Vec2& v);\n\tbool\
-    \ intersect(const Line& l1, const Line& l2);\n\tbool intersect(const Line& l,\
-    \ const Circle& c);\n\tbool intersect(const Segment& l, const Vec2& v);\n\tbool\
-    \ intersect(const Segment& s1, const Segment& s2);\n\tbool intersect(const Segment&\
-    \ s, const Circle& c);\n\tbool intersect(const Circle& c, const Vec2& v);\n\t\
-    bool intersect(const Circle& c, const Line& l);\n\tbool intersect(const Circle&\
-    \ c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle& c2);\n\
-    \tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const Rect&\
-    \ r1, const Rect& r2);\n\tbool intersect(const Rect& r, const Circle& c);\n\t\
-    bool intersect(const Polygon& p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\
+    links: []
+  bundledCode: "#line 2 \"Geometry/closest_pair.cpp\"\n#include <vector>\n#line 2\
+    \ \"Geometry/Geometric.hpp\"\n#include <iostream>\n#line 4 \"Geometry/Geometric.hpp\"\
+    \n#include <algorithm>\n#include <optional>\nusing namespace std;\n\nnamespace\
+    \ Geometric {\n\n\tusing LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846,\
+    \ EPS = 1e-12;\n\n\tconstexpr bool Equal(LD a, LD b);\n\t// a > 0 : +1\n\t// a\
+    \ = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD\
+    \ deg);\n\tconstexpr LD rad_to_deg(LD rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\
+    \tstruct Segment;\n\tstruct Rect;\n\tstruct Circle;\n\tstruct Polygon;\n\n\t//\
+    \ AB \u304B\u3089\u898B\u3066 BC \u304C\u5DE6\u306B\u66F2\u304C\u308B   : +1\n\
+    \t// AB \u304B\u3089\u898B\u3066 BC \u304C\u53F3\u306B\u66F2\u304C\u308B   : -1\n\
+    \t// ABC, CBA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : +2\n\
+    \t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : \
+    \ 0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076\
+    \ : -2\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220\
+    ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\tint angle_type(const\
+    \ Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC \u306E\u5024 (radian)\n\
+    \tLD angle(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\n\
+    \tLD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v, const\
+    \ Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
+    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
+    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
+    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
+    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
+    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
+    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
+    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
+    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
+    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
+    \ intersect(const Vec2& v, const Polygon& p);\n\tbool intersect(const Line& l,\
+    \ const Vec2& v);\n\tbool intersect(const Line& l1, const Line& l2);\n\tbool intersect(const\
+    \ Line& l, const Circle& c);\n\tbool intersect(const Segment& l, const Vec2& v);\n\
+    \tbool intersect(const Segment& s1, const Segment& s2);\n\tbool intersect(const\
+    \ Segment& s, const Circle& c);\n\tbool intersect(const Circle& c, const Vec2&\
+    \ v);\n\tbool intersect(const Circle& c, const Line& l);\n\tbool intersect(const\
+    \ Circle& c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle&\
+    \ c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const\
+    \ Rect& r1, const Rect& r2);\n\tbool intersect(const Rect& r, const Circle& c);\n\
+    \tbool intersect(const Polygon& p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\
     \u5224\u5B9A\n\tbool tangent(const Vec2& v1, const Vec2& v2);\n\tbool tangent(const\
     \ Vec2& v, const Line& l);\n\tbool tangent(const Vec2& v, const Segment& l);\n\
     \tbool tangent(const Vec2& v, const Circle& c);\n\tbool tangent(const Vec2& v,\
@@ -434,43 +431,63 @@ data:
     \t}\n\n\tvector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {\n\t\t\
     LD dist = distance(c.center, v);\n\t\tif (sgn(dist - c.r) >= 0) {\n\t\t\tLD x\
     \ = sqrt(dist * dist - c.r * c.r);\n\t\t\treturn cross_points(Circle(v, x), c);\n\
-    \t\t} else {\n\t\t\treturn {};\n\t\t}\n\t}\n}  // namespace Geometric\n#line 10\
-    \ \"test/Geometric_cross_points_between_line_and_circle.test.cpp\"\nusing namespace\
-    \ std;\n\nint main() {\n\tGeometric::Circle c;\n\tcin >> c;\n\tint q;\n\tcin >>\
-    \ q;\n\twhile (q--) {\n\t\tGeometric::Line l;\n\t\tcin >> l;\n\t\tauto ans = cross_points(c,\
-    \ l);\n\t\tassert(1 <= ans.size() && ans.size() <= 2);\n\t\tif (ans.size() ==\
-    \ 1) {\n\t\t\tans.push_back(ans[0]);\n\t\t} else {\n\t\t\tsort(ans.begin(), ans.end(),\
-    \ Geometric::Vec2::compare_xy);\n\t\t}\n\t\tprintf(\"%.12Lf %.12Lf %.12Lf %.12Lf\\\
-    n\", ans[0].x, ans[0].y, ans[1].x, ans[1].y);\n\t}\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_D\"\
-    \n#define ERROR \"1e-6\"\n#include \"./../Geometry/Line.hpp\"\n#include \"./../Geometry/Circle.hpp\"\
-    \n#include \"./../Geometry/Geometric.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <algorithm>\n#include <cassert>\nusing namespace std;\n\nint main() {\n\
-    \tGeometric::Circle c;\n\tcin >> c;\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\
-    \tGeometric::Line l;\n\t\tcin >> l;\n\t\tauto ans = cross_points(c, l);\n\t\t\
-    assert(1 <= ans.size() && ans.size() <= 2);\n\t\tif (ans.size() == 1) {\n\t\t\t\
-    ans.push_back(ans[0]);\n\t\t} else {\n\t\t\tsort(ans.begin(), ans.end(), Geometric::Vec2::compare_xy);\n\
-    \t\t}\n\t\tprintf(\"%.12Lf %.12Lf %.12Lf %.12Lf\\n\", ans[0].x, ans[0].y, ans[1].x,\
-    \ ans[1].y);\n\t}\n}"
+    \t\t} else {\n\t\t\treturn {};\n\t\t}\n\t}\n}  // namespace Geometric\n#line 5\
+    \ \"Geometry/closest_pair.cpp\"\nusing namespace std;\n\nnamespace Geometric {\n\
+    \ttuple<LD, Vec2, Vec2> closest_pair(vector<Vec2> points) {\n\t\tsort(points.begin(),\
+    \ points.end(), Vec2::compare_xy);\n\n\t\tauto dfs = [&](auto self, int left,\
+    \ int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\tint n = right - left;\n\t\t\tif\
+    \ (n <= 1) {\n\t\t\t\treturn {1e64, points[left], points[left]};\n\t\t\t} else\
+    \ {\n\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\tLD x = points[mid].x;\n\t\t\
+    \t\tauto result = min(self(self, left, mid), self(self, mid, right));\n\t\t\t\t\
+    inplace_merge(points.begin() + left, points.begin() + mid,\n\t\t\t\t         \
+    \     points.begin() + right, Vec2::compare_y);\n\n\t\t\t\tvector<Vec2> around;\n\
+    \t\t\t\tfor (int i = left; i < right; ++i) {\n\t\t\t\t\tif (get<0>(result) <=\
+    \ abs(points[i].x - x)) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tfor (int\
+    \ size = around.size(), j = size - 1; j >= 0; --j) {\n\t\t\t\t\t\tif (get<0>(result)\
+    \ <= points[i].y - around[j].y) {\n\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t}\n\t\t\t\
+    \t\t\tif (LD length = (points[i] - around[j]).length();\n\t\t\t\t\t\t    get<0>(result)\
+    \ > length) {\n\t\t\t\t\t\t\tresult = {length, points[i], around[j]};\n\t\t\t\t\
+    \t\t}\n\t\t\t\t\t}\n\t\t\t\t\taround.push_back(points[i]);\n\t\t\t\t}\n\t\t\t\t\
+    return result;\n\t\t\t}\n\t\t};\n\n\t\treturn dfs(dfs, 0, points.size());\n\t\
+    }\n}  // namespace Geometric\n"
+  code: "#pragma once\n#include <vector>\n#include \"./Vec2.hpp\"\n#include \"./Geometric.cpp\"\
+    \nusing namespace std;\n\nnamespace Geometric {\n\ttuple<LD, Vec2, Vec2> closest_pair(vector<Vec2>\
+    \ points) {\n\t\tsort(points.begin(), points.end(), Vec2::compare_xy);\n\n\t\t\
+    auto dfs = [&](auto self, int left, int right) -> tuple<LD, Vec2, Vec2> {\n\t\t\
+    \tint n = right - left;\n\t\t\tif (n <= 1) {\n\t\t\t\treturn {1e64, points[left],\
+    \ points[left]};\n\t\t\t} else {\n\t\t\t\tint mid = (left + right) / 2;\n\t\t\t\
+    \tLD x = points[mid].x;\n\t\t\t\tauto result = min(self(self, left, mid), self(self,\
+    \ mid, right));\n\t\t\t\tinplace_merge(points.begin() + left, points.begin() +\
+    \ mid,\n\t\t\t\t              points.begin() + right, Vec2::compare_y);\n\n\t\t\
+    \t\tvector<Vec2> around;\n\t\t\t\tfor (int i = left; i < right; ++i) {\n\t\t\t\
+    \t\tif (get<0>(result) <= abs(points[i].x - x)) {\n\t\t\t\t\t\tcontinue;\n\t\t\
+    \t\t\t}\n\t\t\t\t\tfor (int size = around.size(), j = size - 1; j >= 0; --j) {\n\
+    \t\t\t\t\t\tif (get<0>(result) <= points[i].y - around[j].y) {\n\t\t\t\t\t\t\t\
+    break;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (LD length = (points[i] - around[j]).length();\n\
+    \t\t\t\t\t\t    get<0>(result) > length) {\n\t\t\t\t\t\t\tresult = {length, points[i],\
+    \ around[j]};\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\taround.push_back(points[i]);\n\
+    \t\t\t\t}\n\t\t\t\treturn result;\n\t\t\t}\n\t\t};\n\n\t\treturn dfs(dfs, 0, points.size());\n\
+    \t}\n}  // namespace Geometric\n"
   dependsOn:
-  - Geometry/Line.hpp
-  - Geometry/Geometric.hpp
   - Geometry/Vec2.hpp
-  - Geometry/Circle.hpp
+  - Geometry/Geometric.hpp
   - Geometry/Geometric.cpp
+  - Geometry/Line.hpp
+  - Geometry/Circle.hpp
   - Geometry/Rect.hpp
   - Geometry/Triangle.hpp
   - Geometry/Polygon.hpp
-  isVerificationFile: true
-  path: test/Geometric_cross_points_between_line_and_circle.test.cpp
+  isVerificationFile: false
+  path: Geometry/closest_pair.cpp
   requiredBy: []
   timestamp: '2021-01-04 18:09:15+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/Geometric_cross_points_between_line_and_circle.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/Geometric_closest_pair.test.cpp
+documentation_of: Geometry/closest_pair.cpp
 layout: document
 redirect_from:
-- /verify/test/Geometric_cross_points_between_line_and_circle.test.cpp
-- /verify/test/Geometric_cross_points_between_line_and_circle.test.cpp.html
-title: test/Geometric_cross_points_between_line_and_circle.test.cpp
+- /library/Geometry/closest_pair.cpp
+- /library/Geometry/closest_pair.cpp.html
+title: Geometry/closest_pair.cpp
 ---
