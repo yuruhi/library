@@ -189,12 +189,12 @@ namespace Geometric {
 		return sgn(distance(v, c.center) - c.r) == 0;
 	}
 	bool tangent(const Vec2& v, const Rect& r) {
-		return r.top().tangent(v) || r.bottom().tangent(v) || r.left().tangent(v) ||
-		    r.right().tangent(v);
+		return tangent(r.top(), v) || tangent(r.bottom(), v) || rangent(r.left(), v) ||
+		    tangent(r.right(), v);
 	}
 	bool tangent(const Vec2& v, const Polygon& p) {
 		for (size_t i = 0; i < p.size(); ++i) {
-			if (Segment(p[i], p[(i + 1) % p.size()]).tangent(v)) {
+			if (tangent(Segment(p[i], p[(i + 1) % p.size()]), v)) {
 				return true;
 			}
 		}

@@ -13,7 +13,7 @@ int main() {
 	while (q--) {
 		Geometric::Vec2 v;
 		cin >> v;
-		if (p.tangent(v)) {
+		if (tangent(p, v)) {
 			puts("1");
 			assert(p.intersects(v));
 		} else if (p.intersects(v)) {

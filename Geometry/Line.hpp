@@ -70,9 +70,6 @@ namespace Geometric {
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
 		}
-		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
-			return Geometric::tangent(*this, shape);
-		}
 		// ax + by + c = 0 の式に変形する
 		tuple<LD, LD, LD> abc() const {
 			if (sgn(begin.x - end.x) == 0) {
@@ -94,9 +91,6 @@ namespace Geometric {
 		}
 		template <class Shape2DType> bool intersects(const Shape2DType& shape) const {
 			return Geometric::intersect(*this, shape);
-		}
-		template <class Shape2DType> bool tangent(const Shape2DType& shape) const {
-			return Geometric::tangent(*this, shape);
 		}
 	};
 
