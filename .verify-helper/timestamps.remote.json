@@ -39,6 +39,7 @@
 "test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp": "2021-01-04 19:41:59 +0900",
 "test/Geometric_area_of_intersection_between_two_circles.test.cpp": "2021-01-04 19:41:59 +0900",
 "test/Geometric_cirnnumscribed_circle.test.cpp": "2021-01-04 19:41:59 +0900",
+"test/Geometric_closest_pair.test.cpp": "2021-01-04 19:59:12 +0900",
 "test/Geometric_common_tangent.test.cpp": "2021-01-04 19:41:59 +0900",
 "test/Geometric_convex_hull.test.cpp": "2021-01-04 19:41:59 +0900",
 "test/Geometric_cross_point_of_circles.test.cpp": "2021-01-04 19:41:59 +0900",
