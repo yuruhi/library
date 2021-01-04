@@ -15,7 +15,9 @@ namespace Geometric {
 			} else {
 				int mid = (left + right) / 2;
 				LD x = points[mid].x;
-				auto result = min(self(self, left, mid), self(self, mid, right));
+				auto result = min(
+				    self(self, left, mid), self(self, mid, right),
+				    [](const auto& t1, const auto& t2) { return get<0>(t1) < get<0>(t2); });
 				inplace_merge(points.begin() + left, points.begin() + mid,
 				              points.begin() + right, Vec2::compare_y);
 
