@@ -163,6 +163,9 @@ namespace Geometric {
 		    intersect(c, r.top_left()) || intersect(c, r.top_right()) ||
 		    intersect(c, r.bottom_left()) || intersect(c, r.bottom_right());
 	}
+	bool intersect(const Rect& r, const Vec2& v) {
+		return intersect(v, r);
+	}
 	bool intersect(const Rect& r1, const Rect& r2) {
 		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
 		    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;
