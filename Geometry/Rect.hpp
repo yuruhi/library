@@ -83,9 +83,6 @@ namespace Geometric {
 		constexpr LD perimeter() const {
 			return (size.x + size.y) * 2;
 		}
-		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return Geometric::distance(*this, shape);
-		}
 		constexpr bool contains(const Rect& r) const {
 			return top_left() <= r.top_left() && r.bottom_right() <= bottom_right();
 		}

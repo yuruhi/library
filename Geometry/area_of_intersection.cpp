@@ -9,7 +9,7 @@ namespace Geometric {
 		} else if (c2.contains(c1)) {
 			return c1.area();
 		} else if (intersect(c1, c2)) {
-			LD dist = c1.center.distance(c2.center);
+			LD dist = distance(c1.center, c2.center);
 			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
 			LD angle1 = acos((r1_s + dist_s - r2_s) / (2 * c1.r * dist));
 			LD angle2 = acos((r2_s + dist_s - r1_s) / (2 * c2.r * dist));
@@ -33,7 +33,7 @@ namespace Geometric {
 			a -= c.center;
 			b -= c.center;
 			c.center -= c.center;
-			if (sgn(a.distance(b)) == 0) {
+			if (sgn(distance(a, b)) == 0) {
 				return 0;
 			} else if (bool in_a = intersect(a, c), in_b = intersect(b, c); in_a && in_b) {
 				return signed_area(a, b, true);

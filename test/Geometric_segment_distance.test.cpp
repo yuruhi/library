@@ -11,6 +11,6 @@ int main() {
 	while (q--) {
 		Geometric::Segment s1, s2;
 		cin >> s1 >> s2;
-		printf("%.12Lf\n", s1.distance(s2));
+		printf("%.12Lf\n", distance(s1, s2));
 	}
 }

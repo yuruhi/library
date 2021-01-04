@@ -57,7 +57,7 @@ namespace Geometric {
 	}
 
 	LD angle(const Vec2& a, const Vec2& b, const Vec2& c) {
-		// return acos((a - b).dot(c - b) / (a.distance(b) * c.distance(b)));
+		// return acos((a - b).dot(c - b) / (distance(a, b) * distance(c, b)));
 		// return abs((a - b).rotation(-(c - b).angle()).angle());
 		return (c - b).rotation(-(a - b).angle()).angle();
 	}
@@ -70,19 +70,19 @@ namespace Geometric {
 	}
 	LD distance(const Vec2& v, const Segment& s) {
 		if (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v - s.end)) < 0) {
-			return min(v.distance(s.begin), v.distance(s.end));
+			return min(distance(v, s.begin), distance(v, s.end));
 		} else {
-			return Line(s).distance(v);
+			return distance(Line(s), v);
 		}
 	}
 	LD distance(const Vec2& v, const Circle& c) {
-		return max<LD>(0, c.center.distance(v) - c.r);
+		return max<LD>(0, distance(c.center, v) - c.r);
 	}
 	LD distance(const Line& l, const Vec2& v) {
 		return distance(v, l);
 	}
 	LD distance(const Line& l1, const Line& l2) {
-		return l1.is_parallel(l2) ? l1.distance(l2.begin) : 0;
+		return l1.is_parallel(l2) ? distance(l1, l2.begin) : 0;
 	}
 	LD distance(const Segment& s, const Vec2& v) {
 		return distance(v, s);
@@ -112,7 +112,7 @@ namespace Geometric {
 		return iSP(l.begin, l.end, v) == 0;
 	}
 	bool intersect(const Vec2& v, const Circle& c) {
-		return c.center.distance(v) < c.r + EPS;
+		return distance(c.center, v) < c.r + EPS;
 	}
 	bool intersect(const Vec2& v, const Rect& r) {
 		return r.pos <= v && v <= r.bottom_right();
@@ -210,7 +210,7 @@ namespace Geometric {
 		return tangent(v, c);
 	}
 	bool tangent(const Circle& c1, const Circle& c2) {
-		LD l1 = c1.center.distance(c2.center), l2 = c1.r, l3 = c2.r;
+		LD l1 = distance(c1.center, c2.center), l2 = c1.r, l3 = c2.r;
 		return sgn(l1 + l2 + l3 - max({l1, l2, l3}) * 2) == 0;
 	}
 	bool tangent(const Rect& r, const Vec2& v) {
@@ -269,7 +269,7 @@ namespace Geometric {
 	}
 	vector<Vec2> cross_points(const Circle& c1, const Circle& c2) {
 		Vec2 vec = (c1.center - c2.center).normalized();  // c2 -> c1
-		LD dist = c1.center.distance(c2.center);
+		LD dist = distance(c1.center, c2.center);
 		if (sgn(dist - c1.r - c2.r) == 0) {
 			return {c2.center + vec * c2.r};
 		} else if (sgn(c1.r + dist - c2.r) == 0) {
@@ -289,7 +289,7 @@ namespace Geometric {
 	}
 
 	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {
-		LD dist = c.center.distance(v);
+		LD dist = distance(c.center, v);
 		if (sgn(dist - c.r) >= 0) {
 			LD x = sqrt(dist * dist - c.r * c.r);
 			return cross_points(Circle(v, x), c);

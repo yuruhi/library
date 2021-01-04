@@ -64,12 +64,9 @@ namespace Geometric {
 		constexpr LD perimeter() const {
 			return 2 * r * PI;
 		}
-		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return Geometric::distance(*this, shape);
-		}
 		// c が this に含まれる（一致するときも true を返す）
 		bool contains(const Circle& c) const {
-			return sgn(center.distance(c.center) + c.r - r) <= 0;
+			return sgn(distance(center, c.center) + c.r - r) <= 0;
 		}
 		friend ostream& operator<<(ostream& os, const Circle& c) {
 			return os << '(' << c.center.x << ", " << c.center.y << ", " << c.r << ')';

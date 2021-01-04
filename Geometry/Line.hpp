@@ -64,9 +64,6 @@ namespace Geometric {
 		constexpr Line(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Line(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		constexpr Line(const LineBase& l) : LineBase(l) {}
-		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return Geometric::distance(*this, shape);
-		}
 		// ax + by + c = 0 の式に変形する
 		tuple<LD, LD, LD> abc() const {
 			if (sgn(begin.x - end.x) == 0) {
@@ -83,9 +80,6 @@ namespace Geometric {
 		constexpr Segment(const Vec2& _begin, const Vec2& _end) : LineBase(_begin, _end) {}
 		constexpr Segment(LD begin_x, LD begin_y, LD end_x, LD end_y) : LineBase(begin_x, begin_y, end_x, end_y) {}
 		constexpr Segment(const LineBase& l) : LineBase(l) {}
-		template <class Shape2DType> LD distance(const Shape2DType& shape) const {
-			return Geometric::distance(*this, shape);
-		}
 	};
 
 }  // namespace Geometric

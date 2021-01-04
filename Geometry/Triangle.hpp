@@ -16,11 +16,12 @@ namespace Geometric {
 			return sqrt(s * (s - a) * (s - b) * (s - c));
 		}
 		Triangle() = default;
-		Triangle(const Vec2& _p1, const Vec2& _p2, const Vec2& _p3) : p1(_p1), p2(_p2), p3(_p3) {
+		Triangle(const Vec2& _p1, const Vec2& _p2, const Vec2& _p3)
+		    : p1(_p1), p2(_p2), p3(_p3) {
 			assert(abs(iSP(p1, p2, p3)) == 1);
 		}
 		tuple<LD, LD, LD> sides() const {
-			return {p2.distance(p3), p1.distance(p3), p1.distance(p2)};
+			return {distance(p2, p3), distance(p1, p3), distance(p1, p2)};
 		}
 		LD area() const {
 			return abs((p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y)) / 2;
@@ -40,7 +41,7 @@ namespace Geometric {
 			Line l1((p1 + p2) / 2, (p1 + p2) / 2 + (p1 - p2).rotate270());
 			Line l2((p1 + p3) / 2, (p1 + p3) / 2 + (p1 - p3).rotate270());
 			Vec2 center = *cross_point(l1, l2);
-			return Circle(center, center.distance(p1));
+			return Circle(center, distance(center, p1));
 		}
 		friend ostream& operator<<(ostream& os, const Triangle& t) {
 			return os << '(' << t.p1 << ", " << t.p2 << ", " << t.p3 << ')';
