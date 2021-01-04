@@ -87,7 +87,8 @@ namespace Geometric {
 			return top_left() <= r.top_left() && r.bottom_right() <= bottom_right();
 		}
 		constexpr bool contains(const Circle& c) const {
-			return top_left() <= Vec2(c.left_x(), c.top_y()) && Vec2(c.right_x(), c.bottom_y()) <= bottom_right();
+			return top_left() <= Vec2(c.left_x(), c.top_y()) &&
+			    Vec2(c.right_x(), c.bottom_y()) <= bottom_right();
 		}
 		friend ostream& operator<<(ostream& os, const Rect& r) {
 			return os << '(' << r.pos << ',' << r.size << ')';
