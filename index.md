@@ -162,7 +162,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/LowLink.cpp
       title: Graph/LowLink.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Graph/ReRooting.cpp
       title: Graph/ReRooting.cpp
     - icon: ':warning:'
@@ -726,6 +726,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RangeUpdateRangeSum.test.cpp
       title: test/RangeUpdateRangeSum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/ReRooting.test.cpp
+      title: test/ReRooting.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
