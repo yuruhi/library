@@ -86,6 +86,7 @@
 "test/RangeSumQuery.test.cpp": "2021-01-01 18:54:32 +0900",
 "test/RangeUpdateRangeMin.test.cpp": "2021-01-02 15:12:01 +0900",
 "test/RangeUpdateRangeSum.test.cpp": "2021-01-02 15:12:01 +0900",
+"test/ReRooting.test.cpp": "2021-01-04 18:48:46 +0900",
 "test/RollingHash.test.cpp": "2020-11-20 21:19:41 +0900",
 "test/Sieve.test.cpp": "2020-12-31 12:10:02 +0900",
 "test/StronglyConnectedComponents.test.cpp": "2020-11-24 20:31:49 +0900",
