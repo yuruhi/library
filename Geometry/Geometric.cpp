@@ -109,7 +109,7 @@ namespace Geometric {
 		return iSP(l.begin, l.end, v) == 0;
 	}
 	bool intersect(const Vec2& v, const Circle& c) {
-		return distance(c.center, v) < c.r + EPS;
+		return sgn(distance(c.center, v) - c.r) <= 0;
 	}
 	bool intersect(const Vec2& v, const Rect& r) {
 		return sgn(r.left_x() - v.x) <= 0 && sgn(v.x - r.right_x()) &&
