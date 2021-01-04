@@ -3,7 +3,7 @@
 using namespace std;
 
 template <class DP> class ReRooting {
-	int n;
+	size_t n;
 	vector<vector<int>> graph;
 	vector<vector<DP>> dp;
 	vector<DP> ans;
@@ -46,11 +46,17 @@ template <class DP> class ReRooting {
 	}
 
 public:
+	ReRooting(size_t _n) : n(_n), graph(n), dp(n), ans(n) {}
 	ReRooting(const vector<vector<int>>& _graph)
-	    : n(_graph.size()), graph(_graph), dp(n), ans(n) {
-		for (int i = 0; i < n; ++i) dp[i].resize(graph[i].size());
+	    : n(_graph.size()), graph(_graph), dp(n), ans(n) {}
+	void add_edge(int v, int u) {
+		graph[v].push_back(u);
+		graph[u].push_back(v);
 	}
 	vector<DP> solve() {
+		for (size_t i = 0; i < n; ++i) {
+			dp[i].assign(graph[i].size(), DP());
+		}
 		dfs(0, -1);
 		bfs(0, -1, DP());
 		return ans;
