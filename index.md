@@ -318,9 +318,6 @@ data:
       path: Utility/Point.cpp
       title: Utility/Point.cpp
     - icon: ':warning:'
-      path: Utility/RLE.cpp
-      title: Utility/RLE.cpp
-    - icon: ':warning:'
       path: Utility/Random.cpp
       title: Utility/Random.cpp
     - icon: ':warning:'
@@ -329,6 +326,9 @@ data:
     - icon: ':warning:'
       path: Utility/RunLengthArray.cpp
       title: Utility/RunLengthArray.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/RunLengthEncoding.cpp
+      title: Utility/RunLengthEncoding.cpp
     - icon: ':warning:'
       path: Utility/VectorOperation.cpp
       title: Utility/VectorOperation.cpp
@@ -732,6 +732,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/RunLengthEncoding.test.cpp
+      title: test/RunLengthEncoding.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Sieve.test.cpp
       title: test/Sieve.test.cpp
