@@ -499,7 +499,7 @@ struct Point {
 	}
 
 	friend ostream& operator<<(ostream& os, const Point& p) {
-		return os << '(' << p.x << ", " << p.y << ')';
+		return os << '(' << p.y << ", " << p.x << ')';
 	}
 	friend istream& operator>>(istream& is, Point& p) {
 		return is >> p.y >> p.x;
