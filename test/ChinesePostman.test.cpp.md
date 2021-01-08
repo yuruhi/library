@@ -36,20 +36,22 @@ data:
     \t}\n\tfriend ostream& operator<<(ostream& os, const Edge2& e) {\n\t\treturn os\
     \ << e.from << \"->\" << e.to << '(' << e.cost << ')';\n\t}\n};\nusing Edges =\
     \ vector<Edge2>;\nusing Matrix = vector<vector<Weight>>;\n#line 4 \"Graph/Dijkstra.cpp\"\
-    \n#include <queue>\nusing namespace std;\n\nvector<Weight> Dijkstra(const Graph&\
-    \ graph, int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\t\
-    dist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\tpq.emplace(s,\
-    \ 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint\
-    \ v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
-    \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
-    \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tint V = graph.size();\n\
-    \tvector<Weight> dist(V, INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>,\
-    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
-    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
-    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
-    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
-    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n#line 4 \"Graph/ChinesePostman.cpp\"\
+    \n#include <queue>\n#include <cassert>\nusing namespace std;\n\nvector<Weight>\
+    \ Dijkstra(const Graph& graph, int s) {\n\tassert(0 <= s && s <= static_cast<int>(graph.size()));\n\
+    \tvector<Weight> dist(graph.size(), INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge,\
+    \ vector<Edge>, greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
+    \ {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v]\
+    \ < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v]\
+    \ + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist;\n}\nWeight Dijkstra(const\
+    \ Graph& graph, int s, int t) {\n\tassert(0 <= s && s <= static_cast<int>(graph.size()));\n\
+    \tassert(0 <= t && t <= static_cast<int>(graph.size()));\n\tvector<Weight> dist(graph.size(),\
+    \ INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\
+    \tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\
+    \t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\t\tif (dist[v] < p.cost)\
+    \ continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost)\
+    \ {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\
+    \t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n#line 4 \"Graph/ChinesePostman.cpp\"\
     \nusing namespace std;\n\nWeight ChinesePostman(const Graph& graph) {\n\tsize_t\
     \ n = graph.size();\n\tWeight sum = 0;\n\tvector<int> odds;\n\tfor (size_t v =\
     \ 0; v < n; ++v) {\n\t\tfor (const auto& e : graph[v]) sum += e.cost;\n\t\tif\
@@ -82,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/ChinesePostman.test.cpp
   requiredBy: []
-  timestamp: '2020-12-15 12:46:07+09:00'
+  timestamp: '2021-01-08 17:47:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ChinesePostman.test.cpp
