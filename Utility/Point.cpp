@@ -9,51 +9,51 @@
 using namespace std;
 
 struct Point {
-	static int H, W;
+	static int W, H;
 	static const vector<Point> direction;
 	using direction_iterator = vector<Point>::const_iterator;
-	static void set_range(int _H, int _W) {
-		H = _H;
-		W = _W;
+	static void set_range(int height, int width) {
+		H = height;
+		W = width;
 	}
 	static constexpr Point zero() {
 		return {0, 0};
 	}
 	static constexpr Point L() {
-		return {-1, 0};
-	}
-	static constexpr Point R() {
-		return {1, 0};
-	}
-	static constexpr Point U() {
 		return {0, -1};
 	}
-	static constexpr Point D() {
+	static constexpr Point R() {
 		return {0, 1};
+	}
+	static constexpr Point U() {
+		return {-1, 0};
+	}
+	static constexpr Point D() {
+		return {1, 0};
 	}
 	static constexpr Point LU() {
 		return {-1, -1};
 	}
 	static constexpr Point LD() {
-		return {-1, 1};
+		return {1, -1};
 	}
 	static constexpr Point RU() {
-		return {1, -1};
+		return {-1, 1};
 	}
 	static constexpr Point RD() {
 		return {1, 1};
 	}
 
-	int x, y;
-	constexpr Point() : x(0), y(0) {}
-	constexpr Point(int _x, int _y) : x(_x), y(_y) {}
-	constexpr Point(const pair<int, int>& xy) : x(xy.first), y(xy.second) {}
-	Point(int n) : x(n % W), y(n / W) {}
+	int y, x;
+	constexpr Point() : y(0), x(0) {}
+	constexpr Point(int _y, int _x) : y(_y), x(_x) {}
+	constexpr Point(const pair<int, int>& yx) : y(yx.first), x(yx.second) {}
+	Point(int n) : y(n / W), x(n % W) {}
 	constexpr Point operator+() const {
 		return *this;
 	}
 	constexpr Point operator-() const {
-		return {-x, -y};
+		return {-y, -x};
 	}
 	constexpr Point operator+(const Point& p) const {
 		return Point(*this) += p;
@@ -86,60 +86,60 @@ struct Point {
 		return Point(*this) %= n;
 	}
 	constexpr Point& operator+=(const Point& p) {
-		x += p.x;
 		y += p.y;
+		x += p.x;
 		return *this;
 	}
 	constexpr Point& operator-=(const Point& p) {
-		x -= p.x;
 		y -= p.y;
+		x -= p.x;
 		return *this;
 	}
 	constexpr Point& operator*=(const Point& p) {
-		x *= p.x;
 		y *= p.y;
+		x *= p.x;
 		return *this;
 	}
 	constexpr Point& operator/=(const Point& p) {
-		x /= p.x;
 		y /= p.y;
+		x /= p.x;
 		return *this;
 	}
 	constexpr Point& operator%=(const Point& p) {
-		x %= p.x;
 		y %= p.y;
+		x %= p.x;
 		return *this;
 	}
 	constexpr Point& operator+=(int n) {
-		x += n;
 		y += n;
+		x += n;
 		return *this;
 	}
 	constexpr Point& operator-=(int n) {
-		x -= n;
 		y -= n;
+		x -= n;
 		return *this;
 	}
 	constexpr Point& operator*=(int n) {
-		x *= n;
 		y *= n;
+		x *= n;
 		return *this;
 	}
 	constexpr Point& operator/=(int n) {
-		x /= n;
 		y /= n;
+		x /= n;
 		return *this;
 	}
 	constexpr Point& operator%=(int n) {
-		x %= n;
 		y %= n;
+		x %= n;
 		return *this;
 	}
 	constexpr bool operator==(const Point& p) const {
-		return x == p.x && y == p.y;
+		return y == p.y && x == p.x;
 	}
 	constexpr bool operator!=(const Point& p) const {
-		return x != p.x || y != p.y;
+		return y != p.y || x != p.x;
 	}
 	bool operator<(const Point& p) const {
 		return to_i() < p.to_i();
@@ -153,29 +153,26 @@ struct Point {
 	bool operator>=(const Point& p) const {
 		return to_i() >= p.to_i();
 	}
-	constexpr int operator[](int i) const {
-		return i == 0 ? x : i == 1 ? y : 0;
-	}
 	constexpr bool in_range(int height, int width) const {
-		return 0 <= x && x < width && 0 <= y && y < height;
+		return 0 <= y && y < height && 0 <= x && x < width;
 	}
 	bool in_range() const {
 		return in_range(H, W);
 	}
 	int to_i() const {
-		return x + y * W;
+		return y * W + x;
 	}
 	constexpr pair<int, int> to_pair() const {
-		return {x, y};
+		return {y, x};
 	}
 	constexpr int manhattan(const Point& p) const {
 		return abs(x - p.x) + abs(y - p.y);
 	}
 	constexpr int chebyshev(const Point& p) const {
-		return max(abs(x - p.x), abs(y - p.y));
+		return max(abs(y - p.y), abs(x - p.x));
 	}
 	constexpr int distance_square(const Point& p) const {
-		return (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y);
+		return (y - p.y) * (y - p.y) + (x - p.x) * (x - p.x);
 	}
 	template <class Real> constexpr Real distance(const Point& p) const {
 		return sqrt(static_cast<Real>(distance_square(p)));
@@ -184,10 +181,10 @@ struct Point {
 		return absolute(*this - p);
 	}
 	constexpr Point absolute() const {
-		return {abs(x), abs(y)};
+		return {abs(y), abs(x)};
 	}
 	Point& swap() {
-		std::swap(x, y);
+		std::swap(y, x);
 		return *this;
 	}
 
@@ -302,29 +299,29 @@ struct Point {
 	}
 
 	constexpr Point left() const {
-		return {x - 1, y};
+		return {y, x - 1};
 	}
 	constexpr Point right() const {
-		return {x + 1, y};
+		return {y, x + 1};
 	}
 	constexpr Point up() const {
-		return {x, y - 1};
+		return {y - 1, x};
 	}
 	constexpr Point down() const {
-		return {x, y + 1};
+		return {y + 1, x};
 	}
 	Point succ() const {
 		if (x != W - 1) {
-			return {x + 1, y};
+			return {y, x + 1};
 		} else {
-			return {0, y + 1};
+			return {y + 1, 0};
 		}
 	}
 	Point pred() const {
 		if (x != 0) {
-			return {x - 1, y};
+			return {y, x - 1};
 		} else {
-			return {W - 1, y - 1};
+			return {y - 1, W - 1};
 		}
 	}
 	constexpr Point moved(char c) const {
@@ -360,13 +357,13 @@ struct Point {
 		return *this;
 	}
 	constexpr Point rotate90() const {
-		return {y, -x};
+		return {-x, y};
 	}
 	constexpr Point rotate180() const {
-		return {-x, -y};
+		return {-y, -x};
 	}
 	constexpr Point rotate270() const {
-		return {-y, x};
+		return {x, -y};
 	}
 	char to_direction_char(string_view lrud = "LRUD") const {
 		assert(4 <= lrud.size() && lrud.size() <= 5);
@@ -419,7 +416,7 @@ struct Point {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
 				if (grid[i][j] == val) {
-					return Point(j, i);
+					return Point(i, j);
 				}
 			}
 		}
@@ -432,7 +429,7 @@ struct Point {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
 				if (pred(grid[i][j])) {
-					return Point(j, i);
+					return Point(i, j);
 				}
 			}
 		}
@@ -447,7 +444,7 @@ struct Point {
 			for (int j = 0; j < W; ++j) {
 				if (grid[i][j] == val) {
 					assert(!result);
-					result = Point(j, i);
+					result = Point(i, j);
 				}
 			}
 		}
@@ -461,7 +458,7 @@ struct Point {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
 				if (grid[i][j] == val) {
-					result.emplace_back(j, i);
+					result.emplace_back(i, j);
 				}
 			}
 		}
@@ -495,7 +492,7 @@ struct Point {
 				return iterator(Point(0, 0));
 			}
 			iterator end() const {
-				return iterator(Point(0, H));
+				return iterator(Point(H, 0));
 			}
 		};
 		return enumerate_2D_points_helper();
