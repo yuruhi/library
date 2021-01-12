@@ -48,15 +48,18 @@ data:
     \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
     \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
     \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
-    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
-    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
-    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
-    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
-    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
-    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
-    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
-    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
-    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class Head> Printer&\
+    \ operator()(Head&& h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t\
+    }\n\ttemplate <class Head, class... Tail> Printer& operator()(Head&& h, Tail&&...\
+    \ t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\t\treturn operator()(forward<Tail>(t)...);\n\
+    \t}\n\ttemplate <class... Args> Printer& flag(bool f, Args&&... args) {\n\t\t\
+    if (f) {\n\t\t\treturn operator()(forward<Args>(args)...);\n\t\t} else {\n\t\t\
+    \treturn *this;\n\t\t}\n\t}\n\ttemplate <class InputIterator>\n\tPrinter& range(const\
+    \ InputIterator& begin, const InputIterator& end) {\n\t\tprint_range(begin, end);\n\
+    \t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class T> Printer& range(const\
+    \ T& a) {\n\t\trange(a.begin(), a.end());\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\t\t\
+    std::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
     \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
     \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
     \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
@@ -93,15 +96,18 @@ data:
     \ const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(D.l);\n\
     \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolStr&\
     \ _boolstr, const DivStr& _divstr) : B(_boolstr), D(_divstr) {}\n\tPrinter& operator()()\
-    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class H> Printer& operator()(H&&\
-    \ h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class\
-    \ H, class... T> Printer& operator()(H&& h, T&&... t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\
-    \t\treturn operator()(forward<T>(t)...);\n\t}\n\ttemplate <class InputIterator>\n\
-    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
-    print_range(begin, end);\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate\
-    \ <class T> Printer& range(const T& a) {\n\t\trange(a.begin(), a.end());\n\t\t\
-    return *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\
-    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \ {\n\t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class Head> Printer&\
+    \ operator()(Head&& h) {\n\t\tprint(h);\n\t\tprint(D.l);\n\t\treturn *this;\n\t\
+    }\n\ttemplate <class Head, class... Tail> Printer& operator()(Head&& h, Tail&&...\
+    \ t) {\n\t\tprint(h);\n\t\tprint(D.d);\n\t\treturn operator()(forward<Tail>(t)...);\n\
+    \t}\n\ttemplate <class... Args> Printer& flag(bool f, Args&&... args) {\n\t\t\
+    if (f) {\n\t\t\treturn operator()(forward<Args>(args)...);\n\t\t} else {\n\t\t\
+    \treturn *this;\n\t\t}\n\t}\n\ttemplate <class InputIterator>\n\tPrinter& range(const\
+    \ InputIterator& begin, const InputIterator& end) {\n\t\tprint_range(begin, end);\n\
+    \t\tprint(D.l);\n\t\treturn *this;\n\t}\n\ttemplate <class T> Printer& range(const\
+    \ T& a) {\n\t\trange(a.begin(), a.end());\n\t\treturn *this;\n\t}\n\ttemplate\
+    \ <class... T> void exit(T&&... t) {\n\t\toperator()(forward<T>(t)...);\n\t\t\
+    std::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
     \t\treturn *this;\n\t}\n\tPrinter& set(const BoolStr& b) {\n\t\tB = b;\n\t\treturn\
     \ *this;\n\t}\n\tPrinter& set(const DivStr& d) {\n\t\tD = d;\n\t\treturn *this;\n\
     \t}\n\tPrinter& set(const char* t, const char* f) {\n\t\tB = BoolStr(t, f);\n\t\
@@ -112,7 +118,7 @@ data:
   requiredBy:
   - template/template_no_Ruby.cpp
   - template/template.cpp
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-01-12 17:27:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp
