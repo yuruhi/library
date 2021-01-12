@@ -90,15 +90,22 @@ public:
 		print(D.l);
 		return *this;
 	}
-	template <class H> Printer& operator()(H&& h) {
+	template <class Head> Printer& operator()(Head&& h) {
 		print(h);
 		print(D.l);
 		return *this;
 	}
-	template <class H, class... T> Printer& operator()(H&& h, T&&... t) {
+	template <class Head, class... Tail> Printer& operator()(Head&& h, Tail&&... t) {
 		print(h);
 		print(D.d);
-		return operator()(forward<T>(t)...);
+		return operator()(forward<Tail>(t)...);
+	}
+	template <class... Args> Printer& flag(bool f, Args&&... args) {
+		if (f) {
+			return operator()(forward<Args>(args)...);
+		} else {
+			return *this;
+		}
 	}
 	template <class InputIterator>
 	Printer& range(const InputIterator& begin, const InputIterator& end) {
