@@ -351,35 +351,35 @@ data:
   isVerificationFile: false
   path: Geometry/Polygon.hpp
   requiredBy:
-  - Geometry/area_of_intersection.cpp
   - Geometry/common_tangent.cpp
-  - Geometry/closest_pair.cpp
+  - Geometry/area_of_intersection.cpp
   - Geometry/Geometric.cpp
+  - Geometry/closest_pair.cpp
   timestamp: '2021-01-04 21:28:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Geometric_iSP.test.cpp
-  - test/Geometric_is_convex.test.cpp
-  - test/Geometric_convex_hull.test.cpp
-  - test/Geometric_segment_intersection.test.cpp
-  - test/Geometric_segment_distance.test.cpp
-  - test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   - test/Geometric_cross_points_between_line_and_circle.test.cpp
-  - test/Geometric_common_tangent.test.cpp
   - test/Geometric_cross_point_of_circles.test.cpp
-  - test/Geometric_cirnnumscribed_circle.test.cpp
-  - test/Geometric_tangent_to_circle.test.cpp
-  - test/Geometric_is_parallel_is_orthogonal.test.cpp
-  - test/Geometric_projection.test.cpp
-  - test/Geometric_closest_pair.test.cpp
-  - test/Geometric_area_of_intersection_between_two_circles.test.cpp
-  - test/Geometric_polygon_diameter.test.cpp
   - test/Geometric_reflection.test.cpp
-  - test/Geometric_incircle_of_triangle.test.cpp
-  - test/Geometric_polygon_cut.test.cpp
-  - test/Geometric_dot_cross.test.cpp
+  - test/Geometric_segment_distance.test.cpp
+  - test/Geometric_closest_pair.test.cpp
+  - test/Geometric_projection.test.cpp
+  - test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   - test/Geometric_line_intersection.test.cpp
+  - test/Geometric_is_convex.test.cpp
+  - test/Geometric_is_parallel_is_orthogonal.test.cpp
+  - test/Geometric_tangent_to_circle.test.cpp
+  - test/Geometric_incircle_of_triangle.test.cpp
   - test/Geometric_polygon_point_containment.test.cpp
+  - test/Geometric_convex_hull.test.cpp
+  - test/Geometric_polygon_cut.test.cpp
+  - test/Geometric_common_tangent.test.cpp
+  - test/Geometric_cirnnumscribed_circle.test.cpp
+  - test/Geometric_dot_cross.test.cpp
+  - test/Geometric_polygon_diameter.test.cpp
+  - test/Geometric_iSP.test.cpp
+  - test/Geometric_segment_intersection.test.cpp
+  - test/Geometric_area_of_intersection_between_two_circles.test.cpp
 documentation_of: Geometry/Polygon.hpp
 layout: document
 redirect_from:

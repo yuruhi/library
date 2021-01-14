@@ -119,8 +119,8 @@ data:
   timestamp: '2020-11-16 20:30:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeSet2.test.cpp
   - test/RangeSet.test.cpp
+  - test/RangeSet2.test.cpp
 documentation_of: DataStructure/RangeSet.cpp
 layout: document
 redirect_from:

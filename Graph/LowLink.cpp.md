@@ -58,8 +58,8 @@ data:
   timestamp: '2020-11-05 19:42:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Bridges.test.cpp
   - test/ArticulationPoints.test.cpp
+  - test/Bridges.test.cpp
 documentation_of: Graph/LowLink.cpp
 layout: document
 redirect_from:

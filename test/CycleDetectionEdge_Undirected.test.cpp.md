@@ -22,10 +22,10 @@ data:
     \ i = 0; i < edges.size(); ++i) {\n\t\tauto [u, v] = edges[i];\n\t\tgraph[u].emplace_back(v,\
     \ i);\n\t\tif (!directed) graph[v].emplace_back(u, i);\n\t}\n\tvector<bool> visited(n),\
     \ finished(n);\n\tstack<pair<int, int>> st;\n\toptional<int> pos;\n\tauto dfs\
-    \ = [&](auto&& f, int v, int prev) -> void {\n\t\tvisited[v] = true;\n\t\tfor\
-    \ (auto [u, i] : graph[v]) {\n\t\t\tif (!finished[u] && (directed || u != prev))\
+    \ = [&](auto&& f, int v, int prev_edge) -> void {\n\t\tvisited[v] = true;\n\t\t\
+    for (auto [u, i] : graph[v]) {\n\t\t\tif (!finished[u] && (directed || i != prev_edge))\
     \ {\n\t\t\t\tst.emplace(i, v);\n\t\t\t\tif (visited[u]) {\n\t\t\t\t\tpos = u;\n\
-    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tf(f, u, v);\n\t\t\t\tif (pos) return;\n\t\
+    \t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t\tf(f, u, i);\n\t\t\t\tif (pos) return;\n\t\
     \t\t\tst.pop();\n\t\t\t}\n\t\t}\n\t\tfinished[v] = true;\n\t};\n\tfor (int i =\
     \ 0; i < n && !pos; ++i) {\n\t\tif (!visited[i]) dfs(dfs, i, -1);\n\t}\n\n\tif\
     \ (pos) {\n\t\tvector<int> cycle;\n\t\twhile (!st.empty()) {\n\t\t\tauto [top,\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/CycleDetectionEdge_Undirected.test.cpp
   requiredBy: []
-  timestamp: '2021-01-02 17:58:44+09:00'
+  timestamp: '2021-01-14 21:53:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/CycleDetectionEdge_Undirected.test.cpp

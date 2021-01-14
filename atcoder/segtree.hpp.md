@@ -117,8 +117,8 @@ data:
   timestamp: '2021-01-01 18:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeMinQuery.test.cpp
   - test/RangeSumQuery.test.cpp
+  - test/RangeMinQuery.test.cpp
 documentation_of: atcoder/segtree.hpp
 layout: document
 redirect_from:

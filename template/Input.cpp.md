@@ -158,8 +158,8 @@ data:
   timestamp: '2020-11-29 15:45:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Input_Output.test.cpp
   - test/Input_multiple.test.cpp
+  - test/Input_Output.test.cpp
 documentation_of: template/Input.cpp
 layout: document
 redirect_from:
