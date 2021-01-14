@@ -16,16 +16,16 @@ optional<vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& ed
 	vector<bool> visited(n), finished(n);
 	stack<pair<int, int>> st;
 	optional<int> pos;
-	auto dfs = [&](auto&& f, int v, int prev) -> void {
+	auto dfs = [&](auto&& f, int v, int prev_edge) -> void {
 		visited[v] = true;
 		for (auto [u, i] : graph[v]) {
-			if (!finished[u] && (directed || u != prev)) {
+			if (!finished[u] && (directed || i != prev_edge)) {
 				st.emplace(i, v);
 				if (visited[u]) {
 					pos = u;
 					return;
 				}
-				f(f, u, v);
+				f(f, u, i);
 				if (pos) return;
 				st.pop();
 			}
