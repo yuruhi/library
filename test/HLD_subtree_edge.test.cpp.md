@@ -19,10 +19,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/Rupc/2667?year=2015
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E
-  bundledCode: "#line 1 \"test/HLD_edge.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E\"\
+    - https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/Rupc/2667?year=2015
+  bundledCode: "#line 1 \"test/HLD_subtree_edge.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/Rupc/2667?year=2015\"\
     \n#line 2 \"Graph/HeavyLightDecomposition.cpp\"\n#include <vector>\n#include <cassert>\n\
     using namespace std;\n\nclass HLD {\n\tint n;\n\tvector<vector<int>> graph;\n\t\
     vector<int> parent, size, depth;\n\tint k;\n\tvector<int> head, hld, index, out_index;\n\
@@ -177,45 +177,43 @@ data:
     template <class T, class F>\nusing RangeUpdateRangeSum =\n    atcoder::lazy_segtree<internal::S_sum<T>,\
     \ internal::op_sum<T>,\n                          internal::constant_zero_sum<T>,\
     \ F,\n                          internal::mapping_update_sum<T, F>, internal::composition_update<F>,\n\
-    \                          internal::constant_max<F>>;\n#line 6 \"test/HLD_edge.test.cpp\"\
+    \                          internal::constant_max<F>>;\n#line 5 \"test/HLD_subtree_edge.test.cpp\"\
     \nusing namespace std;\nusing ll = long long;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\n\tint n;\n\tcin >> n;\n\tHLD hld(n);\n\t\
-    for (int v = 0; v < n; ++v) {\n\t\tint k;\n\t\tcin >> k;\n\t\twhile (k--) {\n\t\
-    \t\tint u;\n\t\t\tcin >> u;\n\t\t\thld.add_edge(v, u);\n\t\t}\n\t}\n\thld.build(0);\n\
-    \n\tRangeAddRangeSum<ll, ll> seg(vector<S_sum<ll>>(n, 0));\n\tint q;\n\tcin >>\
-    \ q;\n\twhile (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\
-    \tint v;\n\t\t\tll w;\n\t\t\tcin >> v >> w;\n\t\t\thld.each_edge(0, v, [&](int\
-    \ a, int b) { seg.apply(a, b, w); });\n\t\t} else if (com == 1) {\n\t\t\tint u;\n\
-    \t\t\tcin >> u;\n\t\t\tll ans = 0;\n\t\t\thld.each_edge(0, u, [&](int a, int b)\
-    \ { ans += seg(a, b).value; });\n\t\t\tcout << ans << '\\n';\n\t\t}\n\t}\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E\"\
+    \tios_base::sync_with_stdio(false);\n\n\tint n, q;\n\tcin >> n >> q;\n\tHLD g(n);\n\
+    \tfor (int i = 0; i < n - 1; ++i) {\n\t\tint a, b;\n\t\tcin >> a >> b;\n\t\tg.add_edge(a,\
+    \ b);\n\t}\n\tg.build(0);\n\n\tRangeAddRangeSum<ll, ll> seg(vector<S_sum<ll>>(n,\
+    \ 0));\n\twhile (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\
+    \t\tint u, v;\n\t\t\tcin >> u >> v;\n\t\t\tll ans = 0;\n\t\t\tg.each_edge(u, v,\
+    \ [&](int l, int r) { ans += seg.prod(l, r).value; });\n\t\t\tcout << ans << '\\\
+    n';\n\t\t} else {\n\t\t\tint v;\n\t\t\tll x;\n\t\t\tcin >> v >> x;\n\t\t\tg.each_subtree_edge(v,\
+    \ [&](int l, int r) { seg.apply(l, r, x); });\n\t\t}\n\t}\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/Rupc/2667?year=2015\"\
     \n#include \"./../Graph/HeavyLightDecomposition.cpp\"\n#include \"./../DataStructure/LazySegmentTree.cpp\"\
-    \n#include <iostream>\n#include <vector>\nusing namespace std;\nusing ll = long\
-    \ long;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \n\tint n;\n\tcin >> n;\n\tHLD hld(n);\n\tfor (int v = 0; v < n; ++v) {\n\t\t\
-    int k;\n\t\tcin >> k;\n\t\twhile (k--) {\n\t\t\tint u;\n\t\t\tcin >> u;\n\t\t\t\
-    hld.add_edge(v, u);\n\t\t}\n\t}\n\thld.build(0);\n\n\tRangeAddRangeSum<ll, ll>\
-    \ seg(vector<S_sum<ll>>(n, 0));\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\t\
-    int com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint v;\n\t\t\tll w;\n\t\t\
-    \tcin >> v >> w;\n\t\t\thld.each_edge(0, v, [&](int a, int b) { seg.apply(a, b,\
-    \ w); });\n\t\t} else if (com == 1) {\n\t\t\tint u;\n\t\t\tcin >> u;\n\t\t\tll\
-    \ ans = 0;\n\t\t\thld.each_edge(0, u, [&](int a, int b) { ans += seg(a, b).value;\
-    \ });\n\t\t\tcout << ans << '\\n';\n\t\t}\n\t}\n}"
+    \n#include <iostream>\nusing namespace std;\nusing ll = long long;\n\nint main()\
+    \ {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\tint n, q;\n\
+    \tcin >> n >> q;\n\tHLD g(n);\n\tfor (int i = 0; i < n - 1; ++i) {\n\t\tint a,\
+    \ b;\n\t\tcin >> a >> b;\n\t\tg.add_edge(a, b);\n\t}\n\tg.build(0);\n\n\tRangeAddRangeSum<ll,\
+    \ ll> seg(vector<S_sum<ll>>(n, 0));\n\twhile (q--) {\n\t\tint com;\n\t\tcin >>\
+    \ com;\n\t\tif (com == 0) {\n\t\t\tint u, v;\n\t\t\tcin >> u >> v;\n\t\t\tll ans\
+    \ = 0;\n\t\t\tg.each_edge(u, v, [&](int l, int r) { ans += seg.prod(l, r).value;\
+    \ });\n\t\t\tcout << ans << '\\n';\n\t\t} else {\n\t\t\tint v;\n\t\t\tll x;\n\t\
+    \t\tcin >> v >> x;\n\t\t\tg.each_subtree_edge(v, [&](int l, int r) { seg.apply(l,\
+    \ r, x); });\n\t\t}\n\t}\n}"
   dependsOn:
   - Graph/HeavyLightDecomposition.cpp
   - DataStructure/LazySegmentTree.cpp
   - atcoder/lazysegtree.hpp
   - atcoder/internal_bit.hpp
   isVerificationFile: true
-  path: test/HLD_edge.test.cpp
+  path: test/HLD_subtree_edge.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 12:30:40+09:00'
+  timestamp: '2021-01-17 12:29:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/HLD_edge.test.cpp
+documentation_of: test/HLD_subtree_edge.test.cpp
 layout: document
 redirect_from:
-- /verify/test/HLD_edge.test.cpp
-- /verify/test/HLD_edge.test.cpp.html
-title: test/HLD_edge.test.cpp
+- /verify/test/HLD_subtree_edge.test.cpp
+- /verify/test/HLD_subtree_edge.test.cpp.html
+title: test/HLD_subtree_edge.test.cpp
 ---

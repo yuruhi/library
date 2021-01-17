@@ -649,6 +649,9 @@ data:
       path: test/HLD_edge.test.cpp
       title: test/HLD_edge.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/HLD_subtree_edge.test.cpp
+      title: test/HLD_subtree_edge.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/HLD_vertex.test.cpp
       title: test/HLD_vertex.test.cpp
     - icon: ':heavy_check_mark:'

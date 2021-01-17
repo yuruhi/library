@@ -13,6 +13,9 @@ data:
     path: test/HLD_edge.test.cpp
     title: test/HLD_edge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/HLD_subtree_edge.test.cpp
+    title: test/HLD_subtree_edge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/HLD_vertex.test.cpp
     title: test/HLD_vertex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -179,6 +182,7 @@ data:
   - test/RangeAddRangeSum.test.cpp
   - test/HLD_vertex.test.cpp
   - test/HLD_edge.test.cpp
+  - test/HLD_subtree_edge.test.cpp
   - test/RangeAddRangeMin.test.cpp
   - test/RangeUpdateRangeMin.test.cpp
 documentation_of: atcoder/lazysegtree.hpp
