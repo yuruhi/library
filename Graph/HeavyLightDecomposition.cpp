@@ -6,7 +6,7 @@ using namespace std;
 class HLD {
 	int n;
 	vector<vector<int>> graph;
-	vector<int> parent, size, depth;
+	vector<int> parent, size;
 	int k;
 	vector<int> head, hld, index, out_index;
 	bool builded = false;
@@ -14,7 +14,6 @@ class HLD {
 	int calc_size(int v, int p, int d) {
 		parent[v] = p;
 		size[v] = 1;
-		depth[v] = 1;
 		for (int u : graph[v]) {
 			if (u != p) {
 				size[v] += calc_size(u, v, d + 1);
@@ -56,7 +55,6 @@ public:
 	void build(int root) {
 		parent.assign(n, -1);
 		size.assign(n, 0);
-		depth.assign(n, 0);
 		calc_size(root, -1, 1);
 		k = 0;
 		head.assign(n, 0);
@@ -65,6 +63,18 @@ public:
 		out_index.assign(n, 0);
 		rec(root, -1, root);
 		builded = true;
+	}
+	const vector<vector<int>>& get_graph() const {
+		assert(builded);
+		return graph;
+	}
+	const vector<int>& get_parent() const {
+		assert(builded);
+		return parent;
+	}
+	const vector<int>& get_size() const {
+		assert(builded);
+		return size;
 	}
 	const vector<int>& get_head() const {
 		assert(builded);
@@ -100,6 +110,10 @@ public:
 			}
 		}
 	}
+	template <class F> void each_subtree_vertex(int v, F f) const {
+		assert(builded);
+		f(index[v], out_index[v]);
+	}
 	template <class F> void each_edge(int v, int u, F f) const {
 		assert(builded);
 		while (true) {
@@ -117,22 +131,38 @@ public:
 		assert(builded);
 		f(index[v] + 1, out_index[v]);
 	}
-	vector<pair<int, int>> query_vertex(int u, int v) {
+	vector<pair<int, int>> query_vertex(int u, int v) const {
 		assert(builded);
 		vector<pair<int, int>> result;
 		each_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;
 	}
-	vector<pair<int, int>> query_edge(int u, int v) {
+	pair<int, int> query_subtree_vertex(int v) const {
+		assert(builded);
+		pair<int, int> result;
+		each_subtree_vertex(v, [&](int a, int b) { result = {a, b}; });
+		return result;
+	}
+	vector<pair<int, int>> query_edge(int u, int v) const {
 		assert(builded);
 		vector<pair<int, int>> result;
 		each_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;
 	}
-	pair<int, int> query_subtree_edge(int v) {
+	pair<int, int> query_subtree_edge(int v) const {
 		assert(builded);
 		pair<int, int> result;
 		each_subtree_edge(v, [&](int a, int b) { result = {a, b}; });
 		return result;
+	}
+	int lca(int u, int v) const {
+		while (true) {
+			if (index[u] > index[v]) swap(u, v);
+			if (head[u] != head[v]) {
+				v = parent[head[v]];
+			} else {
+				return u;
+			}
+		}
 	}
 };
