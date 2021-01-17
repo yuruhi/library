@@ -8,7 +8,7 @@ class HLD {
 	vector<vector<int>> graph;
 	vector<int> parent, size, depth;
 	int k;
-	vector<int> head, hld, index;
+	vector<int> head, hld, index, out_index;
 	bool builded = false;
 
 	int calc_size(int v, int p, int d) {
@@ -34,13 +34,15 @@ class HLD {
 				heavy_vertex = u;
 			}
 		}
-		if (heavy_vertex == -1) return;
-		rec(heavy_vertex, v, root);
-		for (int u : graph[v]) {
-			if (u != heavy_vertex && u != p) {
-				rec(u, v, u);
+		if (heavy_vertex != -1) {
+			rec(heavy_vertex, v, root);
+			for (int u : graph[v]) {
+				if (u != heavy_vertex && u != p) {
+					rec(u, v, u);
+				}
 			}
 		}
+		out_index[v] = k;
 	}
 
 public:
@@ -60,6 +62,7 @@ public:
 		head.assign(n, 0);
 		hld.assign(n, 0);
 		index.assign(n, 0);
+		out_index.assign(n, 0);
 		rec(root, -1, root);
 		builded = true;
 	}
@@ -75,6 +78,10 @@ public:
 		assert(builded);
 		return index;
 	}
+	const vector<int>& get_out_index() const {
+		assert(builded);
+		return out_index;
+	}
 	int operator[](int v) const {
 		assert(builded);
 		return index[v];
@@ -85,10 +92,10 @@ public:
 		while (true) {
 			if (index[v] > index[u]) swap(v, u);
 			if (head[v] != head[u]) {
-				f(index[head[u]], index[u]);
+				f(index[head[u]], index[u] + 1);
 				u = parent[head[u]];
 			} else {
-				f(index[v], index[u]);
+				f(index[v], index[u] + 1);
 				break;
 			}
 		}
@@ -98,13 +105,17 @@ public:
 		while (true) {
 			if (index[v] > index[u]) swap(v, u);
 			if (head[v] != head[u]) {
-				f(index[head[u]], index[u]);
+				f(index[head[u]], index[u] + 1);
 				u = parent[head[u]];
 			} else {
-				if (v != u) f(index[v] + 1, index[u]);
+				if (v != u) f(index[v] + 1, index[u] + 1);
 				break;
 			}
 		}
+	}
+	template <class F> void each_subtree_edge(int v, F f) const {
+		assert(builded);
+		f(index[v] + 1, out_index[v]);
 	}
 	vector<pair<int, int>> query_vertex(int u, int v) {
 		assert(builded);
@@ -116,6 +127,12 @@ public:
 		assert(builded);
 		vector<pair<int, int>> result;
 		each_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });
+		return result;
+	}
+	pair<int, int> query_subtree_edge(int v) {
+		assert(builded);
+		pair<int, int> result;
+		each_subtree_edge(v, [&](int a, int b) { result = {a, b}; });
 		return result;
 	}
 };
