@@ -31,8 +31,8 @@ int main() {
 		a--;
 		b--;
 		hld.each_vertex(a, b, [&](int p, int q) {
-			ans += seg(p, q + 1).value;
-			seg.apply(p, q + 1, 1);
+			ans += seg(p, q).value;
+			seg.apply(p, q, 1);
 		});
 	}
 	cout << ans << '\n';

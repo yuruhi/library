@@ -34,12 +34,12 @@ int main() {
 			int v;
 			ll w;
 			cin >> v >> w;
-			hld.each_edge(0, v, [&](int a, int b) { seg.apply(a, b + 1, w); });
+			hld.each_edge(0, v, [&](int a, int b) { seg.apply(a, b, w); });
 		} else if (com == 1) {
 			int u;
 			cin >> u;
 			ll ans = 0;
-			hld.each_edge(0, u, [&](int a, int b) { ans += seg(a, b + 1).value; });
+			hld.each_edge(0, u, [&](int a, int b) { ans += seg(a, b).value; });
 			cout << ans << '\n';
 		}
 	}
