@@ -646,6 +646,9 @@ data:
       path: test/GridBFS.test.cpp
       title: test/GridBFS.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/HLD_LCA.test.cpp
+      title: test/HLD_LCA.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/HLD_edge.test.cpp
       title: test/HLD_edge.test.cpp
     - icon: ':heavy_check_mark:'

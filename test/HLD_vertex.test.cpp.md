@@ -25,64 +25,73 @@ data:
   bundledCode: "#line 1 \"test/HLD_vertex.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/399\"\
     \n#line 2 \"Graph/HeavyLightDecomposition.cpp\"\n#include <vector>\n#include <cassert>\n\
     using namespace std;\n\nclass HLD {\n\tint n;\n\tvector<vector<int>> graph;\n\t\
-    vector<int> parent, size, depth;\n\tint k;\n\tvector<int> head, hld, index, out_index;\n\
+    vector<int> parent, size;\n\tint k;\n\tvector<int> head, hld, index, out_index;\n\
     \tbool builded = false;\n\n\tint calc_size(int v, int p, int d) {\n\t\tparent[v]\
-    \ = p;\n\t\tsize[v] = 1;\n\t\tdepth[v] = 1;\n\t\tfor (int u : graph[v]) {\n\t\t\
-    \tif (u != p) {\n\t\t\t\tsize[v] += calc_size(u, v, d + 1);\n\t\t\t}\n\t\t}\n\t\
-    \treturn size[v];\n\t}\n\tvoid rec(int v, int p, int root) {\n\t\thead[v] = root;\n\
-    \t\tindex[v] = k;\n\t\thld[k++] = v;\n\n\t\tint heavy_vertex = -1, max_size =\
-    \ 0;\n\t\tfor (int u : graph[v]) {\n\t\t\tif (u != p && max_size < size[u]) {\n\
-    \t\t\t\tmax_size = size[u];\n\t\t\t\theavy_vertex = u;\n\t\t\t}\n\t\t}\n\t\tif\
-    \ (heavy_vertex != -1) {\n\t\t\trec(heavy_vertex, v, root);\n\t\t\tfor (int u\
-    \ : graph[v]) {\n\t\t\t\tif (u != heavy_vertex && u != p) {\n\t\t\t\t\trec(u,\
-    \ v, u);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tout_index[v] = k;\n\t}\n\npublic:\n\t\
-    HLD(int _n) : n(_n), graph(_n) {}\n\tHLD(const vector<vector<int>>& _graph) :\
-    \ n(_graph.size()), graph(_graph) {}\n\tvoid add_edge(int u, int v) {\n\t\tgraph[u].push_back(v);\n\
-    \t\tgraph[v].push_back(u);\n\t\tbuilded = false;\n\t}\n\tvoid build(int root)\
-    \ {\n\t\tparent.assign(n, -1);\n\t\tsize.assign(n, 0);\n\t\tdepth.assign(n, 0);\n\
-    \t\tcalc_size(root, -1, 1);\n\t\tk = 0;\n\t\thead.assign(n, 0);\n\t\thld.assign(n,\
-    \ 0);\n\t\tindex.assign(n, 0);\n\t\tout_index.assign(n, 0);\n\t\trec(root, -1,\
-    \ root);\n\t\tbuilded = true;\n\t}\n\tconst vector<int>& get_head() const {\n\t\
-    \tassert(builded);\n\t\treturn head;\n\t}\n\tconst vector<int>& get_hld() const\
-    \ {\n\t\tassert(builded);\n\t\treturn hld;\n\t}\n\tconst vector<int>& get_index()\
-    \ const {\n\t\tassert(builded);\n\t\treturn index;\n\t}\n\tconst vector<int>&\
-    \ get_out_index() const {\n\t\tassert(builded);\n\t\treturn out_index;\n\t}\n\t\
-    int operator[](int v) const {\n\t\tassert(builded);\n\t\treturn index[v];\n\t\
-    }\n\n\ttemplate <class F> void each_vertex(int v, int u, F f) const {\n\t\tassert(builded);\n\
-    \t\twhile (true) {\n\t\t\tif (index[v] > index[u]) swap(v, u);\n\t\t\tif (head[v]\
-    \ != head[u]) {\n\t\t\t\tf(index[head[u]], index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\
-    \t\t\t} else {\n\t\t\t\tf(index[v], index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\
-    \t}\n\t}\n\ttemplate <class F> void each_edge(int v, int u, F f) const {\n\t\t\
-    assert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v] > index[u]) swap(v, u);\n\
-    \t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]], index[u] + 1);\n\t\t\
-    \t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v != u) f(index[v] + 1,\
+    \ = p;\n\t\tsize[v] = 1;\n\t\tfor (int u : graph[v]) {\n\t\t\tif (u != p) {\n\t\
+    \t\t\tsize[v] += calc_size(u, v, d + 1);\n\t\t\t}\n\t\t}\n\t\treturn size[v];\n\
+    \t}\n\tvoid rec(int v, int p, int root) {\n\t\thead[v] = root;\n\t\tindex[v] =\
+    \ k;\n\t\thld[k++] = v;\n\n\t\tint heavy_vertex = -1, max_size = 0;\n\t\tfor (int\
+    \ u : graph[v]) {\n\t\t\tif (u != p && max_size < size[u]) {\n\t\t\t\tmax_size\
+    \ = size[u];\n\t\t\t\theavy_vertex = u;\n\t\t\t}\n\t\t}\n\t\tif (heavy_vertex\
+    \ != -1) {\n\t\t\trec(heavy_vertex, v, root);\n\t\t\tfor (int u : graph[v]) {\n\
+    \t\t\t\tif (u != heavy_vertex && u != p) {\n\t\t\t\t\trec(u, v, u);\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\tout_index[v] = k;\n\t}\n\npublic:\n\tHLD(int _n) : n(_n),\
+    \ graph(_n) {}\n\tHLD(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph)\
+    \ {}\n\tvoid add_edge(int u, int v) {\n\t\tgraph[u].push_back(v);\n\t\tgraph[v].push_back(u);\n\
+    \t\tbuilded = false;\n\t}\n\tvoid build(int root) {\n\t\tparent.assign(n, -1);\n\
+    \t\tsize.assign(n, 0);\n\t\tcalc_size(root, -1, 1);\n\t\tk = 0;\n\t\thead.assign(n,\
+    \ 0);\n\t\thld.assign(n, 0);\n\t\tindex.assign(n, 0);\n\t\tout_index.assign(n,\
+    \ 0);\n\t\trec(root, -1, root);\n\t\tbuilded = true;\n\t}\n\tconst vector<vector<int>>&\
+    \ get_graph() const {\n\t\tassert(builded);\n\t\treturn graph;\n\t}\n\tconst vector<int>&\
+    \ get_parent() const {\n\t\tassert(builded);\n\t\treturn parent;\n\t}\n\tconst\
+    \ vector<int>& get_size() const {\n\t\tassert(builded);\n\t\treturn size;\n\t\
+    }\n\tconst vector<int>& get_head() const {\n\t\tassert(builded);\n\t\treturn head;\n\
+    \t}\n\tconst vector<int>& get_hld() const {\n\t\tassert(builded);\n\t\treturn\
+    \ hld;\n\t}\n\tconst vector<int>& get_index() const {\n\t\tassert(builded);\n\t\
+    \treturn index;\n\t}\n\tconst vector<int>& get_out_index() const {\n\t\tassert(builded);\n\
+    \t\treturn out_index;\n\t}\n\tint operator[](int v) const {\n\t\tassert(builded);\n\
+    \t\treturn index[v];\n\t}\n\n\ttemplate <class F> void each_vertex(int v, int\
+    \ u, F f) const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v]\
+    \ > index[u]) swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
+    \ index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tf(index[v],\
     \ index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class F> void\
-    \ each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v]\
+    \ each_subtree_vertex(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v],\
+    \ out_index[v]);\n\t}\n\ttemplate <class F> void each_edge(int v, int u, F f)\
+    \ const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v] > index[u])\
+    \ swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]], index[u]\
+    \ + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v != u) f(index[v]\
+    \ + 1, index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class\
+    \ F> void each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v]\
     \ + 1, out_index[v]);\n\t}\n\tvector<pair<int, int>> query_vertex(int u, int v)\
-    \ {\n\t\tassert(builded);\n\t\tvector<pair<int, int>> result;\n\t\teach_vertex(u,\
+    \ const {\n\t\tassert(builded);\n\t\tvector<pair<int, int>> result;\n\t\teach_vertex(u,\
     \ v, [&](int a, int b) { result.emplace_back(a, b); });\n\t\treturn result;\n\t\
-    }\n\tvector<pair<int, int>> query_edge(int u, int v) {\n\t\tassert(builded);\n\
-    \t\tvector<pair<int, int>> result;\n\t\teach_edge(u, v, [&](int a, int b) { result.emplace_back(a,\
-    \ b); });\n\t\treturn result;\n\t}\n\tpair<int, int> query_subtree_edge(int v)\
-    \ {\n\t\tassert(builded);\n\t\tpair<int, int> result;\n\t\teach_subtree_edge(v,\
-    \ [&](int a, int b) { result = {a, b}; });\n\t\treturn result;\n\t}\n};\n#line\
-    \ 1 \"atcoder/lazysegtree.hpp\"\n\n\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\
-    \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\n\t\
-    namespace internal {\n\n\t\t// @param n `0 <= n`\n\t\t// @return minimum non-negative\
-    \ `x` s.t. `n <= 2**x`\n\t\tint ceil_pow2(int n) {\n\t\t\tint x = 0;\n\t\t\twhile\
-    \ ((1U << x) < (unsigned int)(n))\n\t\t\t\tx++;\n\t\t\treturn x;\n\t\t}\n\n\t\t\
-    // @param n `1 <= n`\n\t\t// @return minimum non-negative `x` s.t. `(n & (1 <<\
-    \ x)) != 0`\n\t\tint bsf(unsigned int n) {\n#ifdef _MSC_VER\n\t\t\tunsigned long\
-    \ index;\n\t\t\t_BitScanForward(&index, n);\n\t\t\treturn index;\n#else\n\t\t\t\
-    return __builtin_ctz(n);\n#endif\n\t\t}\n\n\t}  // namespace internal\n\n}  //\
-    \ namespace atcoder\n\n\n#line 5 \"atcoder/lazysegtree.hpp\"\n#include <algorithm>\n\
-    #line 7 \"atcoder/lazysegtree.hpp\"\n#include <iostream>\n#line 9 \"atcoder/lazysegtree.hpp\"\
-    \nnamespace atcoder {\n\n\ttemplate <class S, S (*op)(S, S), S (*e)(), class F,\
-    \ S (*mapping)(F, S),\n\t          F (*composition)(F, F), F (*id)()>\n\tstruct\
-    \ lazy_segtree {\n\tpublic:\n\t\tlazy_segtree() : lazy_segtree(0) {}\n\t\tlazy_segtree(int\
-    \ n) : lazy_segtree(std::vector<S>(n, e())) {}\n\t\tlazy_segtree(const std::vector<S>&\
-    \ v) : _n(int(v.size())) {\n\t\t\tlog = internal::ceil_pow2(_n);\n\t\t\tsize =\
-    \ 1 << log;\n\t\t\td = std::vector<S>(2 * size, e());\n\t\t\tlz = std::vector<F>(size,\
+    }\n\tpair<int, int> query_subtree_vertex(int v) const {\n\t\tassert(builded);\n\
+    \t\tpair<int, int> result;\n\t\teach_subtree_vertex(v, [&](int a, int b) { result\
+    \ = {a, b}; });\n\t\treturn result;\n\t}\n\tvector<pair<int, int>> query_edge(int\
+    \ u, int v) const {\n\t\tassert(builded);\n\t\tvector<pair<int, int>> result;\n\
+    \t\teach_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });\n\t\treturn\
+    \ result;\n\t}\n\tpair<int, int> query_subtree_edge(int v) const {\n\t\tassert(builded);\n\
+    \t\tpair<int, int> result;\n\t\teach_subtree_edge(v, [&](int a, int b) { result\
+    \ = {a, b}; });\n\t\treturn result;\n\t}\n\tint lca(int u, int v) const {\n\t\t\
+    while (true) {\n\t\t\tif (index[u] > index[v]) swap(u, v);\n\t\t\tif (head[u]\
+    \ != head[v]) {\n\t\t\t\tv = parent[head[v]];\n\t\t\t} else {\n\t\t\t\treturn\
+    \ u;\n\t\t\t}\n\t\t}\n\t}\n};\n#line 1 \"atcoder/lazysegtree.hpp\"\n\n\n\n#line\
+    \ 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
+    #endif\n\nnamespace atcoder {\n\n\tnamespace internal {\n\n\t\t// @param n `0\
+    \ <= n`\n\t\t// @return minimum non-negative `x` s.t. `n <= 2**x`\n\t\tint ceil_pow2(int\
+    \ n) {\n\t\t\tint x = 0;\n\t\t\twhile ((1U << x) < (unsigned int)(n))\n\t\t\t\t\
+    x++;\n\t\t\treturn x;\n\t\t}\n\n\t\t// @param n `1 <= n`\n\t\t// @return minimum\
+    \ non-negative `x` s.t. `(n & (1 << x)) != 0`\n\t\tint bsf(unsigned int n) {\n\
+    #ifdef _MSC_VER\n\t\t\tunsigned long index;\n\t\t\t_BitScanForward(&index, n);\n\
+    \t\t\treturn index;\n#else\n\t\t\treturn __builtin_ctz(n);\n#endif\n\t\t}\n\n\t\
+    }  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 5 \"atcoder/lazysegtree.hpp\"\
+    \n#include <algorithm>\n#line 7 \"atcoder/lazysegtree.hpp\"\n#include <iostream>\n\
+    #line 9 \"atcoder/lazysegtree.hpp\"\nnamespace atcoder {\n\n\ttemplate <class\
+    \ S, S (*op)(S, S), S (*e)(), class F, S (*mapping)(F, S),\n\t          F (*composition)(F,\
+    \ F), F (*id)()>\n\tstruct lazy_segtree {\n\tpublic:\n\t\tlazy_segtree() : lazy_segtree(0)\
+    \ {}\n\t\tlazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}\n\t\t\
+    lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {\n\t\t\tlog = internal::ceil_pow2(_n);\n\
+    \t\t\tsize = 1 << log;\n\t\t\td = std::vector<S>(2 * size, e());\n\t\t\tlz = std::vector<F>(size,\
     \ id());\n\t\t\tfor (int i = 0; i < _n; i++) d[size + i] = v[i];\n\t\t\tfor (int\
     \ i = size - 1; i >= 1; i--) {\n\t\t\t\tupdate(i);\n\t\t\t}\n\t\t}\n\n\t\tvoid\
     \ set(int p, S x) {\n\t\t\tassert(0 <= p && p < _n);\n\t\t\tp += size;\n\t\t\t\
@@ -204,7 +213,7 @@ data:
   isVerificationFile: true
   path: test/HLD_vertex.test.cpp
   requiredBy: []
-  timestamp: '2021-01-17 12:30:40+09:00'
+  timestamp: '2021-01-17 16:23:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/HLD_vertex.test.cpp
