@@ -3,20 +3,22 @@
 using namespace std;
 
 class EulerTourForVertex {
-	vector<int> ls, rs;
+	vector<int> ls_m, rs_m;
 	vector<vector<int>> graph;
 	int k = 0;
 	void dfs(int v, int p) {
-		ls[v] = k++;
+		ls_m[v] = k++;
 		for (int u : graph[v]) {
 			if (u != p) dfs(u, v);
 		}
-		rs[v] = k;
+		rs_m[v] = k;
 	}
 
 public:
 	EulerTourForVertex() {}
-	EulerTourForVertex(int n) : ls(n), rs(n), graph(n) {}
+	EulerTourForVertex(int n) : ls_m(n), rs_m(n), graph(n) {}
+	EulerTourForVertex(const vector<vector<int>>& _graph)
+	    : ls_m(_graph.size()), rs_m(_graph.size()), graph(_graph) {}
 	void add_edge(int u, int v) {
 		graph[u].emplace_back(v);
 		graph[v].emplace_back(u);
@@ -25,22 +27,22 @@ public:
 		k = 0;
 		dfs(root, -1);
 	}
-	int get_l(int v) const {
-		return ls[v];
+	int l(int v) const {
+		return ls_m[v];
 	}
-	int get_r(int v) const {
-		return rs[v];
+	int r(int v) const {
+		return rs_m[v];
 	}
 	pair<int, int> get(int v) const {
-		return {ls[v], rs[v]};
+		return {ls_m[v], rs_m[v]};
 	}
-	const vector<int>& get_ls() const {
-		return ls;
+	const vector<int>& ls() const {
+		return ls_m;
 	}
-	const vector<int>& get_rs() const {
-		return rs;
+	const vector<int>& rs() const {
+		return rs_m;
 	}
 	template <typename F> void call(int v, F f) {
-		f(ls[v], rs[v]);
+		f(ls_m[v], rs_m[v]);
 	}
 };
