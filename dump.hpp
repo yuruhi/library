@@ -26,10 +26,10 @@ namespace Debug {
 	};
 	AtFirst at_first;
 
-	string BeginLine = "..|", EndLine = "\n" + BeginLine;
-	string Begin = "{ ", End = " }";
-	string Empty = "{ empty }", Separate = ", ", Indent = "  ";
-	string True = "O", False = "X";
+	const string BeginLine = "..|", EndLine = "\n" + BeginLine;
+	const string Begin = "{ ", End = " }";
+	const string Empty = "{ empty }", Separate = ", ", Indent = "  ";
+	const string True = "O", False = "X";
 	void FirstLine(int line, string func) {
 		cerr << BeginLine + string(15, '-') << line << " : " << func << string(15, '-')
 		     << EndLine;
