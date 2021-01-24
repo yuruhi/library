@@ -6,6 +6,7 @@ data:
     path: atcoder/maxflow.hpp
     title: atcoder/maxflow.hpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:

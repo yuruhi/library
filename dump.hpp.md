@@ -6,6 +6,7 @@ data:
     path: template17.cpp
     title: template17.cpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -16,63 +17,63 @@ data:
     #include <queue>\n#include <cassert>\n#include <climits>\n#ifdef __cpp_lib_optional\n\
     #include <optional>\n#endif\nusing namespace std;\n\nnamespace Debug {\n\tstruct\
     \ AtFirst {\n\t\tAtFirst() {\n\t\t\tcerr << fixed << setprecision(6);\n\t\t}\n\
-    \t};\n\tAtFirst at_first;\n\n\tstring BeginLine = \"..|\", EndLine = \"\\n\" +\
-    \ BeginLine;\n\tstring Begin = \"{ \", End = \" }\";\n\tstring Empty = \"{ empty\
-    \ }\", Separate = \", \", Indent = \"  \";\n\tstring True = \"O\", False = \"\
-    X\";\n\tvoid FirstLine(int line, string func) {\n\t\tcerr << BeginLine + string(15,\
-    \ '-') << line << \" : \" << func << string(15, '-')\n\t\t     << EndLine;\n\t\
-    }\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const\
-    \ int v);\n\tvoid DebugPrint(const long long v);\n\tvoid DebugPrint(const bool\
-    \ v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\t\
-    void DebugPrint(const string& v);\n\ttemplate <class T, class U> void DebugPrint(const\
-    \ pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
-    \ optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <size_t N =\
-    \ 0, class T> void print_tuple_impl(const T& v);\n\ttemplate <class... T> void\
-    \ DebugPrint(const tuple<T...>& v);\n#endif\n\ttemplate <class T> void DebugPrint(const\
-    \ vector<T>& v);\n\ttemplate <class T, size_t N> void DebugPrint(const array<T,\
-    \ N>& v);\n\ttemplate <class T> void DebugPrint(const vector<vector<T>>& v);\n\
-    \ttemplate <class T, class U> void DebugPrint(const map<T, U>& v);\n\ttemplate\
-    \ <class T> void DebugPrint(const set<T>& v);\n\ttemplate <class T> void DebugPrint(const\
-    \ multiset<T>& v);\n\ttemplate <class T> void DebugPrint(const unordered_set<T>&\
-    \ v);\n\ttemplate <class T> void DebugPrint(const list<T>& v);\n\ttemplate <class\
-    \ T> void DebugPrint(stack<T> v);\n\ttemplate <class T> void DebugPrint(queue<T>\
-    \ v);\n\ttemplate <class T, class U, class V> void DebugPrint(priority_queue<T,\
-    \ U, V> v);\n\ttemplate <class T> void DebugPrint(deque<T> v);\n\n\ttemplate <class\
-    \ T> void DebugPrint(const T& v) {\n\t\tcerr << v;\n\t}\n\tvoid DebugPrint(const\
-    \ int v) {\n\t\tif (v == INT_MAX) {\n\t\t\tcerr << \"MAX\";\n\t\t} else if (v\
-    \ == INT_MIN) {\n\t\t\tcerr << \"MIN\";\n\t\t} else {\n\t\t\tcerr << v;\n\t\t\
-    }\n\t}\n\tvoid DebugPrint(const long long v) {\n\t\tif (v == LLONG_MAX) {\n\t\t\
-    \tcerr << \"MAX\";\n\t\t} else if (v == LLONG_MIN) {\n\t\t\tcerr << \"MIN\";\n\
-    \t\t} else {\n\t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const bool v) {\n\
-    \t\tcerr << (v ? True : False);\n\t}\n\tvoid DebugPrint(const char v) {\n\t\t\
-    cerr << '\\'' << v << '\\'';\n\t}\n\tvoid DebugPrint(const char* v) {\n\t\tcerr\
-    \ << '\\\"' << v << '\\\"';\n\t}\n\tvoid DebugPrint(const string& v) {\n\t\tcerr\
-    \ << '\\\"' << v << '\\\"';\n\t}\n\ttemplate <class T, class U> void DebugPrint(const\
-    \ pair<T, U>& v) {\n\t\tcerr << \"(\";\n\t\tDebugPrint(v.first);\n\t\tcerr <<\
-    \ \", \";\n\t\tDebugPrint(v.second);\n\t\tcerr << \")\";\n\t}\n#ifdef __cpp_lib_optional\n\
-    \ttemplate <class T> void DebugPrint(const optional<T>& v) {\n\t\tif (v) {\n\t\
-    \t\tDebugPrint(*v);\n\t\t} else {\n\t\t\tcerr << '-';\n\t\t}\n\t}\n#endif\n#ifdef\
-    \ __cpp_if_constexpr\n\ttemplate <size_t N = 0, class T> void print_tuple_impl(const\
-    \ T& v) {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\t\t\tDebugPrint(get<N>(v));\n\
-    \t\t\tif constexpr (N < tuple_size_v<T> - 1) {\n\t\t\t\tcerr << Separate;\n\t\t\
-    \t}\n\t\t\tprint_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> void\
-    \ DebugPrint(const tuple<T...>& v) {\n\t\tcerr << Begin;\n\t\tprint_tuple_impl(v);\n\
-    \t\tcerr << End;\n\t}\n#endif\n\ttemplate <class T> void DebugPrint(const vector<T>&\
-    \ v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr <<\
-    \ Begin;\n\t\t\tfor (int i = 0; i < (int)v.size(); ++i) {\n\t\t\t\tif (i) cerr\
+    \t};\n\tAtFirst at_first;\n\n\tconst string BeginLine = \"..|\", EndLine = \"\\\
+    n\" + BeginLine;\n\tconst string Begin = \"{ \", End = \" }\";\n\tconst string\
+    \ Empty = \"{ empty }\", Separate = \", \", Indent = \"  \";\n\tconst string True\
+    \ = \"O\", False = \"X\";\n\tvoid FirstLine(int line, string func) {\n\t\tcerr\
+    \ << BeginLine + string(15, '-') << line << \" : \" << func << string(15, '-')\n\
+    \t\t     << EndLine;\n\t}\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\
+    \tvoid DebugPrint(const int v);\n\tvoid DebugPrint(const long long v);\n\tvoid\
+    \ DebugPrint(const bool v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const\
+    \ char* v);\n\tvoid DebugPrint(const string& v);\n\ttemplate <class T, class U>\
+    \ void DebugPrint(const pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate\
+    \ <class T> void DebugPrint(const optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\
+    \ttemplate <size_t N = 0, class T> void print_tuple_impl(const T& v);\n\ttemplate\
+    \ <class... T> void DebugPrint(const tuple<T...>& v);\n#endif\n\ttemplate <class\
+    \ T> void DebugPrint(const vector<T>& v);\n\ttemplate <class T, size_t N> void\
+    \ DebugPrint(const array<T, N>& v);\n\ttemplate <class T> void DebugPrint(const\
+    \ vector<vector<T>>& v);\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ map<T, U>& v);\n\ttemplate <class T> void DebugPrint(const set<T>& v);\n\ttemplate\
+    \ <class T> void DebugPrint(const multiset<T>& v);\n\ttemplate <class T> void\
+    \ DebugPrint(const unordered_set<T>& v);\n\ttemplate <class T> void DebugPrint(const\
+    \ list<T>& v);\n\ttemplate <class T> void DebugPrint(stack<T> v);\n\ttemplate\
+    \ <class T> void DebugPrint(queue<T> v);\n\ttemplate <class T, class U, class\
+    \ V> void DebugPrint(priority_queue<T, U, V> v);\n\ttemplate <class T> void DebugPrint(deque<T>\
+    \ v);\n\n\ttemplate <class T> void DebugPrint(const T& v) {\n\t\tcerr << v;\n\t\
+    }\n\tvoid DebugPrint(const int v) {\n\t\tif (v == INT_MAX) {\n\t\t\tcerr << \"\
+    MAX\";\n\t\t} else if (v == INT_MIN) {\n\t\t\tcerr << \"MIN\";\n\t\t} else {\n\
+    \t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const long long v) {\n\t\tif (v\
+    \ == LLONG_MAX) {\n\t\t\tcerr << \"MAX\";\n\t\t} else if (v == LLONG_MIN) {\n\t\
+    \t\tcerr << \"MIN\";\n\t\t} else {\n\t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const\
+    \ bool v) {\n\t\tcerr << (v ? True : False);\n\t}\n\tvoid DebugPrint(const char\
+    \ v) {\n\t\tcerr << '\\'' << v << '\\'';\n\t}\n\tvoid DebugPrint(const char* v)\
+    \ {\n\t\tcerr << '\\\"' << v << '\\\"';\n\t}\n\tvoid DebugPrint(const string&\
+    \ v) {\n\t\tcerr << '\\\"' << v << '\\\"';\n\t}\n\ttemplate <class T, class U>\
+    \ void DebugPrint(const pair<T, U>& v) {\n\t\tcerr << \"(\";\n\t\tDebugPrint(v.first);\n\
+    \t\tcerr << \", \";\n\t\tDebugPrint(v.second);\n\t\tcerr << \")\";\n\t}\n#ifdef\
+    \ __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const optional<T>&\
+    \ v) {\n\t\tif (v) {\n\t\t\tDebugPrint(*v);\n\t\t} else {\n\t\t\tcerr << '-';\n\
+    \t\t}\n\t}\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <size_t N = 0, class\
+    \ T> void print_tuple_impl(const T& v) {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tDebugPrint(get<N>(v));\n\t\t\tif constexpr (N < tuple_size_v<T> - 1)\
+    \ {\n\t\t\t\tcerr << Separate;\n\t\t\t}\n\t\t\tprint_tuple_impl<N + 1>(v);\n\t\
+    \t}\n\t}\n\ttemplate <class... T> void DebugPrint(const tuple<T...>& v) {\n\t\t\
+    cerr << Begin;\n\t\tprint_tuple_impl(v);\n\t\tcerr << End;\n\t}\n#endif\n\ttemplate\
+    \ <class T> void DebugPrint(const vector<T>& v) {\n\t\tif (v.empty()) {\n\t\t\t\
+    cerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\t\t\tfor (int i = 0; i <\
+    \ (int)v.size(); ++i) {\n\t\t\t\tif (i) cerr << Separate;\n\t\t\t\tDebugPrint(v[i]);\n\
+    \t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class T, size_t N> void DebugPrint(const\
+    \ array<T, N>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\
+    \t\t\tcerr << Begin;\n\t\t\tfor (int i = 0; i < N; ++i) {\n\t\t\t\tif (i) cerr\
     \ << Separate;\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\
-    \t}\n\ttemplate <class T, size_t N> void DebugPrint(const array<T, N>& v) {\n\t\
-    \tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\
-    \t\t\tfor (int i = 0; i < N; ++i) {\n\t\t\t\tif (i) cerr << Separate;\n\t\t\t\t\
-    DebugPrint(v[i]);\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class\
-    \ T> void DebugPrint(const vector<vector<T>>& v) {\n\t\tif (v.empty()) {\n\t\t\
-    \tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin << EndLine;\n\t\t\tfor (int\
-    \ i = 0; i < (int)v.size(); i++) {\n\t\t\t\tcerr << Indent << \"[\" << i << \"\
-    ] \";\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t\tcerr << EndLine;\n\t\t\t}\n\t\t\tcerr\
-    \ << End;\n\t\t}\n\t}\n\ttemplate <class T, class U> void DebugPrint(const map<T,\
-    \ U>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr\
-    \ << Begin << EndLine;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tcerr << Indent;\n\
-    \t\t\t\tDebugPrint(i.first);\n\t\t\t\tcerr << \" : \";\n\t\t\t\tDebugPrint(i.second);\n\
+    \t}\n\ttemplate <class T> void DebugPrint(const vector<vector<T>>& v) {\n\t\t\
+    if (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin << EndLine;\n\
+    \t\t\tfor (int i = 0; i < (int)v.size(); i++) {\n\t\t\t\tcerr << Indent << \"\
+    [\" << i << \"] \";\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t\tcerr << EndLine;\n\t\t\
+    \t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ map<T, U>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\
+    \t\tcerr << Begin << EndLine;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tcerr <<\
+    \ Indent;\n\t\t\t\tDebugPrint(i.first);\n\t\t\t\tcerr << \" : \";\n\t\t\t\tDebugPrint(i.second);\n\
     \t\t\t\tcerr << EndLine;\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate\
     \ <class T> void DebugPrint(const set<T>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr\
     \ << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\t\t\tfor (auto it = v.begin();\
@@ -129,63 +130,63 @@ data:
     \ <queue>\n#include <cassert>\n#include <climits>\n#ifdef __cpp_lib_optional\n\
     #include <optional>\n#endif\nusing namespace std;\n\nnamespace Debug {\n\tstruct\
     \ AtFirst {\n\t\tAtFirst() {\n\t\t\tcerr << fixed << setprecision(6);\n\t\t}\n\
-    \t};\n\tAtFirst at_first;\n\n\tstring BeginLine = \"..|\", EndLine = \"\\n\" +\
-    \ BeginLine;\n\tstring Begin = \"{ \", End = \" }\";\n\tstring Empty = \"{ empty\
-    \ }\", Separate = \", \", Indent = \"  \";\n\tstring True = \"O\", False = \"\
-    X\";\n\tvoid FirstLine(int line, string func) {\n\t\tcerr << BeginLine + string(15,\
-    \ '-') << line << \" : \" << func << string(15, '-')\n\t\t     << EndLine;\n\t\
-    }\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const\
-    \ int v);\n\tvoid DebugPrint(const long long v);\n\tvoid DebugPrint(const bool\
-    \ v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\t\
-    void DebugPrint(const string& v);\n\ttemplate <class T, class U> void DebugPrint(const\
-    \ pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
-    \ optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <size_t N =\
-    \ 0, class T> void print_tuple_impl(const T& v);\n\ttemplate <class... T> void\
-    \ DebugPrint(const tuple<T...>& v);\n#endif\n\ttemplate <class T> void DebugPrint(const\
-    \ vector<T>& v);\n\ttemplate <class T, size_t N> void DebugPrint(const array<T,\
-    \ N>& v);\n\ttemplate <class T> void DebugPrint(const vector<vector<T>>& v);\n\
-    \ttemplate <class T, class U> void DebugPrint(const map<T, U>& v);\n\ttemplate\
-    \ <class T> void DebugPrint(const set<T>& v);\n\ttemplate <class T> void DebugPrint(const\
-    \ multiset<T>& v);\n\ttemplate <class T> void DebugPrint(const unordered_set<T>&\
-    \ v);\n\ttemplate <class T> void DebugPrint(const list<T>& v);\n\ttemplate <class\
-    \ T> void DebugPrint(stack<T> v);\n\ttemplate <class T> void DebugPrint(queue<T>\
-    \ v);\n\ttemplate <class T, class U, class V> void DebugPrint(priority_queue<T,\
-    \ U, V> v);\n\ttemplate <class T> void DebugPrint(deque<T> v);\n\n\ttemplate <class\
-    \ T> void DebugPrint(const T& v) {\n\t\tcerr << v;\n\t}\n\tvoid DebugPrint(const\
-    \ int v) {\n\t\tif (v == INT_MAX) {\n\t\t\tcerr << \"MAX\";\n\t\t} else if (v\
-    \ == INT_MIN) {\n\t\t\tcerr << \"MIN\";\n\t\t} else {\n\t\t\tcerr << v;\n\t\t\
-    }\n\t}\n\tvoid DebugPrint(const long long v) {\n\t\tif (v == LLONG_MAX) {\n\t\t\
-    \tcerr << \"MAX\";\n\t\t} else if (v == LLONG_MIN) {\n\t\t\tcerr << \"MIN\";\n\
-    \t\t} else {\n\t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const bool v) {\n\
-    \t\tcerr << (v ? True : False);\n\t}\n\tvoid DebugPrint(const char v) {\n\t\t\
-    cerr << '\\'' << v << '\\'';\n\t}\n\tvoid DebugPrint(const char* v) {\n\t\tcerr\
-    \ << '\\\"' << v << '\\\"';\n\t}\n\tvoid DebugPrint(const string& v) {\n\t\tcerr\
-    \ << '\\\"' << v << '\\\"';\n\t}\n\ttemplate <class T, class U> void DebugPrint(const\
-    \ pair<T, U>& v) {\n\t\tcerr << \"(\";\n\t\tDebugPrint(v.first);\n\t\tcerr <<\
-    \ \", \";\n\t\tDebugPrint(v.second);\n\t\tcerr << \")\";\n\t}\n#ifdef __cpp_lib_optional\n\
-    \ttemplate <class T> void DebugPrint(const optional<T>& v) {\n\t\tif (v) {\n\t\
-    \t\tDebugPrint(*v);\n\t\t} else {\n\t\t\tcerr << '-';\n\t\t}\n\t}\n#endif\n#ifdef\
-    \ __cpp_if_constexpr\n\ttemplate <size_t N = 0, class T> void print_tuple_impl(const\
-    \ T& v) {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\t\t\tDebugPrint(get<N>(v));\n\
-    \t\t\tif constexpr (N < tuple_size_v<T> - 1) {\n\t\t\t\tcerr << Separate;\n\t\t\
-    \t}\n\t\t\tprint_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> void\
-    \ DebugPrint(const tuple<T...>& v) {\n\t\tcerr << Begin;\n\t\tprint_tuple_impl(v);\n\
-    \t\tcerr << End;\n\t}\n#endif\n\ttemplate <class T> void DebugPrint(const vector<T>&\
-    \ v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr <<\
-    \ Begin;\n\t\t\tfor (int i = 0; i < (int)v.size(); ++i) {\n\t\t\t\tif (i) cerr\
+    \t};\n\tAtFirst at_first;\n\n\tconst string BeginLine = \"..|\", EndLine = \"\\\
+    n\" + BeginLine;\n\tconst string Begin = \"{ \", End = \" }\";\n\tconst string\
+    \ Empty = \"{ empty }\", Separate = \", \", Indent = \"  \";\n\tconst string True\
+    \ = \"O\", False = \"X\";\n\tvoid FirstLine(int line, string func) {\n\t\tcerr\
+    \ << BeginLine + string(15, '-') << line << \" : \" << func << string(15, '-')\n\
+    \t\t     << EndLine;\n\t}\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\
+    \tvoid DebugPrint(const int v);\n\tvoid DebugPrint(const long long v);\n\tvoid\
+    \ DebugPrint(const bool v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const\
+    \ char* v);\n\tvoid DebugPrint(const string& v);\n\ttemplate <class T, class U>\
+    \ void DebugPrint(const pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate\
+    \ <class T> void DebugPrint(const optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\
+    \ttemplate <size_t N = 0, class T> void print_tuple_impl(const T& v);\n\ttemplate\
+    \ <class... T> void DebugPrint(const tuple<T...>& v);\n#endif\n\ttemplate <class\
+    \ T> void DebugPrint(const vector<T>& v);\n\ttemplate <class T, size_t N> void\
+    \ DebugPrint(const array<T, N>& v);\n\ttemplate <class T> void DebugPrint(const\
+    \ vector<vector<T>>& v);\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ map<T, U>& v);\n\ttemplate <class T> void DebugPrint(const set<T>& v);\n\ttemplate\
+    \ <class T> void DebugPrint(const multiset<T>& v);\n\ttemplate <class T> void\
+    \ DebugPrint(const unordered_set<T>& v);\n\ttemplate <class T> void DebugPrint(const\
+    \ list<T>& v);\n\ttemplate <class T> void DebugPrint(stack<T> v);\n\ttemplate\
+    \ <class T> void DebugPrint(queue<T> v);\n\ttemplate <class T, class U, class\
+    \ V> void DebugPrint(priority_queue<T, U, V> v);\n\ttemplate <class T> void DebugPrint(deque<T>\
+    \ v);\n\n\ttemplate <class T> void DebugPrint(const T& v) {\n\t\tcerr << v;\n\t\
+    }\n\tvoid DebugPrint(const int v) {\n\t\tif (v == INT_MAX) {\n\t\t\tcerr << \"\
+    MAX\";\n\t\t} else if (v == INT_MIN) {\n\t\t\tcerr << \"MIN\";\n\t\t} else {\n\
+    \t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const long long v) {\n\t\tif (v\
+    \ == LLONG_MAX) {\n\t\t\tcerr << \"MAX\";\n\t\t} else if (v == LLONG_MIN) {\n\t\
+    \t\tcerr << \"MIN\";\n\t\t} else {\n\t\t\tcerr << v;\n\t\t}\n\t}\n\tvoid DebugPrint(const\
+    \ bool v) {\n\t\tcerr << (v ? True : False);\n\t}\n\tvoid DebugPrint(const char\
+    \ v) {\n\t\tcerr << '\\'' << v << '\\'';\n\t}\n\tvoid DebugPrint(const char* v)\
+    \ {\n\t\tcerr << '\\\"' << v << '\\\"';\n\t}\n\tvoid DebugPrint(const string&\
+    \ v) {\n\t\tcerr << '\\\"' << v << '\\\"';\n\t}\n\ttemplate <class T, class U>\
+    \ void DebugPrint(const pair<T, U>& v) {\n\t\tcerr << \"(\";\n\t\tDebugPrint(v.first);\n\
+    \t\tcerr << \", \";\n\t\tDebugPrint(v.second);\n\t\tcerr << \")\";\n\t}\n#ifdef\
+    \ __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const optional<T>&\
+    \ v) {\n\t\tif (v) {\n\t\t\tDebugPrint(*v);\n\t\t} else {\n\t\t\tcerr << '-';\n\
+    \t\t}\n\t}\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <size_t N = 0, class\
+    \ T> void print_tuple_impl(const T& v) {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tDebugPrint(get<N>(v));\n\t\t\tif constexpr (N < tuple_size_v<T> - 1)\
+    \ {\n\t\t\t\tcerr << Separate;\n\t\t\t}\n\t\t\tprint_tuple_impl<N + 1>(v);\n\t\
+    \t}\n\t}\n\ttemplate <class... T> void DebugPrint(const tuple<T...>& v) {\n\t\t\
+    cerr << Begin;\n\t\tprint_tuple_impl(v);\n\t\tcerr << End;\n\t}\n#endif\n\ttemplate\
+    \ <class T> void DebugPrint(const vector<T>& v) {\n\t\tif (v.empty()) {\n\t\t\t\
+    cerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\t\t\tfor (int i = 0; i <\
+    \ (int)v.size(); ++i) {\n\t\t\t\tif (i) cerr << Separate;\n\t\t\t\tDebugPrint(v[i]);\n\
+    \t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class T, size_t N> void DebugPrint(const\
+    \ array<T, N>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\
+    \t\t\tcerr << Begin;\n\t\t\tfor (int i = 0; i < N; ++i) {\n\t\t\t\tif (i) cerr\
     \ << Separate;\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\
-    \t}\n\ttemplate <class T, size_t N> void DebugPrint(const array<T, N>& v) {\n\t\
-    \tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\
-    \t\t\tfor (int i = 0; i < N; ++i) {\n\t\t\t\tif (i) cerr << Separate;\n\t\t\t\t\
-    DebugPrint(v[i]);\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class\
-    \ T> void DebugPrint(const vector<vector<T>>& v) {\n\t\tif (v.empty()) {\n\t\t\
-    \tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin << EndLine;\n\t\t\tfor (int\
-    \ i = 0; i < (int)v.size(); i++) {\n\t\t\t\tcerr << Indent << \"[\" << i << \"\
-    ] \";\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t\tcerr << EndLine;\n\t\t\t}\n\t\t\tcerr\
-    \ << End;\n\t\t}\n\t}\n\ttemplate <class T, class U> void DebugPrint(const map<T,\
-    \ U>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr\
-    \ << Begin << EndLine;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tcerr << Indent;\n\
-    \t\t\t\tDebugPrint(i.first);\n\t\t\t\tcerr << \" : \";\n\t\t\t\tDebugPrint(i.second);\n\
+    \t}\n\ttemplate <class T> void DebugPrint(const vector<vector<T>>& v) {\n\t\t\
+    if (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\t\tcerr << Begin << EndLine;\n\
+    \t\t\tfor (int i = 0; i < (int)v.size(); i++) {\n\t\t\t\tcerr << Indent << \"\
+    [\" << i << \"] \";\n\t\t\t\tDebugPrint(v[i]);\n\t\t\t\tcerr << EndLine;\n\t\t\
+    \t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ map<T, U>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr << Empty;\n\t\t} else {\n\t\
+    \t\tcerr << Begin << EndLine;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tcerr <<\
+    \ Indent;\n\t\t\t\tDebugPrint(i.first);\n\t\t\t\tcerr << \" : \";\n\t\t\t\tDebugPrint(i.second);\n\
     \t\t\t\tcerr << EndLine;\n\t\t\t}\n\t\t\tcerr << End;\n\t\t}\n\t}\n\ttemplate\
     \ <class T> void DebugPrint(const set<T>& v) {\n\t\tif (v.empty()) {\n\t\t\tcerr\
     \ << Empty;\n\t\t} else {\n\t\t\tcerr << Begin;\n\t\t\tfor (auto it = v.begin();\
@@ -241,7 +242,7 @@ data:
   path: dump.hpp
   requiredBy:
   - template17.cpp
-  timestamp: '2021-01-03 14:44:49+09:00'
+  timestamp: '2021-01-20 21:42:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: dump.hpp

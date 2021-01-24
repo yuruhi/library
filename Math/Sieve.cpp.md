@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Sieve.test.cpp
     title: test/Sieve.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

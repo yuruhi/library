@@ -12,6 +12,7 @@ data:
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:

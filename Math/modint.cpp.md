@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_pow.test.cpp
     title: test/modint_pow.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

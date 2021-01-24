@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Euler.test.cpp
     title: test/Euler.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -53,8 +54,8 @@ data:
   timestamp: '2020-12-13 11:47:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Euler.test.cpp
   - test/EnumerateEuler.test.cpp
+  - test/Euler.test.cpp
 documentation_of: Math/Euler.cpp
 layout: document
 redirect_from:

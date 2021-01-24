@@ -30,6 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_closest_pair.test.cpp
     title: test/Geometric_closest_pair.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

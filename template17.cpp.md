@@ -6,6 +6,7 @@ data:
     title: dump.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -307,7 +308,7 @@ data:
   isVerificationFile: false
   path: template17.cpp
   requiredBy: []
-  timestamp: '2021-01-03 14:44:49+09:00'
+  timestamp: '2021-01-20 21:42:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template17.cpp

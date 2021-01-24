@@ -6,6 +6,7 @@ data:
     path: Utility/splitRange.cpp
     title: Utility/splitRange.cpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:

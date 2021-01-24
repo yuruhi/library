@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/TravelingSalesmanProblem.test.cpp
     title: test/TravelingSalesmanProblem.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

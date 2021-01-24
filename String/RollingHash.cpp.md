@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RollingHash.test.cpp
     title: test/RollingHash.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

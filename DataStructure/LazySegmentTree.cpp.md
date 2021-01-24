@@ -30,6 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RangeUpdateRangeSum.test.cpp
     title: test/RangeUpdateRangeSum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -196,13 +197,13 @@ data:
   timestamp: '2021-01-02 15:12:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeUpdateRangeSum.test.cpp
-  - test/RangeAddRangeSum.test.cpp
-  - test/HLD_vertex.test.cpp
-  - test/HLD_edge.test.cpp
   - test/HLD_subtree_edge.test.cpp
+  - test/RangeUpdateRangeSum.test.cpp
   - test/RangeAddRangeMin.test.cpp
   - test/RangeUpdateRangeMin.test.cpp
+  - test/HLD_vertex.test.cpp
+  - test/RangeAddRangeSum.test.cpp
+  - test/HLD_edge.test.cpp
 documentation_of: DataStructure/LazySegmentTree.cpp
 layout: document
 redirect_from:

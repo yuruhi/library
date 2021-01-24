@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/DijkstraBuildPath.test.cpp
     title: test/DijkstraBuildPath.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

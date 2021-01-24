@@ -33,6 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Geometric_area_of_intersection_between_two_circles.test.cpp
     title: test/Geometric_area_of_intersection_between_two_circles.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

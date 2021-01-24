@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/BellmanFord.test.cpp
     title: test/BellmanFord.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

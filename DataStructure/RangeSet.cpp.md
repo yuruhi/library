@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RangeSet2.test.cpp
     title: test/RangeSet2.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -119,8 +120,8 @@ data:
   timestamp: '2020-11-16 20:30:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeSet.test.cpp
   - test/RangeSet2.test.cpp
+  - test/RangeSet.test.cpp
 documentation_of: DataStructure/RangeSet.cpp
 layout: document
 redirect_from:

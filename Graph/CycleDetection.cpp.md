@@ -21,6 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/DirectedMinimumSpanningTree.test.cpp
     title: test/DirectedMinimumSpanningTree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -102,11 +103,11 @@ data:
   timestamp: '2021-01-14 21:53:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/DirectedMinimumSpanningTree.test.cpp
-  - test/CycleDetectionVertex_Directed.test.cpp
   - test/CycleDetectionEdge_Directed.test.cpp
   - test/CycleDetectionEdge_Undirected.test.cpp
   - test/CycleDetectionVertex_Undirected.test.cpp
+  - test/DirectedMinimumSpanningTree.test.cpp
+  - test/CycleDetectionVertex_Directed.test.cpp
 documentation_of: Graph/CycleDetection.cpp
 layout: document
 redirect_from:

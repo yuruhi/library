@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: old/RUQRmQ.test.cpp
     title: old/RUQRmQ.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

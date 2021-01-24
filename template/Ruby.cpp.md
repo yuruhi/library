@@ -6,6 +6,7 @@ data:
     path: template/template.cpp
     title: template/template.cpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:

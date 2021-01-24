@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/PersistentQueue.test.cpp
     title: test/PersistentQueue.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

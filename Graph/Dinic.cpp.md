@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Dinic.test.cpp
     title: test/Dinic.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

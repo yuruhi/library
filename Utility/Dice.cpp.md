@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Dice4.test.cpp
     title: test/Dice4.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -112,10 +113,10 @@ data:
   timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Dice1.test.cpp
-  - test/Dice2.test.cpp
-  - test/Dice3.test.cpp
   - test/Dice4.test.cpp
+  - test/Dice1.test.cpp
+  - test/Dice3.test.cpp
+  - test/Dice2.test.cpp
 documentation_of: Utility/Dice.cpp
 layout: document
 redirect_from:

@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Levenshtein.test.cpp
     title: test/Levenshtein.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

@@ -9,6 +9,7 @@ data:
     path: template/template_no_Ruby.cpp
     title: template/template_no_Ruby.cpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:

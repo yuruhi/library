@@ -45,6 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RangeUpdateRangeSum.test.cpp
     title: test/RangeUpdateRangeSum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -72,23 +73,23 @@ data:
   isVerificationFile: false
   path: atcoder/internal_bit.hpp
   requiredBy:
-  - DataStructure/LazySegmentTree.cpp
-  - DataStructure/SegmentTree.cpp
-  - atcoder/convolution.hpp
   - atcoder/segtree.hpp
   - atcoder/lazysegtree.hpp
+  - atcoder/convolution.hpp
+  - DataStructure/LazySegmentTree.cpp
+  - DataStructure/SegmentTree.cpp
   timestamp: '2020-10-30 19:21:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/RangeUpdateRangeSum.test.cpp
-  - test/RangeAddRangeSum.test.cpp
-  - test/HLD_vertex.test.cpp
-  - test/HLD_edge.test.cpp
   - test/HLD_subtree_edge.test.cpp
-  - test/RangeAddRangeMin.test.cpp
-  - test/RangeSumQuery.test.cpp
-  - test/RangeUpdateRangeMin.test.cpp
   - test/RangeMinQuery.test.cpp
+  - test/RangeUpdateRangeSum.test.cpp
+  - test/RangeAddRangeMin.test.cpp
+  - test/RangeUpdateRangeMin.test.cpp
+  - test/RangeSumQuery.test.cpp
+  - test/HLD_vertex.test.cpp
+  - test/RangeAddRangeSum.test.cpp
+  - test/HLD_edge.test.cpp
 documentation_of: atcoder/internal_bit.hpp
 layout: document
 redirect_from:

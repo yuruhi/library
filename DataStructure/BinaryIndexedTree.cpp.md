@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/Inversion.test.cpp
     title: test/Inversion.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -61,9 +62,9 @@ data:
   timestamp: '2020-12-20 09:41:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/BinaryIndexedTree.test.cpp
   - test/Inversion.test.cpp
   - test/EulerTourForEdge.test.cpp
-  - test/BinaryIndexedTree.test.cpp
 documentation_of: DataStructure/BinaryIndexedTree.cpp
 layout: document
 redirect_from:

@@ -9,6 +9,7 @@ data:
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -90,8 +91,8 @@ data:
   isVerificationFile: false
   path: atcoder/internal_scc.hpp
   requiredBy:
-  - atcoder/scc.hpp
   - atcoder/twosat.hpp
+  - atcoder/scc.hpp
   timestamp: '2020-10-30 19:21:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
