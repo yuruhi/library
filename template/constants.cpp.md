@@ -156,8 +156,8 @@ data:
   isVerificationFile: false
   path: template/constants.cpp
   requiredBy:
-  - template/template_no_Ruby.cpp
   - template/template.cpp
+  - template/template_no_Ruby.cpp
   timestamp: '2020-12-21 12:02:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -86,8 +86,8 @@ data:
   timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/EnumerateFibonacci.test.cpp
   - test/Fibonacci.test.cpp
+  - test/EnumerateFibonacci.test.cpp
 documentation_of: Math/Matrix.cpp
 layout: document
 redirect_from:

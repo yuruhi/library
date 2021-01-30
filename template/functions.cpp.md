@@ -117,9 +117,9 @@ data:
   isVerificationFile: false
   path: template/functions.cpp
   requiredBy:
-  - template/template_no_Ruby.cpp
-  - template/template.cpp
   - Math/BabystepGiantstep.cpp
+  - template/template.cpp
+  - template/template_no_Ruby.cpp
   timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

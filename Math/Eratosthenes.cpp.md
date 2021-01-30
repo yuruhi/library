@@ -35,8 +35,8 @@ data:
   timestamp: '2020-11-23 16:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/EnumeratePrimes.test.cpp
   - test/Eratosthenes.test.cpp
+  - test/EnumeratePrimes.test.cpp
 documentation_of: Math/Eratosthenes.cpp
 layout: document
 redirect_from:
