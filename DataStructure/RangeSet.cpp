@@ -45,6 +45,9 @@ public:
 		ranges.smplace(MAX, MAX);
 		size_m = 0;
 	}
+	const set<range_type>& data() const {
+		return ranges;
+	}
 	bool contains(value_type l, value_type r) const {
 		assert(l <= r);
 		auto [L, R] = prev_range(l);
@@ -56,27 +59,27 @@ public:
 	value_type insert(value_type l, value_type r) {
 		assert(l <= r);
 		auto it = prev_range_iterator(l);
-		value_type erased_count = 0;
+		value_type inserted_count = 0;
 		if (l < it->first || it->second < r) {
 			if (it->first <= l && l <= it->second + 1) {
 				l = it->first;
-				erased_count += it->second - it->first + 1;
+				inserted_count -= it->second - it->first + 1;
 				it = ranges.erase(it);
 			} else {
 				it = next(it);
 			}
 			while (r > it->second) {
-				erased_count += it->second - it->first + 1;
+				inserted_count -= it->second - it->first + 1;
 				it = ranges.erase(it);
 			}
 			if (it->first - 1 <= r && r <= it->second) {
-				erased_count += it->second - it->first + 1;
 				r = it->second;
+				inserted_count -= it->second - it->first + 1;
 				ranges.erase(it);
 			}
+			inserted_count += r - l + 1;
 			ranges.emplace(l, r);
 		}
-		value_type inserted_count = r - l + 1 - erased_count;
 		size_m += inserted_count;
 		return inserted_count;
 	}
