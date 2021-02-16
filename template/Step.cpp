@@ -3,7 +3,6 @@
 #include <iterator>
 #include <algorithm>
 #include <cassert>
-#include <library/dump.hpp>
 
 template <class T> class step_iterator {
 public:
