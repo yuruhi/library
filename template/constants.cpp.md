@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':warning:'
     path: template/template_no_Ruby.cpp
     title: template/template_no_Ruby.cpp
   _extendedVerifiedWith: []
@@ -29,7 +26,7 @@ data:
 
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 
-    #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
+    #define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
@@ -98,7 +95,7 @@ data:
 
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 
-    #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
+    #define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
@@ -156,9 +153,8 @@ data:
   isVerificationFile: false
   path: template/constants.cpp
   requiredBy:
-  - template/template.cpp
   - template/template_no_Ruby.cpp
-  timestamp: '2020-12-21 12:02:46+09:00'
+  timestamp: '2021-02-15 18:36:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/constants.cpp

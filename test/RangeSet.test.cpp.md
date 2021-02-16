@@ -28,48 +28,48 @@ data:
     \t};\n\tsize_t size() const {\n\t\treturn size_m;\n\t}\n\tsize_t count_ranges()\
     \ const {\n\t\treturn ranges.size() - 2;\n\t}\n\tbool empty() const {\n\t\treturn\
     \ size() == 0;\n\t}\n\tvoid clear() {\n\t\tranges.clear();\n\t\tranges.emplace(MIN,\
-    \ MIN);\n\t\tranges.smplace(MAX, MAX);\n\t\tsize_m = 0;\n\t}\n\tbool contains(value_type\
-    \ l, value_type r) const {\n\t\tassert(l <= r);\n\t\tauto [L, R] = prev_range(l);\n\
-    \t\treturn L <= l && r <= R;\n\t}\n\tbool contains(value_type x) const {\n\t\t\
-    return contains(x, x);\n\t}\n\tvalue_type insert(value_type l, value_type r) {\n\
-    \t\tassert(l <= r);\n\t\tauto it = prev_range_iterator(l);\n\t\tvalue_type erased_count\
-    \ = 0;\n\t\tif (l < it->first || it->second < r) {\n\t\t\tif (it->first <= l &&\
-    \ l <= it->second + 1) {\n\t\t\t\tl = it->first;\n\t\t\t\terased_count += it->second\
+    \ MIN);\n\t\tranges.smplace(MAX, MAX);\n\t\tsize_m = 0;\n\t}\n\tconst set<range_type>&\
+    \ data() const {\n\t\treturn ranges;\n\t}\n\tbool contains(value_type l, value_type\
+    \ r) const {\n\t\tassert(l <= r);\n\t\tauto [L, R] = prev_range(l);\n\t\treturn\
+    \ L <= l && r <= R;\n\t}\n\tbool contains(value_type x) const {\n\t\treturn contains(x,\
+    \ x);\n\t}\n\tvalue_type insert(value_type l, value_type r) {\n\t\tassert(l <=\
+    \ r);\n\t\tauto it = prev_range_iterator(l);\n\t\tvalue_type inserted_count =\
+    \ 0;\n\t\tif (l < it->first || it->second < r) {\n\t\t\tif (it->first <= l &&\
+    \ l <= it->second + 1) {\n\t\t\t\tl = it->first;\n\t\t\t\tinserted_count -= it->second\
     \ - it->first + 1;\n\t\t\t\tit = ranges.erase(it);\n\t\t\t} else {\n\t\t\t\tit\
-    \ = next(it);\n\t\t\t}\n\t\t\twhile (r > it->second) {\n\t\t\t\terased_count +=\
-    \ it->second - it->first + 1;\n\t\t\t\tit = ranges.erase(it);\n\t\t\t}\n\t\t\t\
-    if (it->first - 1 <= r && r <= it->second) {\n\t\t\t\terased_count += it->second\
-    \ - it->first + 1;\n\t\t\t\tr = it->second;\n\t\t\t\tranges.erase(it);\n\t\t\t\
-    }\n\t\t\tranges.emplace(l, r);\n\t\t}\n\t\tvalue_type inserted_count = r - l +\
-    \ 1 - erased_count;\n\t\tsize_m += inserted_count;\n\t\treturn inserted_count;\n\
-    \t}\n\tvalue_type insert(value_type x) {\n\t\treturn insert(x, x);\n\t}\n\tvalue_type\
-    \ erase(value_type l, value_type r) {\n\t\tassert(l <= r);\n\t\tauto it = prev_range_iterator(l);\n\
-    \t\tvalue_type erased_count = 0;\n\t\tif (it->first <= l && r <= it->second) {\n\
-    \t\t\tif (it->first < l) {\n\t\t\t\tranges.emplace(it->first, l - 1);\n\t\t\t\
-    }\n\t\t\tif (r < it->second) {\n\t\t\t\tranges.emplace(r + 1, it->second);\n\t\
-    \t\t}\n\t\t\tranges.erase(it);\n\t\t\terased_count = r - l + 1;\n\t\t} else {\n\
-    \t\t\tif (it->first <= l && l <= it->second) {\n\t\t\t\terased_count += it->second\
-    \ - l + 1;\n\t\t\t\tif (it->first < l) {\n\t\t\t\t\tranges.emplace(it->first,\
-    \ l - 1);\n\t\t\t\t}\n\t\t\t\tit = ranges.erase(it);\n\t\t\t} else {\n\t\t\t\t\
-    it = next(it);\n\t\t\t}\n\t\t\twhile (it->second <= r) {\n\t\t\t\terased_count\
-    \ += it->second - it->first + 1;\n\t\t\t\tit = ranges.erase(it);\n\t\t\t}\n\t\t\
-    \tif (it->first <= r && r <= it->second) {\n\t\t\t\terased_count += r - it->first\
-    \ + 1;\n\t\t\t\tif (r < it->second) {\n\t\t\t\t\tranges.emplace(r + 1, it->second);\n\
-    \t\t\t\t}\n\t\t\t\tranges.erase(it);\n\t\t\t}\n\t\t}\n\t\tsize_m -= erased_count;\n\
-    \t\treturn erased_count;\n\t}\n\tvalue_type erase(value_type x) {\n\t\treturn\
-    \ erase(x, x);\n\t}\n\tvalue_type find_next(value_type x) const {\n\t\tauto [l,\
-    \ r] = prev_range(x);\n\t\tif (l <= x && x <= r) {\n\t\t\treturn x;\n\t\t} else\
-    \ {\n\t\t\treturn l;\n\t\t}\n\t}\n\tvalue_type mex(value_type x) const {\n\t\t\
-    auto [l, r] = prev_range(x);\n\t\tif (l <= x && x <= r) {\n\t\t\treturn r + 1;\n\
-    \t\t} else {\n\t\t\treturn x;\n\t\t}\n\t}\n\toptional<range_type> find_range(value_type\
-    \ x) const {\n\t\trange_type r = prev_range(x);\n\t\tif (r.first <= x && x <=\
-    \ r.second) {\n\t\t\treturn r;\n\t\t} else {\n\t\t\treturn nullopt;\n\t\t}\n\t\
-    }\n};\n#line 3 \"test/RangeSet.test.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <map>\n#include <tuple>\n#include <algorithm>\nusing namespace std;\n\
-    \nstruct Data {\n\tbool query;\n\tint a, b, i;\n\tData() = default;\n\tData(bool\
-    \ _q, int _a, int _b, int _i) : query(_q), a(_a), b(_b), i(_i) {}\n\tfriend bool\
-    \ operator<(const Data& d1, const Data& d2) {\n\t\treturn !d1.query < !d2.query;\n\
-    \t}\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \ = next(it);\n\t\t\t}\n\t\t\twhile (r > it->second) {\n\t\t\t\tinserted_count\
+    \ -= it->second - it->first + 1;\n\t\t\t\tit = ranges.erase(it);\n\t\t\t}\n\t\t\
+    \tif (it->first - 1 <= r && r <= it->second) {\n\t\t\t\tr = it->second;\n\t\t\t\
+    \tinserted_count -= it->second - it->first + 1;\n\t\t\t\tranges.erase(it);\n\t\
+    \t\t}\n\t\t\tinserted_count += r - l + 1;\n\t\t\tranges.emplace(l, r);\n\t\t}\n\
+    \t\tsize_m += inserted_count;\n\t\treturn inserted_count;\n\t}\n\tvalue_type insert(value_type\
+    \ x) {\n\t\treturn insert(x, x);\n\t}\n\tvalue_type erase(value_type l, value_type\
+    \ r) {\n\t\tassert(l <= r);\n\t\tauto it = prev_range_iterator(l);\n\t\tvalue_type\
+    \ erased_count = 0;\n\t\tif (it->first <= l && r <= it->second) {\n\t\t\tif (it->first\
+    \ < l) {\n\t\t\t\tranges.emplace(it->first, l - 1);\n\t\t\t}\n\t\t\tif (r < it->second)\
+    \ {\n\t\t\t\tranges.emplace(r + 1, it->second);\n\t\t\t}\n\t\t\tranges.erase(it);\n\
+    \t\t\terased_count = r - l + 1;\n\t\t} else {\n\t\t\tif (it->first <= l && l <=\
+    \ it->second) {\n\t\t\t\terased_count += it->second - l + 1;\n\t\t\t\tif (it->first\
+    \ < l) {\n\t\t\t\t\tranges.emplace(it->first, l - 1);\n\t\t\t\t}\n\t\t\t\tit =\
+    \ ranges.erase(it);\n\t\t\t} else {\n\t\t\t\tit = next(it);\n\t\t\t}\n\t\t\twhile\
+    \ (it->second <= r) {\n\t\t\t\terased_count += it->second - it->first + 1;\n\t\
+    \t\t\tit = ranges.erase(it);\n\t\t\t}\n\t\t\tif (it->first <= r && r <= it->second)\
+    \ {\n\t\t\t\terased_count += r - it->first + 1;\n\t\t\t\tif (r < it->second) {\n\
+    \t\t\t\t\tranges.emplace(r + 1, it->second);\n\t\t\t\t}\n\t\t\t\tranges.erase(it);\n\
+    \t\t\t}\n\t\t}\n\t\tsize_m -= erased_count;\n\t\treturn erased_count;\n\t}\n\t\
+    value_type erase(value_type x) {\n\t\treturn erase(x, x);\n\t}\n\tvalue_type find_next(value_type\
+    \ x) const {\n\t\tauto [l, r] = prev_range(x);\n\t\tif (l <= x && x <= r) {\n\t\
+    \t\treturn x;\n\t\t} else {\n\t\t\treturn l;\n\t\t}\n\t}\n\tvalue_type mex(value_type\
+    \ x) const {\n\t\tauto [l, r] = prev_range(x);\n\t\tif (l <= x && x <= r) {\n\t\
+    \t\treturn r + 1;\n\t\t} else {\n\t\t\treturn x;\n\t\t}\n\t}\n\toptional<range_type>\
+    \ find_range(value_type x) const {\n\t\trange_type r = prev_range(x);\n\t\tif\
+    \ (r.first <= x && x <= r.second) {\n\t\t\treturn r;\n\t\t} else {\n\t\t\treturn\
+    \ nullopt;\n\t\t}\n\t}\n};\n#line 3 \"test/RangeSet.test.cpp\"\n#include <iostream>\n\
+    #include <vector>\n#include <map>\n#include <tuple>\n#include <algorithm>\nusing\
+    \ namespace std;\n\nstruct Data {\n\tbool query;\n\tint a, b, i;\n\tData() = default;\n\
+    \tData(bool _q, int _a, int _b, int _i) : query(_q), a(_a), b(_b), i(_i) {}\n\t\
+    friend bool operator<(const Data& d1, const Data& d2) {\n\t\treturn !d1.query\
+    \ < !d2.query;\n\t}\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \n\tint n, m, q;\n\tcin >> n >> m >> q;\n\tmap<int, vector<Data>> data_map;\n\t\
     for (int i = 0; i < m; ++i) {\n\t\tint d, a, b;\n\t\tcin >> d >> a >> b;\n\t\t\
     data_map[d].emplace_back(false, a, b, i);\n\t}\n\tfor (int i = 0; i < q; ++i)\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/RangeSet.test.cpp
   requiredBy: []
-  timestamp: '2020-11-16 20:30:17+09:00'
+  timestamp: '2021-02-15 18:37:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/RangeSet.test.cpp

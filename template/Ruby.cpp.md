@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
@@ -282,8 +279,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: template/Ruby.cpp
-  requiredBy:
-  - template/template.cpp
+  requiredBy: []
   timestamp: '2021-01-01 17:06:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':warning:'
     path: template/template_no_Ruby.cpp
     title: template/template_no_Ruby.cpp
   _extendedVerifiedWith:
@@ -154,7 +151,6 @@ data:
   isVerificationFile: false
   path: template/Input.cpp
   requiredBy:
-  - template/template.cpp
   - template/template_no_Ruby.cpp
   timestamp: '2020-11-29 15:45:37+09:00'
   verificationStatus: LIBRARY_ALL_AC

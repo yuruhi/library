@@ -78,8 +78,8 @@ data:
   timestamp: '2021-01-08 17:47:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Dijkstra.test.cpp
   - test/ChinesePostman.test.cpp
+  - test/Dijkstra.test.cpp
 documentation_of: Graph/Dijkstra.cpp
 layout: document
 redirect_from:

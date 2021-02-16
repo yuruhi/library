@@ -78,13 +78,13 @@ data:
   isVerificationFile: false
   path: DataStructure/PersistentArray.cpp
   requiredBy:
-  - DataStructure/PersistentQueue.cpp
   - DataStructure/PersistentUnionFind.cpp
+  - DataStructure/PersistentQueue.cpp
   timestamp: '2020-11-21 14:30:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/PersistentUnionFind.test.cpp
   - test/PersistentQueue.test.cpp
+  - test/PersistentUnionFind.test.cpp
 documentation_of: DataStructure/PersistentArray.cpp
 layout: document
 redirect_from:
