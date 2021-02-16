@@ -62,7 +62,7 @@ public:
 	friend step_iterator operator-(difference_type n, step_iterator i) {
 		return i - n;
 	}
-	difference_type operator-(const step_iterator& other) {
+	difference_type operator-(const step_iterator& other) const {
 		assert(start_m == other.start_m);
 		assert(size_m == other.size_m);
 		assert(step_m == other.step_m);
