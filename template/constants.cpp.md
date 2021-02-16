@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: template/template.cpp
+    title: template/template.cpp
+  - icon: ':warning:'
     path: template/template_no_Ruby.cpp
     title: template/template_no_Ruby.cpp
   _extendedVerifiedWith: []
@@ -154,6 +157,7 @@ data:
   path: template/constants.cpp
   requiredBy:
   - template/template_no_Ruby.cpp
+  - template/template.cpp
   timestamp: '2021-02-15 18:36:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

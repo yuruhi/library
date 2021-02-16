@@ -6,6 +6,9 @@ data:
     path: Math/BabystepGiantstep.cpp
     title: Math/BabystepGiantstep.cpp
   - icon: ':warning:'
+    path: template/template.cpp
+    title: template/template.cpp
+  - icon: ':warning:'
     path: template/template_no_Ruby.cpp
     title: template/template_no_Ruby.cpp
   _extendedVerifiedWith:
@@ -115,6 +118,7 @@ data:
   path: template/functions.cpp
   requiredBy:
   - template/template_no_Ruby.cpp
+  - template/template.cpp
   - Math/BabystepGiantstep.cpp
   timestamp: '2021-01-01 17:28:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
