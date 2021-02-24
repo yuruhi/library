@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/DirectedMinimumSpanningTree.cpp
     title: Graph/DirectedMinimumSpanningTree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Kruskal.cpp
     title: Graph/Kruskal.cpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/DirectedMinimumSpanningTree.test.cpp
     title: test/DirectedMinimumSpanningTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Kruskal.test.cpp
     title: test/Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/WarashallFloyd.test.cpp
     title: test/WarashallFloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -134,7 +134,7 @@ data:
   - Graph/WarashallFloyd.cpp
   - Graph/DiameterPath.cpp
   timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp
   - test/TravelingSalesmanProblem.test.cpp

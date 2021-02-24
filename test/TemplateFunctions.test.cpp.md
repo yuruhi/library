@@ -61,7 +61,15 @@ data:
     \ N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\ntemplate <class\
     \ T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {\n\
     \tvector s(rbegin(sizes), rend(sizes));\n\treturn internal::make_vector<T, N>(s,\
-    \ init);\n}\n#line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\n\
+    \ init);\n}\n\nnamespace lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn\
+    \ c - '0';\n\t};\n\tauto lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t\
+    };\n\tauto upper_to_int = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto is_odd\
+    \ = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even = [](auto n) {\n\
+    \t\treturn n % 2 == 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\
+    \t};\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
+    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\ttemplate <class T> auto equal_to(const\
+    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  //\
+    \ namespace lambda\n#line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\n\
     using namespace std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\t\
     static_assert(div_ceil(10, 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\
     \tstatic_assert(div_ceil(12, 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\
@@ -161,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-01-04 18:31:22+09:00'
+  timestamp: '2021-02-24 21:59:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

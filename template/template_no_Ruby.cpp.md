@@ -195,7 +195,15 @@ data:
     \t\t\treturn vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}\
     \  // namespace internal\ntemplate <class T, size_t N> auto make_vector(const\
     \ int (&sizes)[N], const T& init = T()) {\n\tvector s(rbegin(sizes), rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n#line 7 \"template/template_no_Ruby.cpp\"\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
+    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
+    \t\treturn c - 'A';\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\
+    \t};\n\tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto increment\
+    \ = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto n) {\n\t\t\
+    return --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn n;\n\t\
+    };\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\
+    \t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n#line 7 \"template/template_no_Ruby.cpp\"\
     \n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define\
     \ LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr\
     \ T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\
@@ -214,7 +222,7 @@ data:
   isVerificationFile: false
   path: template/template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-02-16 19:52:24+09:00'
+  timestamp: '2021-02-24 21:59:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template_no_Ruby.cpp
