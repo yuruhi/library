@@ -2,50 +2,70 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Kruskal.cpp
     title: Graph/Kruskal.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/Kruskal.test.cpp
     title: test/Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/UnionFind.test.cpp
     title: test/UnionFind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/UnionFind.cpp\"\n#include <vector>\n#include\
-    \ <utility>\nusing namespace std;\n\nclass UnionFind {\n\tvector<int> data_m;\n\
-    \tint count_components_m;\n\npublic:\n\tUnionFind(int n = 0) {\n\t\tinit(n);\n\
-    \t}\n\tvoid init(int n) {\n\t\tdata_m.assign(n, -1);\n\t\tcount_components_m =\
-    \ n;\n\t}\n\tint root(int x) {\n\t\treturn data_m[x] < 0 ? x : data_m[x] = root(data_m[x]);\n\
+    \ <utility>\n\nclass UnionFind {\n\tstd::size_t n;\n\tstd::vector<int> data_m;\n\
+    \tint count_components_m;\n\npublic:\n\tUnionFind(int _n = 0) {\n\t\tinit(_n);\n\
+    \t}\n\tvoid init(int _n) {\n\t\tn = _n;\n\t\tdata_m.assign(n, -1);\n\t\tcount_components_m\
+    \ = n;\n\t}\n\tint root(int x) {\n\t\treturn data_m[x] < 0 ? x : data_m[x] = root(data_m[x]);\n\
     \t}\n\tbool same(int x, int y) {\n\t\treturn root(x) == root(y);\n\t}\n\tbool\
     \ unite(int x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif (x == y) {\n\
-    \t\t\treturn false;\n\t\t}\n\t\tif (data_m[x] > data_m[y]) {\n\t\t\tswap(x, y);\n\
-    \t\t}\n\t\tdata_m[x] += data_m[y];\n\t\tdata_m[y] = x;\n\t\tcount_components_m--;\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif (data_m[x] > data_m[y]) {\n\t\t\tstd::swap(x,\
+    \ y);\n\t\t}\n\t\tdata_m[x] += data_m[y];\n\t\tdata_m[y] = x;\n\t\tcount_components_m--;\n\
     \t\treturn true;\n\t}\n\tint size(int x) {\n\t\treturn -data_m[root(x)];\n\t}\n\
-    \tint count_components() const {\n\t\treturn count_components_m;\n\t}\n};\n"
-  code: "#pragma once\n#include <vector>\n#include <utility>\nusing namespace std;\n\
-    \nclass UnionFind {\n\tvector<int> data_m;\n\tint count_components_m;\n\npublic:\n\
-    \tUnionFind(int n = 0) {\n\t\tinit(n);\n\t}\n\tvoid init(int n) {\n\t\tdata_m.assign(n,\
-    \ -1);\n\t\tcount_components_m = n;\n\t}\n\tint root(int x) {\n\t\treturn data_m[x]\
-    \ < 0 ? x : data_m[x] = root(data_m[x]);\n\t}\n\tbool same(int x, int y) {\n\t\
-    \treturn root(x) == root(y);\n\t}\n\tbool unite(int x, int y) {\n\t\tx = root(x);\n\
-    \t\ty = root(y);\n\t\tif (x == y) {\n\t\t\treturn false;\n\t\t}\n\t\tif (data_m[x]\
-    \ > data_m[y]) {\n\t\t\tswap(x, y);\n\t\t}\n\t\tdata_m[x] += data_m[y];\n\t\t\
-    data_m[y] = x;\n\t\tcount_components_m--;\n\t\treturn true;\n\t}\n\tint size(int\
-    \ x) {\n\t\treturn -data_m[root(x)];\n\t}\n\tint count_components() const {\n\t\
-    \treturn count_components_m;\n\t}\n};\n"
+    \tint count_components() const {\n\t\treturn count_components_m;\n\t}\n\tstd::vector<int>\
+    \ roots() {\n\t\tstd::vector<int> result;\n\t\tfor (std::size_t i = 0; i < n;\
+    \ ++i) {\n\t\t\tif (root(i) == i) result.push_back(i);\n\t\t}\n\t\treturn result;\n\
+    \t}\n\tstd::vector<std::vector<int>> groups() {\n\t\tstd::vector<int> root_buf(n),\
+    \ group_size(n);\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\troot_buf[i]\
+    \ = root(i);\n\t\t\tgroup_size[root_buf[i]]++;\n\t\t}\n\t\tstd::vector<std::vector<int>>\
+    \ result(n);\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\tresult[i].reserve(group_size[i]);\n\
+    \t\t}\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\tresult[root_buf[i]].push_back(i);\n\
+    \t\t}\n\t\tresult.erase(std::remove_if(result.begin(), result.end(),\n\t\t   \
+    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
+    \t\t             result.end());\n\t\treturn result;\n\t}\n};\n"
+  code: "#pragma once\n#include <vector>\n#include <utility>\n\nclass UnionFind {\n\
+    \tstd::size_t n;\n\tstd::vector<int> data_m;\n\tint count_components_m;\n\npublic:\n\
+    \tUnionFind(int _n = 0) {\n\t\tinit(_n);\n\t}\n\tvoid init(int _n) {\n\t\tn =\
+    \ _n;\n\t\tdata_m.assign(n, -1);\n\t\tcount_components_m = n;\n\t}\n\tint root(int\
+    \ x) {\n\t\treturn data_m[x] < 0 ? x : data_m[x] = root(data_m[x]);\n\t}\n\tbool\
+    \ same(int x, int y) {\n\t\treturn root(x) == root(y);\n\t}\n\tbool unite(int\
+    \ x, int y) {\n\t\tx = root(x);\n\t\ty = root(y);\n\t\tif (x == y) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tif (data_m[x] > data_m[y]) {\n\t\t\tstd::swap(x, y);\n\t\t\
+    }\n\t\tdata_m[x] += data_m[y];\n\t\tdata_m[y] = x;\n\t\tcount_components_m--;\n\
+    \t\treturn true;\n\t}\n\tint size(int x) {\n\t\treturn -data_m[root(x)];\n\t}\n\
+    \tint count_components() const {\n\t\treturn count_components_m;\n\t}\n\tstd::vector<int>\
+    \ roots() {\n\t\tstd::vector<int> result;\n\t\tfor (std::size_t i = 0; i < n;\
+    \ ++i) {\n\t\t\tif (root(i) == i) result.push_back(i);\n\t\t}\n\t\treturn result;\n\
+    \t}\n\tstd::vector<std::vector<int>> groups() {\n\t\tstd::vector<int> root_buf(n),\
+    \ group_size(n);\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\troot_buf[i]\
+    \ = root(i);\n\t\t\tgroup_size[root_buf[i]]++;\n\t\t}\n\t\tstd::vector<std::vector<int>>\
+    \ result(n);\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\tresult[i].reserve(group_size[i]);\n\
+    \t\t}\n\t\tfor (std::size_t i = 0; i < n; i++) {\n\t\t\tresult[root_buf[i]].push_back(i);\n\
+    \t\t}\n\t\tresult.erase(std::remove_if(result.begin(), result.end(),\n\t\t   \
+    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
+    \t\t             result.end());\n\t\treturn result;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: DataStructure/UnionFind.cpp
   requiredBy:
   - Graph/Kruskal.cpp
-  timestamp: '2020-11-15 19:06:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-02-24 20:48:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/UnionFind.test.cpp
   - test/Kruskal.test.cpp

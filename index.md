@@ -50,7 +50,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/SegmentTree.cpp
       title: DataStructure/SegmentTree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: DataStructure/UnionFind.cpp
       title: DataStructure/UnionFind.cpp
     - icon: ':heavy_check_mark:'
@@ -147,13 +147,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/FordFulkerson.cpp
       title: Graph/FordFulkerson.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
     - icon: ':heavy_check_mark:'
       path: Graph/HeavyLightDecomposition.cpp
       title: Graph/HeavyLightDecomposition.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/Kruskal.cpp
       title: Graph/Kruskal.cpp
     - icon: ':heavy_check_mark:'
@@ -675,7 +675,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Knapsack01.test.cpp
       title: test/Knapsack01.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Kruskal.test.cpp
       title: test/Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -756,7 +756,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/TravelingSalesmanProblem.test.cpp
       title: test/TravelingSalesmanProblem.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/UnionFind.test.cpp
       title: test/UnionFind.test.cpp
     - icon: ':heavy_check_mark:'

@@ -129,14 +129,14 @@ data:
     struct NoneOf_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) return\
     \ false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} NoneOf;\n\nstruct Tally_impl\
-    \ {\n\ttemplate <class F> auto operator()(size_t max_val) {\n\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\tvector<size_t> result(max_val);\n\t\t\tfor (const auto& i : v) {\n\
-    \t\t\t\tresult[static_cast<size_t>(i)]++;\n\t\t\t}\n\t\t\treturn result;\n\t\t\
-    });\n\t}\n\ttemplate <class T, class value_type = typename T::value_type>\n\t\
-    friend auto operator|(const T& v, Tally_impl& c) {\n\t\tmap<value_type, size_t>\
-    \ result;\n\t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Tally;\n\ntemplate <class T> auto operator*(const vector<T>&\
-    \ a, size_t n) {\n\tT result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
+    \ {\n\tauto operator()(size_t max_val) {\n\t\treturn Callable([&](auto v) {\n\t\
+    \t\tvector<size_t> result(max_val);\n\t\t\tfor (const auto& i : v) {\n\t\t\t\t\
+    result[static_cast<size_t>(i)]++;\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t\
+    }\n\ttemplate <class T, class value_type = typename T::value_type>\n\tfriend auto\
+    \ operator|(const T& v, Tally_impl& c) {\n\t\tmap<value_type, size_t> result;\n\
+    \t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn result;\n\
+    \t}\n} Tally;\n\ntemplate <class T> auto operator*(const vector<T>& a, size_t\
+    \ n) {\n\tT result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
     \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(string a, size_t\
     \ n) {\n\tstring result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult += a;\n\
     \t}\n\treturn result;\n}\ntemplate <class T, class U> auto& operator<<(vector<T>&\
@@ -263,14 +263,14 @@ data:
     struct NoneOf_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) return\
     \ false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} NoneOf;\n\nstruct Tally_impl\
-    \ {\n\ttemplate <class F> auto operator()(size_t max_val) {\n\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\tvector<size_t> result(max_val);\n\t\t\tfor (const auto& i : v) {\n\
-    \t\t\t\tresult[static_cast<size_t>(i)]++;\n\t\t\t}\n\t\t\treturn result;\n\t\t\
-    });\n\t}\n\ttemplate <class T, class value_type = typename T::value_type>\n\t\
-    friend auto operator|(const T& v, Tally_impl& c) {\n\t\tmap<value_type, size_t>\
-    \ result;\n\t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Tally;\n\ntemplate <class T> auto operator*(const vector<T>&\
-    \ a, size_t n) {\n\tT result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
+    \ {\n\tauto operator()(size_t max_val) {\n\t\treturn Callable([&](auto v) {\n\t\
+    \t\tvector<size_t> result(max_val);\n\t\t\tfor (const auto& i : v) {\n\t\t\t\t\
+    result[static_cast<size_t>(i)]++;\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t\
+    }\n\ttemplate <class T, class value_type = typename T::value_type>\n\tfriend auto\
+    \ operator|(const T& v, Tally_impl& c) {\n\t\tmap<value_type, size_t> result;\n\
+    \t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn result;\n\
+    \t}\n} Tally;\n\ntemplate <class T> auto operator*(const vector<T>& a, size_t\
+    \ n) {\n\tT result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
     \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(string a, size_t\
     \ n) {\n\tstring result;\n\tfor (size_t i = 0; i < n; ++i) {\n\t\tresult += a;\n\
     \t}\n\treturn result;\n}\ntemplate <class T, class U> auto& operator<<(vector<T>&\
@@ -284,7 +284,7 @@ data:
   path: template/Ruby.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2021-01-01 17:06:23+09:00'
+  timestamp: '2021-02-24 20:48:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Ruby.cpp
