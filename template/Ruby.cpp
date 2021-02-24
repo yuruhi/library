@@ -330,7 +330,7 @@ struct NoneOf_impl {
 } NoneOf;
 
 struct Tally_impl {
-	template <class F> auto operator()(size_t max_val) {
+	auto operator()(size_t max_val) {
 		return Callable([&](auto v) {
 			vector<size_t> result(max_val);
 			for (const auto& i : v) {
