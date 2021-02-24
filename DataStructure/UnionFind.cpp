@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <utility>
+#include <algorithm>
 
 class UnionFind {
 	std::size_t n;
@@ -45,7 +46,7 @@ public:
 	std::vector<int> roots() {
 		std::vector<int> result;
 		for (std::size_t i = 0; i < n; ++i) {
-			if (root(i) == i) result.push_back(i);
+			if (root(i) == static_cast<int>(i)) result.push_back(i);
 		}
 		return result;
 	}
