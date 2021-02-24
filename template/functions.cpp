@@ -124,3 +124,35 @@ template <class T, size_t N> auto make_vector(const int (&sizes)[N], const T& in
 	vector s(rbegin(sizes), rend(sizes));
 	return internal::make_vector<T, N>(s, init);
 }
+
+namespace lambda {
+	auto char_to_int = [](char c) {
+		return c - '0';
+	};
+	auto lower_to_int = [](char c) {
+		return c - 'a';
+	};
+	auto upper_to_int = [](char c) {
+		return c - 'A';
+	};
+	auto is_odd = [](auto n) {
+		return n % 2 == 1;
+	};
+	auto is_even = [](auto n) {
+		return n % 2 == 0;
+	};
+	auto increment = [](auto n) {
+		return ++n;
+	};
+	auto decrement = [](auto n) {
+		return --n;
+	};
+	auto yield_self = [](const auto& n) {
+		return n;
+	};
+	template <class T> auto equal_to(const T& x) {
+		return [x](auto y) {
+			return x == y;
+		};
+	}
+}  // namespace lambda
