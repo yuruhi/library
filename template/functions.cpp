@@ -150,6 +150,17 @@ namespace lambda {
 	auto yield_self = [](const auto& n) {
 		return n;
 	};
+	auto first = [](const auto& n) {
+		return n.first;
+	};
+	auto second = [](const auto& n) {
+		return n.second;
+	};
+	template <class T> auto cast() {
+		return [](const auto& n) {
+			return static_cast<T>(n);
+		};
+	};
 	template <class T> auto equal_to(const T& x) {
 		return [x](auto y) {
 			return x == y;
