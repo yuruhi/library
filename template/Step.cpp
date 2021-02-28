@@ -131,11 +131,11 @@ public:
 		return result;
 	}
 };
-template <class T> constexpr auto upto(T from, T to) {
-	return Step<T>(from, to - from + 1, 1);
+template <class T> constexpr auto upto(T from, T to, bool exclusive = true) {
+	return Step<T>(from, to - from + exclusive, 1);
 }
-template <class T> constexpr auto downto(T from, T to) {
-	return Step<T>(from, from - to + 1, -1);
+template <class T> constexpr auto downto(T from, T to, bool exclusive = true) {
+	return Step<T>(from, from - to + exclusive, -1);
 }
 template <class T> constexpr auto times(T n, bool exclusive = false) {
 	return Step<T>(0, n + static_cast<T>(exclusive), 1);

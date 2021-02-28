@@ -141,6 +141,12 @@ namespace lambda {
 	auto is_even = [](auto n) {
 		return n % 2 == 0;
 	};
+	auto is_positive = [](auto n) {
+		return n > 0;
+	};
+	auto is_negative = [](auto n) {
+		return n < 0;
+	};
 	auto increment = [](auto n) {
 		return ++n;
 	};
