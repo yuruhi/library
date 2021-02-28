@@ -201,10 +201,11 @@ data:
     \ - 1) / 2);\n\t}\n\toperator std::vector<value_type>() const {\n\t\treturn to_a();\n\
     \t}\n\tauto to_a() const {\n\t\tstd::vector<value_type> result;\n\t\tresult.reserve(size());\n\
     \t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\t\t}\n\t\treturn result;\n\
-    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to) {\n\treturn Step<T>(from,\
-    \ to - from + 1, 1);\n}\ntemplate <class T> constexpr auto downto(T from, T to)\
-    \ {\n\treturn Step<T>(from, from - to + 1, -1);\n}\ntemplate <class T> constexpr\
-    \ auto times(T n, bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
+    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to, bool exclusive =\
+    \ true) {\n\treturn Step<T>(from, to - from + exclusive, 1);\n}\ntemplate <class\
+    \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
+    \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
+    \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
     \ 1);\n}\n#line 8 \"template/Ruby.cpp\"\nusing namespace std;\n\ntemplate <class\
     \ F> struct Callable {\n\tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate\
     \ <class T, class F> auto operator|(const T& v, const Callable<F>& c) {\n\treturn\
@@ -386,14 +387,19 @@ data:
     \ c - '0';\n\t};\n\tauto lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t\
     };\n\tauto upper_to_int = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto is_odd\
     \ = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even = [](auto n) {\n\
-    \t\treturn n % 2 == 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\
-    \t};\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\ttemplate <class T> auto equal_to(const\
-    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  //\
-    \ namespace lambda\n#line 9 \"template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
-    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
-    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
-    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
+    \t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n) {\n\t\treturn n\
+    \ > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n < 0;\n\t};\n\tauto\
+    \ increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto\
+    \ n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn\
+    \ n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t};\n\t\
+    auto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate <class\
+    \ T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n#line 9 \"\
+    template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
+    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
+    \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
+    \ oj;\n#else\n\treturn local;\n#endif\n}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./constants.cpp\"\n#include\
     \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./Step.cpp\"\n#include\
     \ \"./Ruby.cpp\"\n#include \"./functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
@@ -410,7 +416,7 @@ data:
   isVerificationFile: false
   path: template/template.cpp
   requiredBy: []
-  timestamp: '2021-02-24 21:59:43+09:00'
+  timestamp: '2021-02-28 13:28:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cpp

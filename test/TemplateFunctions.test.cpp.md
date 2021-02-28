@@ -65,17 +65,22 @@ data:
     \ c - '0';\n\t};\n\tauto lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t\
     };\n\tauto upper_to_int = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto is_odd\
     \ = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even = [](auto n) {\n\
-    \t\treturn n % 2 == 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\
-    \t};\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\ttemplate <class T> auto equal_to(const\
-    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  //\
-    \ namespace lambda\n#line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\n\
-    using namespace std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\t\
-    static_assert(div_ceil(10, 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\
-    \tstatic_assert(div_ceil(12, 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\
-    \tstatic_assert(div_ceil(1000000000000000000ll, 3) == 333333333333333334ll);\n\
-    \tstatic_assert(div_ceil(3, 1000000000000000000ll) == 1);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
-    \ 300000000000000000) == 4);\n\n\tstatic_assert(div_ceil2(9, 3) == 9);\n\tstatic_assert(div_ceil2(10,\
+    \t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n) {\n\t\treturn n\
+    \ > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n < 0;\n\t};\n\tauto\
+    \ increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto\
+    \ n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn\
+    \ n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t};\n\t\
+    auto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate <class\
+    \ T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n#line 3 \"\
+    test/TemplateFunctions.test.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\tstatic_assert(div_ceil(10,\
+    \ 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\tstatic_assert(div_ceil(12,\
+    \ 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
+    \ 3) == 333333333333333334ll);\n\tstatic_assert(div_ceil(3, 1000000000000000000ll)\
+    \ == 1);\n\tstatic_assert(div_ceil(1000000000000000000ll, 300000000000000000)\
+    \ == 4);\n\n\tstatic_assert(div_ceil2(9, 3) == 9);\n\tstatic_assert(div_ceil2(10,\
     \ 3) == 12);\n\tstatic_assert(div_ceil2(11, 3) == 12);\n\tstatic_assert(div_ceil2(12,\
     \ 3) == 12);\n\tstatic_assert(div_ceil2(13, 3) == 15);\n\tstatic_assert(div_ceil2(1000000000000000000ll,\
     \ 3) == 1000000000000000002ll);\n\tstatic_assert(div_ceil2(3, 1000000000000000000ll)\
@@ -169,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-02-24 21:59:43+09:00'
+  timestamp: '2021-02-28 13:28:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

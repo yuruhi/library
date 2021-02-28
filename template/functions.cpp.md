@@ -70,11 +70,15 @@ data:
     \ c - '0';\n\t};\n\tauto lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t\
     };\n\tauto upper_to_int = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto is_odd\
     \ = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even = [](auto n) {\n\
-    \t\treturn n % 2 == 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\
-    \t};\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\ttemplate <class T> auto equal_to(const\
-    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  //\
-    \ namespace lambda\n"
+    \t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n) {\n\t\treturn n\
+    \ > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n < 0;\n\t};\n\tauto\
+    \ increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto\
+    \ n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn\
+    \ n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t};\n\t\
+    auto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate <class\
+    \ T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <cmath>\n\
     #include <vector>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T = long long> constexpr T TEN(size_t n) {\n\tT result = 1;\n\tfor (size_t i\
@@ -124,11 +128,16 @@ data:
     \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
     \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
     \t\treturn c - 'A';\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\
-    \t};\n\tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto increment\
-    \ = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto n) {\n\t\t\
-    return --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn n;\n\t\
-    };\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\
-    \t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n"
+    \t};\n\tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
+    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
+    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
+    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
+    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
+    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
+    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
+    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
+    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
+    };\n\t}\n}  // namespace lambda\n"
   dependsOn: []
   isVerificationFile: false
   path: template/functions.cpp
@@ -136,7 +145,7 @@ data:
   - template/template_no_Ruby.cpp
   - template/template.cpp
   - Math/BabystepGiantstep.cpp
-  timestamp: '2021-02-24 21:59:43+09:00'
+  timestamp: '2021-02-28 13:28:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp

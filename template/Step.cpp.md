@@ -57,10 +57,11 @@ data:
     \ - 1) / 2);\n\t}\n\toperator std::vector<value_type>() const {\n\t\treturn to_a();\n\
     \t}\n\tauto to_a() const {\n\t\tstd::vector<value_type> result;\n\t\tresult.reserve(size());\n\
     \t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\t\t}\n\t\treturn result;\n\
-    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to) {\n\treturn Step<T>(from,\
-    \ to - from + 1, 1);\n}\ntemplate <class T> constexpr auto downto(T from, T to)\
-    \ {\n\treturn Step<T>(from, from - to + 1, -1);\n}\ntemplate <class T> constexpr\
-    \ auto times(T n, bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
+    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to, bool exclusive =\
+    \ true) {\n\treturn Step<T>(from, to - from + exclusive, 1);\n}\ntemplate <class\
+    \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
+    \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
+    \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
     \ 1);\n}\n"
   code: "#pragma once\n#include <vector>\n#include <iterator>\n#include <algorithm>\n\
     #include <cassert>\n\ntemplate <class T> class step_iterator {\npublic:\n\tusing\
@@ -107,17 +108,18 @@ data:
     \ - 1) / 2);\n\t}\n\toperator std::vector<value_type>() const {\n\t\treturn to_a();\n\
     \t}\n\tauto to_a() const {\n\t\tstd::vector<value_type> result;\n\t\tresult.reserve(size());\n\
     \t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\t\t}\n\t\treturn result;\n\
-    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to) {\n\treturn Step<T>(from,\
-    \ to - from + 1, 1);\n}\ntemplate <class T> constexpr auto downto(T from, T to)\
-    \ {\n\treturn Step<T>(from, from - to + 1, -1);\n}\ntemplate <class T> constexpr\
-    \ auto times(T n, bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
+    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to, bool exclusive =\
+    \ true) {\n\treturn Step<T>(from, to - from + exclusive, 1);\n}\ntemplate <class\
+    \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
+    \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
+    \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
     \ 1);\n}"
   dependsOn: []
   isVerificationFile: false
   path: template/Step.cpp
   requiredBy:
   - template/template.cpp
-  timestamp: '2021-02-16 20:22:13+09:00'
+  timestamp: '2021-02-28 13:28:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/Step.cpp

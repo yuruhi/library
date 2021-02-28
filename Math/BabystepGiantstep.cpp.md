@@ -61,17 +61,21 @@ data:
     \ c - '0';\n\t};\n\tauto lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t\
     };\n\tauto upper_to_int = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto is_odd\
     \ = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even = [](auto n) {\n\
-    \t\treturn n % 2 == 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\
-    \t};\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\ttemplate <class T> auto equal_to(const\
-    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  //\
-    \ namespace lambda\n#line 4 \"Math/BabystepGiantstep.cpp\"\n#include <unordered_map>\n\
-    #line 6 \"Math/BabystepGiantstep.cpp\"\nusing namespace std;\n\n// g ^ result\
-    \ \u2261 h (mod mod)\nint64_t BabystepGiantstep(uint64_t g, uint64_t h, uint64_t\
-    \ mod) {\n\tconst uint64_t m = ceil(sqrt(mod));\n\tunordered_map<uint64_t, uint64_t>\
-    \ table;\n\tuint64_t e = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\ttable[e]\
-    \ = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g, mod\
-    \ - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn\
+    \t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n) {\n\t\treturn n\
+    \ > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n < 0;\n\t};\n\tauto\
+    \ increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement = [](auto\
+    \ n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n) {\n\t\treturn\
+    \ n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t};\n\t\
+    auto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate <class\
+    \ T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n#line 4 \"\
+    Math/BabystepGiantstep.cpp\"\n#include <unordered_map>\n#line 6 \"Math/BabystepGiantstep.cpp\"\
+    \nusing namespace std;\n\n// g ^ result \u2261 h (mod mod)\nint64_t BabystepGiantstep(uint64_t\
+    \ g, uint64_t h, uint64_t mod) {\n\tconst uint64_t m = ceil(sqrt(mod));\n\tunordered_map<uint64_t,\
+    \ uint64_t> table;\n\tuint64_t e = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\
+    \ttable[e] = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g,\
+    \ mod - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn\
     \ i * m + table[e];\n\t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
   code: "#pragma once\n#include \"./../template/functions.cpp\"\n#include <vector>\n\
     #include <unordered_map>\n#include <cmath>\nusing namespace std;\n\n// g ^ result\
@@ -86,7 +90,7 @@ data:
   isVerificationFile: false
   path: Math/BabystepGiantstep.cpp
   requiredBy: []
-  timestamp: '2021-02-24 21:59:43+09:00'
+  timestamp: '2021-02-28 13:28:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Math/BabystepGiantstep.cpp
