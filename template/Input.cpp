@@ -167,27 +167,27 @@ public:
 	}
 
 private:
-	template <template <class...> class, class...> struct Multiple;
+	template <template <class...> class, class...> struct Column;
 	template <template <class...> class V, class Head, class... Tail>
-	struct Multiple<V, Head, Tail...> {
+	struct Column<V, Head, Tail...> {
 		template <class... Args> using vec = V<vector<Head>, Args...>;
-		using type = typename Multiple<vec, Tail...>::type;
+		using type = typename Column<vec, Tail...>::type;
 	};
-	template <template <class...> class V> struct Multiple<V> { using type = V<>; };
-	template <class... T> using multiple_t = typename Multiple<tuple, T...>::type;
-	template <size_t N = 0, class T> void multiple_impl(T& t) const {
+	template <template <class...> class V> struct Column<V> { using type = V<>; };
+	template <class... T> using column_t = typename Column<tuple, T...>::type;
+	template <size_t N = 0, class T> void column_impl(T& t) const {
 		if constexpr (N < tuple_size_v<T>) {
 			auto& vec = get<N>(t);
 			using V = typename remove_reference_t<decltype(vec)>::value_type;
 			vec.push_back(read<V>());
-			multiple_impl<N + 1>(t);
+			column_impl<N + 1>(t);
 		}
 	}
 
 public:
-	template <class... T> auto multiple(size_t h) const {
-		multiple_t<T...> result;
-		while (h--) multiple_impl(result);
+	template <class... T> auto column(size_t h) const {
+		column_t<T...> result;
+		while (h--) column_impl(result);
 		return result;
 	}
 } in;
