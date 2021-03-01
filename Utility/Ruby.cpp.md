@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: template.cpp
+    title: template.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/Ruby.cpp\"\n#include <vector>\n#include <string>\n\
+  bundledCode: "#line 2 \"Utility/Ruby.cpp\"\n#include <vector>\n#include <string>\n\
     #include <map>\n#include <algorithm>\n#include <numeric>\n#include <cassert>\n\
     using namespace std;\n\ntemplate <class F> struct Callable {\n\tF func;\n\tCallable(const\
     \ F& f) : func(f) {}\n};\ntemplate <class T, class F> auto operator|(const T&\
@@ -281,16 +287,18 @@ data:
     \ a, const T& b) {\n\ta << b;\n\treturn a;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: template/Ruby.cpp
+  path: Utility/Ruby.cpp
   requiredBy:
-  - template/template.cpp
-  timestamp: '2021-02-24 20:48:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: template/Ruby.cpp
+  - template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: Utility/Ruby.cpp
 layout: document
 redirect_from:
-- /library/template/Ruby.cpp
-- /library/template/Ruby.cpp.html
-title: template/Ruby.cpp
+- /library/Utility/Ruby.cpp
+- /library/Utility/Ruby.cpp.html
+title: Utility/Ruby.cpp
 ---

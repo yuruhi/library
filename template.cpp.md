@@ -2,46 +2,52 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/Input.cpp
-    title: template/Input.cpp
+    path: Utility/Input.cpp
+    title: Utility/Input.cpp
   - icon: ':heavy_check_mark:'
-    path: template/Output.cpp
-    title: template/Output.cpp
-  - icon: ':warning:'
-    path: template/Ruby.cpp
-    title: template/Ruby.cpp
-  - icon: ':warning:'
-    path: template/Step.cpp
-    title: template/Step.cpp
-  - icon: ':warning:'
-    path: template/constants.cpp
-    title: template/constants.cpp
+    path: Utility/Output.cpp
+    title: Utility/Output.cpp
   - icon: ':heavy_check_mark:'
-    path: template/functions.cpp
-    title: template/functions.cpp
+    path: Utility/Ruby.cpp
+    title: Utility/Ruby.cpp
+  - icon: ':heavy_check_mark:'
+    path: Utility/Step.cpp
+    title: Utility/Step.cpp
+  - icon: ':heavy_check_mark:'
+    path: Utility/constants.cpp
+    title: Utility/constants.cpp
+  - icon: ':heavy_check_mark:'
+    path: Utility/functions.cpp
+    title: Utility/functions.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/template.cpp\"\n#include <bits/stdc++.h>\n#line\
-    \ 6 \"template/constants.cpp\"\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n\
-    #define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int\
-    \ i = (n) - 1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n);\
-    \ --i)\n#define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define\
-    \ rall(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
-    \ (a).begin() + (r)\n\nusing namespace std;\nusing ll = long long;\nusing LD =\
-    \ long double;\nusing VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI =\
-    \ vector<int>;\nusing VVI = vector<VI>;\nusing VL = vector<ll>;\nusing VVL = vector<VL>;\n\
-    using VS = vector<string>;\nusing VD = vector<LD>;\nusing PII = pair<int, int>;\n\
-    using VP = vector<PII>;\nusing PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\n\
-    template <class T> using PQ = priority_queue<T>;\ntemplate <class T> using PQS\
-    \ = priority_queue<T, vector<T>, greater<T>>;\nconstexpr int inf = 1000000000;\n\
-    constexpr long long inf_ll = 1000000000000000000ll, MOD = 1000000007;\nconstexpr\
-    \ long double PI = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"template/Input.cpp\"\
-    \nusing namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
+  bundledCode: "#line 2 \"template.cpp\"\n#include <bits/stdc++.h>\n#line 6 \"Utility/constants.cpp\"\
+    \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
+    \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n) - 1; i >= 0;\
+    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define unless(c)\
+    \ if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(),\
+    \ (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\
+    \nusing namespace std;\nusing ll = long long;\nusing LD = long double;\nusing\
+    \ VB = vector<bool>;\nusing VVB = vector<VB>;\nusing VI = vector<int>;\nusing\
+    \ VVI = vector<VI>;\nusing VL = vector<ll>;\nusing VVL = vector<VL>;\nusing VS\
+    \ = vector<string>;\nusing VD = vector<LD>;\nusing PII = pair<int, int>;\nusing\
+    \ VP = vector<PII>;\nusing PLL = pair<ll, ll>;\nusing VPL = vector<PLL>;\ntemplate\
+    \ <class T> using PQ = priority_queue<T>;\ntemplate <class T> using PQS = priority_queue<T,\
+    \ vector<T>, greater<T>>;\nconstexpr int inf = 1000000000;\nconstexpr long long\
+    \ inf_ll = 1000000000000000000ll, MOD = 1000000007;\nconstexpr long double PI\
+    \ = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"Utility/Input.cpp\"\nusing\
+    \ namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
     #define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked fwrite\n#define\
     \ fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn\
     \ getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tread(c);\n\
@@ -90,22 +96,22 @@ data:
     \t\treturn Read2DVectorHelper(nm);\n\t}\n\tvoid operator()() const {}\n\ttemplate\
     \ <class H, class... T> void operator()(H&& h, T&&... t) const {\n\t\tread(h);\n\
     \t\toperator()(forward<T>(t)...);\n\t}\n\nprivate:\n\ttemplate <template <class...>\
-    \ class, class...> struct Multiple;\n\ttemplate <template <class...> class V,\
-    \ class Head, class... Tail>\n\tstruct Multiple<V, Head, Tail...> {\n\t\ttemplate\
-    \ <class... Args> using vec = V<vector<Head>, Args...>;\n\t\tusing type = typename\
-    \ Multiple<vec, Tail...>::type;\n\t};\n\ttemplate <template <class...> class V>\
-    \ struct Multiple<V> { using type = V<>; };\n\ttemplate <class... T> using multiple_t\
-    \ = typename Multiple<tuple, T...>::type;\n\ttemplate <size_t N = 0, class T>\
-    \ void multiple_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\
-    \t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
-    \t\t\tvec.push_back(read<V>());\n\t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
-    public:\n\ttemplate <class... T> auto multiple(size_t h) const {\n\t\tmultiple_t<T...>\
-    \ result;\n\t\twhile (h--) multiple_impl(result);\n\t\treturn result;\n\t}\n}\
-    \ in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n\
-    #define ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long,\
-    \ __VA_ARGS__)\n#define ins(...) inputs(string, __VA_ARGS__)\n#line 5 \"template/Output.cpp\"\
-    \n#include <string_view>\n#line 8 \"template/Output.cpp\"\n#include <charconv>\n\
-    #line 11 \"template/Output.cpp\"\nusing namespace std;\n\nclass Printer {\npublic:\n\
+    \ class, class...> struct Column;\n\ttemplate <template <class...> class V, class\
+    \ Head, class... Tail>\n\tstruct Column<V, Head, Tail...> {\n\t\ttemplate <class...\
+    \ Args> using vec = V<vector<Head>, Args...>;\n\t\tusing type = typename Column<vec,\
+    \ Tail...>::type;\n\t};\n\ttemplate <template <class...> class V> struct Column<V>\
+    \ { using type = V<>; };\n\ttemplate <class... T> using column_t = typename Column<tuple,\
+    \ T...>::type;\n\ttemplate <size_t N = 0, class T> void column_impl(T& t) const\
+    \ {\n\t\tif constexpr (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\
+    \t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\t\t\t\
+    vec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\
+    \ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...> result;\n\
+    \t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define\
+    \ inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...)\
+    \ inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
+    #define ins(...) inputs(string, __VA_ARGS__)\n#line 5 \"Utility/Output.cpp\"\n\
+    #include <string_view>\n#line 8 \"Utility/Output.cpp\"\n#include <charconv>\n\
+    #line 11 \"Utility/Output.cpp\"\nusing namespace std;\n\nclass Printer {\npublic:\n\
     \tstruct BoolString {\n\t\tstring_view t, f;\n\t\tBoolString(string_view _t, string_view\
     \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstring_view div, sep,\
     \ last;\n\t\tSeparator(string_view _div, string_view _sep, string_view _last)\n\
@@ -156,7 +162,7 @@ data:
     \ *this;\n\t}\n\tPrinter& set(const Separator& _separator) {\n\t\tseparator =\
     \ _separator;\n\t\treturn *this;\n\t}\n\tPrinter& set(string_view t, string_view\
     \ f) {\n\t\tbool_str = BoolString(t, f);\n\t\treturn *this;\n\t}\n} out;\n#line\
-    \ 6 \"template/Step.cpp\"\n\ntemplate <class T> class step_iterator {\npublic:\n\
+    \ 6 \"Utility/Step.cpp\"\n\ntemplate <class T> class step_iterator {\npublic:\n\
     \tusing value_type = T;\n\tusing difference_type = T;\n\tusing iterator_category\
     \ = std::random_access_iterator_tag;\n\tusing reference = T&;\n\tusing pointer\
     \ = T*;\n\nprivate:\n\tvalue_type start_m, size_m, step_m, index_m;\n\npublic:\n\
@@ -206,7 +212,7 @@ data:
     \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
     \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
     \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
-    \ 1);\n}\n#line 8 \"template/Ruby.cpp\"\nusing namespace std;\n\ntemplate <class\
+    \ 1);\n}\n#line 8 \"Utility/Ruby.cpp\"\nusing namespace std;\n\ntemplate <class\
     \ F> struct Callable {\n\tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate\
     \ <class T, class F> auto operator|(const T& v, const Callable<F>& c) {\n\treturn\
     \ c.func(v);\n}\n\nstruct Sort_impl {\n\ttemplate <class F> auto operator()(F&&\
@@ -338,7 +344,7 @@ data:
     \ T> auto& operator<<(string& a, const T& b) {\n\ta.insert(a.end(), all(b));\n\
     \treturn a;\n}\ntemplate <class T, class U> auto operator+(vector<T> a, const\
     \ U& b) {\n\ta << b;\n\treturn a;\n}\ntemplate <class T> auto operator+(string\
-    \ a, const T& b) {\n\ta << b;\n\treturn a;\n}\n#line 7 \"template/functions.cpp\"\
+    \ a, const T& b) {\n\ta << b;\n\treturn a;\n}\n#line 7 \"Utility/functions.cpp\"\
     \nusing namespace std;\n\ntemplate <class T = long long> constexpr T TEN(size_t\
     \ n) {\n\tT result = 1;\n\tfor (size_t i = 0; i < n; ++i) result *= 10;\n\treturn\
     \ result;\n}\ntemplate <class T, class U,\n          enable_if_t<is_integral_v<T>\
@@ -396,33 +402,36 @@ data:
     \ T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
     \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
     \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n}  // namespace lambda\n#line 9 \"\
-    template/template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
+    template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
     #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
     \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
     \ oj;\n#else\n\treturn local;\n#endif\n}\n"
-  code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./constants.cpp\"\n#include\
-    \ \"./Input.cpp\"\n#include \"./Output.cpp\"\n#include \"./Step.cpp\"\n#include\
-    \ \"./Ruby.cpp\"\n#include \"./functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
-    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
-    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
-    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
+  code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./Utility/constants.cpp\"\
+    \n#include \"./Utility/Input.cpp\"\n#include \"./Utility/Output.cpp\"\n#include\
+    \ \"./Utility/Step.cpp\"\n#include \"./Utility/Ruby.cpp\"\n#include \"./Utility/functions.cpp\"\
+    \n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define\
+    \ LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr\
+    \ T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\
+    \treturn local;\n#endif\n}\n"
   dependsOn:
-  - template/constants.cpp
-  - template/Input.cpp
-  - template/Output.cpp
-  - template/Step.cpp
-  - template/Ruby.cpp
-  - template/functions.cpp
+  - Utility/constants.cpp
+  - Utility/Input.cpp
+  - Utility/Output.cpp
+  - Utility/Step.cpp
+  - Utility/Ruby.cpp
+  - Utility/functions.cpp
   isVerificationFile: false
-  path: template/template.cpp
+  path: template.cpp
   requiredBy: []
-  timestamp: '2021-02-28 13:28:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: template/template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: template.cpp
 layout: document
 redirect_from:
-- /library/template/template.cpp
-- /library/template/template.cpp.html
-title: template/template.cpp
+- /library/template.cpp
+- /library/template.cpp.html
+title: template.cpp
 ---

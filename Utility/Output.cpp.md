@@ -2,22 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: template.cpp
+    title: template.cpp
   - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':warning:'
-    path: template/template_no_Ruby.cpp
-    title: template/template_no_Ruby.cpp
+    path: template_no_Ruby.cpp
+    title: template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Input_Output.test.cpp
     title: test/Input_Output.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/Output.cpp\"\n#include <iostream>\n#include <utility>\n\
+  bundledCode: "#line 2 \"Utility/Output.cpp\"\n#include <iostream>\n#include <utility>\n\
     #include <string>\n#include <string_view>\n#include <vector>\n#include <array>\n\
     #include <charconv>\n#include <cstring>\n#include <cassert>\nusing namespace std;\n\
     \nclass Printer {\npublic:\n\tstruct BoolString {\n\t\tstring_view t, f;\n\t\t\
@@ -125,18 +131,20 @@ data:
     \ f) {\n\t\tbool_str = BoolString(t, f);\n\t\treturn *this;\n\t}\n} out;\n"
   dependsOn: []
   isVerificationFile: false
-  path: template/Output.cpp
+  path: Utility/Output.cpp
   requiredBy:
-  - template/template_no_Ruby.cpp
-  - template/template.cpp
-  timestamp: '2021-02-16 19:52:24+09:00'
+  - template_no_Ruby.cpp
+  - template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp
-documentation_of: template/Output.cpp
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: Utility/Output.cpp
 layout: document
 redirect_from:
-- /library/template/Output.cpp
-- /library/template/Output.cpp.html
-title: template/Output.cpp
+- /library/Utility/Output.cpp
+- /library/Utility/Output.cpp.html
+title: Utility/Output.cpp
 ---

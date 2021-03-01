@@ -27,6 +27,21 @@ data:
       path: DataStructure/BinaryIndexedTree.cpp
       title: DataStructure/BinaryIndexedTree.cpp
     - icon: ':heavy_check_mark:'
+      path: DataStructure/CulSum.cpp
+      title: DataStructure/CulSum.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/CulSum2D.cpp
+      title: DataStructure/CulSum2D.cpp
+    - icon: ':warning:'
+      path: DataStructure/Imos.cpp
+      title: DataStructure/Imos.cpp
+    - icon: ':warning:'
+      path: DataStructure/Imos2D.cpp
+      title: DataStructure/Imos2D.cpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/ImosLinear.cpp
+      title: DataStructure/ImosLinear.cpp
+    - icon: ':heavy_check_mark:'
       path: DataStructure/LazySegmentTree.cpp
       title: DataStructure/LazySegmentTree.cpp
     - icon: ':warning:'
@@ -291,26 +306,17 @@ data:
       path: Utility/CountStraight.cpp
       title: Utility/CountStraight.cpp
     - icon: ':heavy_check_mark:'
-      path: Utility/CulSum.cpp
-      title: Utility/CulSum.cpp
-    - icon: ':heavy_check_mark:'
-      path: Utility/CulSum2D.cpp
-      title: Utility/CulSum2D.cpp
-    - icon: ':heavy_check_mark:'
       path: Utility/Dice.cpp
       title: Utility/Dice.cpp
-    - icon: ':warning:'
-      path: Utility/Imos.cpp
-      title: Utility/Imos.cpp
-    - icon: ':warning:'
-      path: Utility/Imos2D.cpp
-      title: Utility/Imos2D.cpp
     - icon: ':heavy_check_mark:'
-      path: Utility/ImosLinear.cpp
-      title: Utility/ImosLinear.cpp
+      path: Utility/Input.cpp
+      title: Utility/Input.cpp
     - icon: ':warning:'
       path: Utility/Mex.cpp
       title: Utility/Mex.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Output.cpp
+      title: Utility/Output.cpp
     - icon: ':warning:'
       path: Utility/Pair.cpp
       title: Utility/Pair.cpp
@@ -323,15 +329,27 @@ data:
     - icon: ':warning:'
       path: Utility/Range.cpp
       title: Utility/Range.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Ruby.cpp
+      title: Utility/Ruby.cpp
     - icon: ':warning:'
       path: Utility/RunLengthArray.cpp
       title: Utility/RunLengthArray.cpp
     - icon: ':heavy_check_mark:'
       path: Utility/RunLengthEncoding.cpp
       title: Utility/RunLengthEncoding.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Step.cpp
+      title: Utility/Step.cpp
     - icon: ':warning:'
       path: Utility/VectorOperation.cpp
       title: Utility/VectorOperation.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/constants.cpp
+      title: Utility/constants.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/functions.cpp
+      title: Utility/functions.cpp
     - icon: ':warning:'
       path: Utility/isLeap.cpp
       title: Utility/isLeap.cpp
@@ -399,12 +417,18 @@ data:
     - icon: ':warning:'
       path: dump.hpp
       title: dump.hpp
+    - icon: ':heavy_check_mark:'
+      path: template.cpp
+      title: template.cpp
     - icon: ':warning:'
       path: template14.cpp
       title: template14.cpp
     - icon: ':warning:'
       path: template17.cpp
       title: template17.cpp
+    - icon: ':warning:'
+      path: template_no_Ruby.cpp
+      title: template_no_Ruby.cpp
   - name: old
     pages:
     - icon: ':warning:'
@@ -434,32 +458,6 @@ data:
     - icon: ':warning:'
       path: old/SegmentTree_old.cpp
       title: old/SegmentTree_old.cpp
-  - name: template
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: template/Input.cpp
-      title: template/Input.cpp
-    - icon: ':heavy_check_mark:'
-      path: template/Output.cpp
-      title: template/Output.cpp
-    - icon: ':warning:'
-      path: template/Ruby.cpp
-      title: template/Ruby.cpp
-    - icon: ':warning:'
-      path: template/Step.cpp
-      title: template/Step.cpp
-    - icon: ':warning:'
-      path: template/constants.cpp
-      title: template/constants.cpp
-    - icon: ':heavy_check_mark:'
-      path: template/functions.cpp
-      title: template/functions.cpp
-    - icon: ':warning:'
-      path: template/template.cpp
-      title: template/template.cpp
-    - icon: ':warning:'
-      path: template/template_no_Ruby.cpp
-      title: template/template_no_Ruby.cpp
   verificationCategories:
   - name: old
     pages:
@@ -664,8 +662,8 @@ data:
       path: test/Input_Output.test.cpp
       title: test/Input_Output.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/Input_multiple.test.cpp
-      title: test/Input_multiple.test.cpp
+      path: test/Input_column.test.cpp
+      title: test/Input_column.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/Inversion.test.cpp
       title: test/Inversion.test.cpp
@@ -777,6 +775,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modint_pow.test.cpp
       title: test/modint_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/template.test.cpp
+      title: test/template.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/template_no_Ruby.test.cpp
+      title: test/template_no_Ruby.test.cpp
 layout: toppage
 ---
 [![yuruhiya](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2Fyuruhiya)](https://atcoder.jp/users/yuruhiya)

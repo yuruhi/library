@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/Input.cpp
-    title: template/Input.cpp
+    path: Utility/Input.cpp
+    title: Utility/Input.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,8 +14,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
-  bundledCode: "#line 1 \"test/Input_multiple.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
-    \n#line 2 \"template/Input.cpp\"\n#include <iostream>\n#include <vector>\n#include\
+  bundledCode: "#line 1 \"test/Input_column.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
+    \n#line 2 \"Utility/Input.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <string>\n#include <utility>\n#include <tuple>\nusing namespace std;\n\n#ifdef\
     \ _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
     #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
@@ -65,40 +65,39 @@ data:
     \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
     \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
     \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
-    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
-    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
-    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
-    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
-    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
-    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
-    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
-    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
-    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
-    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
-    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
-    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
-    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
-    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
-    \ inputs(string, __VA_ARGS__)\n#line 4 \"test/Input_multiple.test.cpp\"\nusing\
-    \ namespace std;\n\nint main() {\n\tint t = in;\n\tauto [a, b] = in.multiple<long\
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\t\
+    template <template <class...> class V, class Head, class... Tail>\n\tstruct Column<V,\
+    \ Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>, Args...>;\n\
+    \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
+    \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
+    \ T> using column_t = typename Column<tuple, T...>::type;\n\ttemplate <size_t\
+    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
+    \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
+    public:\n\ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...>\
+    \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
+    #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
+    \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
+    #define ins(...) inputs(string, __VA_ARGS__)\n#line 4 \"test/Input_column.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tint t = in;\n\tauto [a, b] = in.column<long\
     \ long, long long>(t);\n\tfor (int i = 0; i < t; ++i) {\n\t\tcout << a[i] + b[i]\
     \ << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"./../template/Input.cpp\"\n#include <iostream>\nusing namespace std;\n\nint\
-    \ main() {\n\tint t = in;\n\tauto [a, b] = in.multiple<long long, long long>(t);\n\
+    \ \"./../Utility/Input.cpp\"\n#include <iostream>\nusing namespace std;\n\nint\
+    \ main() {\n\tint t = in;\n\tauto [a, b] = in.column<long long, long long>(t);\n\
     \tfor (int i = 0; i < t; ++i) {\n\t\tcout << a[i] + b[i] << '\\n';\n\t}\n}\n"
   dependsOn:
-  - template/Input.cpp
+  - Utility/Input.cpp
   isVerificationFile: true
-  path: test/Input_multiple.test.cpp
+  path: test/Input_column.test.cpp
   requiredBy: []
-  timestamp: '2020-11-29 15:45:37+09:00'
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/Input_multiple.test.cpp
+documentation_of: test/Input_column.test.cpp
 layout: document
 redirect_from:
-- /verify/test/Input_multiple.test.cpp
-- /verify/test/Input_multiple.test.cpp.html
-title: test/Input_multiple.test.cpp
+- /verify/test/Input_column.test.cpp
+- /verify/test/Input_column.test.cpp.html
+title: test/Input_column.test.cpp
 ---

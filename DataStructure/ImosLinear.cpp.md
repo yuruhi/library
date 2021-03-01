@@ -11,9 +11,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/ImosLinear.cpp\"\n#include <vector>\n#include <algorithm>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class ImosLinear\
-    \ {\npublic:\n\tusing value_type = T;\n\tusing data_type = vector<value_type>;\n\
+  bundledCode: "#line 2 \"DataStructure/ImosLinear.cpp\"\n#include <vector>\n#include\
+    \ <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T>\
+    \ class ImosLinear {\npublic:\n\tusing value_type = T;\n\tusing data_type = vector<value_type>;\n\
     \nprivate:\n\tsize_t n;\n\tdata_type X, A, B;\n\tbool builded = false;\n\npublic:\n\
     \tImosLinear(size_t _n) : n(_n), X(_n), A(_n + 1), B(_n + 1) {}\n\tvoid add(size_t\
     \ l, size_t r, value_type a,\n\t         value_type b) {  // [l, r) += a + (i\
@@ -39,16 +39,16 @@ data:
     \tassert(builded);\n\t\treturn X;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/ImosLinear.cpp
+  path: DataStructure/ImosLinear.cpp
   requiredBy: []
-  timestamp: '2020-11-21 20:49:59+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ImosLinear.test.cpp
-documentation_of: Utility/ImosLinear.cpp
+documentation_of: DataStructure/ImosLinear.cpp
 layout: document
 redirect_from:
-- /library/Utility/ImosLinear.cpp
-- /library/Utility/ImosLinear.cpp.html
-title: Utility/ImosLinear.cpp
+- /library/DataStructure/ImosLinear.cpp
+- /library/DataStructure/ImosLinear.cpp.html
+title: DataStructure/ImosLinear.cpp
 ---

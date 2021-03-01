@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: template.cpp
+    title: template.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/Step.cpp\"\n#include <vector>\n#include <iterator>\n\
+  bundledCode: "#line 2 \"Utility/Step.cpp\"\n#include <vector>\n#include <iterator>\n\
     #include <algorithm>\n#include <cassert>\n\ntemplate <class T> class step_iterator\
     \ {\npublic:\n\tusing value_type = T;\n\tusing difference_type = T;\n\tusing iterator_category\
     \ = std::random_access_iterator_tag;\n\tusing reference = T&;\n\tusing pointer\
@@ -116,16 +122,18 @@ data:
     \ 1);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: template/Step.cpp
+  path: Utility/Step.cpp
   requiredBy:
-  - template/template.cpp
-  timestamp: '2021-02-28 13:28:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: template/Step.cpp
+  - template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: Utility/Step.cpp
 layout: document
 redirect_from:
-- /library/template/Step.cpp
-- /library/template/Step.cpp.html
-title: template/Step.cpp
+- /library/Utility/Step.cpp
+- /library/Utility/Step.cpp.html
+title: Utility/Step.cpp
 ---

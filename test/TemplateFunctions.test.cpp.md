@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/functions.cpp
-    title: template/functions.cpp
+    path: Utility/functions.cpp
+    title: Utility/functions.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
   bundledCode: "#line 1 \"test/TemplateFunctions.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
-    \n#line 2 \"template/functions.cpp\"\n#include <algorithm>\n#include <numeric>\n\
+    \n#line 2 \"Utility/functions.cpp\"\n#include <algorithm>\n#include <numeric>\n\
     #include <cmath>\n#include <vector>\n#include <cassert>\nusing namespace std;\n\
     \ntemplate <class T = long long> constexpr T TEN(size_t n) {\n\tT result = 1;\n\
     \tfor (size_t i = 0; i < n; ++i) result *= 10;\n\treturn result;\n}\ntemplate\
@@ -122,7 +122,7 @@ data:
     \tstatic_assert(TEN(9) == 1000000000);\n\tstatic_assert(TEN(18) == 1000000000000000000);\n\
     \n\tcout << \"Hello World\" << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
-    \n#include \"./../template/functions.cpp\"\n#include <iostream>\nusing namespace\
+    \n#include \"./../Utility/functions.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\tstatic_assert(div_ceil(10,\
     \ 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\tstatic_assert(div_ceil(12,\
     \ 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
@@ -170,11 +170,11 @@ data:
     \tstatic_assert(TEN(9) == 1000000000);\n\tstatic_assert(TEN(18) == 1000000000000000000);\n\
     \n\tcout << \"Hello World\" << endl;\n}"
   dependsOn:
-  - template/functions.cpp
+  - Utility/functions.cpp
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-02-28 13:28:23+09:00'
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

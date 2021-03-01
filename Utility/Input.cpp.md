@@ -2,25 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: template.cpp
+    title: template.cpp
   - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':warning:'
-    path: template/template_no_Ruby.cpp
-    title: template/template_no_Ruby.cpp
+    path: template_no_Ruby.cpp
+    title: template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Input_Output.test.cpp
     title: test/Input_Output.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/Input_multiple.test.cpp
-    title: test/Input_multiple.test.cpp
+    path: test/Input_column.test.cpp
+    title: test/Input_column.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/Input.cpp\"\n#include <iostream>\n#include <vector>\n\
+  bundledCode: "#line 2 \"Utility/Input.cpp\"\n#include <iostream>\n#include <vector>\n\
     #include <string>\n#include <utility>\n#include <tuple>\nusing namespace std;\n\
     \n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
     \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
@@ -70,21 +76,20 @@ data:
     \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
     \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
     \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
-    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
-    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
-    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
-    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
-    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
-    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
-    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
-    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
-    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
-    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
-    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
-    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
-    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
-    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
-    \ inputs(string, __VA_ARGS__)\n"
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\t\
+    template <template <class...> class V, class Head, class... Tail>\n\tstruct Column<V,\
+    \ Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>, Args...>;\n\
+    \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
+    \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
+    \ T> using column_t = typename Column<tuple, T...>::type;\n\ttemplate <size_t\
+    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
+    \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
+    public:\n\ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...>\
+    \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
+    #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
+    \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
+    #define ins(...) inputs(string, __VA_ARGS__)\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <string>\n\
     #include <utility>\n#include <tuple>\nusing namespace std;\n\n#ifdef _WIN32\n\
     #define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
@@ -135,36 +140,37 @@ data:
     \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
     \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
     \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
-    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
-    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
-    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
-    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
-    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
-    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
-    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
-    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
-    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
-    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
-    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
-    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
-    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
-    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
-    \ inputs(string, __VA_ARGS__)\n"
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\t\
+    template <template <class...> class V, class Head, class... Tail>\n\tstruct Column<V,\
+    \ Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>, Args...>;\n\
+    \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
+    \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
+    \ T> using column_t = typename Column<tuple, T...>::type;\n\ttemplate <size_t\
+    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
+    \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
+    public:\n\ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...>\
+    \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
+    #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
+    \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
+    #define ins(...) inputs(string, __VA_ARGS__)\n"
   dependsOn: []
   isVerificationFile: false
-  path: template/Input.cpp
+  path: Utility/Input.cpp
   requiredBy:
-  - template/template_no_Ruby.cpp
-  - template/template.cpp
-  timestamp: '2020-11-29 15:45:37+09:00'
+  - template_no_Ruby.cpp
+  - template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp
-  - test/Input_multiple.test.cpp
-documentation_of: template/Input.cpp
+  - test/Input_column.test.cpp
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: Utility/Input.cpp
 layout: document
 redirect_from:
-- /library/template/Input.cpp
-- /library/template/Input.cpp.html
-title: template/Input.cpp
+- /library/Utility/Input.cpp
+- /library/Utility/Input.cpp.html
+title: Utility/Input.cpp
 ---

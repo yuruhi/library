@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Utility/CulSum.cpp
-    title: Utility/CulSum.cpp
+    path: DataStructure/CulSum.cpp
+    title: DataStructure/CulSum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/static_range_sum
   bundledCode: "#line 1 \"test/CulSum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\
-    \n#line 2 \"Utility/CulSum.cpp\"\n#include <vector>\n#include <type_traits>\n\
+    \n#line 2 \"DataStructure/CulSum.cpp\"\n#include <vector>\n#include <type_traits>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> class CulSum {\n\
     public:\n\tusing value_type = T;\n\tusing data_type = vector<value_type>;\n\n\
     private:\n\tsize_t n;\n\tdata_type data;\n\npublic:\n\tCulSum() = default;\n\t\
@@ -38,17 +38,17 @@ data:
     CulSum<long long> sum(a);\n\twhile (q--) {\n\t\tint l, r;\n\t\tcin >> l >> r;\n\
     \t\tcout << sum(l, r) << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ \"./../Utility/CulSum.cpp\"\n#include <iostream>\nusing namespace std;\n\nint\
-    \ main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint n,\
-    \ q;\n\tcin >> n >> q;\n\tvector<long long> a(n);\n\tfor (auto& i : a) cin >>\
-    \ i;\n\n\tCulSum<long long> sum(a);\n\twhile (q--) {\n\t\tint l, r;\n\t\tcin >>\
-    \ l >> r;\n\t\tcout << sum(l, r) << '\\n';\n\t}\n}"
+    \ \"./../DataStructure/CulSum.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint\
+    \ n, q;\n\tcin >> n >> q;\n\tvector<long long> a(n);\n\tfor (auto& i : a) cin\
+    \ >> i;\n\n\tCulSum<long long> sum(a);\n\twhile (q--) {\n\t\tint l, r;\n\t\tcin\
+    \ >> l >> r;\n\t\tcout << sum(l, r) << '\\n';\n\t}\n}"
   dependsOn:
-  - Utility/CulSum.cpp
+  - DataStructure/CulSum.cpp
   isVerificationFile: true
   path: test/CulSum.test.cpp
   requiredBy: []
-  timestamp: '2020-12-12 20:18:02+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/CulSum.test.cpp

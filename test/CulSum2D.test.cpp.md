@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Utility/CulSum2D.cpp
-    title: Utility/CulSum2D.cpp
+    path: DataStructure/CulSum2D.cpp
+    title: DataStructure/CulSum2D.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/0560
   bundledCode: "#line 1 \"test/CulSum2D.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0560\"\
-    \n#line 2 \"Utility/CulSum2D.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    \n#line 2 \"DataStructure/CulSum2D.cpp\"\n#include <vector>\n#include <algorithm>\n\
     using namespace std;\n\ntemplate <class T> class CulSum2D {\npublic:\n\tusing\
     \ value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\
     \tsize_t h, w;\n\tvector<vector<T>> data;\n\npublic:\n\tCulSum2D() = default;\n\
@@ -47,21 +47,21 @@ data:
     \ty1--;\n\t\tx1--;\n\t\tcout << cnt_J(y1, y2, x1, x2) << ' ' << cnt_O(y1, y2,\
     \ x1, x2) << ' '\n\t\t     << cnt_I(y1, y2, x1, x2) << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0560\"\n#include\
-    \ \"./../Utility/CulSum2D.cpp\"\n#include <iostream>\n#include <vector>\n#include\
-    \ <string>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
-    \n\tint h, w, n;\n\tcin >> h >> w >> n;\n\tvector<string> s(h);\n\tfor (auto&\
-    \ i : s) cin >> i;\n\n\tCulSum2D<int> cnt_J(s, [](char c) { return c == 'J'; });\n\
-    \tCulSum2D<int> cnt_O(s, [](char c) { return c == 'O'; });\n\tCulSum2D<int> cnt_I(s,\
-    \ [](char c) { return c == 'I'; });\n\n\twhile (n--) {\n\t\tint y1, x1, y2, x2;\n\
-    \t\tcin >> y1 >> x1 >> y2 >> x2;\n\t\ty1--;\n\t\tx1--;\n\t\tcout << cnt_J(y1,\
-    \ y2, x1, x2) << ' ' << cnt_O(y1, y2, x1, x2) << ' '\n\t\t     << cnt_I(y1, y2,\
-    \ x1, x2) << '\\n';\n\t}\n}"
+    \ \"./../DataStructure/CulSum2D.cpp\"\n#include <iostream>\n#include <vector>\n\
+    #include <string>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
+    \tios_base::sync_with_stdio(false);\n\n\tint h, w, n;\n\tcin >> h >> w >> n;\n\
+    \tvector<string> s(h);\n\tfor (auto& i : s) cin >> i;\n\n\tCulSum2D<int> cnt_J(s,\
+    \ [](char c) { return c == 'J'; });\n\tCulSum2D<int> cnt_O(s, [](char c) { return\
+    \ c == 'O'; });\n\tCulSum2D<int> cnt_I(s, [](char c) { return c == 'I'; });\n\n\
+    \twhile (n--) {\n\t\tint y1, x1, y2, x2;\n\t\tcin >> y1 >> x1 >> y2 >> x2;\n\t\
+    \ty1--;\n\t\tx1--;\n\t\tcout << cnt_J(y1, y2, x1, x2) << ' ' << cnt_O(y1, y2,\
+    \ x1, x2) << ' '\n\t\t     << cnt_I(y1, y2, x1, x2) << '\\n';\n\t}\n}"
   dependsOn:
-  - Utility/CulSum2D.cpp
+  - DataStructure/CulSum2D.cpp
   isVerificationFile: true
   path: test/CulSum2D.test.cpp
   requiredBy: []
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/CulSum2D.test.cpp

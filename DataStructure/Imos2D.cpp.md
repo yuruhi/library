@@ -8,9 +8,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/Imos2D.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class Imos2D {\n\
-    public:\n\tusing value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\
+  bundledCode: "#line 2 \"DataStructure/Imos2D.cpp\"\n#include <vector>\n#include\
+    \ <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> class\
+    \ Imos2D {\npublic:\n\tusing value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\
     \nprivate:\n\tsize_t h, w;\n\tdata_type table;\n\tbool builded = false;\n\npublic:\n\
     \tImos2D(size_t _h, size_t _w) : h(_h), w(_w), table(_h + 1, vector<T>(_w + 1))\
     \ {}\n\tsize_t height() const {\n\t\treturn h;\n\t}\n\tsize_t weight() const {\n\
@@ -50,15 +50,15 @@ data:
     \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/Imos2D.cpp
+  path: DataStructure/Imos2D.cpp
   requiredBy: []
-  timestamp: '2020-11-21 14:30:57+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Utility/Imos2D.cpp
+documentation_of: DataStructure/Imos2D.cpp
 layout: document
 redirect_from:
-- /library/Utility/Imos2D.cpp
-- /library/Utility/Imos2D.cpp.html
-title: Utility/Imos2D.cpp
+- /library/DataStructure/Imos2D.cpp
+- /library/DataStructure/Imos2D.cpp.html
+title: DataStructure/Imos2D.cpp
 ---

@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/Imos.cpp\"\n#include <vector>\n#include <utility>\n\
+  bundledCode: "#line 2 \"DataStructure/Imos.cpp\"\n#include <vector>\n#include <utility>\n\
     #include <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> class Imos {\npublic:\n\tusing value_type = T;\n\nprivate:\n\tint N;\n\t\
     vector<value_type> table;\n\tbool builded = false;\n\npublic:\n\tImos() = default;\n\
@@ -43,15 +43,15 @@ data:
     \ table.begin() + N);\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/Imos.cpp
+  path: DataStructure/Imos.cpp
   requiredBy: []
-  timestamp: '2020-11-23 22:18:08+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Utility/Imos.cpp
+documentation_of: DataStructure/Imos.cpp
 layout: document
 redirect_from:
-- /library/Utility/Imos.cpp
-- /library/Utility/Imos.cpp.html
-title: Utility/Imos.cpp
+- /library/DataStructure/Imos.cpp
+- /library/DataStructure/Imos.cpp.html
+title: DataStructure/Imos.cpp
 ---

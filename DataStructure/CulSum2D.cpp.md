@@ -11,9 +11,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/CulSum2D.cpp\"\n#include <vector>\n#include <algorithm>\n\
-    using namespace std;\n\ntemplate <class T> class CulSum2D {\npublic:\n\tusing\
-    \ value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\
+  bundledCode: "#line 2 \"DataStructure/CulSum2D.cpp\"\n#include <vector>\n#include\
+    \ <algorithm>\nusing namespace std;\n\ntemplate <class T> class CulSum2D {\npublic:\n\
+    \tusing value_type = T;\n\tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\
     \tsize_t h, w;\n\tvector<vector<T>> data;\n\npublic:\n\tCulSum2D() = default;\n\
     \tCulSum2D(const data_type& a)\n\t    : h(a.size()), w(a.front().size()), data(h\
     \ + 1, vector<value_type>(w + 1)) {\n\t\tfor (size_t i = 0; i < h; ++i) {\n\t\t\
@@ -57,16 +57,16 @@ data:
     \ get_data() const {\n\t\treturn data;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/CulSum2D.cpp
+  path: DataStructure/CulSum2D.cpp
   requiredBy: []
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum2D.test.cpp
-documentation_of: Utility/CulSum2D.cpp
+documentation_of: DataStructure/CulSum2D.cpp
 layout: document
 redirect_from:
-- /library/Utility/CulSum2D.cpp
-- /library/Utility/CulSum2D.cpp.html
-title: Utility/CulSum2D.cpp
+- /library/DataStructure/CulSum2D.cpp
+- /library/DataStructure/CulSum2D.cpp.html
+title: DataStructure/CulSum2D.cpp
 ---

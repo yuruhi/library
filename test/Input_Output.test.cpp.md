@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template/Input.cpp
-    title: template/Input.cpp
+    path: Utility/Input.cpp
+    title: Utility/Input.cpp
   - icon: ':heavy_check_mark:'
-    path: template/Output.cpp
-    title: template/Output.cpp
+    path: Utility/Output.cpp
+    title: Utility/Output.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
   bundledCode: "#line 1 \"test/Input_Output.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
-    \n#line 2 \"template/Input.cpp\"\n#include <iostream>\n#include <vector>\n#include\
+    \n#line 2 \"Utility/Input.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <string>\n#include <utility>\n#include <tuple>\nusing namespace std;\n\n#ifdef\
     \ _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
     #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
@@ -68,40 +68,39 @@ data:
     \ operator[](const pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\
     \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
     \ h, T&&... t) const {\n\t\tread(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
-    \nprivate:\n\ttemplate <template <class...> class, class...> struct Multiple;\n\
-    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
-    \ Multiple<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>,\
-    \ Args...>;\n\t\tusing type = typename Multiple<vec, Tail...>::type;\n\t};\n\t\
-    template <template <class...> class V> struct Multiple<V> { using type = V<>;\
-    \ };\n\ttemplate <class... T> using multiple_t = typename Multiple<tuple, T...>::type;\n\
-    \ttemplate <size_t N = 0, class T> void multiple_impl(T& t) const {\n\t\tif constexpr\
-    \ (N < tuple_size_v<T>) {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename\
-    \ remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
-    \t\t\tmultiple_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T>\
-    \ auto multiple(size_t h) const {\n\t\tmultiple_t<T...> result;\n\t\twhile (h--)\
-    \ multiple_impl(result);\n\t\treturn result;\n\t}\n} in;\n#define inputs(T, ...)\
-    \ \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int,\
-    \ __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...)\
-    \ inputs(string, __VA_ARGS__)\n#line 5 \"template/Output.cpp\"\n#include <string_view>\n\
-    #line 7 \"template/Output.cpp\"\n#include <array>\n#include <charconv>\n#include\
-    \ <cstring>\n#include <cassert>\nusing namespace std;\n\nclass Printer {\npublic:\n\
-    \tstruct BoolString {\n\t\tstring_view t, f;\n\t\tBoolString(string_view _t, string_view\
-    \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstring_view div, sep,\
-    \ last;\n\t\tSeparator(string_view _div, string_view _sep, string_view _last)\n\
-    \t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static const\
-    \ BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"NO\"},\n\
-    \t    Int{\"1\", \"0\"};\n\tinline static const Separator space{\" \", \" \",\
-    \ \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    end_line{\"\\n\", \"\\n\", \"\
-    \\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"};\n\n\tBoolString\
-    \ bool_str{Yes};\n\tSeparator separator{space};\n\npublic:\n\tvoid print(int v)\
-    \ const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf),\
-    \ v); e == errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t} else {\n\
-    \t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\t\tchar\
-    \ buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e ==\
-    \ errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\
-    \t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\
-    \t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v ? bool_str.t\
-    \ : bool_str.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
+    \nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\t\
+    template <template <class...> class V, class Head, class... Tail>\n\tstruct Column<V,\
+    \ Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>, Args...>;\n\
+    \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
+    \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
+    \ T> using column_t = typename Column<tuple, T...>::type;\n\ttemplate <size_t\
+    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
+    \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
+    \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
+    public:\n\ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...>\
+    \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
+    #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
+    \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
+    #define ins(...) inputs(string, __VA_ARGS__)\n#line 5 \"Utility/Output.cpp\"\n\
+    #include <string_view>\n#line 7 \"Utility/Output.cpp\"\n#include <array>\n#include\
+    \ <charconv>\n#include <cstring>\n#include <cassert>\nusing namespace std;\n\n\
+    class Printer {\npublic:\n\tstruct BoolString {\n\t\tstring_view t, f;\n\t\tBoolString(string_view\
+    \ _t, string_view _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstring_view\
+    \ div, sep, last;\n\t\tSeparator(string_view _div, string_view _sep, string_view\
+    \ _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static\
+    \ const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"\
+    NO\"},\n\t    Int{\"1\", \"0\"};\n\tinline static const Separator space{\" \"\
+    , \" \", \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    end_line{\"\\n\", \"\\\
+    n\", \"\\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"};\n\n\t\
+    BoolString bool_str{Yes};\n\tSeparator separator{space};\n\npublic:\n\tvoid print(int\
+    \ v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf),\
+    \ end(buf), v); e == errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t\
+    } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\
+    \t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v);\
+    \ e == errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t} else {\n\t\t\
+    \tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v ? bool_str.t\
+    \ : bool_str.f);\n\t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v\
+    \ ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
     \t}\n\tvoid print(string_view v) const {\n\t\tfwrite_unlocked(v.data(), sizeof(string_view::value_type),\
     \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\"\
     , v);\n\t}\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t\
@@ -139,16 +138,16 @@ data:
     \ (int t = in; t--;) {\n\t\tlong long a = in, b = in;\n\t\tout(a + b);\n\t}\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"./../template/Input.cpp\"\n#include \"./../template/Output.cpp\"\n#include\
-    \ <iostream>\nusing namespace std;\n\nint main() {\n\tfor (int t = in; t--;) {\n\
-    \t\tlong long a = in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
+    \ \"./../Utility/Input.cpp\"\n#include \"./../Utility/Output.cpp\"\n#include <iostream>\n\
+    using namespace std;\n\nint main() {\n\tfor (int t = in; t--;) {\n\t\tlong long\
+    \ a = in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
   dependsOn:
-  - template/Input.cpp
-  - template/Output.cpp
+  - Utility/Input.cpp
+  - Utility/Output.cpp
   isVerificationFile: true
   path: test/Input_Output.test.cpp
   requiredBy: []
-  timestamp: '2021-02-16 19:52:24+09:00'
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Input_Output.test.cpp

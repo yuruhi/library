@@ -11,13 +11,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/CulSum.cpp\"\n#include <vector>\n#include <type_traits>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class CulSum {\n\
-    public:\n\tusing value_type = T;\n\tusing data_type = vector<value_type>;\n\n\
-    private:\n\tsize_t n;\n\tdata_type data;\n\npublic:\n\tCulSum() = default;\n\t\
-    CulSum(const data_type& a) : n(a.size()), data(n + 1) {\n\t\tfor (size_t i = 0;\
-    \ i < n; ++i) {\n\t\t\tdata[i + 1] = data[i] + a[i];\n\t\t}\n\t}\n\ttemplate <class\
-    \ U, class F, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\n\tCulSum(const\
+  bundledCode: "#line 2 \"DataStructure/CulSum.cpp\"\n#include <vector>\n#include\
+    \ <type_traits>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T>\
+    \ class CulSum {\npublic:\n\tusing value_type = T;\n\tusing data_type = vector<value_type>;\n\
+    \nprivate:\n\tsize_t n;\n\tdata_type data;\n\npublic:\n\tCulSum() = default;\n\
+    \tCulSum(const data_type& a) : n(a.size()), data(n + 1) {\n\t\tfor (size_t i =\
+    \ 0; i < n; ++i) {\n\t\t\tdata[i + 1] = data[i] + a[i];\n\t\t}\n\t}\n\ttemplate\
+    \ <class U, class F, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>\n\tCulSum(const\
     \ U& _n, F f) : n(_n), data(n + 1) {\n\t\tfor (size_t i = 0; i < n; ++i) {\n\t\
     \t\tdata[i + 1] = data[i] + static_cast<value_type>(f(i));\n\t\t}\n\t}\n\ttemplate\
     \ <class U, class F, enable_if_t<!is_integral_v<U>, nullptr_t> = nullptr>\n\t\
@@ -47,16 +47,16 @@ data:
     \t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/CulSum.cpp
+  path: DataStructure/CulSum.cpp
   requiredBy: []
-  timestamp: '2020-12-12 20:18:02+09:00'
+  timestamp: '2021-03-01 12:38:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum.test.cpp
-documentation_of: Utility/CulSum.cpp
+documentation_of: DataStructure/CulSum.cpp
 layout: document
 redirect_from:
-- /library/Utility/CulSum.cpp
-- /library/Utility/CulSum.cpp.html
-title: Utility/CulSum.cpp
+- /library/DataStructure/CulSum.cpp
+- /library/DataStructure/CulSum.cpp.html
+title: DataStructure/CulSum.cpp
 ---

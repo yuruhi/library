@@ -2,25 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: template.cpp
+    title: template.cpp
   - icon: ':warning:'
-    path: Math/BabystepGiantstep.cpp
-    title: Math/BabystepGiantstep.cpp
-  - icon: ':warning:'
-    path: template/template.cpp
-    title: template/template.cpp
-  - icon: ':warning:'
-    path: template/template_no_Ruby.cpp
-    title: template/template_no_Ruby.cpp
+    path: template_no_Ruby.cpp
+    title: template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/TemplateFunctions.test.cpp
     title: test/TemplateFunctions.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template.test.cpp
+    title: test/template.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/template_no_Ruby.test.cpp
+    title: test/template_no_Ruby.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/functions.cpp\"\n#include <algorithm>\n#include\
+  bundledCode: "#line 2 \"Utility/functions.cpp\"\n#include <algorithm>\n#include\
     \ <numeric>\n#include <cmath>\n#include <vector>\n#include <cassert>\nusing namespace\
     \ std;\n\ntemplate <class T = long long> constexpr T TEN(size_t n) {\n\tT result\
     \ = 1;\n\tfor (size_t i = 0; i < n; ++i) result *= 10;\n\treturn result;\n}\n\
@@ -140,19 +143,20 @@ data:
     };\n\t}\n}  // namespace lambda\n"
   dependsOn: []
   isVerificationFile: false
-  path: template/functions.cpp
+  path: Utility/functions.cpp
   requiredBy:
-  - template/template_no_Ruby.cpp
-  - template/template.cpp
-  - Math/BabystepGiantstep.cpp
-  timestamp: '2021-02-28 13:28:23+09:00'
+  - template_no_Ruby.cpp
+  - template.cpp
+  timestamp: '2021-03-01 12:36:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp
-documentation_of: template/functions.cpp
+  - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
+documentation_of: Utility/functions.cpp
 layout: document
 redirect_from:
-- /library/template/functions.cpp
-- /library/template/functions.cpp.html
-title: template/functions.cpp
+- /library/Utility/functions.cpp
+- /library/Utility/functions.cpp.html
+title: Utility/functions.cpp
 ---
