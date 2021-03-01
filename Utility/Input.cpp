@@ -18,24 +18,24 @@ class Scanner {
 	}
 	static char next_char() {
 		char c;
-		read(c);
+		scan(c);
 		return c;
 	}
-	template <class T> static void read(T& v) {
+	template <class T> static void scan(T& v) {
 		cin >> v;
 	}
-	static void read(char& v) {
+	static void scan(char& v) {
 		while (isspace(v = gc()))
 			;
 	}
-	static void read(bool& v) {
+	static void scan(bool& v) {
 		v = next_char() != '0';
 	}
-	static void read(string& v) {
+	static void scan(string& v) {
 		v.clear();
 		for (char c = next_char(); !isspace(c); c = gc()) v += c;
 	}
-	static void read(int& v) {
+	static void scan(int& v) {
 		v = 0;
 		bool neg = false;
 		char c = next_char();
@@ -46,7 +46,7 @@ class Scanner {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void read(long long& v) {
+	static void scan(long long& v) {
 		v = 0;
 		bool neg = false;
 		char c = next_char();
@@ -57,7 +57,7 @@ class Scanner {
 		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void read(double& v) {
+	static void scan(double& v) {
 		v = 0;
 		double dp = 1;
 		bool neg = false, after_dp = false;
@@ -77,7 +77,7 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	static void read(long double& v) {
+	static void scan(long double& v) {
 		v = 0;
 		long double dp = 1;
 		bool neg = false, after_dp = false;
@@ -97,28 +97,28 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> static void read(pair<T, U>& v) {
-		read(v.first);
-		read(v.second);
+	template <class T, class U> static void scan(pair<T, U>& v) {
+		scan(v.first);
+		scan(v.second);
 	}
-	template <class T> static void read(vector<T>& v) {
-		for (auto& e : v) read(e);
+	template <class T> static void scan(vector<T>& v) {
+		for (auto& e : v) scan(e);
 	}
-	template <size_t N = 0, class T> static void read_tuple_impl(T& v) {
+	template <size_t N = 0, class T> static void scan_tuple_impl(T& v) {
 		if constexpr (N < tuple_size_v<T>) {
-			read(get<N>(v));
-			read_tuple_impl<N + 1>(v);
+			scan(get<N>(v));
+			scan_tuple_impl<N + 1>(v);
 		}
 	}
-	template <class... T> static void read(tuple<T...>& v) {
-		read_tuple_impl(v);
+	template <class... T> static void scan(tuple<T...>& v) {
+		scan_tuple_impl(v);
 	}
 	struct ReadVectorHelper {
 		size_t n;
 		ReadVectorHelper(size_t _n) : n(_n) {}
 		template <class T> operator vector<T>() {
 			vector<T> v(n);
-			read(v);
+			scan(v);
 			return v;
 		}
 	};
@@ -127,7 +127,7 @@ class Scanner {
 		Read2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second) {}
 		template <class T> operator vector<vector<T>>() {
 			vector<vector<T>> v(n, vector<T>(m));
-			read(v);
+			scan(v);
 			return v;
 		}
 	};
@@ -139,14 +139,14 @@ public:
 		return v;
 	}
 	template <class T> T read() const {
-		T v;
-		read(v);
-		return v;
+		T result;
+		scan(result);
+		return result;
 	}
-	template <class T> vector<T> read_vector(size_t n) const {
-		vector<T> a(n);
-		read(a);
-		return a;
+	template <class T> vector<T> read(size_t n) const {
+		vector<T> result(n);
+		scan(result);
+		return result;
 	}
 	template <class T> operator T() const {
 		return read<T>();
@@ -162,7 +162,7 @@ public:
 	}
 	void operator()() const {}
 	template <class H, class... T> void operator()(H&& h, T&&... t) const {
-		read(h);
+		scan(h);
 		operator()(forward<T>(t)...);
 	}
 

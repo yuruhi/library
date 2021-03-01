@@ -147,7 +147,7 @@ public:
 		if (r.first <= x && x <= r.second) {
 			return r;
 		} else {
-			return nullopt;
+			return std::nullopt;
 		}
 	}
 };
