@@ -1,5 +1,5 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1008"
-#include "./../Utility/ImosLinear.cpp"
+#include "./../DataStructure/ImosLinear.cpp"
 #include <iostream>
 #include <vector>
 #include <utility>

@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
-#include "./../Utility/CulSum.cpp"
+#include "./../DataStructure/CulSum.cpp"
 #include <iostream>
 using namespace std;
 

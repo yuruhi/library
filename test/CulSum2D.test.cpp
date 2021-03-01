@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/0560"
-#include "./../Utility/CulSum2D.cpp"
+#include "./../DataStructure/CulSum2D.cpp"
 #include <iostream>
 #include <vector>
 #include <string>
