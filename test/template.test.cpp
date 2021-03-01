@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb"
-#include "./../Utility/Input.cpp"
-#include "./../Utility/Output.cpp"
+#include "./../template.cpp"
 #include <iostream>
 using namespace std;
 
 int main() {
-	for (int t = in; t--;) {
-		long long a = in, b = in;
+	int t = in;
+	for (int i : times(t)) {
+		ll a = in, b = in;
 		out(a + b);
 	}
 }

@@ -1,11 +1,11 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "./constants.cpp"
-#include "./Input.cpp"
-#include "./Output.cpp"
-#include "./Step.cpp"
-#include "./Ruby.cpp"
-#include "./functions.cpp"
+#include "./Utility/constants.cpp"
+#include "./Utility/Input.cpp"
+#include "./Utility/Output.cpp"
+#include "./Utility/Step.cpp"
+#include "./Utility/Ruby.cpp"
+#include "./Utility/functions.cpp"
 #if __has_include(<library/dump.hpp>)
 #include <library/dump.hpp>
 #define LOCAL
