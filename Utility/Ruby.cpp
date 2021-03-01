@@ -66,6 +66,12 @@ struct Unique_impl {
 		v.erase(unique(begin(v), end(v), end(v)));
 		return v;
 	}
+	template <class T, class F> auto operator()(F&& f) {
+		return Callable([&](auto v) {
+			v.erase(unique(begin(v), end(v), f), end(v));
+			return v;
+		});
+	}
 } Unique;
 struct Uniq_impl {
 	template <class T> friend auto operator|(T v, const Uniq_impl& c) {
