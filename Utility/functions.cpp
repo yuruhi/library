@@ -3,16 +3,17 @@
 #include <numeric>
 #include <cmath>
 #include <vector>
+#include <tuple>
 #include <cassert>
-using namespace std;
 
-template <class T = long long> constexpr T TEN(size_t n) {
+template <class T = long long> constexpr T TEN(std::size_t n) {
 	T result = 1;
-	for (size_t i = 0; i < n; ++i) result *= 10;
+	for (std::size_t i = 0; i < n; ++i) result *= 10;
 	return result;
 }
-template <class T, class U,
-          enable_if_t<is_integral_v<T> && is_integral_v<U>, nullptr_t> = nullptr>
+template <
+    class T, class U,
+    std::enable_if_t<std::is_integral_v<T> && std::is_integral_v<U>, std::nullptr_t> = nullptr>
 constexpr auto div_ceil(T n, U m) {
 	return (n + m - 1) / m;
 }
@@ -32,9 +33,9 @@ template <class T, class U, class V>
 constexpr bool in_range(const T& v, const U& lower, const V& upper) {
 	return lower <= v && v < upper;
 }
-template <class T, enable_if_t<is_integral_v<T>, nullptr_t> = nullptr>
+template <class T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
 constexpr bool is_square(T n) {
-	T s = sqrt(n);
+	T s = std::sqrt(n);
 	return s * s == n || (s + 1) * (s + 1) == n;
 }
 template <class T = long long> constexpr T BIT(int b) {
@@ -46,7 +47,7 @@ template <class T> constexpr int BIT(T x, int i) {
 template <class T> constexpr int Sgn(T x) {
 	return (0 < x) - (0 > x);
 }
-template <class T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>
+template <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>
 constexpr T Pow(T a, U n) {
 	assert(n >= 0);
 	T result = 1;
@@ -61,7 +62,7 @@ constexpr T Pow(T a, U n) {
 	}
 	return result;
 }
-template <class T, class U, enable_if_t<is_integral_v<U>, nullptr_t> = nullptr>
+template <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>
 constexpr T Powmod(T a, U n, T mod) {
 	assert(n >= 0);
 	if (a > mod) a %= mod;
@@ -78,50 +79,44 @@ constexpr T Powmod(T a, U n, T mod) {
 	return result;
 }
 template <class T> bool chmax(T& a, const T& b) {
-	if (a < b) {
-		a = b;
-		return true;
-	}
-	return false;
+	return a < b ? a = b, true : false;
 }
 template <class T> bool chmin(T& a, const T& b) {
-	if (a > b) {
-		a = b;
-		return true;
-	}
-	return false;
+	return a > b ? a = b, true : false;
 }
 template <class T> int sz(const T& v) {
 	return v.size();
 }
 template <class T, class U> int lower_index(const T& a, const U& v) {
-	return lower_bound(all(a), v) - a.begin();
+	return std::lower_bound(all(a), v) - a.begin();
 }
 template <class T, class U> int upper_index(const T& a, const U& v) {
-	return upper_bound(all(a), v) - a.begin();
+	return std::upper_bound(all(a), v) - a.begin();
 }
-template <class T> auto Slice(const T& v, size_t i, size_t len) {
+template <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {
 	return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
 }
 template <class T, class U = typename T::value_type> U Gcdv(const T& v) {
-	return accumulate(next(v.begin()), v.end(), U(*v.begin()), gcd<U, U>);
+	return accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);
 }
 template <class T, class U = typename T::value_type> U Lcmv(const T& v) {
-	return accumulate(next(v.begin()), v.end(), U(*v.begin()), lcm<U, U>);
+	return accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);
 }
 namespace internal {
-	template <class T, size_t N> auto make_vector(vector<int>& sizes, const T& init) {
+	template <class T, std::size_t N>
+	auto make_vector(std::vector<int>& sizes, const T& init) {
 		if constexpr (N == 1) {
-			return vector(sizes[0], init);
+			return std::vector(sizes[0], init);
 		} else {
 			int size = sizes[N - 1];
 			sizes.pop_back();
-			return vector(size, make_vector<T, N - 1>(sizes, init));
+			return std::vector(size, make_vector<T, N - 1>(sizes, init));
 		}
 	}
 }  // namespace internal
-template <class T, size_t N> auto make_vector(const int (&sizes)[N], const T& init = T()) {
-	vector s(rbegin(sizes), rend(sizes));
+template <class T, std::size_t N>
+auto make_vector(const int (&sizes)[N], const T& init = T()) {
+	std::vector s(rbegin(sizes), rend(sizes));
 	return internal::make_vector<T, N>(s, init);
 }
 
@@ -170,6 +165,11 @@ namespace lambda {
 	template <class T> auto equal_to(const T& x) {
 		return [x](auto y) {
 			return x == y;
+		};
+	}
+	template <std::size_t I> auto get() {
+		return [](const auto& n) {
+			return std::get<I>(n);
 		};
 	}
 }  // namespace lambda
