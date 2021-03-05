@@ -8,41 +8,42 @@
 #include <charconv>
 #include <cstring>
 #include <cassert>
-using namespace std;
 
 class Printer {
 public:
 	struct BoolString {
-		string_view t, f;
-		BoolString(string_view _t, string_view _f) : t(_t), f(_f) {}
+		std::string_view t, f;
+		BoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f) {}
 	};
 	struct Separator {
-		string_view div, sep, last;
-		Separator(string_view _div, string_view _sep, string_view _last)
+		std::string_view div, sep, last;
+		Separator(std::string_view _div, std::string_view _sep, std::string_view _last)
 		    : div(_div), sep(_sep), last(_last) {}
 	};
 
 	inline static const BoolString Yes{"Yes", "No"}, yes{"yes", "no"}, YES{"YES", "NO"},
-	    Int{"1", "0"};
+	    Int{"1", "0"}, Possible{"Possible", "Impossible"};
 	inline static const Separator space{" ", " ", "\n"}, no_space{"", "", "\n"},
-	    end_line{"\n", "\n", "\n"}, comma{",", ",", "\n"}, no_endl{" ", " ", ""};
+	    endl{"\n", "\n", "\n"}, comma{",", ",", "\n"}, no_endl{" ", " ", ""},
+	    sep_endl{" ", "\n", "\n"};
 
 	BoolString bool_str{Yes};
 	Separator separator{space};
 
-public:
 	void print(int v) const {
 		char buf[12]{};
-		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
-			print(string_view(buf, ptr - buf));
+		if (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);
+		    e == std::errc{}) {
+			print(std::string_view(buf, ptr - buf));
 		} else {
 			assert(false);
 		}
 	}
 	void print(long long v) const {
 		char buf[21]{};
-		if (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e == errc{}) {
-			print(string_view(buf, ptr - buf));
+		if (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);
+		    e == std::errc{}) {
+			print(std::string_view(buf, ptr - buf));
 		} else {
 			assert(false);
 		}
@@ -50,25 +51,25 @@ public:
 	void print(bool v) const {
 		print(v ? bool_str.t : bool_str.f);
 	}
-	void print(vector<bool>::reference v) const {
+	void print(std::vector<bool>::reference v) const {
 		print(v ? bool_str.t : bool_str.f);
 	}
 	void print(char v) const {
 		putchar_unlocked(v);
 	}
-	void print(string_view v) const {
-		fwrite_unlocked(v.data(), sizeof(string_view::value_type), v.size(), stdout);
+	void print(std::string_view v) const {
+		fwrite_unlocked(v.data(), sizeof(std::string_view::value_type), v.size(), stdout);
 	}
 	void print(double v) const {
-		printf("%.20f", v);
+		std::printf("%.20f", v);
 	}
 	void print(long double v) const {
-		printf("%.20Lf", v);
+		std::printf("%.20Lf", v);
 	}
 	template <class T> void print(const T& v) const {
-		cout << v;
+		std::cout << v;
 	}
-	template <class T, class U> void print(const pair<T, U>& v) const {
+	template <class T, class U> void print(const std::pair<T, U>& v) const {
 		print(v.first);
 		print(separator.div);
 		print(v.second);
@@ -76,18 +77,18 @@ public:
 	template <class InputIterater>
 	void print_range(const InputIterater& begin, const InputIterater& end) const {
 		for (InputIterater i = begin; i != end; ++i) {
-			if (i != begin) print(separator.div);
+			if (i != begin) print(separator.sep);
 			print(*i);
 		}
 	}
-	template <class T> void print(const vector<T>& v) const {
+	template <class T> void print(const std::vector<T>& v) const {
 		print_range(v.begin(), v.end());
 	}
-	template <class T, size_t N> void print(const array<T, N>& v) const {
+	template <class T, std::size_t N> void print(const std::array<T, N>& v) const {
 		print_range(v.begin(), v.end());
 	}
-	template <class T> void print(const vector<vector<T>>& v) const {
-		for (size_t i = 0; i < v.size(); ++i) {
+	template <class T> void print(const std::vector<std::vector<T>>& v) const {
+		for (std::size_t i = 0; i < v.size(); ++i) {
 			if (i) print(separator.last);
 			print(v[i]);
 		}
@@ -108,11 +109,11 @@ public:
 	template <class Head, class... Tail> Printer& operator()(Head&& head, Tail&&... tail) {
 		print(head);
 		print(separator.sep);
-		return operator()(forward<Tail>(tail)...);
+		return operator()(std::forward<Tail>(tail)...);
 	}
 	template <class... Args> Printer& flag(bool f, Args&&... args) {
 		if (f) {
-			return operator()(forward<Args>(args)...);
+			return operator()(std::forward<Args>(args)...);
 		} else {
 			return *this;
 		}
@@ -128,7 +129,7 @@ public:
 		return *this;
 	}
 	template <class... T> void exit(T&&... t) {
-		operator()(forward<T>(t)...);
+		operator()(std::forward<T>(t)...);
 		std::exit(EXIT_SUCCESS);
 	}
 	Printer& flush() {
@@ -143,7 +144,7 @@ public:
 		separator = _separator;
 		return *this;
 	}
-	Printer& set(string_view t, string_view f) {
+	Printer& set(std::string_view t, std::string_view f) {
 		bool_str = BoolString(t, f);
 		return *this;
 	}
