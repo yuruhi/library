@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 #include "./Utility/constants.cpp"
 #include "./Utility/Input.cpp"
-#include "./Utility/Output.cpp"
+#include "./Utility/Printer.cpp"
 #include "./Utility/functions.cpp"
 #if __has_include(<library/dump.hpp>)
 #include <library/dump.hpp>
