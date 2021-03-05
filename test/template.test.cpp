@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	int t = in;
-	for (int i : times(t)) {
+	for ([[maybe_unused]] int i : times(t)) {
 		ll a = in, b = in;
 		out(a + b);
 	}
