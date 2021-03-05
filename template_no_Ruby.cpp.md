@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Utility/Input.cpp
-    title: Utility/Input.cpp
+    path: Utility/Printer.cpp
+    title: Utility/Printer.cpp
   - icon: ':heavy_check_mark:'
-    path: Utility/Output.cpp
-    title: Utility/Output.cpp
+    path: Utility/Scanner.cpp
+    title: Utility/Scanner.cpp
   - icon: ':heavy_check_mark:'
     path: Utility/constants.cpp
     title: Utility/constants.cpp
@@ -34,72 +34,74 @@ data:
     template <class T> using PQ = priority_queue<T>;\ntemplate <class T> using PQS\
     \ = priority_queue<T, vector<T>, greater<T>>;\nconstexpr int inf = 1000000000;\n\
     constexpr long long inf_ll = 1000000000000000000ll, MOD = 1000000007;\nconstexpr\
-    \ long double PI = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"Utility/Input.cpp\"\
-    \nusing namespace std;\n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n\
-    #define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked fwrite\n#define\
-    \ fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn\
-    \ getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\
-    \t\treturn c;\n\t}\n\ttemplate <class T> static void scan(T& v) {\n\t\tcin >>\
-    \ v;\n\t}\n\tstatic void scan(char& v) {\n\t\twhile (isspace(v = gc()))\n\t\t\t\
-    ;\n\t}\n\tstatic void scan(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic\
-    \ void scan(string& v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !isspace(c);\
+    \ long double PI = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\
+    \n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
+    \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
+    #endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\
+    \t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t\
+    }\n\ttemplate <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\t\
+    static void scan(char& v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\
+    \tstatic void scan(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void\
+    \ scan(std::string& v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c);\
     \ c = gc()) v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg\
     \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
-    \t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c); c = gc()) v = v * 10 + (c - '0');\n\
-    \t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\tv = 0;\n\t\t\
-    bool neg = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg =\
-    \ true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; isdigit(c); c = gc()) v = v * 10 +\
-    \ (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double& v) {\n\t\t\
-    v = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\tchar\
-    \ c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\
-    \t}\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\
-    \t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') *\
-    \ (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t\
-    }\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double& v) {\n\t\tv = 0;\n\
-    \t\tlong double dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\tchar c =\
-    \ next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t\
-    }\n\t\tfor (; isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\
-    \t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp\
-    \ *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\
-    \tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void scan(pair<T,\
-    \ U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t}\n\ttemplate <class T>\
-    \ static void scan(vector<T>& v) {\n\t\tfor (auto& e : v) scan(e);\n\t}\n\ttemplate\
-    \ <size_t N = 0, class T> static void scan_tuple_impl(T& v) {\n\t\tif constexpr\
-    \ (N < tuple_size_v<T>) {\n\t\t\tscan(get<N>(v));\n\t\t\tscan_tuple_impl<N + 1>(v);\n\
-    \t\t}\n\t}\n\ttemplate <class... T> static void scan(tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\
-    \t}\n\tstruct ReadVectorHelper {\n\t\tsize_t n;\n\t\tReadVectorHelper(size_t _n)\
-    \ : n(_n) {}\n\t\ttemplate <class T> operator vector<T>() {\n\t\t\tvector<T> v(n);\n\
-    \t\t\tscan(v);\n\t\t\treturn v;\n\t\t}\n\t};\n\tstruct Read2DVectorHelper {\n\t\
-    \tsize_t n, m;\n\t\tRead2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first),\
-    \ m(nm.second) {}\n\t\ttemplate <class T> operator vector<vector<T>>() {\n\t\t\
-    \tvector<vector<T>> v(n, vector<T>(m));\n\t\t\tscan(v);\n\t\t\treturn v;\n\t\t\
-    }\n\t};\n\npublic:\n\tstring read_line() const {\n\t\tstring v;\n\t\tfor (char\
-    \ c = gc(); c != '\\n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\t\
-    template <class T> T read() const {\n\t\tT result;\n\t\tscan(result);\n\t\treturn\
-    \ result;\n\t}\n\ttemplate <class T> vector<T> read(size_t n) const {\n\t\tvector<T>\
-    \ result(n);\n\t\tscan(result);\n\t\treturn result;\n\t}\n\ttemplate <class T>\
-    \ operator T() const {\n\t\treturn read<T>();\n\t}\n\tint operator--(int) const\
-    \ {\n\t\treturn read<int>() - 1;\n\t}\n\tReadVectorHelper operator[](size_t n)\
-    \ const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tRead2DVectorHelper operator[](const\
-    \ pair<size_t, size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\t}\n\
-    \tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
-    \ h, T&&... t) const {\n\t\tscan(h);\n\t\toperator()(forward<T>(t)...);\n\t}\n\
-    \nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\t\
-    template <template <class...> class V, class Head, class... Tail>\n\tstruct Column<V,\
-    \ Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<vector<Head>, Args...>;\n\
+    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c\
+    \ - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\t\
+    v = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\
+    \t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc())\
+    \ v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double&\
+    \ v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\
+    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
+    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
+    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
+    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double& v) {\n\t\t\
+    v = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\t\
+    char c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
+    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
+    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
+    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void\
+    \ scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t}\n\t\
+    template <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto& e : v)\
+    \ scan(e);\n\t}\n\ttemplate <size_t N = 0, class T> static void scan_tuple_impl(T&\
+    \ v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\t\t\tscan(std::get<N>(v));\n\
+    \t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> static void\
+    \ scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\t}\n\tstruct ReadVectorHelper\
+    \ {\n\t\tsize_t n;\n\t\tReadVectorHelper(std::size_t _n) : n(_n) {}\n\t\ttemplate\
+    \ <class T> operator std::vector<T>() {\n\t\t\tstd::vector<T> v(n);\n\t\t\tscan(v);\n\
+    \t\t\treturn v;\n\t\t}\n\t};\n\tstruct Read2DVectorHelper {\n\t\tstd::size_t n,\
+    \ m;\n\t\tRead2DVectorHelper(const std::pair<std::size_t, std::size_t>& nm)\n\t\
+    \t    : n(nm.first), m(nm.second) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
+    \ {\n\t\t\tstd::vector<std::vector<T>> v(n, std::vector<T>(m));\n\t\t\tscan(v);\n\
+    \t\t\treturn v;\n\t\t}\n\t};\n\npublic:\n\tstd::string read_line() const {\n\t\
+    \tstd::string v;\n\t\tfor (char c = gc(); c != '\\n' && c != '\\0'; c = gc())\
+    \ v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T> T read() const {\n\t\tT result;\n\
+    \t\tscan(result);\n\t\treturn result;\n\t}\n\ttemplate <class T> std::vector<T>\
+    \ read(std::size_t n) const {\n\t\tstd::vector<T> result(n);\n\t\tscan(result);\n\
+    \t\treturn result;\n\t}\n\ttemplate <class T> operator T() const {\n\t\treturn\
+    \ read<T>();\n\t}\n\tint operator--(int) const {\n\t\treturn read<int>() - 1;\n\
+    \t}\n\tReadVectorHelper operator[](std::size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\
+    \t}\n\tRead2DVectorHelper operator[](const std::pair<std::size_t, std::size_t>&\
+    \ nm) const {\n\t\treturn Read2DVectorHelper(nm);\n\t}\n\tvoid operator()() const\
+    \ {}\n\ttemplate <class H, class... T> void operator()(H&& h, T&&... t) const\
+    \ {\n\t\tscan(h);\n\t\toperator()(std::forward<T>(t)...);\n\t}\n\nprivate:\n\t\
+    template <template <class...> class, class...> struct Column;\n\ttemplate <template\
+    \ <class...> class V, class Head, class... Tail>\n\tstruct Column<V, Head, Tail...>\
+    \ {\n\t\ttemplate <class... Args> using vec = V<std::vector<Head>, Args...>;\n\
     \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
     \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
-    \ T> using column_t = typename Column<tuple, T...>::type;\n\ttemplate <size_t\
-    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < tuple_size_v<T>)\
-    \ {\n\t\t\tauto& vec = get<N>(t);\n\t\t\tusing V = typename remove_reference_t<decltype(vec)>::value_type;\n\
+    \ T> using column_t = typename Column<std::tuple, T...>::type;\n\ttemplate <size_t\
+    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < std::tuple_size_v<T>)\
+    \ {\n\t\t\tauto& vec = std::get<N>(t);\n\t\t\tusing V = typename std::remove_reference_t<decltype(vec)>::value_type;\n\
     \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
-    public:\n\ttemplate <class... T> auto column(size_t h) const {\n\t\tcolumn_t<T...>\
+    public:\n\ttemplate <class... T> auto column(std::size_t h) const {\n\t\tcolumn_t<T...>\
     \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
     #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
-    #define ins(...) inputs(string, __VA_ARGS__)\n#line 5 \"Utility/Output.cpp\"\n\
-    #include <string_view>\n#line 8 \"Utility/Output.cpp\"\n#include <charconv>\n\
-    #line 11 \"Utility/Output.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString\
+    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 5 \"Utility/Printer.cpp\"\
+    \n#include <string_view>\n#line 8 \"Utility/Printer.cpp\"\n#include <charconv>\n\
+    #line 11 \"Utility/Printer.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString\
     \ {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view _t, std::string_view\
     \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div,\
     \ sep, last;\n\t\tSeparator(std::string_view _div, std::string_view _sep, std::string_view\
@@ -216,20 +218,20 @@ data:
     \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
     \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./Utility/constants.cpp\"\
-    \n#include \"./Utility/Input.cpp\"\n#include \"./Utility/Output.cpp\"\n#include\
+    \n#include \"./Utility/Scanner.cpp\"\n#include \"./Utility/Printer.cpp\"\n#include\
     \ \"./Utility/functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include\
     \ <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\
     \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
     \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
   dependsOn:
   - Utility/constants.cpp
-  - Utility/Input.cpp
-  - Utility/Output.cpp
+  - Utility/Scanner.cpp
+  - Utility/Printer.cpp
   - Utility/functions.cpp
   isVerificationFile: false
   path: template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-03-05 17:54:20+09:00'
+  timestamp: '2021-03-05 18:10:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template_no_Ruby.cpp

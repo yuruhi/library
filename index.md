@@ -308,21 +308,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/Dice.cpp
       title: Utility/Dice.cpp
-    - icon: ':heavy_check_mark:'
-      path: Utility/Input.cpp
-      title: Utility/Input.cpp
     - icon: ':warning:'
       path: Utility/Mex.cpp
       title: Utility/Mex.cpp
-    - icon: ':heavy_check_mark:'
-      path: Utility/Output.cpp
-      title: Utility/Output.cpp
     - icon: ':warning:'
       path: Utility/Pair.cpp
       title: Utility/Pair.cpp
     - icon: ':heavy_check_mark:'
       path: Utility/Point.cpp
       title: Utility/Point.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Printer.cpp
+      title: Utility/Printer.cpp
     - icon: ':warning:'
       path: Utility/Random.cpp
       title: Utility/Random.cpp
@@ -338,6 +335,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/RunLengthEncoding.cpp
       title: Utility/RunLengthEncoding.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/Scanner.cpp
+      title: Utility/Scanner.cpp
     - icon: ':heavy_check_mark:'
       path: Utility/Step.cpp
       title: Utility/Step.cpp

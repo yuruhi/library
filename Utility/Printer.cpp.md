@@ -23,7 +23,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utility/Output.cpp\"\n#include <iostream>\n#include <utility>\n\
+  bundledCode: "#line 2 \"Utility/Printer.cpp\"\n#include <iostream>\n#include <utility>\n\
     #include <string>\n#include <string_view>\n#include <vector>\n#include <array>\n\
     #include <charconv>\n#include <cstring>\n#include <cassert>\n\nclass Printer {\n\
     public:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view\
@@ -137,20 +137,20 @@ data:
     \t}\n} out;\n"
   dependsOn: []
   isVerificationFile: false
-  path: Utility/Output.cpp
+  path: Utility/Printer.cpp
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-05 17:54:20+09:00'
+  timestamp: '2021-03-05 18:01:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Input_Output.test.cpp
   - test/template_no_Ruby.test.cpp
   - test/template.test.cpp
-documentation_of: Utility/Output.cpp
+documentation_of: Utility/Printer.cpp
 layout: document
 redirect_from:
-- /library/Utility/Output.cpp
-- /library/Utility/Output.cpp.html
-title: Utility/Output.cpp
+- /library/Utility/Printer.cpp
+- /library/Utility/Printer.cpp.html
+title: Utility/Printer.cpp
 ---
