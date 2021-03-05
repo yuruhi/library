@@ -39,8 +39,10 @@ data:
     \ T> friend auto operator|(T v, const Reverse_impl& c) {\n\t\treverse(begin(v),\
     \ end(v));\n\t\treturn v;\n\t}\n} Reverse;\nstruct Unique_impl {\n\ttemplate <class\
     \ T> friend auto operator|(T v, const Unique_impl& c) {\n\t\tv.erase(unique(begin(v),\
-    \ end(v), end(v)));\n\t\treturn v;\n\t}\n} Unique;\nstruct Uniq_impl {\n\ttemplate\
-    \ <class T> friend auto operator|(T v, const Uniq_impl& c) {\n\t\tsort(begin(v),\
+    \ end(v), end(v)));\n\t\treturn v;\n\t}\n\ttemplate <class T, class F> auto operator()(F&&\
+    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tv.erase(unique(begin(v), end(v),\
+    \ f), end(v));\n\t\t\treturn v;\n\t\t});\n\t}\n} Unique;\nstruct Uniq_impl {\n\
+    \ttemplate <class T> friend auto operator|(T v, const Uniq_impl& c) {\n\t\tsort(begin(v),\
     \ end(v));\n\t\tv.erase(unique(begin(v), end(v)), end(v));\n\t\treturn v;\n\t\
     }\n} Uniq;\nstruct Rotate_impl {\n\tauto operator()(int&& left) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tint s = static_cast<int>(size(v));\n\t\t\tassert(-s\
@@ -173,10 +175,12 @@ data:
     \ v, const Reverse_impl& c) {\n\t\treverse(begin(v), end(v));\n\t\treturn v;\n\
     \t}\n} Reverse;\nstruct Unique_impl {\n\ttemplate <class T> friend auto operator|(T\
     \ v, const Unique_impl& c) {\n\t\tv.erase(unique(begin(v), end(v), end(v)));\n\
-    \t\treturn v;\n\t}\n} Unique;\nstruct Uniq_impl {\n\ttemplate <class T> friend\
-    \ auto operator|(T v, const Uniq_impl& c) {\n\t\tsort(begin(v), end(v));\n\t\t\
-    v.erase(unique(begin(v), end(v)), end(v));\n\t\treturn v;\n\t}\n} Uniq;\nstruct\
-    \ Rotate_impl {\n\tauto operator()(int&& left) {\n\t\treturn Callable([&](auto\
+    \t\treturn v;\n\t}\n\ttemplate <class T, class F> auto operator()(F&& f) {\n\t\
+    \treturn Callable([&](auto v) {\n\t\t\tv.erase(unique(begin(v), end(v), f), end(v));\n\
+    \t\t\treturn v;\n\t\t});\n\t}\n} Unique;\nstruct Uniq_impl {\n\ttemplate <class\
+    \ T> friend auto operator|(T v, const Uniq_impl& c) {\n\t\tsort(begin(v), end(v));\n\
+    \t\tv.erase(unique(begin(v), end(v)), end(v));\n\t\treturn v;\n\t}\n} Uniq;\n\
+    struct Rotate_impl {\n\tauto operator()(int&& left) {\n\t\treturn Callable([&](auto\
     \ v) {\n\t\t\tint s = static_cast<int>(size(v));\n\t\t\tassert(-s <= left && left\
     \ <= s);\n\t\t\tif (0 <= left) {\n\t\t\t\trotate(begin(v), begin(v) + left, end(v));\n\
     \t\t\t} else {\n\t\t\t\trotate(begin(v), end(v) + left, end(v));\n\t\t\t}\n\t\t\
@@ -290,7 +294,7 @@ data:
   path: Utility/Ruby.cpp
   requiredBy:
   - template.cpp
-  timestamp: '2021-03-01 12:36:22+09:00'
+  timestamp: '2021-03-01 21:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template_no_Ruby.test.cpp

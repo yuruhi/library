@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/CulSum2D.cpp
       title: DataStructure/CulSum2D.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/Imos.cpp
       title: DataStructure/Imos.cpp
     - icon: ':warning:'
@@ -655,6 +655,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/HLD_vertex.test.cpp
       title: test/HLD_vertex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Imos.test.cpp
+      title: test/Imos.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
