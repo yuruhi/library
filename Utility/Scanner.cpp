@@ -4,7 +4,6 @@
 #include <string>
 #include <utility>
 #include <tuple>
-using namespace std;
 
 #ifdef _WIN32
 #define getchar_unlocked _getchar_nolock
@@ -22,18 +21,18 @@ class Scanner {
 		return c;
 	}
 	template <class T> static void scan(T& v) {
-		cin >> v;
+		std::cin >> v;
 	}
 	static void scan(char& v) {
-		while (isspace(v = gc()))
+		while (std::isspace(v = gc()))
 			;
 	}
 	static void scan(bool& v) {
 		v = next_char() != '0';
 	}
-	static void scan(string& v) {
+	static void scan(std::string& v) {
 		v.clear();
-		for (char c = next_char(); !isspace(c); c = gc()) v += c;
+		for (char c = next_char(); !std::isspace(c); c = gc()) v += c;
 	}
 	static void scan(int& v) {
 		v = 0;
@@ -43,7 +42,7 @@ class Scanner {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		for (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void scan(long long& v) {
@@ -54,7 +53,7 @@ class Scanner {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c); c = gc()) v = v * 10 + (c - '0');
+		for (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
 	static void scan(double& v) {
@@ -66,7 +65,7 @@ class Scanner {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c) || c == '.'; c = gc()) {
+		for (; std::isdigit(c) || c == '.'; c = gc()) {
 			if (c == '.') {
 				after_dp = true;
 			} else if (after_dp) {
@@ -86,7 +85,7 @@ class Scanner {
 			neg = true;
 			c = gc();
 		}
-		for (; isdigit(c) || c == '.'; c = gc()) {
+		for (; std::isdigit(c) || c == '.'; c = gc()) {
 			if (c == '.') {
 				after_dp = true;
 			} else if (after_dp) {
@@ -97,44 +96,45 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> static void scan(pair<T, U>& v) {
+	template <class T, class U> static void scan(std::pair<T, U>& v) {
 		scan(v.first);
 		scan(v.second);
 	}
-	template <class T> static void scan(vector<T>& v) {
+	template <class T> static void scan(std::vector<T>& v) {
 		for (auto& e : v) scan(e);
 	}
 	template <size_t N = 0, class T> static void scan_tuple_impl(T& v) {
-		if constexpr (N < tuple_size_v<T>) {
-			scan(get<N>(v));
+		if constexpr (N < std::tuple_size_v<T>) {
+			scan(std::get<N>(v));
 			scan_tuple_impl<N + 1>(v);
 		}
 	}
-	template <class... T> static void scan(tuple<T...>& v) {
+	template <class... T> static void scan(std::tuple<T...>& v) {
 		scan_tuple_impl(v);
 	}
 	struct ReadVectorHelper {
 		size_t n;
-		ReadVectorHelper(size_t _n) : n(_n) {}
-		template <class T> operator vector<T>() {
-			vector<T> v(n);
+		ReadVectorHelper(std::size_t _n) : n(_n) {}
+		template <class T> operator std::vector<T>() {
+			std::vector<T> v(n);
 			scan(v);
 			return v;
 		}
 	};
 	struct Read2DVectorHelper {
-		size_t n, m;
-		Read2DVectorHelper(const pair<size_t, size_t>& nm) : n(nm.first), m(nm.second) {}
-		template <class T> operator vector<vector<T>>() {
-			vector<vector<T>> v(n, vector<T>(m));
+		std::size_t n, m;
+		Read2DVectorHelper(const std::pair<std::size_t, std::size_t>& nm)
+		    : n(nm.first), m(nm.second) {}
+		template <class T> operator std::vector<std::vector<T>>() {
+			std::vector<std::vector<T>> v(n, std::vector<T>(m));
 			scan(v);
 			return v;
 		}
 	};
 
 public:
-	string read_line() const {
-		string v;
+	std::string read_line() const {
+		std::string v;
 		for (char c = gc(); c != '\n' && c != '\0'; c = gc()) v += c;
 		return v;
 	}
@@ -143,8 +143,8 @@ public:
 		scan(result);
 		return result;
 	}
-	template <class T> vector<T> read(size_t n) const {
-		vector<T> result(n);
+	template <class T> std::vector<T> read(std::size_t n) const {
+		std::vector<T> result(n);
 		scan(result);
 		return result;
 	}
@@ -154,38 +154,38 @@ public:
 	int operator--(int) const {
 		return read<int>() - 1;
 	}
-	ReadVectorHelper operator[](size_t n) const {
+	ReadVectorHelper operator[](std::size_t n) const {
 		return ReadVectorHelper(n);
 	}
-	Read2DVectorHelper operator[](const pair<size_t, size_t>& nm) const {
+	Read2DVectorHelper operator[](const std::pair<std::size_t, std::size_t>& nm) const {
 		return Read2DVectorHelper(nm);
 	}
 	void operator()() const {}
 	template <class H, class... T> void operator()(H&& h, T&&... t) const {
 		scan(h);
-		operator()(forward<T>(t)...);
+		operator()(std::forward<T>(t)...);
 	}
 
 private:
 	template <template <class...> class, class...> struct Column;
 	template <template <class...> class V, class Head, class... Tail>
 	struct Column<V, Head, Tail...> {
-		template <class... Args> using vec = V<vector<Head>, Args...>;
+		template <class... Args> using vec = V<std::vector<Head>, Args...>;
 		using type = typename Column<vec, Tail...>::type;
 	};
 	template <template <class...> class V> struct Column<V> { using type = V<>; };
-	template <class... T> using column_t = typename Column<tuple, T...>::type;
+	template <class... T> using column_t = typename Column<std::tuple, T...>::type;
 	template <size_t N = 0, class T> void column_impl(T& t) const {
-		if constexpr (N < tuple_size_v<T>) {
-			auto& vec = get<N>(t);
-			using V = typename remove_reference_t<decltype(vec)>::value_type;
+		if constexpr (N < std::tuple_size_v<T>) {
+			auto& vec = std::get<N>(t);
+			using V = typename std::remove_reference_t<decltype(vec)>::value_type;
 			vec.push_back(read<V>());
 			column_impl<N + 1>(t);
 		}
 	}
 
 public:
-	template <class... T> auto column(size_t h) const {
+	template <class... T> auto column(std::size_t h) const {
 		column_t<T...> result;
 		while (h--) column_impl(result);
 		return result;
@@ -196,4 +196,4 @@ public:
 	in(__VA_ARGS__)
 #define ini(...) inputs(int, __VA_ARGS__)
 #define inl(...) inputs(long long, __VA_ARGS__)
-#define ins(...) inputs(string, __VA_ARGS__)
+#define ins(...) inputs(std::string, __VA_ARGS__)

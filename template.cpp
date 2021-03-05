@@ -1,7 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "./Utility/constants.cpp"
-#include "./Utility/Input.cpp"
+#include "./Utility/Scanner.cpp"
 #include "./Utility/Printer.cpp"
 #include "./Utility/Step.cpp"
 #include "./Utility/Ruby.cpp"

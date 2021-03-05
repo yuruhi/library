@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb"
-#include "./../Utility/Input.cpp"
+#include "./../Utility/Scanner.cpp"
 #include "./../Utility/Printer.cpp"
 #include <iostream>
 using namespace std;
