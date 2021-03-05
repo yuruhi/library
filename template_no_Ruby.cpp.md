@@ -99,96 +99,98 @@ data:
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
     #define ins(...) inputs(string, __VA_ARGS__)\n#line 5 \"Utility/Output.cpp\"\n\
     #include <string_view>\n#line 8 \"Utility/Output.cpp\"\n#include <charconv>\n\
-    #line 11 \"Utility/Output.cpp\"\nusing namespace std;\n\nclass Printer {\npublic:\n\
-    \tstruct BoolString {\n\t\tstring_view t, f;\n\t\tBoolString(string_view _t, string_view\
-    \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstring_view div, sep,\
-    \ last;\n\t\tSeparator(string_view _div, string_view _sep, string_view _last)\n\
-    \t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static const\
-    \ BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"NO\"},\n\
-    \t    Int{\"1\", \"0\"};\n\tinline static const Separator space{\" \", \" \",\
-    \ \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    end_line{\"\\n\", \"\\n\", \"\
-    \\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"};\n\n\tBoolString\
-    \ bool_str{Yes};\n\tSeparator separator{space};\n\npublic:\n\tvoid print(int v)\
-    \ const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf),\
-    \ v); e == errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t} else {\n\
-    \t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\t\tchar\
-    \ buf[21]{};\n\t\tif (auto [ptr, e] = to_chars(begin(buf), end(buf), v); e ==\
-    \ errc{}) {\n\t\t\tprint(string_view(buf, ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\
-    \t\t}\n\t}\n\tvoid print(bool v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\
-    \t}\n\tvoid print(vector<bool>::reference v) const {\n\t\tprint(v ? bool_str.t\
-    \ : bool_str.f);\n\t}\n\tvoid print(char v) const {\n\t\tputchar_unlocked(v);\n\
-    \t}\n\tvoid print(string_view v) const {\n\t\tfwrite_unlocked(v.data(), sizeof(string_view::value_type),\
-    \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tprintf(\"%.20f\"\
-    , v);\n\t}\n\tvoid print(long double v) const {\n\t\tprintf(\"%.20Lf\", v);\n\t\
-    }\n\ttemplate <class T> void print(const T& v) const {\n\t\tcout << v;\n\t}\n\t\
-    template <class T, class U> void print(const pair<T, U>& v) const {\n\t\tprint(v.first);\n\
-    \t\tprint(separator.div);\n\t\tprint(v.second);\n\t}\n\ttemplate <class InputIterater>\n\
-    \tvoid print_range(const InputIterater& begin, const InputIterater& end) const\
-    \ {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i != begin)\
-    \ print(separator.div);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class T> void\
-    \ print(const vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\t\
-    }\n\ttemplate <class T, size_t N> void print(const array<T, N>& v) const {\n\t\
-    \tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void print(const\
-    \ vector<vector<T>>& v) const {\n\t\tfor (size_t i = 0; i < v.size(); ++i) {\n\
-    \t\t\tif (i) print(separator.last);\n\t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter()\
-    \ = default;\n\tPrinter(const BoolString& _bool_str, const Separator& _separator)\n\
-    \t    : bool_str(_bool_str), separator(_separator) {}\n\tPrinter& operator()()\
-    \ {\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class Head>\
-    \ Printer& operator()(Head&& head) {\n\t\tprint(head);\n\t\tprint(separator.last);\n\
-    \t\treturn *this;\n\t}\n\ttemplate <class Head, class... Tail> Printer& operator()(Head&&\
-    \ head, Tail&&... tail) {\n\t\tprint(head);\n\t\tprint(separator.sep);\n\t\treturn\
-    \ operator()(forward<Tail>(tail)...);\n\t}\n\ttemplate <class... Args> Printer&\
-    \ flag(bool f, Args&&... args) {\n\t\tif (f) {\n\t\t\treturn operator()(forward<Args>(args)...);\n\
-    \t\t} else {\n\t\t\treturn *this;\n\t\t}\n\t}\n\ttemplate <class InputIterator>\n\
-    \tPrinter& range(const InputIterator& begin, const InputIterator& end) {\n\t\t\
-    print_range(begin, end);\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\
-    \ttemplate <class Container> Printer& range(const Container& a) {\n\t\trange(a.begin(),\
-    \ a.end());\n\t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&...\
-    \ t) {\n\t\toperator()(forward<T>(t)...);\n\t\tstd::exit(EXIT_SUCCESS);\n\t}\n\
-    \tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\t\treturn *this;\n\t}\n\t\
-    Printer& set(const BoolString& _bool_str) {\n\t\tbool_str = _bool_str;\n\t\treturn\
-    \ *this;\n\t}\n\tPrinter& set(const Separator& _separator) {\n\t\tseparator =\
-    \ _separator;\n\t\treturn *this;\n\t}\n\tPrinter& set(string_view t, string_view\
-    \ f) {\n\t\tbool_str = BoolString(t, f);\n\t\treturn *this;\n\t}\n} out;\n#line\
-    \ 8 \"Utility/functions.cpp\"\n\ntemplate <class T = long long> constexpr T TEN(std::size_t\
-    \ n) {\n\tT result = 1;\n\tfor (std::size_t i = 0; i < n; ++i) result *= 10;\n\
-    \treturn result;\n}\ntemplate <\n    class T, class U,\n    std::enable_if_t<std::is_integral_v<T>\
-    \ && std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr auto div_ceil(T\
-    \ n, U m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T, class U> constexpr\
-    \ auto div_ceil2(T n, U m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class\
-    \ T> constexpr T triangle(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 *\
-    \ (n + 1);\n}\ntemplate <class T> constexpr T nC2(T n) {\n\treturn (n & 1) ? (n\
-    \ - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate <class T, class U> constexpr auto\
-    \ middle(const T& l, const U& r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class\
-    \ T, class U, class V>\nconstexpr bool in_range(const T& v, const U& lower, const\
-    \ V& upper) {\n\treturn lower <= v && v < upper;\n}\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = std::sqrt(n);\n\
-    \treturn s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
-    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
-    \ int BIT(T x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class\
-    \ T> constexpr int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class\
-    \ T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>\n\
-    constexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n >\
-    \ 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\t\
-    a *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class\
-    \ U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr\
-    \ T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a > mod) a %= mod;\n\t\
-    T result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult = result * a\
-    \ % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\t\t\tn >>= 1;\n\t\
-    \t}\n\t}\n\treturn result;\n}\ntemplate <class T> bool chmax(T& a, const T& b)\
-    \ {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class T> bool chmin(T&\
-    \ a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\ntemplate <class\
-    \ T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class T, class U>\
-    \ int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
-    \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
+    #line 11 \"Utility/Output.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString\
+    \ {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view _t, std::string_view\
+    \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div,\
+    \ sep, last;\n\t\tSeparator(std::string_view _div, std::string_view _sep, std::string_view\
+    \ _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static\
+    \ const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"\
+    NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"Possible\", \"Impossible\"};\n\tinline\
+    \ static const Separator space{\" \", \" \", \"\\n\"}, no_space{\"\", \"\", \"\
+    \\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\\n\"}, comma{\",\", \",\", \"\\n\"},\
+    \ no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\" \", \"\\n\", \"\\n\"};\n\n\t\
+    BoolString bool_str{Yes};\n\tSeparator separator{space};\n\n\tvoid print(int v)\
+    \ const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
+    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
+    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long\
+    \ long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
+    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
+    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool\
+    \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
+    \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(char\
+    \ v) const {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid print(std::string_view v)\
+    \ const {\n\t\tfwrite_unlocked(v.data(), sizeof(std::string_view::value_type),\
+    \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tstd::printf(\"\
+    %.20f\", v);\n\t}\n\tvoid print(long double v) const {\n\t\tstd::printf(\"%.20Lf\"\
+    , v);\n\t}\n\ttemplate <class T> void print(const T& v) const {\n\t\tstd::cout\
+    \ << v;\n\t}\n\ttemplate <class T, class U> void print(const std::pair<T, U>&\
+    \ v) const {\n\t\tprint(v.first);\n\t\tprint(separator.div);\n\t\tprint(v.second);\n\
+    \t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
+    \ begin, const InputIterater& end) const {\n\t\tfor (InputIterater i = begin;\
+    \ i != end; ++i) {\n\t\t\tif (i != begin) print(separator.sep);\n\t\t\tprint(*i);\n\
+    \t\t}\n\t}\n\ttemplate <class T> void print(const std::vector<T>& v) const {\n\
+    \t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T, std::size_t N>\
+    \ void print(const std::array<T, N>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
+    \t}\n\ttemplate <class T> void print(const std::vector<std::vector<T>>& v) const\
+    \ {\n\t\tfor (std::size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\
+    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString&\
+    \ _bool_str, const Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator)\
+    \ {}\n\tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\
+    \t}\n\ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
+    \t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class Head, class...\
+    \ Tail> Printer& operator()(Head&& head, Tail&&... tail) {\n\t\tprint(head);\n\
+    \t\tprint(separator.sep);\n\t\treturn operator()(std::forward<Tail>(tail)...);\n\
+    \t}\n\ttemplate <class... Args> Printer& flag(bool f, Args&&... args) {\n\t\t\
+    if (f) {\n\t\t\treturn operator()(std::forward<Args>(args)...);\n\t\t} else {\n\
+    \t\t\treturn *this;\n\t\t}\n\t}\n\ttemplate <class InputIterator>\n\tPrinter&\
+    \ range(const InputIterator& begin, const InputIterator& end) {\n\t\tprint_range(begin,\
+    \ end);\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class\
+    \ Container> Printer& range(const Container& a) {\n\t\trange(a.begin(), a.end());\n\
+    \t\treturn *this;\n\t}\n\ttemplate <class... T> void exit(T&&... t) {\n\t\toperator()(std::forward<T>(t)...);\n\
+    \t\tstd::exit(EXIT_SUCCESS);\n\t}\n\tPrinter& flush() {\n\t\tfflush_unlocked(stdout);\n\
+    \t\treturn *this;\n\t}\n\tPrinter& set(const BoolString& _bool_str) {\n\t\tbool_str\
+    \ = _bool_str;\n\t\treturn *this;\n\t}\n\tPrinter& set(const Separator& _separator)\
+    \ {\n\t\tseparator = _separator;\n\t\treturn *this;\n\t}\n\tPrinter& set(std::string_view\
+    \ t, std::string_view f) {\n\t\tbool_str = BoolString(t, f);\n\t\treturn *this;\n\
+    \t}\n} out;\n#line 8 \"Utility/functions.cpp\"\n\ntemplate <class T = long long>\
+    \ constexpr T TEN(std::size_t n) {\n\tT result = 1;\n\tfor (std::size_t i = 0;\
+    \ i < n; ++i) result *= 10;\n\treturn result;\n}\ntemplate <\n    class T, class\
+    \ U,\n    std::enable_if_t<std::is_integral_v<T> && std::is_integral_v<U>, std::nullptr_t>\
+    \ = nullptr>\nconstexpr auto div_ceil(T n, U m) {\n\treturn (n + m - 1) / m;\n\
+    }\ntemplate <class T, class U> constexpr auto div_ceil2(T n, U m) {\n\treturn\
+    \ div_ceil(n, m) * m;\n}\ntemplate <class T> constexpr T triangle(T n) {\n\treturn\
+    \ (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\ntemplate <class T> constexpr\
+    \ T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate\
+    \ <class T, class U> constexpr auto middle(const T& l, const U& r) {\n\treturn\
+    \ l + (r - l) / 2;\n}\ntemplate <class T, class U, class V>\nconstexpr bool in_range(const\
+    \ T& v, const U& lower, const V& upper) {\n\treturn lower <= v && v < upper;\n\
+    }\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = std::sqrt(n);\n\treturn\
+    \ s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long> constexpr\
+    \ T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr int BIT(T\
+    \ x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class T> constexpr\
+    \ int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class T, class U,\
+    \ std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr\
+    \ T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n > 0) {\n\t\
+    \tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta *= a;\n\t\
+    \t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class U, std::enable_if_t<std::is_integral_v<U>,\
+    \ std::nullptr_t> = nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n\
+    \ >= 0);\n\tif (a > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif\
+    \ (n & 1) {\n\t\t\tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\t\
+    a = a * a % mod;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class\
+    \ T> bool chmax(T& a, const T& b) {\n\treturn a < b ? a = b, true : false;\n}\n\
+    template <class T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true\
+    \ : false;\n}\ntemplate <class T> int sz(const T& v) {\n\treturn v.size();\n}\n\
+    template <class T, class U> int lower_index(const T& a, const U& v) {\n\treturn\
+    \ std::lower_bound(all(a), v) - a.begin();\n}\ntemplate <class T, class U> int\
+    \ upper_index(const T& a, const U& v) {\n\treturn std::upper_bound(all(a), v)\
+    \ - a.begin();\n}\ntemplate <class T> auto Slice(const T& v, std::size_t i, std::size_t\
+    \ len) {\n\treturn i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size()))\
+    \ : T();\n}\ntemplate <class T, class U = typename T::value_type> U Gcdv(const\
+    \ T& v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
+    \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
+    \ v) {\n\treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U,\
+    \ U>);\n}\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
     \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
     \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
     \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
@@ -227,7 +229,7 @@ data:
   isVerificationFile: false
   path: template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-03-02 07:38:17+09:00'
+  timestamp: '2021-03-05 17:54:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template_no_Ruby.cpp
