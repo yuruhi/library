@@ -1,9 +1,8 @@
 #pragma once
 #include <string_view>
-using namespace std;
 
 namespace CharacterClass {
-	constexpr string_view
+	constexpr std::string_view
 	    digit = "0123456789",
 	    xdigit = "0123456789ABCDEFabcdef", lower = "abcdefghijklmnopqrstuvwxyz",
 	    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
