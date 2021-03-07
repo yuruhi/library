@@ -133,6 +133,15 @@ namespace lambda {
 	auto upper_to_int = [](char c) {
 		return c - 'A';
 	};
+	auto int_to_char = [](int i) -> char {
+		return '0' + i;
+	};
+	auto int_to_lower = [](int i) -> char {
+		return 'a' + i;
+	};
+	auto int_to_upper = [](int i) -> char {
+		return 'A' + i;
+	};
 	auto is_odd = [](auto n) {
 		return n % 2 == 1;
 	};
