@@ -34,19 +34,20 @@ data:
     \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
     \ int BIT(T x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class\
     \ T> constexpr int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class\
-    \ T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>\n\
-    constexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\twhile (n >\
-    \ 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else {\n\t\t\t\
-    a *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T, class\
-    \ U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr\
-    \ T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a > mod) a %= mod;\n\t\
-    T result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult = result * a\
-    \ % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\t\t\tn >>= 1;\n\t\
-    \t}\n\t}\n\treturn result;\n}\ntemplate <class T> bool chmax(T& a, const T& b)\
-    \ {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class T> bool chmin(T&\
-    \ a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\ntemplate <class\
-    \ T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class T, class U>\
-    \ int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
+    \ T> bool is_leap(T year) {\n\treturn !(year % 4) && (year % 100 || !(year % 400));\n\
+    }\ntemplate <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t>\
+    \ = nullptr>\nconstexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\
+    \twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else\
+    \ {\n\t\t\ta *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate\
+    \ <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> =\
+    \ nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a\
+    \ > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\
+    \tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\
+    \t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T> bool chmax(T&\
+    \ a, const T& b) {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class\
+    \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
+    template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
+    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
     \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
     \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
     \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
@@ -176,7 +177,7 @@ data:
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-03-01 15:48:09+09:00'
+  timestamp: '2021-03-07 15:06:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

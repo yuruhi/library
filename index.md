@@ -351,9 +351,6 @@ data:
       path: Utility/functions.cpp
       title: Utility/functions.cpp
     - icon: ':warning:'
-      path: Utility/isLeap.cpp
-      title: Utility/isLeap.cpp
-    - icon: ':warning:'
       path: Utility/splitRange.cpp
       title: Utility/splitRange.cpp
     - icon: ':warning:'

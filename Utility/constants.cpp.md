@@ -35,7 +35,7 @@ data:
 
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 
-    #define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
+    #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
@@ -48,39 +48,37 @@ data:
     #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
 
 
-    using namespace std;
-
     using ll = long long;
 
     using LD = long double;
 
-    using VB = vector<bool>;
+    using VB = std::vector<bool>;
 
-    using VVB = vector<VB>;
+    using VVB = std::vector<VB>;
 
-    using VI = vector<int>;
+    using VI = std::vector<int>;
 
-    using VVI = vector<VI>;
+    using VVI = std::vector<VI>;
 
-    using VL = vector<ll>;
+    using VL = std::vector<ll>;
 
-    using VVL = vector<VL>;
+    using VVL = std::vector<VL>;
 
-    using VS = vector<string>;
+    using VS = std::vector<std::string>;
 
-    using VD = vector<LD>;
+    using VD = std::vector<LD>;
 
-    using PII = pair<int, int>;
+    using PII = std::pair<int, int>;
 
-    using VP = vector<PII>;
+    using VP = std::vector<PII>;
 
-    using PLL = pair<ll, ll>;
+    using PLL = std::pair<ll, ll>;
 
-    using VPL = vector<PLL>;
+    using VPL = std::vector<PLL>;
 
-    template <class T> using PQ = priority_queue<T>;
+    template <class T> using PQ = std::priority_queue<T>;
 
-    template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
+    template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
     constexpr int inf = 1000000000;
 
@@ -104,7 +102,7 @@ data:
 
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 
-    #define rrep(i, n) for (int i = (n) - 1; i >= 0; --i)
+    #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
@@ -117,39 +115,37 @@ data:
     #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
 
 
-    using namespace std;
-
     using ll = long long;
 
     using LD = long double;
 
-    using VB = vector<bool>;
+    using VB = std::vector<bool>;
 
-    using VVB = vector<VB>;
+    using VVB = std::vector<VB>;
 
-    using VI = vector<int>;
+    using VI = std::vector<int>;
 
-    using VVI = vector<VI>;
+    using VVI = std::vector<VI>;
 
-    using VL = vector<ll>;
+    using VL = std::vector<ll>;
 
-    using VVL = vector<VL>;
+    using VVL = std::vector<VL>;
 
-    using VS = vector<string>;
+    using VS = std::vector<std::string>;
 
-    using VD = vector<LD>;
+    using VD = std::vector<LD>;
 
-    using PII = pair<int, int>;
+    using PII = std::pair<int, int>;
 
-    using VP = vector<PII>;
+    using VP = std::vector<PII>;
 
-    using PLL = pair<ll, ll>;
+    using PLL = std::pair<ll, ll>;
 
-    using VPL = vector<PLL>;
+    using VPL = std::vector<PLL>;
 
-    template <class T> using PQ = priority_queue<T>;
+    template <class T> using PQ = std::priority_queue<T>;
 
-    template <class T> using PQS = priority_queue<T, vector<T>, greater<T>>;
+    template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
     constexpr int inf = 1000000000;
 
@@ -164,7 +160,7 @@ data:
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-01 12:36:22+09:00'
+  timestamp: '2021-03-07 15:06:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template_no_Ruby.test.cpp
