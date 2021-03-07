@@ -47,7 +47,7 @@ template <class T> constexpr int BIT(T x, int i) {
 template <class T> constexpr int Sgn(T x) {
 	return (0 < x) - (0 > x);
 }
-template <class T> bool is_leap(T yeay) {
+template <class T> bool is_leap(T year) {
 	return !(year % 4) && (year % 100 || !(year % 400));
 }
 template <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> = nullptr>
