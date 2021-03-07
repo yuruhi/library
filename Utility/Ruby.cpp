@@ -397,19 +397,25 @@ auto operator*(std::string a, std::size_t n) {
 	}
 	return result;
 }
-template <class T, class U> auto& operator<<(std::vector<T>& a, const U& b) {
-	a.insert(a.end(), all(b));
-	return a;
+
+namespace internal {
+	template <class T, class U, class = void> struct has_push_back : std::false_type {};
+	template <class T, class U>
+	struct has_push_back<T, U,
+	                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>
+	    : std::true_type {};
+}  // namespace internal
+template <
+    class Container, class T,
+    std::enable_if_t<internal::has_push_back<Container, T>::value, std::nullptr_t> = nullptr>
+auto& operator<<(Container& continer, const T& val) {
+	continer.push_back(val);
+	return continer;
 }
-template <class T> auto& operator<<(std::string& a, const T& b) {
-	a.insert(a.end(), all(b));
-	return a;
-}
-template <class T, class U> auto operator+(std::vector<T> a, const U& b) {
-	a << b;
-	return a;
-}
-template <class T> auto operator+(std::string a, const T& b) {
-	a << b;
-	return a;
+template <
+    class Container, class T,
+    std::enable_if_t<internal::has_push_back<Container, T>::value, std::nullptr_t> = nullptr>
+auto operator+(Container continer, const T& val) {
+	continer << val;
+	return continer;
 }
