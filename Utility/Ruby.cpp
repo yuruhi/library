@@ -226,7 +226,7 @@ struct Sum_impl {
 	template <class F> auto operator()(F&& f) {
 		return Callable([&](auto v) {
 			return std::accumulate(std::next(std::begin(v)), std::end(v), f(*std::begin(v)),
-			                  [&](const auto& a, const auto& b) { return a + f(b); });
+			                       [&](const auto& a, const auto& b) { return a + f(b); });
 		});
 	}
 	template <class T> friend auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {
@@ -363,6 +363,25 @@ struct Tally_impl {
 		return result;
 	}
 } Tally;
+
+struct Join_impl {
+	auto operator()(std::string separater) {
+		return Callable([&](auto v) {
+			std::string result;
+			bool first = true;
+			for (const auto& i : v) {
+				if (!std::exchange(first, false)) {
+					result += separater;
+				}
+				result += std::to_string(i);
+			}
+			return result;
+		});
+	}
+	template <class T> friend auto operator|(const T& v, Join_impl& c) {
+		return v | c("");
+	}
+} Join;
 
 template <class T> auto operator*(const std::vector<T>& a, std::size_t n) {
 	T result;
