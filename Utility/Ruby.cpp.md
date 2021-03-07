@@ -164,13 +164,17 @@ data:
     \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
     \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
     \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
-    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class T, class U> auto&\
-    \ operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(), all(b));\n\t\
-    return a;\n}\ntemplate <class T> auto& operator<<(std::string& a, const T& b)\
-    \ {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class U>\
-    \ auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\n\
-    template <class T> auto operator+(std::string a, const T& b) {\n\ta << b;\n\t\
-    return a;\n}\n"
+    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace internal {\n\ttemplate\
+    \ <class T, class U, class = void> struct has_push_back : std::false_type {};\n\
+    \ttemplate <class T, class U>\n\tstruct has_push_back<T, U,\n\t              \
+    \       std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
+    \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
+    \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
+    \ {\n\tcontiner.push_back(val);\n\treturn continer;\n}\ntemplate <\n    class\
+    \ Container, class T,\n    std::enable_if_t<internal::has_push_back<Container,\
+    \ T>::value, std::nullptr_t> = nullptr>\nauto operator+(Container continer, const\
+    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <string>\n#include <map>\n#include\
     \ <algorithm>\n#include <numeric>\n#include <cassert>\n\ntemplate <class F> struct\
     \ Callable {\n\tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate <class\
@@ -318,19 +322,23 @@ data:
     \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
     \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
     \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
-    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class T, class U> auto&\
-    \ operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(), all(b));\n\t\
-    return a;\n}\ntemplate <class T> auto& operator<<(std::string& a, const T& b)\
-    \ {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class U>\
-    \ auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\n\
-    template <class T> auto operator+(std::string a, const T& b) {\n\ta << b;\n\t\
-    return a;\n}\n"
+    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace internal {\n\ttemplate\
+    \ <class T, class U, class = void> struct has_push_back : std::false_type {};\n\
+    \ttemplate <class T, class U>\n\tstruct has_push_back<T, U,\n\t              \
+    \       std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
+    \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
+    \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
+    \ {\n\tcontiner.push_back(val);\n\treturn continer;\n}\ntemplate <\n    class\
+    \ Container, class T,\n    std::enable_if_t<internal::has_push_back<Container,\
+    \ T>::value, std::nullptr_t> = nullptr>\nauto operator+(Container continer, const\
+    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Ruby.cpp
   requiredBy:
   - template.cpp
-  timestamp: '2021-03-07 15:44:28+09:00'
+  timestamp: '2021-03-07 17:30:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template_no_Ruby.test.cpp

@@ -363,34 +363,38 @@ data:
     \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
     \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
     \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
-    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class T, class U> auto&\
-    \ operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(), all(b));\n\t\
-    return a;\n}\ntemplate <class T> auto& operator<<(std::string& a, const T& b)\
-    \ {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class U>\
-    \ auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\n\
-    template <class T> auto operator+(std::string a, const T& b) {\n\ta << b;\n\t\
-    return a;\n}\n#line 8 \"Utility/functions.cpp\"\n\ntemplate <class T = long long>\
-    \ constexpr T TEN(std::size_t n) {\n\tT result = 1;\n\tfor (std::size_t i = 0;\
-    \ i < n; ++i) result *= 10;\n\treturn result;\n}\ntemplate <\n    class T, class\
-    \ U,\n    std::enable_if_t<std::is_integral_v<T> && std::is_integral_v<U>, std::nullptr_t>\
-    \ = nullptr>\nconstexpr auto div_ceil(T n, U m) {\n\treturn (n + m - 1) / m;\n\
-    }\ntemplate <class T, class U> constexpr auto div_ceil2(T n, U m) {\n\treturn\
-    \ div_ceil(n, m) * m;\n}\ntemplate <class T> constexpr T triangle(T n) {\n\treturn\
-    \ (n & 1) ? (n + 1) / 2 * n : n / 2 * (n + 1);\n}\ntemplate <class T> constexpr\
-    \ T nC2(T n) {\n\treturn (n & 1) ? (n - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate\
-    \ <class T, class U> constexpr auto middle(const T& l, const U& r) {\n\treturn\
-    \ l + (r - l) / 2;\n}\ntemplate <class T, class U, class V>\nconstexpr bool in_range(const\
-    \ T& v, const U& lower, const V& upper) {\n\treturn lower <= v && v < upper;\n\
-    }\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = std::sqrt(n);\n\treturn\
-    \ s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long> constexpr\
-    \ T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr int BIT(T\
-    \ x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class T> constexpr\
-    \ int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class T> bool is_leap(T\
-    \ year) {\n\treturn !(year % 4) && (year % 100 || !(year % 400));\n}\ntemplate\
-    \ <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> =\
-    \ nullptr>\nconstexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\t\
-    while (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else\
+    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace internal {\n\ttemplate\
+    \ <class T, class U, class = void> struct has_push_back : std::false_type {};\n\
+    \ttemplate <class T, class U>\n\tstruct has_push_back<T, U,\n\t              \
+    \       std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
+    \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
+    \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
+    \ {\n\tcontiner.push_back(val);\n\treturn continer;\n}\ntemplate <\n    class\
+    \ Container, class T,\n    std::enable_if_t<internal::has_push_back<Container,\
+    \ T>::value, std::nullptr_t> = nullptr>\nauto operator+(Container continer, const\
+    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n#line 8 \"Utility/functions.cpp\"\
+    \n\ntemplate <class T = long long> constexpr T TEN(std::size_t n) {\n\tT result\
+    \ = 1;\n\tfor (std::size_t i = 0; i < n; ++i) result *= 10;\n\treturn result;\n\
+    }\ntemplate <\n    class T, class U,\n    std::enable_if_t<std::is_integral_v<T>\
+    \ && std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr auto div_ceil(T\
+    \ n, U m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T, class U> constexpr\
+    \ auto div_ceil2(T n, U m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class\
+    \ T> constexpr T triangle(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 *\
+    \ (n + 1);\n}\ntemplate <class T> constexpr T nC2(T n) {\n\treturn (n & 1) ? (n\
+    \ - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate <class T, class U> constexpr auto\
+    \ middle(const T& l, const U& r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class\
+    \ T, class U, class V>\nconstexpr bool in_range(const T& v, const U& lower, const\
+    \ V& upper) {\n\treturn lower <= v && v < upper;\n}\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = std::sqrt(n);\n\
+    \treturn s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
+    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
+    \ int BIT(T x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class\
+    \ T> constexpr int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class\
+    \ T> bool is_leap(T year) {\n\treturn !(year % 4) && (year % 100 || !(year % 400));\n\
+    }\ntemplate <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t>\
+    \ = nullptr>\nconstexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\
+    \twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else\
     \ {\n\t\t\ta *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate\
     \ <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> =\
     \ nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a\
@@ -418,24 +422,26 @@ data:
     \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
     \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
     \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
-    \t\treturn c - 'A';\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\
-    \t};\n\tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
-    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
-    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
-    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
-    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
-    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
-    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
-    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
-    };\n\t}\n\ttemplate <std::size_t I> auto get() {\n\t\treturn [](const auto& n)\
-    \ {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t}\n}  // namespace lambda\n#line\
-    \ 9 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
-    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
-    \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
-    \ oj;\n#else\n\treturn local;\n#endif\n}\n#line 4 \"test/template_no_Ruby.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tfor (int t = in; t--;) {\n\t\tll a =\
-    \ in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
+    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
+    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
+    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
+    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
+    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
+    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
+    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
+    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
+    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
+    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
+    }\n}  // namespace lambda\n#line 9 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
+    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
+    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
+    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n#line 4 \"\
+    test/template_no_Ruby.test.cpp\"\nusing namespace std;\n\nint main() {\n\tfor\
+    \ (int t = in; t--;) {\n\t\tll a = in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
     \ \"./../template.cpp\"\n#include <iostream>\nusing namespace std;\n\nint main()\
     \ {\n\tfor (int t = in; t--;) {\n\t\tll a = in, b = in;\n\t\tout(a + b);\n\t}\n\
@@ -451,7 +457,7 @@ data:
   isVerificationFile: true
   path: test/template_no_Ruby.test.cpp
   requiredBy: []
-  timestamp: '2021-03-07 15:44:28+09:00'
+  timestamp: '2021-03-07 18:21:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/template_no_Ruby.test.cpp
