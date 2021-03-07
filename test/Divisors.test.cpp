@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D"
-#include "./../Math/Divisors.cpp"
+#include "./../math/Divisors.cpp"
 #include <iostream>
 using namespace std;
 

@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B"
-#include "./../Math/modint.cpp"
+#include "./../math/modint.cpp"
 #include <iostream>
 using namespace std;
 

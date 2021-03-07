@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C"
-#include "./../Math/Sieve.cpp"
+#include "./../math/Sieve.cpp"
 #include <iostream>
 #include <algorithm>
 #include <cassert>

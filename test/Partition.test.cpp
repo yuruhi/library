@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/269"
-#include "./../Math/Partition.cpp"
-#include "./../Math/modint.cpp"
+#include "./../math/Partition.cpp"
+#include "./../math/modint.cpp"
 #include <iostream>
 using namespace std;
 

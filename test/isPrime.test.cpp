@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C"
-#include "./../Math/isPrime.cpp"
+#include "./../math/isPrime.cpp"
 #include <iostream>
 using namespace std;
 

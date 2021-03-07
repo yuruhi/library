@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
-#include "./../Math/PrimeFactor.cpp"
+#include "./../math/PrimeFactor.cpp"
 #include <iostream>
 using namespace std;
 

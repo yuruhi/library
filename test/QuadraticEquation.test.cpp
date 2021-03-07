@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1179"
 #define ERROR "1e-4"
-#include "./../Math/QuadraticEquation.cpp"
+#include "./../math/QuadraticEquation.cpp"
 #include <iostream>
 #include <algorithm>
 #include <cassert>

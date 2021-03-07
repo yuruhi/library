@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E"
-#include "./../Math/extGcd.cpp"
+#include "./../math/extGcd.cpp"
 #include <iostream>
 using namespace std;
 

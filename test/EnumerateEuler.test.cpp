@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011"
-#include "./../Math/Euler.cpp"
+#include "./../math/Euler.cpp"
 #include <iostream>
 using namespace std;
 

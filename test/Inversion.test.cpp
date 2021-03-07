@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_5_D"
-#include "./../Math/Inversion.cpp"
+#include "./../math/Inversion.cpp"
 #include <iostream>
 #include <algorithm>
 using namespace std;
