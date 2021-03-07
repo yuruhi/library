@@ -94,7 +94,7 @@
 "test/RunLengthEncoding.test.cpp": "2021-03-07 14:48:17 +0900",
 "test/Sieve.test.cpp": "2020-12-31 12:10:02 +0900",
 "test/StronglyConnectedComponents.test.cpp": "2020-11-24 20:31:49 +0900",
-"test/TemplateFunctions.test.cpp": "2021-03-01 15:48:09 +0900",
+"test/TemplateFunctions.test.cpp": "2021-03-07 15:06:12 +0900",
 "test/TopologicalSort.test.cpp": "2020-11-23 14:52:17 +0900",
 "test/TravelingSalesmanProblem.test.cpp": "2020-12-05 16:06:31 +0900",
 "test/UnionFind.test.cpp": "2021-02-24 22:02:38 +0900",
@@ -104,6 +104,6 @@
 "test/extGcd.test.cpp": "2021-01-30 17:23:16 +0900",
 "test/isPrime.test.cpp": "2020-11-23 16:14:42 +0900",
 "test/modint_pow.test.cpp": "2020-12-28 14:25:49 +0900",
-"test/template.test.cpp": "2021-03-05 18:10:18 +0900",
-"test/template_no_Ruby.test.cpp": "2021-03-05 18:10:18 +0900"
+"test/template.test.cpp": "2021-03-07 15:06:12 +0900",
+"test/template_no_Ruby.test.cpp": "2021-03-07 15:06:12 +0900"
 }
