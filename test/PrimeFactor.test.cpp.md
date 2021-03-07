@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/PrimeFactor.cpp
-    title: Math/PrimeFactor.cpp
+    path: math/PrimeFactor.cpp
+    title: math/PrimeFactor.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A
   bundledCode: "#line 1 \"test/PrimeFactor.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A\"\
-    \n#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
+    \n#line 2 \"math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<pair<T,\
     \ int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1) {\n\t\treturn {};\n\
     \t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\t\
@@ -35,16 +35,16 @@ data:
     \ : PrimeFactor(n)) {\n\t\twhile (e--) {\n\t\t\tcout << ' ' << p;\n\t\t}\n\t}\n\
     \tcout << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A\"\
-    \n#include \"./../Math/PrimeFactor.cpp\"\n#include <iostream>\nusing namespace\
+    \n#include \"./../math/PrimeFactor.cpp\"\n#include <iostream>\nusing namespace\
     \ std;\n\nint main() {\n\tint n;\n\tcin >> n;\n\tcout << n << ':';\n\tfor (auto\
     \ [p, e] : PrimeFactor(n)) {\n\t\twhile (e--) {\n\t\t\tcout << ' ' << p;\n\t\t\
     }\n\t}\n\tcout << '\\n';\n}"
   dependsOn:
-  - Math/PrimeFactor.cpp
+  - math/PrimeFactor.cpp
   isVerificationFile: true
   path: test/PrimeFactor.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/PrimeFactor.test.cpp

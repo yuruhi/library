@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Rational.cpp\"\n#include <vector>\n#include <numeric>\n\
+  bundledCode: "#line 2 \"math/Rational.cpp\"\n#include <vector>\n#include <numeric>\n\
     #include <iostream>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> class Rational {\npublic:\n\tusing value_type = T;\n\nprivate:\n\tvalue_type\
     \ n, d;  // n / d\n\tconstexpr void coprime() {\n\t\tvalue_type g = gcd(n, d);\n\
@@ -90,15 +90,15 @@ data:
     \ r) {\n\t\treturn os << r.n << '/' << r.d;\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Rational.cpp
+  path: math/Rational.cpp
   requiredBy: []
-  timestamp: '2020-11-16 21:07:04+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/Rational.cpp
+documentation_of: math/Rational.cpp
 layout: document
 redirect_from:
-- /library/Math/Rational.cpp
-- /library/Math/Rational.cpp.html
-title: Math/Rational.cpp
+- /library/math/Rational.cpp
+- /library/math/Rational.cpp.html
+title: math/Rational.cpp
 ---

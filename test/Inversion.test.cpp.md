@@ -5,8 +5,8 @@ data:
     path: DataStructure/BinaryIndexedTree.cpp
     title: DataStructure/BinaryIndexedTree.cpp
   - icon: ':heavy_check_mark:'
-    path: Math/Inversion.cpp
-    title: Math/Inversion.cpp
+    path: math/Inversion.cpp
+    title: math/Inversion.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -35,7 +35,7 @@ data:
     \ += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\tvector<value_type> to_a()\
     \ const {\n\t\tvector<value_type> result(n);\n\t\tfor (int i = 0; i < n; ++i)\
     \ {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\treturn result;\n\t}\n};\n#line\
-    \ 4 \"Math/Inversion.cpp\"\nusing namespace std;\n\nlong long Inversion(const\
+    \ 4 \"math/Inversion.cpp\"\nusing namespace std;\n\nlong long Inversion(const\
     \ vector<int>& a, int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int>\
     \ bit(max_val + 1);\n\tfor (size_t i = 0; i < a.size(); ++i) {\n\t\tans += i -\
     \ bit(a[i]);\n\t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n#line 3 \"test/Inversion.test.cpp\"\
@@ -45,19 +45,19 @@ data:
     \ b = a;\n\tsort(b.begin(), b.end());\n\tfor (int& i : a) {\n\t\ti = lower_bound(b.begin(),\
     \ b.end(), i) - b.begin() + 1;\n\t}\n\tcout << Inversion(a, n) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_5_D\"\
-    \n#include \"./../Math/Inversion.cpp\"\n#include <iostream>\n#include <algorithm>\n\
+    \n#include \"./../math/Inversion.cpp\"\n#include <iostream>\n#include <algorithm>\n\
     using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \tint n;\n\tcin >> n;\n\tvector<int> a(n);\n\tfor (int& i : a) {\n\t\tcin >> i;\n\
     \t}\n\n\tauto b = a;\n\tsort(b.begin(), b.end());\n\tfor (int& i : a) {\n\t\t\
     i = lower_bound(b.begin(), b.end(), i) - b.begin() + 1;\n\t}\n\tcout << Inversion(a,\
     \ n) << '\\n';\n}"
   dependsOn:
-  - Math/Inversion.cpp
+  - math/Inversion.cpp
   - DataStructure/BinaryIndexedTree.cpp
   isVerificationFile: true
   path: test/Inversion.test.cpp
   requiredBy: []
-  timestamp: '2020-12-20 09:41:16+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Inversion.test.cpp

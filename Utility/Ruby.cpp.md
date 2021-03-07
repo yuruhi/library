@@ -106,41 +106,42 @@ data:
     return result != std::end(v) ? std::optional(*result) : std::nullopt;\n\t\t});\n\
     \t}\n} FindIf;\nstruct Sum_impl {\n\ttemplate <class F> auto operator()(F&& f)\
     \ {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn std::accumulate(std::next(std::begin(v)),\
-    \ std::end(v), f(*std::begin(v)),\n\t\t\t                  [&](const auto& a,\
-    \ const auto& b) { return a + f(b); });\n\t\t});\n\t}\n\ttemplate <class T> friend\
-    \ auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {\n\t\treturn std::accumulate(std::begin(v),\
-    \ std::end(v), typename T::value_type{});\n\t}\n} Sum;\nstruct Includes {\n\t\
-    template <class V> auto operator()(const V& val) {\n\t\treturn Callable(\n\t\t\
-    \    [&](auto v) { return std::find(std::begin(v), std::end(v), val) != std::end(v);\
-    \ });\n\t}\n} Includes;\nstruct IncludesIf_impl {\n\ttemplate <class F> auto operator()(const\
-    \ F& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn std::find_if(std::begin(v),\
-    \ std::end(v), f) != std::end(v);\n\t\t});\n\t}\n} IncludesIf;\nstruct RemoveIf_impl\
+    \ std::end(v), f(*std::begin(v)),\n\t\t\t                       [&](const auto&\
+    \ a, const auto& b) { return a + f(b); });\n\t\t});\n\t}\n\ttemplate <class T>\
+    \ friend auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {\n\t\treturn\
+    \ std::accumulate(std::begin(v), std::end(v), typename T::value_type{});\n\t}\n\
+    } Sum;\nstruct Includes {\n\ttemplate <class V> auto operator()(const V& val)\
+    \ {\n\t\treturn Callable(\n\t\t    [&](auto v) { return std::find(std::begin(v),\
+    \ std::end(v), val) != std::end(v); });\n\t}\n} Includes;\nstruct IncludesIf_impl\
     \ {\n\ttemplate <class F> auto operator()(const F& f) {\n\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\tv.erase(std::remove_if(std::begin(v), std::end(v), f), std::end(v));\n\
-    \t\t\treturn v;\n\t\t});\n\t}\n} RemoveIf;\nstruct Each_impl {\n\ttemplate <class\
-    \ F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const\
-    \ auto& i : v) {\n\t\t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl\
-    \ {\n\ttemplate <class T, class value_type = typename T::value_type>\n\tfriend\
-    \ auto operator|(const T& v, EachConsPair_impl& c) {\n\t\tstd::vector<std::pair<value_type,\
-    \ value_type>> result;\n\t\tif (std::size(v) >= 2) {\n\t\t\tresult.reserve(std::size(v)\
-    \ - 1);\n\t\t\tfor (std::size_t i = 0; i < std::size(v) - 1; ++i) {\n\t\t\t\t\
-    result.emplace_back(v[i], v[i + 1]);\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\
-    } EachConsPair;\nstruct Select_impl {\n\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\
-    \t\t\tstd::vector<value_type> result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\
-    \tif (f(i)) result.push_back(i);\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\
-    } Select;\nstruct Map_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\
-    \treturn Callable([&](auto v) {\n\t\t\tusing result_type = std::invoke_result_t<F,\
-    \ typename decltype(v)::value_type>;\n\t\t\tstd::vector<result_type> result;\n\
-    \t\t\tresult.reserve(std::size(v));\n\t\t\tfor (const auto& i : v) {\n\t\t\t\t\
-    result.push_back(f(i));\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Map;\n\
-    struct Indexed_impl {\n\ttemplate <class T> friend auto operator|(const T& v,\
-    \ Indexed_impl& c) {\n\t\tusing value_type = typename T::value_type;\n\t\tstd::vector<std::pair<value_type,\
-    \ int>> result;\n\t\tresult.reserve(std::size(v));\n\t\tint index = 0;\n\t\tfor\
-    \ (const auto& i : v) {\n\t\t\tresult.emplace_back(i, index++);\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Indexed;\nstruct AllOf_impl {\n\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\
-    \t\t\tif (!f(i)) return false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} AllOf;\n\
+    \ v) {\n\t\t\treturn std::find_if(std::begin(v), std::end(v), f) != std::end(v);\n\
+    \t\t});\n\t}\n} IncludesIf;\nstruct RemoveIf_impl {\n\ttemplate <class F> auto\
+    \ operator()(const F& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tv.erase(std::remove_if(std::begin(v),\
+    \ std::end(v), f), std::end(v));\n\t\t\treturn v;\n\t\t});\n\t}\n} RemoveIf;\n\
+    struct Each_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
+    \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tf(i);\n\t\t\
+    \t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl {\n\ttemplate <class T, class\
+    \ value_type = typename T::value_type>\n\tfriend auto operator|(const T& v, EachConsPair_impl&\
+    \ c) {\n\t\tstd::vector<std::pair<value_type, value_type>> result;\n\t\tif (std::size(v)\
+    \ >= 2) {\n\t\t\tresult.reserve(std::size(v) - 1);\n\t\t\tfor (std::size_t i =\
+    \ 0; i < std::size(v) - 1; ++i) {\n\t\t\t\tresult.emplace_back(v[i], v[i + 1]);\n\
+    \t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n} EachConsPair;\nstruct Select_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\t\t\tstd::vector<value_type>\
+    \ result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) result.push_back(i);\n\
+    \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Select;\nstruct Map_impl {\n\t\
+    template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
+    \t\t\tusing result_type = std::invoke_result_t<F, typename decltype(v)::value_type>;\n\
+    \t\t\tstd::vector<result_type> result;\n\t\t\tresult.reserve(std::size(v));\n\t\
+    \t\tfor (const auto& i : v) {\n\t\t\t\tresult.push_back(f(i));\n\t\t\t}\n\t\t\t\
+    return result;\n\t\t});\n\t}\n} Map;\nstruct Indexed_impl {\n\ttemplate <class\
+    \ T> friend auto operator|(const T& v, Indexed_impl& c) {\n\t\tusing value_type\
+    \ = typename T::value_type;\n\t\tstd::vector<std::pair<value_type, int>> result;\n\
+    \t\tresult.reserve(std::size(v));\n\t\tint index = 0;\n\t\tfor (const auto& i\
+    \ : v) {\n\t\t\tresult.emplace_back(i, index++);\n\t\t}\n\t\treturn result;\n\t\
+    }\n} Indexed;\nstruct AllOf_impl {\n\ttemplate <class F> auto operator()(F&& f)\
+    \ {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\
+    \tif (!f(i)) return false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} AllOf;\n\
     struct AnyOf_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) return\
     \ true;\n\t\t\t}\n\t\t\treturn false;\n\t\t});\n\t}\n} AnyOf;\nstruct NoneOf_impl\
@@ -153,17 +154,23 @@ data:
     \t});\n\t}\n\ttemplate <class T, class value_type = typename T::value_type>\n\t\
     friend auto operator|(const T& v, Tally_impl& c) {\n\t\tstd::map<value_type, std::size_t>\
     \ result;\n\t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Tally;\n\ntemplate <class T> auto operator*(const std::vector<T>&\
-    \ a, std::size_t n) {\n\tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\
-    \tresult.insert(result.end(), a.begin(), a.end());\n\t}\n\treturn result;\n}\n\
-    auto operator*(std::string a, std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t\
-    \ i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class\
-    \ T, class U> auto& operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(),\
-    \ all(b));\n\treturn a;\n}\ntemplate <class T> auto& operator<<(std::string& a,\
-    \ const T& b) {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class\
-    \ T, class U> auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn\
-    \ a;\n}\ntemplate <class T> auto operator+(std::string a, const T& b) {\n\ta <<\
-    \ b;\n\treturn a;\n}\n"
+    \ result;\n\t}\n} Tally;\n\nstruct Join_impl {\n\tauto operator()(std::string\
+    \ separater) {\n\t\treturn Callable([&](auto v) {\n\t\t\tstd::string result;\n\
+    \t\t\tbool first = true;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (!std::exchange(first,\
+    \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
+    \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
+    \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
+    \ntemplate <class T> auto operator*(const std::vector<T>& a, std::size_t n) {\n\
+    \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
+    \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
+    \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
+    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class T, class U> auto&\
+    \ operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(), all(b));\n\t\
+    return a;\n}\ntemplate <class T> auto& operator<<(std::string& a, const T& b)\
+    \ {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class U>\
+    \ auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\n\
+    template <class T> auto operator+(std::string a, const T& b) {\n\ta << b;\n\t\
+    return a;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <string>\n#include <map>\n#include\
     \ <algorithm>\n#include <numeric>\n#include <cassert>\n\ntemplate <class F> struct\
     \ Callable {\n\tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate <class\
@@ -253,41 +260,42 @@ data:
     return result != std::end(v) ? std::optional(*result) : std::nullopt;\n\t\t});\n\
     \t}\n} FindIf;\nstruct Sum_impl {\n\ttemplate <class F> auto operator()(F&& f)\
     \ {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn std::accumulate(std::next(std::begin(v)),\
-    \ std::end(v), f(*std::begin(v)),\n\t\t\t                  [&](const auto& a,\
-    \ const auto& b) { return a + f(b); });\n\t\t});\n\t}\n\ttemplate <class T> friend\
-    \ auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {\n\t\treturn std::accumulate(std::begin(v),\
-    \ std::end(v), typename T::value_type{});\n\t}\n} Sum;\nstruct Includes {\n\t\
-    template <class V> auto operator()(const V& val) {\n\t\treturn Callable(\n\t\t\
-    \    [&](auto v) { return std::find(std::begin(v), std::end(v), val) != std::end(v);\
-    \ });\n\t}\n} Includes;\nstruct IncludesIf_impl {\n\ttemplate <class F> auto operator()(const\
-    \ F& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\treturn std::find_if(std::begin(v),\
-    \ std::end(v), f) != std::end(v);\n\t\t});\n\t}\n} IncludesIf;\nstruct RemoveIf_impl\
+    \ std::end(v), f(*std::begin(v)),\n\t\t\t                       [&](const auto&\
+    \ a, const auto& b) { return a + f(b); });\n\t\t});\n\t}\n\ttemplate <class T>\
+    \ friend auto operator|(T v, [[maybe_unused]] const Sum_impl& c) {\n\t\treturn\
+    \ std::accumulate(std::begin(v), std::end(v), typename T::value_type{});\n\t}\n\
+    } Sum;\nstruct Includes {\n\ttemplate <class V> auto operator()(const V& val)\
+    \ {\n\t\treturn Callable(\n\t\t    [&](auto v) { return std::find(std::begin(v),\
+    \ std::end(v), val) != std::end(v); });\n\t}\n} Includes;\nstruct IncludesIf_impl\
     \ {\n\ttemplate <class F> auto operator()(const F& f) {\n\t\treturn Callable([&](auto\
-    \ v) {\n\t\t\tv.erase(std::remove_if(std::begin(v), std::end(v), f), std::end(v));\n\
-    \t\t\treturn v;\n\t\t});\n\t}\n} RemoveIf;\nstruct Each_impl {\n\ttemplate <class\
-    \ F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const\
-    \ auto& i : v) {\n\t\t\t\tf(i);\n\t\t\t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl\
-    \ {\n\ttemplate <class T, class value_type = typename T::value_type>\n\tfriend\
-    \ auto operator|(const T& v, EachConsPair_impl& c) {\n\t\tstd::vector<std::pair<value_type,\
-    \ value_type>> result;\n\t\tif (std::size(v) >= 2) {\n\t\t\tresult.reserve(std::size(v)\
-    \ - 1);\n\t\t\tfor (std::size_t i = 0; i < std::size(v) - 1; ++i) {\n\t\t\t\t\
-    result.emplace_back(v[i], v[i + 1]);\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\
-    } EachConsPair;\nstruct Select_impl {\n\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\
-    \t\t\tstd::vector<value_type> result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\
-    \tif (f(i)) result.push_back(i);\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\
-    } Select;\nstruct Map_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\
-    \treturn Callable([&](auto v) {\n\t\t\tusing result_type = std::invoke_result_t<F,\
-    \ typename decltype(v)::value_type>;\n\t\t\tstd::vector<result_type> result;\n\
-    \t\t\tresult.reserve(std::size(v));\n\t\t\tfor (const auto& i : v) {\n\t\t\t\t\
-    result.push_back(f(i));\n\t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Map;\n\
-    struct Indexed_impl {\n\ttemplate <class T> friend auto operator|(const T& v,\
-    \ Indexed_impl& c) {\n\t\tusing value_type = typename T::value_type;\n\t\tstd::vector<std::pair<value_type,\
-    \ int>> result;\n\t\tresult.reserve(std::size(v));\n\t\tint index = 0;\n\t\tfor\
-    \ (const auto& i : v) {\n\t\t\tresult.emplace_back(i, index++);\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Indexed;\nstruct AllOf_impl {\n\ttemplate <class F> auto operator()(F&&\
-    \ f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\
-    \t\t\tif (!f(i)) return false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} AllOf;\n\
+    \ v) {\n\t\t\treturn std::find_if(std::begin(v), std::end(v), f) != std::end(v);\n\
+    \t\t});\n\t}\n} IncludesIf;\nstruct RemoveIf_impl {\n\ttemplate <class F> auto\
+    \ operator()(const F& f) {\n\t\treturn Callable([&](auto v) {\n\t\t\tv.erase(std::remove_if(std::begin(v),\
+    \ std::end(v), f), std::end(v));\n\t\t\treturn v;\n\t\t});\n\t}\n} RemoveIf;\n\
+    struct Each_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
+    \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tf(i);\n\t\t\
+    \t}\n\t\t});\n\t}\n} Each;\nstruct EachConsPair_impl {\n\ttemplate <class T, class\
+    \ value_type = typename T::value_type>\n\tfriend auto operator|(const T& v, EachConsPair_impl&\
+    \ c) {\n\t\tstd::vector<std::pair<value_type, value_type>> result;\n\t\tif (std::size(v)\
+    \ >= 2) {\n\t\t\tresult.reserve(std::size(v) - 1);\n\t\t\tfor (std::size_t i =\
+    \ 0; i < std::size(v) - 1; ++i) {\n\t\t\t\tresult.emplace_back(v[i], v[i + 1]);\n\
+    \t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n} EachConsPair;\nstruct Select_impl {\n\
+    \ttemplate <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v)\
+    \ {\n\t\t\tusing value_type = typename decltype(v)::value_type;\n\t\t\tstd::vector<value_type>\
+    \ result;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) result.push_back(i);\n\
+    \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n} Select;\nstruct Map_impl {\n\t\
+    template <class F> auto operator()(F&& f) {\n\t\treturn Callable([&](auto v) {\n\
+    \t\t\tusing result_type = std::invoke_result_t<F, typename decltype(v)::value_type>;\n\
+    \t\t\tstd::vector<result_type> result;\n\t\t\tresult.reserve(std::size(v));\n\t\
+    \t\tfor (const auto& i : v) {\n\t\t\t\tresult.push_back(f(i));\n\t\t\t}\n\t\t\t\
+    return result;\n\t\t});\n\t}\n} Map;\nstruct Indexed_impl {\n\ttemplate <class\
+    \ T> friend auto operator|(const T& v, Indexed_impl& c) {\n\t\tusing value_type\
+    \ = typename T::value_type;\n\t\tstd::vector<std::pair<value_type, int>> result;\n\
+    \t\tresult.reserve(std::size(v));\n\t\tint index = 0;\n\t\tfor (const auto& i\
+    \ : v) {\n\t\t\tresult.emplace_back(i, index++);\n\t\t}\n\t\treturn result;\n\t\
+    }\n} Indexed;\nstruct AllOf_impl {\n\ttemplate <class F> auto operator()(F&& f)\
+    \ {\n\t\treturn Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\
+    \tif (!f(i)) return false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n} AllOf;\n\
     struct AnyOf_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (f(i)) return\
     \ true;\n\t\t\t}\n\t\t\treturn false;\n\t\t});\n\t}\n} AnyOf;\nstruct NoneOf_impl\
@@ -300,23 +308,29 @@ data:
     \t});\n\t}\n\ttemplate <class T, class value_type = typename T::value_type>\n\t\
     friend auto operator|(const T& v, Tally_impl& c) {\n\t\tstd::map<value_type, std::size_t>\
     \ result;\n\t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Tally;\n\ntemplate <class T> auto operator*(const std::vector<T>&\
-    \ a, std::size_t n) {\n\tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\
-    \tresult.insert(result.end(), a.begin(), a.end());\n\t}\n\treturn result;\n}\n\
-    auto operator*(std::string a, std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t\
-    \ i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class\
-    \ T, class U> auto& operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(),\
-    \ all(b));\n\treturn a;\n}\ntemplate <class T> auto& operator<<(std::string& a,\
-    \ const T& b) {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class\
-    \ T, class U> auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn\
-    \ a;\n}\ntemplate <class T> auto operator+(std::string a, const T& b) {\n\ta <<\
-    \ b;\n\treturn a;\n}\n"
+    \ result;\n\t}\n} Tally;\n\nstruct Join_impl {\n\tauto operator()(std::string\
+    \ separater) {\n\t\treturn Callable([&](auto v) {\n\t\t\tstd::string result;\n\
+    \t\t\tbool first = true;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (!std::exchange(first,\
+    \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
+    \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
+    \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
+    \ntemplate <class T> auto operator*(const std::vector<T>& a, std::size_t n) {\n\
+    \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
+    \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
+    \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
+    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\ntemplate <class T, class U> auto&\
+    \ operator<<(std::vector<T>& a, const U& b) {\n\ta.insert(a.end(), all(b));\n\t\
+    return a;\n}\ntemplate <class T> auto& operator<<(std::string& a, const T& b)\
+    \ {\n\ta.insert(a.end(), all(b));\n\treturn a;\n}\ntemplate <class T, class U>\
+    \ auto operator+(std::vector<T> a, const U& b) {\n\ta << b;\n\treturn a;\n}\n\
+    template <class T> auto operator+(std::string a, const T& b) {\n\ta << b;\n\t\
+    return a;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/Ruby.cpp
   requiredBy:
   - template.cpp
-  timestamp: '2021-03-07 15:06:12+09:00'
+  timestamp: '2021-03-07 15:44:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template_no_Ruby.test.cpp

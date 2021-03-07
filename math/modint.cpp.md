@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Math/Combination.cpp
-    title: Math/Combination.cpp
+    path: math/Combination.cpp
+    title: math/Combination.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Partition.test.cpp
@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
     #include <utility>\nusing namespace std;\n\ntemplate <int MOD> struct modint {\n\
     \tusing T = long long;\n\tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD)\
     \ {\n\t\tif (n < 0) n += MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn\
@@ -92,18 +92,18 @@ data:
     mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/modint.cpp
+  path: math/modint.cpp
   requiredBy:
-  - Math/Combination.cpp
-  timestamp: '2020-12-28 14:25:49+09:00'
+  - math/Combination.cpp
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_pow.test.cpp
   - test/Partition.test.cpp
-documentation_of: Math/modint.cpp
+documentation_of: math/modint.cpp
 layout: document
 redirect_from:
-- /library/Math/modint.cpp
-- /library/Math/modint.cpp.html
-title: Math/modint.cpp
+- /library/math/modint.cpp
+- /library/math/modint.cpp.html
+title: math/modint.cpp
 ---

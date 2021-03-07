@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n\
+  bundledCode: "#line 2 \"math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n\
     #include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<T> Divisors(T\
     \ n) {\n\tassert(0 < n);\n\tvector<T> result;\n\tT i = 1;\n\tfor (; i * i < n;\
     \ ++i) {\n\t\tif (n % i == 0) result.push_back(i);\n\t}\n\tbool flag = i * i ==\
@@ -36,16 +36,16 @@ data:
     \ % i == 0) result += i + n / i;\n\t}\n\treturn result + i * (i * i == n);\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Divisors.cpp
+  path: math/Divisors.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:13:39+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Divisors.test.cpp
-documentation_of: Math/Divisors.cpp
+documentation_of: math/Divisors.cpp
 layout: document
 redirect_from:
-- /library/Math/Divisors.cpp
-- /library/Math/Divisors.cpp.html
-title: Math/Divisors.cpp
+- /library/math/Divisors.cpp
+- /library/math/Divisors.cpp.html
+title: math/Divisors.cpp
 ---

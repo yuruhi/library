@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Divisors.cpp
-    title: Math/Divisors.cpp
+    path: math/Divisors.cpp
+    title: math/Divisors.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D
   bundledCode: "#line 1 \"test/Divisors.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D\"\
-    \n#line 2 \"Math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n#include\
+    \n#line 2 \"math/Divisors.cpp\"\n#include <vector>\n#include <cmath>\n#include\
     \ <cassert>\nusing namespace std;\n\ntemplate <class T> vector<T> Divisors(T n)\
     \ {\n\tassert(0 < n);\n\tvector<T> result;\n\tT i = 1;\n\tfor (; i * i < n; ++i)\
     \ {\n\t\tif (n % i == 0) result.push_back(i);\n\t}\n\tbool flag = i * i == n;\n\
@@ -31,16 +31,16 @@ data:
     \tfor (int d : Divisors(c)) {\n\t\tans += a <= d && d <= b;\n\t}\n\tcout << ans\
     \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D\"\n\
-    #include \"./../Math/Divisors.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    #include \"./../math/Divisors.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint a, b, c;\n\tcin >> a >> b >> c;\n\tint ans = 0;\n\tfor (int\
     \ d : Divisors(c)) {\n\t\tans += a <= d && d <= b;\n\t}\n\tcout << ans << '\\\
     n';\n}"
   dependsOn:
-  - Math/Divisors.cpp
+  - math/Divisors.cpp
   isVerificationFile: true
   path: test/Divisors.test.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:14:42+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Divisors.test.cpp

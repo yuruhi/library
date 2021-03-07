@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Math/Inversion.cpp
-    title: Math/Inversion.cpp
+    path: math/Inversion.cpp
+    title: math/Inversion.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/BinaryIndexedTree.test.cpp
@@ -58,7 +58,7 @@ data:
   isVerificationFile: false
   path: DataStructure/BinaryIndexedTree.cpp
   requiredBy:
-  - Math/Inversion.cpp
+  - math/Inversion.cpp
   timestamp: '2020-12-20 09:41:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

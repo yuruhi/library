@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/modint.cpp
-    title: Math/modint.cpp
+    path: math/modint.cpp
+    title: math/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
     #include <utility>\nusing namespace std;\n\ntemplate <int MOD> struct modint {\n\
     \tusing T = long long;\n\tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD)\
     \ {\n\t\tif (n < 0) n += MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn\
@@ -47,7 +47,7 @@ data:
     \t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream& is, modint<MOD>&\
     \ m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\t\
     }\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\nmint operator\"\
-    \"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"Math/Combination.cpp\"\
+    \"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"math/Combination.cpp\"\
     \n#include <array>\nusing namespace std;\n\ntemplate <int MOD, size_t N> class\
     \ Combination {\n\tusing value_type = modint<MOD>;\n\tarray<value_type, N + 1>\
     \ fac, finv, inv;\n\npublic:\n\tconstexpr Combination() {\n\t\tfac[0] = fac[1]\
@@ -73,17 +73,17 @@ data:
     \ r) const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n + r - 1, r);\n\
     \t}\n\tconstexpr value_type fact(int n) const {\n\t\treturn fac[n];\n\t}\n};\n"
   dependsOn:
-  - Math/modint.cpp
+  - math/modint.cpp
   isVerificationFile: false
-  path: Math/Combination.cpp
+  path: math/Combination.cpp
   requiredBy: []
-  timestamp: '2020-12-28 14:25:49+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/Combination.cpp
+documentation_of: math/Combination.cpp
 layout: document
 redirect_from:
-- /library/Math/Combination.cpp
-- /library/Math/Combination.cpp.html
-title: Math/Combination.cpp
+- /library/math/Combination.cpp
+- /library/math/Combination.cpp.html
+title: math/Combination.cpp
 ---

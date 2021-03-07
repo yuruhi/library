@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/modint.cpp
-    title: Math/modint.cpp
+    path: math/modint.cpp
+    title: math/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B
   bundledCode: "#line 1 \"test/modint_pow.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B\"\
-    \n#line 2 \"Math/modint.cpp\"\n#include <iostream>\n#include <vector>\n#include\
+    \n#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <utility>\nusing namespace std;\n\ntemplate <int MOD> struct modint {\n\tusing\
     \ T = long long;\n\tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD) {\n\t\
     \tif (n < 0) n += MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn MOD;\n\
@@ -54,15 +54,15 @@ data:
     \ n;\n}\n#line 4 \"test/modint_pow.test.cpp\"\nusing namespace std;\n\nint main()\
     \ {\n\tint m, n;\n\tcin >> m >> n;\n\tcout << mint(m).pow(n) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_B\"\
-    \n#include \"./../Math/modint.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \n#include \"./../math/modint.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint m, n;\n\tcin >> m >> n;\n\tcout << mint(m).pow(n) << '\\\
     n';\n}"
   dependsOn:
-  - Math/modint.cpp
+  - math/modint.cpp
   isVerificationFile: true
   path: test/modint_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-12-28 14:25:49+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_pow.test.cpp

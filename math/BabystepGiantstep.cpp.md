@@ -27,15 +27,15 @@ data:
     \ i * m + table[e];\n\t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/BabystepGiantstep.cpp
+  path: math/BabystepGiantstep.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/BabystepGiantstep.cpp
+documentation_of: math/BabystepGiantstep.cpp
 layout: document
 redirect_from:
-- /library/Math/BabystepGiantstep.cpp
-- /library/Math/BabystepGiantstep.cpp.html
-title: Math/BabystepGiantstep.cpp
+- /library/math/BabystepGiantstep.cpp
+- /library/math/BabystepGiantstep.cpp.html
+title: math/BabystepGiantstep.cpp
 ---

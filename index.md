@@ -207,71 +207,6 @@ data:
     - icon: ':warning:'
       path: Graph/isConnected.cpp
       title: Graph/isConnected.cpp
-  - name: Math
-    pages:
-    - icon: ':warning:'
-      path: Math/BabystepGiantstep.cpp
-      title: Math/BabystepGiantstep.cpp
-    - icon: ':warning:'
-      path: Math/Combination.cpp
-      title: Math/Combination.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Divisors.cpp
-      title: Math/Divisors.cpp
-    - icon: ':warning:'
-      path: Math/EnumerateCombination.cpp
-      title: Math/EnumerateCombination.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/EnumeratePrimes.cpp
-      title: Math/EnumeratePrimes.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Eratosthenes.cpp
-      title: Math/Eratosthenes.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Euler.cpp
-      title: Math/Euler.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Fibonacci.cpp
-      title: Math/Fibonacci.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Inversion.cpp
-      title: Math/Inversion.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Matrix.cpp
-      title: Math/Matrix.cpp
-    - icon: ':warning:'
-      path: Math/Moebius.cpp
-      title: Math/Moebius.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Partition.cpp
-      title: Math/Partition.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/PrimeFactor.cpp
-      title: Math/PrimeFactor.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/QuadraticEquation.cpp
-      title: Math/QuadraticEquation.cpp
-    - icon: ':warning:'
-      path: Math/Radix.cpp
-      title: Math/Radix.cpp
-    - icon: ':warning:'
-      path: Math/Rational.cpp
-      title: Math/Rational.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/Sieve.cpp
-      title: Math/Sieve.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/extGcd.cpp
-      title: Math/extGcd.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/isPrime.cpp
-      title: Math/isPrime.cpp
-    - icon: ':heavy_check_mark:'
-      path: Math/modint.cpp
-      title: Math/modint.cpp
-    - icon: ':warning:'
-      path: Math/modintRuntime.cpp
-      title: Math/modintRuntime.cpp
   - name: Serch
     pages:
     - icon: ':heavy_check_mark:'
@@ -426,6 +361,71 @@ data:
     - icon: ':warning:'
       path: template_no_Ruby.cpp
       title: template_no_Ruby.cpp
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/BabystepGiantstep.cpp
+      title: math/BabystepGiantstep.cpp
+    - icon: ':warning:'
+      path: math/Combination.cpp
+      title: math/Combination.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Divisors.cpp
+      title: math/Divisors.cpp
+    - icon: ':warning:'
+      path: math/EnumerateCombination.cpp
+      title: math/EnumerateCombination.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/EnumeratePrimes.cpp
+      title: math/EnumeratePrimes.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Eratosthenes.cpp
+      title: math/Eratosthenes.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Euler.cpp
+      title: math/Euler.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Fibonacci.cpp
+      title: math/Fibonacci.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Inversion.cpp
+      title: math/Inversion.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Matrix.cpp
+      title: math/Matrix.cpp
+    - icon: ':warning:'
+      path: math/Moebius.cpp
+      title: math/Moebius.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Partition.cpp
+      title: math/Partition.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/PrimeFactor.cpp
+      title: math/PrimeFactor.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/QuadraticEquation.cpp
+      title: math/QuadraticEquation.cpp
+    - icon: ':warning:'
+      path: math/Radix.cpp
+      title: math/Radix.cpp
+    - icon: ':warning:'
+      path: math/Rational.cpp
+      title: math/Rational.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/Sieve.cpp
+      title: math/Sieve.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/extGcd.cpp
+      title: math/extGcd.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/isPrime.cpp
+      title: math/isPrime.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/modint.cpp
+      title: math/modint.cpp
+    - icon: ':warning:'
+      path: math/modintRuntime.cpp
+      title: math/modintRuntime.cpp
   - name: old
     pages:
     - icon: ':warning:'

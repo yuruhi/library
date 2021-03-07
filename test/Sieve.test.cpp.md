@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Sieve.cpp
-    title: Math/Sieve.cpp
+    path: math/Sieve.cpp
+    title: math/Sieve.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C
   bundledCode: "#line 1 \"test/Sieve.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C\"\
-    \n#line 2 \"Math/Sieve.cpp\"\n#include <vector>\n#include <map>\n#include <utility>\n\
+    \n#line 2 \"math/Sieve.cpp\"\n#include <vector>\n#include <map>\n#include <utility>\n\
     #include <cassert>\nusing namespace std;\n\nclass Sieve {\n\tint n;\n\tvector<int>\
     \ factor_m, primes_m;\n\npublic:\n\tSieve(int _n) : n(_n), factor_m(_n + 1) {\n\
     \t\tassert(1 <= n);\n\t\tfactor_m[0] = factor_m[1] = -1;\n\t\tfor (long long i\
@@ -46,7 +46,7 @@ data:
     \ == binary_search(primes.begin(), primes.end(), x));\n\t}\n\tcout << ans << '\\\
     n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_C\"\
-    \n#include \"./../Math/Sieve.cpp\"\n#include <iostream>\n#include <algorithm>\n\
+    \n#include \"./../math/Sieve.cpp\"\n#include <iostream>\n#include <algorithm>\n\
     #include <cassert>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\n\tSieve sieve(100000000);\n\tconst auto&\
     \ primes = sieve.primes();\n\tint n;\n\tcin >> n;\n\tint ans = 0;\n\twhile (n--)\
@@ -54,11 +54,11 @@ data:
     \ == binary_search(primes.begin(), primes.end(), x));\n\t}\n\tcout << ans << '\\\
     n';\n}"
   dependsOn:
-  - Math/Sieve.cpp
+  - math/Sieve.cpp
   isVerificationFile: true
   path: test/Sieve.test.cpp
   requiredBy: []
-  timestamp: '2020-12-31 12:10:02+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Sieve.test.cpp

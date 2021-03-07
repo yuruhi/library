@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/QuadraticEquation.cpp\"\n#include <vector>\n#include\
+  bundledCode: "#line 2 \"math/QuadraticEquation.cpp\"\n#include <vector>\n#include\
     \ <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate <class T>\noptional<vector<T>>\
     \ QuadraticEquation(long long a, long long b, long long c) {\n\tT A = a, B = b,\
     \ C = c;\n\tif (a == 0 && b == 0 && c == 0) {\n\t\treturn nullopt;\n\t} else if\
@@ -36,16 +36,16 @@ data:
     \treturn vector{min(ans1, ans2), max(ans1, ans2)};\n\t\t}\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/QuadraticEquation.cpp
+  path: math/QuadraticEquation.cpp
   requiredBy: []
-  timestamp: '2021-01-03 10:31:23+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/QuadraticEquation.test.cpp
-documentation_of: Math/QuadraticEquation.cpp
+documentation_of: math/QuadraticEquation.cpp
 layout: document
 redirect_from:
-- /library/Math/QuadraticEquation.cpp
-- /library/Math/QuadraticEquation.cpp.html
-title: Math/QuadraticEquation.cpp
+- /library/math/QuadraticEquation.cpp
+- /library/math/QuadraticEquation.cpp.html
+title: math/QuadraticEquation.cpp
 ---

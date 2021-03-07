@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/modintRuntime.cpp\"\n#include <vector>\n#include <utility>\n\
+  bundledCode: "#line 2 \"math/modintRuntime.cpp\"\n#include <vector>\n#include <utility>\n\
     #include <iostream>\nusing namespace std;\n\nstruct mint {\n\tusing T = long long;\n\
     \tstatic T MOD;\n\tT n;\n\npublic:\n\tstatic void set_mod(T _MOD) {\n\t\tMOD =\
     \ _MOD;\n\t}\n\tmint(T x = 0) : n(x % MOD) {\n\t\tif (n < 0) n += MOD;\n\t}\n\t\
@@ -75,15 +75,15 @@ data:
     \t}\n};\nlong long mint::MOD = 1000000007;\nusing VM = vector<mint>;\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/modintRuntime.cpp
+  path: math/modintRuntime.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/modintRuntime.cpp
+documentation_of: math/modintRuntime.cpp
 layout: document
 redirect_from:
-- /library/Math/modintRuntime.cpp
-- /library/Math/modintRuntime.cpp.html
-title: Math/modintRuntime.cpp
+- /library/math/modintRuntime.cpp
+- /library/math/modintRuntime.cpp.html
+title: math/modintRuntime.cpp
 ---

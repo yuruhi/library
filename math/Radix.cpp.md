@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Radix.cpp\"\n#include <vector>\n#include <string>\n\
+  bundledCode: "#line 2 \"math/Radix.cpp\"\n#include <vector>\n#include <string>\n\
     #include <map>\n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\
     \nclass Radix {\npublic:\n\tusing value_type = long long;\n\nprivate:\n\tstatic\
     \ string Str;\n\tstatic map<char, int> Map;\n\npublic:\n\tstatic void Init(string\
@@ -41,15 +41,15 @@ data:
     string Radix::Str;\nmap<char, int> Radix::Map;\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Radix.cpp
+  path: math/Radix.cpp
   requiredBy: []
-  timestamp: '2020-11-23 14:52:17+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Math/Radix.cpp
+documentation_of: math/Radix.cpp
 layout: document
 redirect_from:
-- /library/Math/Radix.cpp
-- /library/Math/Radix.cpp.html
-title: Math/Radix.cpp
+- /library/math/Radix.cpp
+- /library/math/Radix.cpp.html
+title: math/Radix.cpp
 ---

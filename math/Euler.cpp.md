@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/PrimeFactor.cpp
-    title: Math/PrimeFactor.cpp
+    path: math/PrimeFactor.cpp
+    title: math/PrimeFactor.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n\
     #include <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> vector<pair<T, int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1)\
     \ {\n\t\treturn {};\n\t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i *\
@@ -32,7 +32,7 @@ data:
     \tif (n == 1) {\n\t\treturn {};\n\t}\n\tvector<T> result;\n\tfor (T i = 2; i *\
     \ i <= n; ++i) {\n\t\twhile (n % i == 0) {\n\t\t\tresult.push_back(i);\n\t\t\t\
     n /= i;\n\t\t}\n\t}\n\tif (n != 1) {\n\t\tresult.push_back(n);\n\t}\n\treturn\
-    \ result;\n}\n#line 3 \"Math/Euler.cpp\"\n#include <numeric>\n\ntemplate <class\
+    \ result;\n}\n#line 3 \"math/Euler.cpp\"\n#include <numeric>\n\ntemplate <class\
     \ T> T Euler(T x) {\n\tT result = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\
     \t\tresult = result / p * (p - 1);\n\t}\n\treturn result;\n}\n\nvector<int> EnumerateEuler(int\
     \ x) {\n\tvector<int> result(x + 1);\n\tiota(result.begin(), result.end(), 0);\n\
@@ -47,19 +47,19 @@ data:
     \ {\n\t\t\tfor (int j = i; j <= x; j += i) {\n\t\t\t\tresult[j] = result[j] /\
     \ i * (i - 1);\n\t\t\t}\n\t\t}\n\t}\n\treturn result;\n}"
   dependsOn:
-  - Math/PrimeFactor.cpp
+  - math/PrimeFactor.cpp
   isVerificationFile: false
-  path: Math/Euler.cpp
+  path: math/Euler.cpp
   requiredBy: []
-  timestamp: '2020-12-13 11:47:50+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Euler.test.cpp
   - test/EnumerateEuler.test.cpp
-documentation_of: Math/Euler.cpp
+documentation_of: math/Euler.cpp
 layout: document
 redirect_from:
-- /library/Math/Euler.cpp
-- /library/Math/Euler.cpp.html
-title: Math/Euler.cpp
+- /library/math/Euler.cpp
+- /library/math/Euler.cpp.html
+title: math/Euler.cpp
 ---

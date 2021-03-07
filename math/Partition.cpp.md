@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Partition.cpp\"\n#include <vector>\nusing namespace\
+  bundledCode: "#line 2 \"math/Partition.cpp\"\n#include <vector>\nusing namespace\
     \ std;\n\ntemplate <class T> vector<vector<T>> Partition(int num, int sum) {\n\
     \tvector<vector<T>> dp(num + 1, vector<T>(sum + 1));\n\tdp[0][0] = 1;\n\tfor (int\
     \ i = 1; i <= num; ++i) {\n\t\tfor (int j = 0; j <= sum; ++j) {\n\t\t\tif (j -\
@@ -25,16 +25,16 @@ data:
     \t\t\t}\n\t\t}\n\t}\n\treturn dp;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Partition.cpp
+  path: math/Partition.cpp
   requiredBy: []
-  timestamp: '2020-11-23 16:29:29+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Partition.test.cpp
-documentation_of: Math/Partition.cpp
+documentation_of: math/Partition.cpp
 layout: document
 redirect_from:
-- /library/Math/Partition.cpp
-- /library/Math/Partition.cpp.html
-title: Math/Partition.cpp
+- /library/math/Partition.cpp
+- /library/math/Partition.cpp.html
+title: math/Partition.cpp
 ---

@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Euler.cpp
-    title: Math/Euler.cpp
+    path: math/Euler.cpp
+    title: math/Euler.cpp
   - icon: ':heavy_check_mark:'
-    path: Math/PrimeFactor.cpp
-    title: Math/PrimeFactor.cpp
+    path: math/PrimeFactor.cpp
+    title: math/PrimeFactor.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011
   bundledCode: "#line 1 \"test/EnumerateEuler.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
-    \n#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
+    \n#line 2 \"math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class T> vector<pair<T,\
     \ int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1) {\n\t\treturn {};\n\
     \t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i * i <= n; ++i) {\n\t\t\
@@ -33,7 +33,7 @@ data:
     \t\treturn {};\n\t}\n\tvector<T> result;\n\tfor (T i = 2; i * i <= n; ++i) {\n\
     \t\twhile (n % i == 0) {\n\t\t\tresult.push_back(i);\n\t\t\tn /= i;\n\t\t}\n\t\
     }\n\tif (n != 1) {\n\t\tresult.push_back(n);\n\t}\n\treturn result;\n}\n#line\
-    \ 3 \"Math/Euler.cpp\"\n#include <numeric>\n\ntemplate <class T> T Euler(T x)\
+    \ 3 \"math/Euler.cpp\"\n#include <numeric>\n\ntemplate <class T> T Euler(T x)\
     \ {\n\tT result = x;\n\tfor (auto [p, e] : PrimeFactor(x)) {\n\t\tresult = result\
     \ / p * (p - 1);\n\t}\n\treturn result;\n}\n\nvector<int> EnumerateEuler(int x)\
     \ {\n\tvector<int> result(x + 1);\n\tiota(result.begin(), result.end(), 0);\n\t\
@@ -46,19 +46,19 @@ data:
     \t\tans[i] = ans[i - 1] + euler[i];\n\t}\n\n\tint q;\n\tcin >> q;\n\twhile (q--)\
     \ {\n\t\tint x;\n\t\tcin >> x;\n\t\tcout << ans[x] << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/RUPC/2286?year=2011\"\
-    \n#include \"./../Math/Euler.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \n#include \"./../math/Euler.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\t\
     const int MAX_A = 1000000;\n\tvector<int> euler = EnumerateEuler(MAX_A);\n\tvector<long\
     \ long> ans(MAX_A + 1, 1);\n\tfor (int i = 1; i <= MAX_A; ++i) {\n\t\tans[i] =\
     \ ans[i - 1] + euler[i];\n\t}\n\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\t\
     int x;\n\t\tcin >> x;\n\t\tcout << ans[x] << '\\n';\n\t}\n}"
   dependsOn:
-  - Math/Euler.cpp
-  - Math/PrimeFactor.cpp
+  - math/Euler.cpp
+  - math/PrimeFactor.cpp
   isVerificationFile: true
   path: test/EnumerateEuler.test.cpp
   requiredBy: []
-  timestamp: '2021-01-01 17:28:03+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/EnumerateEuler.test.cpp

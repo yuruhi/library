@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Math/Euler.cpp
-    title: Math/Euler.cpp
+    path: math/Euler.cpp
+    title: math/Euler.cpp
   - icon: ':warning:'
-    path: Math/Moebius.cpp
-    title: Math/Moebius.cpp
+    path: math/Moebius.cpp
+    title: math/Moebius.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/EnumerateEuler.test.cpp
@@ -23,7 +23,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/PrimeFactor.cpp\"\n#include <map>\n#include <vector>\n\
     #include <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <class\
     \ T> vector<pair<T, int>> PrimeFactor(T n) {\n\tassert(1 <= n);\n\tif (n == 1)\
     \ {\n\t\treturn {};\n\t}\n\tvector<pair<T, int>> result;\n\tfor (T i = 2; i *\
@@ -56,20 +56,20 @@ data:
     return result;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/PrimeFactor.cpp
+  path: math/PrimeFactor.cpp
   requiredBy:
-  - Math/Euler.cpp
-  - Math/Moebius.cpp
-  timestamp: '2020-11-23 14:52:17+09:00'
+  - math/Euler.cpp
+  - math/Moebius.cpp
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/PrimeFactor.test.cpp
   - test/Euler.test.cpp
   - test/EnumerateEuler.test.cpp
-documentation_of: Math/PrimeFactor.cpp
+documentation_of: math/PrimeFactor.cpp
 layout: document
 redirect_from:
-- /library/Math/PrimeFactor.cpp
-- /library/Math/PrimeFactor.cpp.html
-title: Math/PrimeFactor.cpp
+- /library/math/PrimeFactor.cpp
+- /library/math/PrimeFactor.cpp.html
+title: math/PrimeFactor.cpp
 ---

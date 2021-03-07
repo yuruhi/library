@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/extGcd.cpp\"\n#include <tuple>\n\ntemplate <class T>\
+  bundledCode: "#line 2 \"math/extGcd.cpp\"\n#include <tuple>\n\ntemplate <class T>\
     \ T extGcd(T a, T b, T& x, T& y) {\n\tT d = a;\n\tif (b != 0) {\n\t\td = extGcd(b,\
     \ a % b, y, x);\n\t\ty -= (a / b) * x;\n\t} else {\n\t\tx = 1;\n\t\ty = 0;\n\t\
     }\n\treturn d;\n}\n\ntemplate <class T> std::tuple<T, T, T> extGcd(T a, T b) {\n\
@@ -23,16 +23,16 @@ data:
     \ = extGcd(a, b, x, y);\n\treturn {gcd, x, y};\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/extGcd.cpp
+  path: math/extGcd.cpp
   requiredBy: []
-  timestamp: '2021-01-30 17:23:16+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/extGcd.test.cpp
-documentation_of: Math/extGcd.cpp
+documentation_of: math/extGcd.cpp
 layout: document
 redirect_from:
-- /library/Math/extGcd.cpp
-- /library/Math/extGcd.cpp.html
-title: Math/extGcd.cpp
+- /library/math/extGcd.cpp
+- /library/math/extGcd.cpp.html
+title: math/extGcd.cpp
 ---

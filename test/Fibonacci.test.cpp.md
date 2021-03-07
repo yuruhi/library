@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Fibonacci.cpp
-    title: Math/Fibonacci.cpp
+    path: math/Fibonacci.cpp
+    title: math/Fibonacci.cpp
   - icon: ':heavy_check_mark:'
-    path: Math/Matrix.cpp
-    title: Math/Matrix.cpp
+    path: math/Matrix.cpp
+    title: math/Matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A
   bundledCode: "#line 1 \"test/Fibonacci.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
-    \n#line 2 \"Math/Matrix.cpp\"\n#include <vector>\n#include <cassert>\nusing namespace\
+    \n#line 2 \"math/Matrix.cpp\"\n#include <vector>\n#include <cassert>\nusing namespace\
     \ std;\n\ntemplate <class T> struct Matrix {\npublic:\n\tusing value_type = T;\n\
     \tusing data_type = vector<vector<value_type>>;\n\nprivate:\n\tsize_t h, w;\n\t\
     data_type A;\n\npublic:\n\tstatic Matrix I(size_t n) {\n\t\tMatrix A(n);\n\t\t\
@@ -48,7 +48,7 @@ data:
     \t}\n\tMatrix operator*(const Matrix& B) const {\n\t\treturn Matrix(*this) *=\
     \ B;\n\t}\n\tMatrix operator^(const long long k) const {\n\t\treturn Matrix(*this)\
     \ ^= k;\n\t}\n\tMatrix pow(long long k) const {\n\t\treturn *this ^ k;\n\t}\n\
-    };\n#line 4 \"Math/Fibonacci.cpp\"\nusing namespace std;\n\ntemplate <class value_type>\
+    };\n#line 4 \"math/Fibonacci.cpp\"\nusing namespace std;\n\ntemplate <class value_type>\
     \ value_type Fibonacci(long long n) {\n\tMatrix<value_type> A(vector<vector<value_type>>{{1,\
     \ 1}, {1, 0}});\n\tMatrix<value_type> B(vector<vector<value_type>>{{1}, {0}});\n\
     \treturn (A.pow(n) * B)[1][0];\n}\n\ntemplate <class value_type = long long> vector<value_type>\
@@ -59,16 +59,16 @@ data:
     \nint main() {\n\tint n;\n\tcin >> n;\n\tcout << Fibonacci<long long>(n + 1) <<\
     \ '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
-    \n#include \"./../Math/Fibonacci.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \n#include \"./../math/Fibonacci.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint n;\n\tcin >> n;\n\tcout << Fibonacci<long long>(n + 1) <<\
     \ '\\n';\n}"
   dependsOn:
-  - Math/Fibonacci.cpp
-  - Math/Matrix.cpp
+  - math/Fibonacci.cpp
+  - math/Matrix.cpp
   isVerificationFile: true
   path: test/Fibonacci.test.cpp
   requiredBy: []
-  timestamp: '2020-12-13 11:47:50+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Fibonacci.test.cpp

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/QuadraticEquation.cpp
-    title: Math/QuadraticEquation.cpp
+    path: math/QuadraticEquation.cpp
+    title: math/QuadraticEquation.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,7 +16,7 @@ data:
     links:
     - https://yukicoder.me/problems/no/1179
   bundledCode: "#line 1 \"test/QuadraticEquation.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1179\"\
-    \n#define ERROR \"1e-4\"\n#line 2 \"Math/QuadraticEquation.cpp\"\n#include <vector>\n\
+    \n#define ERROR \"1e-4\"\n#line 2 \"math/QuadraticEquation.cpp\"\n#include <vector>\n\
     #include <optional>\n#include <cmath>\nusing namespace std;\n\ntemplate <class\
     \ T>\noptional<vector<T>> QuadraticEquation(long long a, long long b, long long\
     \ c) {\n\tT A = a, B = b, C = c;\n\tif (a == 0 && b == 0 && c == 0) {\n\t\treturn\
@@ -35,7 +35,7 @@ data:
     n\", ans[0]);\n\t} else if (ans.size() == 2) {\n\t\tprintf(\"%.6Lf %.6Lf\\n\"\
     , ans[0], ans[1]);\n\t} else {\n\t\tassert(false);\n\t}\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1179\"\n#define ERROR\
-    \ \"1e-4\"\n#include \"./../Math/QuadraticEquation.cpp\"\n#include <iostream>\n\
+    \ \"1e-4\"\n#include \"./../math/QuadraticEquation.cpp\"\n#include <iostream>\n\
     #include <algorithm>\n#include <cassert>\nusing namespace std;\n\nint main() {\n\
     \tint a, b, c;\n\tcin >> a >> b >> c;\n\tauto ans = *QuadraticEquation<long double>(a,\
     \ b, c);\n\tsort(ans.begin(), ans.end());\n\tif (ans.empty()) {\n\t\tputs(\"imaginary\"\
@@ -43,11 +43,11 @@ data:
     \ if (ans.size() == 2) {\n\t\tprintf(\"%.6Lf %.6Lf\\n\", ans[0], ans[1]);\n\t\
     } else {\n\t\tassert(false);\n\t}\n}"
   dependsOn:
-  - Math/QuadraticEquation.cpp
+  - math/QuadraticEquation.cpp
   isVerificationFile: true
   path: test/QuadraticEquation.test.cpp
   requiredBy: []
-  timestamp: '2021-01-03 10:31:23+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/QuadraticEquation.test.cpp

@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Math/Sieve.cpp\"\n#include <vector>\n#include <map>\n#include\
+  bundledCode: "#line 2 \"math/Sieve.cpp\"\n#include <vector>\n#include <map>\n#include\
     \ <utility>\n#include <cassert>\nusing namespace std;\n\nclass Sieve {\n\tint\
     \ n;\n\tvector<int> factor_m, primes_m;\n\npublic:\n\tSieve(int _n) : n(_n), factor_m(_n\
     \ + 1) {\n\t\tassert(1 <= n);\n\t\tfactor_m[0] = factor_m[1] = -1;\n\t\tfor (long\
@@ -61,16 +61,16 @@ data:
     }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: Math/Sieve.cpp
+  path: math/Sieve.cpp
   requiredBy: []
-  timestamp: '2020-12-30 13:04:50+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Sieve.test.cpp
-documentation_of: Math/Sieve.cpp
+documentation_of: math/Sieve.cpp
 layout: document
 redirect_from:
-- /library/Math/Sieve.cpp
-- /library/Math/Sieve.cpp.html
-title: Math/Sieve.cpp
+- /library/math/Sieve.cpp
+- /library/math/Sieve.cpp.html
+title: math/Sieve.cpp
 ---

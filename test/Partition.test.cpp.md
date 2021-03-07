@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Math/Partition.cpp
-    title: Math/Partition.cpp
+    path: math/Partition.cpp
+    title: math/Partition.cpp
   - icon: ':heavy_check_mark:'
-    path: Math/modint.cpp
-    title: Math/modint.cpp
+    path: math/modint.cpp
+    title: math/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,13 +18,13 @@ data:
     links:
     - https://yukicoder.me/problems/no/269
   bundledCode: "#line 1 \"test/Partition.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/269\"\
-    \n#line 2 \"Math/Partition.cpp\"\n#include <vector>\nusing namespace std;\n\n\
+    \n#line 2 \"math/Partition.cpp\"\n#include <vector>\nusing namespace std;\n\n\
     template <class T> vector<vector<T>> Partition(int num, int sum) {\n\tvector<vector<T>>\
     \ dp(num + 1, vector<T>(sum + 1));\n\tdp[0][0] = 1;\n\tfor (int i = 1; i <= num;\
     \ ++i) {\n\t\tfor (int j = 0; j <= sum; ++j) {\n\t\t\tif (j - i >= 0) {\n\t\t\t\
     \tdp[i][j] = dp[i - 1][j] + dp[i][j - i];\n\t\t\t} else {\n\t\t\t\tdp[i][j] =\
-    \ dp[i - 1][j];\n\t\t\t}\n\t\t}\n\t}\n\treturn dp;\n}\n#line 2 \"Math/modint.cpp\"\
-    \n#include <iostream>\n#line 4 \"Math/modint.cpp\"\n#include <utility>\nusing\
+    \ dp[i - 1][j];\n\t\t\t}\n\t\t}\n\t}\n\treturn dp;\n}\n#line 2 \"math/modint.cpp\"\
+    \n#include <iostream>\n#line 4 \"math/modint.cpp\"\n#include <utility>\nusing\
     \ namespace std;\n\ntemplate <int MOD> struct modint {\n\tusing T = long long;\n\
     \tT n;\n\tconstexpr modint(const T x = 0) : n(x % MOD) {\n\t\tif (n < 0) n +=\
     \ MOD;\n\t}\n\tconstexpr int get_mod() const {\n\t\treturn MOD;\n\t}\n\tconstexpr\
@@ -63,18 +63,18 @@ data:
     \nusing namespace std;\n\nint main() {\n\tint n, s, k;\n\tcin >> n >> s >> k;\n\
     \tint sum = s - n * (n - 1) / 2 * k;\n\tif (sum < 0) {\n\t\tcout << 0 << '\\n';\n\
     \t} else {\n\t\tcout << Partition<mint>(n, sum)[n][sum] << '\\n';\n\t}\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/269\"\n#include \"./../Math/Partition.cpp\"\
-    \n#include \"./../Math/modint.cpp\"\n#include <iostream>\nusing namespace std;\n\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/269\"\n#include \"./../math/Partition.cpp\"\
+    \n#include \"./../math/modint.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint n, s, k;\n\tcin >> n >> s >> k;\n\tint sum = s - n * (n\
     \ - 1) / 2 * k;\n\tif (sum < 0) {\n\t\tcout << 0 << '\\n';\n\t} else {\n\t\tcout\
     \ << Partition<mint>(n, sum)[n][sum] << '\\n';\n\t}\n}"
   dependsOn:
-  - Math/Partition.cpp
-  - Math/modint.cpp
+  - math/Partition.cpp
+  - math/modint.cpp
   isVerificationFile: true
   path: test/Partition.test.cpp
   requiredBy: []
-  timestamp: '2020-12-28 14:25:49+09:00'
+  timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Partition.test.cpp
