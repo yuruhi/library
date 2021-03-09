@@ -184,4 +184,9 @@ namespace lambda {
 			return std::get<I>(n);
 		};
 	}
+	template <class F> auto cmp(F&& f) {
+		return [f](const auto& a, const auto& b) {
+			return f(a) < f(b);
+		};
+	}
 }  // namespace lambda
