@@ -2,11 +2,20 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <cassert>
 using namespace std;
 
 template <int MOD> struct modint {
 	using T = long long;
 	T n;
+	constexpr static modint factorial(int n) {
+		assert(n >= 0);
+		modint result = 1;
+		for (int i = 1; i <= n; ++i) {
+			result *= i;
+		}
+		return result;
+	}
 	constexpr modint(const T x = 0) : n(x % MOD) {
 		if (n < 0) n += MOD;
 	}
