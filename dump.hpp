@@ -303,6 +303,7 @@ namespace Debug {
 		}
 		Name.push(name.front() == ' ' ? name.substr(1) : name);
 	}
+
 	template <class Head> void Dump(Head&& h) {
 		assert(!Name.empty());
 		std::cerr << Name.front() << " = ";
@@ -325,4 +326,10 @@ namespace Debug {
 		Debug::FirstLine(__LINE__, __FUNCTION__); \
 		Debug::SetName(#__VA_ARGS__);             \
 		Debug::Dump(__VA_ARGS__);                 \
+	} while (false)
+
+#define dump2(...)                    \
+	do {                              \
+		Debug::SetName(#__VA_ARGS__); \
+		Debug::Dump(__VA_ARGS__);     \
 	} while (false)
