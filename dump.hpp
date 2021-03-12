@@ -24,7 +24,7 @@ namespace Debug {
 			std::cerr << std::fixed << std::setprecision(6);
 		}
 	};
-	AtFirst at_first;
+	// AtFirst at_first;
 
 	const std::string BeginLine = "..|", EndLine = "\n" + BeginLine;
 	const std::string Begin = "{ ", End = " }";
