@@ -9,7 +9,7 @@ template <class F> tuple<vector<int>, vector<int>> CountLR(int n, F f) {
 		if (f(i)) left[i] = 1 + (i ? left[i - 1] : 0);
 	}
 	vector<int> right(n);
-	for (int i = 0; i < n; ++i) {
+	for (int i = n - 1; i >= 0; --i) {
 		if (f(i)) right[i] = 1 + (i != n - 1 ? right[i + 1] : 0);
 	}
 	return make_tuple(left, right);
