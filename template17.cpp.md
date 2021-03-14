@@ -308,7 +308,7 @@ data:
   isVerificationFile: false
   path: template17.cpp
   requiredBy: []
-  timestamp: '2021-03-07 15:06:12+09:00'
+  timestamp: '2021-03-12 09:09:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template17.cpp

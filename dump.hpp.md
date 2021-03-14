@@ -17,17 +17,17 @@ data:
     #include <utility>\n#include <tuple>\n#include <cassert>\n#include <climits>\n\
     #ifdef __cpp_lib_optional\n#include <optional>\n#endif\n\nnamespace Debug {\n\t\
     struct AtFirst {\n\t\tAtFirst() {\n\t\t\tstd::cerr << std::fixed << std::setprecision(6);\n\
-    \t\t}\n\t};\n\tAtFirst at_first;\n\n\tconst std::string BeginLine = \"..|\", EndLine\
-    \ = \"\\n\" + BeginLine;\n\tconst std::string Begin = \"{ \", End = \" }\";\n\t\
-    const std::string Empty = \"{ empty }\", Separate = \", \", Indent = \"  \";\n\
-    \tconst std::string True = \"O\", False = \"X\";\n\tvoid FirstLine(int line, std::string\
-    \ func) {\n\t\tstd::cerr << BeginLine + std::string(15, '-') << line << \" : \"\
-    \ << func\n\t\t          << std::string(15, '-') << EndLine;\n\t}\n\n\ttemplate\
-    \ <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const int v);\n\t\
-    void DebugPrint(const long long v);\n\tvoid DebugPrint(const bool v);\n\tvoid\
-    \ DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\tvoid DebugPrint(const\
-    \ std::string& v);\n\ttemplate <class T, class U> void DebugPrint(const std::pair<T,\
-    \ U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
+    \t\t}\n\t};\n\t// AtFirst at_first;\n\n\tconst std::string BeginLine = \"..|\"\
+    , EndLine = \"\\n\" + BeginLine;\n\tconst std::string Begin = \"{ \", End = \"\
+    \ }\";\n\tconst std::string Empty = \"{ empty }\", Separate = \", \", Indent =\
+    \ \"  \";\n\tconst std::string True = \"O\", False = \"X\";\n\tvoid FirstLine(int\
+    \ line, std::string func) {\n\t\tstd::cerr << BeginLine + std::string(15, '-')\
+    \ << line << \" : \" << func\n\t\t          << std::string(15, '-') << EndLine;\n\
+    \t}\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const\
+    \ int v);\n\tvoid DebugPrint(const long long v);\n\tvoid DebugPrint(const bool\
+    \ v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\t\
+    void DebugPrint(const std::string& v);\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ std::pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
     \ std::optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <std::size_t\
     \ N = 0, class T> void print_tuple_impl(const T& v);\n\ttemplate <class... T>\
     \ void DebugPrint(const std::tuple<T...>& v);\n#endif\n\ttemplate <class T> void\
@@ -121,7 +121,7 @@ data:
     \ s[i + 1] != ' ')) {\n\t\t\t\tpar--;\n\t\t\t}\n\t\t\tif (!par && s[i] == ',')\
     \ {\n\t\t\t\tName.push(name.front() == ' ' ? name.substr(1) : name);\n\t\t\t\t\
     name.clear();\n\t\t\t} else {\n\t\t\t\tname += s[i];\n\t\t\t}\n\t\t}\n\t\tName.push(name.front()\
-    \ == ' ' ? name.substr(1) : name);\n\t}\n\ttemplate <class Head> void Dump(Head&&\
+    \ == ' ' ? name.substr(1) : name);\n\t}\n\n\ttemplate <class Head> void Dump(Head&&\
     \ h) {\n\t\tassert(!Name.empty());\n\t\tstd::cerr << Name.front() << \" = \";\n\
     \t\tDebugPrint(h);\n\t\tstd::cerr << \"\\n\";\n\t\tName.pop();\n\t}\n\ttemplate\
     \ <class Head, class... Tail> void Dump(Head&& h, Tail&&... t) {\n\t\tassert(!Name.empty());\n\
@@ -130,24 +130,26 @@ data:
     \ namespace Debug\n\n#define dump(...)                                 \\\n\t\
     do {                                          \\\n\t\tDebug::FirstLine(__LINE__,\
     \ __FUNCTION__); \\\n\t\tDebug::SetName(#__VA_ARGS__);             \\\n\t\tDebug::Dump(__VA_ARGS__);\
-    \                 \\\n\t} while (false)\n"
+    \                 \\\n\t} while (false)\n\n#define dump2(...)                \
+    \    \\\n\tdo {                              \\\n\t\tDebug::SetName(#__VA_ARGS__);\
+    \ \\\n\t\tDebug::Dump(__VA_ARGS__);     \\\n\t} while (false)\n"
   code: "#pragma once\n#include <iostream>\n#include <iomanip>\n#include <string>\n\
     #include <vector>\n#include <array>\n#include <map>\n#include <set>\n#include\
     \ <unordered_set>\n#include <list>\n#include <stack>\n#include <queue>\n#include\
     \ <utility>\n#include <tuple>\n#include <cassert>\n#include <climits>\n#ifdef\
     \ __cpp_lib_optional\n#include <optional>\n#endif\n\nnamespace Debug {\n\tstruct\
     \ AtFirst {\n\t\tAtFirst() {\n\t\t\tstd::cerr << std::fixed << std::setprecision(6);\n\
-    \t\t}\n\t};\n\tAtFirst at_first;\n\n\tconst std::string BeginLine = \"..|\", EndLine\
-    \ = \"\\n\" + BeginLine;\n\tconst std::string Begin = \"{ \", End = \" }\";\n\t\
-    const std::string Empty = \"{ empty }\", Separate = \", \", Indent = \"  \";\n\
-    \tconst std::string True = \"O\", False = \"X\";\n\tvoid FirstLine(int line, std::string\
-    \ func) {\n\t\tstd::cerr << BeginLine + std::string(15, '-') << line << \" : \"\
-    \ << func\n\t\t          << std::string(15, '-') << EndLine;\n\t}\n\n\ttemplate\
-    \ <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const int v);\n\t\
-    void DebugPrint(const long long v);\n\tvoid DebugPrint(const bool v);\n\tvoid\
-    \ DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\tvoid DebugPrint(const\
-    \ std::string& v);\n\ttemplate <class T, class U> void DebugPrint(const std::pair<T,\
-    \ U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
+    \t\t}\n\t};\n\t// AtFirst at_first;\n\n\tconst std::string BeginLine = \"..|\"\
+    , EndLine = \"\\n\" + BeginLine;\n\tconst std::string Begin = \"{ \", End = \"\
+    \ }\";\n\tconst std::string Empty = \"{ empty }\", Separate = \", \", Indent =\
+    \ \"  \";\n\tconst std::string True = \"O\", False = \"X\";\n\tvoid FirstLine(int\
+    \ line, std::string func) {\n\t\tstd::cerr << BeginLine + std::string(15, '-')\
+    \ << line << \" : \" << func\n\t\t          << std::string(15, '-') << EndLine;\n\
+    \t}\n\n\ttemplate <class T> void DebugPrint(const T& v);\n\tvoid DebugPrint(const\
+    \ int v);\n\tvoid DebugPrint(const long long v);\n\tvoid DebugPrint(const bool\
+    \ v);\n\tvoid DebugPrint(const char v);\n\tvoid DebugPrint(const char* v);\n\t\
+    void DebugPrint(const std::string& v);\n\ttemplate <class T, class U> void DebugPrint(const\
+    \ std::pair<T, U>& v);\n#ifdef __cpp_lib_optional\n\ttemplate <class T> void DebugPrint(const\
     \ std::optional<T>& v);\n#endif\n#ifdef __cpp_if_constexpr\n\ttemplate <std::size_t\
     \ N = 0, class T> void print_tuple_impl(const T& v);\n\ttemplate <class... T>\
     \ void DebugPrint(const std::tuple<T...>& v);\n#endif\n\ttemplate <class T> void\
@@ -241,7 +243,7 @@ data:
     \ s[i + 1] != ' ')) {\n\t\t\t\tpar--;\n\t\t\t}\n\t\t\tif (!par && s[i] == ',')\
     \ {\n\t\t\t\tName.push(name.front() == ' ' ? name.substr(1) : name);\n\t\t\t\t\
     name.clear();\n\t\t\t} else {\n\t\t\t\tname += s[i];\n\t\t\t}\n\t\t}\n\t\tName.push(name.front()\
-    \ == ' ' ? name.substr(1) : name);\n\t}\n\ttemplate <class Head> void Dump(Head&&\
+    \ == ' ' ? name.substr(1) : name);\n\t}\n\n\ttemplate <class Head> void Dump(Head&&\
     \ h) {\n\t\tassert(!Name.empty());\n\t\tstd::cerr << Name.front() << \" = \";\n\
     \t\tDebugPrint(h);\n\t\tstd::cerr << \"\\n\";\n\t\tName.pop();\n\t}\n\ttemplate\
     \ <class Head, class... Tail> void Dump(Head&& h, Tail&&... t) {\n\t\tassert(!Name.empty());\n\
@@ -250,13 +252,15 @@ data:
     \ namespace Debug\n\n#define dump(...)                                 \\\n\t\
     do {                                          \\\n\t\tDebug::FirstLine(__LINE__,\
     \ __FUNCTION__); \\\n\t\tDebug::SetName(#__VA_ARGS__);             \\\n\t\tDebug::Dump(__VA_ARGS__);\
-    \                 \\\n\t} while (false)\n"
+    \                 \\\n\t} while (false)\n\n#define dump2(...)                \
+    \    \\\n\tdo {                              \\\n\t\tDebug::SetName(#__VA_ARGS__);\
+    \ \\\n\t\tDebug::Dump(__VA_ARGS__);     \\\n\t} while (false)\n"
   dependsOn: []
   isVerificationFile: false
   path: dump.hpp
   requiredBy:
   - template17.cpp
-  timestamp: '2021-03-07 15:06:12+09:00'
+  timestamp: '2021-03-12 09:09:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: dump.hpp

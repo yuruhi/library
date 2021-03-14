@@ -277,6 +277,9 @@ data:
       path: Utility/Step.cpp
       title: Utility/Step.cpp
     - icon: ':warning:'
+      path: Utility/StopWatch.cpp
+      title: Utility/StopWatch.cpp
+    - icon: ':warning:'
       path: Utility/VectorOperation.cpp
       title: Utility/VectorOperation.cpp
     - icon: ':heavy_check_mark:'
