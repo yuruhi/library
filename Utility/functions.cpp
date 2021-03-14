@@ -96,9 +96,6 @@ template <class T, class U> int lower_index(const T& a, const U& v) {
 template <class T, class U> int upper_index(const T& a, const U& v) {
 	return std::upper_bound(all(a), v) - a.begin();
 }
-template <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {
-	return i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();
-}
 template <class T, class U = typename T::value_type> U Gcdv(const T& v) {
 	return accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);
 }

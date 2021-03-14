@@ -383,6 +383,14 @@ struct Join_impl {
 	}
 } Join;
 
+struct Slice_impl {
+	auto operator()(std::size_t i, std::size_t cnt) {
+		return Callable([i, cnt](auto v) {
+			return decltype(v)(std::begin(v) + i, std::begin(v) + i + cnt);
+		});
+	}
+} Slice;
+
 template <class T> auto operator*(const std::vector<T>& a, std::size_t n) {
 	T result;
 	for (std::size_t i = 0; i < n; ++i) {
