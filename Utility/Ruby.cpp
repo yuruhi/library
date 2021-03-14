@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <numeric>
 #include <cassert>
+#include <iostream>
 
 template <class F> struct Callable {
 	F func;
@@ -363,6 +364,18 @@ struct Tally_impl {
 		return result;
 	}
 } Tally;
+
+struct Reduce_impl {
+	template <class T, class F> auto operator()(T memo, F f) {
+		return Callable([memo, f](auto v) {
+			auto acc = memo;
+			for (auto i : v) {
+				acc = f(acc, i);
+			}
+			return acc;
+		});
+	}
+} Reduce;
 
 struct Join_impl {
 	auto operator()(std::string separater) {
