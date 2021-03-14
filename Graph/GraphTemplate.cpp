@@ -2,10 +2,9 @@
 #include <limits>
 #include <vector>
 #include <iostream>
-using namespace std;
 
 using Weight = long long;
-constexpr Weight INF = numeric_limits<Weight>::max();
+constexpr Weight INF = std::numeric_limits<Weight>::max();
 struct Edge {
 	int to;
 	Weight cost;
@@ -17,11 +16,12 @@ struct Edge {
 	friend bool operator>(const Edge& e1, const Edge& e2) {
 		return e1.cost > e2.cost;
 	}
-	friend ostream& operator<<(ostream& os, const Edge& e) {
+	friend std::ostream& operator<<(std::ostream& os, const Edge& e) {
 		return os << "->" << e.to << '(' << e.cost << ')';
 	}
 };
-using Graph = vector<vector<Edge>>;
+using UnWeightedGraph = std::vector<std::vector<int>>;
+using Graph = std::vector<std::vector<Edge>>;
 struct Edge2 {
 	int from, to;
 	Weight cost;
@@ -33,9 +33,28 @@ struct Edge2 {
 	friend bool operator>(const Edge2& e1, const Edge2& e2) {
 		return e1.cost > e2.cost;
 	}
-	friend ostream& operator<<(ostream& os, const Edge2& e) {
+	friend std::ostream& operator<<(std::ostream& os, const Edge2& e) {
 		return os << e.from << "->" << e.to << '(' << e.cost << ')';
 	}
 };
-using Edges = vector<Edge2>;
-using Matrix = vector<vector<Weight>>;
+using Edges = std::vector<Edge2>;
+using Matrix = std::vector<std::vector<Weight>>;
+
+auto to_graph(const UnWeightedGraph& graph) {
+	Graph result(graph.size());
+	for (std::size_t i = 0; i < graph.size(); ++i) {
+		for (int v : graph[i]) {
+			result[i].emplace_back(v, 1);
+		}
+	}
+	return result;
+}
+auto to_unweighted_graph(const Graph& graph) {
+	UnWeightedGraph result(graph.size());
+	for (std::size_t i = 0; i < graph.size(); ++i) {
+		for (auto [v, cost] : graph[i]) {
+			result[i].push_back(v);
+		}
+	}
+	return result;
+}

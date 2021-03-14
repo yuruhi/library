@@ -2,11 +2,10 @@
 #include "./GraphTemplate.cpp"
 #include <utility>
 #include <tuple>
-using namespace std;
 
-tuple<Weight, int, int> Diameter(const Graph& graph) {
-	auto dfs = [&](auto&& f, int v, int p, Weight depth) -> pair<Weight, int> {
-		pair<Weight, int> result(depth, v);
+std::tuple<Weight, int, int> Diameter(const Graph& graph) {
+	auto dfs = [&](auto&& f, int v, int p, Weight depth) -> std::pair<Weight, int> {
+		std::pair<Weight, int> result(depth, v);
 		for (auto e : graph[v]) {
 			if (e.to != p) {
 				auto tmp = f(f, e.to, v, depth + e.cost);
