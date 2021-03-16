@@ -36,48 +36,48 @@ data:
     \n#line 2 \"template.cpp\"\n#include <bits/stdc++.h>\n#line 6 \"Utility/constants.cpp\"\
     \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
     \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
-    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define unless(c)\
-    \ if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(),\
-    \ (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)\n\
-    \nusing ll = long long;\nusing LD = long double;\nusing VB = std::vector<bool>;\n\
-    using VVB = std::vector<VB>;\nusing VI = std::vector<int>;\nusing VVI = std::vector<VI>;\n\
-    using VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\n\
-    using VD = std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
-    using PLL = std::pair<ll, ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class\
-    \ T> using PQ = std::priority_queue<T>;\ntemplate <class T> using PQS = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\nconstexpr int inf = 1000000000;\nconstexpr\
-    \ long long inf_ll = 1000000000000000000ll, MOD = 1000000007;\nconstexpr long\
-    \ double PI = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\
-    \n\n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
-    \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
-    #endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\
-    \t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t\
-    }\n\ttemplate <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\t\
-    static void scan(char& v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\
-    \tstatic void scan(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void\
-    \ scan(std::string& v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c);\
-    \ c = gc()) v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg\
+    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define loop rep(i##__COUNTER__,\
+    \ n)\n#define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ rall(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
+    \ (a).begin() + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB\
+    \ = std::vector<bool>;\nusing VVB = std::vector<VB>;\nusing VI = std::vector<int>;\n\
+    using VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\n\
+    using VS = std::vector<std::string>;\nusing VD = std::vector<LD>;\nusing PII =\
+    \ std::pair<int, int>;\nusing VP = std::vector<PII>;\nusing PLL = std::pair<ll,\
+    \ ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class T> using PQ = std::priority_queue<T>;\n\
+    template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    constexpr int inf = 1000000000;\nconstexpr long long inf_ll = 1000000000000000000ll,\
+    \ MOD = 1000000007;\nconstexpr long double PI = 3.14159265358979323846, EPS =\
+    \ 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\n\n#ifdef _WIN32\n#define getchar_unlocked\
+    \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
+    \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int\
+    \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\
+    \tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate <class T> static void\
+    \ scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char& v) {\n\t\twhile\
+    \ (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool& v) {\n\t\t\
+    v = next_char() != '0';\n\t}\n\tstatic void scan(std::string& v) {\n\t\tv.clear();\n\
+    \t\tfor (char c = next_char(); !std::isspace(c); c = gc()) v += c;\n\t}\n\tstatic\
+    \ void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
+    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
+    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
+    \ scan(long long& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
+    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
+    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
+    \ scan(double& v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp\
     \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
-    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c\
-    \ - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\t\
-    v = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\
-    \t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc())\
-    \ v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double&\
-    \ v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\
-    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
-    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
-    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
-    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
-    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double& v) {\n\t\t\
-    v = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\t\
-    char c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
-    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
-    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
-    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
-    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void\
-    \ scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t}\n\t\
-    template <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto& e : v)\
-    \ scan(e);\n\t}\n\ttemplate <size_t N = 0, class T> static void scan_tuple_impl(T&\
+    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\
+    \t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\
+    \t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c -\
+    \ '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double&\
+    \ v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp =\
+    \ false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\
+    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\
+    \tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\
+    \t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\
+    \t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static\
+    \ void scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t\
+    }\n\ttemplate <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto&\
+    \ e : v) scan(e);\n\t}\n\ttemplate <size_t N = 0, class T> static void scan_tuple_impl(T&\
     \ v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\t\t\tscan(std::get<N>(v));\n\
     \t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> static void\
     \ scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\t}\n\tstruct ReadVectorHelper\
@@ -217,7 +217,7 @@ data:
     \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
     \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
     \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
-    \ 1);\n}\n#line 8 \"Utility/Ruby.cpp\"\n\ntemplate <class F> struct Callable {\n\
+    \ 1);\n}\n#line 9 \"Utility/Ruby.cpp\"\n\ntemplate <class F> struct Callable {\n\
     \tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate <class T, class F>\
     \ auto operator|(const T& v, const Callable<F>& c) {\n\treturn c.func(v);\n}\n\
     \nstruct Sort_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
@@ -353,20 +353,25 @@ data:
     \t});\n\t}\n\ttemplate <class T, class value_type = typename T::value_type>\n\t\
     friend auto operator|(const T& v, Tally_impl& c) {\n\t\tstd::map<value_type, std::size_t>\
     \ result;\n\t\tfor (const auto& i : v) {\n\t\t\tresult[i]++;\n\t\t}\n\t\treturn\
-    \ result;\n\t}\n} Tally;\n\nstruct Join_impl {\n\tauto operator()(std::string\
+    \ result;\n\t}\n} Tally;\n\nstruct Reduce_impl {\n\ttemplate <class T, class F>\
+    \ auto operator()(T memo, F f) {\n\t\treturn Callable([memo, f](auto v) {\n\t\t\
+    \tauto acc = memo;\n\t\t\tfor (auto i : v) {\n\t\t\t\tacc = f(acc, i);\n\t\t\t\
+    }\n\t\t\treturn acc;\n\t\t});\n\t}\n} Reduce;\n\nstruct Join_impl {\n\tauto operator()(std::string\
     \ separater) {\n\t\treturn Callable([&](auto v) {\n\t\t\tstd::string result;\n\
     \t\t\tbool first = true;\n\t\t\tfor (const auto& i : v) {\n\t\t\t\tif (!std::exchange(first,\
     \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
-    \ntemplate <class T> auto operator*(const std::vector<T>& a, std::size_t n) {\n\
-    \tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(),\
-    \ a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto operator*(std::string a,\
-    \ std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t i = 0; i < n; ++i)\
-    \ {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace internal {\n\ttemplate\
-    \ <class T, class U, class = void> struct has_push_back : std::false_type {};\n\
-    \ttemplate <class T, class U>\n\tstruct has_push_back<T, U,\n\t              \
-    \       std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
+    \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
+    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\ntemplate <class T> auto\
+    \ operator*(const std::vector<T>& a, std::size_t n) {\n\tT result;\n\tfor (std::size_t\
+    \ i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(), a.begin(), a.end());\n\
+    \t}\n\treturn result;\n}\nauto operator*(std::string a, std::size_t n) {\n\tstd::string\
+    \ result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\t\
+    return result;\n}\n\nnamespace internal {\n\ttemplate <class T, class U, class\
+    \ = void> struct has_push_back : std::false_type {};\n\ttemplate <class T, class\
+    \ U>\n\tstruct has_push_back<T, U,\n\t                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
     \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
     \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
     \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
@@ -407,44 +412,41 @@ data:
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
     \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
     \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
-    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
-    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
-    \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
-    }\n}  // namespace internal\ntemplate <class T, std::size_t N>\nauto make_vector(const\
-    \ int (&sizes)[N], const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes),\
-    \ std::rend(sizes));\n\treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace\
-    \ lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto\
-    \ lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int\
-    \ = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) ->\
-    \ char {\n\t\treturn '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\
-    \t\treturn 'a' + i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn\
-    \ 'A' + i;\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\
-    \tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
-    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
-    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
-    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
-    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
-    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
-    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
-    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
-    };\n\t}\n\ttemplate <std::size_t I> auto get() {\n\t\treturn [](const auto& n)\
-    \ {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t}\n\ttemplate <class F> auto cmp(F&&\
-    \ f) {\n\t\treturn [f](const auto& a, const auto& b) {\n\t\t\treturn f(a) < f(b);\n\
-    \t\t};\n\t}\n}  // namespace lambda\n#line 9 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
-    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
-    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
-    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n#line 4 \"\
-    test/template.test.cpp\"\nusing namespace std;\n\nint main() {\n\tint t = in;\n\
-    \tfor ([[maybe_unused]] int i : times(t)) {\n\t\tll a = in, b = in;\n\t\tout(a\
-    \ + b);\n\t}\n}\n"
+    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
+    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
+    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
+    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
+    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
+    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
+    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
+    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
+    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
+    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
+    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
+    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
+    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
+    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
+    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
+    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
+    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
+    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
+    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
+    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
+    #line 9 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
+    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
+    \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
+    \ oj;\n#else\n\treturn local;\n#endif\n}\n#line 4 \"test/template.test.cpp\"\n\
+    using namespace std;\n\nint main() {\n\tint t = in;\n\tfor ([[maybe_unused]] int\
+    \ i : times(t)) {\n\t\tll a = in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
     \ \"./../template.cpp\"\n#include <iostream>\nusing namespace std;\n\nint main()\
     \ {\n\tint t = in;\n\tfor ([[maybe_unused]] int i : times(t)) {\n\t\tll a = in,\
@@ -460,7 +462,7 @@ data:
   isVerificationFile: true
   path: test/template.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 09:36:22+09:00'
+  timestamp: '2021-03-15 18:29:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/template.test.cpp

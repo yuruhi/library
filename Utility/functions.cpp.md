@@ -58,38 +58,35 @@ data:
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
     \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
     \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
-    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
-    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
-    \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
-    }\n}  // namespace internal\ntemplate <class T, std::size_t N>\nauto make_vector(const\
-    \ int (&sizes)[N], const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes),\
-    \ std::rend(sizes));\n\treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace\
-    \ lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto\
-    \ lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int\
-    \ = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) ->\
-    \ char {\n\t\treturn '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\
-    \t\treturn 'a' + i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn\
-    \ 'A' + i;\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\
-    \tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
-    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
-    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
-    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
-    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
-    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
-    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
-    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
-    };\n\t}\n\ttemplate <std::size_t I> auto get() {\n\t\treturn [](const auto& n)\
-    \ {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t}\n\ttemplate <class F> auto cmp(F&&\
-    \ f) {\n\t\treturn [f](const auto& a, const auto& b) {\n\t\t\treturn f(a) < f(b);\n\
-    \t\t};\n\t}\n}  // namespace lambda\n"
+    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
+    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
+    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
+    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
+    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
+    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
+    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
+    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
+    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
+    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
+    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
+    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
+    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
+    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
+    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
+    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
+    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
+    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
+    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
+    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n"
   code: "#pragma once\n#include <algorithm>\n#include <numeric>\n#include <cmath>\n\
     #include <vector>\n#include <tuple>\n#include <cassert>\n\ntemplate <class T =\
     \ long long> constexpr T TEN(std::size_t n) {\n\tT result = 1;\n\tfor (std::size_t\
@@ -125,45 +122,42 @@ data:
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
     \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
     \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
-    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
-    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
-    \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
-    }\n}  // namespace internal\ntemplate <class T, std::size_t N>\nauto make_vector(const\
-    \ int (&sizes)[N], const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes),\
-    \ std::rend(sizes));\n\treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace\
-    \ lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto\
-    \ lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int\
-    \ = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) ->\
-    \ char {\n\t\treturn '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\
-    \t\treturn 'a' + i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn\
-    \ 'A' + i;\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\
-    \tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
-    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
-    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
-    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
-    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
-    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
-    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
-    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
-    };\n\t}\n\ttemplate <std::size_t I> auto get() {\n\t\treturn [](const auto& n)\
-    \ {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t}\n\ttemplate <class F> auto cmp(F&&\
-    \ f) {\n\t\treturn [f](const auto& a, const auto& b) {\n\t\t\treturn f(a) < f(b);\n\
-    \t\t};\n\t}\n}  // namespace lambda\n"
+    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
+    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
+    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
+    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
+    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
+    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
+    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
+    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
+    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
+    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
+    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
+    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
+    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
+    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
+    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
+    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
+    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
+    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
+    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
+    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n"
   dependsOn: []
   isVerificationFile: false
   path: Utility/functions.cpp
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-14 09:36:22+09:00'
+  timestamp: '2021-03-14 14:52:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp

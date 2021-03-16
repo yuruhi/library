@@ -39,6 +39,8 @@ data:
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
+    #define loop rep(i##__COUNTER__, n)
+
     #define unless(c) if (!(c))
 
     #define all(x) (x).begin(), (x).end()
@@ -106,6 +108,8 @@ data:
 
     #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 
+    #define loop rep(i##__COUNTER__, n)
+
     #define unless(c) if (!(c))
 
     #define all(x) (x).begin(), (x).end()
@@ -160,7 +164,7 @@ data:
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-07 15:06:12+09:00'
+  timestamp: '2021-03-15 18:29:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template_no_Ruby.test.cpp

@@ -24,12 +24,13 @@ data:
     \ 6 \"Utility/constants.cpp\"\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n\
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int\
     \ i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n\
-    #define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x)\
-    \ (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin()\
-    \ + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB = std::vector<bool>;\n\
-    using VVB = std::vector<VB>;\nusing VI = std::vector<int>;\nusing VVI = std::vector<VI>;\n\
-    using VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\n\
-    using VD = std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
+    #define loop rep(i##__COUNTER__, n)\n#define unless(c) if (!(c))\n#define all(x)\
+    \ (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n#define range_it(a,\
+    \ l, r) (a).begin() + (l), (a).begin() + (r)\n\nusing ll = long long;\nusing LD\
+    \ = long double;\nusing VB = std::vector<bool>;\nusing VVB = std::vector<VB>;\n\
+    using VI = std::vector<int>;\nusing VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\n\
+    using VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\nusing VD =\
+    \ std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
     using PLL = std::pair<ll, ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class\
     \ T> using PQ = std::priority_queue<T>;\ntemplate <class T> using PQS = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\nconstexpr int inf = 1000000000;\nconstexpr\
@@ -188,41 +189,39 @@ data:
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
     \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
     \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T> auto Slice(const T& v, std::size_t i, std::size_t len) {\n\treturn\
-    \ i < v.size() ? T(v.begin() + i, v.begin() + min(i + len, v.size())) : T();\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);\n\
-    }\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T& v) {\n\
-    \treturn accumulate(next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);\n\
-    }\nnamespace internal {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
-    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
-    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
-    \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
-    }\n}  // namespace internal\ntemplate <class T, std::size_t N>\nauto make_vector(const\
-    \ int (&sizes)[N], const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes),\
-    \ std::rend(sizes));\n\treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace\
-    \ lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto\
-    \ lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int\
-    \ = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) ->\
-    \ char {\n\t\treturn '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\
-    \t\treturn 'a' + i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn\
-    \ 'A' + i;\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\
-    \tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
-    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
-    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
-    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self\
-    \ = [](const auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n)\
-    \ {\n\t\treturn n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn\
-    \ n.second;\n\t};\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto&\
-    \ n) {\n\t\t\treturn static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto\
-    \ equal_to(const T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t\
-    };\n\t}\n\ttemplate <std::size_t I> auto get() {\n\t\treturn [](const auto& n)\
-    \ {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t}\n\ttemplate <class F> auto cmp(F&&\
-    \ f) {\n\t\treturn [f](const auto& a, const auto& b) {\n\t\t\treturn f(a) < f(b);\n\
-    \t\t};\n\t}\n}  // namespace lambda\n#line 7 \"template_no_Ruby.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
-    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
-    #endif\n\ntemplate <class T> constexpr T oj_local(const T& oj, const T& local)\
-    \ {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
+    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
+    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
+    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
+    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
+    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
+    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
+    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
+    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
+    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
+    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
+    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
+    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
+    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
+    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
+    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
+    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
+    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
+    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
+    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
+    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
+    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
+    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
+    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
+    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
+    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
+    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
+    #line 7 \"template_no_Ruby.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include\
+    \ <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\
+    \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
+    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./Utility/constants.cpp\"\
     \n#include \"./Utility/Scanner.cpp\"\n#include \"./Utility/Printer.cpp\"\n#include\
     \ \"./Utility/functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include\
@@ -237,7 +236,7 @@ data:
   isVerificationFile: false
   path: template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-03-14 09:36:22+09:00'
+  timestamp: '2021-03-15 18:29:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template_no_Ruby.cpp

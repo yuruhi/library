@@ -187,9 +187,6 @@ data:
       path: Graph/ShortestPathTree.cpp
       title: Graph/ShortestPathTree.cpp
     - icon: ':warning:'
-      path: Graph/ShortestPathUnweightedTree.cpp
-      title: Graph/ShortestPathUnweightedTree.cpp
-    - icon: ':warning:'
       path: Graph/SpanningTree.cpp
       title: Graph/SpanningTree.cpp
     - icon: ':heavy_check_mark:'
