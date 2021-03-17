@@ -653,6 +653,12 @@ data:
       path: test/HLD_vertex.test.cpp
       title: test/HLD_vertex.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+      title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/IO_vector_and_Ruby_Reverse.test.cpp
+      title: test/IO_vector_and_Ruby_Reverse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Imos.test.cpp
       title: test/Imos.test.cpp
     - icon: ':heavy_check_mark:'
@@ -742,6 +748,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/RollingHash.test.cpp
       title: test/RollingHash.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Ruby_Min_Max_Sum.test.cpp
+      title: test/Ruby_Min_Max_Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/RunLengthEncoding.test.cpp
       title: test/RunLengthEncoding.test.cpp

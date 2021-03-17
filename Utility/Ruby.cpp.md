@@ -7,6 +7,15 @@ data:
     title: template.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+    title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/IO_vector_and_Ruby_Reverse.test.cpp
+    title: test/IO_vector_and_Ruby_Reverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/Ruby_Min_Max_Sum.test.cpp
+    title: test/Ruby_Min_Max_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/template.test.cpp
     title: test/template.test.cpp
   - icon: ':heavy_check_mark:'
@@ -166,14 +175,20 @@ data:
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
     \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
     \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
-    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\ntemplate <class T> auto\
-    \ operator*(const std::vector<T>& a, std::size_t n) {\n\tT result;\n\tfor (std::size_t\
-    \ i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(), a.begin(), a.end());\n\
-    \t}\n\treturn result;\n}\nauto operator*(std::string a, std::size_t n) {\n\tstd::string\
-    \ result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\t\
-    return result;\n}\n\nnamespace internal {\n\ttemplate <class T, class U, class\
-    \ = void> struct has_push_back : std::false_type {};\n\ttemplate <class T, class\
-    \ U>\n\tstruct has_push_back<T, U,\n\t                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
+    \ {\n\ttemplate <class T>\n\tfriend auto operator|(const std::vector<std::vector<T>>&\
+    \ v, Transpose_impl& c) {\n\t\tstd::size_t h = v.size(), w = v.front().size();\n\
+    \t\tstd::vector result(w, std::vector<T>(h));\n\t\tfor (std::size_t i = 0; i <\
+    \ h; ++i) {\n\t\t\tassert(v[i].size() == w);\n\t\t\tfor (std::size_t j = 0; j\
+    \ < w; ++j) {\n\t\t\t\tresult[j][i] = v[i][j];\n\t\t\t}\n\t\t}\n\t\treturn result;\n\
+    \t}\n} Transpose;\n\ntemplate <class T> auto operator*(const std::vector<T>& a,\
+    \ std::size_t n) {\n\tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\t\
+    result.insert(result.end(), a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto\
+    \ operator*(std::string a, std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t\
+    \ i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace\
+    \ internal {\n\ttemplate <class T, class U, class = void> struct has_push_back\
+    \ : std::false_type {};\n\ttemplate <class T, class U>\n\tstruct has_push_back<T,\
+    \ U,\n\t                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
     \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
     \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
     \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
@@ -329,14 +344,20 @@ data:
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
     \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
     \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
-    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\ntemplate <class T> auto\
-    \ operator*(const std::vector<T>& a, std::size_t n) {\n\tT result;\n\tfor (std::size_t\
-    \ i = 0; i < n; ++i) {\n\t\tresult.insert(result.end(), a.begin(), a.end());\n\
-    \t}\n\treturn result;\n}\nauto operator*(std::string a, std::size_t n) {\n\tstd::string\
-    \ result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\t\
-    return result;\n}\n\nnamespace internal {\n\ttemplate <class T, class U, class\
-    \ = void> struct has_push_back : std::false_type {};\n\ttemplate <class T, class\
-    \ U>\n\tstruct has_push_back<T, U,\n\t                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
+    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
+    \ {\n\ttemplate <class T>\n\tfriend auto operator|(const std::vector<std::vector<T>>&\
+    \ v, Transpose_impl& c) {\n\t\tstd::size_t h = v.size(), w = v.front().size();\n\
+    \t\tstd::vector result(w, std::vector<T>(h));\n\t\tfor (std::size_t i = 0; i <\
+    \ h; ++i) {\n\t\t\tassert(v[i].size() == w);\n\t\t\tfor (std::size_t j = 0; j\
+    \ < w; ++j) {\n\t\t\t\tresult[j][i] = v[i][j];\n\t\t\t}\n\t\t}\n\t\treturn result;\n\
+    \t}\n} Transpose;\n\ntemplate <class T> auto operator*(const std::vector<T>& a,\
+    \ std::size_t n) {\n\tT result;\n\tfor (std::size_t i = 0; i < n; ++i) {\n\t\t\
+    result.insert(result.end(), a.begin(), a.end());\n\t}\n\treturn result;\n}\nauto\
+    \ operator*(std::string a, std::size_t n) {\n\tstd::string result;\n\tfor (std::size_t\
+    \ i = 0; i < n; ++i) {\n\t\tresult += a;\n\t}\n\treturn result;\n}\n\nnamespace\
+    \ internal {\n\ttemplate <class T, class U, class = void> struct has_push_back\
+    \ : std::false_type {};\n\ttemplate <class T, class U>\n\tstruct has_push_back<T,\
+    \ U,\n\t                     std::void_t<decltype(std::declval<T>().push_back(std::declval<U>()))>>\n\
     \t    : std::true_type {};\n}  // namespace internal\ntemplate <\n    class Container,\
     \ class T,\n    std::enable_if_t<internal::has_push_back<Container, T>::value,\
     \ std::nullptr_t> = nullptr>\nauto& operator<<(Container& continer, const T& val)\
@@ -349,9 +370,12 @@ data:
   path: Utility/Ruby.cpp
   requiredBy:
   - template.cpp
-  timestamp: '2021-03-14 20:53:16+09:00'
+  timestamp: '2021-03-17 11:01:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/IO_vector_and_Ruby_Reverse.test.cpp
+  - test/Ruby_Min_Max_Sum.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
   - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
 documentation_of: Utility/Ruby.cpp

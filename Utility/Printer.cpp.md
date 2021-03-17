@@ -10,6 +10,12 @@ data:
     title: template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+    title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/IO_vector_and_Ruby_Reverse.test.cpp
+    title: test/IO_vector_and_Ruby_Reverse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/Input_Output.test.cpp
     title: test/Input_Output.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +150,9 @@ data:
   timestamp: '2021-03-05 18:01:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/IO_vector_and_Ruby_Reverse.test.cpp
   - test/Input_Output.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
   - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
 documentation_of: Utility/Printer.cpp

@@ -10,44 +10,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: Utility/Scanner.cpp
     title: Utility/Scanner.cpp
-  - icon: ':heavy_check_mark:'
-    path: Utility/Step.cpp
-    title: Utility/Step.cpp
-  - icon: ':heavy_check_mark:'
-    path: Utility/constants.cpp
-    title: Utility/constants.cpp
-  - icon: ':heavy_check_mark:'
-    path: Utility/functions.cpp
-    title: Utility/functions.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/template.test.cpp
-    title: test/template.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/template_no_Ruby.test.cpp
-    title: test/template_no_Ruby.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"template.cpp\"\n#include <bits/stdc++.h>\n#line 6 \"Utility/constants.cpp\"\
-    \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
-    \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
-    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define loop rep(i##__COUNTER__,\
-    \ n)\n#define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define\
-    \ rall(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
-    \ (a).begin() + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB\
-    \ = std::vector<bool>;\nusing VVB = std::vector<VB>;\nusing VI = std::vector<int>;\n\
-    using VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\n\
-    using VS = std::vector<std::string>;\nusing VD = std::vector<LD>;\nusing PII =\
-    \ std::pair<int, int>;\nusing VP = std::vector<PII>;\nusing PLL = std::pair<ll,\
-    \ ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class T> using PQ = std::priority_queue<T>;\n\
-    template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    constexpr int inf = 1000000000;\nconstexpr long long inf_ll = 1000000000000000000ll,\
-    \ MOD = 1000000007;\nconstexpr long double PI = 3.14159265358979323846, EPS =\
-    \ 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\n\n#ifdef _WIN32\n#define getchar_unlocked\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_A
+  bundledCode: "#line 1 \"test/IO_vector_and_Ruby_Reverse.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_A\"\n#line\
+    \ 2 \"Utility/Scanner.cpp\"\n#include <iostream>\n#include <vector>\n#include\
+    \ <string>\n#include <utility>\n#include <tuple>\n\n#ifdef _WIN32\n#define getchar_unlocked\
     \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
     \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int\
     \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\
@@ -115,19 +91,19 @@ data:
     #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
     #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 5 \"Utility/Printer.cpp\"\
-    \n#include <string_view>\n#line 8 \"Utility/Printer.cpp\"\n#include <charconv>\n\
-    #line 11 \"Utility/Printer.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString\
-    \ {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view _t, std::string_view\
-    \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div,\
-    \ sep, last;\n\t\tSeparator(std::string_view _div, std::string_view _sep, std::string_view\
-    \ _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static\
-    \ const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"\
-    NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"Possible\", \"Impossible\"};\n\tinline\
-    \ static const Separator space{\" \", \" \", \"\\n\"}, no_space{\"\", \"\", \"\
-    \\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\\n\"}, comma{\",\", \",\", \"\\n\"},\
-    \ no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\" \", \"\\n\", \"\\n\"};\n\n\t\
-    BoolString bool_str{Yes};\n\tSeparator separator{space};\n\n\tvoid print(int v)\
-    \ const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
+    \n#include <string_view>\n#line 7 \"Utility/Printer.cpp\"\n#include <array>\n\
+    #include <charconv>\n#include <cstring>\n#include <cassert>\n\nclass Printer {\n\
+    public:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view\
+    \ _t, std::string_view _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\t\
+    std::string_view div, sep, last;\n\t\tSeparator(std::string_view _div, std::string_view\
+    \ _sep, std::string_view _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\
+    \t};\n\n\tinline static const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"\
+    no\"}, YES{\"YES\", \"NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"Possible\",\
+    \ \"Impossible\"};\n\tinline static const Separator space{\" \", \" \", \"\\n\"\
+    }, no_space{\"\", \"\", \"\\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\\n\"}, comma{\"\
+    ,\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\" \", \"\\\
+    n\", \"\\n\"};\n\n\tBoolString bool_str{Yes};\n\tSeparator separator{space};\n\
+    \n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
     \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
     \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long\
     \ long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
@@ -169,60 +145,11 @@ data:
     \ = _bool_str;\n\t\treturn *this;\n\t}\n\tPrinter& set(const Separator& _separator)\
     \ {\n\t\tseparator = _separator;\n\t\treturn *this;\n\t}\n\tPrinter& set(std::string_view\
     \ t, std::string_view f) {\n\t\tbool_str = BoolString(t, f);\n\t\treturn *this;\n\
-    \t}\n} out;\n#line 6 \"Utility/Step.cpp\"\n\ntemplate <class T> class step_iterator\
-    \ {\npublic:\n\tusing value_type = T;\n\tusing difference_type = T;\n\tusing iterator_category\
-    \ = std::random_access_iterator_tag;\n\tusing reference = T&;\n\tusing pointer\
-    \ = T*;\n\nprivate:\n\tvalue_type start_m, size_m, step_m, index_m;\n\npublic:\n\
-    \tconstexpr step_iterator()\n\t    : start_m(value_type()), size_m(value_type()),\
-    \ step_m(value_type()), index_m(0) {}\n\tconstexpr step_iterator(value_type _start,\
-    \ value_type _size, value_type _step)\n\t    : start_m(_start), size_m(_size),\
-    \ step_m(_step), index_m(0) {}\n\tvalue_type operator*() const noexcept {\n\t\t\
-    return value();\n\t}\n\tstep_iterator& operator++() noexcept {\n\t\t++index_m;\n\
-    \t\treturn *this;\n\t}\n\tstep_iterator& operator++(int) noexcept {\n\t\tauto\
-    \ tmp = *this;\n\t\t++*this;\n\t\treturn tmp;\n\t}\n\tstep_iterator& operator--()\
-    \ noexcept {\n\t\t--index_m;\n\t\treturn *this;\n\t}\n\tstep_iterator& operator--(int)\
-    \ noexcept {\n\t\tauto tmp = *this;\n\t\t--*this;\n\t\treturn tmp;\n\t}\n\tstep_iterator&\
-    \ operator+=(difference_type n) {\n\t\tindex_m += n;\n\t\treturn *this;\n\t}\n\
-    \tstep_iterator operator+(difference_type n) const {\n\t\treturn step_iterator(*this)\
-    \ += n;\n\t}\n\tfriend step_iterator operator+(difference_type n, step_iterator\
-    \ i) {\n\t\treturn i + n;\n\t}\n\tstep_iterator& operator-=(difference_type n)\
-    \ {\n\t\tindex_m -= n;\n\t\treturn *this;\n\t}\n\tstep_iterator operator-(difference_type\
-    \ n) const {\n\t\treturn step_iterator(*this) -= n;\n\t}\n\tfriend step_iterator\
-    \ operator-(difference_type n, step_iterator i) {\n\t\treturn i - n;\n\t}\n\t\
-    difference_type operator-(const step_iterator& other) const {\n\t\tassert(start_m\
-    \ == other.start_m);\n\t\tassert(size_m == other.size_m);\n\t\tassert(step_m ==\
-    \ other.step_m);\n\t\treturn index_m - other.index_m;\n\t}\n\tbool operator==(const\
-    \ step_iterator& other) const noexcept {\n\t\treturn value() == other.value();\n\
-    \t}\n\tbool operator!=(const step_iterator& other) const noexcept {\n\t\treturn\
-    \ value() != other.value();\n\t}\n\tbool operator<(const step_iterator& other)\
-    \ const noexcept {\n\t\treturn value() < other.value();\n\t}\n\tbool operator<=(const\
-    \ step_iterator& other) const noexcept {\n\t\treturn value() <= other.value();\n\
-    \t}\n\tbool operator>(const step_iterator& other) const noexcept {\n\t\treturn\
-    \ value() > other.value();\n\t}\n\tbool operator>=(const step_iterator& other)\
-    \ const noexcept {\n\t\treturn value() >= other.value();\n\t}\n\tconstexpr value_type\
-    \ value() const noexcept {\n\t\treturn start_m + step_m * index_m;\n\t}\n};\n\n\
-    template <class T> class Step {\npublic:\n\tusing value_type = T;\n\tusing iterator\
-    \ = step_iterator<value_type>;\n\nprivate:\n\tvalue_type start_m, size_m, step_m;\n\
-    \npublic:\n\tconstexpr Step(value_type _start, value_type _size, value_type _step)\n\
-    \t    : start_m(_start), size_m(std::max<value_type>(0, _size)), step_m(_step)\
-    \ {}\n\tconstexpr iterator begin() const {\n\t\treturn iterator(start_m, size_m,\
-    \ step_m);\n\t}\n\tconstexpr iterator end() const {\n\t\treturn iterator(start_m,\
-    \ size_m, step_m) + size_m;\n\t}\n\tconstexpr value_type start() const {\n\t\t\
-    return start_m;\n\t}\n\tconstexpr value_type size() const {\n\t\treturn size_m;\n\
-    \t}\n\tconstexpr value_type step() const {\n\t\treturn step_m;\n\t}\n\tconstexpr\
-    \ value_type sum() const {\n\t\treturn start() * size() + step() * (size() * (size()\
-    \ - 1) / 2);\n\t}\n\toperator std::vector<value_type>() const {\n\t\treturn to_a();\n\
-    \t}\n\tauto to_a() const {\n\t\tstd::vector<value_type> result;\n\t\tresult.reserve(size());\n\
-    \t\tfor (auto i : *this) {\n\t\t\tresult.push_back(i);\n\t\t}\n\t\treturn result;\n\
-    \t}\n};\ntemplate <class T> constexpr auto upto(T from, T to, bool exclusive =\
-    \ true) {\n\treturn Step<T>(from, to - from + exclusive, 1);\n}\ntemplate <class\
-    \ T> constexpr auto downto(T from, T to, bool exclusive = true) {\n\treturn Step<T>(from,\
-    \ from - to + exclusive, -1);\n}\ntemplate <class T> constexpr auto times(T n,\
-    \ bool exclusive = false) {\n\treturn Step<T>(0, n + static_cast<T>(exclusive),\
-    \ 1);\n}\n#line 9 \"Utility/Ruby.cpp\"\n\ntemplate <class F> struct Callable {\n\
-    \tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate <class T, class F>\
-    \ auto operator|(const T& v, const Callable<F>& c) {\n\treturn c.func(v);\n}\n\
-    \nstruct Sort_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
+    \t}\n} out;\n#line 4 \"Utility/Ruby.cpp\"\n#include <map>\n#include <algorithm>\n\
+    #include <numeric>\n#line 9 \"Utility/Ruby.cpp\"\n\ntemplate <class F> struct\
+    \ Callable {\n\tF func;\n\tCallable(const F& f) : func(f) {}\n};\ntemplate <class\
+    \ T, class F> auto operator|(const T& v, const Callable<F>& c) {\n\treturn c.func(v);\n\
+    }\n\nstruct Sort_impl {\n\ttemplate <class F> auto operator()(F&& f) {\n\t\treturn\
     \ Callable([&](auto v) {\n\t\t\tstd::sort(std::begin(v), std::end(v), f);\n\t\t\
     \treturn v;\n\t\t});\n\t}\n\ttemplate <class T> friend auto operator|(T v, [[maybe_unused]]\
     \ const Sort_impl& c) {\n\t\tstd::sort(std::begin(v), std::end(v));\n\t\treturn\
@@ -386,99 +313,27 @@ data:
     \ {\n\tcontiner.push_back(val);\n\treturn continer;\n}\ntemplate <\n    class\
     \ Container, class T,\n    std::enable_if_t<internal::has_push_back<Container,\
     \ T>::value, std::nullptr_t> = nullptr>\nauto operator+(Container continer, const\
-    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n#line 8 \"Utility/functions.cpp\"\
-    \n\ntemplate <class T = long long> constexpr T TEN(std::size_t n) {\n\tT result\
-    \ = 1;\n\tfor (std::size_t i = 0; i < n; ++i) result *= 10;\n\treturn result;\n\
-    }\ntemplate <\n    class T, class U,\n    std::enable_if_t<std::is_integral_v<T>\
-    \ && std::is_integral_v<U>, std::nullptr_t> = nullptr>\nconstexpr auto div_ceil(T\
-    \ n, U m) {\n\treturn (n + m - 1) / m;\n}\ntemplate <class T, class U> constexpr\
-    \ auto div_ceil2(T n, U m) {\n\treturn div_ceil(n, m) * m;\n}\ntemplate <class\
-    \ T> constexpr T triangle(T n) {\n\treturn (n & 1) ? (n + 1) / 2 * n : n / 2 *\
-    \ (n + 1);\n}\ntemplate <class T> constexpr T nC2(T n) {\n\treturn (n & 1) ? (n\
-    \ - 1) / 2 * n : n / 2 * (n - 1);\n}\ntemplate <class T, class U> constexpr auto\
-    \ middle(const T& l, const U& r) {\n\treturn l + (r - l) / 2;\n}\ntemplate <class\
-    \ T, class U, class V>\nconstexpr bool in_range(const T& v, const U& lower, const\
-    \ V& upper) {\n\treturn lower <= v && v < upper;\n}\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\nconstexpr bool is_square(T n) {\n\tT s = std::sqrt(n);\n\
-    \treturn s * s == n || (s + 1) * (s + 1) == n;\n}\ntemplate <class T = long long>\
-    \ constexpr T BIT(int b) {\n\treturn T(1) << b;\n}\ntemplate <class T> constexpr\
-    \ int BIT(T x, int i) {\n\treturn (x & (T(1) << i)) ? 1 : 0;\n}\ntemplate <class\
-    \ T> constexpr int Sgn(T x) {\n\treturn (0 < x) - (0 > x);\n}\ntemplate <class\
-    \ T> bool is_leap(T year) {\n\treturn !(year % 4) && (year % 100 || !(year % 400));\n\
-    }\ntemplate <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t>\
-    \ = nullptr>\nconstexpr T Pow(T a, U n) {\n\tassert(n >= 0);\n\tT result = 1;\n\
-    \twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\tresult *= a;\n\t\t\tn--;\n\t\t} else\
-    \ {\n\t\t\ta *= a;\n\t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate\
-    \ <class T, class U, std::enable_if_t<std::is_integral_v<U>, std::nullptr_t> =\
-    \ nullptr>\nconstexpr T Powmod(T a, U n, T mod) {\n\tassert(n >= 0);\n\tif (a\
-    \ > mod) a %= mod;\n\tT result = 1;\n\twhile (n > 0) {\n\t\tif (n & 1) {\n\t\t\
-    \tresult = result * a % mod;\n\t\t\tn--;\n\t\t} else {\n\t\t\ta = a * a % mod;\n\
-    \t\t\tn >>= 1;\n\t\t}\n\t}\n\treturn result;\n}\ntemplate <class T> bool chmax(T&\
-    \ a, const T& b) {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class\
-    \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
-    template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
-    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
-    \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
-    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
-    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
-    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
-    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
-    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
-    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
-    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
-    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
-    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
-    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
-    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
-    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
-    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
-    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
-    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
-    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
-    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
-    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
-    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
-    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
-    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
-    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
-    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
-    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
-    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
-    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
-    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
-    #line 9 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
-    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T>\
-    \ constexpr T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn\
-    \ oj;\n#else\n\treturn local;\n#endif\n}\n"
-  code: "#pragma once\n#include <bits/stdc++.h>\n#include \"./Utility/constants.cpp\"\
-    \n#include \"./Utility/Scanner.cpp\"\n#include \"./Utility/Printer.cpp\"\n#include\
-    \ \"./Utility/Step.cpp\"\n#include \"./Utility/Ruby.cpp\"\n#include \"./Utility/functions.cpp\"\
-    \n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n#define\
-    \ LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\ntemplate <class T> constexpr\
-    \ T oj_local(const T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\
-    \treturn local;\n#endif\n}\n"
+    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n#line 6 \"test/IO_vector_and_Ruby_Reverse.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tint n = in;\n\tout(in.read<int>(n) |\
+    \ Reverse);\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_A\"\
+    \n#include \"./../Utility/Scanner.cpp\"\n#include \"./../Utility/Printer.cpp\"\
+    \n#include \"./../Utility/Ruby.cpp\"\n#include <iostream>\nusing namespace std;\n\
+    \nint main() {\n\tint n = in;\n\tout(in.read<int>(n) | Reverse);\n}"
   dependsOn:
-  - Utility/constants.cpp
   - Utility/Scanner.cpp
   - Utility/Printer.cpp
-  - Utility/Step.cpp
   - Utility/Ruby.cpp
-  - Utility/functions.cpp
-  isVerificationFile: false
-  path: template.cpp
+  isVerificationFile: true
+  path: test/IO_vector_and_Ruby_Reverse.test.cpp
   requiredBy: []
   timestamp: '2021-03-17 11:01:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/template.test.cpp
-  - test/template_no_Ruby.test.cpp
-documentation_of: template.cpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/IO_vector_and_Ruby_Reverse.test.cpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /verify/test/IO_vector_and_Ruby_Reverse.test.cpp
+- /verify/test/IO_vector_and_Ruby_Reverse.test.cpp.html
+title: test/IO_vector_and_Ruby_Reverse.test.cpp
 ---
