@@ -54,8 +54,8 @@ data:
   timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Euler.test.cpp
   - test/EnumerateEuler.test.cpp
+  - test/Euler.test.cpp
 documentation_of: math/Euler.cpp
 layout: document
 redirect_from:

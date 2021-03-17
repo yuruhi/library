@@ -167,8 +167,8 @@ data:
   timestamp: '2021-03-15 18:29:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/template_no_Ruby.test.cpp
   - test/template.test.cpp
+  - test/template_no_Ruby.test.cpp
 documentation_of: Utility/constants.cpp
 layout: document
 redirect_from:

@@ -659,6 +659,12 @@ data:
       path: test/ImosLinear.test.cpp
       title: test/ImosLinear.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/Input2DVector.test.cpp
+      title: test/Input2DVector.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Input2DVector_read.test.cpp
+      title: test/Input2DVector_read.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/Input_Output.test.cpp
       title: test/Input_Output.test.cpp
     - icon: ':heavy_check_mark:'

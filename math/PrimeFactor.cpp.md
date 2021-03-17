@@ -58,14 +58,14 @@ data:
   isVerificationFile: false
   path: math/PrimeFactor.cpp
   requiredBy:
-  - math/Euler.cpp
   - math/Moebius.cpp
+  - math/Euler.cpp
   timestamp: '2021-03-07 15:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/PrimeFactor.test.cpp
-  - test/Euler.test.cpp
   - test/EnumerateEuler.test.cpp
+  - test/Euler.test.cpp
 documentation_of: math/PrimeFactor.cpp
 layout: document
 redirect_from:

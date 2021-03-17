@@ -11,10 +11,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_D
     links:
-    - https://judge.yosupo.jp/problem/many_aplusb
-  bundledCode: "#line 1 \"test/Input_column.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_D
+  bundledCode: "#line 1 \"test/Input2DVector_read.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_D\"\
     \n#line 2 \"Utility/Scanner.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <string>\n#include <utility>\n#include <tuple>\n\n#ifdef _WIN32\n#define getchar_unlocked\
     \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
@@ -83,26 +83,29 @@ data:
     \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
     #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
-    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 4 \"test/Input_column.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tint t = in;\n\tauto [a, b] = in.column<long\
-    \ long, long long>(t);\n\tfor (int i = 0; i < t; ++i) {\n\t\tcout << a[i] + b[i]\
-    \ << '\\n';\n\t}\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"./../Utility/Scanner.cpp\"\n#include <iostream>\nusing namespace std;\n\n\
-    int main() {\n\tint t = in;\n\tauto [a, b] = in.column<long long, long long>(t);\n\
-    \tfor (int i = 0; i < t; ++i) {\n\t\tcout << a[i] + b[i] << '\\n';\n\t}\n}\n"
+    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 5 \"test/Input2DVector_read.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tint n = in, m = in;\n\tvector<vector<int>>\
+    \ a = in.read<int>(n, m);\n\tvector<int> b = in.read<int>(m);\n\tfor (int i =\
+    \ 0; i < n; ++i) {\n\t\tint sum = 0;\n\t\tfor (int j = 0; j < m; ++j) {\n\t\t\t\
+    sum += a[i][j] * b[j];\n\t\t}\n\t\tcout << sum << '\\n';\n\t}\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_6_D\"\
+    \n#include \"./../Utility/Scanner.cpp\"\n#include <iostream>\n#include <vector>\n\
+    using namespace std;\n\nint main() {\n\tint n = in, m = in;\n\tvector<vector<int>>\
+    \ a = in.read<int>(n, m);\n\tvector<int> b = in.read<int>(m);\n\tfor (int i =\
+    \ 0; i < n; ++i) {\n\t\tint sum = 0;\n\t\tfor (int j = 0; j < m; ++j) {\n\t\t\t\
+    sum += a[i][j] * b[j];\n\t\t}\n\t\tcout << sum << '\\n';\n\t}\n}"
   dependsOn:
   - Utility/Scanner.cpp
   isVerificationFile: true
-  path: test/Input_column.test.cpp
+  path: test/Input2DVector_read.test.cpp
   requiredBy: []
   timestamp: '2021-03-17 10:34:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/Input_column.test.cpp
+documentation_of: test/Input2DVector_read.test.cpp
 layout: document
 redirect_from:
-- /verify/test/Input_column.test.cpp
-- /verify/test/Input_column.test.cpp.html
-title: test/Input_column.test.cpp
+- /verify/test/Input2DVector_read.test.cpp
+- /verify/test/Input2DVector_read.test.cpp.html
+title: test/Input2DVector_read.test.cpp
 ---

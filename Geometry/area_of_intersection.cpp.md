@@ -511,8 +511,8 @@ data:
   timestamp: '2021-01-04 21:28:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
   - test/Geometric_area_of_intersection_between_two_circles.test.cpp
+  - test/Geometric_area_of_intersection_between_circle_and_polygon.test.cpp
 documentation_of: Geometry/area_of_intersection.cpp
 layout: document
 redirect_from:

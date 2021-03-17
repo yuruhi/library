@@ -161,8 +161,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp
-  - test/template_no_Ruby.test.cpp
   - test/template.test.cpp
+  - test/template_no_Ruby.test.cpp
 documentation_of: Utility/functions.cpp
 layout: document
 redirect_from:
