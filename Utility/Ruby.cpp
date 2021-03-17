@@ -404,6 +404,21 @@ struct Slice_impl {
 	}
 } Slice;
 
+struct Transpose_impl {
+	template <class T>
+	friend auto operator|(const std::vector<std::vector<T>>& v, Transpose_impl& c) {
+		std::size_t h = v.size(), w = v.front().size();
+		std::vector result(w, std::vector<T>(h));
+		for (std::size_t i = 0; i < h; ++i) {
+			assert(v[i].size() == w);
+			for (std::size_t j = 0; j < w; ++j) {
+				result[j][i] = v[i][j];
+			}
+		}
+		return result;
+	}
+} Transpose;
+
 template <class T> auto operator*(const std::vector<T>& a, std::size_t n) {
 	T result;
 	for (std::size_t i = 0; i < n; ++i) {
