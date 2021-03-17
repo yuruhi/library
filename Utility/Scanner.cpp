@@ -103,7 +103,7 @@ class Scanner {
 	template <class T> static void scan(std::vector<T>& v) {
 		for (auto& e : v) scan(e);
 	}
-	template <size_t N = 0, class T> static void scan_tuple_impl(T& v) {
+	template <std::size_t N = 0, class T> static void scan_tuple_impl(T& v) {
 		if constexpr (N < std::tuple_size_v<T>) {
 			scan(std::get<N>(v));
 			scan_tuple_impl<N + 1>(v);
@@ -112,41 +112,49 @@ class Scanner {
 	template <class... T> static void scan(std::tuple<T...>& v) {
 		scan_tuple_impl(v);
 	}
-	struct ReadVectorHelper {
-		size_t n;
-		ReadVectorHelper(std::size_t _n) : n(_n) {}
-		template <class T> operator std::vector<T>() {
-			std::vector<T> v(n);
-			scan(v);
-			return v;
+
+	struct Read2DVectorHelper {
+		std::size_t h, w;
+		Read2DVectorHelper(std::size_t _h, std::size_t _w) : h(_h), w(_w) {}
+		template <class T> operator std::vector<std::vector<T>>() {
+			std::vector vector(h, std::vector<T>(w));
+			scan(vector);
+			return vector;
 		}
 	};
-	struct Read2DVectorHelper {
-		std::size_t n, m;
-		Read2DVectorHelper(const std::pair<std::size_t, std::size_t>& nm)
-		    : n(nm.first), m(nm.second) {}
-		template <class T> operator std::vector<std::vector<T>>() {
-			std::vector<std::vector<T>> v(n, std::vector<T>(m));
-			scan(v);
-			return v;
+	struct ReadVectorHelper {
+		std::size_t n;
+		ReadVectorHelper(std::size_t _n) : n(_n) {}
+		template <class T> operator std::vector<T>() {
+			std::vector<T> vector(n);
+			scan(vector);
+			return vector;
+		}
+		auto operator[](std::size_t m) {
+			return Read2DVectorHelper(n, m);
 		}
 	};
 
 public:
-	std::string read_line() const {
-		std::string v;
-		for (char c = gc(); c != '\n' && c != '\0'; c = gc()) v += c;
-		return v;
-	}
 	template <class T> T read() const {
 		T result;
 		scan(result);
 		return result;
 	}
-	template <class T> std::vector<T> read(std::size_t n) const {
+	template <class T> auto read(std::size_t n) const {
 		std::vector<T> result(n);
 		scan(result);
 		return result;
+	}
+	template <class T> auto read(std::size_t h, std::size_t w) const {
+		std::vector result(h, std::vector<T>(w));
+		scan(result);
+		return result;
+	}
+	std::string read_line() const {
+		std::string v;
+		for (char c = gc(); c != '\n' && c != '\0'; c = gc()) v += c;
+		return v;
 	}
 	template <class T> operator T() const {
 		return read<T>();
@@ -154,11 +162,11 @@ public:
 	int operator--(int) const {
 		return read<int>() - 1;
 	}
-	ReadVectorHelper operator[](std::size_t n) const {
+	auto operator[](std::size_t n) const {
 		return ReadVectorHelper(n);
 	}
-	Read2DVectorHelper operator[](const std::pair<std::size_t, std::size_t>& nm) const {
-		return Read2DVectorHelper(nm);
+	auto operator[](const std::pair<std::size_t, std::size_t>& nm) const {
+		return Read2DVectorHelper(nm.first, nm.second);
 	}
 	void operator()() const {}
 	template <class H, class... T> void operator()(H&& h, T&&... t) const {
@@ -175,7 +183,7 @@ private:
 	};
 	template <template <class...> class V> struct Column<V> { using type = V<>; };
 	template <class... T> using column_t = typename Column<std::tuple, T...>::type;
-	template <size_t N = 0, class T> void column_impl(T& t) const {
+	template <std::size_t N = 0, class T> void column_impl(T& t) const {
 		if constexpr (N < std::tuple_size_v<T>) {
 			auto& vec = std::get<N>(t);
 			using V = typename std::remove_reference_t<decltype(vec)>::value_type;
