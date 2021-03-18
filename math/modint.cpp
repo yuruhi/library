@@ -1,9 +1,9 @@
 #pragma once
+#include "./../Utility/get_MOD.cpp"
 #include <iostream>
 #include <vector>
 #include <utility>
 #include <cassert>
-using namespace std;
 
 template <int MOD> struct modint {
 	using T = long long;
@@ -72,9 +72,9 @@ template <int MOD> struct modint {
 		while (b) {
 			T t = a / b;
 			a -= t * b;
-			swap(a, b);
+			std::swap(a, b);
 			u -= t * v;
-			swap(u, v);
+			std::swap(u, v);
 		}
 		n = n * u % MOD;
 		if (n < 0) n += MOD;
@@ -115,18 +115,18 @@ template <int MOD> struct modint {
 	friend constexpr modint operator/(const modint& a, const modint& b) {
 		return modint(a) /= b;
 	}
-	friend ostream& operator<<(ostream& os, const modint<MOD>& m) {
+	friend std::ostream& operator<<(std::ostream& os, const modint<MOD>& m) {
 		return os << m.n;
 	}
-	friend istream& operator>>(istream& is, modint<MOD>& m) {
+	friend std::istream& operator>>(std::istream& is, modint<MOD>& m) {
 		long long x;
-		cin >> x;
+		std::cin >> x;
 		m = modint(x);
 		return is;
 	}
 };
-using mint = modint<1000000007>;
-using VM = vector<mint>;
+using mint = modint<get_MOD()>;
+using VM = std::vector<mint>;
 mint operator""_m(unsigned long long n) {
 	return n;
 }

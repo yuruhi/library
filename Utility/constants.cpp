@@ -1,4 +1,5 @@
 #pragma once
+#include "./get_MOD.cpp"
 #include <vector>
 #include <string>
 #include <utility>
@@ -30,6 +31,7 @@ using PLL = std::pair<ll, ll>;
 using VPL = std::vector<PLL>;
 template <class T> using PQ = std::priority_queue<T>;
 template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
 constexpr int inf = 1000000000;
-constexpr long long inf_ll = 1000000000000000000ll, MOD = 1000000007;
+constexpr long long inf_ll = 1000000000000000000ll, MOD = get_MOD();
 constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
