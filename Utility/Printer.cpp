@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <utility>
-#include <string>
-#include <string_view>
 #include <vector>
 #include <array>
+#include <string>
+#include <string_view>
+#include <optional>
 #include <charconv>
 #include <cstring>
 #include <cassert>
@@ -73,6 +74,9 @@ public:
 		print(v.first);
 		print(separator.div);
 		print(v.second);
+	}
+	template <class T> void print(const std::optional<T>& v) const {
+		print(*v);
 	}
 	template <class InputIterater>
 	void print_range(const InputIterater& begin, const InputIterater& end) const {
