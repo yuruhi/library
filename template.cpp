@@ -1,5 +1,4 @@
 #pragma once
-#include <bits/stdc++.h>
 #include "./Utility/constants.cpp"
 #include "./Utility/Scanner.cpp"
 #include "./Utility/Printer.cpp"
@@ -13,6 +12,7 @@
 #define dump(...) ((void)0)
 #endif
 
+#include <bits/stdc++.h>
 template <class T> constexpr T oj_local(const T& oj, const T& local) {
 #ifndef LOCAL
 	return oj;
