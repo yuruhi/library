@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <tuple>
+#include <type_traits>
 
 #ifdef _WIN32
 #define getchar_unlocked _getchar_nolock
@@ -29,6 +30,11 @@ class Scanner {
 	}
 	static void scan(bool& v) {
 		v = next_char() != '0';
+	}
+	static void scan(std::vector<bool>::reference v) {
+		bool b;
+		scan(b);
+		v = b;
 	}
 	static void scan(std::string& v) {
 		v.clear();
@@ -100,8 +106,13 @@ class Scanner {
 		scan(v.first);
 		scan(v.second);
 	}
-	template <class T> static void scan(std::vector<T>& v) {
+	template <class T, std::enable_if_t<!std::is_same_v<bool, T>, std::nullptr_t> = nullptr>
+	static void scan(std::vector<T>& v) {
 		for (auto& e : v) scan(e);
+	}
+	template <class T, std::enable_if_t<std::is_same_v<bool, T>, std::nullptr_t> = nullptr>
+	static void scan(std::vector<T>& v) {
+		for (auto e : v) scan(e);
 	}
 	template <std::size_t N = 0, class T> static void scan_tuple_impl(T& v) {
 		if constexpr (N < std::tuple_size_v<T>) {
