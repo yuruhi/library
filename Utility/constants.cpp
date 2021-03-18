@@ -11,8 +11,8 @@
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
 #define loop rep(i##__COUNTER__, n)
 #define unless(c) if (!(c))
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
 #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
 
 using ll = long long;
