@@ -39,41 +39,46 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Utility/Scanner.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <string>\n#include <utility>\n#include <tuple>\n\n#ifdef _WIN32\n#define\
-    \ getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
-    #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
-    \ Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic\
-    \ char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate\
-    \ <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char&\
-    \ v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool&\
-    \ v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void scan(std::string& v) {\n\
-    \t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c); c = gc()) v +=\
-    \ c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\
-    \tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
-    \t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg)\
-    \ v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\tv = 0;\n\t\tbool neg =\
+    #include <string>\n#include <utility>\n#include <tuple>\n#include <type_traits>\n\
+    \n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
+    \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
+    #endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\
+    \t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t\
+    }\n\ttemplate <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\t\
+    static void scan(char& v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\
+    \tstatic void scan(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void\
+    \ scan(std::vector<bool>::reference v) {\n\t\tbool b;\n\t\tscan(b);\n\t\tv = b;\n\
+    \t}\n\tstatic void scan(std::string& v) {\n\t\tv.clear();\n\t\tfor (char c = next_char();\
+    \ !std::isspace(c); c = gc()) v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\t\
+    v = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\
+    \t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc())\
+    \ v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long\
+    \ long& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\
+    \tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
+    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
+    \ scan(double& v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp\
+    \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
+    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\
+    \t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\
+    \t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c -\
+    \ '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double&\
+    \ v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp =\
     \ false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\
-    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c -\
-    \ '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double& v) {\n\t\tv = 0;\n\
-    \t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c)\
-    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
-    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
-    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
-    }\n\tstatic void scan(long double& v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\
-    \t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\t\tif (c\
-    \ == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c)\
-    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
-    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
-    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
-    }\n\ttemplate <class T, class U> static void scan(std::pair<T, U>& v) {\n\t\t\
-    scan(v.first);\n\t\tscan(v.second);\n\t}\n\ttemplate <class T> static void scan(std::vector<T>&\
-    \ v) {\n\t\tfor (auto& e : v) scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class\
-    \ T> static void scan_tuple_impl(T& v) {\n\t\tif constexpr (N < std::tuple_size_v<T>)\
-    \ {\n\t\t\tscan(std::get<N>(v));\n\t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t\
-    }\n\ttemplate <class... T> static void scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\
-    \t}\n\n\tstruct Read2DVectorHelper {\n\t\tstd::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t\
-    \ _h, std::size_t _w) : h(_h), w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
+    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\
+    \tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\
+    \t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\
+    \t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static\
+    \ void scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t\
+    }\n\ttemplate <class T, std::enable_if_t<!std::is_same_v<bool, T>, std::nullptr_t>\
+    \ = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\tfor (auto& e : v) scan(e);\n\
+    \t}\n\ttemplate <class T, std::enable_if_t<std::is_same_v<bool, T>, std::nullptr_t>\
+    \ = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\tfor (auto e : v) scan(e);\n\
+    \t}\n\ttemplate <std::size_t N = 0, class T> static void scan_tuple_impl(T& v)\
+    \ {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\t\t\tscan(std::get<N>(v));\n\
+    \t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> static void\
+    \ scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\t}\n\n\tstruct Read2DVectorHelper\
+    \ {\n\t\tstd::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t _h, std::size_t\
+    \ _w) : h(_h), w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
     \ {\n\t\t\tstd::vector vector(h, std::vector<T>(w));\n\t\t\tscan(vector);\n\t\t\
     \treturn vector;\n\t\t}\n\t};\n\tstruct ReadVectorHelper {\n\t\tstd::size_t n;\n\
     \t\tReadVectorHelper(std::size_t _n) : n(_n) {}\n\t\ttemplate <class T> operator\
@@ -108,41 +113,45 @@ data:
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
     #define ins(...) inputs(std::string, __VA_ARGS__)\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <string>\n\
-    #include <utility>\n#include <tuple>\n\n#ifdef _WIN32\n#define getchar_unlocked\
-    \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
-    \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int\
-    \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\
-    \tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate <class T> static void\
-    \ scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char& v) {\n\t\twhile\
-    \ (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool& v) {\n\t\t\
-    v = next_char() != '0';\n\t}\n\tstatic void scan(std::string& v) {\n\t\tv.clear();\n\
-    \t\tfor (char c = next_char(); !std::isspace(c); c = gc()) v += c;\n\t}\n\tstatic\
-    \ void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ scan(long long& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ scan(double& v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp\
-    \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
-    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\
-    \t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\
-    \t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c -\
-    \ '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double&\
-    \ v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp =\
+    #include <utility>\n#include <tuple>\n#include <type_traits>\n\n#ifdef _WIN32\n\
+    #define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
+    #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
+    \ Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic\
+    \ char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate\
+    \ <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char&\
+    \ v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool&\
+    \ v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void scan(std::vector<bool>::reference\
+    \ v) {\n\t\tbool b;\n\t\tscan(b);\n\t\tv = b;\n\t}\n\tstatic void scan(std::string&\
+    \ v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c); c = gc())\
+    \ v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\
+    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg)\
+    \ v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\tv = 0;\n\t\tbool neg =\
     \ false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\
-    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\
-    \tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\
-    \t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\
-    \t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static\
-    \ void scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t\
-    }\n\ttemplate <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto&\
-    \ e : v) scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class T> static void scan_tuple_impl(T&\
-    \ v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\t\t\tscan(std::get<N>(v));\n\
-    \t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> static void\
-    \ scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\t}\n\n\tstruct Read2DVectorHelper\
-    \ {\n\t\tstd::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t _h, std::size_t\
-    \ _w) : h(_h), w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
+    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c -\
+    \ '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double& v) {\n\t\tv = 0;\n\
+    \t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\
+    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c)\
+    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
+    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
+    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
+    }\n\tstatic void scan(long double& v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\
+    \t\tbool neg = false, after_dp = false;\n\t\tchar c = next_char();\n\t\tif (c\
+    \ == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c)\
+    \ || c == '.'; c = gc()) {\n\t\t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\
+    \t\t} else if (after_dp) {\n\t\t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else\
+    \ {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t\
+    }\n\ttemplate <class T, class U> static void scan(std::pair<T, U>& v) {\n\t\t\
+    scan(v.first);\n\t\tscan(v.second);\n\t}\n\ttemplate <class T, std::enable_if_t<!std::is_same_v<bool,\
+    \ T>, std::nullptr_t> = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\t\
+    for (auto& e : v) scan(e);\n\t}\n\ttemplate <class T, std::enable_if_t<std::is_same_v<bool,\
+    \ T>, std::nullptr_t> = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\t\
+    for (auto e : v) scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class T> static\
+    \ void scan_tuple_impl(T& v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\
+    \t\t\tscan(std::get<N>(v));\n\t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\t\
+    template <class... T> static void scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\
+    \t}\n\n\tstruct Read2DVectorHelper {\n\t\tstd::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t\
+    \ _h, std::size_t _w) : h(_h), w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
     \ {\n\t\t\tstd::vector vector(h, std::vector<T>(w));\n\t\t\tscan(vector);\n\t\t\
     \treturn vector;\n\t\t}\n\t};\n\tstruct ReadVectorHelper {\n\t\tstd::size_t n;\n\
     \t\tReadVectorHelper(std::size_t _n) : n(_n) {}\n\t\ttemplate <class T> operator\
@@ -182,7 +191,7 @@ data:
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-17 10:34:54+09:00'
+  timestamp: '2021-03-18 11:27:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/IO_vector_and_Ruby_Reverse.test.cpp
