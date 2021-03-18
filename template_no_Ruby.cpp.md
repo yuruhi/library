@@ -29,8 +29,8 @@ data:
     \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
     \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
     \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define loop rep(i##__COUNTER__,\
-    \ n)\n#define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define\
-    \ rall(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
+    \ n)\n#define unless(c) if (!(c))\n#define ALL(x) (x).begin(), (x).end()\n#define\
+    \ RALL(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
     \ (a).begin() + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB\
     \ = std::vector<bool>;\nusing VVB = std::vector<VB>;\nusing VI = std::vector<int>;\n\
     using VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\n\
@@ -111,12 +111,12 @@ data:
     \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
     #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
     \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
-    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 5 \"Utility/Printer.cpp\"\
-    \n#include <string_view>\n#line 8 \"Utility/Printer.cpp\"\n#include <charconv>\n\
-    #line 11 \"Utility/Printer.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString\
-    \ {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view _t, std::string_view\
-    \ _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div,\
-    \ sep, last;\n\t\tSeparator(std::string_view _div, std::string_view _sep, std::string_view\
+    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 7 \"Utility/Printer.cpp\"\
+    \n#include <string_view>\n#include <optional>\n#include <charconv>\n#line 12 \"\
+    Utility/Printer.cpp\"\n\nclass Printer {\npublic:\n\tstruct BoolString {\n\t\t\
+    std::string_view t, f;\n\t\tBoolString(std::string_view _t, std::string_view _f)\
+    \ : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div, sep,\
+    \ last;\n\t\tSeparator(std::string_view _div, std::string_view _sep, std::string_view\
     \ _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\t};\n\n\tinline static\
     \ const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"no\"}, YES{\"YES\", \"\
     NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"Possible\", \"Impossible\"};\n\tinline\
@@ -139,7 +139,8 @@ data:
     , v);\n\t}\n\ttemplate <class T> void print(const T& v) const {\n\t\tstd::cout\
     \ << v;\n\t}\n\ttemplate <class T, class U> void print(const std::pair<T, U>&\
     \ v) const {\n\t\tprint(v.first);\n\t\tprint(separator.div);\n\t\tprint(v.second);\n\
-    \t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
+    \t}\n\ttemplate <class T> void print(const std::optional<T>& v) const {\n\t\t\
+    print(*v);\n\t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
     \ begin, const InputIterater& end) const {\n\t\tfor (InputIterater i = begin;\
     \ i != end; ++i) {\n\t\t\tif (i != begin) print(separator.sep);\n\t\t\tprint(*i);\n\
     \t\t}\n\t}\n\ttemplate <class T> void print(const std::vector<T>& v) const {\n\
@@ -248,7 +249,7 @@ data:
   isVerificationFile: false
   path: template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-03-18 11:27:01+09:00'
+  timestamp: '2021-03-18 17:11:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template_no_Ruby.cpp

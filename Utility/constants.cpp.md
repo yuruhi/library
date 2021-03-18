@@ -29,8 +29,8 @@ data:
     \ <utility>\n#include <queue>\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n\
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int\
     \ i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n\
-    #define loop rep(i##__COUNTER__, n)\n#define unless(c) if (!(c))\n#define all(x)\
-    \ (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n#define range_it(a,\
+    #define loop rep(i##__COUNTER__, n)\n#define unless(c) if (!(c))\n#define ALL(x)\
+    \ (x).begin(), (x).end()\n#define RALL(x) (x).rbegin(), (x).rend()\n#define range_it(a,\
     \ l, r) (a).begin() + (l), (a).begin() + (r)\n\nusing ll = long long;\nusing LD\
     \ = long double;\nusing VB = std::vector<bool>;\nusing VVB = std::vector<VB>;\n\
     using VI = std::vector<int>;\nusing VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\n\
@@ -66,9 +66,9 @@ data:
 
     #define unless(c) if (!(c))
 
-    #define all(x) (x).begin(), (x).end()
+    #define ALL(x) (x).begin(), (x).end()
 
-    #define rall(x) (x).rbegin(), (x).rend()
+    #define RALL(x) (x).rbegin(), (x).rend()
 
     #define range_it(a, l, r) (a).begin() + (l), (a).begin() + (r)
 
@@ -120,7 +120,7 @@ data:
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-18 10:33:49+09:00'
+  timestamp: '2021-03-18 14:31:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp
