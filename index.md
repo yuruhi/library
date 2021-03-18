@@ -285,6 +285,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/functions.cpp
       title: Utility/functions.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/get_MOD.cpp
+      title: Utility/get_MOD.cpp
     - icon: ':warning:'
       path: Utility/splitRange.cpp
       title: Utility/splitRange.cpp
@@ -653,8 +656,8 @@ data:
       path: test/HLD_vertex.test.cpp
       title: test/HLD_vertex.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
-      title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+      path: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
+      title: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/IO_vector_and_Ruby_Reverse.test.cpp
       title: test/IO_vector_and_Ruby_Reverse.test.cpp

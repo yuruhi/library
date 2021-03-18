@@ -20,6 +20,9 @@ data:
     path: Utility/functions.cpp
     title: Utility/functions.cpp
   - icon: ':heavy_check_mark:'
+    path: Utility/get_MOD.cpp
+    title: Utility/get_MOD.cpp
+  - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
   _extendedRequiredBy: []
@@ -33,51 +36,53 @@ data:
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
   bundledCode: "#line 1 \"test/template.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
-    \n#line 2 \"template.cpp\"\n#include <bits/stdc++.h>\n#line 6 \"Utility/constants.cpp\"\
-    \n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for\
-    \ (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0;\
-    \ --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n#define loop rep(i##__COUNTER__,\
-    \ n)\n#define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define\
-    \ rall(x) (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l),\
-    \ (a).begin() + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB\
-    \ = std::vector<bool>;\nusing VVB = std::vector<VB>;\nusing VI = std::vector<int>;\n\
-    using VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\n\
-    using VS = std::vector<std::string>;\nusing VD = std::vector<LD>;\nusing PII =\
-    \ std::pair<int, int>;\nusing VP = std::vector<PII>;\nusing PLL = std::pair<ll,\
-    \ ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class T> using PQ = std::priority_queue<T>;\n\
-    template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    constexpr int inf = 1000000000;\nconstexpr long long inf_ll = 1000000000000000000ll,\
-    \ MOD = 1000000007;\nconstexpr long double PI = 3.14159265358979323846, EPS =\
-    \ 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\n\n#ifdef _WIN32\n#define getchar_unlocked\
-    \ _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n#define fwrite_unlocked\
-    \ fwrite\n#define fflush_unlocked fflush\n#endif\nclass Scanner {\n\tstatic int\
-    \ gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\
-    \tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate <class T> static void\
-    \ scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char& v) {\n\t\twhile\
-    \ (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool& v) {\n\t\t\
-    v = next_char() != '0';\n\t}\n\tstatic void scan(std::string& v) {\n\t\tv.clear();\n\
-    \t\tfor (char c = next_char(); !std::isspace(c); c = gc()) v += c;\n\t}\n\tstatic\
-    \ void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ scan(long long& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\
-    \t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c);\
-    \ c = gc()) v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void\
-    \ scan(double& v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp\
+    \n#line 2 \"template.cpp\"\n#include <bits/stdc++.h>\n#line 2 \"Utility/get_MOD.cpp\"\
+    \nconstexpr long long get_MOD() {\n#ifdef SET_MOD\n\treturn SET_MOD;\n#else\n\t\
+    return 1000000007;\n#endif\n}\n#line 7 \"Utility/constants.cpp\"\n\n#define rep(i,\
+    \ n) for (int i = 0; i < (n); ++i)\n#define FOR(i, m, n) for (int i = (m); i <\
+    \ (n); ++i)\n#define rrep(i, n) for (int i = (n)-1; i >= 0; --i)\n#define rfor(i,\
+    \ m, n) for (int i = (m); i >= (n); --i)\n#define loop rep(i##__COUNTER__, n)\n\
+    #define unless(c) if (!(c))\n#define all(x) (x).begin(), (x).end()\n#define rall(x)\
+    \ (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin()\
+    \ + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB = std::vector<bool>;\n\
+    using VVB = std::vector<VB>;\nusing VI = std::vector<int>;\nusing VVI = std::vector<VI>;\n\
+    using VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\n\
+    using VD = std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
+    using PLL = std::pair<ll, ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class\
+    \ T> using PQ = std::priority_queue<T>;\ntemplate <class T> using PQS = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\nconstexpr int inf = 1000000000;\nconstexpr\
+    \ long long inf_ll = 1000000000000000000ll, MOD = get_MOD();\nconstexpr long double\
+    \ PI = 3.14159265358979323846, EPS = 1e-12;\n#line 7 \"Utility/Scanner.cpp\"\n\
+    \n#ifdef _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked\
+    \ _putchar_nolock\n#define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n\
+    #endif\nclass Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\
+    \t}\n\tstatic char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t\
+    }\n\ttemplate <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\t\
+    static void scan(char& v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\
+    \tstatic void scan(bool& v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void\
+    \ scan(std::string& v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c);\
+    \ c = gc()) v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg\
     \ = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\
-    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\
-    \t\tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\
-    \t\t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c -\
-    \ '0');\n\t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double&\
-    \ v) {\n\t\tv = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp =\
-    \ false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\
-    \t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\
-    \tif (c == '.') {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\
-    \t\tv += (c - '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\
-    \t\t\t}\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static\
-    \ void scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t\
-    }\n\ttemplate <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto&\
-    \ e : v) scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class T> static void scan_tuple_impl(T&\
+    \t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc()) v = v * 10 + (c\
+    \ - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long long& v) {\n\t\t\
+    v = 0;\n\t\tbool neg = false;\n\t\tchar c = next_char();\n\t\tif (c == '-') {\n\
+    \t\t\tneg = true;\n\t\t\tc = gc();\n\t\t}\n\t\tfor (; std::isdigit(c); c = gc())\
+    \ v = v * 10 + (c - '0');\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(double&\
+    \ v) {\n\t\tv = 0;\n\t\tdouble dp = 1;\n\t\tbool neg = false, after_dp = false;\n\
+    \t\tchar c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
+    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
+    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
+    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\tstatic void scan(long double& v) {\n\t\t\
+    v = 0;\n\t\tlong double dp = 1;\n\t\tbool neg = false, after_dp = false;\n\t\t\
+    char c = next_char();\n\t\tif (c == '-') {\n\t\t\tneg = true;\n\t\t\tc = gc();\n\
+    \t\t}\n\t\tfor (; std::isdigit(c) || c == '.'; c = gc()) {\n\t\t\tif (c == '.')\
+    \ {\n\t\t\t\tafter_dp = true;\n\t\t\t} else if (after_dp) {\n\t\t\t\tv += (c -\
+    \ '0') * (dp *= 0.1);\n\t\t\t} else {\n\t\t\t\tv = v * 10 + (c - '0');\n\t\t\t\
+    }\n\t\t}\n\t\tif (neg) v = -v;\n\t}\n\ttemplate <class T, class U> static void\
+    \ scan(std::pair<T, U>& v) {\n\t\tscan(v.first);\n\t\tscan(v.second);\n\t}\n\t\
+    template <class T> static void scan(std::vector<T>& v) {\n\t\tfor (auto& e : v)\
+    \ scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class T> static void scan_tuple_impl(T&\
     \ v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\t\t\tscan(std::get<N>(v));\n\
     \t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\ttemplate <class... T> static void\
     \ scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\t}\n\n\tstruct Read2DVectorHelper\
@@ -463,6 +468,7 @@ data:
   dependsOn:
   - template.cpp
   - Utility/constants.cpp
+  - Utility/get_MOD.cpp
   - Utility/Scanner.cpp
   - Utility/Printer.cpp
   - Utility/Step.cpp
@@ -471,7 +477,7 @@ data:
   isVerificationFile: true
   path: test/template.test.cpp
   requiredBy: []
-  timestamp: '2021-03-17 11:01:44+09:00'
+  timestamp: '2021-03-18 10:33:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/template.test.cpp

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Utility/get_MOD.cpp
+    title: Utility/get_MOD.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.cpp
     title: math/modint.cpp
   _extendedRequiredBy: []
@@ -11,44 +14,48 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/modint.cpp\"\n#include <iostream>\n#include <vector>\n\
-    #include <utility>\n#include <cassert>\nusing namespace std;\n\ntemplate <int\
-    \ MOD> struct modint {\n\tusing T = long long;\n\tT n;\n\tconstexpr static modint\
+  bundledCode: "#line 2 \"Utility/get_MOD.cpp\"\nconstexpr long long get_MOD() {\n\
+    #ifdef SET_MOD\n\treturn SET_MOD;\n#else\n\treturn 1000000007;\n#endif\n}\n#line\
+    \ 3 \"math/modint.cpp\"\n#include <iostream>\n#include <vector>\n#include <utility>\n\
+    #include <cassert>\n\ntemplate <int MOD> struct modint {\n\tusing value_type =\
+    \ long long;\n\nprivate:\n\tvalue_type n;\n\npublic:\n\tconstexpr static modint\
     \ factorial(int n) {\n\t\tassert(n >= 0);\n\t\tmodint result = 1;\n\t\tfor (int\
     \ i = 1; i <= n; ++i) {\n\t\t\tresult *= i;\n\t\t}\n\t\treturn result;\n\t}\n\t\
-    constexpr modint(const T x = 0) : n(x % MOD) {\n\t\tif (n < 0) n += MOD;\n\t}\n\
-    \tconstexpr int get_mod() const {\n\t\treturn MOD;\n\t}\n\tconstexpr modint operator+()\
-    \ const {\n\t\treturn *this;\n\t}\n\tconstexpr modint operator-() const {\n\t\t\
-    return n ? MOD - n : 0;\n\t}\n\tconstexpr modint& operator++() {\n\t\tif (MOD\
-    \ <= ++n) n = 0;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator--() {\n\
-    \t\tif (n <= 0) n = MOD;\n\t\tn--;\n\t\treturn *this;\n\t}\n\tconstexpr modint\
-    \ operator++(int) {\n\t\tmodint t = *this;\n\t\t++*this;\n\t\treturn t;\n\t}\n\
-    \tconstexpr modint operator--(int) {\n\t\tmodint t = *this;\n\t\t--*this;\n\t\t\
-    return t;\n\t}\n\tconstexpr modint next() const {\n\t\treturn ++modint(*this);\n\
-    \t}\n\tconstexpr modint pred() const {\n\t\treturn --modint(*this);\n\t}\n\tconstexpr\
-    \ modint& operator+=(const modint& m) {\n\t\tn += m.n;\n\t\tif (n >= MOD) n -=\
-    \ MOD;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator-=(const modint& m)\
-    \ {\n\t\tn -= m.n;\n\t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr\
-    \ modint& operator*=(const modint& m) {\n\t\tn = n * m.n % MOD;\n\t\treturn *this;\n\
-    \t}\n\tconstexpr modint& operator/=(const modint& m) {\n\t\tT a = m.n, b = MOD,\
-    \ u = 1, v = 0;\n\t\twhile (b) {\n\t\t\tT t = a / b;\n\t\t\ta -= t * b;\n\t\t\t\
-    swap(a, b);\n\t\t\tu -= t * v;\n\t\t\tswap(u, v);\n\t\t}\n\t\tn = n * u % MOD;\n\
-    \t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr bool operator==(const\
-    \ modint& m) const {\n\t\treturn n == m.n;\n\t}\n\tconstexpr bool operator!=(const\
-    \ modint& m) const {\n\t\treturn n != m.n;\n\t}\n\ttemplate <class M> constexpr\
-    \ modint pow(M m) const {\n\t\tif (0 <= m) {\n\t\t\tmodint t = n, result = 1;\n\
-    \t\t\twhile (m > 0) {\n\t\t\t\tif (m & 1) {\n\t\t\t\t\tresult *= t;\n\t\t\t\t\t\
-    m--;\n\t\t\t\t} else {\n\t\t\t\t\tt *= t;\n\t\t\t\t\tm >>= 1;\n\t\t\t\t}\n\t\t\
-    \t}\n\t\t\treturn result;\n\t\t} else {\n\t\t\treturn (modint(1) / n).pow(-m);\n\
-    \t\t}\n\t}\n\tfriend constexpr modint operator+(const modint& a, const modint&\
-    \ b) {\n\t\treturn modint(a) += b;\n\t}\n\tfriend constexpr modint operator-(const\
-    \ modint& a, const modint& b) {\n\t\treturn modint(a) -= b;\n\t}\n\tfriend constexpr\
-    \ modint operator*(const modint& a, const modint& b) {\n\t\treturn modint(a) *=\
-    \ b;\n\t}\n\tfriend constexpr modint operator/(const modint& a, const modint&\
-    \ b) {\n\t\treturn modint(a) /= b;\n\t}\n\tfriend ostream& operator<<(ostream&\
-    \ os, const modint<MOD>& m) {\n\t\treturn os << m.n;\n\t}\n\tfriend istream& operator>>(istream&\
-    \ is, modint<MOD>& m) {\n\t\tlong long x;\n\t\tcin >> x;\n\t\tm = modint(x);\n\
-    \t\treturn is;\n\t}\n};\nusing mint = modint<1000000007>;\nusing VM = vector<mint>;\n\
+    constexpr modint(const value_type x = 0) : n(x % MOD) {\n\t\tif (n < 0) n += MOD;\n\
+    \t}\n\tconstexpr value_type value() const {\n\t\treturn n;\n\t}\n\tconstexpr int\
+    \ mod() const {\n\t\treturn MOD;\n\t}\n\tconstexpr modint operator+() const {\n\
+    \t\treturn *this;\n\t}\n\tconstexpr modint operator-() const {\n\t\treturn n ?\
+    \ MOD - n : 0;\n\t}\n\tconstexpr modint& operator++() {\n\t\tif (MOD <= ++n) n\
+    \ = 0;\n\t\treturn *this;\n\t}\n\tconstexpr modint& operator--() {\n\t\tif (n\
+    \ <= 0) n = MOD;\n\t\tn--;\n\t\treturn *this;\n\t}\n\tconstexpr modint operator++(int)\
+    \ {\n\t\tmodint t = *this;\n\t\t++*this;\n\t\treturn t;\n\t}\n\tconstexpr modint\
+    \ operator--(int) {\n\t\tmodint t = *this;\n\t\t--*this;\n\t\treturn t;\n\t}\n\
+    \tconstexpr modint next() const {\n\t\treturn ++modint(*this);\n\t}\n\tconstexpr\
+    \ modint pred() const {\n\t\treturn --modint(*this);\n\t}\n\tconstexpr modint&\
+    \ operator+=(const modint& m) {\n\t\tn += m.n;\n\t\tif (n >= MOD) n -= MOD;\n\t\
+    \treturn *this;\n\t}\n\tconstexpr modint& operator-=(const modint& m) {\n\t\t\
+    n -= m.n;\n\t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\tconstexpr modint&\
+    \ operator*=(const modint& m) {\n\t\tn = n * m.n % MOD;\n\t\treturn *this;\n\t\
+    }\n\tconstexpr modint& operator/=(const modint& m) {\n\t\tvalue_type a = m.n,\
+    \ b = MOD, u = 1, v = 0;\n\t\twhile (b) {\n\t\t\tvalue_type t = a / b;\n\t\t\t\
+    a -= t * b;\n\t\t\tstd::swap(a, b);\n\t\t\tu -= t * v;\n\t\t\tstd::swap(u, v);\n\
+    \t\t}\n\t\tn = n * u % MOD;\n\t\tif (n < 0) n += MOD;\n\t\treturn *this;\n\t}\n\
+    \tconstexpr bool operator==(const modint& m) const {\n\t\treturn n == m.n;\n\t\
+    }\n\tconstexpr bool operator!=(const modint& m) const {\n\t\treturn n != m.n;\n\
+    \t}\n\ttemplate <class M> constexpr modint pow(M m) const {\n\t\tif (0 <= m) {\n\
+    \t\t\tmodint t = n, result = 1;\n\t\t\twhile (m > 0) {\n\t\t\t\tif (m & 1) {\n\
+    \t\t\t\t\tresult *= t;\n\t\t\t\t\tm--;\n\t\t\t\t} else {\n\t\t\t\t\tt *= t;\n\t\
+    \t\t\t\tm >>= 1;\n\t\t\t\t}\n\t\t\t}\n\t\t\treturn result;\n\t\t} else {\n\t\t\
+    \treturn (modint(1) / n).pow(-m);\n\t\t}\n\t}\n\tfriend constexpr modint operator+(const\
+    \ modint& a, const modint& b) {\n\t\treturn modint(a) += b;\n\t}\n\tfriend constexpr\
+    \ modint operator-(const modint& a, const modint& b) {\n\t\treturn modint(a) -=\
+    \ b;\n\t}\n\tfriend constexpr modint operator*(const modint& a, const modint&\
+    \ b) {\n\t\treturn modint(a) *= b;\n\t}\n\tfriend constexpr modint operator/(const\
+    \ modint& a, const modint& b) {\n\t\treturn modint(a) /= b;\n\t}\n\tfriend std::ostream&\
+    \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
+    \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
+    \tmodint<MOD>::value_type x;\n\t\tstd::cin >> x;\n\t\tm = modint(x);\n\t\treturn\
+    \ is;\n\t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\n\
     mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"math/Combination.cpp\"\
     \n#include <array>\nusing namespace std;\n\ntemplate <int MOD, size_t N> class\
     \ Combination {\n\tusing value_type = modint<MOD>;\n\tarray<value_type, N + 1>\
@@ -76,10 +83,11 @@ data:
     \t}\n\tconstexpr value_type fact(int n) const {\n\t\treturn fac[n];\n\t}\n};\n"
   dependsOn:
   - math/modint.cpp
+  - Utility/get_MOD.cpp
   isVerificationFile: false
   path: math/Combination.cpp
   requiredBy: []
-  timestamp: '2021-03-09 21:00:03+09:00'
+  timestamp: '2021-03-18 10:36:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/Combination.cpp

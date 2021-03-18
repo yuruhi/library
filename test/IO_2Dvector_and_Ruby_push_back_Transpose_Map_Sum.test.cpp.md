@@ -20,7 +20,7 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_7_C
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_7_C
-  bundledCode: "#line 1 \"test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp\"\
     \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/all/ITP1_7_C\"\
     \n#line 2 \"Utility/Scanner.cpp\"\n#include <iostream>\n#include <vector>\n#include\
     \ <string>\n#include <utility>\n#include <tuple>\n\n#ifdef _WIN32\n#define getchar_unlocked\
@@ -313,7 +313,7 @@ data:
     \ {\n\tcontiner.push_back(val);\n\treturn continer;\n}\ntemplate <\n    class\
     \ Container, class T,\n    std::enable_if_t<internal::has_push_back<Container,\
     \ T>::value, std::nullptr_t> = nullptr>\nauto operator+(Container continer, const\
-    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n#line 6 \"test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp\"\
+    \ T& val) {\n\tcontiner << val;\n\treturn continer;\n}\n#line 6 \"test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n\tint h = in, w = in;\n\tvector<vector<int>>\
     \ a = in[h][w];\n\ta << (a | Transpose | Map([](const auto& b) { return b | Sum;\
     \ }));\n\tfor (auto& v : a) {\n\t\tv << (v | Sum);\n\t}\n\tout(a);\n}\n"
@@ -328,15 +328,15 @@ data:
   - Utility/Printer.cpp
   - Utility/Ruby.cpp
   isVerificationFile: true
-  path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+  path: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   requiredBy: []
-  timestamp: '2021-03-17 11:01:44+09:00'
+  timestamp: '2021-03-17 11:10:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+documentation_of: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
-- /verify/test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp.html
-title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+- /verify/test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
+- /verify/test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp.html
+title: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
 ---

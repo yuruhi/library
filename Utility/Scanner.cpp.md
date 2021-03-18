@@ -10,8 +10,8 @@ data:
     title: template_no_Ruby.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
-    title: test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
+    path: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
+    title: test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/IO_vector_and_Ruby_Reverse.test.cpp
     title: test/IO_vector_and_Ruby_Reverse.test.cpp
@@ -186,10 +186,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/IO_vector_and_Ruby_Reverse.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - test/Input_Output.test.cpp
   - test/Input_column.test.cpp
   - test/Input2DVector_read.test.cpp
-  - test/IO_2Dvector_and_Ruby_push_back_transpose_Map_Sum.test.cpp
   - test/Input2DVector.test.cpp
   - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
