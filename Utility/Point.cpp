@@ -1,21 +1,32 @@
 #pragma once
 #include <vector>
+#include <string>
 #include <string_view>
 #include <utility>
 #include <optional>
 #include <memory>
 #include <iostream>
+#include <cmath>
 #include <cassert>
-using namespace std;
 
 struct Point {
-	static int W, H;
-	static const vector<Point> direction;
-	using direction_iterator = vector<Point>::const_iterator;
+	using direction_iterator = std::vector<Point>::const_iterator;
+
+private:
+	static inline int W, H;
+
+public:
 	static void set_range(int height, int width) {
 		H = height;
 		W = width;
 	}
+	static int height() {
+		return H;
+	}
+	static int width() {
+		return W;
+	}
+
 	static constexpr Point zero() {
 		return {0, 0};
 	}
@@ -43,11 +54,12 @@ struct Point {
 	static constexpr Point RD() {
 		return {1, 1};
 	}
+	static const std::vector<Point> direction;
 
 	int y, x;
 	constexpr Point() : y(0), x(0) {}
 	constexpr Point(int _y, int _x) : y(_y), x(_x) {}
-	constexpr Point(const pair<int, int>& yx) : y(yx.first), x(yx.second) {}
+	constexpr Point(const std::pair<int, int>& yx) : y(yx.first), x(yx.second) {}
 	Point(int n) : y(n / W), x(n % W) {}
 	constexpr Point operator+() const {
 		return *this;
@@ -162,42 +174,44 @@ struct Point {
 	int to_i() const {
 		return y * W + x;
 	}
-	constexpr pair<int, int> to_pair() const {
+	constexpr Point yx() const {
 		return {y, x};
 	}
+	constexpr std::pair<int, int> pair() const {
+		return {y, x};
+	}
+	constexpr std::pair<int, int> anti_pair() const {
+		return {x, y};
+	}
 	constexpr int manhattan(const Point& p) const {
-		return abs(x - p.x) + abs(y - p.y);
+		return std::abs(x - p.x) + std::abs(y - p.y);
 	}
 	constexpr int chebyshev(const Point& p) const {
-		return max(abs(y - p.y), abs(x - p.x));
+		return std::max(std::abs(y - p.y), std::abs(x - p.x));
 	}
 	constexpr int distance_square(const Point& p) const {
 		return (y - p.y) * (y - p.y) + (x - p.x) * (x - p.x);
 	}
 	template <class Real> constexpr Real distance(const Point& p) const {
-		return sqrt(static_cast<Real>(distance_square(p)));
+		return std::sqrt(static_cast<Real>(distance_square(p)));
 	}
 	constexpr Point absolute(const Point& p) const {
 		return absolute(*this - p);
 	}
 	constexpr Point absolute() const {
-		return {abs(y), abs(x)};
-	}
-	Point& swap() {
-		std::swap(y, x);
-		return *this;
+		return {std::abs(y), std::abs(x)};
 	}
 
 	class enumerate_adjacent_helper {
-		shared_ptr<Point> p;
+		std::shared_ptr<Point> p;
 		direction_iterator first, last;
 
 		class iterator {
-			shared_ptr<Point> p;
+			std::shared_ptr<Point> p;
 			direction_iterator it;
 
 		public:
-			iterator(shared_ptr<Point> _p, direction_iterator _it) : p(_p), it(_it) {}
+			iterator(std::shared_ptr<Point> _p, direction_iterator _it) : p(_p), it(_it) {}
 			Point operator*() const {
 				return *p + *it;
 			}
@@ -211,7 +225,7 @@ struct Point {
 		};
 
 	public:
-		enumerate_adjacent_helper(shared_ptr<Point> _p, direction_iterator _first,
+		enumerate_adjacent_helper(std::shared_ptr<Point> _p, direction_iterator _first,
 		                          direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
@@ -222,7 +236,7 @@ struct Point {
 		}
 	};
 	auto enumerate_adjacent(direction_iterator first, direction_iterator last) const {
-		return enumerate_adjacent_helper(make_shared<Point>(*this), first, last);
+		return enumerate_adjacent_helper(std::make_shared<Point>(*this), first, last);
 	}
 	auto adj4() const {
 		return enumerate_adjacent(direction.begin() + 1, direction.begin() + 5);
@@ -238,12 +252,12 @@ struct Point {
 	}
 
 	class enumerate_adj_in_range_helper {
-		shared_ptr<Point> p;
+		std::shared_ptr<Point> p;
 		direction_iterator first, last;
 
 		class sentinel {};
 		class iterator {
-			shared_ptr<Point> p;
+			std::shared_ptr<Point> p;
 			direction_iterator first, last;
 
 			void increment_until_in_range() {
@@ -253,7 +267,8 @@ struct Point {
 			}
 
 		public:
-			iterator(shared_ptr<Point> _p, direction_iterator _first, direction_iterator _last)
+			iterator(std::shared_ptr<Point> _p, direction_iterator _first,
+			         direction_iterator _last)
 			    : p(_p), first(_first), last(_last) {
 				increment_until_in_range();
 			}
@@ -271,7 +286,7 @@ struct Point {
 		};
 
 	public:
-		enumerate_adj_in_range_helper(shared_ptr<Point> _p, direction_iterator _first,
+		enumerate_adj_in_range_helper(std::shared_ptr<Point> _p, direction_iterator _first,
 		                              direction_iterator _last)
 		    : p(_p), first(_first), last(_last) {}
 		iterator begin() const {
@@ -283,7 +298,7 @@ struct Point {
 	};
 	template <class InputIterator>
 	auto enumerate_adj_in_range(InputIterator first, InputIterator last) const {
-		return enumerate_adj_in_range_helper(make_shared<Point>(*this), first, last);
+		return enumerate_adj_in_range_helper(std::make_shared<Point>(*this), first, last);
 	}
 	auto adj4_in_range() const {
 		return enumerate_adj_in_range(direction.begin() + 1, direction.begin() + 5);
@@ -365,7 +380,7 @@ struct Point {
 	constexpr Point rotate270() const {
 		return {x, -y};
 	}
-	char to_direction_char(string_view lrud = "LRUD") const {
+	char to_direction_char(std::string_view lrud = "LRUD") const {
 		assert(4 <= lrud.size() && lrud.size() <= 5);
 		if (y == 0 && x < 0) {
 			return lrud[0];
@@ -382,7 +397,7 @@ struct Point {
 		}
 	}
 
-	static Point to_direction(char c, string_view lrud = "LRUD") {
+	static Point to_direction(char c, std::string_view lrud = "LRUD") {
 		assert(lrud.size() == 4);
 		if (c == lrud[0]) {
 			return L();
@@ -396,7 +411,7 @@ struct Point {
 			return zero();
 		}
 	}
-	static Point to_direction(string s, string_view lrud = "LRUD") {
+	static Point to_direction(std::string s, std::string_view lrud = "LRUD") {
 		if (s.size() == 1) {
 			return to_direction(s[0], lrud);
 		} else if (s.size() == 2) {
@@ -410,7 +425,7 @@ struct Point {
 	}
 
 	template <class T, class value_type = typename T::value_type::value_type>
-	static optional<Point> find(const T& grid, const value_type& val) {
+	static std::optional<Point> find(const T& grid, const value_type& val) {
 		assert(static_cast<int>(grid.size()) == H);
 		for (int i = 0; i < H; ++i) {
 			assert(static_cast<int>(grid[i].size()) == W);
@@ -420,10 +435,10 @@ struct Point {
 				}
 			}
 		}
-		return nullopt;
+		return std::nullopt;
 	}
 	template <class T, class Predicate>
-	static optional<Point> find_if(const T& grid, Predicate pred) {
+	static std::optional<Point> find_if(const T& grid, Predicate pred) {
 		assert(static_cast<int>(grid.size()) == H);
 		for (int i = 0; i < H; ++i) {
 			assert(static_cast<int>(grid[i].size()) == W);
@@ -433,12 +448,12 @@ struct Point {
 				}
 			}
 		}
-		return nullopt;
+		return std::nullopt;
 	}
 	template <class T, class value_type = typename T::value_type::value_type>
-	static optional<Point> find_one(const T& grid, const value_type& val) {
+	static std::optional<Point> find_one(const T& grid, const value_type& val) {
 		assert(static_cast<int>(grid.size()) == H);
-		optional<Point> result;
+		std::optional<Point> result;
 		for (int i = 0; i < H; ++i) {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
@@ -451,9 +466,9 @@ struct Point {
 		return result;
 	}
 	template <class T, class value_type = typename T::value_type::value_type>
-	static vector<Point> find_all(const T& grid, const value_type& val) {
+	static std::vector<Point> find_all(const T& grid, const value_type& val) {
 		assert(static_cast<int>(grid.size()) == H);
-		vector<Point> result;
+		std::vector<Point> result;
 		for (int i = 0; i < H; ++i) {
 			assert(static_cast<int>(grid[i].size()) == W);
 			for (int j = 0; j < W; ++j) {
@@ -498,14 +513,13 @@ struct Point {
 		return enumerate_2D_points_helper();
 	}
 
-	friend ostream& operator<<(ostream& os, const Point& p) {
+	friend std::ostream& operator<<(std::ostream& os, const Point& p) {
 		return os << '(' << p.y << ", " << p.x << ')';
 	}
-	friend istream& operator>>(istream& is, Point& p) {
+	friend std::istream& operator>>(std::istream& is, Point& p) {
 		return is >> p.y >> p.x;
 	}
 };
-int Point::H, Point::W;
-const vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),
-                                     Point::U(),    Point::L(),  Point::RD(),
-                                     Point::LU(),   Point::RU(), Point::LD()};
+const std::vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),
+                                          Point::U(),    Point::L(),  Point::RD(),
+                                          Point::LU(),   Point::RU(), Point::LD()};
