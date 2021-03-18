@@ -6,8 +6,12 @@
 #include <cassert>
 
 template <int MOD> struct modint {
-	using T = long long;
-	T n;
+	using value_type = long long;
+
+private:
+	value_type n;
+
+public:
 	constexpr static modint factorial(int n) {
 		assert(n >= 0);
 		modint result = 1;
@@ -16,10 +20,13 @@ template <int MOD> struct modint {
 		}
 		return result;
 	}
-	constexpr modint(const T x = 0) : n(x % MOD) {
+	constexpr modint(const value_type x = 0) : n(x % MOD) {
 		if (n < 0) n += MOD;
 	}
-	constexpr int get_mod() const {
+	constexpr value_type value() const {
+		return n;
+	}
+	constexpr int mod() const {
 		return MOD;
 	}
 	constexpr modint operator+() const {
@@ -68,9 +75,9 @@ template <int MOD> struct modint {
 		return *this;
 	}
 	constexpr modint& operator/=(const modint& m) {
-		T a = m.n, b = MOD, u = 1, v = 0;
+		value_type a = m.n, b = MOD, u = 1, v = 0;
 		while (b) {
-			T t = a / b;
+			value_type t = a / b;
 			a -= t * b;
 			std::swap(a, b);
 			u -= t * v;
@@ -116,15 +123,16 @@ template <int MOD> struct modint {
 		return modint(a) /= b;
 	}
 	friend std::ostream& operator<<(std::ostream& os, const modint<MOD>& m) {
-		return os << m.n;
+		return os << m.value();
 	}
 	friend std::istream& operator>>(std::istream& is, modint<MOD>& m) {
-		long long x;
+		modint<MOD>::value_type x;
 		std::cin >> x;
 		m = modint(x);
 		return is;
 	}
 };
+
 using mint = modint<get_MOD()>;
 using VM = std::vector<mint>;
 mint operator""_m(unsigned long long n) {
