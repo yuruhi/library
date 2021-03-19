@@ -9,7 +9,7 @@
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
-#define loop rep(i##__COUNTER__, n)
+#define loop(n) rep(i##__COUNTER__, n)
 #define unless(c) if (!(c))
 #define ALL(x) (x).begin(), (x).end()
 #define RALL(x) (x).rbegin(), (x).rend()
