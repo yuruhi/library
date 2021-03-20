@@ -1,28 +1,29 @@
 #pragma once
+#include "./GraphTemplate.cpp"
 #include <vector>
+#include <optional>
 #include <tuple>
-using namespace std;
 
-tuple<bool, vector<bool>> BipartiteGraph(const vector<vector<int>>& graph) {
-	int n = graph.size();
-	vector<int> a(n);
-	auto dfs = [&](auto&& f, int v, int color) -> bool {
+std::optional<std::vector<bool>> BipartiteGraph(const UnWeightedGraph& graph) {
+	std::size_t n = graph.size();
+	std::vector<std::optional<bool>> a(n);
+	auto dfs = [&](auto&& f, int v, bool color) -> bool {
 		a[v] = color;
 		for (int u : graph[v]) {
-			if (a[u] == color || (a[u] == 0 && !f(f, u, color * -1))) {
+			if (a[u].has_value() ? a[u].value() == color : !f(f, u, !color)) {
 				return false;
 			}
 		}
 		return true;
 	};
-	for (int i = 0; i < n; ++i) {
-		if (a[i] == 0 && !dfs(dfs, 0, 1)) {
-			return {false, vector<bool>()};
+	for (std::size_t i = 0; i < n; ++i) {
+		if (!a[i].has_value() && !dfs(dfs, i, 1)) {
+			return std::nullopt;
 		}
 	}
-	vector<bool> result(n);
-	for (int i = 0; i < n; ++i) {
-		result[i] = a[i] == 1;
+	std::vector<bool> result(n);
+	for (std::size_t i = 0; i < n; ++i) {
+		result[i] = a[i].value();
 	}
-	return {true, result};
+	return result;
 }
