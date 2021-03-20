@@ -55,20 +55,21 @@ data:
     \ a, const T& b) {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class\
     \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
     template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
-    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
-    \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
-    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
-    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
-    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
-    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
-    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
-    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
-    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
-    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
-    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(a.begin(),\
+    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const\
+    \ T& a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
+    \treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
+    \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
+    \ v) {\n\treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()),\
+    \ std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class T, std::size_t\
+    \ N>\n\tauto make_vector(std::vector<int>& sizes, const T& init) {\n\t\tif constexpr\
+    \ (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\t} else {\n\t\t\t\
+    int size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn std::vector(size,\
+    \ make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\n\
+    template <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N], const\
+    \ T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\t\
+    return internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
     \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
     \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
     \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
@@ -119,20 +120,21 @@ data:
     \ a, const T& b) {\n\treturn a < b ? a = b, true : false;\n}\ntemplate <class\
     \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
     template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
-    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(all(a),\
-    \ v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T& a,\
-    \ const U& v) {\n\treturn std::upper_bound(all(a), v) - a.begin();\n}\ntemplate\
-    \ <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\treturn accumulate(next(v.begin()),\
-    \ v.end(), U(*v.begin()), std::gcd<U, U>);\n}\ntemplate <class T, class U = typename\
-    \ T::value_type> U Lcmv(const T& v) {\n\treturn accumulate(next(v.begin()), v.end(),\
-    \ U(*v.begin()), std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class\
-    \ T, std::size_t N>\n\tauto make_vector(std::vector<int>& sizes, const T& init)\
-    \ {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\
-    \t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn\
-    \ std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace\
-    \ internal\ntemplate <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N],\
-    \ const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\
-    \treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
+    \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(a.begin(),\
+    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const\
+    \ T& a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
+    \treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
+    \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
+    \ v) {\n\treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()),\
+    \ std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class T, std::size_t\
+    \ N>\n\tauto make_vector(std::vector<int>& sizes, const T& init) {\n\t\tif constexpr\
+    \ (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\t} else {\n\t\t\t\
+    int size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn std::vector(size,\
+    \ make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\n\
+    template <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N], const\
+    \ T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\t\
+    return internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
     \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
     \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
     \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
@@ -157,7 +159,7 @@ data:
   requiredBy:
   - template_no_Ruby.cpp
   - template.cpp
-  timestamp: '2021-03-14 14:52:05+09:00'
+  timestamp: '2021-03-19 16:49:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp

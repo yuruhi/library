@@ -6,6 +6,9 @@ data:
     path: Graph/BellmanFord.cpp
     title: Graph/BellmanFord.cpp
   - icon: ':warning:'
+    path: Graph/BipartiteGraph.cpp
+    title: Graph/BipartiteGraph.cpp
+  - icon: ':warning:'
     path: Graph/BuildTreePath.cpp
     title: Graph/BuildTreePath.cpp
   - icon: ':heavy_check_mark:'
@@ -140,6 +143,7 @@ data:
   - Graph/BuildTreePath.cpp
   - Graph/ShortestPathTree.cpp
   - Graph/isConnected.cpp
+  - Graph/BipartiteGraph.cpp
   - Graph/WarashallFloyd.cpp
   - Graph/TravelingSalesmanProblem.cpp
   - Graph/Kruskal.cpp
