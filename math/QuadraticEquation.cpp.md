@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/QuadraticEquation.test.cpp
     title: test/QuadraticEquation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/QuadraticEquation.cpp\"\n#include <vector>\n#include\
@@ -19,10 +19,10 @@ data:
     \ {\n\t\treturn std::vector{-(C / B)};\n\t} else {\n\t\tlong long d = b * b -\
     \ 4 * a * c;\n\t\tT D = static_cast<T>(d);\n\t\tif (d < 0) {\n\t\t\treturn std::vector<T>();\n\
     \t\t} else if (d == 0) {\n\t\t\treturn std::vector{-B / (2 * A)};\n\t\t} else\
-    \ {\n\t\t\tT ans1 = 0, ans2 = 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - sqrt(D))\
-    \ / (2 * A);\n\t\t\t} else {\n\t\t\t\tans1 = (-B + sqrt(D)) / (2 * A);\n\t\t\t\
-    }\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn std::vector{min(ans1, ans2), max(ans1,\
-    \ ans2)};\n\t\t}\n\t}\n}\n"
+    \ {\n\t\t\tT ans1 = 0, ans2 = 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - std::sqrt(D))\
+    \ / (2 * A);\n\t\t\t} else {\n\t\t\t\tans1 = (-B + std::sqrt(D)) / (2 * A);\n\t\
+    \t\t}\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn std::vector{std::min(ans1, ans2),\
+    \ std::max(ans1, ans2)};\n\t\t}\n\t}\n}\n"
   code: "#pragma once\n#include <vector>\n#include <optional>\n#include <cmath>\n\n\
     template <class T>\nstd::optional<std::vector<T>> QuadraticEquation(long long\
     \ a, long long b, long long c) {\n\tT A = a, B = b, C = c;\n\tif (a == 0 && b\
@@ -31,16 +31,16 @@ data:
     \ / B)};\n\t} else {\n\t\tlong long d = b * b - 4 * a * c;\n\t\tT D = static_cast<T>(d);\n\
     \t\tif (d < 0) {\n\t\t\treturn std::vector<T>();\n\t\t} else if (d == 0) {\n\t\
     \t\treturn std::vector{-B / (2 * A)};\n\t\t} else {\n\t\t\tT ans1 = 0, ans2 =\
-    \ 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - sqrt(D)) / (2 * A);\n\t\t\t} else\
-    \ {\n\t\t\t\tans1 = (-B + sqrt(D)) / (2 * A);\n\t\t\t}\n\t\t\tans2 = (C / A) /\
-    \ ans1;\n\t\t\treturn std::vector{min(ans1, ans2), max(ans1, ans2)};\n\t\t}\n\t\
-    }\n}\n"
+    \ 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - std::sqrt(D)) / (2 * A);\n\t\t\t\
+    } else {\n\t\t\t\tans1 = (-B + std::sqrt(D)) / (2 * A);\n\t\t\t}\n\t\t\tans2 =\
+    \ (C / A) / ans1;\n\t\t\treturn std::vector{std::min(ans1, ans2), std::max(ans1,\
+    \ ans2)};\n\t\t}\n\t}\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/QuadraticEquation.cpp
   requiredBy: []
-  timestamp: '2021-03-21 09:59:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/QuadraticEquation.test.cpp
 documentation_of: math/QuadraticEquation.cpp

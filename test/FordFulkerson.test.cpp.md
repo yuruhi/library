@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FlowTemplate.cpp
     title: Graph/FlowTemplate.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FordFulkerson.cpp
     title: Graph/FordFulkerson.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
@@ -26,11 +26,11 @@ data:
     class FordFulkerson {\n\tint n;\n\tGraphF graph;\n\tstd::vector<bool> used;\n\t\
     FLOW dfs(int v, int t, FLOW f) {\n\t\tif (v == t) return f;\n\t\tused[v] = true;\n\
     \t\tfor (auto& e : graph[v]) {\n\t\t\tif (!used[e.to] && e.cap > 0) {\n\t\t\t\t\
-    FLOW d = dfs(e.to, t, min(f, e.cap));\n\t\t\t\tif (d > 0) {\n\t\t\t\t\te.cap -=\
-    \ d;\n\t\t\t\t\tgraph[e.to][e.rev].cap += d;\n\t\t\t\t\treturn d;\n\t\t\t\t}\n\
-    \t\t\t}\n\t\t}\n\t\treturn 0;\n\t}\n\npublic:\n\tFordFulkerson(std::size_t n)\
-    \ :  graph(n), used(n) {}\n\tconst GraphF& get_G() {\n\t\treturn graph;\n\t}\n\
-    \tvoid add_edge(int from, int to, FLOW cap) {\n\t\tgraph[from].emplace_back(to,\
+    FLOW d = dfs(e.to, t, std::min(f, e.cap));\n\t\t\t\tif (d > 0) {\n\t\t\t\t\te.cap\
+    \ -= d;\n\t\t\t\t\tgraph[e.to][e.rev].cap += d;\n\t\t\t\t\treturn d;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\treturn 0;\n\t}\n\npublic:\n\tFordFulkerson(std::size_t\
+    \ n) :  graph(n), used(n) {}\n\tconst GraphF& get_G() {\n\t\treturn graph;\n\t\
+    }\n\tvoid add_edge(int from, int to, FLOW cap) {\n\t\tgraph[from].emplace_back(to,\
     \ graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from, graph[from].size()\
     \ - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result = 0;\n\t\twhile\
     \ (true) {\n\t\t\tstd::fill(used.begin(), used.end(), false);\n\t\t\tFLOW f =\
@@ -52,8 +52,8 @@ data:
   isVerificationFile: true
   path: test/FordFulkerson.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/FordFulkerson.test.cpp
 layout: document

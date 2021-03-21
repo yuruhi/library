@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/TopologicalSort.test.cpp
     title: test/TopologicalSort.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -37,14 +37,14 @@ data:
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
     #line 4 \"Graph/TopologicalSort.cpp\"\n#include <algorithm>\n\nstd::vector<int>\
-    \ TopologicalSort(const UnWeightedTree& graph) {\n\tstd::size_t n = graph.size();\n\
+    \ TopologicalSort(const UnWeightedGraph& graph) {\n\tstd::size_t n = graph.size();\n\
     \tstd::vector<bool> visited(n);\n\tstd::vector<int> result;\n\tauto dfs = [&](auto\
     \ self, std::size_t v) -> void {\n\t\tif (visited[v]) return;\n\t\tvisited[v]\
     \ = true;\n\t\tfor (std::size_t i : graph[v]) self(self, i);\n\t\tresult.push_back(v);\n\
     \t};\n\tfor (std::size_t i = 0; i < n; i++) dfs(dfs, i);\n\tstd::reverse(result.begin(),\
     \ result.end());\n\treturn result;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <algorithm>\n\nstd::vector<int> TopologicalSort(const UnWeightedTree& graph)\
+    \ <algorithm>\n\nstd::vector<int> TopologicalSort(const UnWeightedGraph& graph)\
     \ {\n\tstd::size_t n = graph.size();\n\tstd::vector<bool> visited(n);\n\tstd::vector<int>\
     \ result;\n\tauto dfs = [&](auto self, std::size_t v) -> void {\n\t\tif (visited[v])\
     \ return;\n\t\tvisited[v] = true;\n\t\tfor (std::size_t i : graph[v]) self(self,\
@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: Graph/TopologicalSort.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TopologicalSort.test.cpp
 documentation_of: Graph/TopologicalSort.cpp

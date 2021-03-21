@@ -41,7 +41,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: DataStructure/ImosLinear.cpp
       title: DataStructure/ImosLinear.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: DataStructure/LazySegmentTree.cpp
       title: DataStructure/LazySegmentTree.cpp
     - icon: ':warning:'
@@ -132,10 +132,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/CycleDetection.cpp
       title: Graph/CycleDetection.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/Diameter.cpp
       title: Graph/Diameter.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/DiameterPath.cpp
       title: Graph/DiameterPath.cpp
     - icon: ':heavy_check_mark:'
@@ -156,16 +156,16 @@ data:
     - icon: ':warning:'
       path: Graph/EulerTourForVertex.cpp
       title: Graph/EulerTourForVertex.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/FlowTemplate.cpp
       title: Graph/FlowTemplate.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/FordFulkerson.cpp
       title: Graph/FordFulkerson.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Graph/GraphTemplate.cpp
       title: Graph/GraphTemplate.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/HeavyLightDecomposition.cpp
       title: Graph/HeavyLightDecomposition.cpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/LCA.cpp
       title: Graph/LCA.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/LowLink.cpp
       title: Graph/LowLink.cpp
     - icon: ':heavy_check_mark:'
@@ -192,7 +192,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/StronglyConnectedComponents.cpp
       title: Graph/StronglyConnectedComponents.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Graph/TopologicalSort.cpp
       title: Graph/TopologicalSort.cpp
     - icon: ':heavy_check_mark:'
@@ -305,7 +305,7 @@ data:
     - icon: ':warning:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
     - icon: ':warning:'
@@ -320,7 +320,7 @@ data:
     - icon: ':warning:'
       path: atcoder/internal_type_traits.hpp
       title: atcoder/internal_type_traits.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/lazysegtree.hpp
       title: atcoder/lazysegtree.hpp
     - icon: ':warning:'
@@ -405,7 +405,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.cpp
       title: math/PrimeFactor.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/QuadraticEquation.cpp
       title: math/QuadraticEquation.cpp
     - icon: ':warning:'
@@ -478,7 +478,7 @@ data:
       title: old/RangeUpdateQuery.test.cpp
   - name: test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/ArticulationPoints.test.cpp
       title: test/ArticulationPoints.test.cpp
     - icon: ':heavy_check_mark:'
@@ -493,7 +493,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/BitRangeBasedFor.test.cpp
       title: test/BitRangeBasedFor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/Bridges.test.cpp
       title: test/Bridges.test.cpp
     - icon: ':heavy_check_mark:'
@@ -520,7 +520,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/CycleDetectionVertex_Undirected.test.cpp
       title: test/CycleDetectionVertex_Undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/Diameter.test.cpp
       title: test/Diameter.test.cpp
     - icon: ':heavy_check_mark:'
@@ -571,7 +571,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Fibonacci.test.cpp
       title: test/Fibonacci.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -643,16 +643,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/GridBFS.test.cpp
       title: test/GridBFS.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/HLD_LCA.test.cpp
       title: test/HLD_LCA.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/HLD_edge.test.cpp
       title: test/HLD_edge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/HLD_subtree_edge.test.cpp
       title: test/HLD_subtree_edge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/HLD_vertex.test.cpp
       title: test/HLD_vertex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -718,7 +718,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/PrimeFactor.test.cpp
       title: test/PrimeFactor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/QuadraticEquation.test.cpp
       title: test/QuadraticEquation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -766,7 +766,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/TemplateFunctions.test.cpp
       title: test/TemplateFunctions.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/TopologicalSort.test.cpp
       title: test/TopologicalSort.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/QuadraticEquation.cpp
     title: math/QuadraticEquation.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: 1e-4
@@ -24,12 +24,12 @@ data:
     \ {\n\t\treturn std::vector{-(C / B)};\n\t} else {\n\t\tlong long d = b * b -\
     \ 4 * a * c;\n\t\tT D = static_cast<T>(d);\n\t\tif (d < 0) {\n\t\t\treturn std::vector<T>();\n\
     \t\t} else if (d == 0) {\n\t\t\treturn std::vector{-B / (2 * A)};\n\t\t} else\
-    \ {\n\t\t\tT ans1 = 0, ans2 = 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - sqrt(D))\
-    \ / (2 * A);\n\t\t\t} else {\n\t\t\t\tans1 = (-B + sqrt(D)) / (2 * A);\n\t\t\t\
-    }\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn std::vector{min(ans1, ans2), max(ans1,\
-    \ ans2)};\n\t\t}\n\t}\n}\n#line 4 \"test/QuadraticEquation.test.cpp\"\n#include\
-    \ <iostream>\n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\
-    \nint main() {\n\tint a, b, c;\n\tcin >> a >> b >> c;\n\tauto ans = *QuadraticEquation<long\
+    \ {\n\t\t\tT ans1 = 0, ans2 = 0;\n\t\t\tif (b > 0) {\n\t\t\t\tans1 = (-B - std::sqrt(D))\
+    \ / (2 * A);\n\t\t\t} else {\n\t\t\t\tans1 = (-B + std::sqrt(D)) / (2 * A);\n\t\
+    \t\t}\n\t\t\tans2 = (C / A) / ans1;\n\t\t\treturn std::vector{std::min(ans1, ans2),\
+    \ std::max(ans1, ans2)};\n\t\t}\n\t}\n}\n#line 4 \"test/QuadraticEquation.test.cpp\"\
+    \n#include <iostream>\n#include <algorithm>\n#include <cassert>\nusing namespace\
+    \ std;\n\nint main() {\n\tint a, b, c;\n\tcin >> a >> b >> c;\n\tauto ans = *QuadraticEquation<long\
     \ double>(a, b, c);\n\tsort(ans.begin(), ans.end());\n\tif (ans.empty()) {\n\t\
     \tputs(\"imaginary\");\n\t} else if (ans.size() == 1) {\n\t\tprintf(\"%.6Lf\\\
     n\", ans[0]);\n\t} else if (ans.size() == 2) {\n\t\tprintf(\"%.6Lf %.6Lf\\n\"\
@@ -47,8 +47,8 @@ data:
   isVerificationFile: true
   path: test/QuadraticEquation.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 09:59:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/QuadraticEquation.test.cpp
 layout: document

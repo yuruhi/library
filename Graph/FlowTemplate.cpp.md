@@ -5,19 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Dinic.cpp
     title: Graph/Dinic.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FordFulkerson.cpp
     title: Graph/FordFulkerson.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Dinic.test.cpp
     title: test/Dinic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/FordFulkerson.test.cpp
     title: test/FordFulkerson.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <limits>\n\
@@ -36,7 +36,7 @@ data:
   - Graph/Dinic.cpp
   - Graph/FordFulkerson.cpp
   timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Dinic.test.cpp
   - test/FordFulkerson.test.cpp

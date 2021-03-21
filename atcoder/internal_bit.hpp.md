@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/LazySegmentTree.cpp
     title: DataStructure/LazySegmentTree.cpp
   - icon: ':heavy_check_mark:'
@@ -11,20 +11,20 @@ data:
   - icon: ':warning:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_edge.test.cpp
     title: test/HLD_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_subtree_edge.test.cpp
     title: test/HLD_subtree_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_vertex.test.cpp
     title: test/HLD_vertex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RangeUpdateRangeSum.test.cpp
     title: test/RangeUpdateRangeSum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include\
@@ -79,7 +79,7 @@ data:
   - atcoder/segtree.hpp
   - atcoder/convolution.hpp
   timestamp: '2020-10-30 19:21:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeUpdateRangeMin.test.cpp
   - test/RangeAddRangeSum.test.cpp

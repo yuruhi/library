@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Diameter.test.cpp
     title: test/Diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/GraphTemplate.cpp\"\n#include <limits>\n#include <vector>\n\
@@ -45,11 +45,11 @@ data:
     \n\tint s = std::max_element(dist0.begin(), dist0.end()) - dist0.begin();\n\t\
     std::vector<Weight> dist(n);\n\tstd::vector<int> par(n);\n\tauto dfs2 = [&](auto\
     \ self, int v, int p, Weight d) -> void {\n\t\tdist[v] = d;\n\t\tpar[v] = p;\n\
-    \t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to,\
-    \ v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(dfs2, s, -1, 0);\n\tauto t = std::max_element(dist.begin(),\
-    \ dist.end());\n\tstd::vector<int> path{t - dist.begin()};\n\tfor (int p = 0;\
-    \ (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\tstd::reverse(path.begin(),\
-    \ path.end());\n\treturn {*t, path};\n}\n"
+    \t\tfor (const auto& u : graph[v]) {\n\t\t\tif (u.to != p) {\n\t\t\t\tself(self,\
+    \ u.to, v, d + u.cost);\n\t\t\t}\n\t\t}\n\t};\n\tdfs2(dfs2, s, -1, 0);\n\tauto\
+    \ t = std::max_element(dist.begin(), dist.end());\n\tstd::vector<int> path{t -\
+    \ dist.begin()};\n\tfor (int p = 0; (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\
+    \t}\n\tstd::reverse(path.begin(), path.end());\n\treturn {*t, path};\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
     \ <algorithm>\n#include <utility>\n#include <tuple>\n#include <functional>\n\n\
     std::tuple<Weight, std::vector<int>> DiameterPath(const Graph& graph) {\n\tint\
@@ -59,19 +59,19 @@ data:
     \t\t\t}\n\t};\n\tdfs(dfs, 0, -1, 0);\n\n\tint s = std::max_element(dist0.begin(),\
     \ dist0.end()) - dist0.begin();\n\tstd::vector<Weight> dist(n);\n\tstd::vector<int>\
     \ par(n);\n\tauto dfs2 = [&](auto self, int v, int p, Weight d) -> void {\n\t\t\
-    dist[v] = d;\n\t\tpar[v] = p;\n\t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to\
-    \ != p) {\n\t\t\t\tdfs2(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(dfs2, s,\
-    \ -1, 0);\n\tauto t = std::max_element(dist.begin(), dist.end());\n\tstd::vector<int>\
-    \ path{t - dist.begin()};\n\tfor (int p = 0; (p = par[path.back()]) != -1;) {\n\
-    \t\tpath.push_back(p);\n\t}\n\tstd::reverse(path.begin(), path.end());\n\treturn\
-    \ {*t, path};\n}\n"
+    dist[v] = d;\n\t\tpar[v] = p;\n\t\tfor (const auto& u : graph[v]) {\n\t\t\tif\
+    \ (u.to != p) {\n\t\t\t\tself(self, u.to, v, d + u.cost);\n\t\t\t}\n\t\t}\n\t\
+    };\n\tdfs2(dfs2, s, -1, 0);\n\tauto t = std::max_element(dist.begin(), dist.end());\n\
+    \tstd::vector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p = par[path.back()])\
+    \ != -1;) {\n\t\tpath.push_back(p);\n\t}\n\tstd::reverse(path.begin(), path.end());\n\
+    \treturn {*t, path};\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/DiameterPath.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Diameter.test.cpp
 documentation_of: Graph/DiameterPath.cpp

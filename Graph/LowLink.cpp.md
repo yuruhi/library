@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/ArticulationPoints.test.cpp
     title: test/ArticulationPoints.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Bridges.test.cpp
     title: test/Bridges.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/LowLink.cpp\"\n#include <vector>\n#include <utility>\n\
@@ -23,7 +23,7 @@ data:
     \ {\n\t\t\t\tcount++;\n\t\t\t\tdfs(u, v);\n\t\t\t\tlow[v] = std::min(low[v], low[u]);\n\
     \t\t\t\tif (parent != -1 && ord[v] <= low[u]) {\n\t\t\t\t\tis_articultion_point\
     \ = true;\n\t\t\t\t}\n\t\t\t\tif (ord[v] < low[u]) {\n\t\t\t\t\tbridges.emplace_back(std::min(v,\
-    \ u), max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
+    \ u), std::max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
     \ = std::min(low[v], ord[u]);\n\t\t\t}\n\t\t}\n\t\tif (is_articultion_point ||\
     \ (parent == -1 && count > 1)) {\n\t\t\tarticulation_points.push_back(v);\n\t\t\
     }\n\t}\n\npublic:\n\tLowLink(size_t _n) : n(_n), graph(_n) {}\n\tLowLink(const\
@@ -42,7 +42,7 @@ data:
     \ {\n\t\t\t\tcount++;\n\t\t\t\tdfs(u, v);\n\t\t\t\tlow[v] = std::min(low[v], low[u]);\n\
     \t\t\t\tif (parent != -1 && ord[v] <= low[u]) {\n\t\t\t\t\tis_articultion_point\
     \ = true;\n\t\t\t\t}\n\t\t\t\tif (ord[v] < low[u]) {\n\t\t\t\t\tbridges.emplace_back(std::min(v,\
-    \ u), max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
+    \ u), std::max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
     \ = std::min(low[v], ord[u]);\n\t\t\t}\n\t\t}\n\t\tif (is_articultion_point ||\
     \ (parent == -1 && count > 1)) {\n\t\t\tarticulation_points.push_back(v);\n\t\t\
     }\n\t}\n\npublic:\n\tLowLink(size_t _n) : n(_n), graph(_n) {}\n\tLowLink(const\
@@ -56,8 +56,8 @@ data:
   isVerificationFile: false
   path: Graph/LowLink.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Bridges.test.cpp
   - test/ArticulationPoints.test.cpp

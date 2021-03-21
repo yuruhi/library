@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_LCA.test.cpp
     title: test/HLD_LCA.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_edge.test.cpp
     title: test/HLD_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_subtree_edge.test.cpp
     title: test/HLD_subtree_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_vertex.test.cpp
     title: test/HLD_vertex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/HeavyLightDecomposition.cpp\"\n#include <vector>\n\
@@ -50,17 +50,17 @@ data:
     assert(builded);\n\t\treturn out_index;\n\t}\n\tint operator[](int v) const {\n\
     \t\tassert(builded);\n\t\treturn index[v];\n\t}\n\n\ttemplate <class F> void each_vertex(int\
     \ v, int u, F f) const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v]\
-    \ > index[u]) swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
+    \ > index[u]) std::swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
     \ index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tf(index[v],\
     \ index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class F> void\
     \ each_subtree_vertex(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v],\
     \ out_index[v]);\n\t}\n\ttemplate <class F> void each_edge(int v, int u, F f)\
     \ const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v] > index[u])\
-    \ swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]], index[u]\
-    \ + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v != u) f(index[v]\
-    \ + 1, index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class\
-    \ F> void each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v]\
-    \ + 1, out_index[v]);\n\t}\n\tstd::vector<std::pair<int, int>> query_vertex(int\
+    \ std::swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
+    \ index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v\
+    \ != u) f(index[v] + 1, index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\t\
+    template <class F> void each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\
+    \t\tf(index[v] + 1, out_index[v]);\n\t}\n\tstd::vector<std::pair<int, int>> query_vertex(int\
     \ u, int v) const {\n\t\tassert(builded);\n\t\tstd::vector<std::pair<int, int>>\
     \ result;\n\t\teach_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b);\
     \ });\n\t\treturn result;\n\t}\n\tstd::pair<int, int> query_subtree_vertex(int\
@@ -71,7 +71,7 @@ data:
     \ b); });\n\t\treturn result;\n\t}\n\tstd::pair<int, int> query_subtree_edge(int\
     \ v) const {\n\t\tassert(builded);\n\t\tstd::pair<int, int> result;\n\t\teach_subtree_edge(v,\
     \ [&](int a, int b) { result = {a, b}; });\n\t\treturn result;\n\t}\n\tint lca(int\
-    \ u, int v) const {\n\t\twhile (true) {\n\t\t\tif (index[u] > index[v]) swap(u,\
+    \ u, int v) const {\n\t\twhile (true) {\n\t\t\tif (index[u] > index[v]) std::swap(u,\
     \ v);\n\t\t\tif (head[u] != head[v]) {\n\t\t\t\tv = parent[head[v]];\n\t\t\t}\
     \ else {\n\t\t\t\treturn u;\n\t\t\t}\n\t\t}\n\t}\n};\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nclass HLD {\n\tint\
@@ -103,17 +103,17 @@ data:
     assert(builded);\n\t\treturn out_index;\n\t}\n\tint operator[](int v) const {\n\
     \t\tassert(builded);\n\t\treturn index[v];\n\t}\n\n\ttemplate <class F> void each_vertex(int\
     \ v, int u, F f) const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v]\
-    \ > index[u]) swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
+    \ > index[u]) std::swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
     \ index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tf(index[v],\
     \ index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class F> void\
     \ each_subtree_vertex(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v],\
     \ out_index[v]);\n\t}\n\ttemplate <class F> void each_edge(int v, int u, F f)\
     \ const {\n\t\tassert(builded);\n\t\twhile (true) {\n\t\t\tif (index[v] > index[u])\
-    \ swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]], index[u]\
-    \ + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v != u) f(index[v]\
-    \ + 1, index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\ttemplate <class\
-    \ F> void each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\t\tf(index[v]\
-    \ + 1, out_index[v]);\n\t}\n\tstd::vector<std::pair<int, int>> query_vertex(int\
+    \ std::swap(v, u);\n\t\t\tif (head[v] != head[u]) {\n\t\t\t\tf(index[head[u]],\
+    \ index[u] + 1);\n\t\t\t\tu = parent[head[u]];\n\t\t\t} else {\n\t\t\t\tif (v\
+    \ != u) f(index[v] + 1, index[u] + 1);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t}\n\t\
+    template <class F> void each_subtree_edge(int v, F f) const {\n\t\tassert(builded);\n\
+    \t\tf(index[v] + 1, out_index[v]);\n\t}\n\tstd::vector<std::pair<int, int>> query_vertex(int\
     \ u, int v) const {\n\t\tassert(builded);\n\t\tstd::vector<std::pair<int, int>>\
     \ result;\n\t\teach_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b);\
     \ });\n\t\treturn result;\n\t}\n\tstd::pair<int, int> query_subtree_vertex(int\
@@ -124,15 +124,15 @@ data:
     \ b); });\n\t\treturn result;\n\t}\n\tstd::pair<int, int> query_subtree_edge(int\
     \ v) const {\n\t\tassert(builded);\n\t\tstd::pair<int, int> result;\n\t\teach_subtree_edge(v,\
     \ [&](int a, int b) { result = {a, b}; });\n\t\treturn result;\n\t}\n\tint lca(int\
-    \ u, int v) const {\n\t\twhile (true) {\n\t\t\tif (index[u] > index[v]) swap(u,\
+    \ u, int v) const {\n\t\twhile (true) {\n\t\t\tif (index[u] > index[v]) std::swap(u,\
     \ v);\n\t\t\tif (head[u] != head[v]) {\n\t\t\t\tv = parent[head[v]];\n\t\t\t}\
     \ else {\n\t\t\t\treturn u;\n\t\t\t}\n\t\t}\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/HeavyLightDecomposition.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/HLD_edge.test.cpp
   - test/HLD_vertex.test.cpp

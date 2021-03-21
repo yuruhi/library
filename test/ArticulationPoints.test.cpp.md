@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/LowLink.cpp
     title: Graph/LowLink.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_3_A
@@ -24,7 +24,7 @@ data:
     \ {\n\t\t\t\tcount++;\n\t\t\t\tdfs(u, v);\n\t\t\t\tlow[v] = std::min(low[v], low[u]);\n\
     \t\t\t\tif (parent != -1 && ord[v] <= low[u]) {\n\t\t\t\t\tis_articultion_point\
     \ = true;\n\t\t\t\t}\n\t\t\t\tif (ord[v] < low[u]) {\n\t\t\t\t\tbridges.emplace_back(std::min(v,\
-    \ u), max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
+    \ u), std::max(v, u));\n\t\t\t\t}\n\t\t\t} else if (u != parent) {\n\t\t\t\tlow[v]\
     \ = std::min(low[v], ord[u]);\n\t\t\t}\n\t\t}\n\t\tif (is_articultion_point ||\
     \ (parent == -1 && count > 1)) {\n\t\t\tarticulation_points.push_back(v);\n\t\t\
     }\n\t}\n\npublic:\n\tLowLink(size_t _n) : n(_n), graph(_n) {}\n\tLowLink(const\
@@ -52,8 +52,8 @@ data:
   isVerificationFile: true
   path: test/ArticulationPoints.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ArticulationPoints.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Dinic.cpp
     title: Graph/Dinic.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FlowTemplate.cpp
     title: Graph/FlowTemplate.cpp
   _extendedRequiredBy: []

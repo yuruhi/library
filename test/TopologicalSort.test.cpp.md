@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/TopologicalSort.cpp
     title: Graph/TopologicalSort.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B
@@ -41,7 +41,7 @@ data:
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
     #line 4 \"Graph/TopologicalSort.cpp\"\n#include <algorithm>\n\nstd::vector<int>\
-    \ TopologicalSort(const UnWeightedTree& graph) {\n\tstd::size_t n = graph.size();\n\
+    \ TopologicalSort(const UnWeightedGraph& graph) {\n\tstd::size_t n = graph.size();\n\
     \tstd::vector<bool> visited(n);\n\tstd::vector<int> result;\n\tauto dfs = [&](auto\
     \ self, std::size_t v) -> void {\n\t\tif (visited[v]) return;\n\t\tvisited[v]\
     \ = true;\n\t\tfor (std::size_t i : graph[v]) self(self, i);\n\t\tresult.push_back(v);\n\
@@ -63,8 +63,8 @@ data:
   isVerificationFile: true
   path: test/TopologicalSort.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-21 11:17:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TopologicalSort.test.cpp
 layout: document

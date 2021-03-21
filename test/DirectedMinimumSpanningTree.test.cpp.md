@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/DirectedMinimumSpanningTree.cpp
     title: Graph/DirectedMinimumSpanningTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []

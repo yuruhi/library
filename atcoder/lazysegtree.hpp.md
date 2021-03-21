@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: DataStructure/LazySegmentTree.cpp
     title: DataStructure/LazySegmentTree.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_edge.test.cpp
     title: test/HLD_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_subtree_edge.test.cpp
     title: test/HLD_subtree_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/HLD_vertex.test.cpp
     title: test/HLD_vertex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/RangeUpdateRangeSum.test.cpp
     title: test/RangeUpdateRangeSum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/lazysegtree.hpp\"\n\n\n\n#line 1 \"atcoder/internal_bit.hpp\"\
@@ -177,7 +177,7 @@ data:
   requiredBy:
   - DataStructure/LazySegmentTree.cpp
   timestamp: '2021-01-02 15:12:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeUpdateRangeMin.test.cpp
   - test/RangeAddRangeSum.test.cpp
