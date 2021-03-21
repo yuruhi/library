@@ -2,8 +2,6 @@
 #include "./Geometric.hpp"
 #include "./Vec2.hpp"
 #include <iostream>
-#include <vector>
-using namespace std;
 
 namespace Geometric {
 
@@ -68,10 +66,10 @@ namespace Geometric {
 		bool contains(const Circle& c) const {
 			return sgn(distance(center, c.center) + c.r - r) <= 0;
 		}
-		friend ostream& operator<<(ostream& os, const Circle& c) {
+		friend std::ostream& operator<<(std::ostream& os, const Circle& c) {
 			return os << '(' << c.center.x << ", " << c.center.y << ", " << c.r << ')';
 		}
-		friend istream& operator>>(istream& is, Circle& c) {
+		friend std::istream& operator>>(std::istream& is, Circle& c) {
 			return is >> c.center >> c.r;
 		}
 	};

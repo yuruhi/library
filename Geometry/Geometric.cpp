@@ -6,6 +6,10 @@
 #include "./Triangle.hpp"
 #include "./Polygon.hpp"
 #include "./Geometric.hpp"
+#include <vector>
+#include <optional>
+#include <algorithm>
+#include <cmath>
 
 namespace Geometric {
 
@@ -55,25 +59,25 @@ namespace Geometric {
 
 	LD angle(const Vec2& a, const Vec2& b, const Vec2& c) {
 		// return acos((a - b).dot(c - b) / (distance(a, b) * distance(c, b)));
-		// return abs((a - b).rotation(-(c - b).angle()).angle());
+		// return std::abs((a - b).rotation(-(c - b).angle()).angle());
 		return (c - b).rotation(-(a - b).angle()).angle();
 	}
 
 	LD distance(const Vec2& v1, const Vec2& v2) {
-		return hypot(v1.x - v2.x, v1.y - v2.y);
+		return std::hypot(v1.x - v2.x, v1.y - v2.y);
 	}
 	LD distance(const Vec2& v, const Line& l) {
-		return abs(l.vec().cross(v - l.begin) / l.vec().length());
+		return std::abs(l.vec().cross(v - l.begin) / l.vec().length());
 	}
 	LD distance(const Vec2& v, const Segment& s) {
 		if (sgn(s.vec().dot(v - s.begin)) < 0 || sgn(s.counter_vec().dot(v - s.end)) < 0) {
-			return min(distance(v, s.begin), distance(v, s.end));
+			return std::min(distance(v, s.begin), distance(v, s.end));
 		} else {
 			return distance(Line(s), v);
 		}
 	}
 	LD distance(const Vec2& v, const Circle& c) {
-		return max<LD>(0, distance(c.center, v) - c.r);
+		return std::max<LD>(0, distance(c.center, v) - c.r);
 	}
 	LD distance(const Line& l, const Vec2& v) {
 		return distance(v, l);
@@ -88,22 +92,22 @@ namespace Geometric {
 		if (intersect(s1, s2)) {
 			return 0;
 		} else {
-			return min({distance(s1, s2.begin), distance(s1, s2.end), distance(s1.begin, s2),
-			            distance(s1.end, s2)});
+			return std::min({distance(s1, s2.begin), distance(s1, s2.end),
+			                 distance(s1.begin, s2), distance(s1.end, s2)});
 		}
 	}
 	LD distance(const Circle& c, const Vec2& v) {
 		return distance(v, c);
 	}
 	LD distance(const Circle& c1, const Circle& c2) {
-		return max<LD>(0, distance(c1.center, c2.center) - (c1.r + c2.r));
+		return std::max<LD>(0, distance(c1.center, c2.center) - (c1.r + c2.r));
 	}
 
 	bool intersect(const Vec2& v1, const Vec2& v2) {
 		return v1 == v2;
 	}
 	bool intersect(const Vec2& v, const Line& l) {
-		return abs(iSP(v, l.begin, l.end)) != 1;
+		return std::abs(iSP(v, l.begin, l.end)) != 1;
 	}
 	bool intersect(const Vec2& v, const Segment& l) {
 		return iSP(l.begin, l.end, v) == 0;
@@ -117,14 +121,14 @@ namespace Geometric {
 	}
 	bool intersect(const Vec2& v, const Polygon& p) {
 		LD theta = 0;
-		for (size_t i = 0; i < p.size(); ++i) {
+		for (std::size_t i = 0; i < p.size(); ++i) {
 			Vec2 next = p[i != p.size() - 1 ? i + 1 : 0];
 			if (intersect(Segment(p[i], next), v)) {
 				return true;
 			}
 			theta += angle(p[i], v, next);
 		}
-		return abs(theta) > 1;
+		return std::abs(theta) > 1;
 	}
 	bool intersect(const Line& l, const Vec2& v) {
 		return intersect(v, l);
@@ -167,8 +171,10 @@ namespace Geometric {
 		return intersect(v, r);
 	}
 	bool intersect(const Rect& r1, const Rect& r2) {
-		return sgn(max(r1.left_x(), r2.left_x()) - min(r1.right_x(), r2.right_x())) <= 0 &&
-		    sgn(max(r1.top_y(), r2.top_y()) - min(r1.bottom_y(), r2.bottom_y())) <= 0;
+		return sgn(std::max(r1.left_x(), r2.left_x()) -
+		           std::min(r1.right_x(), r2.right_x())) <= 0 &&
+		    sgn(std::max(r1.top_y(), r2.top_y()) - std::min(r1.bottom_y(), r2.bottom_y())) <=
+		    0;
 	}
 	bool intersect(const Rect& r, const Circle& c) {
 		return intersect(c, r);
@@ -194,7 +200,7 @@ namespace Geometric {
 		    tangent(r.right(), v);
 	}
 	bool tangent(const Vec2& v, const Polygon& p) {
-		for (size_t i = 0; i < p.size(); ++i) {
+		for (std::size_t i = 0; i < p.size(); ++i) {
 			if (tangent(Segment(p[i], p[(i + 1) % p.size()]), v)) {
 				return true;
 			}
@@ -223,7 +229,7 @@ namespace Geometric {
 	}
 	bool tangent(const Circle& c1, const Circle& c2) {
 		LD l1 = distance(c1.center, c2.center), l2 = c1.r, l3 = c2.r;
-		return sgn(l1 + l2 + l3 - max({l1, l2, l3}) * 2) == 0;
+		return sgn(l1 + l2 + l3 - std::max({l1, l2, l3}) * 2) == 0;
 	}
 	bool tangent(const Rect& r, const Vec2& v) {
 		return tangent(v, r);
@@ -235,30 +241,30 @@ namespace Geometric {
 		return tangent(v, p);
 	}
 
-	optional<Vec2> cross_point(const Line& l1, const Line& l2) {
+	std::optional<Vec2> cross_point(const Line& l1, const Line& l2) {
 		if (intersect(l1, l2)) {
-			// return begin + vec() * abs((l.end - begin).cross(l.vec()) /
+			// return begin + vec() * std::abs((l.end - begin).cross(l.vec()) /
 			// vec().cross(l.vec()));
 			auto [a, b, c] = l1.abc();
 			auto [A, B, C] = l2.abc();
 			LD d = A * b - a * B;
 			return Vec2((B * c - b * C) / d, (a * C - A * c) / d);
 		} else {
-			return nullopt;
+			return std::nullopt;
 		}
 	}
-	optional<Vec2> cross_point(const Segment& s1, const Segment& s2) {
+	std::optional<Vec2> cross_point(const Segment& s1, const Segment& s2) {
 		if (intersect(s1, s2)) {
 			return cross_point(Line(s1), Line(s2));
 		} else {
-			return nullopt;
+			return std::nullopt;
 		}
 	}
 
-	vector<Vec2> cross_points(const Line& l, const Circle& c) {
+	std::vector<Vec2> cross_points(const Line& l, const Circle& c) {
 		LD dist = distance(l, c.center);
 		if (int f = sgn(c.r - dist); f == 1) {
-			LD x = sqrt(c.r * c.r - dist * dist);
+			LD x = std::sqrt(c.r * c.r - dist * dist);
 			Vec2 p = c.center.projection(l);
 			return {p + l.vec().normalized() * x, p + l.counter_vec().normalized() * x};
 		} else if (f == 0) {
@@ -267,8 +273,8 @@ namespace Geometric {
 			return {};
 		}
 	}
-	vector<Vec2> cross_points(const Segment& s, const Circle& c) {
-		vector<Vec2> result;
+	std::vector<Vec2> cross_points(const Segment& s, const Circle& c) {
+		std::vector<Vec2> result;
 		for (const Vec2& v : cross_points(Line(s), c)) {
 			if (intersect(v, s)) {
 				result.push_back(v);
@@ -276,13 +282,13 @@ namespace Geometric {
 		}
 		return result;
 	}
-	vector<Vec2> cross_points(const Circle& c, const Line& l) {
+	std::vector<Vec2> cross_points(const Circle& c, const Line& l) {
 		return cross_points(l, c);
 	}
-	vector<Vec2> cross_points(const Circle& c, const Segment& s) {
+	std::vector<Vec2> cross_points(const Circle& c, const Segment& s) {
 		return cross_points(s, c);
 	}
-	vector<Vec2> cross_points(const Circle& c1, const Circle& c2) {
+	std::vector<Vec2> cross_points(const Circle& c1, const Circle& c2) {
 		Vec2 vec = (c1.center - c2.center).normalized();  // c2 -> c1
 		LD dist = distance(c1.center, c2.center);
 		if (sgn(dist - c1.r - c2.r) == 0) {
@@ -293,7 +299,7 @@ namespace Geometric {
 			return {c2.center + vec.rotate180() * c2.r};
 		} else if (intersect(c1, c2)) {
 			LD area = Triangle::area(dist, c1.r, c2.r);
-			LD y = 2 * area / dist, x = sqrt(c1.r * c1.r - y * y);
+			LD y = 2 * area / dist, x = std::sqrt(c1.r * c1.r - y * y);
 			LD r1_s = c1.r * c1.r, r2_s = c2.r * c2.r, dist_s = dist * dist;
 			Vec2 h = c1.center + vec * (r2_s < r1_s + dist_s ? -x : x),
 			     v2 = vec.rotate90() * y;
@@ -303,10 +309,10 @@ namespace Geometric {
 		}
 	}
 
-	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {
+	std::vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v) {
 		LD dist = distance(c.center, v);
 		if (sgn(dist - c.r) >= 0) {
-			LD x = sqrt(dist * dist - c.r * c.r);
+			LD x = std::sqrt(dist * dist - c.r * c.r);
 			return cross_points(Circle(v, x), c);
 		} else {
 			return {};

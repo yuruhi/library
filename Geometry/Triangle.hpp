@@ -5,7 +5,6 @@
 #include "./Circle.hpp"
 #include <tuple>
 #include <cassert>
-using namespace std;
 
 namespace Geometric {
 
@@ -20,7 +19,7 @@ namespace Geometric {
 		    : p1(_p1), p2(_p2), p3(_p3) {
 			assert(abs(iSP(p1, p2, p3)) == 1);
 		}
-		tuple<LD, LD, LD> sides() const {
+		std::tuple<LD, LD, LD> sides() const {
 			return {distance(p2, p3), distance(p1, p3), distance(p1, p2)};
 		}
 		LD area() const {
@@ -43,10 +42,10 @@ namespace Geometric {
 			Vec2 center = *cross_point(l1, l2);
 			return Circle(center, distance(center, p1));
 		}
-		friend ostream& operator<<(ostream& os, const Triangle& t) {
+		friend std::ostream& operator<<(std::ostream& os, const Triangle& t) {
 			return os << '(' << t.p1 << ", " << t.p2 << ", " << t.p3 << ')';
 		}
-		friend istream& operator>>(istream& is, Triangle& t) {
+		friend std::istream& operator>>(std::istream& is, Triangle& t) {
 			return is >> t.p1 >> t.p2 >> t.p3;
 		}
 	};

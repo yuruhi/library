@@ -3,7 +3,6 @@
 #include "./Vec2.hpp"
 #include "./Line.hpp"
 #include <iostream>
-using namespace std;
 
 namespace Geometric {
 
@@ -91,10 +90,10 @@ namespace Geometric {
 			return sgn(left_x() - c.left_x()) <= 0 && sgn(c.right_x() - right_x()) <= 0 &&
 			    sgn(top_y() - c.top_y()) <= 0 && sgn(c.bottom_y() - bottom_y()) <= 0;
 		}
-		friend ostream& operator<<(ostream& os, const Rect& r) {
+		friend std::ostream& operator<<(std::ostream& os, const Rect& r) {
 			return os << '(' << r.pos << ',' << r.size << ')';
 		}
-		friend istream& operator>>(istream& is, Rect& r) {
+		friend std::istream& operator>>(std::istream& is, Rect& r) {
 			return is >> r.pos >> r.size;
 		}
 	};

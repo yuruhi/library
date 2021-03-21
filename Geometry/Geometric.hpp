@@ -3,7 +3,6 @@
 #include <vector>
 #include <algorithm>
 #include <optional>
-using namespace std;
 
 namespace Geometric {
 
@@ -91,15 +90,15 @@ namespace Geometric {
 	bool tangent(const Polygon& p, const Vec2& v);
 
 	// 交点
-	optional<Vec2> cross_point(const Line& l1, const Line& l2);
-	optional<Vec2> cross_point(const Segment& s1, const Segment& s2);
+	std::optional<Vec2> cross_point(const Line& l1, const Line& l2);
+	std::optional<Vec2> cross_point(const Segment& s1, const Segment& s2);
 
-	vector<Vec2> cross_points(const Line& l, const Circle& c);
-	vector<Vec2> cross_points(const Segment& s, const Circle& c);
-	vector<Vec2> cross_points(const Circle& c, const Line& l);
-	vector<Vec2> cross_points(const Circle& c, const Segment& s);
-	vector<Vec2> cross_points(const Circle& c1, const Circle& c2);
+	std::vector<Vec2> cross_points(const Line& l, const Circle& c);
+	std::vector<Vec2> cross_points(const Segment& s, const Circle& c);
+	std::vector<Vec2> cross_points(const Circle& c, const Line& l);
+	std::vector<Vec2> cross_points(const Circle& c, const Segment& s);
+	std::vector<Vec2> cross_points(const Circle& c1, const Circle& c2);
 
 	// 円の接線
-	vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
+	std::vector<Vec2> tangent_to_circle(const Circle& c, const Vec2& v);
 }  // namespace Geometric

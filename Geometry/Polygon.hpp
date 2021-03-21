@@ -7,31 +7,30 @@
 #include <algorithm>
 #include <utility>
 #include <tuple>
-using namespace std;
 
 namespace Geometric {
 
-	struct Polygon : vector<Vec2> {
+	struct Polygon : std::vector<Vec2> {
 	public:
 		Polygon() = default;
-		Polygon(int n) : vector<Vec2>(n) {}
-		Polygon(const vector<Vec2>& _p) : vector<Vec2>(_p) {}
+		Polygon(std::size_t n) : std::vector<Vec2>(n) {}
+		Polygon(const std::vector<Vec2>& _p) : std::vector<Vec2>(_p) {}
 		LD area() const {
 			LD ans = 0;
-			for (size_t i = 0; i < size(); ++i) {
-				size_t next = i != size() - 1 ? i + 1 : 0;
+			for (std::size_t i = 0; i < size(); ++i) {
+				std::size_t next = i != size() - 1 ? i + 1 : 0;
 				ans += at(i).cross(at(next));
 			}
-			return abs(ans) / 2;
+			return std::abs(ans) / 2;
 		}
 		// 凸性判定（反時計回り）
 		bool is_convex() const {
 			if (size() < 3) {
 				return false;
 			}
-			for (size_t i = 0; i < size(); ++i) {
-				size_t prev = i != 0 ? i - 1 : size() - 1;
-				size_t next = i != size() - 1 ? i + 1 : 0;
+			for (std::size_t i = 0; i < size(); ++i) {
+				std::size_t prev = i != 0 ? i - 1 : size() - 1;
+				std::size_t next = i != size() - 1 ? i + 1 : 0;
 				if (iSP(at(prev), at(i), at(next)) == -1) {
 					return false;
 				}
@@ -40,8 +39,8 @@ namespace Geometric {
 		}
 		// 凸包（反時計回り）
 		Polygon convex_hull() const {
-			vector<Vec2> ps = *this;
-			sort(ps.begin(), ps.end(), Vec2::compare_xy);
+			std::vector<Vec2> ps = *this;
+			std::sort(ps.begin(), ps.end(), Vec2::compare_xy);
 			int n = ps.size(), k = 0;
 			Polygon result(2 * n);
 			for (int i = 0; i < n; result[k++] = ps[i++]) {
@@ -59,8 +58,8 @@ namespace Geometric {
 		}
 		// 凸包（一直線上の3点を含めない、反時計回り）
 		Polygon convex_hull_no_collinear() const {
-			vector<Vec2> ps = *this;
-			sort(ps.begin(), ps.end(), Vec2::compare_xy);
+			std::vector<Vec2> ps = *this;
+			std::sort(ps.begin(), ps.end(), Vec2::compare_xy);
 			int n = ps.size(), k = 0;
 			Polygon result(2 * n);
 			for (int i = 0; i < n; result[k++] = ps[i++]) {
@@ -77,9 +76,9 @@ namespace Geometric {
 			return result;
 		}
 		// 直径
-		tuple<LD, size_t, size_t> diameter() const {
-			size_t i_start = 0, j_start = 0;
-			for (size_t i = 1; i < size(); ++i) {
+		std::tuple<LD, std::size_t, std::size_t> diameter() const {
+			std::size_t i_start = 0, j_start = 0;
+			for (std::size_t i = 1; i < size(); ++i) {
 				if (at(i).y > at(i_start).y) i_start = i;
 				if (at(i).y < at(j_start).y) j_start = i;
 			}
@@ -89,8 +88,8 @@ namespace Geometric {
 				return at((i + 1) % size()) - at(i);
 			};
 
-			size_t i = i_start, i_max = i_start;
-			size_t j = j_start, j_max = j_start;
+			std::size_t i = i_start, i_max = i_start;
+			std::size_t j = j_start, j_max = j_start;
 			do {
 				if (diff(i).cross(diff(j)) >= 0) {
 					j = (j + 1) % size();
@@ -108,7 +107,7 @@ namespace Geometric {
 		// 切断
 		Polygon cut(const Line& l) const {
 			Polygon result;
-			for (size_t i = 0; i < size(); ++i) {
+			for (std::size_t i = 0; i < size(); ++i) {
 				Vec2 a = at(i), b = at(i != size() - 1 ? i + 1 : 0);
 				if (iSP(l.begin, l.end, a) != -1) {
 					result.push_back(a);
@@ -119,15 +118,15 @@ namespace Geometric {
 			}
 			return result;
 		}
-		friend ostream& operator<<(ostream& os, const Polygon& p) {
+		friend std::ostream& operator<<(std::ostream& os, const Polygon& p) {
 			os << "{";
-			for (size_t i = 0; i < p.size(); ++i) {
+			for (std::size_t i = 0; i < p.size(); ++i) {
 				if (i != 0) os << ", ";
 				os << p[i];
 			}
 			return os << "}";
 		}
-		friend istream& operator>>(istream& is, Polygon& p) {
+		friend std::istream& operator>>(std::istream& is, Polygon& p) {
 			for (auto& v : p) {
 				is >> v;
 			}

@@ -1,6 +1,7 @@
 #pragma once
 #include "./Geometric.hpp"
 #include "./Geometric.cpp"
+#include <utility>
 
 namespace Geometric {
 	LD area_of_intersection(const Circle& c1, const Circle& c2) {
@@ -41,14 +42,14 @@ namespace Geometric {
 				return signed_area(a, b, false);
 			} else {
 				Vec2 p1 = points.front(), p2 = points.back();
-				swap(p1, p2);
+				std::swap(p1, p2);
 				return signed_area(p1, p2, true) + signed_area(a, p1, in_a) +
 				    signed_area(p2, b, in_b);
 			}
 		};
 
 		LD area = 0;
-		for (size_t i = 0; i < p.size(); ++i) {
+		for (std::size_t i = 0; i < p.size(); ++i) {
 			area += circle_and_triangle(c, p[i], p[i != p.size() - 1 ? i + 1 : 0]);
 		}
 		return area;
