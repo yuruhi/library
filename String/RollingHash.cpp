@@ -1,19 +1,18 @@
 #pragma once
 #include <vector>
 #include <string>
-using namespace std;
 
-template <uint64_t MOD> class RollingHash {
+template <std::uint64_t MOD> class RollingHash {
 public:
-	using ull = uint64_t;
+	using ull = std::uint64_t;
 
 private:
 	int n;
 	ull base;
-	vector<ull> pow, hash;
+	std::vector<ull> pow, hash;
 
 public:
-	RollingHash(const string& s, ull _base = 10007)
+	RollingHash(const std::string& s, ull _base = 10007)
 	    : n(s.size()), base(_base), pow(n + 1), hash(n + 1) {
 		pow[0] = 1;
 		hash[0] = 0;

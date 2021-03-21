@@ -2,13 +2,12 @@
 #include "./GraphTemplate.cpp"
 #include <vector>
 #include <queue>
-using namespace std;
 
-bool isConnected(const vector<vector<int>>& graph, int s, int t) {
-	int V = graph.size();
-	queue<int> que;
+bool isConnected(const std::vector<std::vector<int>>& graph, int s, int t) {
+	std::size_t n = graph.size();
+	std::queue<int> que;
 	que.push(s);
-	vector<bool> vis(V);
+	std::vector<bool> vis(n);
 	vis[s] = true;
 	while (!que.empty()) {
 		int fro = que.front();

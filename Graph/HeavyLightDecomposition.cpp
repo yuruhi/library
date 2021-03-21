@@ -1,14 +1,13 @@
 #pragma once
 #include <vector>
 #include <cassert>
-using namespace std;
 
 class HLD {
 	int n;
-	vector<vector<int>> graph;
-	vector<int> parent, size;
+	std::vector<std::vector<int>> graph;
+	std::vector<int> parent, size;
 	int k;
-	vector<int> head, hld, index, out_index;
+	std::vector<int> head, hld, index, out_index;
 	bool builded = false;
 
 	int calc_size(int v, int p, int d) {
@@ -46,7 +45,7 @@ class HLD {
 
 public:
 	HLD(int _n) : n(_n), graph(_n) {}
-	HLD(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph) {}
+	HLD(const std::vector<std::vector<int>>& _graph) : n(_graph.size()), graph(_graph) {}
 	void add_edge(int u, int v) {
 		graph[u].push_back(v);
 		graph[v].push_back(u);
@@ -64,31 +63,31 @@ public:
 		rec(root, -1, root);
 		builded = true;
 	}
-	const vector<vector<int>>& get_graph() const {
+	const std::vector<std::vector<int>>& get_graph() const {
 		assert(builded);
 		return graph;
 	}
-	const vector<int>& get_parent() const {
+	const std::vector<int>& get_parent() const {
 		assert(builded);
 		return parent;
 	}
-	const vector<int>& get_size() const {
+	const std::vector<int>& get_size() const {
 		assert(builded);
 		return size;
 	}
-	const vector<int>& get_head() const {
+	const std::vector<int>& get_head() const {
 		assert(builded);
 		return head;
 	}
-	const vector<int>& get_hld() const {
+	const std::vector<int>& get_hld() const {
 		assert(builded);
 		return hld;
 	}
-	const vector<int>& get_index() const {
+	const std::vector<int>& get_index() const {
 		assert(builded);
 		return index;
 	}
-	const vector<int>& get_out_index() const {
+	const std::vector<int>& get_out_index() const {
 		assert(builded);
 		return out_index;
 	}
@@ -131,27 +130,27 @@ public:
 		assert(builded);
 		f(index[v] + 1, out_index[v]);
 	}
-	vector<pair<int, int>> query_vertex(int u, int v) const {
+	std::vector<std::pair<int, int>> query_vertex(int u, int v) const {
 		assert(builded);
-		vector<pair<int, int>> result;
+		std::vector<std::pair<int, int>> result;
 		each_vertex(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;
 	}
-	pair<int, int> query_subtree_vertex(int v) const {
+	std::pair<int, int> query_subtree_vertex(int v) const {
 		assert(builded);
-		pair<int, int> result;
+		std::pair<int, int> result;
 		each_subtree_vertex(v, [&](int a, int b) { result = {a, b}; });
 		return result;
 	}
-	vector<pair<int, int>> query_edge(int u, int v) const {
+	std::vector<std::pair<int, int>> query_edge(int u, int v) const {
 		assert(builded);
-		vector<pair<int, int>> result;
+		std::vector<std::pair<int, int>> result;
 		each_edge(u, v, [&](int a, int b) { result.emplace_back(a, b); });
 		return result;
 	}
-	pair<int, int> query_subtree_edge(int v) const {
+	std::pair<int, int> query_subtree_edge(int v) const {
 		assert(builded);
-		pair<int, int> result;
+		std::pair<int, int> result;
 		each_subtree_edge(v, [&](int a, int b) { result = {a, b}; });
 		return result;
 	}

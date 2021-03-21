@@ -2,14 +2,12 @@
 #include "./GraphTemplate.cpp"
 #include <vector>
 #include <queue>
-using namespace std;
 
 Graph SpanningTree(const Graph& graph, int root) {
-	int n = graph.size();
-	Graph result(n);
-	queue<int> q;
+	Graph result(graph.size());
+	std::queue<int> q;
 	q.push(root);
-	vector<bool> flag(n);
+	std::vector<bool> flag(graph.size());
 	flag[root] = true;
 	while (!q.empty()) {
 		int f = q.front();

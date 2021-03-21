@@ -3,13 +3,12 @@
 #include <utility>
 #include <algorithm>
 #include <cassert>
-using namespace std;
 
 class BipartiteMatching {
-	size_t left, right;
-	vector<vector<int>> graph;
-	vector<bool> used;
-	vector<int> left_match, right_match;
+	std::size_t left, right;
+	std::vector<std::vector<int>> graph;
+	std::vector<bool> used;
+	std::vector<int> left_match, right_match;
 	bool dfs(int v) {
 		if (used[v]) {
 			return false;
@@ -26,14 +25,15 @@ class BipartiteMatching {
 	}
 
 public:
-	BipartiteMatching(size_t _left, size_t _right)
+	BipartiteMatching(std::size_t _left, std::size_t _right)
 	    : left(_left),
 	      right(_right),
 	      graph(left),
 	      used(left),
 	      left_match(left),
 	      right_match(right) {}
-	BipartiteMatching(size_t _left, size_t _right, const vector<vector<int>>& _graph)
+	BipartiteMatching(std::size_t _left, std::size_t _right,
+	                  const std::vector<std::vector<int>>& _graph)
 	    : left(_left),
 	      right(_right),
 	      graph(_graph),
@@ -47,26 +47,26 @@ public:
 	}
 	int solve() {
 		int result = 0;
-		fill(left_match.begin(), left_match.end(), -1);
-		fill(right_match.begin(), right_match.end(), -1);
-		fill(used.begin(), used.end(), false);
+		std::fill(left_match.begin(), left_match.end(), -1);
+		std::fill(right_match.begin(), right_match.end(), -1);
+		std::fill(used.begin(), used.end(), false);
 		for (bool update = true; update;) {
 			update = false;
-			for (size_t i = 0; i < left; ++i) {
+			for (std::size_t i = 0; i < left; ++i) {
 				if (left_match[i] == -1 && dfs(i)) {
 					update = true;
 					++result;
 				}
 			}
 			if (update) {
-				fill(used.begin(), used.end(), false);
+				std::fill(used.begin(), used.end(), false);
 			}
 		}
 		return result;
 	}
-	vector<pair<int, int>> edges() const {
-		vector<pair<int, int>> result;
-		for (size_t i = 0; i < left; ++i) {
+	std::vector<std::pair<int, int>> edges() const {
+		std::vector<std::pair<int, int>> result;
+		for (std::size_t i = 0; i < left; ++i) {
 			if (left_match[i] != -1) {
 				result.emplace_back(i, left_match[i]);
 			}

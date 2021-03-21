@@ -3,19 +3,18 @@
 #include <stack>
 #include <algorithm>
 #include <optional>
-using namespace std;
 
-optional<vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& edges,
-                                         bool directed = true) {
-	vector<vector<pair<int, int>>> graph(n);
-	for (size_t i = 0; i < edges.size(); ++i) {
+std::optional<std::vector<int>> CycleDetectionEdge(
+    int n, const std::vector<std::pair<int, int>>& edges, bool directed = true) {
+	std::vector<std::vector<std::pair<int, int>>> graph(n);
+	for (std::size_t i = 0; i < edges.size(); ++i) {
 		auto [u, v] = edges[i];
 		graph[u].emplace_back(v, i);
 		if (!directed) graph[v].emplace_back(u, i);
 	}
-	vector<bool> visited(n), finished(n);
-	stack<pair<int, int>> st;
-	optional<int> pos;
+	std::vector<bool> visited(n), finished(n);
+	std::stack<std::pair<int, int>> st;
+	std::optional<int> pos;
 	auto dfs = [&](auto&& f, int v, int prev_edge) -> void {
 		visited[v] = true;
 		for (auto [u, i] : graph[v]) {
@@ -37,7 +36,7 @@ optional<vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& ed
 	}
 
 	if (pos) {
-		vector<int> cycle;
+		std::vector<int> cycle;
 		while (!st.empty()) {
 			auto [top, from] = st.top();
 			st.pop();
@@ -46,19 +45,19 @@ optional<vector<int>> CycleDetectionEdge(int n, const vector<pair<int, int>>& ed
 				break;
 			}
 		}
-		reverse(cycle.begin(), cycle.end());
+		std::reverse(cycle.begin(), cycle.end());
 		return cycle;
 	} else {
-		return nullopt;
+		return std::nullopt;
 	}
 }
 
-optional<vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
-                                           bool directed = true) {
+std::optional<std::vector<int>> CycleDetectionVertex(
+    const std::vector<std::vector<int>>& graph, bool directed = true) {
 	int n = graph.size();
-	vector<bool> visited(n), finished(n);
-	stack<int> st;
-	optional<int> pos;
+	std::vector<bool> visited(n), finished(n);
+	std::stack<int> st;
+	std::optional<int> pos;
 	auto dfs = [&](auto&& f, int v, int prev) -> void {
 		visited[v] = true;
 		st.push(v);
@@ -80,7 +79,7 @@ optional<vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
 	}
 
 	if (pos) {
-		vector<int> cycle;
+		std::vector<int> cycle;
 		while (!st.empty()) {
 			int top = st.top();
 			st.pop();
@@ -89,16 +88,16 @@ optional<vector<int>> CycleDetectionVertex(const vector<vector<int>>& graph,
 				break;
 			}
 		}
-		reverse(cycle.begin(), cycle.end());
+		std::reverse(cycle.begin(), cycle.end());
 		return cycle;
 	} else {
-		return nullopt;
+		return std::nullopt;
 	}
 }
 
-optional<vector<int>> CycleDetectionVertex(int n, const vector<pair<int, int>>& edges,
-                                           bool directed = true) {
-	vector<vector<int>> graph(n);
+auto CycleDetectionVertex(int n, const std::vector<std::pair<int, int>>& edges,
+                          bool directed = true) {
+	std::vector<std::vector<int>> graph(n);
 	for (auto [u, v] : edges) {
 		graph[u].push_back(v);
 		if (!directed) graph[v].push_back(u);

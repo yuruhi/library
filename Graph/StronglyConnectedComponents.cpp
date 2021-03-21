@@ -2,13 +2,12 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
-using namespace std;
 
 class StronglyConnectedComponents {
 	int n;
-	vector<vector<int>> graph, rgraph;
-	vector<bool> used;
-	vector<int> cmp, vs;
+	std::vector<std::vector<int>> graph, rgraph;
+	std::vector<bool> used;
+	std::vector<int> cmp, vs;
 	int k;
 	bool builded = false;
 	void dfs(int v) {
@@ -28,7 +27,7 @@ class StronglyConnectedComponents {
 
 public:
 	StronglyConnectedComponents(int _n) : n(_n), graph(n), rgraph(n) {}
-	StronglyConnectedComponents(const vector<vector<int>>& _graph)
+	StronglyConnectedComponents(const std::vector<std::vector<int>>& _graph)
 	    : n(_graph.size()), graph(_graph), rgraph(n) {
 		for (int v = 0; v < n; ++v) {
 			for (int u : graph[v]) {
@@ -49,7 +48,7 @@ public:
 			if (!used[i]) dfs(i);
 		}
 		k = 0;
-		fill(used.begin(), used.end(), false);
+		std::fill(used.begin(), used.end(), false);
 		for (int i = vs.size() - 1; i >= 0; --i) {
 			if (!used[vs[i]]) rdfs(vs[i], k++);
 		}
@@ -60,11 +59,11 @@ public:
 		assert(builded);
 		return cmp[i];
 	}
-	const vector<int>& get_cmp() const {
+	const std::vector<int>& get_cmp() const {
 		assert(builded);
 		return cmp;
 	}
-	const vector<vector<int>>& get_graph() const {
+	const std::vector<std::vector<int>>& get_graph() const {
 		assert(builded);
 		return graph;
 	}
@@ -72,17 +71,17 @@ public:
 		assert(builded);
 		return k;
 	}
-	vector<vector<int>> groups() const {
+	std::vector<std::vector<int>> groups() const {
 		assert(builded);
-		vector<vector<int>> result(k);
+		std::vector<std::vector<int>> result(k);
 		for (int i = 0; i < n; ++i) {
 			result[cmp[i]].push_back(i);
 		}
 		return result;
 	}
-	vector<vector<int>> make_DAG() const {
+	std::vector<std::vector<int>> make_DAG() const {
 		assert(builded);
-		vector<vector<int>> result(k);
+		std::vector<std::vector<int>> result(k);
 		for (int i = 0; i < n; ++i) {
 			for (auto e : graph[i]) {
 				if (cmp[i] != cmp[e]) {
@@ -91,7 +90,7 @@ public:
 			}
 		}
 		for (auto& v : result) {
-			sort(v.begin(), v.end());
+			std::sort(v.begin(), v.end());
 			v.erase(unique(v.begin(), v.end()), v.end());
 		}
 		return result;

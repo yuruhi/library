@@ -1,17 +1,17 @@
 #pragma once
 #include "./GraphTemplate.cpp"
 #include <vector>
-#include <algorithm>
-#include <utility>
 #include <queue>
-using namespace std;
+#include <algorithm>
+#include <functional>
+#include <utility>
 
-pair<vector<Weight>, vector<int>> DijkstraBuildPrev(const Graph& graph, int s) {
-	int V = graph.size();
-	vector<Weight> dist(V, INF);
+auto DijkstraBuildPrev(const Graph& graph, int s) {
+	std::size_t n = graph.size();
+	std::vector<Weight> dist(n, INF);
 	dist[s] = 0;
-	vector<int> prev(V, -1);
-	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	std::vector<int> prev(n, -1);
+	std::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>> pq;
 	pq.emplace(s, 0);
 	while (!pq.empty()) {
 		Edge p = pq.top();
@@ -26,15 +26,15 @@ pair<vector<Weight>, vector<int>> DijkstraBuildPrev(const Graph& graph, int s) {
 			}
 		}
 	}
-	return {dist, prev};
+	return std::pair(dist, prev);
 }
-vector<int> BuildPath(const vector<int>& prev, int t) {
-	vector<int> result;
+std::vector<int> BuildPath(const std::vector<int>& prev, int t) {
+	std::vector<int> result;
 	while (prev[t] != -1) {
 		result.push_back(t);
 		t = prev[t];
 	}
 	result.push_back(t);
-	reverse(result.begin(), result.end());
+	std::reverse(result.begin(), result.end());
 	return result;
 }

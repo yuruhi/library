@@ -1,13 +1,12 @@
 #pragma once
 #include <vector>
-using namespace std;
 
-template <class T> vector<int> ZAlgorithm(const T& s) {
+template <class T> std::vector<int> ZAlgorithm(const T& s) {
 	if (s.size() == 0) {
 		return {};
 	}
 	int n = s.size(), i = 1, j = 0;
-	vector<int> result(n);
+	std::vector<int> result(n);
 	result[0] = n;
 	while (i < n) {
 		while (i + j < n && s[j] == s[i + j]) j++;

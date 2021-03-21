@@ -3,11 +3,10 @@
 #include <utility>
 #include <cassert>
 #include <functional>
-using namespace std;
 
 class EulerTourForEdge {
-	vector<vector<int>> graph;
-	vector<int> ls, rs;
+	std::vector<std::vector<int>> graph;
+	std::vector<int> ls, rs;
 	int pos = 0;
 	bool flag = false;
 	void dfs(int v, int p = -1) {
@@ -21,7 +20,7 @@ class EulerTourForEdge {
 
 public:
 	EulerTourForEdge(int n) : graph(n), ls(n), rs(n) {}
-	EulerTourForEdge(const vector<vector<int>>& _graph)
+	EulerTourForEdge(const std::vector<std::vector<int>>& _graph)
 	    : graph(_graph), ls(graph.size()), rs(graph.size()) {}
 	void add_edge(int u, int v) {
 		graph[u].push_back(v);
@@ -44,21 +43,21 @@ public:
 		assert(flag);
 		return rs[i];
 	}
-	pair<int, int> operator()(int i) {
+	std::pair<int, int> operator()(int i) {
 		assert(flag);
-		return make_pair(ls[i], rs[i]);
+		return {ls[i], rs[i]};
 	}
-	const vector<int>& get_ls() const {
+	const std::vector<int>& get_ls() const {
 		return ls;
 	}
-	const vector<int>& get_rs() const {
+	const std::vector<int>& get_rs() const {
 		return rs;
 	}
 	int operator[](int i) {
 		assert(flag);
 		return ls[i];
 	}
-	template <class T> auto call(int v, function<T(int, int)>&& f) {
+	template <class T> auto call(int v, std::function<T(int, int)>&& f) {
 		assert(flag);
 		return f(ls[v], rs[v]);
 	}

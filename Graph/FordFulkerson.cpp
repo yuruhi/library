@@ -1,12 +1,11 @@
 #pragma once
 #include "./FlowTemplate.cpp"
 #include <vector>
-using namespace std;
 
 class FordFulkerson {
 	int n;
 	GraphF graph;
-	vector<bool> used;
+	std::vector<bool> used;
 	FLOW dfs(int v, int t, FLOW f) {
 		if (v == t) return f;
 		used[v] = true;
@@ -24,7 +23,7 @@ class FordFulkerson {
 	}
 
 public:
-	FordFulkerson(int _n) : n(_n), graph(n), used(n) {}
+	FordFulkerson(std::size_t n) :  graph(n), used(n) {}
 	const GraphF& get_G() {
 		return graph;
 	}
@@ -35,7 +34,7 @@ public:
 	FLOW solve(int s, int t) {
 		FLOW result = 0;
 		while (true) {
-			fill(used.begin(), used.end(), false);
+			std::fill(used.begin(), used.end(), false);
 			FLOW f = dfs(s, t, INF_FLOW);
 			if (!f) return result;
 			result += f;

@@ -1,10 +1,9 @@
 #pragma once
 #include <vector>
-using namespace std;
 
 class EulerTourForVertex {
-	vector<int> ls_m, rs_m;
-	vector<vector<int>> graph;
+	std::vector<int> ls_m, rs_m;
+	std::vector<std::vector<int>> graph;
 	int k = 0;
 	void dfs(int v, int p) {
 		ls_m[v] = k++;
@@ -17,7 +16,7 @@ class EulerTourForVertex {
 public:
 	EulerTourForVertex() {}
 	EulerTourForVertex(int n) : ls_m(n), rs_m(n), graph(n) {}
-	EulerTourForVertex(const vector<vector<int>>& _graph)
+	EulerTourForVertex(const std::vector<std::vector<int>>& _graph)
 	    : ls_m(_graph.size()), rs_m(_graph.size()), graph(_graph) {}
 	void add_edge(int u, int v) {
 		graph[u].emplace_back(v);
@@ -33,13 +32,13 @@ public:
 	int r(int v) const {
 		return rs_m[v];
 	}
-	pair<int, int> get(int v) const {
+	std::pair<int, int> get(int v) const {
 		return {ls_m[v], rs_m[v]};
 	}
-	const vector<int>& ls() const {
+	const std::vector<int>& ls() const {
 		return ls_m;
 	}
-	const vector<int>& rs() const {
+	const std::vector<int>& rs() const {
 		return rs_m;
 	}
 	template <typename F> void call(int v, F f) {

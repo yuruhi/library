@@ -4,7 +4,6 @@
 #include <vector>
 #include <utility>
 #include <numeric>
-using namespace std;
 
 class DirectedMinimumSpanningTree {
 	int n;
@@ -18,22 +17,22 @@ public:
 		}
 	}
 	Weight solve(int root) {
-		vector<vector<Edge>> in_edges(n);
+		std::vector<std::vector<Edge>> in_edges(n);
 		for (auto edge : edges) {
 			if (root != edge.to) {
 				in_edges[edge.to].emplace_back(edge.from, edge.cost);
 			}
 		}
 
-		vector<pair<int, int>> min_edges;
-		vector<Weight> min_costs;
+		std::vector<std::pair<int, int>> min_edges;
+		std::vector<Weight> min_costs;
 		for (int i = 0; i < n; ++i) {
 			if (in_edges[i].empty()) continue;
-			pair<int, int> min_edge;
+			std::pair<int, int> min_edge;
 			Weight min_cost = INF;
 			for (auto edge : in_edges[i]) {
 				if (min_cost > edge.cost) {
-					min_edge = pair(edge.to, i);
+					min_edge = std::pair(edge.to, i);
 					min_cost = edge.cost;
 				}
 			}
@@ -44,8 +43,8 @@ public:
 		if (auto cycle_opt = CycleDetectionEdge(n, min_edges); cycle_opt) {
 			const auto& cycle = cycle_opt.value();
 
-			vector<Weight> minus(n);
-			vector<bool> on_cycle(n);
+			std::vector<Weight> minus(n);
+			std::vector<bool> on_cycle(n);
 			Weight cycle_cost_sum = 0;
 			for (int i : cycle) {
 				minus[min_edges[i].second] = min_costs[i];
@@ -55,7 +54,7 @@ public:
 
 			int compressed_vertex = min_edges[cycle.front()].first;
 			DirectedMinimumSpanningTree sub(n);
-			for (size_t i = 0; i < edges.size(); ++i) {
+			for (std::size_t i = 0; i < edges.size(); ++i) {
 				auto edge = edges[i];
 				if (on_cycle[edge.to]) {
 					if (on_cycle[edge.from]) continue;
@@ -69,7 +68,7 @@ public:
 			}
 			return cycle_cost_sum + sub.solve(root);
 		} else {
-			return accumulate(min_costs.begin(), min_costs.end(), Weight(0));
+			return std::accumulate(min_costs.begin(), min_costs.end(), Weight(0));
 		}
 	}
 };

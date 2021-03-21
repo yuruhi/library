@@ -3,14 +3,12 @@
 #include <queue>
 #include <optional>
 #include <limits>
-using namespace std;
 
-vector<int> ShortestPath(const vector<vector<int>>& graph, int s,
-                         int inf = numeric_limits<int>::max()) {
-	int V = graph.size();
-	vector<int> dist(V, inf);
+std::vector<int> ShortestPath(const std::vector<std::vector<int>>& graph, int s,
+                              int inf = std::numeric_limits<int>::max()) {
+	std::vector<int> dist(graph.size(), inf);
 	dist[s] = 0;
-	queue<int> que;
+	std::queue<int> que;
 	que.push(s);
 	while (!que.empty()) {
 		int f = que.front();
@@ -24,12 +22,11 @@ vector<int> ShortestPath(const vector<vector<int>>& graph, int s,
 	}
 	return dist;
 }
-int ShortestPathST(const vector<vector<int>>& graph, int s, int t,
-                   int inf = numeric_limits<int>::max()) {
-	size_t n = graph.size();
-	vector<int> dist(n, inf);
+int ShortestPathST(const std::vector<std::vector<int>>& graph, int s, int t,
+                   int inf = std::numeric_limits<int>::max()) {
+	std::vector<int> dist(graph.size(), inf);
 	dist[s] = 0;
-	queue<int> que;
+	std::queue<int> que;
 	que.push(s);
 	while (!que.empty()) {
 		int v = que.front();

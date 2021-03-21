@@ -5,24 +5,23 @@
 #include <utility>
 #include <tuple>
 #include <functional>
-using namespace std;
 
-tuple<Weight, vector<int>> DiameterPath(const Graph& graph) {
+std::tuple<Weight, std::vector<int>> DiameterPath(const Graph& graph) {
 	int n = graph.size();
-	vector<Weight> dist0(n);
-	function<void(int, int, Weight)> dfs = [&](int v, int p, Weight d) {
+	std::vector<Weight> dist0(n);
+	auto dfs = [&](auto self, int v, int p, Weight d) -> void {
 		dist0[v] = d;
 		for (const auto& u : graph[v])
 			if (u.to != p) {
-				dfs(u.to, v, d + u.cost);
+				self(self, u.to, v, d + u.cost);
 			}
 	};
-	dfs(0, -1, 0);
+	dfs(dfs, 0, -1, 0);
 
-	int s = max_element(dist0.begin(), dist0.end()) - dist0.begin();
-	vector<Weight> dist(n);
-	vector<int> par(n);
-	function<void(int, int, Weight)> dfs2 = [&](int v, int p, Weight d) {
+	int s = std::max_element(dist0.begin(), dist0.end()) - dist0.begin();
+	std::vector<Weight> dist(n);
+	std::vector<int> par(n);
+	auto dfs2 = [&](auto self, int v, int p, Weight d) -> void {
 		dist[v] = d;
 		par[v] = p;
 		for (const auto& u : graph[v])
@@ -30,12 +29,12 @@ tuple<Weight, vector<int>> DiameterPath(const Graph& graph) {
 				dfs2(u.to, v, d + u.cost);
 			}
 	};
-	dfs2(s, -1, 0);
-	auto t = max_element(dist.begin(), dist.end());
-	vector<int> path{t - dist.begin()};
+	dfs2(dfs2, s, -1, 0);
+	auto t = std::max_element(dist.begin(), dist.end());
+	std::vector<int> path{t - dist.begin()};
 	for (int p = 0; (p = par[path.back()]) != -1;) {
 		path.push_back(p);
 	}
-	reverse(path.begin(), path.end());
+	std::reverse(path.begin(), path.end());
 	return {*t, path};
 }

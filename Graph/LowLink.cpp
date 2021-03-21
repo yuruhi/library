@@ -1,14 +1,13 @@
 #pragma once
 #include <vector>
 #include <utility>
-using namespace std;
 
 class LowLink {
 	size_t n;
-	vector<vector<int>> graph;
-	vector<bool> visited;
-	vector<int> ord, low, articulation_points;
-	vector<pair<int, int>> bridges;
+	std::vector<std::vector<int>> graph;
+	std::vector<bool> visited;
+	std::vector<int> ord, low, articulation_points;
+	std::vector<std::pair<int, int>> bridges;
 	int k;
 
 	void dfs(int v, int parent) {
@@ -21,15 +20,15 @@ class LowLink {
 			if (!visited[u]) {
 				count++;
 				dfs(u, v);
-				low[v] = min(low[v], low[u]);
+				low[v] = std::min(low[v], low[u]);
 				if (parent != -1 && ord[v] <= low[u]) {
 					is_articultion_point = true;
 				}
 				if (ord[v] < low[u]) {
-					bridges.emplace_back(min(v, u), max(v, u));
+					bridges.emplace_back(std::min(v, u), max(v, u));
 				}
 			} else if (u != parent) {
-				low[v] = min(low[v], ord[u]);
+				low[v] = std::min(low[v], ord[u]);
 			}
 		}
 		if (is_articultion_point || (parent == -1 && count > 1)) {
@@ -39,12 +38,12 @@ class LowLink {
 
 public:
 	LowLink(size_t _n) : n(_n), graph(_n) {}
-	LowLink(const vector<vector<int>>& _graph) : n(_graph.size()), graph(_graph) {}
+	LowLink(const std::vector<std::vector<int>>& _graph) : n(_graph.size()), graph(_graph) {}
 	void add_edge(int u, int v) {
 		graph[u].push_back(v);
 		graph[v].push_back(u);
 	}
-	pair<vector<int>, vector<pair<int, int>>> build() {
+	auto build() {
 		visited.assign(n, false);
 		ord.assign(n, 0);
 		low.assign(n, 0);
@@ -54,6 +53,6 @@ public:
 		for (size_t i = 0; i < n; ++i) {
 			if (!visited[i]) dfs(i, -1);
 		}
-		return {articulation_points, bridges};
+		return std::pair(articulation_points, bridges);
 	}
 };

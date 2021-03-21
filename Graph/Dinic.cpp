@@ -3,16 +3,14 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
-using namespace std;
 
 class Dinic {
-	int V;
 	GraphF graph;
-	vector<int> level, iter;
+	std::vector<int> level, iter;
 	void bfs(int s) {
-		fill(level.begin(), level.end(), -1);
+		std::fill(level.begin(), level.end(), -1);
 		level[s] = 0;
-		queue<int> q;
+		std::queue<int> q;
 		q.push(s);
 		while (!q.empty()) {
 			int v = q.front();
@@ -30,7 +28,7 @@ class Dinic {
 		for (int i = iter[v]; i < graph[v].size(); ++i) {
 			auto& e = graph[v][i];
 			if (e.cap > 0 && level[v] < level[e.to]) {
-				FLOW d = dfs(e.to, t, min(f, e.cap));
+				FLOW d = dfs(e.to, t, std::min(f, e.cap));
 				if (d > 0) {
 					e.cap -= d;
 					graph[e.to][e.rev].cap += d;
@@ -42,7 +40,7 @@ class Dinic {
 	}
 
 public:
-	Dinic(int v) : V(v), graph(v), level(v), iter(v) {}
+	Dinic(std::size_t n) : graph(n), level(n), iter(n) {}
 	const GraphF& get_graph() {
 		return graph;
 	}
@@ -55,7 +53,7 @@ public:
 		while (true) {
 			bfs(s);
 			if (level[t] < 0) return result;
-			fill(iter.begin(), iter.end(), 0);
+			std::fill(iter.begin(), iter.end(), 0);
 			FLOW f;
 			while ((f = dfs(s, t, INF_FLOW)) > 0) result += f;
 		}

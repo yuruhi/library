@@ -2,14 +2,14 @@
 #include "./GraphTemplate.cpp"
 #include <vector>
 #include <queue>
+#include <functional>
 #include <cassert>
-using namespace std;
 
-vector<Weight> Dijkstra(const Graph& graph, int s) {
+std::vector<Weight> Dijkstra(const Graph& graph, int s) {
 	assert(0 <= s && s <= static_cast<int>(graph.size()));
-	vector<Weight> dist(graph.size(), INF);
+	std::vector<Weight> dist(graph.size(), INF);
 	dist[s] = 0;
-	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	std::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>> pq;
 	pq.emplace(s, 0);
 	while (!pq.empty()) {
 		Edge p = pq.top();
@@ -28,9 +28,9 @@ vector<Weight> Dijkstra(const Graph& graph, int s) {
 Weight Dijkstra(const Graph& graph, int s, int t) {
 	assert(0 <= s && s <= static_cast<int>(graph.size()));
 	assert(0 <= t && t <= static_cast<int>(graph.size()));
-	vector<Weight> dist(graph.size(), INF);
+	std::vector<Weight> dist(graph.size(), INF);
 	dist[s] = 0;
-	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	std::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>> pq;
 	pq.emplace(s, 0);
 	while (!pq.empty()) {
 		Edge p = pq.top();
