@@ -1,5 +1,6 @@
 #pragma once
 #include "./PrimeFactor.cpp"
+#include <vector>
 #include <numeric>
 
 template <class T> T Euler(T x) {
@@ -10,9 +11,9 @@ template <class T> T Euler(T x) {
 	return result;
 }
 
-vector<int> EnumerateEuler(int x) {
-	vector<int> result(x + 1);
-	iota(result.begin(), result.end(), 0);
+std::vector<int> EnumerateEuler(int x) {
+	std::vector<int> result(x + 1);
+	std::iota(result.begin(), result.end(), 0);
 	for (int i = 2; i <= x; ++i) {
 		if (result[i] == i) {
 			for (int j = i; j <= x; j += i) {

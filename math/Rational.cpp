@@ -3,7 +3,6 @@
 #include <numeric>
 #include <iostream>
 #include <cassert>
-using namespace std;
 
 template <class T> class Rational {
 public:
@@ -12,7 +11,7 @@ public:
 private:
 	value_type n, d;  // n / d
 	constexpr void coprime() {
-		value_type g = gcd(n, d);
+		value_type g = std::gcd(n, d);
 		n /= g;
 		d /= g;
 		if (d < 0) {
@@ -97,7 +96,7 @@ public:
 	}
 	constexpr Rational abs() const {
 		Rational r(*this);
-		r.n = max(r.n, -r.n);
+		r.n = std::max(r.n, -r.n);
 		return r;
 	}
 	constexpr value_type floor() const {
@@ -118,13 +117,13 @@ public:
 	constexpr long double to_ld() const {
 		return static_cast<long double>(n) / static_cast<long double>(d);
 	}
-	friend istream& operator>>(istream& is, Rational& r) {
+	friend std::istream& operator>>(std::istream& is, Rational& r) {
 		value_type n, d;
 		is >> n >> d;
 		r = Rational(n, d);
 		return is;
 	}
-	friend ostream& operator<<(ostream& os, const Rational& r) {
+	friend std::ostream& operator<<(std::ostream& os, const Rational& r) {
 		return os << r.n << '/' << r.d;
 	}
 };

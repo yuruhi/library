@@ -3,11 +3,10 @@
 #include <map>
 #include <utility>
 #include <cassert>
-using namespace std;
 
 class Sieve {
 	int n;
-	vector<int> factor_m, primes_m;
+	std::vector<int> factor_m, primes_m;
 
 public:
 	Sieve(int _n) : n(_n), factor_m(_n + 1) {
@@ -26,20 +25,20 @@ public:
 	bool is_prime(int x) const {
 		return factor_m[x] == x;
 	}
-	vector<int> primes() const {
+	std::vector<int> primes() const {
 		return primes_m;
 	}
-	vector<int> primes(int x) const {
-		vector<int> result;
-		for (size_t i = 0; i < primes_m.size(); ++i) {
+	std::vector<int> primes(int x) const {
+		std::vector<int> result;
+		for (std::size_t i = 0; i < primes_m.size(); ++i) {
 			if (primes_m[i] > x) break;
 			result.push_back(primes_m[i]);
 		}
 		return result;
 	}
-	vector<pair<int, int>> prime_factor(int x) const {
+	std::vector<std::pair<int, int>> prime_factor(int x) const {
 		assert(1 <= x);
-		vector<pair<int, int>> result;
+		std::vector<std::pair<int, int>> result;
 		while (x != 1) {
 			if (result.empty() || result.back().first != factor_m[x]) {
 				result.emplace_back(factor_m[x], 1);
@@ -50,18 +49,18 @@ public:
 		}
 		return result;
 	}
-	map<int, int> prime_factor_map(int x) const {
+	std::map<int, int> prime_factor_map(int x) const {
 		assert(1 <= x);
-		map<int, int> result;
+		std::map<int, int> result;
 		while (x != 1) {
 			result[factor_m[x]]++;
 			x /= factor_m[x];
 		}
 		return result;
 	}
-	vector<int> prime_factor_vec(int x) const {
+	std::vector<int> prime_factor_vec(int x) const {
 		assert(1 <= x);
-		vector<int> result;
+		std::vector<int> result;
 		while (x != 1) {
 			result.push_back(factor_m[x]);
 			x /= factor_m[x];

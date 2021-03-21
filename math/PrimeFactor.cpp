@@ -3,14 +3,13 @@
 #include <vector>
 #include <utility>
 #include <cassert>
-using namespace std;
 
-template <class T> vector<pair<T, int>> PrimeFactor(T n) {
+template <class T> std::vector<std::pair<T, int>> PrimeFactor(T n) {
 	assert(1 <= n);
 	if (n == 1) {
 		return {};
 	}
-	vector<pair<T, int>> result;
+	std::vector<std::pair<T, int>> result;
 	for (T i = 2; i * i <= n; ++i) {
 		if (n % i == 0) {
 			result.emplace_back(i, 0);
@@ -25,12 +24,12 @@ template <class T> vector<pair<T, int>> PrimeFactor(T n) {
 	}
 	return result;
 }
-template <class T> map<T, int> PrimeFactor_map(T n) {
+template <class T> std::map<T, int> PrimeFactor_map(T n) {
 	assert(1 <= n);
 	if (n == 1) {
 		return {};
 	}
-	map<T, int> result;
+	std::map<T, int> result;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
 			result[i]++;
@@ -42,12 +41,12 @@ template <class T> map<T, int> PrimeFactor_map(T n) {
 	}
 	return result;
 }
-template <class T> vector<T> PrimeFactor_vector(T n) {
+template <class T> std::vector<T> PrimeFactor_vector(T n) {
 	assert(1 <= n);
 	if (n == 1) {
 		return {};
 	}
-	vector<T> result;
+	std::vector<T> result;
 	for (T i = 2; i * i <= n; ++i) {
 		while (n % i == 0) {
 			result.push_back(i);

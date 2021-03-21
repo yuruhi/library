@@ -1,9 +1,8 @@
 #pragma once
 #include <vector>
-using namespace std;
 
-template <class T> vector<vector<T>> Partition(int num, int sum) {
-	vector<vector<T>> dp(num + 1, vector<T>(sum + 1));
+template <class T> std::vector<std::vector<T>> Partition(int num, int sum) {
+	std::vector dp(num + 1, std::vector<T>(sum + 1));
 	dp[0][0] = 1;
 	for (int i = 1; i <= num; ++i) {
 		for (int j = 0; j <= sum; ++j) {

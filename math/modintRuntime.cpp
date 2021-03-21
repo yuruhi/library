@@ -2,18 +2,17 @@
 #include <vector>
 #include <utility>
 #include <iostream>
-using namespace std;
 
 struct mint {
-	using T = long long;
-	static T MOD;
-	T n;
+	using value_type = long long;
+	static value_type MOD;
+	value_type n;
 
 public:
-	static void set_mod(T _MOD) {
+	static void set_mod(value_type _MOD) {
 		MOD = _MOD;
 	}
-	mint(T x = 0) : n(x % MOD) {
+	mint(value_type x = 0) : n(x % MOD) {
 		if (n < 0) n += MOD;
 	}
 	mint operator+() const {
@@ -74,13 +73,13 @@ public:
 		return *this;
 	}
 	mint& operator/=(const mint& m) {
-		T a = m.n, b = MOD, u = 1, v = 0;
+		value_type a = m.n, b = MOD, u = 1, v = 0;
 		while (b) {
-			T t = a / b;
+			value_type t = a / b;
 			a -= t * b;
-			swap(a, b);
+			std::swap(a, b);
 			u -= t * v;
-			swap(u, v);
+			std::swap(u, v);
 		}
 		n = n * u % MOD;
 		if (n < 0) n += MOD;
@@ -108,12 +107,12 @@ public:
 	template <class M> mint operator^(M m) const {
 		return pow(m);
 	}
-	friend ostream& operator<<(ostream& os, const mint& m) {
+	friend std::ostream& operator<<(std::ostream& os, const mint& m) {
 		return os << m.n;
 	}
-	friend istream& operator>>(istream& is, mint& m) {
-		long long x;
-		cin >> x;
+	friend std::istream& operator>>(std::istream& is, mint& m) {
+		value_type x;
+		std::cin >> x;
 		m = mint(x);
 		return is;
 	}
@@ -121,5 +120,5 @@ public:
 		return n;
 	}
 };
-long long mint::MOD = 1000000007;
+mint::value_type mint::MOD = 1000000007;
 using VM = vector<mint>;

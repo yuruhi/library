@@ -1,39 +1,38 @@
 #pragma once
 #include <vector>
 #include <cassert>
-using namespace std;
 
 template <class T> struct Matrix {
 public:
 	using value_type = T;
-	using data_type = vector<vector<value_type>>;
+	using data_type = std::vector<std::vector<value_type>>;
 
 private:
-	size_t h, w;
+	std::size_t h, w;
 	data_type A;
 
 public:
-	static Matrix I(size_t n) {
+	static Matrix I(std::size_t n) {
 		Matrix A(n);
-		for (size_t i = 0; i < n; ++i) {
+		for (std::size_t i = 0; i < n; ++i) {
 			A[i][i] = 1;
 		}
 		return A;
 	}
 	Matrix() {}
-	Matrix(size_t _h, size_t _w) : h(_h), w(_w), A(h, vector<T>(w, 0)) {}
-	Matrix(size_t _h) : h(_h), w(_h), A(h, vector<T>(w, 0)) {}
+	Matrix(std::size_t _h, std::size_t _w) : h(_h), w(_w), A(h, std::vector<T>(w, 0)) {}
+	Matrix(std::size_t _h) : h(_h), w(_h), A(h, std::vector<T>(w, 0)) {}
 	Matrix(const data_type& _A) : h(_A.size()), w(_A[0].size()), A(_A) {}
-	size_t height() const {
+	std::size_t height() const {
 		return h;
 	}
-	size_t width() const {
+	std::size_t width() const {
 		return w;
 	}
-	const vector<T>& operator[](int i) const {
+	const std::vector<T>& operator[](int i) const {
 		return A[i];
 	}
-	vector<T>& operator[](int i) {
+	std::vector<T>& operator[](int i) {
 		return A[i];
 	}
 	const data_type& operator*() const {
@@ -41,8 +40,8 @@ public:
 	}
 	Matrix& operator+=(const Matrix& B) {
 		assert(h == B.height() && w == B.width());
-		for (size_t i = 0; i < h; ++i) {
-			for (size_t j = 0; j < w; ++j) {
+		for (std::size_t i = 0; i < h; ++i) {
+			for (std::size_t j = 0; j < w; ++j) {
 				A[i][j] += B[i][j];
 			}
 		}
@@ -50,20 +49,20 @@ public:
 	}
 	Matrix& operator-=(const Matrix& B) {
 		assert(h == B.height() && w == B.width());
-		for (size_t i = 0; i < h; ++i) {
-			for (size_t j = 0; j < w; ++j) {
+		for (std::size_t i = 0; i < h; ++i) {
+			for (std::size_t j = 0; j < w; ++j) {
 				A[i][j] -= B[i][j];
 			}
 		}
 		return *this;
 	}
 	Matrix& operator*=(const Matrix& B) {
-		size_t n = B.width();
+		std::size_t n = B.width();
 		assert(w == B.height());
-		data_type C(h, vector<T>(n, 0));
-		for (size_t i = 0; i < h; i++) {
-			for (size_t j = 0; j < n; j++) {
-				for (size_t k = 0; k < w; k++) {
+		data_type C(h, std::vector<T>(n, 0));
+		for (std::size_t i = 0; i < h; i++) {
+			for (std::size_t j = 0; j < n; j++) {
+				for (std::size_t k = 0; k < w; k++) {
 					C[i][j] += A[i][k] * B[k][j];
 				}
 			}

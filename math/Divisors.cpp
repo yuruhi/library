@@ -2,11 +2,10 @@
 #include <vector>
 #include <cmath>
 #include <cassert>
-using namespace std;
 
-template <class T> vector<T> Divisors(T n) {
+template <class T> std::vector<T> Divisors(T n) {
 	assert(0 < n);
-	vector<T> result;
+	std::vector<T> result;
 	T i = 1;
 	for (; i * i < n; ++i) {
 		if (n % i == 0) result.push_back(i);
@@ -21,7 +20,7 @@ template <class T> vector<T> Divisors(T n) {
 template <class T> int DivisorsCount(T n) {
 	assert(0 < n);
 	int cnt = 0;
-	T sq = sqrt(n);
+	T sq = std::sqrt(n);
 	for (T i = 1; i <= sq; ++i) {
 		cnt += n % i == 0;
 	}

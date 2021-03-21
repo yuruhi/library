@@ -127,7 +127,7 @@ public:
 	}
 	friend std::istream& operator>>(std::istream& is, modint<MOD>& m) {
 		modint<MOD>::value_type x;
-		std::cin >> x;
+		is >> x;
 		m = modint(x);
 		return is;
 	}
