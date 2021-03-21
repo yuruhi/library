@@ -31,21 +31,21 @@ data:
     \ += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\tvector<value_type> to_a()\
     \ const {\n\t\tvector<value_type> result(n);\n\t\tfor (int i = 0; i < n; ++i)\
     \ {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\treturn result;\n\t}\n};\n#line\
-    \ 4 \"math/Inversion.cpp\"\nusing namespace std;\n\nlong long Inversion(const\
-    \ vector<int>& a, int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int>\
-    \ bit(max_val + 1);\n\tfor (size_t i = 0; i < a.size(); ++i) {\n\t\tans += i -\
-    \ bit(a[i]);\n\t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
+    \ 4 \"math/Inversion.cpp\"\n\nlong long Inversion(const std::vector<int>& a, int\
+    \ max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val + 1);\n\
+    \tfor (std::size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i]);\n\t\t\
+    bit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
   code: "#pragma once\n#include \"./../DataStructure/BinaryIndexedTree.cpp\"\n#include\
-    \ <vector>\nusing namespace std;\n\nlong long Inversion(const vector<int>& a,\
-    \ int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val +\
-    \ 1);\n\tfor (size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i]);\n\t\
-    \tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
+    \ <vector>\n\nlong long Inversion(const std::vector<int>& a, int max_val) {\n\t\
+    long long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val + 1);\n\tfor (std::size_t\
+    \ i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i]);\n\t\tbit.add(a[i], 1);\n\
+    \t}\n\treturn ans;\n}\n"
   dependsOn:
   - DataStructure/BinaryIndexedTree.cpp
   isVerificationFile: false
   path: math/Inversion.cpp
   requiredBy: []
-  timestamp: '2021-03-07 15:45:48+09:00'
+  timestamp: '2021-03-21 09:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Inversion.test.cpp

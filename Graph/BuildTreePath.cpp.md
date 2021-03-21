@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -33,27 +33,27 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/BuildTreePath.cpp\"\n#include <algorithm>\nusing namespace std;\n\
-    \nvector<int> BuildPathTree(const Graph& graph, int s, int t) {\n\tint n = graph.size();\n\
-    \tvector<int> par(n);\n\tauto dfs = [&](auto&& f, int v, int p) -> void {\n\t\t\
-    for (const auto& u : graph[v]) {\n\t\t\tif (u.to != p) {\n\t\t\t\tpar[u.to] =\
-    \ v;\n\t\t\t\tf(f, u.to, v);\n\t\t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int>\
+    #line 4 \"Graph/BuildTreePath.cpp\"\n#include <algorithm>\n\nstd::vector<int>\
+    \ BuildPathTree(const Graph& graph, int s, int t) {\n\tint n = graph.size();\n\
+    \tstd::vector<int> par(n);\n\tauto dfs = [&](auto&& f, int v, int p) -> void {\n\
+    \t\tfor (const auto& u : graph[v]) {\n\t\t\tif (u.to != p) {\n\t\t\t\tpar[u.to]\
+    \ = v;\n\t\t\t\tf(f, u.to, v);\n\t\t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1);\n\tstd::vector<int>\
     \ path{t};\n\twhile (path.back() != s) {\n\t\tpath.push_back(par[path.back()]);\n\
-    \t}\n\treverse(path.begin(), path.end());\n\treturn path;\n}\n"
+    \t}\n\tstd::reverse(path.begin(), path.end());\n\treturn path;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <algorithm>\nusing namespace std;\n\nvector<int> BuildPathTree(const Graph&\
-    \ graph, int s, int t) {\n\tint n = graph.size();\n\tvector<int> par(n);\n\tauto\
-    \ dfs = [&](auto&& f, int v, int p) -> void {\n\t\tfor (const auto& u : graph[v])\
-    \ {\n\t\t\tif (u.to != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\
-    \t\t}\n\t\t}\n\t};\n\tdfs(dfs, s, -1);\n\tvector<int> path{t};\n\twhile (path.back()\
-    \ != s) {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\treverse(path.begin(),\
+    \ <algorithm>\n\nstd::vector<int> BuildPathTree(const Graph& graph, int s, int\
+    \ t) {\n\tint n = graph.size();\n\tstd::vector<int> par(n);\n\tauto dfs = [&](auto&&\
+    \ f, int v, int p) -> void {\n\t\tfor (const auto& u : graph[v]) {\n\t\t\tif (u.to\
+    \ != p) {\n\t\t\t\tpar[u.to] = v;\n\t\t\t\tf(f, u.to, v);\n\t\t\t}\n\t\t}\n\t\
+    };\n\tdfs(dfs, s, -1);\n\tstd::vector<int> path{t};\n\twhile (path.back() != s)\
+    \ {\n\t\tpath.push_back(par[path.back()]);\n\t}\n\tstd::reverse(path.begin(),\
     \ path.end());\n\treturn path;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/BuildTreePath.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/BuildTreePath.cpp

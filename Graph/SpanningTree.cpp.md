@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -33,26 +33,26 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/SpanningTree.cpp\"\n#include <queue>\nusing namespace std;\n\n\
-    Graph SpanningTree(const Graph& graph, int root) {\n\tint n = graph.size();\n\t\
-    Graph result(n);\n\tqueue<int> q;\n\tq.push(root);\n\tvector<bool> flag(n);\n\t\
-    flag[root] = true;\n\twhile (!q.empty()) {\n\t\tint f = q.front();\n\t\tq.pop();\n\
-    \t\tfor (const Edge& e : graph[f]) {\n\t\t\tif (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\
+    #line 4 \"Graph/SpanningTree.cpp\"\n#include <queue>\n\nGraph SpanningTree(const\
+    \ Graph& graph, int root) {\n\tGraph result(graph.size());\n\tstd::queue<int>\
+    \ q;\n\tq.push(root);\n\tstd::vector<bool> flag(graph.size());\n\tflag[root] =\
+    \ true;\n\twhile (!q.empty()) {\n\t\tint f = q.front();\n\t\tq.pop();\n\t\tfor\
+    \ (const Edge& e : graph[f]) {\n\t\t\tif (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\
     \t\t\t\tflag[e.to] = true;\n\t\t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ result;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <queue>\nusing namespace std;\n\nGraph SpanningTree(const Graph& graph, int\
-    \ root) {\n\tint n = graph.size();\n\tGraph result(n);\n\tqueue<int> q;\n\tq.push(root);\n\
-    \tvector<bool> flag(n);\n\tflag[root] = true;\n\twhile (!q.empty()) {\n\t\tint\
-    \ f = q.front();\n\t\tq.pop();\n\t\tfor (const Edge& e : graph[f]) {\n\t\t\tif\
-    \ (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\t\t\t\tflag[e.to] = true;\n\
-    \t\t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn result;\n}\n"
+    \ <queue>\n\nGraph SpanningTree(const Graph& graph, int root) {\n\tGraph result(graph.size());\n\
+    \tstd::queue<int> q;\n\tq.push(root);\n\tstd::vector<bool> flag(graph.size());\n\
+    \tflag[root] = true;\n\twhile (!q.empty()) {\n\t\tint f = q.front();\n\t\tq.pop();\n\
+    \t\tfor (const Edge& e : graph[f]) {\n\t\t\tif (!flag[e.to]) {\n\t\t\t\tresult[f].push_back(e);\n\
+    \t\t\t\tflag[e.to] = true;\n\t\t\t\tq.push(e.to);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
+    \ result;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/SpanningTree.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/SpanningTree.cpp

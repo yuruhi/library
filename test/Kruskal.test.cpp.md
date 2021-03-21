@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/UnionFind.cpp
     title: DataStructure/UnionFind.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   - icon: ':heavy_check_mark:'
@@ -64,14 +64,14 @@ data:
     \t\t}\n\t\tresult.erase(std::remove_if(result.begin(), result.end(),\n\t\t   \
     \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
     \t\t             result.end());\n\t\treturn result;\n\t}\n};\n#line 5 \"Graph/Kruskal.cpp\"\
-    \nusing namespace std;\n\nWeight Kruskal(int V, Edges& graph) {\n\tsort(graph.begin(),\
-    \ graph.end(),\n\t     [](const Edge2& e1, const Edge2& e2) { return e1.cost <\
-    \ e2.cost; });\n\tWeight result = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph)\
-    \ {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\t\
-    return result;\n}\n#line 4 \"test/Kruskal.test.cpp\"\nusing namespace std;\n\n\
-    int main() {\n\tint n, m;\n\tcin >> n >> m;\n\tEdges edges(m);\n\tfor (int i =\
-    \ 0; i < m; ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\t\
-    edges[i] = Edge2(s, t, d);\n\t}\n\n\tcout << Kruskal(n, edges) << '\\n';\n}\n"
+    \n\nWeight Kruskal(int V, Edges& graph) {\n\tstd::sort(graph.begin(), graph.end(),\n\
+    \t          [](const Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\
+    \tWeight result = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from,\
+    \ e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\treturn result;\n}\n#line 4\
+    \ \"test/Kruskal.test.cpp\"\nusing namespace std;\n\nint main() {\n\tint n, m;\n\
+    \tcin >> n >> m;\n\tEdges edges(m);\n\tfor (int i = 0; i < m; ++i) {\n\t\tint\
+    \ s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tedges[i] = Edge2(s, t, d);\n\
+    \t}\n\n\tcout << Kruskal(n, edges) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
     \n#include \"./../Graph/Kruskal.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tint n, m;\n\tcin >> n >> m;\n\tEdges edges(m);\n\tfor (int i\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Kruskal.test.cpp

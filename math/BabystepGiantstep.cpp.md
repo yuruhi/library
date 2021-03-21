@@ -18,13 +18,14 @@ data:
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../template/functions.cpp:\
     \ line -1: no such header\n"
   code: "#pragma once\n#include \"./../template/functions.cpp\"\n#include <vector>\n\
-    #include <unordered_map>\n#include <cmath>\nusing namespace std;\n\n// g ^ result\
-    \ \u2261 h (mod mod)\nint64_t BabystepGiantstep(uint64_t g, uint64_t h, uint64_t\
-    \ mod) {\n\tconst uint64_t m = ceil(sqrt(mod));\n\tunordered_map<uint64_t, uint64_t>\
-    \ table;\n\tuint64_t e = 1;\n\tfor (uint64_t i = 0; i < m; ++i) {\n\t\ttable[e]\
-    \ = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (uint64_t f = Powmod(g, mod\
-    \ - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e)) {\n\t\t\treturn\
-    \ i * m + table[e];\n\t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn -1;\n}\n"
+    #include <unordered_map>\n#include <cmath>\n\n// g ^ result \u2261 h (mod mod)\n\
+    int64_t BabystepGiantstep(std::uint64_t g, std::uint64_t h, std::uint64_t mod)\
+    \ {\n\tconst std::uint64_t m = std::ceil(std::sqrt(mod));\n\tstd::unordered_map<std::uint64_t,\
+    \ std::uint64_t> table;\n\tstd::uint64_t e = 1;\n\tfor (std::uint64_t i = 0; i\
+    \ < m; ++i) {\n\t\ttable[e] = i;\n\t\te = e * g % mod;\n\t}\n\te = h;\n\tfor (std::uint64_t\
+    \ f = Powmod(g, mod - m - 1, mod), i = 0; i < m; ++i) {\n\t\tif (table.count(e))\
+    \ {\n\t\t\treturn i * m + table[e];\n\t\t}\n\t\te = (e * f) % mod;\n\t}\n\treturn\
+    \ -1;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/BabystepGiantstep.cpp

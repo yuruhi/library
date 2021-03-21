@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   - icon: ':heavy_check_mark:'
@@ -40,26 +40,27 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/LCA.cpp\"\n#include <utility>\n#include <cmath>\nusing namespace\
-    \ std;\n\nclass LCA {\n\tconst int n, LOG;\n\tvector<int> dist;\n\tvector<vector<int>>\
+    #line 4 \"Graph/LCA.cpp\"\n#include <utility>\n#include <cmath>\n\nclass LCA {\n\
+    \tconst std::size_t n;\n\tconst int LOG;\n\tstd::vector<int> dist;\n\tstd::vector<std::vector<int>>\
     \ table;\n\tvoid dfs(const Graph& graph, int v, int p, int d) {\n\t\ttable[0][v]\
     \ = p;\n\t\tdist[v] = d;\n\t\tfor (auto e : graph[v])\n\t\t\tif (e.to != p) {\n\
     \t\t\t\tdfs(graph, e.to, v, d + 1);\n\t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph&\
     \ graph, const int root)\n\t    : n(graph.size()), LOG(log2(n) + 1), dist(n),\
-    \ table(LOG, vector<int>(n)) {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int k =\
-    \ 0; k + 1 < LOG; ++k) {\n\t\t\tfor (int v = 0; v < n; ++v) {\n\t\t\t\tif (table[k][v]\
-    \ < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k\
-    \ + 1][v] = table[k][table[k][v]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint operator()(int\
-    \ u, int v) {\n\t\tif (dist[u] > dist[v]) swap(u, v);\n\t\tfor (int k = 0; k <\
-    \ LOG; ++k) {\n\t\t\tif ((dist[v] - dist[u]) >> k & 1) {\n\t\t\t\tv = table[k][v];\n\
-    \t\t\t}\n\t\t}\n\t\tif (u == v) return u;\n\t\tfor (int k = LOG - 1; k >= 0; --k)\
-    \ {\n\t\t\tif (table[k][u] != table[k][v]) {\n\t\t\t\tu = table[k][u];\n\t\t\t\
-    \tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n};\n#line 4\
-    \ \"test/LCA.test.cpp\"\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\tint n, q;\n\tcin >> n >> q;\n\tGraph g(n);\n\
-    \tfor (int i = 1; i < n; ++i) {\n\t\tint p;\n\t\tcin >> p;\n\t\tg[i].emplace_back(p,\
-    \ 1);\n\t\tg[p].emplace_back(i, 1);\n\t}\n\n\tLCA lca(g, 0);\n\twhile (q--) {\n\
-    \t\tint u, v;\n\t\tcin >> u >> v;\n\t\tcout << lca(u, v) << '\\n';\n\t}\n}\n"
+    \ table(LOG, std::vector<int>(n)) {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int\
+    \ k = 0; k + 1 < LOG; ++k) {\n\t\t\tfor (std::size_t v = 0; v < n; ++v) {\n\t\t\
+    \t\tif (table[k][v] < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t} else {\n\
+    \t\t\t\t\ttable[k + 1][v] = table[k][table[k][v]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t}\n\tint operator()(int u, int v) {\n\t\tif (dist[u] > dist[v]) std::swap(u,\
+    \ v);\n\t\tfor (int k = 0; k < LOG; ++k) {\n\t\t\tif ((dist[v] - dist[u]) >> k\
+    \ & 1) {\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\tif (u == v) return u;\n\
+    \t\tfor (int k = LOG - 1; k >= 0; --k) {\n\t\t\tif (table[k][u] != table[k][v])\
+    \ {\n\t\t\t\tu = table[k][u];\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\t\
+    return table[0][u];\n\t}\n};\n#line 4 \"test/LCA.test.cpp\"\nusing namespace std;\n\
+    \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint\
+    \ n, q;\n\tcin >> n >> q;\n\tGraph g(n);\n\tfor (int i = 1; i < n; ++i) {\n\t\t\
+    int p;\n\t\tcin >> p;\n\t\tg[i].emplace_back(p, 1);\n\t\tg[p].emplace_back(i,\
+    \ 1);\n\t}\n\n\tLCA lca(g, 0);\n\twhile (q--) {\n\t\tint u, v;\n\t\tcin >> u >>\
+    \ v;\n\t\tcout << lca(u, v) << '\\n';\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"./../Graph/LCA.cpp\"\
     \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
     \tios_base::sync_with_stdio(false);\n\tint n, q;\n\tcin >> n >> q;\n\tGraph g(n);\n\
@@ -72,7 +73,7 @@ data:
   isVerificationFile: true
   path: test/LCA.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/LCA.test.cpp

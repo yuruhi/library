@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: DataStructure/UnionFind.cpp
     title: DataStructure/UnionFind.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -60,24 +60,23 @@ data:
     \t\t}\n\t\tresult.erase(std::remove_if(result.begin(), result.end(),\n\t\t   \
     \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
     \t\t             result.end());\n\t\treturn result;\n\t}\n};\n#line 5 \"Graph/Kruskal.cpp\"\
-    \nusing namespace std;\n\nWeight Kruskal(int V, Edges& graph) {\n\tsort(graph.begin(),\
-    \ graph.end(),\n\t     [](const Edge2& e1, const Edge2& e2) { return e1.cost <\
-    \ e2.cost; });\n\tWeight result = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph)\
+    \n\nWeight Kruskal(int V, Edges& graph) {\n\tstd::sort(graph.begin(), graph.end(),\n\
+    \t          [](const Edge2& e1, const Edge2& e2) { return e1.cost < e2.cost; });\n\
+    \tWeight result = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph) {\n\t\tif (uf.unite(e.from,\
+    \ e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\treturn result;\n}\n"
+  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include \"./../DataStructure/UnionFind.cpp\"\
+    \n#include <algorithm>\n\nWeight Kruskal(int V, Edges& graph) {\n\tstd::sort(graph.begin(),\
+    \ graph.end(),\n\t          [](const Edge2& e1, const Edge2& e2) { return e1.cost\
+    \ < e2.cost; });\n\tWeight result = 0;\n\tUnionFind uf(V);\n\tfor (auto e : graph)\
     \ {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tresult += e.cost;\n\t\t}\n\t}\n\t\
     return result;\n}\n"
-  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include \"./../DataStructure/UnionFind.cpp\"\
-    \n#include <algorithm>\nusing namespace std;\n\nWeight Kruskal(int V, Edges& graph)\
-    \ {\n\tsort(graph.begin(), graph.end(),\n\t     [](const Edge2& e1, const Edge2&\
-    \ e2) { return e1.cost < e2.cost; });\n\tWeight result = 0;\n\tUnionFind uf(V);\n\
-    \tfor (auto e : graph) {\n\t\tif (uf.unite(e.from, e.to)) {\n\t\t\tresult += e.cost;\n\
-    \t\t}\n\t}\n\treturn result;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   - DataStructure/UnionFind.cpp
   isVerificationFile: false
   path: Graph/Kruskal.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Kruskal.test.cpp

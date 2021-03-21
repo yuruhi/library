@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Diameter.cpp
     title: Graph/Diameter.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/DiameterPath.cpp
     title: Graph/DiameterPath.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -51,18 +51,18 @@ data:
     \ result = tmp;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t};\n\tauto d1 = dfs(dfs,\
     \ 0, -1, 0);\n\tauto d2 = dfs(dfs, d1.second, -1, 0);\n\treturn {d2.first, d1.second,\
     \ d2.second};\n}\n#line 4 \"Graph/DiameterPath.cpp\"\n#include <algorithm>\n#line\
-    \ 7 \"Graph/DiameterPath.cpp\"\n#include <functional>\nusing namespace std;\n\n\
-    tuple<Weight, vector<int>> DiameterPath(const Graph& graph) {\n\tint n = graph.size();\n\
-    \tvector<Weight> dist0(n);\n\tfunction<void(int, int, Weight)> dfs = [&](int v,\
-    \ int p, Weight d) {\n\t\tdist0[v] = d;\n\t\tfor (const auto& u : graph[v])\n\t\
-    \t\tif (u.to != p) {\n\t\t\t\tdfs(u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs(0,\
-    \ -1, 0);\n\n\tint s = max_element(dist0.begin(), dist0.end()) - dist0.begin();\n\
-    \tvector<Weight> dist(n);\n\tvector<int> par(n);\n\tfunction<void(int, int, Weight)>\
-    \ dfs2 = [&](int v, int p, Weight d) {\n\t\tdist[v] = d;\n\t\tpar[v] = p;\n\t\t\
-    for (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to, v,\
-    \ d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(s, -1, 0);\n\tauto t = max_element(dist.begin(),\
-    \ dist.end());\n\tvector<int> path{t - dist.begin()};\n\tfor (int p = 0; (p =\
-    \ par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\treverse(path.begin(),\
+    \ 7 \"Graph/DiameterPath.cpp\"\n#include <functional>\n\nstd::tuple<Weight, std::vector<int>>\
+    \ DiameterPath(const Graph& graph) {\n\tint n = graph.size();\n\tstd::vector<Weight>\
+    \ dist0(n);\n\tauto dfs = [&](auto self, int v, int p, Weight d) -> void {\n\t\
+    \tdist0[v] = d;\n\t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\
+    \t\t\tself(self, u.to, v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs(dfs, 0, -1, 0);\n\
+    \n\tint s = std::max_element(dist0.begin(), dist0.end()) - dist0.begin();\n\t\
+    std::vector<Weight> dist(n);\n\tstd::vector<int> par(n);\n\tauto dfs2 = [&](auto\
+    \ self, int v, int p, Weight d) -> void {\n\t\tdist[v] = d;\n\t\tpar[v] = p;\n\
+    \t\tfor (const auto& u : graph[v])\n\t\t\tif (u.to != p) {\n\t\t\t\tdfs2(u.to,\
+    \ v, d + u.cost);\n\t\t\t}\n\t};\n\tdfs2(dfs2, s, -1, 0);\n\tauto t = std::max_element(dist.begin(),\
+    \ dist.end());\n\tstd::vector<int> path{t - dist.begin()};\n\tfor (int p = 0;\
+    \ (p = par[path.back()]) != -1;) {\n\t\tpath.push_back(p);\n\t}\n\tstd::reverse(path.begin(),\
     \ path.end());\n\treturn {*t, path};\n}\n#line 5 \"test/Diameter.test.cpp\"\n\
     using namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios::sync_with_stdio(false);\n\
     \tint n;\n\tcin >> n;\n\tGraph g(n);\n\tfor (int i = 0; i < n - 1; i++) {\n\t\t\
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/Diameter.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-03-21 10:20:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/Diameter.test.cpp
 layout: document

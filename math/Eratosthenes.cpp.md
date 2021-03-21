@@ -17,13 +17,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/Eratosthenes.cpp\"\n#include <vector>\nusing namespace\
-    \ std;\n\nvector<bool> Eratosthenes(size_t n) {\n\tvector<bool> result(n + 1,\
-    \ true);\n\tresult[0] = result[1] = false;\n\tfor (size_t i = 2; i * i <= n; ++i)\
-    \ {\n\t\tif (result[i]) {\n\t\t\tfor (size_t j = i * i; j <= n; j += i) result[j]\
-    \ = false;\n\t\t}\n\t}\n\treturn result;\n}\n"
-  code: "#pragma once\n#include <vector>\nusing namespace std;\n\nvector<bool> Eratosthenes(size_t\
-    \ n) {\n\tvector<bool> result(n + 1, true);\n\tresult[0] = result[1] = false;\n\
+  bundledCode: "#line 2 \"math/Eratosthenes.cpp\"\n#include <vector>\n\nstd::vector<bool>\
+    \ Eratosthenes(size_t n) {\n\tstd::vector<bool> result(n + 1, true);\n\tresult[0]\
+    \ = result[1] = false;\n\tfor (size_t i = 2; i * i <= n; ++i) {\n\t\tif (result[i])\
+    \ {\n\t\t\tfor (size_t j = i * i; j <= n; j += i) result[j] = false;\n\t\t}\n\t\
+    }\n\treturn result;\n}\n"
+  code: "#pragma once\n#include <vector>\n\nstd::vector<bool> Eratosthenes(size_t\
+    \ n) {\n\tstd::vector<bool> result(n + 1, true);\n\tresult[0] = result[1] = false;\n\
     \tfor (size_t i = 2; i * i <= n; ++i) {\n\t\tif (result[i]) {\n\t\t\tfor (size_t\
     \ j = i * i; j <= n; j += i) result[j] = false;\n\t\t}\n\t}\n\treturn result;\n\
     }\n"
@@ -32,7 +32,7 @@ data:
   path: math/Eratosthenes.cpp
   requiredBy:
   - math/EnumeratePrimes.cpp
-  timestamp: '2021-03-07 15:45:48+09:00'
+  timestamp: '2021-03-21 09:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Eratosthenes.test.cpp

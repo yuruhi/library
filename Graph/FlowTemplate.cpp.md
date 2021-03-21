@@ -5,39 +5,38 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Dinic.cpp
     title: Graph/Dinic.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/FordFulkerson.cpp
     title: Graph/FordFulkerson.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Dinic.test.cpp
     title: test/Dinic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/FordFulkerson.test.cpp
     title: test/FordFulkerson.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <limits>\n\
-    using namespace std;\n\nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = numeric_limits<FLOW>::max();\n\
+    \nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
     struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
     \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n};\nusing GraphF\
-    \ = vector<vector<EdgeF>>;\n"
-  code: "#pragma once\n#include <vector>\n#include <limits>\nusing namespace std;\n\
-    \nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = numeric_limits<FLOW>::max();\n\
-    struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
-    \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n};\nusing GraphF\
-    \ = vector<vector<EdgeF>>;\n"
+    \ = std::vector<std::vector<EdgeF>>;\n"
+  code: "#pragma once\n#include <vector>\n#include <limits>\n\nusing FLOW = long long;\n\
+    constexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\nstruct EdgeF {\n\t\
+    int to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1) {}\n\tEdgeF(int\
+    \ t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n};\nusing GraphF = std::vector<std::vector<EdgeF>>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/FlowTemplate.cpp
   requiredBy:
   - Graph/Dinic.cpp
   - Graph/FordFulkerson.cpp
-  timestamp: '2020-10-18 11:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-03-21 10:20:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/Dinic.test.cpp
   - test/FordFulkerson.test.cpp

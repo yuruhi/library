@@ -60,9 +60,9 @@ data:
     \ modint& a, const modint& b) {\n\t\treturn modint(a) /= b;\n\t}\n\tfriend std::ostream&\
     \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
     \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
-    \tmodint<MOD>::value_type x;\n\t\tstd::cin >> x;\n\t\tm = modint(x);\n\t\treturn\
-    \ is;\n\t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\n\
-    mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
+    \tmodint<MOD>::value_type x;\n\t\tis >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\
+    \t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\nmint\
+    \ operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   code: "#pragma once\n#include \"./../Utility/get_MOD.cpp\"\n#include <iostream>\n\
     #include <vector>\n#include <utility>\n#include <cassert>\n\ntemplate <int MOD>\
     \ struct modint {\n\tusing value_type = long long;\n\nprivate:\n\tvalue_type n;\n\
@@ -101,16 +101,16 @@ data:
     \ modint& a, const modint& b) {\n\t\treturn modint(a) /= b;\n\t}\n\tfriend std::ostream&\
     \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
     \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
-    \tmodint<MOD>::value_type x;\n\t\tstd::cin >> x;\n\t\tm = modint(x);\n\t\treturn\
-    \ is;\n\t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\n\
-    mint operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
+    \tmodint<MOD>::value_type x;\n\t\tis >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\
+    \t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\nmint\
+    \ operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   dependsOn:
   - Utility/get_MOD.cpp
   isVerificationFile: false
   path: math/modint.cpp
   requiredBy:
   - math/Combination.cpp
-  timestamp: '2021-03-18 10:36:51+09:00'
+  timestamp: '2021-03-21 09:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Partition.test.cpp

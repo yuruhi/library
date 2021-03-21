@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/DijkstraBuildPath.cpp
     title: Graph/DijkstraBuildPath.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -40,18 +40,19 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/DijkstraBuildPath.cpp\"\n#include <algorithm>\n#include <utility>\n\
-    #include <queue>\nusing namespace std;\n\npair<vector<Weight>, vector<int>> DijkstraBuildPrev(const\
-    \ Graph& graph, int s) {\n\tint V = graph.size();\n\tvector<Weight> dist(V, INF);\n\
-    \tdist[s] = 0;\n\tvector<int> prev(V, -1);\n\tpriority_queue<Edge, vector<Edge>,\
-    \ greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p\
-    \ = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\
-    \t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\
-    \t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\
-    \t\tprev[e.to] = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn {dist, prev};\n}\nvector<int>\
-    \ BuildPath(const vector<int>& prev, int t) {\n\tvector<int> result;\n\twhile\
-    \ (prev[t] != -1) {\n\t\tresult.push_back(t);\n\t\tt = prev[t];\n\t}\n\tresult.push_back(t);\n\
-    \treverse(result.begin(), result.end());\n\treturn result;\n}\n#line 5 \"test/DijkstraBuildPath.test.cpp\"\
+    #line 4 \"Graph/DijkstraBuildPath.cpp\"\n#include <queue>\n#include <algorithm>\n\
+    #include <functional>\n#include <utility>\n\nauto DijkstraBuildPrev(const Graph&\
+    \ graph, int s) {\n\tstd::size_t n = graph.size();\n\tstd::vector<Weight> dist(n,\
+    \ INF);\n\tdist[s] = 0;\n\tstd::vector<int> prev(n, -1);\n\tstd::priority_queue<Edge,\
+    \ std::vector<Edge>, std::greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
+    \ {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v]\
+    \ < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v]\
+    \ + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t\tprev[e.to] = v;\n\t\t\t}\n\t\t}\n\t}\n\treturn std::pair(dist,\
+    \ prev);\n}\nstd::vector<int> BuildPath(const std::vector<int>& prev, int t) {\n\
+    \tstd::vector<int> result;\n\twhile (prev[t] != -1) {\n\t\tresult.push_back(t);\n\
+    \t\tt = prev[t];\n\t}\n\tresult.push_back(t);\n\tstd::reverse(result.begin(),\
+    \ result.end());\n\treturn result;\n}\n#line 5 \"test/DijkstraBuildPath.test.cpp\"\
     \nusing namespace std;\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(nullptr);\n\
     \n\tint n, m, s, t;\n\tcin >> n >> m >> s >> t;\n\n\tGraph g(n);\n\tfor (int i\
     \ = 0; i < m; ++i) {\n\t\tint a, b;\n\t\tWeight c;\n\t\tcin >> a >> b >> c;\n\t\
@@ -76,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/DijkstraBuildPath.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/DijkstraBuildPath.test.cpp

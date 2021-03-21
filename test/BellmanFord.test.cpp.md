@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/BellmanFord.cpp
     title: Graph/BellmanFord.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -40,11 +40,11 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/BellmanFord.cpp\"\nusing namespace std;\n\npair<bool, vector<Weight>>\
-    \ BellmanFord(const Graph& graph, int start) {\n\tint V = graph.size();\n\tvector<Weight>\
-    \ dist(V, INF);\n\tdist[start] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int\
-    \ v = 0; v < V; ++v)\n\t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] !=\
-    \ INF && dist[e.to] > dist[v] + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\
+    #line 4 \"Graph/BellmanFord.cpp\"\n\nstd::pair<bool, std::vector<Weight>> BellmanFord(const\
+    \ Graph& graph, int start) {\n\tint V = graph.size();\n\tstd::vector<Weight> dist(V,\
+    \ INF);\n\tdist[start] = 0;\n\tfor (int i = 0; i < V; ++i)\n\t\tfor (int v = 0;\
+    \ v < V; ++v)\n\t\t\tfor (auto e : graph[v]) {\n\t\t\t\tif (dist[v] != INF &&\
+    \ dist[e.to] > dist[v] + e.cost) {\n\t\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\
     \t\t\t\t\tif (i == V - 1) return {true, dist};\n\t\t\t\t}\n\t\t\t}\n\treturn {false,\
     \ dist};\n}\n#line 4 \"test/BellmanFord.test.cpp\"\nusing namespace std;\n\nint\
     \ main() {\n\tint n, m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/BellmanFord.test.cpp

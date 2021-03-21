@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Graph/Dijkstra.cpp
     title: Graph/Dijkstra.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -40,26 +40,26 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/Dijkstra.cpp\"\n#include <queue>\n#include <cassert>\nusing namespace\
-    \ std;\n\nvector<Weight> Dijkstra(const Graph& graph, int s) {\n\tassert(0 <=\
-    \ s && s <= static_cast<int>(graph.size()));\n\tvector<Weight> dist(graph.size(),\
-    \ INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\
-    \tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\
-    \t\tint v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
-    \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
-    \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tassert(0 <=\
-    \ s && s <= static_cast<int>(graph.size()));\n\tassert(0 <= t && t <= static_cast<int>(graph.size()));\n\
-    \tvector<Weight> dist(graph.size(), INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge,\
-    \ vector<Edge>, greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
-    \ {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t)\
-    \ return dist[t];\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
-    \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
-    \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist[t];\n}\n#line 4 \"test/Dijkstra.test.cpp\"\nusing namespace std;\n\nint\
-    \ main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint n,\
-    \ m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m; ++i) {\n\
-    \t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
+    #line 4 \"Graph/Dijkstra.cpp\"\n#include <queue>\n#include <functional>\n#include\
+    \ <cassert>\n\nstd::vector<Weight> Dijkstra(const Graph& graph, int s) {\n\tassert(0\
+    \ <= s && s <= static_cast<int>(graph.size()));\n\tstd::vector<Weight> dist(graph.size(),\
+    \ INF);\n\tdist[s] = 0;\n\tstd::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>>\
+    \ pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\
+    \tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto\
+    \ e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to]\
+    \ = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\
+    \t}\n\treturn dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\t\
+    assert(0 <= s && s <= static_cast<int>(graph.size()));\n\tassert(0 <= t && t <=\
+    \ static_cast<int>(graph.size()));\n\tstd::vector<Weight> dist(graph.size(), INF);\n\
+    \tdist[s] = 0;\n\tstd::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>>\
+    \ pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\
+    \tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\t\tif (dist[v]\
+    \ < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v]\
+    \ + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n#line 4 \"test/Dijkstra.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n, m, s;\n\tcin >> n >> m >> s;\n\tGraph g(n);\n\tfor (int i = 0; i < m;\
+    \ ++i) {\n\t\tint s, t;\n\t\tWeight d;\n\t\tcin >> s >> t >> d;\n\t\tg[s].emplace_back(t,\
     \ d);\n\t}\n\n\tauto dist = Dijkstra(g, s);\n\tfor (int i = 0; i < n; ++i) {\n\
     \t\tif (dist[i] < INF) {\n\t\t\tcout << dist[i] << '\\n';\n\t\t} else {\n\t\t\t\
     cout << \"INF\\n\";\n\t\t}\n\t}\n}\n"
@@ -77,7 +77,7 @@ data:
   isVerificationFile: true
   path: test/Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dijkstra.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy:
@@ -42,47 +42,47 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/Dijkstra.cpp\"\n#include <queue>\n#include <cassert>\nusing namespace\
-    \ std;\n\nvector<Weight> Dijkstra(const Graph& graph, int s) {\n\tassert(0 <=\
-    \ s && s <= static_cast<int>(graph.size()));\n\tvector<Weight> dist(graph.size(),\
-    \ INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\
-    \tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\
-    \t\tint v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
-    \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
-    \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\tassert(0 <=\
-    \ s && s <= static_cast<int>(graph.size()));\n\tassert(0 <= t && t <= static_cast<int>(graph.size()));\n\
-    \tvector<Weight> dist(graph.size(), INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge,\
-    \ vector<Edge>, greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
-    \ {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t)\
-    \ return dist[t];\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v])\
-    \ {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v]\
-    \ + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ dist[t];\n}\n"
+    #line 4 \"Graph/Dijkstra.cpp\"\n#include <queue>\n#include <functional>\n#include\
+    \ <cassert>\n\nstd::vector<Weight> Dijkstra(const Graph& graph, int s) {\n\tassert(0\
+    \ <= s && s <= static_cast<int>(graph.size()));\n\tstd::vector<Weight> dist(graph.size(),\
+    \ INF);\n\tdist[s] = 0;\n\tstd::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>>\
+    \ pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\
+    \tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto\
+    \ e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost) {\n\t\t\t\tdist[e.to]\
+    \ = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\t\t\t}\n\t\t}\n\
+    \t}\n\treturn dist;\n}\nWeight Dijkstra(const Graph& graph, int s, int t) {\n\t\
+    assert(0 <= s && s <= static_cast<int>(graph.size()));\n\tassert(0 <= t && t <=\
+    \ static_cast<int>(graph.size()));\n\tstd::vector<Weight> dist(graph.size(), INF);\n\
+    \tdist[s] = 0;\n\tstd::priority_queue<Edge, std::vector<Edge>, std::greater<Edge>>\
+    \ pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\
+    \tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\t\tif (dist[v]\
+    \ < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v]\
+    \ + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <queue>\n#include <cassert>\nusing namespace std;\n\nvector<Weight> Dijkstra(const\
+    \ <queue>\n#include <functional>\n#include <cassert>\n\nstd::vector<Weight> Dijkstra(const\
     \ Graph& graph, int s) {\n\tassert(0 <= s && s <= static_cast<int>(graph.size()));\n\
-    \tvector<Weight> dist(graph.size(), INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge,\
-    \ vector<Edge>, greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
+    \tstd::vector<Weight> dist(graph.size(), INF);\n\tdist[s] = 0;\n\tstd::priority_queue<Edge,\
+    \ std::vector<Edge>, std::greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty())\
     \ {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (dist[v]\
     \ < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v]\
     \ + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
     \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist;\n}\nWeight Dijkstra(const\
     \ Graph& graph, int s, int t) {\n\tassert(0 <= s && s <= static_cast<int>(graph.size()));\n\
-    \tassert(0 <= t && t <= static_cast<int>(graph.size()));\n\tvector<Weight> dist(graph.size(),\
-    \ INF);\n\tdist[s] = 0;\n\tpriority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\
-    \tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\tEdge p = pq.top();\n\t\tpq.pop();\n\
-    \t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\t\tif (dist[v] < p.cost)\
-    \ continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to] > dist[v] + e.cost)\
-    \ {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to, dist[e.to]);\n\
-    \t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
+    \tassert(0 <= t && t <= static_cast<int>(graph.size()));\n\tstd::vector<Weight>\
+    \ dist(graph.size(), INF);\n\tdist[s] = 0;\n\tstd::priority_queue<Edge, std::vector<Edge>,\
+    \ std::greater<Edge>> pq;\n\tpq.emplace(s, 0);\n\twhile (!pq.empty()) {\n\t\t\
+    Edge p = pq.top();\n\t\tpq.pop();\n\t\tint v = p.to;\n\t\tif (v == t) return dist[t];\n\
+    \t\tif (dist[v] < p.cost) continue;\n\t\tfor (auto e : graph[v]) {\n\t\t\tif (dist[e.to]\
+    \ > dist[v] + e.cost) {\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tpq.emplace(e.to,\
+    \ dist[e.to]);\n\t\t\t}\n\t\t}\n\t}\n\treturn dist[t];\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/Dijkstra.cpp
   requiredBy:
   - Graph/ChinesePostman.cpp
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ChinesePostman.test.cpp

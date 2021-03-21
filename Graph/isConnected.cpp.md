@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -33,26 +33,26 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/isConnected.cpp\"\n#include <queue>\nusing namespace std;\n\n\
-    bool isConnected(const vector<vector<int>>& graph, int s, int t) {\n\tint V =\
-    \ graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\tvector<bool> vis(V);\n\t\
-    vis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro = que.front();\n\t\tque.pop();\n\
+    #line 4 \"Graph/isConnected.cpp\"\n#include <queue>\n\nbool isConnected(const\
+    \ std::vector<std::vector<int>>& graph, int s, int t) {\n\tstd::size_t n = graph.size();\n\
+    \tstd::queue<int> que;\n\tque.push(s);\n\tstd::vector<bool> vis(n);\n\tvis[s]\
+    \ = true;\n\twhile (!que.empty()) {\n\t\tint fro = que.front();\n\t\tque.pop();\n\
     \t\tif (fro == t) return true;\n\t\tfor (int e : graph[fro]) {\n\t\t\tif (!vis[e])\
     \ {\n\t\t\t\tque.push(e);\n\t\t\t\tvis[e] = true;\n\t\t\t}\n\t\t}\n\t}\n\treturn\
     \ false;\n}\n"
   code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <queue>\nusing namespace std;\n\nbool isConnected(const vector<vector<int>>&\
-    \ graph, int s, int t) {\n\tint V = graph.size();\n\tqueue<int> que;\n\tque.push(s);\n\
-    \tvector<bool> vis(V);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\tint fro\
-    \ = que.front();\n\t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor (int\
-    \ e : graph[fro]) {\n\t\t\tif (!vis[e]) {\n\t\t\t\tque.push(e);\n\t\t\t\tvis[e]\
-    \ = true;\n\t\t\t}\n\t\t}\n\t}\n\treturn false;\n}\n"
+    \ <queue>\n\nbool isConnected(const std::vector<std::vector<int>>& graph, int\
+    \ s, int t) {\n\tstd::size_t n = graph.size();\n\tstd::queue<int> que;\n\tque.push(s);\n\
+    \tstd::vector<bool> vis(n);\n\tvis[s] = true;\n\twhile (!que.empty()) {\n\t\t\
+    int fro = que.front();\n\t\tque.pop();\n\t\tif (fro == t) return true;\n\t\tfor\
+    \ (int e : graph[fro]) {\n\t\t\tif (!vis[e]) {\n\t\t\t\tque.push(e);\n\t\t\t\t\
+    vis[e] = true;\n\t\t\t}\n\t\t}\n\t}\n\treturn false;\n}\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/isConnected.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/isConnected.cpp

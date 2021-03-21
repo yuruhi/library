@@ -12,20 +12,21 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"DP/LIS.cpp\"\n#include <vector>\n#include <algorithm>\n\
-    #include <limits>\nusing namespace std;\n\ntemplate <class T> int LIS(const vector<T>&\
-    \ a) {\n\tconstexpr T INF = numeric_limits<T>::max();\n\tvector<T> dp(a.size(),\
-    \ INF);\n\tfor (auto num : a) {\n\t\t*lower_bound(dp.begin(), dp.end(), num) =\
-    \ num;\n\t}\n\treturn lower_bound(dp.begin(), dp.end(), INF) - dp.begin();\n}\n"
+    #include <limits>\n\ntemplate <class T> int LIS(const std::vector<T>& a) {\n\t\
+    constexpr T INF = std::numeric_limits<T>::max();\n\tstd::vector<T> dp(a.size(),\
+    \ INF);\n\tfor (auto num : a) {\n\t\t*std::lower_bound(dp.begin(), dp.end(), num)\
+    \ = num;\n\t}\n\treturn std::lower_bound(dp.begin(), dp.end(), INF) - dp.begin();\n\
+    }\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n#include <limits>\n\
-    using namespace std;\n\ntemplate <class T> int LIS(const vector<T>& a) {\n\tconstexpr\
-    \ T INF = numeric_limits<T>::max();\n\tvector<T> dp(a.size(), INF);\n\tfor (auto\
-    \ num : a) {\n\t\t*lower_bound(dp.begin(), dp.end(), num) = num;\n\t}\n\treturn\
-    \ lower_bound(dp.begin(), dp.end(), INF) - dp.begin();\n}\n"
+    \ntemplate <class T> int LIS(const std::vector<T>& a) {\n\tconstexpr T INF = std::numeric_limits<T>::max();\n\
+    \tstd::vector<T> dp(a.size(), INF);\n\tfor (auto num : a) {\n\t\t*std::lower_bound(dp.begin(),\
+    \ dp.end(), num) = num;\n\t}\n\treturn std::lower_bound(dp.begin(), dp.end(),\
+    \ INF) - dp.begin();\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: DP/LIS.cpp
   requiredBy: []
-  timestamp: '2020-12-15 11:08:34+09:00'
+  timestamp: '2021-03-21 09:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/LIS.test.cpp

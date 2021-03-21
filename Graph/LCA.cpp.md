@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Graph/GraphTemplate.cpp
     title: Graph/GraphTemplate.cpp
   _extendedRequiredBy: []
@@ -36,43 +36,44 @@ data:
     \ to_unweighted_graph(const Graph& graph) {\n\tUnWeightedGraph result(graph.size());\n\
     \tfor (std::size_t i = 0; i < graph.size(); ++i) {\n\t\tfor (auto [v, cost] :\
     \ graph[i]) {\n\t\t\tresult[i].push_back(v);\n\t\t}\n\t}\n\treturn result;\n}\n\
-    #line 4 \"Graph/LCA.cpp\"\n#include <utility>\n#include <cmath>\nusing namespace\
-    \ std;\n\nclass LCA {\n\tconst int n, LOG;\n\tvector<int> dist;\n\tvector<vector<int>>\
+    #line 4 \"Graph/LCA.cpp\"\n#include <utility>\n#include <cmath>\n\nclass LCA {\n\
+    \tconst std::size_t n;\n\tconst int LOG;\n\tstd::vector<int> dist;\n\tstd::vector<std::vector<int>>\
     \ table;\n\tvoid dfs(const Graph& graph, int v, int p, int d) {\n\t\ttable[0][v]\
     \ = p;\n\t\tdist[v] = d;\n\t\tfor (auto e : graph[v])\n\t\t\tif (e.to != p) {\n\
     \t\t\t\tdfs(graph, e.to, v, d + 1);\n\t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph&\
     \ graph, const int root)\n\t    : n(graph.size()), LOG(log2(n) + 1), dist(n),\
-    \ table(LOG, vector<int>(n)) {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int k =\
-    \ 0; k + 1 < LOG; ++k) {\n\t\t\tfor (int v = 0; v < n; ++v) {\n\t\t\t\tif (table[k][v]\
+    \ table(LOG, std::vector<int>(n)) {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int\
+    \ k = 0; k + 1 < LOG; ++k) {\n\t\t\tfor (std::size_t v = 0; v < n; ++v) {\n\t\t\
+    \t\tif (table[k][v] < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t} else {\n\
+    \t\t\t\t\ttable[k + 1][v] = table[k][table[k][v]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\
+    \t}\n\tint operator()(int u, int v) {\n\t\tif (dist[u] > dist[v]) std::swap(u,\
+    \ v);\n\t\tfor (int k = 0; k < LOG; ++k) {\n\t\t\tif ((dist[v] - dist[u]) >> k\
+    \ & 1) {\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\tif (u == v) return u;\n\
+    \t\tfor (int k = LOG - 1; k >= 0; --k) {\n\t\t\tif (table[k][u] != table[k][v])\
+    \ {\n\t\t\t\tu = table[k][u];\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\t\
+    return table[0][u];\n\t}\n};\n"
+  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
+    \ <utility>\n#include <cmath>\n\nclass LCA {\n\tconst std::size_t n;\n\tconst\
+    \ int LOG;\n\tstd::vector<int> dist;\n\tstd::vector<std::vector<int>> table;\n\
+    \tvoid dfs(const Graph& graph, int v, int p, int d) {\n\t\ttable[0][v] = p;\n\t\
+    \tdist[v] = d;\n\t\tfor (auto e : graph[v])\n\t\t\tif (e.to != p) {\n\t\t\t\t\
+    dfs(graph, e.to, v, d + 1);\n\t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& graph,\
+    \ const int root)\n\t    : n(graph.size()), LOG(log2(n) + 1), dist(n), table(LOG,\
+    \ std::vector<int>(n)) {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int k = 0; k\
+    \ + 1 < LOG; ++k) {\n\t\t\tfor (std::size_t v = 0; v < n; ++v) {\n\t\t\t\tif (table[k][v]\
     \ < 0) {\n\t\t\t\t\ttable[k + 1][v] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k\
     \ + 1][v] = table[k][table[k][v]];\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint operator()(int\
-    \ u, int v) {\n\t\tif (dist[u] > dist[v]) swap(u, v);\n\t\tfor (int k = 0; k <\
-    \ LOG; ++k) {\n\t\t\tif ((dist[v] - dist[u]) >> k & 1) {\n\t\t\t\tv = table[k][v];\n\
+    \ u, int v) {\n\t\tif (dist[u] > dist[v]) std::swap(u, v);\n\t\tfor (int k = 0;\
+    \ k < LOG; ++k) {\n\t\t\tif ((dist[v] - dist[u]) >> k & 1) {\n\t\t\t\tv = table[k][v];\n\
     \t\t\t}\n\t\t}\n\t\tif (u == v) return u;\n\t\tfor (int k = LOG - 1; k >= 0; --k)\
     \ {\n\t\t\tif (table[k][u] != table[k][v]) {\n\t\t\t\tu = table[k][u];\n\t\t\t\
     \tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\treturn table[0][u];\n\t}\n};\n"
-  code: "#pragma once\n#include \"./GraphTemplate.cpp\"\n#include <vector>\n#include\
-    \ <utility>\n#include <cmath>\nusing namespace std;\n\nclass LCA {\n\tconst int\
-    \ n, LOG;\n\tvector<int> dist;\n\tvector<vector<int>> table;\n\tvoid dfs(const\
-    \ Graph& graph, int v, int p, int d) {\n\t\ttable[0][v] = p;\n\t\tdist[v] = d;\n\
-    \t\tfor (auto e : graph[v])\n\t\t\tif (e.to != p) {\n\t\t\t\tdfs(graph, e.to,\
-    \ v, d + 1);\n\t\t\t}\n\t}\n\npublic:\n\tLCA(const Graph& graph, const int root)\n\
-    \t    : n(graph.size()), LOG(log2(n) + 1), dist(n), table(LOG, vector<int>(n))\
-    \ {\n\t\tdfs(graph, root, -1, 0);\n\t\tfor (int k = 0; k + 1 < LOG; ++k) {\n\t\
-    \t\tfor (int v = 0; v < n; ++v) {\n\t\t\t\tif (table[k][v] < 0) {\n\t\t\t\t\t\
-    table[k + 1][v] = -1;\n\t\t\t\t} else {\n\t\t\t\t\ttable[k + 1][v] = table[k][table[k][v]];\n\
-    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint operator()(int u, int v) {\n\t\tif (dist[u]\
-    \ > dist[v]) swap(u, v);\n\t\tfor (int k = 0; k < LOG; ++k) {\n\t\t\tif ((dist[v]\
-    \ - dist[u]) >> k & 1) {\n\t\t\t\tv = table[k][v];\n\t\t\t}\n\t\t}\n\t\tif (u\
-    \ == v) return u;\n\t\tfor (int k = LOG - 1; k >= 0; --k) {\n\t\t\tif (table[k][u]\
-    \ != table[k][v]) {\n\t\t\t\tu = table[k][u];\n\t\t\t\tv = table[k][v];\n\t\t\t\
-    }\n\t\t}\n\t\treturn table[0][u];\n\t}\n};\n"
   dependsOn:
   - Graph/GraphTemplate.cpp
   isVerificationFile: false
   path: Graph/LCA.cpp
   requiredBy: []
-  timestamp: '2021-03-14 18:03:15+09:00'
+  timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/LCA.test.cpp
