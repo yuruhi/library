@@ -105,65 +105,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Geometry/Geometric.hpp\"\n#include <iostream>\n#include\
-    \ <vector>\n#include <algorithm>\n#include <optional>\nusing namespace std;\n\n\
-    namespace Geometric {\n\n\tusing LD = long double;\n\tconstexpr long double PI\
-    \ = 3.14159265358979323846, EPS = 1e-12;\n\n\t// a > 0 : +1\n\t// a = 0 :  0\n\
-    \t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD deg);\n\
-    \tconstexpr LD rad_to_deg(LD rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\tstruct\
-    \ Segment;\n\tstruct Rect;\n\tstruct Circle;\n\tstruct Polygon;\n\n\t// AB \u304B\
-    \u3089\u898B\u3066 BC \u304C\u5DE6\u306B\u66F2\u304C\u308B   : +1\n\t// AB \u304B\
-    \u3089\u898B\u3066 BC \u304C\u53F3\u306B\u66F2\u304C\u308B   : -1\n\t// ABC, CBA\
-    \ \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : +2\n\t// ACB,\
-    \ BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 :  0\n\t//\
-    \ BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\u3076 : -2\n\
-    \tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC \u304C\
-    \u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\tint angle_type(const Vec2&\
-    \ a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC \u306E\u5024 (radian)\n\t\
-    LD angle(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\n\t\
-    LD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v, const\
-    \ Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
-    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
-    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
-    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
-    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
-    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
-    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
-    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
-    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
-    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
-    \ intersect(const Vec2& v, const Polygon& p);\n\tbool intersect(const Line& l,\
-    \ const Vec2& v);\n\tbool intersect(const Line& l1, const Line& l2);\n\tbool intersect(const\
-    \ Line& l, const Circle& c);\n\tbool intersect(const Segment& l, const Vec2& v);\n\
-    \tbool intersect(const Segment& s1, const Segment& s2);\n\tbool intersect(const\
-    \ Segment& s, const Circle& c);\n\tbool intersect(const Circle& c, const Vec2&\
-    \ v);\n\tbool intersect(const Circle& c, const Line& l);\n\tbool intersect(const\
-    \ Circle& c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle&\
-    \ c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const\
-    \ Rect& r, const Vec2& v);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\
-    \tbool intersect(const Rect& r, const Circle& c);\n\tbool intersect(const Polygon&\
-    \ p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\u5224\u5B9A\n\tbool tangent(const\
-    \ Vec2& v1, const Vec2& v2);\n\tbool tangent(const Vec2& v, const Line& l);\n\t\
-    bool tangent(const Vec2& v, const Segment& l);\n\tbool tangent(const Vec2& v,\
-    \ const Circle& c);\n\tbool tangent(const Vec2& v, const Rect& r);\n\tbool tangent(const\
-    \ Vec2& v, const Polygon& p);\n\tbool tangent(const Line& l, const Vec2& v);\n\
-    \tbool tangent(const Line& l, const Circle& c);\n\tbool tangent(const Line& l,\
-    \ const Rect& r);\n\tbool tangent(const Segment& l, const Vec2& v);\n\tbool tangent(const\
-    \ Circle& c, const Vec2& v);\n\tbool tangent(const Circle& c, const Line& l);\n\
-    \tbool tangent(const Circle& c1, const Circle& c2);\n\tbool tangent(const Rect&\
-    \ r, const Vec2& v);\n\tbool tangent(const Rect& r, const Line& l);\n\tbool tangent(const\
-    \ Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
-    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
-    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Segment& s, const Circle& c);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c, const Line& l);\n\tvector<Vec2> cross_points(const\
-    \ Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const Circle& c1,\
-    \ const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const\
-    \ Circle& c, const Vec2& v);\n}  // namespace Geometric\n"
-  code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
-    #include <optional>\nusing namespace std;\n\nnamespace Geometric {\n\n\tusing\
-    \ LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846, EPS\
-    \ = 1e-12;\n\n\t// a > 0 : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int\
-    \ sgn(LD a);\n\tconstexpr LD deg_to_rad(LD deg);\n\tconstexpr LD rad_to_deg(LD\
+    \ <vector>\n#include <algorithm>\n#include <optional>\n\nnamespace Geometric {\n\
+    \n\tusing LD = long double;\n\tconstexpr long double PI = 3.14159265358979323846,\
+    \ EPS = 1e-12;\n\n\t// a > 0 : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\tconstexpr\
+    \ int sgn(LD a);\n\tconstexpr LD deg_to_rad(LD deg);\n\tconstexpr LD rad_to_deg(LD\
     \ rad);\n\n\tstruct Vec2;\n\tstruct Line;\n\tstruct Segment;\n\tstruct Rect;\n\
     \tstruct Circle;\n\tstruct Polygon;\n\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\
     \u5DE6\u306B\u66F2\u304C\u308B   : +1\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\
@@ -206,14 +151,68 @@ data:
     \ Circle& c, const Vec2& v);\n\tbool tangent(const Circle& c, const Line& l);\n\
     \tbool tangent(const Circle& c1, const Circle& c2);\n\tbool tangent(const Rect&\
     \ r, const Vec2& v);\n\tbool tangent(const Rect& r, const Line& l);\n\tbool tangent(const\
-    \ Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\toptional<Vec2> cross_point(const\
-    \ Line& l1, const Line& l2);\n\toptional<Vec2> cross_point(const Segment& s1,\
-    \ const Segment& s2);\n\n\tvector<Vec2> cross_points(const Line& l, const Circle&\
-    \ c);\n\tvector<Vec2> cross_points(const Segment& s, const Circle& c);\n\tvector<Vec2>\
-    \ cross_points(const Circle& c, const Line& l);\n\tvector<Vec2> cross_points(const\
-    \ Circle& c, const Segment& s);\n\tvector<Vec2> cross_points(const Circle& c1,\
-    \ const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tvector<Vec2> tangent_to_circle(const\
-    \ Circle& c, const Vec2& v);\n}  // namespace Geometric\n"
+    \ Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\tstd::optional<Vec2> cross_point(const\
+    \ Line& l1, const Line& l2);\n\tstd::optional<Vec2> cross_point(const Segment&\
+    \ s1, const Segment& s2);\n\n\tstd::vector<Vec2> cross_points(const Line& l, const\
+    \ Circle& c);\n\tstd::vector<Vec2> cross_points(const Segment& s, const Circle&\
+    \ c);\n\tstd::vector<Vec2> cross_points(const Circle& c, const Line& l);\n\tstd::vector<Vec2>\
+    \ cross_points(const Circle& c, const Segment& s);\n\tstd::vector<Vec2> cross_points(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tstd::vector<Vec2>\
+    \ tangent_to_circle(const Circle& c, const Vec2& v);\n}  // namespace Geometric\n"
+  code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
+    #include <optional>\n\nnamespace Geometric {\n\n\tusing LD = long double;\n\t\
+    constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;\n\n\t// a > 0\
+    \ : +1\n\t// a = 0 :  0\n\t// a < 0 : -1\n\tconstexpr int sgn(LD a);\n\tconstexpr\
+    \ LD deg_to_rad(LD deg);\n\tconstexpr LD rad_to_deg(LD rad);\n\n\tstruct Vec2;\n\
+    \tstruct Line;\n\tstruct Segment;\n\tstruct Rect;\n\tstruct Circle;\n\tstruct\
+    \ Polygon;\n\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\u5DE6\u306B\u66F2\u304C\
+    \u308B   : +1\n\t// AB \u304B\u3089\u898B\u3066 BC \u304C\u53F3\u306B\u66F2\u304C\
+    \u308B   : -1\n\t// ABC, CBA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\
+    \u3076 : +2\n\t// ACB, BCA \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\
+    \u3076 :  0\n\t// BAC, CAB \u306E\u9806\u306B\u4E00\u76F4\u7DDA\u4E0A\u306B\u4E26\
+    \u3076 : -2\n\tint iSP(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220\
+    ABC \u304C\u92ED\u89D2 : 0, \u76F4\u89D2 : 1, \u920D\u89D2 : 2\n\tint angle_type(const\
+    \ Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u2220ABC \u306E\u5024 (radian)\n\
+    \tLD angle(const Vec2& a, const Vec2& b, const Vec2& c);\n\n\t// \u8DDD\u96E2\n\
+    \tLD distance(const Vec2& v1, const Vec2& v2);\n\tLD distance(const Vec2& v, const\
+    \ Line& l);\n\tLD distance(const Vec2& v, const Segment& s);\n\tLD distance(const\
+    \ Vec2& v, const Circle& c);\n\tLD distance(const Line& l, const Vec2& v);\n\t\
+    LD distance(const Line& l1, const Line& l2);\n\tLD distance(const Segment& s,\
+    \ const Vec2& v);\n\tLD distance(const Segment& s1, const Segment& s2);\n\tLD\
+    \ distance(const Circle& c, const Vec2& v);\n\tLD distance(const Circle& c1, const\
+    \ Circle& c2);\n\n\t// \u4EA4\u5DEE\u5224\u5B9A \uFF08\u5185\u5305\u3057\u3066\
+    \u3044\u308B\u3068\u304D\u3082 true \u3092\u8FD4\u3059\uFF09\n\tbool intersect(const\
+    \ Vec2& v1, const Vec2& v2);\n\tbool intersect(const Vec2& v, const Line& l);\n\
+    \tbool intersect(const Vec2& v, const Segment& l);\n\tbool intersect(const Vec2&\
+    \ v, const Circle& c);\n\tbool intersect(const Vec2& v, const Rect& r);\n\tbool\
+    \ intersect(const Vec2& v, const Polygon& p);\n\tbool intersect(const Line& l,\
+    \ const Vec2& v);\n\tbool intersect(const Line& l1, const Line& l2);\n\tbool intersect(const\
+    \ Line& l, const Circle& c);\n\tbool intersect(const Segment& l, const Vec2& v);\n\
+    \tbool intersect(const Segment& s1, const Segment& s2);\n\tbool intersect(const\
+    \ Segment& s, const Circle& c);\n\tbool intersect(const Circle& c, const Vec2&\
+    \ v);\n\tbool intersect(const Circle& c, const Line& l);\n\tbool intersect(const\
+    \ Circle& c, const Segment& s);\n\tbool intersect(const Circle& c1, const Circle&\
+    \ c2);\n\tbool intersect(const Circle& c, const Rect& r);\n\tbool intersect(const\
+    \ Rect& r, const Vec2& v);\n\tbool intersect(const Rect& r1, const Rect& r2);\n\
+    \tbool intersect(const Rect& r, const Circle& c);\n\tbool intersect(const Polygon&\
+    \ p, const Vec2& v);\n\n\t// \u63A5\u3059\u308B\u304B\u5224\u5B9A\n\tbool tangent(const\
+    \ Vec2& v1, const Vec2& v2);\n\tbool tangent(const Vec2& v, const Line& l);\n\t\
+    bool tangent(const Vec2& v, const Segment& l);\n\tbool tangent(const Vec2& v,\
+    \ const Circle& c);\n\tbool tangent(const Vec2& v, const Rect& r);\n\tbool tangent(const\
+    \ Vec2& v, const Polygon& p);\n\tbool tangent(const Line& l, const Vec2& v);\n\
+    \tbool tangent(const Line& l, const Circle& c);\n\tbool tangent(const Line& l,\
+    \ const Rect& r);\n\tbool tangent(const Segment& l, const Vec2& v);\n\tbool tangent(const\
+    \ Circle& c, const Vec2& v);\n\tbool tangent(const Circle& c, const Line& l);\n\
+    \tbool tangent(const Circle& c1, const Circle& c2);\n\tbool tangent(const Rect&\
+    \ r, const Vec2& v);\n\tbool tangent(const Rect& r, const Line& l);\n\tbool tangent(const\
+    \ Polygon& p, const Vec2& v);\n\n\t// \u4EA4\u70B9\n\tstd::optional<Vec2> cross_point(const\
+    \ Line& l1, const Line& l2);\n\tstd::optional<Vec2> cross_point(const Segment&\
+    \ s1, const Segment& s2);\n\n\tstd::vector<Vec2> cross_points(const Line& l, const\
+    \ Circle& c);\n\tstd::vector<Vec2> cross_points(const Segment& s, const Circle&\
+    \ c);\n\tstd::vector<Vec2> cross_points(const Circle& c, const Line& l);\n\tstd::vector<Vec2>\
+    \ cross_points(const Circle& c, const Segment& s);\n\tstd::vector<Vec2> cross_points(const\
+    \ Circle& c1, const Circle& c2);\n\n\t// \u5186\u306E\u63A5\u7DDA\n\tstd::vector<Vec2>\
+    \ tangent_to_circle(const Circle& c, const Vec2& v);\n}  // namespace Geometric\n"
   dependsOn: []
   isVerificationFile: false
   path: Geometry/Geometric.hpp
@@ -228,7 +227,7 @@ data:
   - Geometry/Line.hpp
   - Geometry/closest_pair.cpp
   - Geometry/Rect.hpp
-  timestamp: '2021-01-04 21:28:54+09:00'
+  timestamp: '2021-03-21 09:12:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Geometric_segment_intersection.test.cpp
