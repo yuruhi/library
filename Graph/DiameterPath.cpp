@@ -24,10 +24,11 @@ std::tuple<Weight, std::vector<int>> DiameterPath(const Graph& graph) {
 	auto dfs2 = [&](auto self, int v, int p, Weight d) -> void {
 		dist[v] = d;
 		par[v] = p;
-		for (const auto& u : graph[v])
+		for (const auto& u : graph[v]) {
 			if (u.to != p) {
-				dfs2(u.to, v, d + u.cost);
+				self(self, u.to, v, d + u.cost);
 			}
+		}
 	};
 	dfs2(dfs2, s, -1, 0);
 	auto t = std::max_element(dist.begin(), dist.end());

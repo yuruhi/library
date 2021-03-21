@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-std::vector<int> TopologicalSort(const UnWeightedTree& graph) {
+std::vector<int> TopologicalSort(const UnWeightedGraph& graph) {
 	std::size_t n = graph.size();
 	std::vector<bool> visited(n);
 	std::vector<int> result;

@@ -25,7 +25,7 @@ class LowLink {
 					is_articultion_point = true;
 				}
 				if (ord[v] < low[u]) {
-					bridges.emplace_back(std::min(v, u), max(v, u));
+					bridges.emplace_back(std::min(v, u), std::max(v, u));
 				}
 			} else if (u != parent) {
 				low[v] = std::min(low[v], ord[u]);

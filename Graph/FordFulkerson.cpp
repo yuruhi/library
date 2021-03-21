@@ -11,7 +11,7 @@ class FordFulkerson {
 		used[v] = true;
 		for (auto& e : graph[v]) {
 			if (!used[e.to] && e.cap > 0) {
-				FLOW d = dfs(e.to, t, min(f, e.cap));
+				FLOW d = dfs(e.to, t, std::min(f, e.cap));
 				if (d > 0) {
 					e.cap -= d;
 					graph[e.to][e.rev].cap += d;

@@ -99,7 +99,7 @@ public:
 	template <class F> void each_vertex(int v, int u, F f) const {
 		assert(builded);
 		while (true) {
-			if (index[v] > index[u]) swap(v, u);
+			if (index[v] > index[u]) std::swap(v, u);
 			if (head[v] != head[u]) {
 				f(index[head[u]], index[u] + 1);
 				u = parent[head[u]];
@@ -116,7 +116,7 @@ public:
 	template <class F> void each_edge(int v, int u, F f) const {
 		assert(builded);
 		while (true) {
-			if (index[v] > index[u]) swap(v, u);
+			if (index[v] > index[u]) std::swap(v, u);
 			if (head[v] != head[u]) {
 				f(index[head[u]], index[u] + 1);
 				u = parent[head[u]];
@@ -156,7 +156,7 @@ public:
 	}
 	int lca(int u, int v) const {
 		while (true) {
-			if (index[u] > index[v]) swap(u, v);
+			if (index[u] > index[v]) std::swap(u, v);
 			if (head[u] != head[v]) {
 				v = parent[head[v]];
 			} else {

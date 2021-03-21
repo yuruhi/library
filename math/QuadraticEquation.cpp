@@ -22,12 +22,12 @@ std::optional<std::vector<T>> QuadraticEquation(long long a, long long b, long l
 		} else {
 			T ans1 = 0, ans2 = 0;
 			if (b > 0) {
-				ans1 = (-B - sqrt(D)) / (2 * A);
+				ans1 = (-B - std::sqrt(D)) / (2 * A);
 			} else {
-				ans1 = (-B + sqrt(D)) / (2 * A);
+				ans1 = (-B + std::sqrt(D)) / (2 * A);
 			}
 			ans2 = (C / A) / ans1;
-			return std::vector{min(ans1, ans2), max(ans1, ans2)};
+			return std::vector{std::min(ans1, ans2), std::max(ans1, ans2)};
 		}
 	}
 }
