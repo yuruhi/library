@@ -11,12 +11,5 @@
 #else
 #define dump(...) ((void)0)
 #endif
-
+#include "./Utility/oj_local.cpp"
 #include <bits/stdc++.h>
-template <class T> constexpr T oj_local(const T& oj, const T& local) {
-#ifndef LOCAL
-	return oj;
-#else
-	return local;
-#endif
-}
