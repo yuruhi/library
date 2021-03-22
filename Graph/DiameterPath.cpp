@@ -32,7 +32,7 @@ std::tuple<Weight, std::vector<int>> DiameterPath(const Graph& graph) {
 	};
 	dfs2(dfs2, s, -1, 0);
 	auto t = std::max_element(dist.begin(), dist.end());
-	std::vector<int> path{t - dist.begin()};
+	std::vector<int> path{static_cast<int>(t - dist.begin())};
 	for (int p = 0; (p = par[path.back()]) != -1;) {
 		path.push_back(p);
 	}
