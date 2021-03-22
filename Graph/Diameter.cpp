@@ -18,3 +18,6 @@ std::tuple<Weight, int, int> Diameter(const Graph& graph) {
 	auto d2 = dfs(dfs, d1.second, -1, 0);
 	return {d2.first, d1.second, d2.second};
 }
+Weight DiameterLength(const Graph& graph) {
+	return std::get<0>(Diameter(graph));
+}
