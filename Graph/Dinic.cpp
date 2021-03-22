@@ -3,8 +3,10 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
+#include <cassert>
 
 class Dinic {
+	int n;
 	GraphF graph;
 	std::vector<int> level, iter;
 	void bfs(int s) {
@@ -40,11 +42,13 @@ class Dinic {
 	}
 
 public:
-	Dinic(std::size_t n) : graph(n), level(n), iter(n) {}
+	Dinic(std::size_t _n) : n(_n), graph(n), level(n), iter(n) {}
 	const GraphF& get_graph() {
 		return graph;
 	}
 	void add_edge(int from, int to, FLOW cap) {
+		assert(0 <= from && from < n);
+		assert(0 <= to && to < n);
 		graph[from].emplace_back(to, graph[to].size(), cap);
 		graph[to].emplace_back(from, graph[from].size() - 1, 0);
 	}
