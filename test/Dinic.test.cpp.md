@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/Dinic.cpp
     title: Graph/Dinic.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FlowTemplate.cpp
     title: Graph/FlowTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
   bundledCode: "#line 1 \"test/Dinic.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\
-    \n#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <limits>\n\n\
-    using FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
+    \n#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <iostream>\n\
+    #include <limits>\n\nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
     struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
     \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n\tfriend std::ostream&\
     \ operator<<(std::ostream& os, const EdgeF& e) {\n\t\treturn os << \"->\" << e.to\
@@ -43,12 +43,11 @@ data:
     \ graph[from].size() - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result\
     \ = 0;\n\t\twhile (true) {\n\t\t\tbfs(s);\n\t\t\tif (level[t] < 0) return result;\n\
     \t\t\tstd::fill(iter.begin(), iter.end(), 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f\
-    \ = dfs(s, t, INF_FLOW)) > 0) result += f;\n\t\t}\n\t}\n};\n#line 3 \"test/Dinic.test.cpp\"\
-    \n#include <iostream>\nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\
-    \tios_base::sync_with_stdio(false);\n\tint n, m;\n\tcin >> n >> m;\n\tDinic g(n);\n\
-    \tfor (int i = 0; i < m; ++i) {\n\t\tint u, v;\n\t\tFLOW d;\n\t\tcin >> u >> v\
-    \ >> d;\n\t\tg.add_edge(u, v, d);\n\t}\n\tcout << g.solve(0, n - 1) << '\\n';\n\
-    }\n"
+    \ = dfs(s, t, INF_FLOW)) > 0) result += f;\n\t\t}\n\t}\n};\n#line 4 \"test/Dinic.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n, m;\n\tcin >> n >> m;\n\tDinic g(n);\n\tfor (int i = 0; i < m; ++i) {\n\
+    \t\tint u, v;\n\t\tFLOW d;\n\t\tcin >> u >> v >> d;\n\t\tg.add_edge(u, v, d);\n\
+    \t}\n\tcout << g.solve(0, n - 1) << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\
     \n#include \"./../Graph/Dinic.cpp\"\n#include <iostream>\nusing namespace std;\n\
     \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint\
@@ -61,8 +60,8 @@ data:
   isVerificationFile: true
   path: test/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2021-03-22 10:27:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-22 17:27:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/Dinic.test.cpp
 layout: document

@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Graph/FlowTemplate.cpp
     title: Graph/FlowTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Dinic.test.cpp
     title: test/Dinic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <limits>\n\
-    \nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
+  bundledCode: "#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <iostream>\n\
+    #include <limits>\n\nusing FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
     struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
     \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n\tfriend std::ostream&\
     \ operator<<(std::ostream& os, const EdgeF& e) {\n\t\treturn os << \"->\" << e.to\
@@ -66,8 +66,8 @@ data:
   isVerificationFile: false
   path: Graph/Dinic.cpp
   requiredBy: []
-  timestamp: '2021-03-22 10:27:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-22 17:27:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Dinic.test.cpp
 documentation_of: Graph/Dinic.cpp
