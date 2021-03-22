@@ -9,5 +9,8 @@ struct EdgeF {
 	FLOW cap;
 	EdgeF() : to(-1), rev(-1), cap(-1) {}
 	EdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}
+	friend std::ostream& operator<<(std::ostream& os, const EdgeF& e) {
+		return os << "->" << e.to << "(" << e.cap << ")";
+	}
 };
 using GraphF = std::vector<std::vector<EdgeF>>;
