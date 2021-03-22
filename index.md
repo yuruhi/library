@@ -144,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/DijkstraBuildPath.cpp
       title: Graph/DijkstraBuildPath.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/Dinic.cpp
       title: Graph/Dinic.cpp
     - icon: ':heavy_check_mark:'
@@ -156,10 +156,10 @@ data:
     - icon: ':warning:'
       path: Graph/EulerTourForVertex.cpp
       title: Graph/EulerTourForVertex.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/FlowTemplate.cpp
       title: Graph/FlowTemplate.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Graph/FordFulkerson.cpp
       title: Graph/FordFulkerson.cpp
     - icon: ':heavy_check_mark:'
@@ -226,6 +226,9 @@ data:
       path: Utility/BracketsPos.cpp
       title: Utility/BracketsPos.cpp
     - icon: ':warning:'
+      path: Utility/Bsearch.cpp
+      title: Utility/Bsearch.cpp
+    - icon: ':warning:'
       path: Utility/CharacterClass.cpp
       title: Utility/CharacterClass.cpp
     - icon: ':warning:'
@@ -288,6 +291,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Utility/get_MOD.cpp
       title: Utility/get_MOD.cpp
+    - icon: ':heavy_check_mark:'
+      path: Utility/oj_local.cpp
+      title: Utility/oj_local.cpp
     - icon: ':warning:'
       path: Utility/splitRange.cpp
       title: Utility/splitRange.cpp
@@ -541,7 +547,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/DijkstraBuildPath.test.cpp
       title: test/DijkstraBuildPath.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Dinic.test.cpp
       title: test/Dinic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -571,7 +577,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Fibonacci.test.cpp
       title: test/Fibonacci.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/FordFulkerson.test.cpp
       title: test/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'

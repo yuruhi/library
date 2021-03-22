@@ -23,6 +23,9 @@ data:
     path: Utility/get_MOD.cpp
     title: Utility/get_MOD.cpp
   - icon: ':heavy_check_mark:'
+    path: Utility/oj_local.cpp
+    title: Utility/oj_local.cpp
+  - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
   _extendedRequiredBy: []
@@ -466,11 +469,12 @@ data:
     }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
     \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
     #line 8 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
-    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\n#include <bits/stdc++.h>\n\
-    template <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
-    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n#line 4 \"test/template_no_Ruby.test.cpp\"\
-    \nusing namespace std;\n\nint main() {\n\tfor (int t = in; t--;) {\n\t\tll a =\
-    \ in, b = in;\n\t\tout(a + b);\n\t}\n}\n"
+    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n#line 2 \"Utility/oj_local.cpp\"\
+    \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
+    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n#line 15 \"template.cpp\"\
+    \n#include <bits/stdc++.h>\n#line 4 \"test/template_no_Ruby.test.cpp\"\nusing\
+    \ namespace std;\n\nint main() {\n\tfor (int t = in; t--;) {\n\t\tll a = in, b\
+    \ = in;\n\t\tout(a + b);\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
     \ \"./../template.cpp\"\n#include <iostream>\nusing namespace std;\n\nint main()\
     \ {\n\tfor (int t = in; t--;) {\n\t\tll a = in, b = in;\n\t\tout(a + b);\n\t}\n\
@@ -484,10 +488,11 @@ data:
   - Utility/Step.cpp
   - Utility/Ruby.cpp
   - Utility/functions.cpp
+  - Utility/oj_local.cpp
   isVerificationFile: true
   path: test/template_no_Ruby.test.cpp
   requiredBy: []
-  timestamp: '2021-03-19 16:49:34+09:00'
+  timestamp: '2021-03-22 13:25:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/template_no_Ruby.test.cpp

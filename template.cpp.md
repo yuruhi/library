@@ -22,6 +22,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Utility/get_MOD.cpp
     title: Utility/get_MOD.cpp
+  - icon: ':heavy_check_mark:'
+    path: Utility/oj_local.cpp
+    title: Utility/oj_local.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -466,16 +469,41 @@ data:
     }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
     \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
     #line 8 \"template.cpp\"\n#if __has_include(<library/dump.hpp>)\n#include <library/dump.hpp>\n\
-    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n\n#include <bits/stdc++.h>\n\
-    template <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
-    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n"
-  code: "#pragma once\n#include \"./Utility/constants.cpp\"\n#include \"./Utility/Scanner.cpp\"\
-    \n#include \"./Utility/Printer.cpp\"\n#include \"./Utility/Step.cpp\"\n#include\
-    \ \"./Utility/Ruby.cpp\"\n#include \"./Utility/functions.cpp\"\n#if __has_include(<library/dump.hpp>)\n\
-    #include <library/dump.hpp>\n#define LOCAL\n#else\n#define dump(...) ((void)0)\n\
-    #endif\n\n#include <bits/stdc++.h>\ntemplate <class T> constexpr T oj_local(const\
-    \ T& oj, const T& local) {\n#ifndef LOCAL\n\treturn oj;\n#else\n\treturn local;\n\
-    #endif\n}\n"
+    #define LOCAL\n#else\n#define dump(...) ((void)0)\n#endif\n#line 2 \"Utility/oj_local.cpp\"\
+    \ntemplate <class T> constexpr T oj_local(const T& oj, const T& local) {\n#ifndef\
+    \ LOCAL\n\treturn oj;\n#else\n\treturn local;\n#endif\n}\n#line 15 \"template.cpp\"\
+    \n#include <bits/stdc++.h>\n"
+  code: '#pragma once
+
+    #include "./Utility/constants.cpp"
+
+    #include "./Utility/Scanner.cpp"
+
+    #include "./Utility/Printer.cpp"
+
+    #include "./Utility/Step.cpp"
+
+    #include "./Utility/Ruby.cpp"
+
+    #include "./Utility/functions.cpp"
+
+    #if __has_include(<library/dump.hpp>)
+
+    #include <library/dump.hpp>
+
+    #define LOCAL
+
+    #else
+
+    #define dump(...) ((void)0)
+
+    #endif
+
+    #include "./Utility/oj_local.cpp"
+
+    #include <bits/stdc++.h>
+
+    '
   dependsOn:
   - Utility/constants.cpp
   - Utility/get_MOD.cpp
@@ -484,10 +512,11 @@ data:
   - Utility/Step.cpp
   - Utility/Ruby.cpp
   - Utility/functions.cpp
+  - Utility/oj_local.cpp
   isVerificationFile: false
   path: template.cpp
   requiredBy: []
-  timestamp: '2021-03-19 16:49:34+09:00'
+  timestamp: '2021-03-22 13:25:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/Dinic.cpp
     title: Graph/Dinic.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Graph/FlowTemplate.cpp
     title: Graph/FlowTemplate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
@@ -21,9 +21,11 @@ data:
     \n#line 2 \"Graph/FlowTemplate.cpp\"\n#include <vector>\n#include <limits>\n\n\
     using FLOW = long long;\nconstexpr FLOW INF_FLOW = std::numeric_limits<FLOW>::max();\n\
     struct EdgeF {\n\tint to, rev;\n\tFLOW cap;\n\tEdgeF() : to(-1), rev(-1), cap(-1)\
-    \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n};\nusing GraphF\
-    \ = std::vector<std::vector<EdgeF>>;\n#line 4 \"Graph/Dinic.cpp\"\n#include <algorithm>\n\
-    #include <queue>\n\nclass Dinic {\n\tGraphF graph;\n\tstd::vector<int> level,\
+    \ {}\n\tEdgeF(int t, int r, FLOW c) : to(t), rev(r), cap(c) {}\n\tfriend std::ostream&\
+    \ operator<<(std::ostream& os, const EdgeF& e) {\n\t\treturn os << \"->\" << e.to\
+    \ << \"(\" << e.cap << \")\";\n\t}\n};\nusing GraphF = std::vector<std::vector<EdgeF>>;\n\
+    #line 4 \"Graph/Dinic.cpp\"\n#include <algorithm>\n#include <queue>\n#include\
+    \ <cassert>\n\nclass Dinic {\n\tint n;\n\tGraphF graph;\n\tstd::vector<int> level,\
     \ iter;\n\tvoid bfs(int s) {\n\t\tstd::fill(level.begin(), level.end(), -1);\n\
     \t\tlevel[s] = 0;\n\t\tstd::queue<int> q;\n\t\tq.push(s);\n\t\twhile (!q.empty())\
     \ {\n\t\t\tint v = q.front();\n\t\t\tq.pop();\n\t\t\tfor (auto& e : graph[v])\
@@ -34,9 +36,10 @@ data:
     \ && level[v] < level[e.to]) {\n\t\t\t\tFLOW d = dfs(e.to, t, std::min(f, e.cap));\n\
     \t\t\t\tif (d > 0) {\n\t\t\t\t\te.cap -= d;\n\t\t\t\t\tgraph[e.to][e.rev].cap\
     \ += d;\n\t\t\t\t\treturn d;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn 0;\n\t}\n\n\
-    public:\n\tDinic(std::size_t n) : graph(n), level(n), iter(n) {}\n\tconst GraphF&\
-    \ get_graph() {\n\t\treturn graph;\n\t}\n\tvoid add_edge(int from, int to, FLOW\
-    \ cap) {\n\t\tgraph[from].emplace_back(to, graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from,\
+    public:\n\tDinic(std::size_t _n) : n(_n), graph(n), level(n), iter(n) {}\n\tconst\
+    \ GraphF& get_graph() {\n\t\treturn graph;\n\t}\n\tvoid add_edge(int from, int\
+    \ to, FLOW cap) {\n\t\tassert(0 <= from && from < n);\n\t\tassert(0 <= to && to\
+    \ < n);\n\t\tgraph[from].emplace_back(to, graph[to].size(), cap);\n\t\tgraph[to].emplace_back(from,\
     \ graph[from].size() - 1, 0);\n\t}\n\tFLOW solve(int s, int t) {\n\t\tFLOW result\
     \ = 0;\n\t\twhile (true) {\n\t\t\tbfs(s);\n\t\t\tif (level[t] < 0) return result;\n\
     \t\t\tstd::fill(iter.begin(), iter.end(), 0);\n\t\t\tFLOW f;\n\t\t\twhile ((f\
@@ -58,8 +61,8 @@ data:
   isVerificationFile: true
   path: test/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-03-22 10:27:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/Dinic.test.cpp
 layout: document
