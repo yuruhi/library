@@ -1,7 +1,8 @@
 #pragma once
-#include <limits>
 #include <vector>
+#include <utility>
 #include <iostream>
+#include <limits>
 
 using Weight = long long;
 constexpr Weight INF = std::numeric_limits<Weight>::max();
@@ -37,14 +38,23 @@ struct Edge2 {
 		return os << e.from << "->" << e.to << '(' << e.cost << ')';
 	}
 };
+using UnWeightedEdges = std::vector<std::pair<int, int>>;
 using Edges = std::vector<Edge2>;
 using Matrix = std::vector<std::vector<Weight>>;
 
-auto to_graph(const UnWeightedGraph& graph) {
+auto add_edge(UnWeightedGraph& graph, int v, int u) {
+	graph[v].push_back(u);
+	graph[u].push_back(v);
+}
+auto add_edge(Graph& graph, int v, int u, Weight cost) {
+	graph[v].emplace_back(u, cost);
+	graph[u].emplace_back(v, cost);
+}
+auto to_graph(const UnWeightedGraph& graph, Weight cost = 1) {
 	Graph result(graph.size());
 	for (std::size_t i = 0; i < graph.size(); ++i) {
 		for (int v : graph[i]) {
-			result[i].emplace_back(v, 1);
+			result[i].emplace_back(v, cost);
 		}
 	}
 	return result;
@@ -57,4 +67,22 @@ auto to_unweighted_graph(const Graph& graph) {
 		}
 	}
 	return result;
+}
+auto to_edges(const UnWeightedGraph& graph, bool unique = false) {
+	std::vector<std::pair<int, int>> edges;
+	for (std::size_t i = 0; i < graph.size(); ++i) {
+		for (int v : graph[i]) {
+			if (!unique || static_cast<int>(i) < v) edges.emplace_back(i, v);
+		}
+	}
+	return edges;
+}
+auto to_edges(const Graph& graph) {
+	Edges edges;
+	for (std::size_t i = 0; i < graph.size(); ++i) {
+		for (auto [v, cost] : graph[i]) {
+			edges.emplace_back(i, v, cost);
+		}
+	}
+	return edges;
 }
