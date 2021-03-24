@@ -5,8 +5,10 @@
 
 template <class T, class F, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
 std::optional<T> Bsearch(T left, T right, F f) {
-	if (left >= right || !f(right)) {
+	if (left > right || !f(right)) {
 		return std::nullopt;
+	} else if (f(left)) {
+		return left;
 	}
 	while (right - left > 1) {
 		T middle = (left + right) / 2;
