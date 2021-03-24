@@ -225,7 +225,7 @@ data:
     - icon: ':warning:'
       path: Utility/BracketsPos.cpp
       title: Utility/BracketsPos.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Utility/Bsearch.cpp
       title: Utility/Bsearch.cpp
     - icon: ':warning:'
@@ -502,6 +502,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Bridges.test.cpp
       title: test/Bridges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/Bsearch.test.cpp
+      title: test/Bsearch.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/ChinesePostman.test.cpp
       title: test/ChinesePostman.test.cpp
