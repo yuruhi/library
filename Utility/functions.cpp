@@ -157,7 +157,7 @@ namespace lambda {
 	auto decrement = [](auto n) {
 		return --n;
 	};
-	auto yield_self = [](const auto& n) {
+	auto self = [](const auto& n) {
 		return n;
 	};
 	auto first = [](const auto& n) {
