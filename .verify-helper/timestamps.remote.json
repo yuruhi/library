@@ -10,6 +10,7 @@
 "test/BipartiteMatching.test.cpp": "2021-03-21 10:20:50 +0900",
 "test/BitRangeBasedFor.test.cpp": "2021-01-02 22:23:18 +0900",
 "test/Bridges.test.cpp": "2021-03-21 11:17:59 +0900",
+"test/Bsearch.test.cpp": "2021-03-24 15:18:21 +0900",
 "test/ChinesePostman.test.cpp": "2021-03-22 17:28:05 +0900",
 "test/ConnectedComponent.test.cpp": "2021-03-14 18:03:15 +0900",
 "test/CulSum.test.cpp": "2021-03-09 16:10:12 +0900",
