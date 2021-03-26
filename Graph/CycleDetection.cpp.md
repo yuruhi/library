@@ -103,11 +103,11 @@ data:
   timestamp: '2021-03-21 10:20:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/DirectedMinimumSpanningTree.test.cpp
-  - test/CycleDetectionVertex_Undirected.test.cpp
-  - test/CycleDetectionVertex_Directed.test.cpp
   - test/CycleDetectionEdge_Undirected.test.cpp
+  - test/CycleDetectionVertex_Directed.test.cpp
+  - test/CycleDetectionVertex_Undirected.test.cpp
   - test/CycleDetectionEdge_Directed.test.cpp
+  - test/DirectedMinimumSpanningTree.test.cpp
 documentation_of: Graph/CycleDetection.cpp
 layout: document
 redirect_from:

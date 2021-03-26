@@ -35,17 +35,18 @@ data:
     \ v, int u) {\n\t\tgraph[v].push_back(u);\n\t\tgraph[u].push_back(v);\n\t}\n\t\
     std::vector<DP> solve() {\n\t\tfor (std::size_t i = 0; i < n; ++i) {\n\t\t\tdp[i].assign(graph[i].size(),\
     \ DP());\n\t\t}\n\t\tdfs(0, -1);\n\t\tbfs(0, -1, DP());\n\t\treturn ans;\n\t}\n\
-    };\n\n/*\nstruct DP {\n    int dp;\n    DP(int _dp = 1) : dp(_dp) {}\n    DP operator+(const\
-    \ DP& d) const {\n        return DP(*this) += d;\n    }\n    DP& operator+=(const\
-    \ DP& d) {\n        return *this;\n    }\n    DP add_root([[maybe_unused]] int\
-    \ v) const {\n        DP res = *this;\n\n        return res;\n    }\n};\n*/\n\
-    #line 3 \"test/ReRooting.test.cpp\"\n#include <iostream>\n#line 5 \"test/ReRooting.test.cpp\"\
-    \nusing namespace std;\nusing ll = long long;\n\nvector<ll> a;\n\nstruct DP {\n\
-    \tll sum, val;\n\tDP() : sum(0), val(0) {}\n\tDP operator+(const DP& d) const\
-    \ {\n\t\treturn DP(*this) += d;\n\t}\n\tDP& operator+=(const DP& d) {\n\t\tsum\
-    \ += d.sum;\n\t\tval += d.val;\n\t\treturn *this;\n\t}\n\tDP add_root([[maybe_unused]]\
-    \ int v) const {\n\t\tDP res = *this;\n\t\tres.val += sum;\n\t\tres.sum += a[v];\n\
-    \t\treturn res;\n\t}\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    };\n\n/*\nstruct DP {\n    // edit\n    int dp;\n    DP(int _dp = 1) : dp(_dp)\
+    \ {}\n    DP operator+(const DP& d) const {\n        return DP(*this) += d;\n\
+    \    }\n    DP& operator+=(const DP& d) {\n        // edit\n        return *this;\n\
+    \    }\n    DP add_root([[maybe_unused]] int v) const {\n        DP res = *this;\n\
+    \        // edit\n        return res;\n    }\n};\n*/\n#line 3 \"test/ReRooting.test.cpp\"\
+    \n#include <iostream>\n#line 5 \"test/ReRooting.test.cpp\"\nusing namespace std;\n\
+    using ll = long long;\n\nvector<ll> a;\n\nstruct DP {\n\tll sum, val;\n\tDP()\
+    \ : sum(0), val(0) {}\n\tDP operator+(const DP& d) const {\n\t\treturn DP(*this)\
+    \ += d;\n\t}\n\tDP& operator+=(const DP& d) {\n\t\tsum += d.sum;\n\t\tval += d.val;\n\
+    \t\treturn *this;\n\t}\n\tDP add_root([[maybe_unused]] int v) const {\n\t\tDP\
+    \ res = *this;\n\t\tres.val += sum;\n\t\tres.sum += a[v];\n\t\treturn res;\n\t\
+    }\n};\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
     \n\tint n;\n\tcin >> n;\n\ta.assign(n, 0);\n\tfor (ll& i : a) cin >> i;\n\n\t\
     ReRooting<DP> dp(n);\n\tfor (int i = 0; i < n - 1; ++i) {\n\t\tint u, v;\n\t\t\
     cin >> u >> v;\n\t\tdp.add_edge(u - 1, v - 1);\n\t}\n\tfor (auto i : dp.solve())\
@@ -67,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/ReRooting.test.cpp
   requiredBy: []
-  timestamp: '2021-03-17 10:25:25+09:00'
+  timestamp: '2021-03-26 12:01:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/ReRooting.test.cpp

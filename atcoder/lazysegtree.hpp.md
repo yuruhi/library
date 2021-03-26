@@ -180,12 +180,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/RangeUpdateRangeMin.test.cpp
+  - test/RangeUpdateRangeSum.test.cpp
+  - test/HLD_vertex.test.cpp
+  - test/RangeAddRangeMin.test.cpp
+  - test/HLD_subtree_edge.test.cpp
   - test/RangeAddRangeSum.test.cpp
   - test/HLD_edge.test.cpp
-  - test/HLD_vertex.test.cpp
-  - test/RangeUpdateRangeSum.test.cpp
-  - test/HLD_subtree_edge.test.cpp
-  - test/RangeAddRangeMin.test.cpp
 documentation_of: atcoder/lazysegtree.hpp
 layout: document
 redirect_from:

@@ -228,9 +228,9 @@ data:
     \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
     \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
     \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
-    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
-    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
-    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto self = [](const auto& n) {\n\t\
+    \treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t\
+    };\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
     \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
     \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
     \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
@@ -279,7 +279,7 @@ data:
   isVerificationFile: false
   path: template_no_Ruby.cpp
   requiredBy: []
-  timestamp: '2021-03-22 13:25:44+09:00'
+  timestamp: '2021-03-26 12:01:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template_no_Ruby.cpp

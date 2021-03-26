@@ -173,9 +173,11 @@ data:
     \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
-    \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
-    \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
-    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
+    \nstruct At_impl {\n\tauto operator()(std::size_t l, std::size_t r) {\n\t\treturn\
+    \ Callable(\n\t\t    [l, r](auto v) { return decltype(v)(std::begin(v) + l, std::begin(v)\
+    \ + r); });\n\t}\n} At;\nstruct Slice_impl {\n\tauto operator()(std::size_t i,\
+    \ std::size_t cnt) {\n\t\treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v)\
+    \ + i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
     \ {\n\ttemplate <class T>\n\tfriend auto operator|(const std::vector<std::vector<T>>&\
     \ v, Transpose_impl& c) {\n\t\tstd::size_t h = v.size(), w = v.front().size();\n\
     \t\tstd::vector result(w, std::vector<T>(h));\n\t\tfor (std::size_t i = 0; i <\
@@ -342,9 +344,11 @@ data:
     \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
-    \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
-    \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
-    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
+    \nstruct At_impl {\n\tauto operator()(std::size_t l, std::size_t r) {\n\t\treturn\
+    \ Callable(\n\t\t    [l, r](auto v) { return decltype(v)(std::begin(v) + l, std::begin(v)\
+    \ + r); });\n\t}\n} At;\nstruct Slice_impl {\n\tauto operator()(std::size_t i,\
+    \ std::size_t cnt) {\n\t\treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v)\
+    \ + i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
     \ {\n\ttemplate <class T>\n\tfriend auto operator|(const std::vector<std::vector<T>>&\
     \ v, Transpose_impl& c) {\n\t\tstd::size_t h = v.size(), w = v.front().size();\n\
     \t\tstd::vector result(w, std::vector<T>(h));\n\t\tfor (std::size_t i = 0; i <\
@@ -370,14 +374,14 @@ data:
   path: Utility/Ruby.cpp
   requiredBy:
   - template.cpp
-  timestamp: '2021-03-17 11:01:44+09:00'
+  timestamp: '2021-03-26 12:00:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/IO_vector_and_Ruby_Reverse.test.cpp
   - test/Ruby_Min_Max_Sum.test.cpp
-  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
 documentation_of: Utility/Ruby.cpp
 layout: document
 redirect_from:

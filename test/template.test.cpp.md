@@ -381,9 +381,11 @@ data:
     \ false)) {\n\t\t\t\t\tresult += separater;\n\t\t\t\t}\n\t\t\t\tresult += std::to_string(i);\n\
     \t\t\t}\n\t\t\treturn result;\n\t\t});\n\t}\n\ttemplate <class T> friend auto\
     \ operator|(const T& v, Join_impl& c) {\n\t\treturn v | c(\"\");\n\t}\n} Join;\n\
-    \nstruct Slice_impl {\n\tauto operator()(std::size_t i, std::size_t cnt) {\n\t\
-    \treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v) +\
-    \ i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
+    \nstruct At_impl {\n\tauto operator()(std::size_t l, std::size_t r) {\n\t\treturn\
+    \ Callable(\n\t\t    [l, r](auto v) { return decltype(v)(std::begin(v) + l, std::begin(v)\
+    \ + r); });\n\t}\n} At;\nstruct Slice_impl {\n\tauto operator()(std::size_t i,\
+    \ std::size_t cnt) {\n\t\treturn Callable([i, cnt](auto v) {\n\t\t\treturn decltype(v)(std::begin(v)\
+    \ + i, std::begin(v) + i + cnt);\n\t\t});\n\t}\n} Slice;\n\nstruct Transpose_impl\
     \ {\n\ttemplate <class T>\n\tfriend auto operator|(const std::vector<std::vector<T>>&\
     \ v, Transpose_impl& c) {\n\t\tstd::size_t h = v.size(), w = v.front().size();\n\
     \t\tstd::vector result(w, std::vector<T>(h));\n\t\tfor (std::size_t i = 0; i <\
@@ -459,9 +461,9 @@ data:
     \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
     \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
     \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
-    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto yield_self = [](const auto& n)\
-    \ {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\
-    \t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
+    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto self = [](const auto& n) {\n\t\
+    \treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t\
+    };\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
     \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
     \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
     \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
@@ -492,7 +494,7 @@ data:
   isVerificationFile: true
   path: test/template.test.cpp
   requiredBy: []
-  timestamp: '2021-03-22 13:25:44+09:00'
+  timestamp: '2021-03-26 12:01:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/template.test.cpp

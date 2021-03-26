@@ -32,10 +32,11 @@ data:
     \ v, int u) {\n\t\tgraph[v].push_back(u);\n\t\tgraph[u].push_back(v);\n\t}\n\t\
     std::vector<DP> solve() {\n\t\tfor (std::size_t i = 0; i < n; ++i) {\n\t\t\tdp[i].assign(graph[i].size(),\
     \ DP());\n\t\t}\n\t\tdfs(0, -1);\n\t\tbfs(0, -1, DP());\n\t\treturn ans;\n\t}\n\
-    };\n\n/*\nstruct DP {\n    int dp;\n    DP(int _dp = 1) : dp(_dp) {}\n    DP operator+(const\
-    \ DP& d) const {\n        return DP(*this) += d;\n    }\n    DP& operator+=(const\
-    \ DP& d) {\n        return *this;\n    }\n    DP add_root([[maybe_unused]] int\
-    \ v) const {\n        DP res = *this;\n\n        return res;\n    }\n};\n*/\n"
+    };\n\n/*\nstruct DP {\n    // edit\n    int dp;\n    DP(int _dp = 1) : dp(_dp)\
+    \ {}\n    DP operator+(const DP& d) const {\n        return DP(*this) += d;\n\
+    \    }\n    DP& operator+=(const DP& d) {\n        // edit\n        return *this;\n\
+    \    }\n    DP add_root([[maybe_unused]] int v) const {\n        DP res = *this;\n\
+    \        // edit\n        return res;\n    }\n};\n*/\n"
   code: "#pragma once\n#include <vector>\n\ntemplate <class DP> class ReRooting {\n\
     \tstd::size_t n;\n\tstd::vector<std::vector<int>> graph;\n\tstd::vector<std::vector<DP>>\
     \ dp;\n\tstd::vector<DP> ans;\n\n\tDP dfs(int v, int p) {\n\t\tDP sum;\n\t\tfor\
@@ -56,15 +57,16 @@ data:
     \ v, int u) {\n\t\tgraph[v].push_back(u);\n\t\tgraph[u].push_back(v);\n\t}\n\t\
     std::vector<DP> solve() {\n\t\tfor (std::size_t i = 0; i < n; ++i) {\n\t\t\tdp[i].assign(graph[i].size(),\
     \ DP());\n\t\t}\n\t\tdfs(0, -1);\n\t\tbfs(0, -1, DP());\n\t\treturn ans;\n\t}\n\
-    };\n\n/*\nstruct DP {\n    int dp;\n    DP(int _dp = 1) : dp(_dp) {}\n    DP operator+(const\
-    \ DP& d) const {\n        return DP(*this) += d;\n    }\n    DP& operator+=(const\
-    \ DP& d) {\n        return *this;\n    }\n    DP add_root([[maybe_unused]] int\
-    \ v) const {\n        DP res = *this;\n\n        return res;\n    }\n};\n*/\n"
+    };\n\n/*\nstruct DP {\n    // edit\n    int dp;\n    DP(int _dp = 1) : dp(_dp)\
+    \ {}\n    DP operator+(const DP& d) const {\n        return DP(*this) += d;\n\
+    \    }\n    DP& operator+=(const DP& d) {\n        // edit\n        return *this;\n\
+    \    }\n    DP add_root([[maybe_unused]] int v) const {\n        DP res = *this;\n\
+    \        // edit\n        return res;\n    }\n};\n*/\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/ReRooting.cpp
   requiredBy: []
-  timestamp: '2021-03-17 10:25:25+09:00'
+  timestamp: '2021-03-26 12:01:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ReRooting.test.cpp
