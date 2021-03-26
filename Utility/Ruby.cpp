@@ -396,6 +396,12 @@ struct Join_impl {
 	}
 } Join;
 
+struct At_impl {
+	auto operator()(std::size_t l, std::size_t r) {
+		return Callable(
+		    [l, r](auto v) { return decltype(v)(std::begin(v) + l, std::begin(v) + r); });
+	}
+} At;
 struct Slice_impl {
 	auto operator()(std::size_t i, std::size_t cnt) {
 		return Callable([i, cnt](auto v) {
