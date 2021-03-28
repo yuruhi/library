@@ -10,6 +10,7 @@
 #define LOCAL
 #else
 #define dump(...) ((void)0)
+#define dump2(...) ((void)0)
 #endif
 #include "./Utility/oj_local.cpp"
 #include <bits/stdc++.h>
