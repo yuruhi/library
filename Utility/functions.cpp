@@ -102,6 +102,10 @@ template <class T, class U = typename T::value_type> U Gcdv(const T& v) {
 template <class T, class U = typename T::value_type> U Lcmv(const T& v) {
 	return std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::lcm<U, U>);
 }
+template <class T> T& Concat(T& v, const T& vec) {
+	v.insert(v.end(), vec.begin(), vec.end());
+	return v;
+}
 namespace internal {
 	template <class T, std::size_t N>
 	auto make_vector(std::vector<int>& sizes, const T& init) {
