@@ -1,33 +1,51 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <library/dump.hpp>
 
-template <std::uint64_t MOD> class RollingHash {
+class RollingHash {
 public:
-	using ull = std::uint64_t;
+	using value_type = std::uint64_t;
 
 private:
-	int n;
-	ull base;
-	std::vector<ull> pow, hash;
+	static constexpr value_type MASK30 = (1ul << 30) - 1;
+	static constexpr value_type MASK31 = (1ul << 31) - 1;
+	static constexpr value_type MASK61 = (1ul << 61) - 1;
+	static constexpr value_type MOD = MASK61;
+
+	static constexpr value_type mul(value_type a, value_type b) {
+		auto au = a >> 31, ad = a & MASK31;
+		auto bu = b >> 31, bd = b & MASK31;
+		auto mid = ad * bu + au * bd;
+		auto midu = mid >> 30, midd = mid & MASK30;
+		return au * bu * 2 + midu + (midd << 31) + ad * bd;
+	}
+	static constexpr value_type calc_mod(value_type x) {
+		auto res = (x >> 61) + (x & MASK61);
+		if (res >= MOD) res -= MOD;
+		return res;
+	}
+
+	std::size_t n;
+	value_type base;
+	std::vector<value_type> pow, hash;
 
 public:
-	RollingHash(const std::string& s, ull _base = 10007)
+	RollingHash(const std::string& s, value_type _base = 10007)
 	    : n(s.size()), base(_base), pow(n + 1), hash(n + 1) {
 		pow[0] = 1;
-		hash[0] = 0;
-		for (int i = 0; i < n; ++i) {
-			pow[i + 1] = pow[i] * base % MOD;
-			hash[i + 1] = (s[i] + hash[i] * base) % MOD;
+		for (std::size_t i = 0; i < n; ++i) {
+			pow[i + 1] = calc_mod(mul(pow[i], base));
+			hash[i + 1] = calc_mod(mul(hash[i], base) + s[i]);
 		}
+		dump(pow, hash);
 	}
-	// [0, r)
-	ull operator()(int r) const {
-		return hash[r];
+	// [0, right)
+	value_type operator()(int right) const {
+		return hash[right];
 	}
-	// [l, r)
-	ull operator()(int l, int r) const {
-		return (hash[r] - hash[l] * pow[r - l] % MOD + MOD) % MOD;
+	// [left, right)
+	value_type operator()(int left, int right) const {
+		return calc_mod(hash[right] + MOD * 4 - mul(hash[left], pow[right - left]));
 	}
 };
-using RH = RollingHash<1000000007>;
