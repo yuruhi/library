@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B"
-#include "./../String/RollingHash.cpp"
+#include "./../string/RollingHash.cpp"
 #include <iostream>
 using namespace std;
 

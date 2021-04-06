@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
-#include "./../String/ZAlgorithm.cpp"
+#include "./../string/ZAlgorithm.cpp"
 #include <iostream>
 using namespace std;
 
