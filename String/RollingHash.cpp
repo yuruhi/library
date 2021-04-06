@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <library/dump.hpp>
 
 class RollingHash {
 public:
@@ -38,7 +37,6 @@ public:
 			pow[i + 1] = calc_mod(mul(pow[i], base));
 			hash[i + 1] = calc_mod(mul(hash[i], base) + s[i]);
 		}
-		dump(pow, hash);
 	}
 	// [0, right)
 	value_type operator()(int right) const {
