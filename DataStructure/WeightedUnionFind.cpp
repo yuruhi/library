@@ -1,19 +1,18 @@
 #pragma once
 #include <vector>
 #include <utility>
-using namespace std;
 
 template <class T> class WeightedUnionFind {
 public:
 	using value_type = T;
 
 private:
-	vector<int> par_m, rank_m;
-	vector<value_type> weight_m;
+	std::vector<int> par_m, rank_m;
+	std::vector<value_type> weight_m;
 
 public:
-	WeightedUnionFind(int n) : par_m(n), rank_m(n, 0), weight_m(n, 0) {
-		for (int i = 0; i < n; ++i) par_m[i] = i;
+	WeightedUnionFind(std::size_t n) : par_m(n), rank_m(n, 0), weight_m(n, 0) {
+		for (std::size_t i = 0; i < n; ++i) par_m[i] = i;
 	}
 	int root(int x) {
 		if (par_m[x] == x) {

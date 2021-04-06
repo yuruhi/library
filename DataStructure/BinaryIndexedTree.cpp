@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <cassert>
-using namespace std;
 
 template <class T> class BinaryIndexedTree {
 public:
@@ -9,7 +8,7 @@ public:
 
 private:
 	int n, n2;
-	vector<value_type> a;
+	std::vector<value_type> a;
 
 public:
 	BinaryIndexedTree(int n_) : n(n_), n2(1), a(n_ + 1) {
@@ -48,8 +47,8 @@ public:
 		}
 		return result;
 	}
-	vector<value_type> to_a() const {
-		vector<value_type> result(n);
+	std::vector<value_type> to_a() const {
+		std::vector<value_type> result(n);
 		for (int i = 0; i < n; ++i) {
 			result[i] = operator[](i);
 		}
