@@ -2,7 +2,6 @@
 #include <utility>
 #include <tuple>
 #include <iostream>
-using namespace std;
 
 template <class T> struct Pair {
 	using value_type = T;
@@ -22,8 +21,9 @@ template <class T> struct Pair {
 	value_type x, y;
 	constexpr Pair() : x(), y() {}
 	constexpr Pair(value_type _x, value_type _y) : x(_x), y(_y) {}
-	constexpr Pair(const pair<value_type, value_type>& xy) : x(xy.first), y(xy.second) {}
-	constexpr Pair(const tuple<value_type, value_type>& xy) : x(get<0>(xy)), y(get<0>(xy)) {}
+	constexpr Pair(const std::pair<value_type, value_type>& xy) : x(xy.first), y(xy.second) {}
+	constexpr Pair(const std::tuple<value_type, value_type>& xy)
+	    : x(get<0>(xy)), y(get<1>(xy)) {}
 	constexpr Pair operator+() const {
 		return *this;
 	}
@@ -132,11 +132,11 @@ template <class T> struct Pair {
 		assert(0 <= i && i < 2);
 		return i == 0 ? x : y;
 	}
-	constexpr pair<value_type, value_type> to_pair() const {
-		return {x, y};
+	constexpr auto to_pair() const {
+		return std::pair(x, y);
 	}
-	constexpr tuple<value_type, value_type> to_tuple() const {
-		return {x, y};
+	constexpr auto to_tuple() const {
+		return std::tuple(x, y);
 	}
 	constexpr Pair xy() const {
 		return {x, y};
@@ -144,13 +144,13 @@ template <class T> struct Pair {
 	constexpr Pair yx() const {
 		return {y, x};
 	}
-	constexpr operator tuple<value_type&, value_type&>() {
-		return tuple<value_type&, value_type&>(x, y);
+	constexpr operator std::tuple<value_type&, value_type&>() {
+		return std::tuple<value_type&, value_type&>(x, y);
 	}
-	friend ostream& operator<<(ostream& os, const Pair& p) {
+	friend std::ostream& operator<<(std::ostream& os, const Pair& p) {
 		return os << p.x << ' ' << p.y;
 	}
-	friend istream& operator>>(istream& is, Pair& p) {
+	friend std::istream& operator>>(std::istream& is, Pair& p) {
 		return is >> p.x >> p.y;
 	}
 };

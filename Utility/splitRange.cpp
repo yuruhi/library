@@ -1,11 +1,10 @@
 #pragma once
 #include "./Range.cpp"
 #include <vector>
-using namespace std;
 
-vector<Range> split(const vector<int>& v) {
+std::vector<Range> split(const std::vector<int>& v) {
 	int n = v.size();
-	vector<Range> result;
+	std::vector<Range> result;
 	if (n <= 1) {
 		result.emplace_back(0, n - 1);
 		return result;

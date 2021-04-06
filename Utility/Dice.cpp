@@ -1,7 +1,6 @@
 #pragma once
 #include <tuple>
 #include <iostream>
-using namespace std;
 
 struct Dice {
 	int top, front, right, left, back, bottom;
@@ -9,23 +8,23 @@ struct Dice {
 	     int _bottom = 6)
 	    : top(_top), front(_front), right(_right), left(_left), back(_back), bottom(_bottom) {}
 	bool operator==(const Dice& d) const {
-		return tuple(top, front, right, left, back, bottom) ==
-		    tuple(d.top, d.front, d.right, d.left, d.back, d.bottom);
+		return std::tuple(top, front, right, left, back, bottom) ==
+		    std::tuple(d.top, d.front, d.right, d.left, d.back, d.bottom);
 	}
 	bool operator!=(const Dice& d) const {
 		return !(*this == d);
 	}
 	void roll_left() {
-		tie(top, right, bottom, left) = tuple(right, bottom, left, top);
+		std::tie(top, right, bottom, left) = std::tuple(right, bottom, left, top);
 	}
 	void roll_right() {
-		tie(top, right, bottom, left) = tuple(left, top, right, bottom);
+		std::tie(top, right, bottom, left) = std::tuple(left, top, right, bottom);
 	}
 	void roll_front() {
-		tie(top, front, bottom, back) = tuple(back, top, front, bottom);
+		std::tie(top, front, bottom, back) = std::tuple(back, top, front, bottom);
 	}
 	void roll_back() {
-		tie(top, front, bottom, back) = tuple(front, bottom, back, top);
+		std::tie(top, front, bottom, back) = std::tuple(front, bottom, back, top);
 	}
 	Dice rolled_left() const {
 		Dice x(*this);
@@ -73,10 +72,10 @@ struct Dice {
 		return x;
 	}
 	void rotate_left() {
-		tie(front, right, back, left) = tuple(right, back, left, front);
+		std::tie(front, right, back, left) = std::tuple(right, back, left, front);
 	}
 	void rotate_right() {
-		tie(front, right, back, left) = tuple(left, front, right, back);
+		std::tie(front, right, back, left) = std::tuple(left, front, right, back);
 	}
 	Dice rotated_left() const {
 		Dice x(*this);
@@ -121,12 +120,12 @@ struct Dice {
 		}
 		return false;
 	}
-	friend ostream& operator<<(ostream& os, const Dice& d) {
+	friend std::ostream& operator<<(std::ostream& os, const Dice& d) {
 		return os << "(top: " << d.top << ", front: " << d.front << ", right: " << d.right
 		          << ", left: " << d.left << ", back: " << d.back << ", bottom: " << d.bottom
 		          << ")";
 	}
-	friend istream& operator>>(istream& is, Dice& d) {
+	friend std::istream& operator>>(std::istream& is, Dice& d) {
 		return is >> d.top >> d.front >> d.right >> d.left >> d.back >> d.bottom;
 	}
 };

@@ -2,18 +2,17 @@
 #include <vector>
 #include <utility>
 #include <limits>
-using namespace std;
 
 class PartiallyPersistentUnionFind {
-	vector<int> par_m, rank_m, time_m;
-	vector<vector<pair<int, int>>> size_m;
+	std::vector<int> par_m, rank_m, time_m;
+	std::vector<std::vector<std::pair<int, int>>> size_m;
 	int now_m;
-	static constexpr int INF = numeric_limits<int>::max();
+	static constexpr int INF = std::numeric_limits<int>::max();
 
 public:
-	PartiallyPersistentUnionFind(size_t n)
+	PartiallyPersistentUnionFind(std::size_t n)
 	    : par_m(n), rank_m(n), time_m(n, INF), size_m(n), now_m(0) {
-		for (size_t i = 0; i < n; ++i) {
+		for (std::size_t i = 0; i < n; ++i) {
 			par_m[i] = i;
 			size_m[i].emplace_back(0, 1);
 		}
@@ -45,7 +44,7 @@ public:
 			return false;
 		}
 		if (rank_m[x] < rank_m[y]) {
-			swap(x, y);
+			std::swap(x, y);
 		}
 		size_m[x].emplace_back(now_m, size(x, now_m) + size(y, now_m));
 		par_m[y] = x;

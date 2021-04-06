@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <utility>
-using namespace std;
 
 std::vector<int> BuildTreePathEdge(const std::vector<std::vector<std::pair<int, int>>>& graph,
                                    int s, int t) {

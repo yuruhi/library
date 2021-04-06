@@ -2,7 +2,6 @@
 #include <memory>
 #include <vector>
 #include <cassert>
-using namespace std;
 
 template <class T> class PersistentStack {
 public:
@@ -11,7 +10,7 @@ public:
 
 private:
 	class node_type;
-	using node_ptr = shared_ptr<const node_type>;
+	using node_ptr = std::shared_ptr<const node_type>;
 	struct node_type {
 		node_ptr next;
 		value_type value;
@@ -19,29 +18,29 @@ private:
 	};
 
 	node_ptr root;
-	size_t size_m;
-	PersistentStack(node_ptr _root, size_t _size_m) : root(_root), size_m(_size_m) {}
+	std::size_t size_m;
+	PersistentStack(node_ptr _root, std::size_t _size_m) : root(_root), size_m(_size_m) {}
 
 public:
 	PersistentStack() : size_m(0) {}
 	bool empty() const {
 		return !root;
 	}
-	size_t size() const {
+	std::size_t size() const {
 		return size_m;
 	}
 	const_reference top() const {
 		return root->value;
 	}
 	PersistentStack push(const_reference value) const {
-		return PersistentStack(make_shared<node_type>(root, value), size_m + 1);
+		return PersistentStack(std::make_shared<node_type>(root, value), size_m + 1);
 	}
 	PersistentStack pop() const {
 		assert(!empty());
 		return PersistentStack(root->next, size_m - 1);
 	}
-	vector<value_type> to_a() const {
-		vector<value_type> result;
+	std::vector<value_type> to_a() const {
+		std::vector<value_type> result;
 		for (node_ptr node = root; node; node = node->next) {
 			result.push_back(node->value);
 		}
