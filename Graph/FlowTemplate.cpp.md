@@ -36,13 +36,13 @@ data:
   isVerificationFile: false
   path: Graph/FlowTemplate.cpp
   requiredBy:
-  - Graph/Dinic.cpp
   - Graph/FordFulkerson.cpp
+  - Graph/Dinic.cpp
   timestamp: '2021-03-22 17:27:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/Dinic.test.cpp
   - test/FordFulkerson.test.cpp
+  - test/Dinic.test.cpp
 documentation_of: Graph/FlowTemplate.cpp
 layout: document
 redirect_from:

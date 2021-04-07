@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Serch/GridBFS.cpp
-    title: Serch/GridBFS.cpp
-  - icon: ':heavy_check_mark:'
     path: Utility/Point.cpp
     title: Utility/Point.cpp
+  - icon: ':heavy_check_mark:'
+    path: search/GridBFS.cpp
+    title: search/GridBFS.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -189,8 +189,8 @@ data:
     };\nconst std::vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),\n\
     \                                          Point::U(),    Point::L(),  Point::RD(),\n\
     \                                          Point::LU(),   Point::RU(), Point::LD()};\n\
-    #line 5 \"Serch/GridBFS.cpp\"\n#include <queue>\n#line 7 \"Serch/GridBFS.cpp\"\
-    \n#include <limits>\n#line 9 \"Serch/GridBFS.cpp\"\n\nauto GridBFS(const std::vector<std::string>&\
+    #line 5 \"search/GridBFS.cpp\"\n#include <queue>\n#line 7 \"search/GridBFS.cpp\"\
+    \n#include <limits>\n#line 9 \"search/GridBFS.cpp\"\n\nauto GridBFS(const std::vector<std::string>&\
     \ grid, Point start, char wall_char) {\n\tconstexpr int INF = std::numeric_limits<int>::max();\n\
     \tint h = grid.size(), w = grid.front().size();\n\tPoint::set_range(h, w);\n\n\
     \tstd::vector result(h, std::vector(w, INF));\n\tif (grid[start.y][start.x] ==\
@@ -215,7 +215,7 @@ data:
     \ += GridBFS(s, i == 0 ? 'S' : '0' + i, '1' + i, 'X');\n\t}\n\tcout << ans <<\
     \ '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0558\"\n#include\
-    \ \"./../Utility/Point.cpp\"\n#include \"./../Serch/GridBFS.cpp\"\n#include <iostream>\n\
+    \ \"./../Utility/Point.cpp\"\n#include \"./../search/GridBFS.cpp\"\n#include <iostream>\n\
     #include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n\t\
     cin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\n\tint h, w, n;\n\tcin\
     \ >> h >> w >> n;\n\tvector<string> s(h);\n\tfor (auto& i : s) cin >> i;\n\n\t\
@@ -223,11 +223,11 @@ data:
     \ 'S' : '0' + i, '1' + i, 'X');\n\t}\n\tcout << ans << '\\n';\n}"
   dependsOn:
   - Utility/Point.cpp
-  - Serch/GridBFS.cpp
+  - search/GridBFS.cpp
   isVerificationFile: true
   path: test/GridBFS.test.cpp
   requiredBy: []
-  timestamp: '2021-03-18 14:18:52+09:00'
+  timestamp: '2021-04-07 13:31:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/GridBFS.test.cpp

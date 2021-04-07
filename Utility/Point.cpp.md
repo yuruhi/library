@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: Serch/GridBFS.cpp
-    title: Serch/GridBFS.cpp
+    path: search/GridBFS.cpp
+    title: search/GridBFS.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/GridBFS.test.cpp
@@ -360,7 +360,7 @@ data:
   isVerificationFile: false
   path: Utility/Point.cpp
   requiredBy:
-  - Serch/GridBFS.cpp
+  - search/GridBFS.cpp
   timestamp: '2021-03-18 14:18:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

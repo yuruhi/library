@@ -54,34 +54,35 @@ data:
     \treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
     \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
     \ v) {\n\treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()),\
-    \ std::lcm<U, U>);\n}\nnamespace internal {\n\ttemplate <class T, std::size_t\
-    \ N>\n\tauto make_vector(std::vector<int>& sizes, const T& init) {\n\t\tif constexpr\
-    \ (N == 1) {\n\t\t\treturn std::vector(sizes[0], init);\n\t\t} else {\n\t\t\t\
-    int size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\t\t\treturn std::vector(size,\
-    \ make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t}\n}  // namespace internal\n\
-    template <class T, std::size_t N>\nauto make_vector(const int (&sizes)[N], const\
-    \ T& init = T()) {\n\tstd::vector s(std::rbegin(sizes), std::rend(sizes));\n\t\
-    return internal::make_vector<T, N>(s, init);\n}\n\nnamespace lambda {\n\tauto\
-    \ char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto lower_to_int =\
-    \ [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int = [](char c) {\n\
-    \t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) -> char {\n\t\treturn\
-    \ '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\t\treturn 'a' +\
-    \ i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn 'A' + i;\n\t\
-    };\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\tauto is_even\
-    \ = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive = [](auto n)\
-    \ {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\t\treturn n\
-    \ < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t};\n\tauto decrement\
-    \ = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto self = [](const auto& n) {\n\t\
-    \treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn n.first;\n\t\
-    };\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t};\n\ttemplate\
-    \ <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\treturn static_cast<T>(n);\n\
-    \t\t};\n\t};\n\ttemplate <class T> auto equal_to(const T& x) {\n\t\treturn [x](auto\
-    \ y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate <std::size_t I> auto get()\
-    \ {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\t\t};\n\t\
-    }\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto& a, const\
-    \ auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace lambda\n\
-    #line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\nusing namespace\
-    \ std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\tstatic_assert(div_ceil(10,\
+    \ std::lcm<U, U>);\n}\ntemplate <class T> T& Concat(T& v, const T& vec) {\n\t\
+    v.insert(v.end(), vec.begin(), vec.end());\n\treturn v;\n}\nnamespace internal\
+    \ {\n\ttemplate <class T, std::size_t N>\n\tauto make_vector(std::vector<int>&\
+    \ sizes, const T& init) {\n\t\tif constexpr (N == 1) {\n\t\t\treturn std::vector(sizes[0],\
+    \ init);\n\t\t} else {\n\t\t\tint size = sizes[N - 1];\n\t\t\tsizes.pop_back();\n\
+    \t\t\treturn std::vector(size, make_vector<T, N - 1>(sizes, init));\n\t\t}\n\t\
+    }\n}  // namespace internal\ntemplate <class T, std::size_t N>\nauto make_vector(const\
+    \ int (&sizes)[N], const T& init = T()) {\n\tstd::vector s(std::rbegin(sizes),\
+    \ std::rend(sizes));\n\treturn internal::make_vector<T, N>(s, init);\n}\n\nnamespace\
+    \ lambda {\n\tauto char_to_int = [](char c) {\n\t\treturn c - '0';\n\t};\n\tauto\
+    \ lower_to_int = [](char c) {\n\t\treturn c - 'a';\n\t};\n\tauto upper_to_int\
+    \ = [](char c) {\n\t\treturn c - 'A';\n\t};\n\tauto int_to_char = [](int i) ->\
+    \ char {\n\t\treturn '0' + i;\n\t};\n\tauto int_to_lower = [](int i) -> char {\n\
+    \t\treturn 'a' + i;\n\t};\n\tauto int_to_upper = [](int i) -> char {\n\t\treturn\
+    \ 'A' + i;\n\t};\n\tauto is_odd = [](auto n) {\n\t\treturn n % 2 == 1;\n\t};\n\
+    \tauto is_even = [](auto n) {\n\t\treturn n % 2 == 0;\n\t};\n\tauto is_positive\
+    \ = [](auto n) {\n\t\treturn n > 0;\n\t};\n\tauto is_negative = [](auto n) {\n\
+    \t\treturn n < 0;\n\t};\n\tauto increment = [](auto n) {\n\t\treturn ++n;\n\t\
+    };\n\tauto decrement = [](auto n) {\n\t\treturn --n;\n\t};\n\tauto self = [](const\
+    \ auto& n) {\n\t\treturn n;\n\t};\n\tauto first = [](const auto& n) {\n\t\treturn\
+    \ n.first;\n\t};\n\tauto second = [](const auto& n) {\n\t\treturn n.second;\n\t\
+    };\n\ttemplate <class T> auto cast() {\n\t\treturn [](const auto& n) {\n\t\t\t\
+    return static_cast<T>(n);\n\t\t};\n\t};\n\ttemplate <class T> auto equal_to(const\
+    \ T& x) {\n\t\treturn [x](auto y) {\n\t\t\treturn x == y;\n\t\t};\n\t}\n\ttemplate\
+    \ <std::size_t I> auto get() {\n\t\treturn [](const auto& n) {\n\t\t\treturn std::get<I>(n);\n\
+    \t\t};\n\t}\n\ttemplate <class F> auto cmp(F&& f) {\n\t\treturn [f](const auto&\
+    \ a, const auto& b) {\n\t\t\treturn f(a) < f(b);\n\t\t};\n\t}\n}  // namespace\
+    \ lambda\n#line 3 \"test/TemplateFunctions.test.cpp\"\n#include <iostream>\nusing\
+    \ namespace std;\n\nint main() {\n\tstatic_assert(div_ceil(9, 3) == 3);\n\tstatic_assert(div_ceil(10,\
     \ 3) == 4);\n\tstatic_assert(div_ceil(11, 3) == 4);\n\tstatic_assert(div_ceil(12,\
     \ 3) == 4);\n\tstatic_assert(div_ceil(13, 3) == 5);\n\tstatic_assert(div_ceil(1000000000000000000ll,\
     \ 3) == 333333333333333334ll);\n\tstatic_assert(div_ceil(3, 1000000000000000000ll)\
@@ -180,7 +181,7 @@ data:
   isVerificationFile: true
   path: test/TemplateFunctions.test.cpp
   requiredBy: []
-  timestamp: '2021-03-26 12:01:00+09:00'
+  timestamp: '2021-04-02 18:59:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/TemplateFunctions.test.cpp

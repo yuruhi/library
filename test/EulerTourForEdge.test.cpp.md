@@ -35,33 +35,32 @@ data:
     \ get_rs() const {\n\t\treturn rs;\n\t}\n\tint operator[](int i) {\n\t\tassert(flag);\n\
     \t\treturn ls[i];\n\t}\n\ttemplate <class T> auto call(int v, std::function<T(int,\
     \ int)>&& f) {\n\t\tassert(flag);\n\t\treturn f(ls[v], rs[v]);\n\t}\n};\n#line\
-    \ 4 \"DataStructure/BinaryIndexedTree.cpp\"\nusing namespace std;\n\ntemplate\
-    \ <class T> class BinaryIndexedTree {\npublic:\n\tusing value_type = T;\n\nprivate:\n\
-    \tint n, n2;\n\tvector<value_type> a;\n\npublic:\n\tBinaryIndexedTree(int n_)\
-    \ : n(n_), n2(1), a(n_ + 1) {\n\t\twhile (n2 < n) n2 *= 2;\n\t\tn2 /= 2;\n\t}\n\
-    \tvalue_type operator()(int i) const {  // [0, i)\n\t\tif (i == 0) return 0;\n\
-    \t\tassert(0 < i && i <= n);\n\t\tvalue_type result = 0;\n\t\tfor (; i > 0; i\
-    \ -= i & -i) {\n\t\t\tresult += a[i];\n\t\t}\n\t\treturn result;\n\t}\n\tvalue_type\
-    \ operator()(int l, int r) const {  // [l, r)\n\t\treturn operator()(r) - operator()(l);\n\
-    \t}\n\tvalue_type operator[](int i) const {\n\t\treturn operator()(i, i + 1);\n\
-    \t}\n\tvoid add(int i, value_type x) {\n\t\tassert(0 < ++i);\n\t\tfor (; i <=\
-    \ n; i += i & -i) {\n\t\t\ta[i] += x;\n\t\t}\n\t}\n\tint lower_bound(value_type\
-    \ k) const {\n\t\tif (k <= 0) return 0;\n\t\tint result = 0;\n\t\tfor (int i =\
-    \ n2; i > 0; i /= 2) {\n\t\t\tif (result + i <= n && a[result + i] < k) {\n\t\t\
-    \t\tk -= a[result + i];\n\t\t\t\tresult += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\
-    \t}\n\tvector<value_type> to_a() const {\n\t\tvector<value_type> result(n);\n\t\
-    \tfor (int i = 0; i < n; ++i) {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\t\
-    return result;\n\t}\n};\n#line 4 \"test/EulerTourForEdge.test.cpp\"\n#include\
-    \ <iostream>\n#line 6 \"test/EulerTourForEdge.test.cpp\"\nusing namespace std;\n\
-    \nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\tint\
-    \ n;\n\tcin >> n;\n\tvector<vector<int>> g(n);\n\tfor (vector<int>& v : g) {\n\
-    \t\tint k;\n\t\tcin >> k;\n\t\tv.resize(k);\n\t\tfor (int& j : v) {\n\t\t\tcin\
-    \ >> j;\n\t\t}\n\t}\n\n\tEulerTourForEdge euler(g);\n\teuler.build();\n\n\tBinaryIndexedTree<long\
-    \ long> bit(euler.size());\n\tint q;\n\tcin >> q;\n\twhile (q--) {\n\t\tint com;\n\
-    \t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint v;\n\t\t\tlong long w;\n\t\t\t\
-    cin >> v >> w;\n\t\t\tbit.add(euler.l(v), +w);\n\t\t\tbit.add(euler.r(v), -w);\n\
-    \t\t} else if (com == 1) {\n\t\t\tint v;\n\t\t\tcin >> v;\n\t\t\tcout << bit(euler.l(v)\
-    \ + 1) << endl;\n\t\t}\n\t}\n}\n"
+    \ 4 \"DataStructure/BinaryIndexedTree.cpp\"\n\ntemplate <class T> class BinaryIndexedTree\
+    \ {\npublic:\n\tusing value_type = T;\n\nprivate:\n\tint n, n2;\n\tstd::vector<value_type>\
+    \ a;\n\npublic:\n\tBinaryIndexedTree(int n_) : n(n_), n2(1), a(n_ + 1) {\n\t\t\
+    while (n2 < n) n2 *= 2;\n\t\tn2 /= 2;\n\t}\n\tvalue_type operator()(int i) const\
+    \ {  // [0, i)\n\t\tif (i == 0) return 0;\n\t\tassert(0 < i && i <= n);\n\t\t\
+    value_type result = 0;\n\t\tfor (; i > 0; i -= i & -i) {\n\t\t\tresult += a[i];\n\
+    \t\t}\n\t\treturn result;\n\t}\n\tvalue_type operator()(int l, int r) const {\
+    \  // [l, r)\n\t\treturn operator()(r) - operator()(l);\n\t}\n\tvalue_type operator[](int\
+    \ i) const {\n\t\treturn operator()(i, i + 1);\n\t}\n\tvoid add(int i, value_type\
+    \ x) {\n\t\tassert(0 < ++i);\n\t\tfor (; i <= n; i += i & -i) {\n\t\t\ta[i] +=\
+    \ x;\n\t\t}\n\t}\n\tint lower_bound(value_type k) const {\n\t\tif (k <= 0) return\
+    \ 0;\n\t\tint result = 0;\n\t\tfor (int i = n2; i > 0; i /= 2) {\n\t\t\tif (result\
+    \ + i <= n && a[result + i] < k) {\n\t\t\t\tk -= a[result + i];\n\t\t\t\tresult\
+    \ += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\tstd::vector<value_type> to_a()\
+    \ const {\n\t\tstd::vector<value_type> result(n);\n\t\tfor (int i = 0; i < n;\
+    \ ++i) {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\treturn result;\n\t}\n};\n\
+    #line 4 \"test/EulerTourForEdge.test.cpp\"\n#include <iostream>\n#line 6 \"test/EulerTourForEdge.test.cpp\"\
+    \nusing namespace std;\n\nint main() {\n\tcin.tie(nullptr);\n\tios_base::sync_with_stdio(false);\n\
+    \tint n;\n\tcin >> n;\n\tvector<vector<int>> g(n);\n\tfor (vector<int>& v : g)\
+    \ {\n\t\tint k;\n\t\tcin >> k;\n\t\tv.resize(k);\n\t\tfor (int& j : v) {\n\t\t\
+    \tcin >> j;\n\t\t}\n\t}\n\n\tEulerTourForEdge euler(g);\n\teuler.build();\n\n\t\
+    BinaryIndexedTree<long long> bit(euler.size());\n\tint q;\n\tcin >> q;\n\twhile\
+    \ (q--) {\n\t\tint com;\n\t\tcin >> com;\n\t\tif (com == 0) {\n\t\t\tint v;\n\t\
+    \t\tlong long w;\n\t\t\tcin >> v >> w;\n\t\t\tbit.add(euler.l(v), +w);\n\t\t\t\
+    bit.add(euler.r(v), -w);\n\t\t} else if (com == 1) {\n\t\t\tint v;\n\t\t\tcin\
+    \ >> v;\n\t\t\tcout << bit(euler.l(v) + 1) << endl;\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_D\"\
     \n#include \"./../Graph/EulerTourForEdge.cpp\"\n#include \"./../DataStructure/BinaryIndexedTree.cpp\"\
     \n#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n\
@@ -80,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/EulerTourForEdge.test.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
+  timestamp: '2021-04-06 14:30:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/EulerTourForEdge.test.cpp

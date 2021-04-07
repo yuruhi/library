@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"String/ZAlgorithm.cpp\"\n#include <vector>\n\ntemplate <class\
+  bundledCode: "#line 2 \"string/ZAlgorithm.cpp\"\n#include <vector>\n\ntemplate <class\
     \ T> std::vector<int> ZAlgorithm(const T& s) {\n\tif (s.size() == 0) {\n\t\treturn\
     \ {};\n\t}\n\tint n = s.size(), i = 1, j = 0;\n\tstd::vector<int> result(n);\n\
     \tresult[0] = n;\n\twhile (i < n) {\n\t\twhile (i + j < n && s[j] == s[i + j])\
@@ -28,16 +28,16 @@ data:
     \t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\treturn result;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: String/ZAlgorithm.cpp
+  path: string/ZAlgorithm.cpp
   requiredBy: []
-  timestamp: '2021-03-21 10:20:50+09:00'
+  timestamp: '2021-04-06 14:09:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ZAlgotihm.test.cpp
-documentation_of: String/ZAlgorithm.cpp
+documentation_of: string/ZAlgorithm.cpp
 layout: document
 redirect_from:
-- /library/String/ZAlgorithm.cpp
-- /library/String/ZAlgorithm.cpp.html
-title: String/ZAlgorithm.cpp
+- /library/string/ZAlgorithm.cpp
+- /library/string/ZAlgorithm.cpp.html
+title: string/ZAlgorithm.cpp
 ---

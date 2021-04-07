@@ -185,8 +185,8 @@ data:
     };\nconst std::vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),\n\
     \                                          Point::U(),    Point::L(),  Point::RD(),\n\
     \                                          Point::LU(),   Point::RU(), Point::LD()};\n\
-    #line 5 \"Serch/GridBFS.cpp\"\n#include <queue>\n#line 7 \"Serch/GridBFS.cpp\"\
-    \n#include <limits>\n#line 9 \"Serch/GridBFS.cpp\"\n\nauto GridBFS(const std::vector<std::string>&\
+    #line 5 \"search/GridBFS.cpp\"\n#include <queue>\n#line 7 \"search/GridBFS.cpp\"\
+    \n#include <limits>\n#line 9 \"search/GridBFS.cpp\"\n\nauto GridBFS(const std::vector<std::string>&\
     \ grid, Point start, char wall_char) {\n\tconstexpr int INF = std::numeric_limits<int>::max();\n\
     \tint h = grid.size(), w = grid.front().size();\n\tPoint::set_range(h, w);\n\n\
     \tstd::vector result(h, std::vector(w, INF));\n\tif (grid[start.y][start.x] ==\
@@ -229,16 +229,16 @@ data:
   dependsOn:
   - Utility/Point.cpp
   isVerificationFile: false
-  path: Serch/GridBFS.cpp
+  path: search/GridBFS.cpp
   requiredBy: []
-  timestamp: '2021-03-18 14:18:52+09:00'
+  timestamp: '2021-04-06 14:10:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/GridBFS.test.cpp
-documentation_of: Serch/GridBFS.cpp
+documentation_of: search/GridBFS.cpp
 layout: document
 redirect_from:
-- /library/Serch/GridBFS.cpp
-- /library/Serch/GridBFS.cpp.html
-title: Serch/GridBFS.cpp
+- /library/search/GridBFS.cpp
+- /library/search/GridBFS.cpp.html
+title: search/GridBFS.cpp
 ---

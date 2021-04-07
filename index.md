@@ -204,19 +204,6 @@ data:
     - icon: ':warning:'
       path: Graph/isConnected.cpp
       title: Graph/isConnected.cpp
-  - name: Serch
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: Serch/GridBFS.cpp
-      title: Serch/GridBFS.cpp
-  - name: String
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: String/RollingHash.cpp
-      title: String/RollingHash.cpp
-    - icon: ':heavy_check_mark:'
-      path: String/ZAlgorithm.cpp
-      title: String/ZAlgorithm.cpp
   - name: Utility
     pages:
     - icon: ':heavy_check_mark:'
@@ -362,12 +349,6 @@ data:
       path: template.cpp
       title: template.cpp
     - icon: ':warning:'
-      path: template14.cpp
-      title: template14.cpp
-    - icon: ':warning:'
-      path: template17.cpp
-      title: template17.cpp
-    - icon: ':warning:'
       path: template_no_Ruby.cpp
       title: template_no_Ruby.cpp
   - name: math
@@ -464,6 +445,19 @@ data:
     - icon: ':warning:'
       path: old/SegmentTree_old.cpp
       title: old/SegmentTree_old.cpp
+  - name: search
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: search/GridBFS.cpp
+      title: search/GridBFS.cpp
+  - name: string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: string/RollingHash.cpp
+      title: string/RollingHash.cpp
+    - icon: ':heavy_check_mark:'
+      path: string/ZAlgorithm.cpp
+      title: string/ZAlgorithm.cpp
   verificationCategories:
   - name: old
     pages:

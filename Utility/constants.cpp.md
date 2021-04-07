@@ -118,8 +118,8 @@ data:
   isVerificationFile: false
   path: Utility/constants.cpp
   requiredBy:
-  - template_no_Ruby.cpp
   - template.cpp
+  - template_no_Ruby.cpp
   timestamp: '2021-03-19 16:49:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

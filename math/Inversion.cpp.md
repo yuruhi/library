@@ -15,26 +15,26 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"DataStructure/BinaryIndexedTree.cpp\"\n#include <vector>\n\
-    #include <cassert>\nusing namespace std;\n\ntemplate <class T> class BinaryIndexedTree\
-    \ {\npublic:\n\tusing value_type = T;\n\nprivate:\n\tint n, n2;\n\tvector<value_type>\
-    \ a;\n\npublic:\n\tBinaryIndexedTree(int n_) : n(n_), n2(1), a(n_ + 1) {\n\t\t\
-    while (n2 < n) n2 *= 2;\n\t\tn2 /= 2;\n\t}\n\tvalue_type operator()(int i) const\
-    \ {  // [0, i)\n\t\tif (i == 0) return 0;\n\t\tassert(0 < i && i <= n);\n\t\t\
-    value_type result = 0;\n\t\tfor (; i > 0; i -= i & -i) {\n\t\t\tresult += a[i];\n\
-    \t\t}\n\t\treturn result;\n\t}\n\tvalue_type operator()(int l, int r) const {\
-    \  // [l, r)\n\t\treturn operator()(r) - operator()(l);\n\t}\n\tvalue_type operator[](int\
+    #include <cassert>\n\ntemplate <class T> class BinaryIndexedTree {\npublic:\n\t\
+    using value_type = T;\n\nprivate:\n\tint n, n2;\n\tstd::vector<value_type> a;\n\
+    \npublic:\n\tBinaryIndexedTree(int n_) : n(n_), n2(1), a(n_ + 1) {\n\t\twhile\
+    \ (n2 < n) n2 *= 2;\n\t\tn2 /= 2;\n\t}\n\tvalue_type operator()(int i) const {\
+    \  // [0, i)\n\t\tif (i == 0) return 0;\n\t\tassert(0 < i && i <= n);\n\t\tvalue_type\
+    \ result = 0;\n\t\tfor (; i > 0; i -= i & -i) {\n\t\t\tresult += a[i];\n\t\t}\n\
+    \t\treturn result;\n\t}\n\tvalue_type operator()(int l, int r) const {  // [l,\
+    \ r)\n\t\treturn operator()(r) - operator()(l);\n\t}\n\tvalue_type operator[](int\
     \ i) const {\n\t\treturn operator()(i, i + 1);\n\t}\n\tvoid add(int i, value_type\
     \ x) {\n\t\tassert(0 < ++i);\n\t\tfor (; i <= n; i += i & -i) {\n\t\t\ta[i] +=\
     \ x;\n\t\t}\n\t}\n\tint lower_bound(value_type k) const {\n\t\tif (k <= 0) return\
     \ 0;\n\t\tint result = 0;\n\t\tfor (int i = n2; i > 0; i /= 2) {\n\t\t\tif (result\
     \ + i <= n && a[result + i] < k) {\n\t\t\t\tk -= a[result + i];\n\t\t\t\tresult\
-    \ += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\tvector<value_type> to_a()\
-    \ const {\n\t\tvector<value_type> result(n);\n\t\tfor (int i = 0; i < n; ++i)\
-    \ {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\treturn result;\n\t}\n};\n#line\
-    \ 4 \"math/Inversion.cpp\"\n\nlong long Inversion(const std::vector<int>& a, int\
-    \ max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val + 1);\n\
-    \tfor (std::size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i]);\n\t\t\
-    bit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
+    \ += i;\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\tstd::vector<value_type> to_a()\
+    \ const {\n\t\tstd::vector<value_type> result(n);\n\t\tfor (int i = 0; i < n;\
+    \ ++i) {\n\t\t\tresult[i] = operator[](i);\n\t\t}\n\t\treturn result;\n\t}\n};\n\
+    #line 4 \"math/Inversion.cpp\"\n\nlong long Inversion(const std::vector<int>&\
+    \ a, int max_val) {\n\tlong long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val\
+    \ + 1);\n\tfor (std::size_t i = 0; i < a.size(); ++i) {\n\t\tans += i - bit(a[i]);\n\
+    \t\tbit.add(a[i], 1);\n\t}\n\treturn ans;\n}\n"
   code: "#pragma once\n#include \"./../DataStructure/BinaryIndexedTree.cpp\"\n#include\
     \ <vector>\n\nlong long Inversion(const std::vector<int>& a, int max_val) {\n\t\
     long long ans = 0;\n\tBinaryIndexedTree<int> bit(max_val + 1);\n\tfor (std::size_t\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: math/Inversion.cpp
   requiredBy: []
-  timestamp: '2021-03-21 09:59:09+09:00'
+  timestamp: '2021-04-06 14:30:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Inversion.test.cpp

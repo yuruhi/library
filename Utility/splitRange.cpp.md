@@ -62,25 +62,25 @@ data:
     \ r) {\n\tauto L = std::lower_bound(a.begin(), a.end(), r.x) - a.begin();\n\t\
     auto R = std::upper_bound(a.begin(), a.end(), r.y) - a.begin();\n\treturn L ==\
     \ R ? std::nullopt : Range<T>(L, R, true);\n}\n#line 3 \"Utility/splitRange.cpp\"\
-    \n#include <vector>\nusing namespace std;\n\nvector<Range> split(const vector<int>&\
-    \ v) {\n\tint n = v.size();\n\tvector<Range> result;\n\tif (n <= 1) {\n\t\tresult.emplace_back(0,\
+    \n#include <vector>\n\nstd::vector<Range> split(const std::vector<int>& v) {\n\
+    \tint n = v.size();\n\tstd::vector<Range> result;\n\tif (n <= 1) {\n\t\tresult.emplace_back(0,\
     \ n - 1);\n\t\treturn result;\n\t}\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\
     \tfor (int i = 0; i < n; i++) {\n\t\tif (i == n - 1 || !((flag && v[i] < v[i +\
     \ 1]) || (!flag && v[i] > v[i + 1]))) {\n\t\t\tflag = flag ? false : true;\n\t\
     \t\tresult.emplace_back(x, i);\n\t\t\tx = i;\n\t\t}\n\t}\n\treturn result;\n}\n"
-  code: "#pragma once\n#include \"./Range.cpp\"\n#include <vector>\nusing namespace\
-    \ std;\n\nvector<Range> split(const vector<int>& v) {\n\tint n = v.size();\n\t\
-    vector<Range> result;\n\tif (n <= 1) {\n\t\tresult.emplace_back(0, n - 1);\n\t\
-    \treturn result;\n\t}\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\tfor (int i\
-    \ = 0; i < n; i++) {\n\t\tif (i == n - 1 || !((flag && v[i] < v[i + 1]) || (!flag\
-    \ && v[i] > v[i + 1]))) {\n\t\t\tflag = flag ? false : true;\n\t\t\tresult.emplace_back(x,\
-    \ i);\n\t\t\tx = i;\n\t\t}\n\t}\n\treturn result;\n}\n"
+  code: "#pragma once\n#include \"./Range.cpp\"\n#include <vector>\n\nstd::vector<Range>\
+    \ split(const std::vector<int>& v) {\n\tint n = v.size();\n\tstd::vector<Range>\
+    \ result;\n\tif (n <= 1) {\n\t\tresult.emplace_back(0, n - 1);\n\t\treturn result;\n\
+    \t}\n\tint x = 0;\n\tbool flag = v[0] < v[1];\n\tfor (int i = 0; i < n; i++) {\n\
+    \t\tif (i == n - 1 || !((flag && v[i] < v[i + 1]) || (!flag && v[i] > v[i + 1])))\
+    \ {\n\t\t\tflag = flag ? false : true;\n\t\t\tresult.emplace_back(x, i);\n\t\t\
+    \tx = i;\n\t\t}\n\t}\n\treturn result;\n}\n"
   dependsOn:
   - Utility/Range.cpp
   isVerificationFile: false
   path: Utility/splitRange.cpp
   requiredBy: []
-  timestamp: '2021-03-06 16:44:53+09:00'
+  timestamp: '2021-04-06 14:24:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utility/splitRange.cpp
