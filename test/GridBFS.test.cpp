@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/0558"
 #include "./../Utility/Point.cpp"
-#include "./../Serch/GridBFS.cpp"
+#include "./../search/GridBFS.cpp"
 #include <iostream>
 #include <vector>
 #include <string>

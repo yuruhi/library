@@ -37,7 +37,7 @@ public:
 		y = root(y);
 		if (x == y) return false;
 		if (rank_m[x] < rank_m[y]) {
-			swap(x, y);
+			std::swap(x, y);
 			w = -w;
 		}
 		if (rank_m[x] == rank_m[y]) rank_m[x]++;

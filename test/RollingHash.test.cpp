@@ -10,7 +10,7 @@ int main() {
 	cin >> s >> t;
 	int n = s.size(), m = t.size();
 
-	RH rh_s(s), rh_t(t);
+	RollingHash rh_s(s), rh_t(t);
 	for (int i = 0; i <= n - m; ++i) {
 		if (rh_s(i, i + m) == rh_t(m)) {
 			cout << i << '\n';
