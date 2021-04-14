@@ -34,4 +34,4 @@ template <class T> using PQS = std::priority_queue<T, std::vector<T>, std::great
 
 constexpr int inf = 1000000000;
 constexpr long long inf_ll = 1000000000000000000ll, MOD = get_MOD();
-constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
+constexpr long double PI = 3.14159265358979323846, tau = PI * 2, EPS = 1e-12;
