@@ -93,8 +93,14 @@ template <class T> int sz(const T& v) {
 template <class T, class U> int lower_index(const T& a, const U& v) {
 	return std::lower_bound(a.begin(), a.end(), v) - a.begin();
 }
+template <class T, class U, class F> int lower_index(const T& a, const U& v, const F& f) {
+	return std::lower_bound(a.begin(), a.end(), v, f) - a.begin();
+}
 template <class T, class U> int upper_index(const T& a, const U& v) {
 	return std::upper_bound(a.begin(), a.end(), v) - a.begin();
+}
+template <class T, class U, class F> int upper_index(const T& a, const U& v, const F& f) {
+	return std::upper_bound(a.begin(), a.end(), v, f) - a.begin();
 }
 template <class T, class U = typename T::value_type> U Gcdv(const T& v) {
 	return std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U, U>);
