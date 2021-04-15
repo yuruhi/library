@@ -7,6 +7,7 @@
 #include <string_view>
 #include <optional>
 #include <charconv>
+#include <type_traits>
 #include <cstring>
 #include <cassert>
 
@@ -31,6 +32,14 @@ public:
 	BoolString bool_str{Yes};
 	Separator separator{space};
 
+private:
+	template <class T, class = void> struct has_print : std::false_type {};
+	template <class T>
+	struct has_print<T,
+	                 std::void_t<decltype(std::declval<T>().print(std::declval<Printer>()))>>
+	    : std::true_type {};
+
+public:
 	void print(int v) const {
 		char buf[12]{};
 		if (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);
@@ -67,7 +76,12 @@ public:
 	void print(long double v) const {
 		std::printf("%.20Lf", v);
 	}
-	template <class T> void print(const T& v) const {
+	template <class T, std::enable_if_t<has_print<T>::value, std::nullptr_t> = nullptr>
+	void print(const T& v) const {
+		v.print(*this);
+	}
+	template <class T, std::enable_if_t<!has_print<T>::value, std::nullptr_t> = nullptr>
+	void print(const T& v) const {
 		std::cout << v;
 	}
 	template <class T, class U> void print(const std::pair<T, U>& v) const {

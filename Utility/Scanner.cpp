@@ -13,34 +13,37 @@
 #define fflush_unlocked fflush
 #endif
 class Scanner {
-	static int gc() {
+	template <class T, class = void> struct has_scan : std::false_type {};
+	template <class T>
+	struct has_scan<T, std::void_t<decltype(std::declval<T>().scan(std::declval<Scanner>()))>>
+	    : std::true_type {};
+
+public:
+	int gc() const {
 		return getchar_unlocked();
 	}
-	static char next_char() {
+	char next_char() const {
 		char c;
 		scan(c);
 		return c;
 	}
-	template <class T> static void scan(T& v) {
-		std::cin >> v;
-	}
-	static void scan(char& v) {
+	void scan(char& v) const {
 		while (std::isspace(v = gc()))
 			;
 	}
-	static void scan(bool& v) {
+	void scan(bool& v) const {
 		v = next_char() != '0';
 	}
-	static void scan(std::vector<bool>::reference v) {
+	void scan(std::vector<bool>::reference v) const {
 		bool b;
 		scan(b);
 		v = b;
 	}
-	static void scan(std::string& v) {
+	void scan(std::string& v) const {
 		v.clear();
 		for (char c = next_char(); !std::isspace(c); c = gc()) v += c;
 	}
-	static void scan(int& v) {
+	void scan(int& v) const {
 		v = 0;
 		bool neg = false;
 		char c = next_char();
@@ -51,7 +54,7 @@ class Scanner {
 		for (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void scan(long long& v) {
+	void scan(long long& v) const {
 		v = 0;
 		bool neg = false;
 		char c = next_char();
@@ -62,7 +65,7 @@ class Scanner {
 		for (; std::isdigit(c); c = gc()) v = v * 10 + (c - '0');
 		if (neg) v = -v;
 	}
-	static void scan(double& v) {
+	void scan(double& v) const {
 		v = 0;
 		double dp = 1;
 		bool neg = false, after_dp = false;
@@ -82,7 +85,7 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	static void scan(long double& v) {
+	void scan(long double& v) const {
 		v = 0;
 		long double dp = 1;
 		bool neg = false, after_dp = false;
@@ -102,28 +105,41 @@ class Scanner {
 		}
 		if (neg) v = -v;
 	}
-	template <class T, class U> static void scan(std::pair<T, U>& v) {
+	template <class T, class U> void scan(std::pair<T, U>& v) const {
 		scan(v.first);
 		scan(v.second);
 	}
 	template <class T, std::enable_if_t<!std::is_same_v<bool, T>, std::nullptr_t> = nullptr>
-	static void scan(std::vector<T>& v) {
+	void scan(std::vector<T>& v) const {
 		for (auto& e : v) scan(e);
 	}
 	template <class T, std::enable_if_t<std::is_same_v<bool, T>, std::nullptr_t> = nullptr>
-	static void scan(std::vector<T>& v) {
+	void scan(std::vector<T>& v) const {
 		for (auto e : v) scan(e);
 	}
-	template <std::size_t N = 0, class T> static void scan_tuple_impl(T& v) {
+
+private:
+	template <std::size_t N = 0, class T> void scan_tuple_impl(T& v) const {
 		if constexpr (N < std::tuple_size_v<T>) {
 			scan(std::get<N>(v));
 			scan_tuple_impl<N + 1>(v);
 		}
 	}
-	template <class... T> static void scan(std::tuple<T...>& v) {
+
+public:
+	template <class... T> void scan(std::tuple<T...>& v) const {
 		scan_tuple_impl(v);
 	}
+	template <class T, std::enable_if_t<has_scan<T>::value, std::nullptr_t> = nullptr>
+	void scan(T& v) const {
+		v.scan(*this);
+	}
+	template <class T, std::enable_if_t<!has_scan<T>::value, std::nullptr_t> = nullptr>
+	void scan(T& v) const {
+		std::cin >> v;
+	}
 
+private:
 	struct Read2DVectorHelper {
 		std::size_t h, w;
 		Read2DVectorHelper(std::size_t _h, std::size_t _w) : h(_h), w(_w) {}

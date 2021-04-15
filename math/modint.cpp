@@ -131,6 +131,12 @@ public:
 		m = modint(x);
 		return is;
 	}
+	template <class Scanner> void scan(const Scanner& in) {
+		in.scan(n);
+	}
+	template <class Printer> void print(const Printer& out) const {
+		out.print(value());
+	}
 };
 
 using mint = modint<get_MOD()>;
