@@ -56,8 +56,12 @@ data:
     \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
     template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(a.begin(),\
-    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const\
-    \ T& a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U, class F> int lower_index(const\
+    \ T& a, const U& v, const F& f) {\n\treturn std::lower_bound(a.begin(), a.end(),\
+    \ v, f) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T&\
+    \ a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    }\ntemplate <class T, class U, class F> int upper_index(const T& a, const U& v,\
+    \ const F& f) {\n\treturn std::upper_bound(a.begin(), a.end(), v, f) - a.begin();\n\
     }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
     \treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
     \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
@@ -123,8 +127,12 @@ data:
     \ T> bool chmin(T& a, const T& b) {\n\treturn a > b ? a = b, true : false;\n}\n\
     template <class T> int sz(const T& v) {\n\treturn v.size();\n}\ntemplate <class\
     \ T, class U> int lower_index(const T& a, const U& v) {\n\treturn std::lower_bound(a.begin(),\
-    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const\
-    \ T& a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    \ a.end(), v) - a.begin();\n}\ntemplate <class T, class U, class F> int lower_index(const\
+    \ T& a, const U& v, const F& f) {\n\treturn std::lower_bound(a.begin(), a.end(),\
+    \ v, f) - a.begin();\n}\ntemplate <class T, class U> int upper_index(const T&\
+    \ a, const U& v) {\n\treturn std::upper_bound(a.begin(), a.end(), v) - a.begin();\n\
+    }\ntemplate <class T, class U, class F> int upper_index(const T& a, const U& v,\
+    \ const F& f) {\n\treturn std::upper_bound(a.begin(), a.end(), v, f) - a.begin();\n\
     }\ntemplate <class T, class U = typename T::value_type> U Gcdv(const T& v) {\n\
     \treturn std::accumulate(std::next(v.begin()), v.end(), U(*v.begin()), std::gcd<U,\
     \ U>);\n}\ntemplate <class T, class U = typename T::value_type> U Lcmv(const T&\
@@ -163,7 +171,7 @@ data:
   requiredBy:
   - template.cpp
   - template_no_Ruby.cpp
-  timestamp: '2021-04-02 18:59:57+09:00'
+  timestamp: '2021-04-14 21:49:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/TemplateFunctions.test.cpp

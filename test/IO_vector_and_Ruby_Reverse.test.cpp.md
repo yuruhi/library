@@ -26,11 +26,15 @@ data:
     \ <string>\n#include <utility>\n#include <tuple>\n#include <type_traits>\n\n#ifdef\
     \ _WIN32\n#define getchar_unlocked _getchar_nolock\n#define putchar_unlocked _putchar_nolock\n\
     #define fwrite_unlocked fwrite\n#define fflush_unlocked fflush\n#endif\nclass\
-    \ Scanner {\n\tstatic int gc() {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic\
-    \ char next_char() {\n\t\tchar c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate\
-    \ <class T> static void scan(T& v) {\n\t\tstd::cin >> v;\n\t}\n\tstatic void scan(char&\
-    \ v) {\n\t\twhile (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool&\
-    \ v) {\n\t\tv = next_char() != '0';\n\t}\n\tstatic void scan(std::vector<bool>::reference\
+    \ Scanner {\n\ttemplate <class T, class = void> struct has_scan : std::false_type\
+    \ {};\n\ttemplate <class T>\n\tstruct has_scan<T, std::void_t<decltype(std::declval<T>().template\
+    \ scan<Scanner>())>>\n\t    : std::true_type {};\n\npublic:\n\tstatic int gc()\
+    \ {\n\t\treturn getchar_unlocked();\n\t}\n\tstatic char next_char() {\n\t\tchar\
+    \ c;\n\t\tscan(c);\n\t\treturn c;\n\t}\n\ttemplate <class T> static void scan(T&\
+    \ v) {\n\t\tif (has_scan<T>::value) {\n\t\t\tv.template scan<Scanner>();\n\t\t\
+    } else {\n\t\t\tstd::cin >> v;\n\t\t}\n\t}\n\tstatic void scan(char& v) {\n\t\t\
+    while (std::isspace(v = gc()))\n\t\t\t;\n\t}\n\tstatic void scan(bool& v) {\n\t\
+    \tv = next_char() != '0';\n\t}\n\tstatic void scan(std::vector<bool>::reference\
     \ v) {\n\t\tbool b;\n\t\tscan(b);\n\t\tv = b;\n\t}\n\tstatic void scan(std::string&\
     \ v) {\n\t\tv.clear();\n\t\tfor (char c = next_char(); !std::isspace(c); c = gc())\
     \ v += c;\n\t}\n\tstatic void scan(int& v) {\n\t\tv = 0;\n\t\tbool neg = false;\n\
@@ -56,50 +60,51 @@ data:
     \ T>, std::nullptr_t> = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\t\
     for (auto& e : v) scan(e);\n\t}\n\ttemplate <class T, std::enable_if_t<std::is_same_v<bool,\
     \ T>, std::nullptr_t> = nullptr>\n\tstatic void scan(std::vector<T>& v) {\n\t\t\
-    for (auto e : v) scan(e);\n\t}\n\ttemplate <std::size_t N = 0, class T> static\
-    \ void scan_tuple_impl(T& v) {\n\t\tif constexpr (N < std::tuple_size_v<T>) {\n\
-    \t\t\tscan(std::get<N>(v));\n\t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t}\n\t\
-    template <class... T> static void scan(std::tuple<T...>& v) {\n\t\tscan_tuple_impl(v);\n\
-    \t}\n\n\tstruct Read2DVectorHelper {\n\t\tstd::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t\
-    \ _h, std::size_t _w) : h(_h), w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>()\
-    \ {\n\t\t\tstd::vector vector(h, std::vector<T>(w));\n\t\t\tscan(vector);\n\t\t\
-    \treturn vector;\n\t\t}\n\t};\n\tstruct ReadVectorHelper {\n\t\tstd::size_t n;\n\
-    \t\tReadVectorHelper(std::size_t _n) : n(_n) {}\n\t\ttemplate <class T> operator\
-    \ std::vector<T>() {\n\t\t\tstd::vector<T> vector(n);\n\t\t\tscan(vector);\n\t\
-    \t\treturn vector;\n\t\t}\n\t\tauto operator[](std::size_t m) {\n\t\t\treturn\
-    \ Read2DVectorHelper(n, m);\n\t\t}\n\t};\n\npublic:\n\ttemplate <class T> T read()\
-    \ const {\n\t\tT result;\n\t\tscan(result);\n\t\treturn result;\n\t}\n\ttemplate\
-    \ <class T> auto read(std::size_t n) const {\n\t\tstd::vector<T> result(n);\n\t\
-    \tscan(result);\n\t\treturn result;\n\t}\n\ttemplate <class T> auto read(std::size_t\
-    \ h, std::size_t w) const {\n\t\tstd::vector result(h, std::vector<T>(w));\n\t\
-    \tscan(result);\n\t\treturn result;\n\t}\n\tstd::string read_line() const {\n\t\
-    \tstd::string v;\n\t\tfor (char c = gc(); c != '\\n' && c != '\\0'; c = gc())\
-    \ v += c;\n\t\treturn v;\n\t}\n\ttemplate <class T> operator T() const {\n\t\t\
-    return read<T>();\n\t}\n\tint operator--(int) const {\n\t\treturn read<int>()\
-    \ - 1;\n\t}\n\tauto operator[](std::size_t n) const {\n\t\treturn ReadVectorHelper(n);\n\
-    \t}\n\tauto operator[](const std::pair<std::size_t, std::size_t>& nm) const {\n\
-    \t\treturn Read2DVectorHelper(nm.first, nm.second);\n\t}\n\tvoid operator()()\
-    \ const {}\n\ttemplate <class H, class... T> void operator()(H&& h, T&&... t)\
-    \ const {\n\t\tscan(h);\n\t\toperator()(std::forward<T>(t)...);\n\t}\n\nprivate:\n\
-    \ttemplate <template <class...> class, class...> struct Column;\n\ttemplate <template\
-    \ <class...> class V, class Head, class... Tail>\n\tstruct Column<V, Head, Tail...>\
-    \ {\n\t\ttemplate <class... Args> using vec = V<std::vector<Head>, Args...>;\n\
-    \t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate <template\
-    \ <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate <class...\
-    \ T> using column_t = typename Column<std::tuple, T...>::type;\n\ttemplate <std::size_t\
-    \ N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr (N < std::tuple_size_v<T>)\
-    \ {\n\t\t\tauto& vec = std::get<N>(t);\n\t\t\tusing V = typename std::remove_reference_t<decltype(vec)>::value_type;\n\
-    \t\t\tvec.push_back(read<V>());\n\t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\n\
-    public:\n\ttemplate <class... T> auto column(std::size_t h) const {\n\t\tcolumn_t<T...>\
-    \ result;\n\t\twhile (h--) column_impl(result);\n\t\treturn result;\n\t}\n} in;\n\
-    #define inputs(T, ...) \\\n\tT __VA_ARGS__;     \\\n\tin(__VA_ARGS__)\n#define\
-    \ ini(...) inputs(int, __VA_ARGS__)\n#define inl(...) inputs(long long, __VA_ARGS__)\n\
-    #define ins(...) inputs(std::string, __VA_ARGS__)\n#line 5 \"Utility/Printer.cpp\"\
-    \n#include <array>\n#line 7 \"Utility/Printer.cpp\"\n#include <string_view>\n\
-    #include <optional>\n#include <charconv>\n#include <cstring>\n#include <cassert>\n\
-    \nclass Printer {\npublic:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\
-    \t\tBoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f) {}\n\t\
-    };\n\tstruct Separator {\n\t\tstd::string_view div, sep, last;\n\t\tSeparator(std::string_view\
+    for (auto e : v) scan(e);\n\t}\n\nprivate:\n\ttemplate <std::size_t N = 0, class\
+    \ T> static void scan_tuple_impl(T& v) {\n\t\tif constexpr (N < std::tuple_size_v<T>)\
+    \ {\n\t\t\tscan(std::get<N>(v));\n\t\t\tscan_tuple_impl<N + 1>(v);\n\t\t}\n\t\
+    }\n\npublic:\n\ttemplate <class... T> static void scan(std::tuple<T...>& v) {\n\
+    \t\tscan_tuple_impl(v);\n\t}\n\nprivate:\n\tstruct Read2DVectorHelper {\n\t\t\
+    std::size_t h, w;\n\t\tRead2DVectorHelper(std::size_t _h, std::size_t _w) : h(_h),\
+    \ w(_w) {}\n\t\ttemplate <class T> operator std::vector<std::vector<T>>() {\n\t\
+    \t\tstd::vector vector(h, std::vector<T>(w));\n\t\t\tscan(vector);\n\t\t\treturn\
+    \ vector;\n\t\t}\n\t};\n\tstruct ReadVectorHelper {\n\t\tstd::size_t n;\n\t\t\
+    ReadVectorHelper(std::size_t _n) : n(_n) {}\n\t\ttemplate <class T> operator std::vector<T>()\
+    \ {\n\t\t\tstd::vector<T> vector(n);\n\t\t\tscan(vector);\n\t\t\treturn vector;\n\
+    \t\t}\n\t\tauto operator[](std::size_t m) {\n\t\t\treturn Read2DVectorHelper(n,\
+    \ m);\n\t\t}\n\t};\n\npublic:\n\ttemplate <class T> T read() const {\n\t\tT result;\n\
+    \t\tscan(result);\n\t\treturn result;\n\t}\n\ttemplate <class T> auto read(std::size_t\
+    \ n) const {\n\t\tstd::vector<T> result(n);\n\t\tscan(result);\n\t\treturn result;\n\
+    \t}\n\ttemplate <class T> auto read(std::size_t h, std::size_t w) const {\n\t\t\
+    std::vector result(h, std::vector<T>(w));\n\t\tscan(result);\n\t\treturn result;\n\
+    \t}\n\tstd::string read_line() const {\n\t\tstd::string v;\n\t\tfor (char c =\
+    \ gc(); c != '\\n' && c != '\\0'; c = gc()) v += c;\n\t\treturn v;\n\t}\n\ttemplate\
+    \ <class T> operator T() const {\n\t\treturn read<T>();\n\t}\n\tint operator--(int)\
+    \ const {\n\t\treturn read<int>() - 1;\n\t}\n\tauto operator[](std::size_t n)\
+    \ const {\n\t\treturn ReadVectorHelper(n);\n\t}\n\tauto operator[](const std::pair<std::size_t,\
+    \ std::size_t>& nm) const {\n\t\treturn Read2DVectorHelper(nm.first, nm.second);\n\
+    \t}\n\tvoid operator()() const {}\n\ttemplate <class H, class... T> void operator()(H&&\
+    \ h, T&&... t) const {\n\t\tscan(h);\n\t\toperator()(std::forward<T>(t)...);\n\
+    \t}\n\nprivate:\n\ttemplate <template <class...> class, class...> struct Column;\n\
+    \ttemplate <template <class...> class V, class Head, class... Tail>\n\tstruct\
+    \ Column<V, Head, Tail...> {\n\t\ttemplate <class... Args> using vec = V<std::vector<Head>,\
+    \ Args...>;\n\t\tusing type = typename Column<vec, Tail...>::type;\n\t};\n\ttemplate\
+    \ <template <class...> class V> struct Column<V> { using type = V<>; };\n\ttemplate\
+    \ <class... T> using column_t = typename Column<std::tuple, T...>::type;\n\ttemplate\
+    \ <std::size_t N = 0, class T> void column_impl(T& t) const {\n\t\tif constexpr\
+    \ (N < std::tuple_size_v<T>) {\n\t\t\tauto& vec = std::get<N>(t);\n\t\t\tusing\
+    \ V = typename std::remove_reference_t<decltype(vec)>::value_type;\n\t\t\tvec.push_back(read<V>());\n\
+    \t\t\tcolumn_impl<N + 1>(t);\n\t\t}\n\t}\n\npublic:\n\ttemplate <class... T> auto\
+    \ column(std::size_t h) const {\n\t\tcolumn_t<T...> result;\n\t\twhile (h--) column_impl(result);\n\
+    \t\treturn result;\n\t}\n} in;\n#define inputs(T, ...) \\\n\tT __VA_ARGS__;  \
+    \   \\\n\tin(__VA_ARGS__)\n#define ini(...) inputs(int, __VA_ARGS__)\n#define\
+    \ inl(...) inputs(long long, __VA_ARGS__)\n#define ins(...) inputs(std::string,\
+    \ __VA_ARGS__)\n#line 5 \"Utility/Printer.cpp\"\n#include <array>\n#line 7 \"\
+    Utility/Printer.cpp\"\n#include <string_view>\n#include <optional>\n#include <charconv>\n\
+    #line 11 \"Utility/Printer.cpp\"\n#include <cstring>\n#include <cassert>\n\nclass\
+    \ Printer {\npublic:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\t\t\
+    BoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f) {}\n\t};\n\
+    \tstruct Separator {\n\t\tstd::string_view div, sep, last;\n\t\tSeparator(std::string_view\
     \ _div, std::string_view _sep, std::string_view _last)\n\t\t    : div(_div), sep(_sep),\
     \ last(_last) {}\n\t};\n\n\tinline static const BoolString Yes{\"Yes\", \"No\"\
     }, yes{\"yes\", \"no\"}, YES{\"YES\", \"NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"\
@@ -107,34 +112,40 @@ data:
     \ \", \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\
     \\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\"\
     \ \", \"\\n\", \"\\n\"};\n\n\tBoolString bool_str{Yes};\n\tSeparator separator{space};\n\
-    \n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long\
-    \ long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool\
-    \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
+    \nprivate:\n\ttemplate <class T, class = void> struct has_print : std::false_type\
+    \ {};\n\ttemplate <class T>\n\tstruct has_print<T,\n\t                 std::void_t<decltype(std::declval<T>().print(std::declval<Printer>()))>>\n\
+    \t    : std::true_type {};\n\npublic:\n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\
+    \t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);\n\t\t\
+    \    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\t\t\
+    } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\
+    \t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf),\
+    \ v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\
+    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\
+    \t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
     \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(char\
     \ v) const {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid print(std::string_view v)\
     \ const {\n\t\tfwrite_unlocked(v.data(), sizeof(std::string_view::value_type),\
     \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tstd::printf(\"\
     %.20f\", v);\n\t}\n\tvoid print(long double v) const {\n\t\tstd::printf(\"%.20Lf\"\
-    , v);\n\t}\n\ttemplate <class T> void print(const T& v) const {\n\t\tstd::cout\
-    \ << v;\n\t}\n\ttemplate <class T, class U> void print(const std::pair<T, U>&\
-    \ v) const {\n\t\tprint(v.first);\n\t\tprint(separator.div);\n\t\tprint(v.second);\n\
-    \t}\n\ttemplate <class T> void print(const std::optional<T>& v) const {\n\t\t\
-    print(*v);\n\t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
-    \ begin, const InputIterater& end) const {\n\t\tfor (InputIterater i = begin;\
-    \ i != end; ++i) {\n\t\t\tif (i != begin) print(separator.sep);\n\t\t\tprint(*i);\n\
-    \t\t}\n\t}\n\ttemplate <class T> void print(const std::vector<T>& v) const {\n\
-    \t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T, std::size_t N>\
-    \ void print(const std::array<T, N>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
-    \t}\n\ttemplate <class T> void print(const std::vector<std::vector<T>>& v) const\
-    \ {\n\t\tfor (std::size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\
-    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString&\
-    \ _bool_str, const Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator)\
-    \ {}\n\tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\
-    \t}\n\ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
+    , v);\n\t}\n\ttemplate <class T, std::enable_if_t<has_print<T>::value, std::nullptr_t>\
+    \ = nullptr>\n\tvoid print(const T& v) const {\n\t\tv.print(*this);\n\t}\n\ttemplate\
+    \ <class T, std::enable_if_t<!has_print<T>::value, std::nullptr_t> = nullptr>\n\
+    \tvoid print(const T& v) const {\n\t\tstd::cout << v;\n\t}\n\ttemplate <class\
+    \ T, class U> void print(const std::pair<T, U>& v) const {\n\t\tprint(v.first);\n\
+    \t\tprint(separator.div);\n\t\tprint(v.second);\n\t}\n\ttemplate <class T> void\
+    \ print(const std::optional<T>& v) const {\n\t\tprint(*v);\n\t}\n\ttemplate <class\
+    \ InputIterater>\n\tvoid print_range(const InputIterater& begin, const InputIterater&\
+    \ end) const {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i\
+    \ != begin) print(separator.sep);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class\
+    \ T> void print(const std::vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
+    \t}\n\ttemplate <class T, std::size_t N> void print(const std::array<T, N>& v)\
+    \ const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void\
+    \ print(const std::vector<std::vector<T>>& v) const {\n\t\tfor (std::size_t i\
+    \ = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\t\t\tprint(v[i]);\n\
+    \t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString& _bool_str, const\
+    \ Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator) {}\n\
+    \tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\
+    \ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
     \t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class Head, class...\
     \ Tail> Printer& operator()(Head&& head, Tail&&... tail) {\n\t\tprint(head);\n\
     \t\tprint(separator.sep);\n\t\treturn operator()(std::forward<Tail>(tail)...);\n\
@@ -334,7 +345,7 @@ data:
   isVerificationFile: true
   path: test/IO_vector_and_Ruby_Reverse.test.cpp
   requiredBy: []
-  timestamp: '2021-03-26 12:00:51+09:00'
+  timestamp: '2021-04-15 20:38:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/IO_vector_and_Ruby_Reverse.test.cpp

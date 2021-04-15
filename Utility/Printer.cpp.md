@@ -31,10 +31,10 @@ data:
     links: []
   bundledCode: "#line 2 \"Utility/Printer.cpp\"\n#include <iostream>\n#include <utility>\n\
     #include <vector>\n#include <array>\n#include <string>\n#include <string_view>\n\
-    #include <optional>\n#include <charconv>\n#include <cstring>\n#include <cassert>\n\
-    \nclass Printer {\npublic:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\
-    \t\tBoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f) {}\n\t\
-    };\n\tstruct Separator {\n\t\tstd::string_view div, sep, last;\n\t\tSeparator(std::string_view\
+    #include <optional>\n#include <charconv>\n#include <type_traits>\n#include <cstring>\n\
+    #include <cassert>\n\nclass Printer {\npublic:\n\tstruct BoolString {\n\t\tstd::string_view\
+    \ t, f;\n\t\tBoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f)\
+    \ {}\n\t};\n\tstruct Separator {\n\t\tstd::string_view div, sep, last;\n\t\tSeparator(std::string_view\
     \ _div, std::string_view _sep, std::string_view _last)\n\t\t    : div(_div), sep(_sep),\
     \ last(_last) {}\n\t};\n\n\tinline static const BoolString Yes{\"Yes\", \"No\"\
     }, yes{\"yes\", \"no\"}, YES{\"YES\", \"NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"\
@@ -42,34 +42,40 @@ data:
     \ \", \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\
     \\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\"\
     \ \", \"\\n\", \"\\n\"};\n\n\tBoolString bool_str{Yes};\n\tSeparator separator{space};\n\
-    \n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long\
-    \ long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool\
-    \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
+    \nprivate:\n\ttemplate <class T, class = void> struct has_print : std::false_type\
+    \ {};\n\ttemplate <class T>\n\tstruct has_print<T,\n\t                 std::void_t<decltype(std::declval<T>().print(std::declval<Printer>()))>>\n\
+    \t    : std::true_type {};\n\npublic:\n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\
+    \t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);\n\t\t\
+    \    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\t\t\
+    } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\
+    \t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf),\
+    \ v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\
+    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\
+    \t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
     \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(char\
     \ v) const {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid print(std::string_view v)\
     \ const {\n\t\tfwrite_unlocked(v.data(), sizeof(std::string_view::value_type),\
     \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tstd::printf(\"\
     %.20f\", v);\n\t}\n\tvoid print(long double v) const {\n\t\tstd::printf(\"%.20Lf\"\
-    , v);\n\t}\n\ttemplate <class T> void print(const T& v) const {\n\t\tstd::cout\
-    \ << v;\n\t}\n\ttemplate <class T, class U> void print(const std::pair<T, U>&\
-    \ v) const {\n\t\tprint(v.first);\n\t\tprint(separator.div);\n\t\tprint(v.second);\n\
-    \t}\n\ttemplate <class T> void print(const std::optional<T>& v) const {\n\t\t\
-    print(*v);\n\t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
-    \ begin, const InputIterater& end) const {\n\t\tfor (InputIterater i = begin;\
-    \ i != end; ++i) {\n\t\t\tif (i != begin) print(separator.sep);\n\t\t\tprint(*i);\n\
-    \t\t}\n\t}\n\ttemplate <class T> void print(const std::vector<T>& v) const {\n\
-    \t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T, std::size_t N>\
-    \ void print(const std::array<T, N>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
-    \t}\n\ttemplate <class T> void print(const std::vector<std::vector<T>>& v) const\
-    \ {\n\t\tfor (std::size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\
-    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString&\
-    \ _bool_str, const Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator)\
-    \ {}\n\tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\
-    \t}\n\ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
+    , v);\n\t}\n\ttemplate <class T, std::enable_if_t<has_print<T>::value, std::nullptr_t>\
+    \ = nullptr>\n\tvoid print(const T& v) const {\n\t\tv.print(*this);\n\t}\n\ttemplate\
+    \ <class T, std::enable_if_t<!has_print<T>::value, std::nullptr_t> = nullptr>\n\
+    \tvoid print(const T& v) const {\n\t\tstd::cout << v;\n\t}\n\ttemplate <class\
+    \ T, class U> void print(const std::pair<T, U>& v) const {\n\t\tprint(v.first);\n\
+    \t\tprint(separator.div);\n\t\tprint(v.second);\n\t}\n\ttemplate <class T> void\
+    \ print(const std::optional<T>& v) const {\n\t\tprint(*v);\n\t}\n\ttemplate <class\
+    \ InputIterater>\n\tvoid print_range(const InputIterater& begin, const InputIterater&\
+    \ end) const {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i\
+    \ != begin) print(separator.sep);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class\
+    \ T> void print(const std::vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
+    \t}\n\ttemplate <class T, std::size_t N> void print(const std::array<T, N>& v)\
+    \ const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void\
+    \ print(const std::vector<std::vector<T>>& v) const {\n\t\tfor (std::size_t i\
+    \ = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\t\t\tprint(v[i]);\n\
+    \t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString& _bool_str, const\
+    \ Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator) {}\n\
+    \tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\
+    \ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
     \t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class Head, class...\
     \ Tail> Printer& operator()(Head&& head, Tail&&... tail) {\n\t\tprint(head);\n\
     \t\tprint(separator.sep);\n\t\treturn operator()(std::forward<Tail>(tail)...);\n\
@@ -88,45 +94,51 @@ data:
     \t}\n} out;\n"
   code: "#pragma once\n#include <iostream>\n#include <utility>\n#include <vector>\n\
     #include <array>\n#include <string>\n#include <string_view>\n#include <optional>\n\
-    #include <charconv>\n#include <cstring>\n#include <cassert>\n\nclass Printer {\n\
-    public:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\t\tBoolString(std::string_view\
-    \ _t, std::string_view _f) : t(_t), f(_f) {}\n\t};\n\tstruct Separator {\n\t\t\
-    std::string_view div, sep, last;\n\t\tSeparator(std::string_view _div, std::string_view\
-    \ _sep, std::string_view _last)\n\t\t    : div(_div), sep(_sep), last(_last) {}\n\
-    \t};\n\n\tinline static const BoolString Yes{\"Yes\", \"No\"}, yes{\"yes\", \"\
-    no\"}, YES{\"YES\", \"NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"Possible\",\
-    \ \"Impossible\"};\n\tinline static const Separator space{\" \", \" \", \"\\n\"\
-    }, no_space{\"\", \"\", \"\\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\\n\"}, comma{\"\
-    ,\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\" \", \"\\\
-    n\", \"\\n\"};\n\n\tBoolString bool_str{Yes};\n\tSeparator separator{space};\n\
-    \n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long\
-    \ long v) const {\n\t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf),\
-    \ std::end(buf), v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf,\
-    \ ptr - buf));\n\t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool\
-    \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
+    #include <charconv>\n#include <type_traits>\n#include <cstring>\n#include <cassert>\n\
+    \nclass Printer {\npublic:\n\tstruct BoolString {\n\t\tstd::string_view t, f;\n\
+    \t\tBoolString(std::string_view _t, std::string_view _f) : t(_t), f(_f) {}\n\t\
+    };\n\tstruct Separator {\n\t\tstd::string_view div, sep, last;\n\t\tSeparator(std::string_view\
+    \ _div, std::string_view _sep, std::string_view _last)\n\t\t    : div(_div), sep(_sep),\
+    \ last(_last) {}\n\t};\n\n\tinline static const BoolString Yes{\"Yes\", \"No\"\
+    }, yes{\"yes\", \"no\"}, YES{\"YES\", \"NO\"},\n\t    Int{\"1\", \"0\"}, Possible{\"\
+    Possible\", \"Impossible\"};\n\tinline static const Separator space{\" \", \"\
+    \ \", \"\\n\"}, no_space{\"\", \"\", \"\\n\"},\n\t    endl{\"\\n\", \"\\n\", \"\
+    \\n\"}, comma{\",\", \",\", \"\\n\"}, no_endl{\" \", \" \", \"\"},\n\t    sep_endl{\"\
+    \ \", \"\\n\", \"\\n\"};\n\n\tBoolString bool_str{Yes};\n\tSeparator separator{space};\n\
+    \nprivate:\n\ttemplate <class T, class = void> struct has_print : std::false_type\
+    \ {};\n\ttemplate <class T>\n\tstruct has_print<T,\n\t                 std::void_t<decltype(std::declval<T>().print(std::declval<Printer>()))>>\n\
+    \t    : std::true_type {};\n\npublic:\n\tvoid print(int v) const {\n\t\tchar buf[12]{};\n\
+    \t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf), v);\n\t\t\
+    \    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\t\t\
+    } else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(long long v) const {\n\
+    \t\tchar buf[21]{};\n\t\tif (auto [ptr, e] = std::to_chars(std::begin(buf), std::end(buf),\
+    \ v);\n\t\t    e == std::errc{}) {\n\t\t\tprint(std::string_view(buf, ptr - buf));\n\
+    \t\t} else {\n\t\t\tassert(false);\n\t\t}\n\t}\n\tvoid print(bool v) const {\n\
+    \t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(std::vector<bool>::reference\
     \ v) const {\n\t\tprint(v ? bool_str.t : bool_str.f);\n\t}\n\tvoid print(char\
     \ v) const {\n\t\tputchar_unlocked(v);\n\t}\n\tvoid print(std::string_view v)\
     \ const {\n\t\tfwrite_unlocked(v.data(), sizeof(std::string_view::value_type),\
     \ v.size(), stdout);\n\t}\n\tvoid print(double v) const {\n\t\tstd::printf(\"\
     %.20f\", v);\n\t}\n\tvoid print(long double v) const {\n\t\tstd::printf(\"%.20Lf\"\
-    , v);\n\t}\n\ttemplate <class T> void print(const T& v) const {\n\t\tstd::cout\
-    \ << v;\n\t}\n\ttemplate <class T, class U> void print(const std::pair<T, U>&\
-    \ v) const {\n\t\tprint(v.first);\n\t\tprint(separator.div);\n\t\tprint(v.second);\n\
-    \t}\n\ttemplate <class T> void print(const std::optional<T>& v) const {\n\t\t\
-    print(*v);\n\t}\n\ttemplate <class InputIterater>\n\tvoid print_range(const InputIterater&\
-    \ begin, const InputIterater& end) const {\n\t\tfor (InputIterater i = begin;\
-    \ i != end; ++i) {\n\t\t\tif (i != begin) print(separator.sep);\n\t\t\tprint(*i);\n\
-    \t\t}\n\t}\n\ttemplate <class T> void print(const std::vector<T>& v) const {\n\
-    \t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T, std::size_t N>\
-    \ void print(const std::array<T, N>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
-    \t}\n\ttemplate <class T> void print(const std::vector<std::vector<T>>& v) const\
-    \ {\n\t\tfor (std::size_t i = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\
-    \t\t\tprint(v[i]);\n\t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString&\
-    \ _bool_str, const Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator)\
-    \ {}\n\tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\
-    \t}\n\ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
+    , v);\n\t}\n\ttemplate <class T, std::enable_if_t<has_print<T>::value, std::nullptr_t>\
+    \ = nullptr>\n\tvoid print(const T& v) const {\n\t\tv.print(*this);\n\t}\n\ttemplate\
+    \ <class T, std::enable_if_t<!has_print<T>::value, std::nullptr_t> = nullptr>\n\
+    \tvoid print(const T& v) const {\n\t\tstd::cout << v;\n\t}\n\ttemplate <class\
+    \ T, class U> void print(const std::pair<T, U>& v) const {\n\t\tprint(v.first);\n\
+    \t\tprint(separator.div);\n\t\tprint(v.second);\n\t}\n\ttemplate <class T> void\
+    \ print(const std::optional<T>& v) const {\n\t\tprint(*v);\n\t}\n\ttemplate <class\
+    \ InputIterater>\n\tvoid print_range(const InputIterater& begin, const InputIterater&\
+    \ end) const {\n\t\tfor (InputIterater i = begin; i != end; ++i) {\n\t\t\tif (i\
+    \ != begin) print(separator.sep);\n\t\t\tprint(*i);\n\t\t}\n\t}\n\ttemplate <class\
+    \ T> void print(const std::vector<T>& v) const {\n\t\tprint_range(v.begin(), v.end());\n\
+    \t}\n\ttemplate <class T, std::size_t N> void print(const std::array<T, N>& v)\
+    \ const {\n\t\tprint_range(v.begin(), v.end());\n\t}\n\ttemplate <class T> void\
+    \ print(const std::vector<std::vector<T>>& v) const {\n\t\tfor (std::size_t i\
+    \ = 0; i < v.size(); ++i) {\n\t\t\tif (i) print(separator.last);\n\t\t\tprint(v[i]);\n\
+    \t\t}\n\t}\n\n\tPrinter() = default;\n\tPrinter(const BoolString& _bool_str, const\
+    \ Separator& _separator)\n\t    : bool_str(_bool_str), separator(_separator) {}\n\
+    \tPrinter& operator()() {\n\t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\
+    \ttemplate <class Head> Printer& operator()(Head&& head) {\n\t\tprint(head);\n\
     \t\tprint(separator.last);\n\t\treturn *this;\n\t}\n\ttemplate <class Head, class...\
     \ Tail> Printer& operator()(Head&& head, Tail&&... tail) {\n\t\tprint(head);\n\
     \t\tprint(separator.sep);\n\t\treturn operator()(std::forward<Tail>(tail)...);\n\
@@ -149,7 +161,7 @@ data:
   requiredBy:
   - template.cpp
   - template_no_Ruby.cpp
-  timestamp: '2021-03-18 17:11:07+09:00'
+  timestamp: '2021-04-15 19:19:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp

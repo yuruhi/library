@@ -61,6 +61,8 @@ data:
     \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
     \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
     \tmodint<MOD>::value_type x;\n\t\tis >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\
+    \t}\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(n);\n\t}\n\t\
+    template <class Printer> void print(const Printer& out) const {\n\t\tout.print(value());\n\
     \t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\nmint\
     \ operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   code: "#pragma once\n#include \"./../Utility/get_MOD.cpp\"\n#include <iostream>\n\
@@ -102,6 +104,8 @@ data:
     \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
     \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
     \tmodint<MOD>::value_type x;\n\t\tis >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\
+    \t}\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(n);\n\t}\n\t\
+    template <class Printer> void print(const Printer& out) const {\n\t\tout.print(value());\n\
     \t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\nmint\
     \ operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n"
   dependsOn:
@@ -110,7 +114,7 @@ data:
   path: math/modint.cpp
   requiredBy:
   - math/Combination.cpp
-  timestamp: '2021-03-21 09:59:09+09:00'
+  timestamp: '2021-04-15 20:38:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_pow.test.cpp

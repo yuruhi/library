@@ -40,7 +40,7 @@ data:
     \ T> using PQ = std::priority_queue<T>;\ntemplate <class T> using PQS = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\nconstexpr int inf = 1000000000;\nconstexpr\
     \ long long inf_ll = 1000000000000000000ll, MOD = get_MOD();\nconstexpr long double\
-    \ PI = 3.14159265358979323846, EPS = 1e-12;\n"
+    \ PI = 3.14159265358979323846, tau = PI * 2, EPS = 1e-12;\n"
   code: '#pragma once
 
     #include "./get_MOD.cpp"
@@ -110,7 +110,7 @@ data:
 
     constexpr long long inf_ll = 1000000000000000000ll, MOD = get_MOD();
 
-    constexpr long double PI = 3.14159265358979323846, EPS = 1e-12;
+    constexpr long double PI = 3.14159265358979323846, tau = PI * 2, EPS = 1e-12;
 
     '
   dependsOn:
@@ -120,7 +120,7 @@ data:
   requiredBy:
   - template.cpp
   - template_no_Ruby.cpp
-  timestamp: '2021-03-19 16:49:34+09:00'
+  timestamp: '2021-04-14 19:00:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp
