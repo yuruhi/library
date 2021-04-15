@@ -29,6 +29,9 @@ public:
 	std::size_t width() const {
 		return w;
 	}
+	const data_type& value() const {
+		return A;
+	}
 	const std::vector<T>& operator[](int i) const {
 		return A[i];
 	}
