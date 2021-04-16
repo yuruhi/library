@@ -9,7 +9,13 @@
 #define FOR(i, m, n) for (int i = (m); i < (n); ++i)
 #define rrep(i, n) for (int i = (n)-1; i >= 0; --i)
 #define rfor(i, m, n) for (int i = (m); i >= (n); --i)
-#define loop(n) rep(i##__COUNTER__, n)
+#define INTERNAL_CAT_IMPL(s1, s2) s1##s2
+#define INTERNAL_CAT(s1, s2) INTERNAL_CAT_IMPL(s1, s2)
+#ifdef __COUNTER__
+#define loop(n) rep(INTERNAL_CAT(_i, __COUNTER__), n)
+#else
+#define loop(n) rep(INTERNAL_CAT(_i, __COUNTER__), n)
+#endif
 #define unless(c) if (!(c))
 #define ALL(x) (x).begin(), (x).end()
 #define RALL(x) (x).rbegin(), (x).rend()
