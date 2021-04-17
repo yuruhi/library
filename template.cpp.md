@@ -44,13 +44,15 @@ data:
     \ <utility>\n#include <queue>\n\n#define rep(i, n) for (int i = 0; i < (n); ++i)\n\
     #define FOR(i, m, n) for (int i = (m); i < (n); ++i)\n#define rrep(i, n) for (int\
     \ i = (n)-1; i >= 0; --i)\n#define rfor(i, m, n) for (int i = (m); i >= (n); --i)\n\
-    #define loop(n) rep(i##__COUNTER__, n)\n#define unless(c) if (!(c))\n#define ALL(x)\
-    \ (x).begin(), (x).end()\n#define RALL(x) (x).rbegin(), (x).rend()\n#define range_it(a,\
-    \ l, r) (a).begin() + (l), (a).begin() + (r)\n\nusing ll = long long;\nusing LD\
-    \ = long double;\nusing VB = std::vector<bool>;\nusing VVB = std::vector<VB>;\n\
-    using VI = std::vector<int>;\nusing VVI = std::vector<VI>;\nusing VL = std::vector<ll>;\n\
-    using VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\nusing VD =\
-    \ std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
+    #define INTERNAL_CAT_IMPL(s1, s2) s1##s2\n#define INTERNAL_CAT(s1, s2) INTERNAL_CAT_IMPL(s1,\
+    \ s2)\n#ifdef __COUNTER__\n#define loop(n) rep(INTERNAL_CAT(_i, __COUNTER__),\
+    \ n)\n#else\n#define loop(n) rep(INTERNAL_CAT(_i, __COUNTER__), n)\n#endif\n#define\
+    \ unless(c) if (!(c))\n#define ALL(x) (x).begin(), (x).end()\n#define RALL(x)\
+    \ (x).rbegin(), (x).rend()\n#define range_it(a, l, r) (a).begin() + (l), (a).begin()\
+    \ + (r)\n\nusing ll = long long;\nusing LD = long double;\nusing VB = std::vector<bool>;\n\
+    using VVB = std::vector<VB>;\nusing VI = std::vector<int>;\nusing VVI = std::vector<VI>;\n\
+    using VL = std::vector<ll>;\nusing VVL = std::vector<VL>;\nusing VS = std::vector<std::string>;\n\
+    using VD = std::vector<LD>;\nusing PII = std::pair<int, int>;\nusing VP = std::vector<PII>;\n\
     using PLL = std::pair<ll, ll>;\nusing VPL = std::vector<PLL>;\ntemplate <class\
     \ T> using PQ = std::priority_queue<T>;\ntemplate <class T> using PQS = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\nconstexpr int inf = 1000000000;\nconstexpr\
@@ -536,7 +538,7 @@ data:
   isVerificationFile: false
   path: template.cpp
   requiredBy: []
-  timestamp: '2021-04-15 20:38:34+09:00'
+  timestamp: '2021-04-16 16:53:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp
