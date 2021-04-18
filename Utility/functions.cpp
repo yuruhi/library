@@ -129,6 +129,13 @@ auto make_vector(const int (&sizes)[N], const T& init = T()) {
 	std::vector s(std::rbegin(sizes), std::rend(sizes));
 	return internal::make_vector<T, N>(s, init);
 }
+template <class F> struct rec_lambda {
+	F f;
+	rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}
+	template <class... Args> auto operator()(Args&&... args) const {
+		return f(*this, std::forward<Args>(args)...);
+	}
+};
 
 namespace lambda {
 	auto char_to_int = [](char c) {
