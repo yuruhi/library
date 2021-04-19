@@ -5,15 +5,25 @@
 
 struct mint {
 	using value_type = long long;
-	static value_type MOD;
+	inline static value_type MOD = 1000000007;
+
+private:
 	value_type n;
 
 public:
-	static void set_mod(value_type _MOD) {
-		MOD = _MOD;
+	static modint factorial(int n) {
+		assert(n >= 0);
+		modint result = 1;
+		for (int i = 1; i <= n; ++i) {
+			result *= i;
+		}
+		return result;
 	}
 	mint(value_type x = 0) : n(x % MOD) {
 		if (n < 0) n += MOD;
+	}
+	value_type value() const {
+		return n;
 	}
 	mint operator+() const {
 		return *this;
@@ -116,9 +126,16 @@ public:
 		m = mint(x);
 		return is;
 	}
+	template <class Scanner> void scan() {
+		Scanner::scan(n);
+		n %= MOD;
+		if (n < 0) n += MOD;
+	}
+	template <class Printer> void print(const Printer& out) const {
+		out.print(value());
+	}
 	friend mint operator""_m(unsigned long long n) {
 		return n;
 	}
 };
-mint::value_type mint::MOD = 1000000007;
 using VM = vector<mint>;
