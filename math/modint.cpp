@@ -133,6 +133,8 @@ public:
 	}
 	template <class Scanner> void scan() {
 		Scanner::scan(n);
+		n %= MOD;
+		if (n < 0) n += MOD;
 	}
 	template <class Printer> void print(const Printer& out) const {
 		out.print(value());
