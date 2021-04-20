@@ -42,6 +42,18 @@ public:
 	      right_match(right) {
 		assert(graph.size() == left);
 	}
+	BipartiteMatching(std::size_t _left, std::size_t _right,
+	                  const std::vector<std::pair<int, int>>& edges)
+	    : left(_left),
+	      right(_right),
+	      graph(left),
+	      used(left),
+	      left_match(left),
+	      right_match(right) {
+		for (auto [u, v] : edges) {
+			graph[u].push_back(v);
+		}
+	}
 	void add_edge(int l, int r) {
 		graph[l].push_back(r);
 	}
