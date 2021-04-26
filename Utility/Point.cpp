@@ -513,6 +513,17 @@ public:
 		return enumerate_2D_points_helper();
 	}
 
+	template <class Scanner> void scan() {
+		Scanner::scan(y);
+		Scanner::scan(x);
+	}
+	template <class Printer> void print(const Printer& out) const {
+		out.print('(');
+		out.print(y);
+		out.print(", ");
+		out.print(x);
+		out.print(')');
+	}
 	friend std::ostream& operator<<(std::ostream& os, const Point& p) {
 		return os << '(' << p.y << ", " << p.x << ')';
 	}
