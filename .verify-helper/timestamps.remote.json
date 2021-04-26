@@ -110,6 +110,6 @@
 "test/extGcd.test.cpp": "2021-03-07 15:45:48 +0900",
 "test/isPrime.test.cpp": "2021-03-07 15:45:48 +0900",
 "test/modint_pow.test.cpp": "2021-04-15 20:38:34 +0900",
-"test/template.test.cpp": "2021-04-15 20:38:34 +0900",
-"test/template_no_Ruby.test.cpp": "2021-04-15 20:38:34 +0900"
+"test/template.test.cpp": "2021-04-16 16:53:29 +0900",
+"test/template_no_Ruby.test.cpp": "2021-04-16 16:53:29 +0900"
 }
