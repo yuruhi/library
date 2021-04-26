@@ -43,17 +43,17 @@ data:
   isVerificationFile: false
   path: Utility/get_MOD.cpp
   requiredBy:
-  - Utility/constants.cpp
+  - template.cpp
   - math/modint.cpp
   - math/Combination.cpp
-  - template.cpp
   - template_no_Ruby.cpp
+  - Utility/constants.cpp
   timestamp: '2021-03-18 10:33:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp
-  - test/template_no_Ruby.test.cpp
   - test/modint_pow.test.cpp
+  - test/template_no_Ruby.test.cpp
   - test/Partition.test.cpp
 documentation_of: Utility/get_MOD.cpp
 layout: document

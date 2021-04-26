@@ -134,9 +134,9 @@ data:
   timestamp: '2021-03-21 11:17:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/HLD_LCA.test.cpp
-  - test/HLD_vertex.test.cpp
   - test/HLD_subtree_edge.test.cpp
+  - test/HLD_vertex.test.cpp
+  - test/HLD_LCA.test.cpp
   - test/HLD_edge.test.cpp
 documentation_of: Graph/HeavyLightDecomposition.cpp
 layout: document

@@ -378,10 +378,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/template.test.cpp
-  - test/Ruby_Min_Max_Sum.test.cpp
-  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - test/template_no_Ruby.test.cpp
+  - test/Ruby_Min_Max_Sum.test.cpp
   - test/IO_vector_and_Ruby_Reverse.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
 documentation_of: Utility/Ruby.cpp
 layout: document
 redirect_from:

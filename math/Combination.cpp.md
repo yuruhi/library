@@ -55,22 +55,22 @@ data:
     \ operator<<(std::ostream& os, const modint<MOD>& m) {\n\t\treturn os << m.value();\n\
     \t}\n\tfriend std::istream& operator>>(std::istream& is, modint<MOD>& m) {\n\t\
     \tmodint<MOD>::value_type x;\n\t\tis >> x;\n\t\tm = modint(x);\n\t\treturn is;\n\
-    \t}\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(n);\n\t}\n\t\
-    template <class Printer> void print(const Printer& out) const {\n\t\tout.print(value());\n\
-    \t}\n};\n\nusing mint = modint<get_MOD()>;\nusing VM = std::vector<mint>;\nmint\
-    \ operator\"\"_m(unsigned long long n) {\n\treturn n;\n}\n#line 3 \"math/Combination.cpp\"\
-    \n#include <array>\n\ntemplate <int MOD, std::size_t N> class Combination {\n\t\
-    using value_type = modint<MOD>;\n\tstd::array<value_type, N + 1> fac, finv, inv;\n\
-    \npublic:\n\tconstexpr Combination() {\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0]\
-    \ = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor (std::size_t i = 2; i <= N; ++i) {\n\
-    \t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = -inv[MOD % i] * (MOD / i);\n\t\t\
-    \tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t}\n\tconstexpr value_type P(int n,\
-    \ int r) const {\n\t\treturn (n < r || n < 0 || r < 0) ? 0 : fac[n] * finv[n -\
-    \ r];\n\t}\n\tconstexpr value_type C(int n, int r) const {\n\t\treturn (n < r\
-    \ || n < 0 || r < 0) ? 0 : fac[n] * finv[r] * finv[n - r];\n\t}\n\tconstexpr value_type\
-    \ H(int n, int r) const {\n\t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n\
-    \ + r - 1, r);\n\t}\n\tconstexpr value_type fact(int n) const {\n\t\treturn fac[n];\n\
-    \t}\n};\n"
+    \t}\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(n);\n\t\tn %=\
+    \ MOD;\n\t\tif (n < 0) n += MOD;\n\t}\n\ttemplate <class Printer> void print(const\
+    \ Printer& out) const {\n\t\tout.print(value());\n\t}\n};\n\nusing mint = modint<get_MOD()>;\n\
+    using VM = std::vector<mint>;\nmint operator\"\"_m(unsigned long long n) {\n\t\
+    return n;\n}\n#line 3 \"math/Combination.cpp\"\n#include <array>\n\ntemplate <int\
+    \ MOD, std::size_t N> class Combination {\n\tusing value_type = modint<MOD>;\n\
+    \tstd::array<value_type, N + 1> fac, finv, inv;\n\npublic:\n\tconstexpr Combination()\
+    \ {\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\
+    \tfor (std::size_t i = 2; i <= N; ++i) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\
+    \tinv[i] = -inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\
+    \t\t}\n\t}\n\tconstexpr value_type P(int n, int r) const {\n\t\treturn (n < r\
+    \ || n < 0 || r < 0) ? 0 : fac[n] * finv[n - r];\n\t}\n\tconstexpr value_type\
+    \ C(int n, int r) const {\n\t\treturn (n < r || n < 0 || r < 0) ? 0 : fac[n] *\
+    \ finv[r] * finv[n - r];\n\t}\n\tconstexpr value_type H(int n, int r) const {\n\
+    \t\treturn (n < 0 || r < 0) ? 0 : r == 0 ? 1 : C(n + r - 1, r);\n\t}\n\tconstexpr\
+    \ value_type fact(int n) const {\n\t\treturn fac[n];\n\t}\n};\n"
   code: "#pragma once\n#include \"./modint.cpp\"\n#include <array>\n\ntemplate <int\
     \ MOD, std::size_t N> class Combination {\n\tusing value_type = modint<MOD>;\n\
     \tstd::array<value_type, N + 1> fac, finv, inv;\n\npublic:\n\tconstexpr Combination()\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: math/Combination.cpp
   requiredBy: []
-  timestamp: '2021-04-15 20:38:34+09:00'
+  timestamp: '2021-04-19 17:40:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/Combination.cpp

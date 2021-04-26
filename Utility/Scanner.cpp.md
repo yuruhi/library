@@ -205,12 +205,12 @@ data:
   verifiedWith:
   - test/template.test.cpp
   - test/Input2DVector_read.test.cpp
+  - test/template_no_Ruby.test.cpp
+  - test/Input_column.test.cpp
+  - test/IO_vector_and_Ruby_Reverse.test.cpp
+  - test/Input2DVector.test.cpp
   - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - test/Input_Output.test.cpp
-  - test/template_no_Ruby.test.cpp
-  - test/IO_vector_and_Ruby_Reverse.test.cpp
-  - test/Input_column.test.cpp
-  - test/Input2DVector.test.cpp
 documentation_of: Utility/Scanner.cpp
 layout: document
 redirect_from:

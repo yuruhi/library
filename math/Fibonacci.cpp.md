@@ -72,8 +72,8 @@ data:
   timestamp: '2021-04-15 19:19:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/EnumerateFibonacci.test.cpp
   - test/Fibonacci.test.cpp
+  - test/EnumerateFibonacci.test.cpp
 documentation_of: math/Fibonacci.cpp
 layout: document
 redirect_from:

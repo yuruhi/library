@@ -179,8 +179,11 @@ data:
     \t\t\t\treturn p != other.p;\n\t\t\t\t}\n\t\t\t};\n\t\t\titerator begin() const\
     \ {\n\t\t\t\treturn iterator(Point(0, 0));\n\t\t\t}\n\t\t\titerator end() const\
     \ {\n\t\t\t\treturn iterator(Point(H, 0));\n\t\t\t}\n\t\t};\n\t\treturn enumerate_2D_points_helper();\n\
-    \t}\n\n\tfriend std::ostream& operator<<(std::ostream& os, const Point& p) {\n\
-    \t\treturn os << '(' << p.y << \", \" << p.x << ')';\n\t}\n\tfriend std::istream&\
+    \t}\n\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(y);\n\t\tScanner::scan(x);\n\
+    \t}\n\ttemplate <class Printer> void print(const Printer& out) const {\n\t\tout.print('(');\n\
+    \t\tout.print(y);\n\t\tout.print(\", \");\n\t\tout.print(x);\n\t\tout.print(')');\n\
+    \t}\n\tfriend std::ostream& operator<<(std::ostream& os, const Point& p) {\n\t\
+    \treturn os << '(' << p.y << \", \" << p.x << ')';\n\t}\n\tfriend std::istream&\
     \ operator>>(std::istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\t}\n\
     };\nconst std::vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),\n\
     \                                          Point::U(),    Point::L(),  Point::RD(),\n\
@@ -350,8 +353,11 @@ data:
     \t\t\t\treturn p != other.p;\n\t\t\t\t}\n\t\t\t};\n\t\t\titerator begin() const\
     \ {\n\t\t\t\treturn iterator(Point(0, 0));\n\t\t\t}\n\t\t\titerator end() const\
     \ {\n\t\t\t\treturn iterator(Point(H, 0));\n\t\t\t}\n\t\t};\n\t\treturn enumerate_2D_points_helper();\n\
-    \t}\n\n\tfriend std::ostream& operator<<(std::ostream& os, const Point& p) {\n\
-    \t\treturn os << '(' << p.y << \", \" << p.x << ')';\n\t}\n\tfriend std::istream&\
+    \t}\n\n\ttemplate <class Scanner> void scan() {\n\t\tScanner::scan(y);\n\t\tScanner::scan(x);\n\
+    \t}\n\ttemplate <class Printer> void print(const Printer& out) const {\n\t\tout.print('(');\n\
+    \t\tout.print(y);\n\t\tout.print(\", \");\n\t\tout.print(x);\n\t\tout.print(')');\n\
+    \t}\n\tfriend std::ostream& operator<<(std::ostream& os, const Point& p) {\n\t\
+    \treturn os << '(' << p.y << \", \" << p.x << ')';\n\t}\n\tfriend std::istream&\
     \ operator>>(std::istream& is, Point& p) {\n\t\treturn is >> p.y >> p.x;\n\t}\n\
     };\nconst std::vector<Point> Point::direction{Point::zero(), Point::R(),  Point::D(),\n\
     \                                          Point::U(),    Point::L(),  Point::RD(),\n\
@@ -361,7 +367,7 @@ data:
   path: Utility/Point.cpp
   requiredBy:
   - search/GridBFS.cpp
-  timestamp: '2021-03-18 14:18:52+09:00'
+  timestamp: '2021-04-26 17:18:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/GridBFS.test.cpp
