@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <cassert>
+#include <initializer_list>
 
 template <class T> struct Matrix {
 public:
@@ -23,6 +24,8 @@ public:
 	Matrix(std::size_t _h, std::size_t _w) : h(_h), w(_w), A(h, std::vector<T>(w, 0)) {}
 	Matrix(std::size_t _h) : h(_h), w(_h), A(h, std::vector<T>(w, 0)) {}
 	Matrix(const data_type& _A) : h(_A.size()), w(_A[0].size()), A(_A) {}
+	Matrix(std::initializer_list<std::vector<value_type>> init)
+	    : h(init.size()), w(init.begin()->size()), A(init) {}
 	std::size_t height() const {
 		return h;
 	}
