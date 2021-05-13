@@ -543,8 +543,8 @@ data:
   timestamp: '2021-04-18 18:33:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
 documentation_of: template.cpp
 layout: document
 redirect_from:

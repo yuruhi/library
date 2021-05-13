@@ -164,11 +164,11 @@ data:
   timestamp: '2021-04-15 19:19:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/template.test.cpp
   - test/template_no_Ruby.test.cpp
+  - test/template.test.cpp
   - test/IO_vector_and_Ruby_Reverse.test.cpp
-  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
   - test/Input_Output.test.cpp
+  - test/IO_2Dvector_and_Ruby_push_back_Transpose_Map_Sum.test.cpp
 documentation_of: Utility/Printer.cpp
 layout: document
 redirect_from:

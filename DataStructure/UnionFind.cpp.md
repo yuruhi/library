@@ -68,8 +68,8 @@ data:
   timestamp: '2021-02-24 22:02:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/UnionFind.test.cpp
   - test/Kruskal.test.cpp
+  - test/UnionFind.test.cpp
 documentation_of: DataStructure/UnionFind.cpp
 layout: document
 redirect_from:

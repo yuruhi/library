@@ -83,8 +83,8 @@ data:
   timestamp: '2021-04-06 14:24:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/PersistentQueue.test.cpp
   - test/PersistentUnionFind.test.cpp
+  - test/PersistentQueue.test.cpp
 documentation_of: DataStructure/PersistentArray.cpp
 layout: document
 redirect_from:

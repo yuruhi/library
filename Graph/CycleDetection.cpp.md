@@ -104,9 +104,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CycleDetectionVertex_Directed.test.cpp
-  - test/CycleDetectionVertex_Undirected.test.cpp
-  - test/DirectedMinimumSpanningTree.test.cpp
   - test/CycleDetectionEdge_Undirected.test.cpp
+  - test/DirectedMinimumSpanningTree.test.cpp
+  - test/CycleDetectionVertex_Undirected.test.cpp
   - test/CycleDetectionEdge_Directed.test.cpp
 documentation_of: Graph/CycleDetection.cpp
 layout: document

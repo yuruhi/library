@@ -15,6 +15,9 @@ data:
     path: template.cpp
     title: template.cpp
   - icon: ':warning:'
+    path: template_mini.cpp
+    title: template_mini.cpp
+  - icon: ':warning:'
     path: template_no_Ruby.cpp
     title: template_no_Ruby.cpp
   _extendedVerifiedWith:
@@ -46,14 +49,15 @@ data:
   - template.cpp
   - math/modint.cpp
   - math/Combination.cpp
-  - template_no_Ruby.cpp
   - Utility/constants.cpp
+  - template_mini.cpp
+  - template_no_Ruby.cpp
   timestamp: '2021-03-18 10:33:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/template_no_Ruby.test.cpp
   - test/template.test.cpp
   - test/modint_pow.test.cpp
-  - test/template_no_Ruby.test.cpp
   - test/Partition.test.cpp
 documentation_of: Utility/get_MOD.cpp
 layout: document

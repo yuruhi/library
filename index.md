@@ -349,6 +349,9 @@ data:
       path: template.cpp
       title: template.cpp
     - icon: ':warning:'
+      path: template_mini.cpp
+      title: template_mini.cpp
+    - icon: ':warning:'
       path: template_no_Ruby.cpp
       title: template_no_Ruby.cpp
   - name: math
