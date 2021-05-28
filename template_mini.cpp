@@ -62,8 +62,7 @@ s...>;using type=typename Column<vec,Tail...>::type;};template<template<class...
 n_impl(T&t)const{if constexpr(N<std::tuple_size_v<T>){auto&vec=std::get<N>(t);using V=typename std::remove_reference_t<d\
 ecltype(vec)>::value_type;vec.push_back(read<V>());column_impl<N+1>(t);}}public:template<class... T>auto column(std::siz\
 e_t h)const{column_t<T...>result;while(h--)column_impl(result);return result;}}in;
-#define inputs(T,...)\
-T __VA_ARGS__;\in(__VA_ARGS__)
+#define inputs(T,...)T __VA_ARGS__;in(__VA_ARGS__)
 #define ini(...)inputs(int,__VA_ARGS__)
 #define inl(...)inputs(long long,__VA_ARGS__)
 #define ins(...)inputs(std::string,__VA_ARGS__)
