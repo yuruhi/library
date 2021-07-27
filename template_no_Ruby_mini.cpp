@@ -142,6 +142,7 @@ auto second=[](const auto&n){return n.second;};template<class T>auto cast(){retu
 eturn [](const auto&n){return std::get<I>(n);};}template<class F>auto cmp(F&&f){return [f](const auto&a,const auto&b){re\
 turn f(a)<f(b);};}}
 #if __has_include(<library/dump.hpp>)
+#include<library/dump.hpp>
 #define LOCAL
 #else 
 #define dump(...)((void)0)
